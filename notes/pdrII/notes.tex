@@ -1,0 +1,878 @@
+\documentclass{article}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsmath}
+
+% PAGE DIMENSION
+\usepackage{geometry}
+
+% BIBLIOGRAPHY
+\usepackage{natbib}
+\usepackage{bibentry} % inline refereces
+
+% ENCODING, LANGUAGE
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+
+% GRAPHICS
+\usepackage{subfig}
+\usepackage{graphicx}
+
+% HYPERTEXT, SOURCE CODE SPECIALS
+\usepackage[unicode]{hyperref}
+\usepackage[active]{srcltx} % use TeX-souce-specials-mode
+
+% SYMBOLS, FONTS
+\usepackage{mathbbol}
+\usepackage{bm} % sophisticated \boldsymbol
+%\usepackage{stmaryrd}
+\usepackage{MnSymbol} % \lsem, \rsem, tensor product :
+\usepackage{gensymb}
+\usepackage{physics}
+\usepackage{eurosym}
+
+% UNITS, TYPESETTING TENSORS
+\usepackage{units}
+\usepackage{tensor}
+\usepackage{accents}
+
+% COMPACT LIST ENVIRONMENT
+\usepackage{enumitem}
+
+% LINE NUMBERS
+\usepackage{lineno}
+
+\usepackage{multicol}
+
+% SELECTIVELY INCLUDE/EXCLUDE PARTS OF TEXT
+\usepackage{comment}
+
+% FLOAT BARRIER
+\usepackage{placeins}
+
+\input{macros}
+
+\title{Partial differential equations II}
+
+\date{\today}
+
+\author{Kamil Belan}
+
+\begin{document}
+
+\begin{comment}
+ \begin{abstract}
+  % \input{article-abstract}
+  Here comes the abstract.
+\end{abstract}
+
+\end{comment}
+
+\maketitle
+
+\section{Winter semester addendum}
+\label{chap:addendum}
+
+\subsubsection{Weak$^*$ convergence}
+\label{sec:weakstarconv}
+Since $\LinfIntX{0}{T}{\LpSet[2]{\Omega}}$ is not reflexive, we cannot extracting a convergent subsequence; however, we know the predual of $\LinfIntX{0}{T}{\LpSet[2]{\Omega}}$ is reflexive, i.e.
+\[
+	\LinfIntX{0}{T}{\LpSet[2]{\Omega}} \approx (\LpIntX{1}{0}{T}{\LpSet[2]{\Omega}})^{*},
+\]
+which means that balls in $\LinfIntX{0}{T}{\LpSet[2]{\Omega}}$ are weakly$^{*}$ compact. Moreover, $\LpIntX{1}{0}{T}{\LpSet[2]{\Omega}}$ is \textit{separable}, from which it follows $\LinfIntX{0}{T}{\LpSet[2]{\Omega}}$ with the weak$^{*}$ topology is metrizable and thus there exists s weakly $^{*}$ converging subsequence (from the balls).
+
+\begin{theorem}
+	Let the assumptions of the previous theorem hold and $\Omega \in \text{C}^{1,1}, \delta \in (0,1).$ Then $ u \in \LpIntX{2}{\delta}{T}{\WkpSet[2][2]{\Omega}}$.
+\end{theorem}
+
+\begin{proof}
+    Take the weak formulation in $t \in (\delta,T)$. WLOG further assume $d=0$. Then
+    \begin{equation*}
+	    \int_{\Omega} \tensorq{A} \grad{u} \vdot \grad{\varphi}  = \int_{\Omega}f \varphi - bu \varphi - \vb{c}\vdot \grad{u} \varphi - \int_{\Omega} \partial_t u \varphi = \int_{\Omega}(f-bu-\vb{c}\vdot \grad{u} - \partial_t u) \varphi,
+    \end{equation*}
+and the integrand of the last integral is in $\LpSet[2]{\Omega}$ for a.e. $t \in (\delta,T)$. We can thus use the elliptic regularity results and write:
+
+\begin{equation*}
+    \norm{u}_{\WkpSet[2][2]{\Omega}}^{2} \leq C(\norm{f}_{\LpSet[2]{\Omega}}^{2} + \norm{u}_{\WkpSet[1][2]{\Omega}}^{2} + \norm{\partial_t u}_{\LpSet[2]{\Omega}}^{2}),
+\end{equation*}
+integrating both sides $\int_{\delta}^T \dd{t}$ yields
+
+\begin{equation*}
+    \NormLpIntX{u}{2}{\delta}{T}{\LpSet[2]{\Omega}}^{2} \leq C(\norm{f}_{\LpSet[2]{\Omega}}^{2} + \NormLpIntX{u}{2}{0}{T}{\WkpSet[1][2]{\Omega}} ^{2} + \NormLpIntX{u}{2}{\delta}{T}{\LpSet[2]{\Omega}}^{2})
+\end{equation*}
+\end{proof}
+
+\begin{theorem}
+    If data are smooth and satisfy the \textit{compatibility condiitons}, then the weak solutions to the parabolic equation are smooth.
+\end{theorem}
+\begin{proof}
+    no.
+\end{proof}
+
+\begin{remark}[Compatibility condition]:
+	Take the heat equation :
+	$\partial_t u -  \laplace u  = f$ at time zero: $\laplace u (0) + f(0) = \partial_t u(0) \in \WkpzeroSet[1][2]{\Omega}$, so we need that $f(0) + \laplace u (0)$ has zero trace $\Rightarrow$ compatibility conditions. 
+\end{remark}
+
+\begin{theorem}[Uniqueness of the solution to a hyperbolic equation]
+    Let the assumptions on the data of the hyperbolic equations be standard (i.e. minimal). Further assume that $\vb{c} \in \WminfSet{1}{\Omega}$. Then the weak solution to the hyperbolic equation is unique.
+\end{theorem}
+
+\begin{proof}
+    It is enough that if $u_0 = 0, u_1 = 0 \Rightarrow u = 0 \in Q_T$. To do that, take the weak equation, multiply it by $\varphi \in V$ fixed and integrate in time and space:
+
+    \begin{equation*}
+	    <\partial_t u(t), \varphi> + \int_{\Omega} \int_0^t \tensorq{A}(s) \grad{u}(s) \grad{\varphi}\dd{s} + \int_{\Omega} \int_0^t (bu(s) + \vb{c} \vdot \grad{u}(s) )\varphi - \int_{\Omega} \int_0^t u(s)\vb{d}(s)\vdot \grad{\varphi} = 0, 
+    \end{equation*}
+    next take $\varphi = u(t)$ as a test function and integrate $\int_0^\tau \dd{t}, \tau \in (0,T)$. The duality term becomes
+    \[
+	    \int_0^\tau \frac{1}{2} \partial_t \norm{u(t)}_{\LpSet[2]{\Omega}}^{2} \dd{t},
+    \]
+the remaining terms are (we are using Fubini theorem)
+
+\begin{equation*}
+	\int_0^\tau \int_0^t \int_{\Omega} \tensorq{A} \grad{u} \vdot \grad{u}(t) \dd{s} \dd{t} = \int_{\Omega} \int_0^\tau \int_s^\tau \grad{u}(t) \dd{t} \tensorq{A}(s) \grad{u}(s)\dd{s},
+\end{equation*}
+denote $\partial_{s}w(s) = - u(s)$, then
+
+\end{proof}
+\bibliographystyle{chicago}
+
+\section{Sobolev spaces revisited}
+\label{sec:sobolev_revisited}
+Let $\Omega \subset \R^d \quad{open}, p \in [1,+\infty], k \in N.$ We define
+\[
+	\WkpSet{\Omega} = \Big\{f \in \LpSet{\Omega}; D^\alpha f \in \LpSet{\Omega}, \forall |\alpha| \leq k \Big\},
+\]
+with the norm
+\[
+	\norm{f}_{\WkpSet{\Omega}}^p = \norm{f}_{\LpSet{\Omega}}^p + \sum_{0< |\alpha| \leq k} \norm{D^\alpha f}_{\LpSet{\Omega}}^p.
+\]
+Recall that:
+\begin{itemize}
+\item	$\WkpSet{\Omega}$ is Banach $\forall p$ and Hilbert for $p=2$. 
+\item $\WkpSet{\Omega}$ is separable if $p < \infty$ and reflexive if $p>1, p<\infty$.
+\end{itemize}
+
+
+\textit{Our goal will be to prove embedding and trace theorems. We will use the density of smooth functions.}
+
+\subsection{Tools from functional analysis}
+\label{sec:fa_tools}
+
+\begin{definition}[Regularization kernel]
+    The function $\eta$ is called the regularization kernel supposed:
+    \begin{itemize}
+	    \item $\eta \in \mathcal{D}(\R^d)$
+	    \item $\supp \eta \subset \text{U}(0,1)$
+	    \item $\eta \geq 0$
+	    \item $\eta$ is radially symmetric
+	    \item $\int_{\R^d}\eta(x)\dd{x} = 1$
+    \end{itemize}
+\end{definition}
+
+\begin{definition}[Regularization of a function]
+    Let $\eta$ be a regularization kernel. Set $\eta_{\varepsilon}(x) = \varepsilon^{-d} \eta (x/\varepsilon), \varepsilon >0.$ We define the smoothing of $f$ by
+    \[
+	    f_{\varepsilon}(x) = (f \star \eta_{\varepsilon})(x).
+    \]
+\end{definition}
+
+\begin{remark}[Propertios of regularization]
+	The regularization has the following properties:
+	\begin{itemize}
+		\item $f \in \LpSet{\Omega} \Rightarrow f_{\varepsilon} \to f \, \text{in} \, \LpSet{\Omega}$ and also a.e
+		\item $f \in \LinfSet{\Omega} \Rightarrow f_{\varepsilon} \to f \, \text{a.e and *-weak} \,$
+		\item $f_{\varepsilon}(x) = \int_{\R^d}f(y)\eta_{\varepsilon}(x-y)\dd{y} = \int_{\text{U}(x,\varepsilon)}f_y \eta_{\varepsilon}(x-y)\dd{y}$
+		\item $\supp f_{\varepsilon} \subset \overline{U(\Omega,\varepsilon)}, f=0 \, \text{on} \,\text{U}(x,\varepsilon) \Rightarrow f_{\varepsilon}(x)=0$
+	\end{itemize}
+\end{remark}
+
+\begin{definition}[$\Omega' \subset \subset \Omega$]
+    $O \subset \subset \Omega$ means $\overline{O}$ is compact and $\overline{O}\subset \Omega$.
+\end{definition}
+
+\begin{lemma}[Approximation of Sobolev functions using regularization]
+	Assume $p \in [1, \infty), \Omega \subset \R^d \, \text{open} \,, k \in \N, u \in \WkpSet{\Omega}, \Omega' \subset \subset \Omega.$ Then it holds
+	\begin{enumerate}
+		\item $\dist\, (\overline{\Omega}', \partial \Omega) = D >0$
+		\item $D^\alpha(f_{\varepsilon}) = (D^\alpha f)_{\varepsilon}$ in $\Omega', \forall \varepsilon \in (0,D), \forall |\alpha| \leq k$
+		\item $f_{\varepsilon}\to f$ in $\WkpSet{\Omega}, \varepsilon \to 0^+$
+	\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+	\begin{enumerate}
+		\item disjoint compact and closed set
+		\item WLOG $\pdv{f_{\varepsilon}}{x^k} = \pdv{\int_{\R^d}f_y \eta_{\varepsilon}(x-y)\dd{y}}{x^k} = \int_{\Omega}f_y \pdv{\eta_{\varepsilon}}{x^k}(x-y)\dd{y} = - \int_{\Omega}f(y)\pdv{\eta_{\varepsilon}}{y^k}(x-y)\dd{y} =  - \int_{\Omega}\pdv{f}{y^k}\eta_{\varepsilon}(x-y)\dd{y} = (D^\alpha f)_{\varepsilon}(x).$
+		\item follows from 2) and the remark above applied to $f, D^\alpha f, |\alpha| \leq k$.
+	\end{enumerate}
+\end{proof}
+%\bibliography{}
+
+\begin{lemma}[Partition of unity]
+	Let $E \subset \R^d, \mathcal{G} \quad{open covering}$. Then there exists a countable system $\mathcal{F}$ of nonnegative functions $\varphi \in \mathcal{D}(\R^d)$ such that $0 \leq \varphi \leq 1$ and 
+	\begin{enumerate}
+		\item $\mathcal{F}$ is subordinate to $\mathcal{G}: \forall \varphi \exists U \in \mathcal{Q}: \supp \varphi \subset U$
+		\item $\mathcal{F}$ is locally finite: $\forall K \subset E \quad{compact}, \supp \varphi \cap K \neq \emptyset$ for at most finitely many $\varphi \in \mathcal{F}$.
+		\item $\sum_{\varphi \in \mathcal{F}} \varphi(x) = 1, \forall x \in E$.
+	\end{enumerate}
+\end{lemma}
+\begin{proof}
+	(Sketch)
+\textit{Step 1 ($E$ is compact)}:
+
+$E$ compact $\Rightarrow \exists N \in \N: U_j \in \mathcal{Q} \quad{s.t.} E \subset \bigcup_{j=1}^{m}U_j$. Moreover, $\exists K_j \subset U_j$ compact such that $E \subset \cup_{j=1}^m K_j$. That follows from the exhaustion argument: for $U \subset \R^d$ open, you can approximate it by a compact set: $K_m = \Big\{x \in U, \dist\qty(x,\partial \Omega) \geq \frac{1}{m}, \norm{x} \leq m \Big\}.$ Then clearly $K_1 \subset K_2 \dots $, and they "converge monotonously to $U$.
+Next, find $\phi_j \in C_c(U_j), \phi_j >0 \, \text{on} \, K_j$, e.g. $\phi_j = \theta\qty(\dist(x,\partial U_j)).$ Then use convolution: $\psi_j = (\phi_j)_{\varepsilon}, \varepsilon > 0$ small and take finally $\varphi_j = \frac{\psi_j}{\sum_j \psi_j}$.
+
+\textit{Step 2 ($E$ is open)}:
+
+Use exhaustion argument, then finite $\to$ countable.
+\end{proof}
+
+\subsection{Density of smooth functions}
+\label{sec:density}
+
+\begin{theorem}[Density of smooth functions I]
+	Let $\Omega \subset \R^d$ be open, $k \in \N, p \in [1,\infty).$ Then $\Big\{ f \in C^\infty(\Omega), \supp f \quad{bounded}\Big\} \cap \WkpSet{\Omega}$ is dense in $\WkpSet{\Omega}$.
+\end{theorem}
+\begin{proof}
+	Let $u \in \WkpSet{\Omega}, \varepsilon >0$. I want to show $\exists v \in C^\infty(\Omega) \cap \WkpSet{\Omega} \quad{s.t} \norm{u-v}_{\WkpSet{\Omega}} < \varepsilon$.
+	Using the exhaustion argument, define
+	\[
+		\Omega_j = \Big\{ x \in \Omega, \dist\qty(x,\partial \Omega) > \frac{1}{j}\Big\}.
+	\]
+	Clearly, $\Omega_j \subset \Omega_{j+1}, \cup_{j=1}^\infty \Omega_j =\Omega$. Next, set $U_j = \Omega_{j+1} \ \overline{\Omega_{j-1}}, j=1,2, \dots$, where $\Omega_0 = \Omega_{-1} = \emptyset$. Using the partition of unity lemma, $\exists \{\varphi_j\} $ partition of unity subordinate to $\{U_j\}$. We can write $u = \sum_j u \varphi_j$, where $u \varphi_j \in \WkpSet{\Omega}, \supp u \varphi_j \subset U_j \subset \Omega_{j+1} \subset \subset \Omega$. This is ready for convolution with $\varepsilon_j >0$ sufficiently small: set $ v_j = (u \varphi_j)_{\varepsilon_j}$. By the properties of regularization, we now
+	\[
+		\norm{u - u \varphi_j }_{\WkpSet{\Omega}} < \frac{\varepsilon}{2^j},
+	\]
+by taking $\varepsilon_j$ small enough. Set $v = \sum_j v_j$ and use the following trick:
+
+Fix $N \in \N$ and estimate $\norm{v-u}_{\WkpSet{\Omega}}$. Observe $u-v = \sum_{j=1}^\infty(u \varphi_j - v_j)$, so taking $x \in \Omega_N$ i have $(u-v)(x) = \sum_{j=1}^{N+1}(u \varphi_j - v_j)$. The norm of this is
+
+\begin{equation*}
+    \norm{u-v}_{\WkpSet{\Omega_N}} \leq \sum_{j=1}^{N+1}\norm{u \varphi_j - v_j}_{\WkpSet{\Omega}} < \varepsilon.
+\end{equation*}
+It only remains to let $N \to \infty$ and realize $\norm{u-v}_{\WkpSet{\Omega_N}} \to \norm{u-v}_{\WkpSet{\Omega}}$ by Lévi's theorem: $\int_{\Omega_N}|D^\alpha f|\dd{x} \to \int_{\Omega}|D^\alpha|\dd{x}$. 
+\end{proof}
+
+\begin{remark}
+    It is nice that we only require $\Omega$ to be open (no boundary regularity required), but on the other hand, we don't have any information about the function's behaviour near it.
+\end{remark}
+
+Recall $\Omega \in C^{0}$ means $\exists U_j, j=1, \dots, m \quad{open}, \exists \alpha, \beta >0, a_j: \overline{U(0,\alpha)} \to \R, \tensorq{A}_j: \R^d \to \R^d \quad{aff. orthogonal}, \quad{such that} \partial \Omega \subset \cup_{j=1}^m U_j, \partial \Omega \cap U_j = \Big\{ (x',a(x'), x' \in U(0,\alpha)\Big\}.$ Setting $G_j(x',b) = \tensorq{A}_j(x',a(x')+b)$ we moreover require $G_j(U(0,\alpha) \cross (0,\beta)) \subset \Omega, G_j(U(0,\alpha) \cross (-\beta,0)) \subset \overline{\R^d / \Omega}$. 
+
+\begin{definition}[Shift operator]
+	For $u \in \LpSet{\Omega}, k \in \{1,\dots,d\}, h >0, $ we introduce the shift operator
+	\begin{equation*}
+		\tau_h u(x)=u(x+h \vb{e}_k)
+	\end{equation*}
+\end{definition}
+
+\begin{lemma}[Approximation property of the shift operator]
+    For $u \in \LpSet{\Omega}$, it holds $\tau_h u \to u$ in $\LpSet{\Omega}, h\to 0^+$.
+\end{lemma}
+
+\begin{theorem}[Density of smooth functions II]
+    Let $\Omega \in C^0$ bounded, $k \in \N, p \in [1,\infty)$. Then $C^\infty_{\overline{\Omega}}(\R^d)$ is dense in $\WkpSet{\Omega}$.
+
+
+\end{theorem}
+
+\begin{proof}
+Let $u \in \WkpSet{\Omega}, \varepsilon >0 \quad{given},$ i am looking for $v \in C^{\infty}_c(\R^d) \quad{such that} \norm{u-v}_{\WkpSet{\Omega}} < \varepsilon$.
+
+The sketch is simple: covering of $\overline{\Omega},$ partition of unity.
+Clearly, $\Omega \subset \cup_{j=0}^m U_j,$ where $U_0 = \Omega, U_j$ are from the definition of $C^0$ boundary. Take $\{\varphi_j\}$ to be the partition of unity on $\overline{\Omega}$, subordinate to this cover. Observe that $u \varphi_j \in \WkpSet{\Omega}, \supp u \varphi_j \subset U_j$. Find
+\[
+	v_j \in \mathcal{D}(\R^d) \quad{s.t.} \norm{v_j - u \varphi_j}_{\WkpSet{\Omega}}< \frac{\varepsilon}{m+1}.
+\]
+If i am able to do this, i am finished: just take
+\[
+	v=\sum_{j=0}^m v_j
+\]
+.
+
+\textit{Case $j=0$}. We have $ \supp u \varphi_0 \subset \subset \Omega$, take $v_0 = (u \varphi_0)_{\varepsilon}$, so if we take $\varepsilon >0 $ small enough, i can use the previous lemma.
+
+\textit{Case $j \in \{1,\dots,m\} $}.
+Set $w_j = u \varphi_j, \tau_{\delta}w_j(x', x_d) = w(x', x_d + \delta)$ (ignore $\tensorq{A_j}$), observe $t_{\delta}u_j \in \WkpSet{U^{\delta}_j}, U_j \subset \subset U^{\delta}_j$. Finally, set $v_j = (t_{\delta}w_j)_{\varepsilon_j}, \varepsilon_j >0$ small enough. From the properties of the shift $\tau_{\delta} w_j$ is close to $w_j$ in $\LpSet{U_j \cap \Omega}$ and $D^\alpha \tau_{\delta}w_j = \tau_{\delta}(D^\alpha w_j)$ close to $D^\alpha w_j$ in $\LpSet{U_j \cap \Omega}$. Finally, set $v_j = (t_{\delta} w_j)_{\varepsilon_j}, \varepsilon_j >0 $ small enough $\Rightarrow v_j \in \mathcal{D}(\R^d), \supp v_j \subset U_j$ by the previous lemma $ \norm{v_j - \tau_{\delta}w_j}_{\WkpSet{\Omega}}$ small. 
+
+\end{proof}	
+
+\begin{remark}
+	Recall $C^\infty_{\overline{\Omega}}(\R^d) = \Big\{u|_{\overline{\Omega}}, u \in C^{\infty}(\R^d) \Big\}$.
+\end{remark}
+
+\subsection{Extension of Sobolev functions}
+\label{sec:extension}
+
+\textit{Problem of extension}: For $u \in \WkpSet{\Omega}$, does there exist $\overline{u} \in \WkpSet{\R^d}, \quad{s.t. } \overline{u}|_{\Omega}=u, \norm{\overline{u}}_{\WkpSet{\R^d}} \leq C(\Omega) \norm{u}_{\WkpSet{\Omega}}$?
+
+The answer is \textbf{yes}, if $\Omega$ is nice enough.
+
+\begin{lemma}
+	Let $\alpha, \beta >0, K \subset U(0,\alpha) \cross [\alpha,\beta]$ be compact. Then
+	\[
+		\exists C>0, \exists E:C^1(\overline{U(0,\alpha)} \cross [0,\beta]) \to C^1(\overline{U(0,\alpha)} \cross [-\beta, \beta]), \exists \tilde{K} \subset U(0,\alpha) \cross [-\beta, b) \, \text{compact} \,
+	\]
+	such that:
+	\begin{enumerate}
+		\item $\norm{Eu}_{\WkpSet[1][p]{U(0,\alpha) \cross (-\beta,\beta)}} \leq \norm{u}_{\WkpSet[1][p]{U(0,\alpha) \cross (-\beta, \beta)}} $
+		\item if $\supp u \subset K \Rightarrow \supp Eu \subset \tilde{K}$
+	\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+Use the following trick:
+
+\begin{equation*}
+	\overline{u}(x) = 
+	\begin{cases}
+		u(x),& x_d > 0 \\
+		-3u(x_1, \dots, x_{d-1}, -x_d) + 4u(x_1, \dots, x_{d-1},-\frac{x_d}{2}) ,& x_d < 0.\\
+	\end{cases}
+\end{equation*}
+Is this extension $C^1$? Take some $a=(x_1,\dots, x_{d-1},0)$. Then
+
+\begin{equation*}
+	u(x \to a) = 
+	\begin{cases}
+		u(a), & x_d>0 \\
+		-3u(a)+ 4u(a) = u(a), & x_d<0, \\
+	\end{cases}
+\end{equation*}
+so $\overline{u}$ is continuous. Its derivative
+
+$\partial_{k}\overline{u}, k=1, \dots, d-1$ is the same as for $u$, where as
+\begin{equation*}
+	\partial_{d}\overline{u} = 
+	\begin{cases}
+		\partial_{d}u ,& x_d >0 \\
+		-3 \partial_{d} u (x_1,\dots,x_{d-1},-x_d)(-1) + 4 \partial_{d}u(x_1,\dots,x_{d-1},-\frac{x_d}{2}) (\frac{-1}{2}) = 3 \partial_{d} u - 2 \partial_{d}u ,& x_d<0,\\
+	\end{cases}
+\end{equation*}
+so the the derivative is also continuous. Thus, we have $Eu = \overline{u} \in C^1 \subset \WkpSet[1][p]{U(0,\alpha) \cross (-\beta,\beta)}$ and estimate of the norm $\norm{Eu}_{\WkpSet[1][p]{U(0,\alpha) \cross (-\beta,\beta)}}$ is clear, as the wanted term is just some linear combination. 
+
+
+
+\textit{Mr. Prazak is not sure how this should be correctly finished and i am not also.}
+\end{proof}
+
+\begin{lemma}[Change of variables under $C^1$ diffeomorphisms]
+	Let $U,V \subset \R^d$ be open, $\phi: U \to V$ be $C^1$ diffeomorphism. Let $\tilde{U} \subset \subset U$. Then
+	\[
+		\phi(\tilde{U}) \subset \subset V,\, \text{and} \, \exists C>0: \forall u \in C^1(V): \norm{u \circ \phi}_{\WkpSet[1][p]{\tilde{U}}} \leq C \norm{u}_{\WkpSet[1][p]{\phi(\tilde{U})}}
+	\]
+\end{lemma}
+
+\begin{proof}
+	$\norm{u \circ \phi}_{\LpSet{\tilde{U}}}^p = \int_{\tilde{U}}(u \circ \phi)^p |\det \grad \phi| \dd{x} \leq C_0^{-1}\int_{\tilde{U}}|u \circ \phi|^p |\det \grad \phi|\dd{x}$, where $\det \grad \phi >0 \, \text{in} \,U, \, \text{so} \, \det \grad \phi \geq C_0 > 0 \, \text{in} \,\tilde{U}$. Together
+	$\norm{u \circ \phi}_{\LpSet{\tilde{U}}}^p = C_0^{-1} \int_{\phi(\tilde{U})}|u|^p\dd{x} = C_0^{-1}\norm{u}_{\LpSet{\phi(\tilde{U})}}$
+\end{proof}
+
+\begin{lemma}
+	Let $\alpha, \beta >0, K \subset \text{U}(0,\alpha) \cross [0,\beta), K$ compact. Then there is $C>0, E: C^1\qty(\overline{\text{U}(0,\alpha) \cross [0,\beta)}) \to C^1\qty(\overline{\text{U}(0,\alpha)} \cross [-\beta,\beta]), \tilde{K} \subset \text{U}(0,\alpha) \cross [-\beta, \beta)$ compact such that
+	\begin{itemize}
+		\item $\norm{E}_{\mathcal{L}(\WkpSet[1][p]{\text{U}(0,\alpha) \cross (0,\beta)}, \WkpSet[1][p]{\text{U}(0,\alpha)\cross(-\beta,\beta)}} \leq C$
+		\item $u \in C^1\qty(\overline{\text{U}(0,\alpha)} \cross [0,\beta]), \supp u \subset K \Rightarrow \supp Eu \subset \tilde{K}$
+	\end{itemize}
+\end{lemma}
+\begin{proof}
+    No proof.
+\end{proof}
+
+\begin{lemma}
+	Let $U,V \subset \R^d$ open, $\Phi: U \to V, C^1$ diffeomoprhism, $\tilde{U} \subset \subset U$ compact. Then $\Phi(\tilde{U}) \subset \subset V$ and
+	\[
+		\exists C>0: \forall u \in C^1\qty(V): \norm{u \circ \Phi}_{\WkpSet[1][p]{\tilde{U}}} \leq C \norm{u}_{\WkpSet[1][p]{\Phi(\tilde{U})}}.
+	\]
+	
+\end{lemma}
+\begin{proof}
+    No proof.
+\end{proof}
+
+\begin{theorem}[Extension of Sobolev functions]
+	Let $\Omega \in C^{k-1,1}, k \in \N, p \in [1,\infty], V \subset \R^d$ open such that $\Omega \subset \subset V.$ Then there is $E: \WkpSet{\Omega} \to \WkpSet{\R^d}$ bounded linear operator such that
+	\begin{enumerate}
+		\item $ \forall u \in \WkpSet{\Omega}: Eu=u \, \text{a.e. in} \, \Omega$,
+		\item $ \forall u \in \WkpSet{\Omega}: \supp Eu \subset V$,
+		\item $\norm{E} \leq C, C=C(p,\Omega,V).$
+	\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+   Only for $k=1, \Omega \in C^1, p < \infty$. We know $C^{\infty}_{\overline{\Omega}}\qty(\R^d)$ is dense in $\WkpSet[1][p]{\Omega}$, we show existence of $E$ for $u \in C^{\infty}_{\overline{\Omega}}\qty(\R^d)$ with properties 1),2),3) and then extend $E$ to $\WkpSet[1][p]{\Omega}$ by density.
+   \\
+   \textit{Covering of $\Omega$:}
+   \[
+	   \overline{\Omega} \subset \Omega \cup \bigcup_{j=1}^m U_j
+   \]
+   with $U_j,a_j, \tensorq{A}_j, \alpha, \beta$ as in the definition of a $C^1$ domain. In particular, $a_j \in C^1\qty(\text{U}(0,\alpha)).$
+   \\
+   \textit{Construction of $E$:}
+   We denote $\{\varphi_j \}_{j=0}^m$ partition of unity subordinate to $\{U_j\}_{j=1}^m.$ For $j \in \{1, \dots, n\}$ we define $\phi_j : \text{U}(0,\alpha) \cross (-\beta,\beta) \to U_j$ by
+   \[
+	   \phi_j\qty(y',y_d) = \tensorq{A}_j (y', a_j(y') + y_d), y' \in \R^{d-1}, y_d \in \R.
+   \]
+   Trivially $\phi_j$ is $C^1$ diffemorphism. Let us denote by $\tilde{E}$ the extension operator from the previous lemma. Then we have for $u \in C^{\infty}_{\overline{\Omega}}\qty(\R^d): u = \sum_{j=1}^m \varphi_j u.$ We define
+   \[
+	   Eu=\varphi_0 u + \sum_{j=1}^m \qty(\eta \tilde{E}\qty((\varphi_j u) \circ \phi_j)) \circ \inverse{\phi_j},
+   \]
+   where $\eta$ is a cut-off function $\eta = 1 \, \text{on} \, y_d \geq 0, \in (0,1) \, \text{else} \,, =0 \, \text{on} \, y_d \leq -h$, for some parameter $h>0$ which will be defined later. We also take $\eta \in C^\infty$. Due to our construction,
+   \[
+	   \inverse{\phi_j} \qty(\text{U}(0,\alpha) \cross [-2h, \beta)) \subset \text{U}(\Omega,\varepsilon) \subset \text{U}(\Omega,2 \varepsilon) \subset V,  
+   \]
+   for some $\varepsilon>0.$
+   \\
+   \textit{Properties of $E$:}
+   It is clear that
+   \begin{itemize}
+	   \item $E$ is linear from its definition
+	   \item 1) holds, as $\phi_j$ and $\inverse{\phi_j}$ cancel \textit{somewhere}
+	   \item 2) holds for $h<\frac{\beta}{2}$ 
+	   \item 3) we use the previous lemma:
+		   \begin{align*}
+			   \norm{\underbrace{\qty(\eta \tilde{E}\qty(\varphi_j u \circ \phi_j))}_{\supp () \subset \text{U}(0,\alpha) \cross (-\beta, \beta)} \circ \inverse{\phi_j}}_{\WkpSet[1][p]{\R^d}} & \leq C \norm{\eta \tilde{E}\qty(\varphi_j u \circ \phi_j)}_{\WkpSet[1][p]{\text{U}(0,\alpha) \cross (-\beta, \beta)}} \\ &\underbrace{\leq}_{\, \text{previous lemma} \,} C \norm{\varphi_j u \circ \phi_j}_{\WkpSet[1][p]{\text{U}(0,\alpha) \cross (0,\beta)}}\\ &\underbrace{\leq}_{\text{previous lemma}} C \norm{\varphi_j u}_{\WkpSet[1][p]{U_j \cap \Omega}} \leq \norm{u}_{\WkpSet[1][p]{\Omega}} \Rightarrow \norm{E} \leq C.
+		   \end{align*}
+   \end{itemize}
+   So all the properties hold for $u \in C^{\infty}_{\overline{\Omega}}\qty(\R^d)$. We need to show them also for $u \in \WkpSet[1][p]{\Omega}$. Pick an arbitrary $u \in \WkpSet[1][p]{\Omega}, \, \text{find} \, \{u_k\} \subset C^{\infty}_{\overline{\Omega}}\qty(\R^d): u_k \to u \, \text{in} \, \WkpSet[1][p]{\Omega}.$ \\
+   Ad 1): Since $E$ is continuous, then $E u_k \to Eu \, \text{in} \, \WkpSet[1][p]{\R^d}.$ Since $\Omega \subset \R^d \Rightarrow Eu=u \, \text{in} \, \WkpSet[1][p]{\Omega}.$ \\
+   Ad 2): $\supp Eu_k \subset \text{U}(\Omega,\varepsilon) \Rightarrow \supp Eu \subset \overline{\text{U}(\Omega,\varepsilon)} \subset V.$
+
+\end{proof}
+
+\begin{remark}[$\Omega \in C^{0,1}$ suffices]
+    The theorem is still valid if we assume only $C^{0,1}$ and $p \in (1,\infty), k>1.$
+\end{remark}
+
+\subsection{Embedding theorems}
+\label{sec:embedding}
+
+\begin{example}
+	Let $u \in \mathcal{D}\qty(\R^2)$. Then 
+
+	\begin{equation*}
+		u\qty(x_1,x_2) = \int_{-\infty}^{x_1} \partial_{1}u\qty(s,x_2)\dd{s} = \int_{-\infty}^{x_2} \partial_{2}u(x_1,s)\dd{s},
+	\end{equation*}
+	so 
+	\begin{equation*}
+		\int_{\R^2}\int_{\R^2}|u(x_1,x_2)|^{2}\dd{x_1} \dd{x_2} \leq \int_{\R}|\partial_{1}u(s,x_2)|\dd{s} \int_{\R}|\partial_{2}u\qty(x_1,s)|\dd{s} \dd{x_1} \dd{x_2} \leq \Big(\int_{\R^2}|\grad u|^{2}\dd{\lambda^{2}}\Big)^{2},
+	\end{equation*}
+	so
+	\[
+		\norm{u}_{\LpSet[2]{\R^2}} \leq \norm{\grad u}_{\LpSet[1]{\R^2}}.
+	\]
+\end{example}
+
+\begin{lemma}
+	Let $d\geq 2$. Let $\hat{u_i}:\R^{d-1} \to \R$ be nonnegative and measurable for $j \in \{1,\dots,d\}.$ We define
+	\[
+	\hat{x_j} = (x_1, \dots, x_{j-1}, x_{j+1}, \dots, x_d), \hat{\dd{x_j}} = \dd{x_1} \dots \dd{x_{j-1}} \dd{x_{j+1}} \dots \dd{x_d}.
+	\]
+Consider the functions $u_j:\R^d \to \R, u_j\qty(x)=\hat{u_j}(\hat{x_j}).$ Then
+	\begin{equation}
+		\int_{\R^d}\prod_{j=1}^d u_j\qty(x)\dd{x} \leq \prod_{j=1}^d \qty(\int_{\R^{d-1}}\qty(\hat{u_j}\qty(\hat{x_j}))^{d-1}\hat{\dd{x_j}})^{\frac{1}{d-1}}.
+	\end{equation}
+\end{lemma}
+
+\begin{proof}
+    Induction by d.
+    \begin{enumerate}
+	    \item $d=2: \int_{\R^d}u_1(x_1,x_2) u_2(x_1,x_2)\dd{x_1}\dd{x_2} = \int_{\R^2}\hat{u}_1\qty(x_2)\hat{u}_2\qty(x_1)\dd{x_1}\dd{x_2} \underbrace{=}_{\, \text{Fubini} \,} \int_{\R}\hat{u}_1\qty(x_2)\dd{x_2} \int_{\R}\hat{u}_2\dd{x_1}.$
+	    \item
+		    \begin{align*}
+			    d\to d+1: \int_{\R^{d+1}}\prod_{j=1}^{d+1} u_j\qty(x)\dd{x}&=\int_{\R^d}\int_{\R}\prod_{j=1}^d u_j\qty(x)\dd{x_{d+1}}u_{d+1}\dd{x}\hat{\dd{x_{d+1}}} \\
+										       &\underbrace{\leq}_{\, \text{Holder} \,} \int_{\R^d}\qty(\prod_{j=1}^d \int_{\R}\qty(u_j\qty(x))^d\dd{x_{d+1}})^{\frac{1}{d}}u_{d+1}\qty(x)\hat{\dd{x_{d+1}}} \\
+										       &\underbrace{\leq}_{\, \text{Holder} \,} \qty(\int_{\R^d}\qty(\prod_{j=1}^d \int_{\R}u_j^d(x)\dd{x_{d-1}})^{\frac{1}{d-1}}\dd{\hat{x_{d+1}}})^{\frac{d-1}{d}}\qty(\int_{\R^d}u^d_{d+1}\dd{\hat{x_{d+1}}})^{\frac{1}{d}} \\ 
+										       &\underbrace{\leq}_{\, \text{induction step} \footnote{for the function $v_j=\qty(\int_{\R}u)j^d\qty(x)\dd{x_{d+1}})^{\frac{1}{d-1}}$}} \qty(\int_{\R^d}u_{d+1}^d\dd{\hat{x}_{d+1}})^{\frac{1}{d}}\qty(\prod_{j=1}^d\int_{\R^{d-1}}\int_{\R}u_j^d(x)\dd{x_{d+1}}\dd{\hat{x}_j}\dd{\hat{x}_{d+1}})^{\frac{d-1}{d} \frac{1}{d-1}}.
+		    \end{align*}
+    \end{enumerate}
+\end{proof}
+
+\begin{theorem}[Gagliardo-Nirenberg]
+    Let $p \in [1,d).$ Then $\forall u \in \WkpSet[1][p]{\R^d}$:
+    \[
+	    \norm{u}_{\LpSet[p^{*}]{\R^d}}\leq \frac{p(d-1)}{d-p} \norm{\grad u}_{\LpSet{\R^d}}, 
+    \]
+	    where $p^{*}=\frac{dp}{d-p}.$
+\end{theorem}
+
+\begin{proof}
+	   Estimate for $u \in \mathcal{D}\qty(\R^d):$
+	   \[
+		   \forall j \in \{1,\dots,d\}, x \in \R^d: u\qty(x)=\int_{-\infty}^{x_j}\partial_{j}u\qty(x_1,\dots,x_{j-1},s,x_{j+1},\dots,x_d)\dd{s}
+	   \]
+	   independet of $x_j$, so
+	   \[
+		   |u\qty(x)| \leq \int_{\R}|\grad u|\qty(\dots,s,\dots)\dd{s}.
+	   \]
+	   Next, consider $p=1, p^{*}=\frac{d}{d-1}$ and estimate:
+	   \[
+		   |u|^{\frac{d}{d-1}}\leq\prod_{j=1}^d\underbrace{\qty(\int_{\R}|\grad u| (\dots, s, \dots) \dd{s})^{\frac{1}{d-1}}}_{u_j \, \text{independent of } \,x_j},
+	   \]
+	   so the integral
+	   \[
+		   \int_{\R^d}|u|^{\frac{d}{d-1}}\dd{x} \leq \int_{\R^d}\prod_{j=1}^d u)j \dd{x} \underbrace{\leq}_{\text{previous lemma}} \qty(\prod_{j=1}^d \int_{\R^{d-1}}\int_{\R}|\grad u|\qty(x)\dd{x_j}\dd{\hat{x}_j})^{\frac{1}{d-1}} = \qty(\int_{\R^d}|\grad u|\dd{x})^{\frac{d}{d-1}}.
+	   \]
+	   If $p \in (1,d),$ compute
+	   \[
+		   \norm{u}_{\LpSet[\frac{qd}{d-1}]{\R^d}}^q = \norm{|u|^q}_{\LpSet[\frac{d}{d-1}]{\R^d}} \leq \norm{\grad (|u|^q)}_{\LpSet[1]{\R^d}} = \int_{\R^d}q|u|^{q-1} |\grad u| \dd{x} \underbrace{\leq}_{\, \text{Holder} \,} \norm{\grad u}_{\LpSet[p]{\R^d}} \norm{u}_{\LpSet[(q-1)p']{\R^d}}^{q-1}.
+	   \] We want $\frac{(q-1)p'}{p-1} = \frac{qd}{d-1}$, so
+	   \[
+		   q \qty(\frac{p}{p-1} - \frac{d}{d-1}) = \frac{p}{p-1}, \Leftrightarrow q\frac{pd-p-pd+d}{(p-1)(d-1)}=\frac{d-p}{\qty(p-1)\qty(d-1)}=\frac{p}{p-1} \Leftrightarrow q=\frac{d-1}{d-p}p.
+	   \]
+	   Also
+	   \[
+		   q \frac{d}{d-1}=p^{*}.
+	   \]
+	   $\Rightarrow$ statement holds for $u \in \mathcal{D}\qty(\R^d)$. To finish, use density of $\mathcal{D}\qty(\R^d) \, \text{in} \, \WkpSet[1][p]{\R^d}.$
+\end{proof}
+
+
+\begin{remark}
+
+\begin{itemize}
+	\item It is evident that nonzero constants are not in $\WkpSet[1][p]{\R^d}$ and that also the inequality does not hold for them.
+	\item the set $\R^d$ is of course unbounded, so we have no ordering of $\LpSet{\Omega}$ spaces.
+	\item of course, we require no smoothness of the domain
+\end{itemize}
+
+
+\end{remark}
+
+\begin{theorem}
+	Let $\Omega \subset \R^d$ be open. Then $\forall u \in \WkpzeroSet[1][p]{\Omega}, \forall p \in [1,d)$ the statement of the previous theorem holds.
+\end{theorem}
+\begin{proof}
+    An immediate corollary of the previous theorem.
+\end{proof}
+
+\begin{remark}
+    In the proof of theorem we showed that $\forall u \in \WkpSet[1][p]{\R^d}$ it holds
+    \[
+	    \norm{u}_{\LpSet[\frac{qd}{d-1}]{\Omega}}^q \leq q\norm{\grad u}_{\LpSet{\Omega}} \norm{u}_{\LpSet[\frac{p\qty(q-1)}{p-1}]{\Omega}}^{q-1},
+    \]
+    for $q$ such that $\frac{qd}{d-1}\leq p^{*}$.
+\end{remark}
+
+
+\begin{theorem}[Embedding theorem]
+	Let $\Omega \subset C^{0,1}, p^{*} = \frac{dp}{1-p}$ If $p \in [1,d)$ then
+	\[
+		\WkpSet[1][p]{\Omega} \subset \LpSet[q]{\Omega} \forall q \in [1,p^{*}].
+	\]
+	Moreover, if $q < p^{*}, $ then
+	\[
+		\WkpSet[1][p]{\Omega} \subset \subset \LpSet[q]{\Omega}.
+	\]
+	If $p=d$, then
+	\[
+		\WkpSet[1][p]{\Omega} \subset \LpSet[q]{\Omega} \forall q < \infty, \WkpSet[1][p]{\Omega} \subset \subset \LpSet[q]{\Omega} \forall 1 \leq q < \infty.
+	\]
+\end{theorem}
+
+\begin{proof}
+    We would like to use the previous theorem + extension. 
+
+    Ad continuity for $p<d: E:\WkpSet[1][p]{\Omega} \to \WkpSet[1][p]{\R^d}$ the extension is continuous. We also know
+    \begin{itemize}
+	    \item identity $I_1:\WkpSet[1][p]{\R^d}\to \LpSet[p^{*}]{\R^d}$ is continous, 
+	    \item restriction $I_2: \LpSet[p^{*}]{\R^d}\to \LpSet[p^{*}]{\Omega}$ is continuous, 
+	    \item identity $I_3: \LpSet[p^{*}]{\Omega} \to \LpSet[q]{\Omega}$ is continous.
+\end{itemize}
+Together, the mapping $id:\WkpSet[1][p]{\Omega}: \LpSet[q]{\Omega}, id=I_3 \circ I_2 \circ I_1 \circ E$ identity is continuous. If p=d, then $\WkpSet[1][d]{\Omega} \subset \WkpSet[1][r]{\Omega} \forall r \in [1,d),$ and $r^{*} \to \infty$ as $r\to d-.$ For $q \in [1,\infty)$ find $r \in [1,d) \, \text{s.t.} \, r^{*} >q.$ Then
+\[
+	\WkpSet[1][d]{\Omega} \subset \WkpSet[1][r]{\Omega} \subset \LpSet[r^{*}]{\Omega} \subset \LpSet[q]{\Omega},
+\]
+using the previous results.
+
+Ad compactness: We show $\WkpSet[1][p]{\Omega} \subset \subset \LpSet[q]{\Omega}$ using Arzela-Ascoli and then it will get technical: show compactness in smooth functions, then show compactness in $\LpSet[1]{\Omega}$, then approximate the norm of $\LpSet[q]{\Omega}$ using the obtained quantities.
+
+Consider $B=\text{U}_{\WkpSet[1][p]{\Omega}}(0,1)$ and extend it to $EB$. Fix $\delta>0$ and let $\eta$ be a regularization kernel. Then $\exists R>0: \supp \qty(EB)_{\delta} \subset \overline{\text{U}(0,R)} \subset \R^d$ (i.e. all the functions from $EB$ have the support contained in the ball). Moreover, $\qty(EB)_{\delta} \subset C^1\qty(\overline{\text{U}(0,R)}).$ Actually, it is bounded in $C^1\qty(\overline{\text{U}(0,R)}). \underbrace{\subset \subset}_{\, \text{Arzela-Ascoli} \,} C\qty(\overline{\text{U}(0,R)})$ (uniform equicontinuity comes from uniform boundedness of the gradients, $\grad\qty(u * \eta_{\delta}) = u * \grad \eta_{\delta}$.)
+Altogether $(EB)_{\delta}$ is relatively compact in
+\[
+	C\qty(\overline{\text{U}(0,R)}) \underbrace{\Rightarrow}_{\, \text{the space} \, C\qty(\overline{\text{U}(0,R)}) \, \text{is complete} \,}\, \text{bounded in} \,C\qty(\overline{\text{U}(0,R)}) \underbrace{\Rightarrow}_{\, \text{bounded domain} \,} \, \text{bounded in} \, \LpSet[1]{\text{U}(0,R)}.
+\]
+Next, take
+\begin{align*}
+	u \in B: \norm{u-\qty(Eu)_{\delta}}_{\LpSet[q]{\Omega}} &\leq \norm{Eu-(Eu)_{\delta}}_{\LpSet[q]{\text{U}(0,R)}} = \int_{\text{U}(0,R)}|v-v_{\delta}|\dd{x} = \int_{\R^d}|\int_{\R^d}v\qty(x+y)-v(x) \eta_{\delta}(y)\dd{y}|\dd{x}\leq \\
+								&\leq \int_{\R^d}|\int_{\R^d}\frac{|v(x+y)-v(x)|}{|y|}|\eta_{\delta}(y)| |y| \dd{y}\dd{x} \underbrace{\leq}_{\, \text{Fubini} \,} \int_{\R^d}\int_{\R^d}\frac{|v(x+y)-v(x)|}{|y|}\dd{x}|y| \eta_{\delta}(y)\dd{y}.
+\end{align*}
+Estimate the inner integral: assume $v$ is smooth and write
+
+\[
+	\int_{\R^d}\frac{1}{|y|}|\int_{0}^1 \underbrace{\dv{s} \qty(v(x+sy))}_{\grad v\qty(x+sy) \vdot y}\dd{s}|\dd{x} \underbrace{\leq}_{\, \text{Cauchy Schwartz} \,} \int_{\R^d}\int_{0}^1 |\grad v| (x+sy)\dd{s}\dd{x} \underbrace{\leq}_{\, \text{Holder} \,} C(R)\qty(\int_{\R^d}|\grad v|^p \dd{x})^{\frac{1}{p}}.
+\]
+Now, take $v \in \WkpzeroSet[1][p]{\text{U}(0,R)}, $ then $\exists \{v_k\} \subset \mathcal{D}\qty(\text{U}(0,R)): v_k \to v \, \text{in} \, \WkpSet[1][p]{\text{U}(0,R)}.$ So
+\[
+	\forall y \in \R^d: \int_{\R^d}\frac{|v_k(x+y)-v_k(x)|}{|y|}\dd{x}\leq C(R) \qty(\int_{\R^d}|\grad v_k|^p\dd{x})^{\frac{1}{p}} \to C(R)\qty(\int_{\R^d}|\grad v|^p\dd{x})^{\frac{1}{p}}.
+\]
+So finally
+\[
+	\norm{u-(Eu)_{\delta}}_{\LpSet[q]{\Omega}} \leq \int_{\R^d}\int_{\R^d}\frac{|v(x+y)-v(x)|}{|y|}\dd{x} |y| \eta_{\delta}(y)\dd{y} \underbrace{\leq}_{|y|\leq \delta} C(R) \delta \int_{\R^d}\qty(\int_{\R^d}|\grad u|^p \dd{x})^{\frac{1}{p}}\dd{x} \leq C_1 \delta.
+\]
+Fix $\varepsilon >0, $ find finite $\frac{\varepsilon}{2}$-net in $(EB)_{\delta}$ in $\LpSet[1]{\text{U}(0,R)}$ (that is possible since we have total boundedness in $\LpSet[1]{\text{U}(0,R)}$.) Set $\delta >0 \, \text{s.t.} \, C_1 \delta \frac{\varepsilon}{4}.$ \footnote{The order of the choices is not precise...}. Denote the $\frac{\varepsilon}{2}$-net as $\{Eu_k\}_{k=1}^{m}, m \in \N.$ We show $\{u_k\}_{k=1}^{m}$ is a $\varepsilon$-net in $B$. Fix $u \in B, \, \text{find} \, j \in \{1,\dots,m\}: \norm{(Eu)_{\delta}-(Eu_j)_{\delta}}_{\LpSet[1]{\text{U}(0,R)}}.$ Compute
+\[
+	\norm{u-u_j}_{\LpSet[1]{\Omega}} \leq \norm{u-\qty(Eu)_{\delta}}_{\LpSet[1]{\Omega}} + \norm{\qty(Eu)_{\delta}-\qty(Eu_j)_{\delta}}_{\LpSet[1]{\Omega}}+ \norm{\qty(Eu_j)_{\delta}-u_j}_{\LpSet[1]{\Omega}}\leq 2C_1 \delta + \frac{\varepsilon}{2} \leq \varepsilon.
+\]
+Thus, we have shown
+\[
+	\WkpSet[1][p]{\Omega} \subset \subset \LpSet[1]{\Omega}.
+\]
+It remains to show the validity for a general $q$. Let $q \in [1,p^{*}): \norm{v}_{\LpSet[q]{\Omega}} \leq \norm{v}_{\LpSet[1]{\Omega}}^\alpha \norm{v}_{\LpSet[p^{*}]{\Omega}}^{1-\alpha}, \, \text{for} \, \frac{1}{q}=\alpha + \frac{1-\alpha}{p^{*}}, \alpha \in (0,1].$ Is $B$ totally bounded in $\LpSet[q]{\Omega}$? Let us compute
+\[
+	\norm{u-u_j}_{\LpSet[q]{\Omega}}\leq \norm{u-u_j}_{\LpSet[1]{\Omega}}^\alpha \underbrace{\norm{u-u_j}_{\LpSet[p^{*}]{\Omega}}^{1-\alpha}}_{\leq C, \WkpSet[1][p]{\Omega}\subset \LpSet[p^{*}]{\Omega}}\leq C \varepsilon^\alpha.
+\]
+\end{proof}
+
+\subsection{Trace theorems}
+\label{sec:traces}
+
+\subsection{Composition of sobolev functions}
+\label{sec:composition}
+
+\subsection{Difference quotients}
+\label{sec:difference_quotients}
+\section{Nonlinear elliptic equations as compact perturbations}
+\label{sec:nonlinear_elliptic_compact}
+
+\begin{theorem}[Nemytskii]
+   Let $f: \Omega \times \R^N \to \R, N \in N, \Omega \subset \R^d \, \text{measurable} \,, f \, \text{Caratheodory} \,$. Then
+   \begin{enumerate}
+	   \item if $u: \Omega \to \R^N$ is measurable then $f(\cdot, u)$ is also measurable
+	\item If there is $p_i \in [1, +\infty), i \in \{1,\dots,N\}, q \in [1, \infty), g \in \LpSet[q]{\Omega}, C>0$ such that for almost all
+		\[
+			x \in \Omega, \forall y \in \R^N: |f\qty(x,y)| \leq g(x) + c \sum_{i=1}^N |y_i|^{p_i/q}
+		\]
+		, then $u \mapsto f(\cdot, u)$ is continuous from $\LpSet[p_i]{\Omega} \times \dots \times \LpSet[p_N]{\Omega}$ to $\LpSet[q]{\Omega}$. Moreover, it maps bounded sets to bounded sets.
+   \end{enumerate}
+\end{theorem}
+\begin{proof}
+    No proof
+\end{proof}
+
+\begin{definition}[Compact operator | Drábek, Milota: Methods of Nonlinear Analysis, Def 5.2.2]
+    Let $X,Y$ be normed linear spaces, $M \subset X.$ The mapping $F:M \to Y$ is called a compact operator on $M$ into $Y$ if $F$ is continuous and $F\qty(M \cap K)$ is relatively compact in $Y$ for any bounded $K \subset X.$
+\end{definition}
+
+\begin{remark}
+	    We have no linearity of $F$! So continuity cannot follow from compactness (we have compactness $\Rightarrow $ boundedness $\neq$ continuity for nonlinear operators)
+\end{remark}
+
+\begin{theorem}[Brouwer fixed point theorem]
+    Let $K \subset \R^N, N \in \N$ be a nonempty convex closed bounded. Assume that $F: K \to K$ is continuous. Then $F$ has a fixed point in $K$, i.e.,
+    \[
+	    \exists x_0 \in K: F\qty(x_{0}) = x_0.
+    \]
+\end{theorem}
+\begin{proof}
+    No proof
+\end{proof}
+\begin{theorem}[Schauder fixed point theorem]
+    Let $K \subset X$ be a nonempty convex closed bonded subset of a linear normed space $X$. Assume that $F$ is compact on $K$ into $K$ and $F\qty(K) \subset K.$ Then there is fixed point of $F$ in $K.$
+\end{theorem}
+\begin{proof}
+    No proof
+\end{proof}
+\begin{itemize}
+	\item for Brouwer, $K \subset \R^N$ so since it is closed and bouded, it is automatically compact, and since $F: K \to K$ is continuous, $F$ is compact. For Schauder, we have to assume this extra.
+	\item proof of Brouwer with N=1 is easy, based on Darboux property.
+\end{itemize}
+\subsubsection{Problem protypes}
+\label{sec:prototypes}
+In this chapter some nonlinear elliptic equations are discussed.
+
+\begin{example}
+    Suppose the following problem: 
+    \[
+	    \begin{cases}
+		    -\laplace u + g(u) = f & \, \text{in} \, \Omega\\
+		    u = 0 & \, \text{on} \, \partial \Omega,
+	    \end{cases}
+    \]
+    where
+    \[
+	    g: \R \to \R, f \in \qty(\WkpzeroSet[1][2]{\Omega})^{*}, \, \text{continuous} \,, \exists \alpha \in [0,1): \forall s \in \R: |g(s)|\leq C\qty(1+|s|^{\alpha}).
+    \]
+
+    \begin{theorem}[Existence]
+        Let $ \Omega \in C^{1,1}, f \in \qty(\WkpzeroSet[1][2]{\Omega})^{*}, g$ is as above. Then there is a weak solution to the above problem, i.e., it holds:
+	\[
+		\forall \varphi \in \WkpzeroSet[1][2]{\Omega}: \int_{\Omega}\grad u \vdot \grad \varphi\dd{x} = <f,\varphi>_{(\WkpzeroSet[1][2]{\Omega})^{*}}.
+	\]
+	If $f \in \LpSet[2]{\Omega}$, then the solution $u \in \WkpSet[2][2]{\Omega}.$
+    \end{theorem}
+    \begin{proof}
+        We define $S: \LpSet[2]{\Omega} \to \LpSet[2]{\Omega}$ such that
+	\[
+		Sw = u \Leftrightarrow \forall \varphi \in \WkpzeroSet[1][2]{\Omega}: \int_{\Omega}\grad u \vdot \grad \varphi\dd{x} = <f,\varphi> - \int_{\Omega}g(w) \varphi\dd{x}.
+	\]
+	$S$ is well defined:
+	\[
+		|\, \text{RHS} \,| \leq \norm{f}_{(\WkpzeroSet[1][2]{\Omega})^{*}} \norm{\varphi}_{\WkpSet[1][2]{\Omega}} + \norm{\varphi}_{\LpSet[2]{\Omega}} \norm{g(w)}_{\LpSet[2]{\Omega}},
+	\] and
+	\[
+		\int_{\Omega}|g(w)|^{2}\dd{x} \leq \int_{\Omega}C\qty(1+|w|^{\alpha})^{2}\dd{x} \leq \int_{\Omega}C\qty(1+|w|^{2 \alpha})\dd{x} \leq \int_{\Omega}C\qty(1+|w|^2)\dd{x} \leq \infty,
+	\]
+	where we used the Young inequality and $\alpha \leq 1$. We have thus shown the mapping $w \mapsto g(w)$ is continuous from $\LpSet[2]{\Omega}$ to $\LpSet[2]{\Omega}$ by Nemytskii.
+	Next, $S$ is continuous: 
+	\begin{itemize}
+		\item $w \mapsto g(w)$ is continuous from $\LpSet[2]{\Omega}$ to $\LpSet[2]{\Omega}$
+		\item $w \mapsto \qty(\varphi \WkpzeroSet[1][2]{\Omega} \to <f,\varphi>-\int_{\Omega}g(w) \varphi\dd{x})$ is continuous from $\LpSet[2]{\Omega}$ to $\qty(\WkpzeroSet[1][2]{\Omega})^{*}$
+		\item $F \to u$, where $u$ is the weak solution of $\begin{cases}
+		-\laplace u = F & in \Omega \\
+		u = 0 & on \partial \Omega,
+	\end{cases}$, is linear and continuous from $(\WkpzeroSet[1][2]{\Omega})^{*}$ to $\WkpzeroSet[1][2]{\Omega}$.
+\end{itemize}
+In total, the composition is continuous and yields $S$. Next, we would like to show $S$ is compact. We start with showing $S$ maps bounded sets in $\LpSet[2]{\Omega}$ to bounded sets in $\WkpzeroSet[1][2]{\Omega}$; for that we need apriori estimates: test the weak formulation with $u$:
+\[
+\norm{\grad u}_{\LpSet[2]{\Omega}}^{2} \leq \varepsilon \norm{u}_{\WkpSet[1][2]{\Omega}}^{2} + C\qty(\norm{f}_{\qty(\WkpSet[1][2]{\Omega})^{*}}^{2}+\norm{g(w)}_{\LpSet[2]{\Omega}}^{2}) \underbrace{\leq}_{\, \text{Younge}} \,C\qty(\norm{f}_{(\WkpzeroSet[1][2]{\Omega})^{*})}+1+\norm{w}_{\LpSet[2]{\Omega}}^{2}),
+\]
+from which follows $S$ is compact from $\LpSet[2]{\Omega}$ to $\LpSet[2]{\Omega}$ by compact embedding. Now we need to show $S\qty(\text{U}(0,R)) \subset \text{U}(0,R)$ for some $R>0.$ From the previous we know:
+\[
+	\frac{C}{2}\norm{u}_{\WkpSet[1][2]{\Omega}}^{2} \leq \tilde{C}\qty(\norm{f}_{\qty(\WkpzeroSet[1][2]{\Omega})^{*}}+\norm{g}_{\LpSet[2]{\Omega}}^{2}),
+\]
+so since
+\[
+	\tilde{C}\int_{\Omega}|g(w)|^{2}\dd{x} \leq \int_{\Omega}C\qty(1+|w|^{2 \alpha})\dd{x} \underbrace{\leq}_{\, \text{Younge} \,} \int_{\Omega}\qty(C+ \frac{c}{4}|w|^{2})\dd{x}
+\]
+we know
+\[
+	\frac{c}{2}\norm{u}_{\LpSet[2]{\Omega}}^{2} \leq \frac{c}{2} \norm{u}_{\WkpSet[1][2]{\Omega}}^{2} \leq \tilde{C}\norm{f}_{(\WkpzeroSet[1][2]{\Omega})^{*}}^{2}+C \lambda\qty(\Omega)+ \frac{c}{4}\norm{w}_{\LpSet[2]{\Omega}}^{2},
+\]
+and thus
+\[
+	\norm{u}_{\LpSet[2]{\Omega}}^{2} \leq \underbrace{\frac{2 \tilde{C}}{c} \norm{f}_{(\WkpzeroSet[1][2]{\Omega})^{*}}^{2} + 2 \frac{C}{c}}_{=\overline{C}}+\frac{1}{2}\norm{w}_{\LpSet[2]{\Omega}}^{2}.
+\]
+so if $\overline{C} + \frac{1}{2}R^{2}<R^{2}$, we are done \footnote{The constants are most probably messed up.}. But such an $R$ of course exists (says doc. Kaplicky) $\Rightarrow$ the image of a ball is in a ball for some $R \Rightarrow$ $S$ is compact and using Schauder we get the solution exists.
+
+For the regularity part of the assertion, realize that $u_0$ solves 
+$\begin{cases}
+-\laplace u_0 = f-g(u_0) \in \LpSet[2]{\Omega} & \, \text{in} \, \Omega \\
+ u_0 = 0 & \, \text{on} \, \partial \Omega. 
+\end{cases}.$ So from the regularity theory for elliptic equations we get
+\[
+	u \in \WkpSet[2][2]{\Omega}.
+\]
+    \end{proof}
+    \begin{theorem}[Uniqueness]
+        Let $u_1, u_2 \in \WkpzeroSet[1][2]{\Omega}$ be weak solutions to the above problem. Let $f \in \qty(\WkpzeroSet[1][2]{\Omega})^{*},g$ be continuous. Let either 
+	\begin{enumerate}
+		\item $g$ is nondecreasing
+		\item $g \in C^1\qty(\R), \norm{g'}_{\infty}$ small.
+	\end{enumerate}
+	Then $u_1 = u_2$.
+    \end{theorem}
+    \begin{proof}
+        We subtract the equations for $u_1, u_2$ and test with $u_1 - u_2.$:
+	\[
+		\int_{\Omega}|\grad\qty(u_1 - u_2)|^{2} + \qty( g(u_1)-g(u_2))\qty(u_1-u_2)\dd{x} = 0.
+	\]
+	In the first case, the second term is nonnegative and so
+	\[
+		0=\norm{\grad\qty(u_1 - u_2)}_{\LpSet[2]{\Omega}} \geq C \norm{u_1 - u_2}_{\WkpSet[1][2]{\Omega}}^{2} \Rightarrow u_1 - u_2 = 0.
+	\]
+	\[
+		|\int_{\Omega}\qty(g(u_1)-g(u_2)(u_1-u_2))\dd{x}| \leq \int_{\Omega}\norm{g'}_{\infty}|u_1 - u_2|^{2}\dd{x} \leq \norm{g'}_{\infty}C_P \norm{\grad(u_1 - u_2)}_{\LpSet[2]{\Omega}}^{2} = 0 \Rightarrow u_1 = u_2.
+	\]
+	whenever $C \norm{g'}_{\infty} <1.$
+    \end{proof}
+\end{example}
+
+\begin{example}
+    Suppose the following problem
+    \[
+	    \begin{cases}
+		    - \laplace u + b\qty(\grad u) = f & \, \text{in} \, \Omega \\
+		    u = 0 & \, \text{on} \, \partial \Omega.
+	    \end{cases}
+    \]
+    where $f \in (\WkpzeroSet[1][2]{\Omega})^{*}, b$ is continuous and bounded. The weak formulation is
+    \[
+	    u \in \WkpzeroSet[1][2]{\Omega} \wedge \forall \varphi \in \WkpzeroSet[1][2]{\Omega}: \int_{\Omega}\grad u \vdot \grad \varphi + b\qty(\grad u) \varphi\dd{x} = <f,\varphi>,
+    \]
+    and the first apriori estimates (test with $u$)
+    \[
+	    \norm{\grad u}_{\LpSet[2]{\Omega}} \leq \norm{f}_{(\WkpzeroSet[1][2]{\Omega})^{*}} \norm{u}_{\WkpzeroSet[1][2]{\Omega}}+ \int_{\Omega}|u|\dd{x} \norm{b}_{\LinfSet{\Omega}}.
+    \]
+    \begin{theorem}
+        Let $f \in \qty(\WkpzeroSet[1][2]{\Omega})^{*}, \Omega \in C^{0,1}, b: \R^d \to \R$ continuous and bounded. Then there is a weak solution to the above problem.
+    \end{theorem}
+    \begin{proof}
+        $S: \WkpzeroSet[1][2]{\Omega} \to \WkpzeroSet[1][2]{\Omega}, Sw = u$ iff $u$ solves
+	\[
+		\begin{cases}
+			- \laplace u = f - b\qty(\grad w) & \, \text{in} \, \Omega \\
+			u = 0 & \, \text{on} \, \partial \Omega.
+		\end{cases}, \, \text{i.e.} \,
+	\]
+	it holds
+	\[
+		\forall \varphi \in \WkpzeroSet[1][2]{\Omega}: \int_{\Omega}\grad u \vdot \grad \varphi\dd{x} = <f, \varphi> - \int_{\Omega}b\qty(\grad w) \varphi\dd{x}.
+	\]
+Clearly, $S$ is well defined and
+\[
+	\norm{Sw}_{\WkpzeroSet[1][2]{\Omega}} \leq \underbrace{C\qty(\norm{f}_{\qty(\WkpzeroSet[1][2]{\Omega})^{*}}+ \norm{b}_{\LinfSet{\Omega}})}_{\coloneq R},
+\]
+meaning $S\qty(\overline{\text{U}(0,R)}) \subset \overline{\text{U}(0,R)}.$
+Moreover, $S$ ]s continuous, as $S$ is the composiiton of a Nemytskii operator and the solution operator of the Laplace equation. It remains to show $S$ is compact: we already have continuity, consider $\{w_k\}_{k \in \N} \subset \WkpzeroSet[1][2]{\Omega}$ bounded. Then $\exists \{u_k\} \subset \WkpzeroSet[1][2]{\Omega}$ bounded: $u_k \to u$ in $\LpSet[1]{\Omega}$ by embedding up to a subsequence. Next, uss the following trick: substitue equation for $u_k$ from equation for $u_l$ and test with $u_l - u_k$
+\[
+C \norm{u_l - u_k}_{\WkpzeroSet[1][2]{\Omega}}^{2} \leq	\norm{\grad\qty(u_l - u_k)}_{\LpSet[2]{\Omega}}^{2} \leq \int_{\Omega}|b(\grad u_l) - b\qty(\grad u_k)| |u_l - u_k|\dd{x} \leq 2 \norm{b}_{\LinfSet{\Omega}}\norm{u_l-u_k}_{\LpSet[1]{\Omega}}.
+\]
+All in all, $S$ has a fixed point by Schauder, which is of course the weak solution.
+    \end{proof}
+    But this says $\{u_k\}$ is Cauchy in $\WkpzeroSet[1][2]{\Omega}.$
+\end{example}
+
+\section{Nonlinear elliptic equations - monotone operator theory}
+\label{sec:monotone_operator}
+
+\begin{lemma}
+    Let $g: \text{B}(0,R) \subset \R^n \to \R^N$ be continuous, $N \in \N, R>0,$ and $\forall c \in \text{S}(0,R): g(c) \vdot c \geq 0.$ Then, there is $c_0 \in \text{B}(0,R): g(c_0) = 0.$
+    \begin{proof}
+        By contradiction. Let $g \neq 0$ in $\text{U}(0,R)$. Let us define
+	\[
+		h(x) = -R\frac{g(x)}{|g(x)|}.
+	\]
+	Then $h \in C\qty(\text{B}(0,R)), h\qty(\text{B}(0,R)) \subset \text{S}(0,R),$ so by Brouwer there $\exists x_0 \in \text{B}(0,R): h(x_0_ = x_0 \Rightarrow -R \frac{g(x_0)}{|g(x_0)|} = x_0.$ Take the dot product with $x_0$ and write
+	\[
+		\underbrace{-R \frac{g(x_0) \vdot x_0}{|g(x_0)|}}_{\leq 0} = \underbrace{|x_0|^{2}}_{ = R^{2}} \wedge x_0 \in \text{S}(0,R),
+	\]
+	so that is a contradiction.
+    \end{proof}
+\end{lemma}
+\section{Exercises}
+\label{sec:exercises}
+
+\subsection{4.3.2025}
+\label{sec:43}
+
+\begin{example}[Coefficients for smooth extension]
+Define
+\[
+	Eu(x',x_d) = u(x',x_d), x \geq 0, = \sum_{j=1}^{k+1}u\qty(x',-\frac{x_d}{j})c_j, x_d<0.
+\]
+for $u \in \mathcal{D}\qty(\R^d)$. Find $\{c_j\}_{j=1}^{k=1}$ in such a way that $Eu \in C^k\qty(\R^d)$. Moreover, take $d=1$.
+\end{example}
+\begin{proof}
+ For $k=0, j=1$ we take $c_1=1, c_j=0, j \neq 1$. For $k=1,$ compute the derivative:
+\[
+	\partial_{d^n}E u(x',x_d) = \partial_{d^n}u(x',x_d), x_d \geq 0, =\sum_{j=1}^{k=1}(-1)^n\frac{\partial_{d^n}u\qty(x',\frac{x_d}{j})}{j^n}c_j, x_d <0.
+\]
+If we take $x_d=0$ in particular:
+\[
+	\partial_{d^n}u\qty(x',0)= \sum_{j=1}^{k+1}\partial_{d^n}u\qty(x',0)\qty(-\frac{1}{j})^n c_j \Leftrightarrow 1 = \sum_{j=1}^{k+1}c_j \qty(-\frac{1}{j})^n, \forall n \in \{0,\dots,k\}.
+\]
+  That is a linear system of $k+1$ equations. Is it solvable?
+\end{proof}
+\
+\end{document}
+
+
+%%% Local Variables: 
+%%% mode: latex
+
+%%% TeX-master: t
+%%% End: 

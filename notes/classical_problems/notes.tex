@@ -1,0 +1,1035 @@
+\documentclass[reqno, a4paper]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+
+% PAGE DIMENSION
+
+% BIBLIOGRAPHY
+\usepackage{natbib}
+\usepackage{bibentry} % inline refereces
+
+% ENCODING, LANGUAGE
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+
+% GRAPHICS
+\usepackage{subfig}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{intersections,calc}
+\usepackage{tcolorbox}
+
+% HYPERTEXT, SOURCE CODE SPECIALS
+\usepackage[unicode]{hyperref}
+\usepackage[active]{srcltx} % use TeX-souce-specials-mode
+
+% SYMBOLS, FONTS
+\usepackage{mathbbol}
+\usepackage{bm} % sophisticated \boldsymbol
+\usepackage{physics}
+%\usepackage{stmaryrd}
+\usepackage{MnSymbol} % \lsem, \rsem, tensor product :
+\usepackage{gensymb}
+\usepackage{eurosym}
+
+% UNITS, TYPESETTING TENSORS
+\usepackage{units}
+\usepackage{tensor}
+\usepackage{accents}
+
+% COMPACT LIST ENVIRONMENT
+\usepackage{enumitem}
+
+% LINE NUMBERS
+\usepackage{lineno}
+
+\usepackage{multicol}
+
+% SELECTIVELY INCLUDE/EXCLUDE PARTS OF TEXT
+\usepackage{comment}
+
+% FLOAT BARRIER
+\usepackage{placeins}
+
+\input{macros}
+
+\begin{document}
+
+\title{Classical problems in continuum mechanics}
+
+\date{\today}
+
+\author{Kamil Belan}
+
+
+
+\begin{comment}
+\begin{abstract}
+  % \input{article-abstract}
+  Here comes the abstract.
+\end{abstract}
+\end{comment}
+
+\maketitle
+
+\section{Curvilinear coordinates, tensor \& vector calculus}
+\label{sec:curvilinear_coords}
+How to write $\divergence{\vb{u}}, \curl{\vb{u}}$ etc. in polar, cylindrical and other coordinates? Notice that there are similiarities between change of coordinats $\vb{x} = \vb{x}(\vb*{\gamma})$ and deformation $\vb{x}=\vb*{\chi}(\vb{x})$, the $\lcg$ tensor and the metric tensor $\tensorq{g}$.
+
+\subsection{Curvilinear coordinates}
+\label{sec:curvi}
+Let us have $x^1,x^2,\dots,x^n$ cartesian coordinates and a different set $\vb{x}=\vb{x}(\vb{y})$, for example $x=r \cos \varphi, y=r \sin \varphi, [x,y]=[x^1,x^2], [r,\varphi] = [y^1,y^2]$. That means every point on a plane can be described by using $[x^1,x^2]$ or $[r,\varphi]$. We are used to analysis in cartesian coordinates - how can i do it in a more general setting?
+
+\begin{remark}
+	The name curvilinear coordinates come from the fact that the lines $y^k=\text{const}$ are not "straight lines"
+\end{remark}
+
+\begin{definition}[Coordinate lines]
+	Coordinate lines/curves are the curves
+	\[
+		\vb*{\gamma}^j(y^j) = \vb{x}(y^1,\dots,y^j,\dots,y^n).
+	\]
+	
+\end{definition}
+
+\begin{figure}
+	\label{fig:coordinate_systems}
+\begin{tikzpicture}
+	\draw[<->] (-5,0) -- (5,0) node[anchor=north east]{$x^1$};
+	\draw[<->] (0,-5) -- (0,5) node[anchor=north east]{$x^2$};
+	\draw[thin,blue] (2,-5) -- (2,5) node[anchor=north east]{$x^1 =\, \text{const} \,$};
+	\path [name path=vert] (2,-5) -- (2,5);
+
+	\draw[thin,blue] (-5,-3) -- (5,-3) node[anchor=north east]{$x^2 =\, \text{const} \,$};
+	\path [name path=horiz] (-5,-3) -- (5,-3);
+
+	\path [name intersections={of=vert and horiz, by=A}];
+	\draw[thick,blue,->] (A) --++ (3,0) node[anchor=north west]{$\vb{e}_2$};
+
+	\draw[thick,blue,->] (A) --++ (0,3) node[anchor=north west]{$\vb{e}_1$};
+
+	\draw[thin,purple] (0,0) circle (3.5cm) node[anchor=south east]{$y^1 = r = \, \text{const} \,$};
+	\path [name path=circlePath] (0,0) circle (3.5cm);
+
+	\draw[thin,purple] (0,0) -- (5,5) node[anchor=north east]{$y^2=\varphi_1=\, \text{const} \,$};
+	\path [name path=radialPath] (0,0) -- (5,5);
+
+	\path [name intersections={of=circlePath and radialPath, by=B}];
+
+	\draw[thick,purple,->] (B) --++ (-1,1) node[anchor=south east]{$\vb{g}_1\qty(r,\varphi_1)$};
+	\draw[thick,purple,->] (B) --++ (1,1) node[anchor=south east]{$\vb{g}_2\qty(r,\varphi_1)$};
+
+	\draw[thin,purple] (0,0) -- (-5,5) node[anchor=south east]{$y^2 = \varphi_2 = \, \text{const} \,$};
+	\path [name path=radialPath2] (0,0) -- (-5,5);
+	\path [name intersections={of=circlePath and radialPath2, by=C}];
+
+	\draw[thick,purple,->] (C) --++ (-1,1) node[anchor=south west]{$\vb{g}_2\qty(r,\varphi_2)$};
+	\draw[thick,purple,->] (C) --++ (-1,-1) node[anchor=south east]{$\vb{g}_1\qty(r,\varphi_2)$}; 
+
+\end{tikzpicture}
+\caption{Coordinate lines and basis vectors in cartesian and polar coordinates (\textit{the length of the vectors is the same...})}
+\end{figure}
+
+\subsubsection{Basis of a vector space}
+\label{sec:basis}
+In cartesian coordinates: $\{\vb{e}_1,\vb{e}_2,\dots,\vb{e}_n \}$, where the vectors are \textit{tangent to the coordinate lines}, that is
+
+\begin{equation}
+	\vb{e}_i = \pdv{\vb*{\gamma}^i}{x^i}.
+\end{equation}
+
+In a curvilinear coordinate system, we can repeat the same construction. We can \textit{define a vector tangent to the coordinate line}
+
+\begin{equation}
+	\vb{g}_i \qty(\vb{y})=\dv{\vb*{\gamma}}{y^i}\qty(y^i) = \pdv{\vb{x}}{y^i}\qty(y^1, \dots, y^i, \dots y^n)
+\end{equation}
+
+The problem is that the vectors $\vb{g}_i$ are not constant in space! It is a vector field!.
+
+\subsubsection{Vector fields}
+\label{sec:vector_fields}
+
+A vector $\vb{v}$ is independent of a basis; i can write $\vb{v}=v^i \vb{e}_i = \nu^i \vb{g}_i$. (Note that in general $v^i \neq \nu^i$.) What about its derivatives?
+
+\[
+	\pdv{\vb{v}}{x^i}=\pdv{\qty(v^j \vb{e}_j)}{x^i} = \pdv{v^j}{x^i}\vb{e}_j,
+\]
+works perfectly fine in cartesian coordinates, as $\vb{e}_j = \text{const}$. In curvilinear setting
+
+\begin{equation}
+	\label{eq:dvvectorfield}
+	\pdv{\vb{v}}{y^i}=\pdv{\qty(v^j \vb{g}_j)}{y^i}= \pdv{v^j}{y^i}\vb{g}_j + v^j \pdv{\vb{g}_j}{y^i},
+\end{equation}
+as generally $\pdv{\vb{g}_j}{y^i} \neq \vb{0}$. We can identify the last term, as it must be a vector:
+\[
+	\pdv{\vb{g}_j}{y^i} = \Gamma^k_{j i}\vb{g}_k,
+\]
+where $\Gamma^k_{ji}$ are the coefficients of the linear combinations. Thanks to the \textit{commutation of the partial derivatives} \footnote{We are still in flat $\R^d$, i.e. euclidian space. No curvature, torsion, that would obstruct the comutation properties.}, it holds
+\begin{equation}
+	\label{eq:symmetry_christoffel}
+	\Gamma^k_{ji} = \Gamma^k_{ij},
+\end{equation}
+i.e., $\Gamma^k_{ij}$ is symmetric in $ij$. Well, that did not help \textit{very} much, as we don't know $\Gamma^k_{ji}$, but at least we have the symmetry property. Going back to \ref{eq:dvvectorfield}:
+
+\begin{equation}
+	\pdv{\vb{v}}{y^i}=\pdv{v^j \vb{g}_j}{y^i}= \pdv{v^j}{y^i}\vb{g}_j + v^j \pdv{\vb{g}_j}{y^i} = \pdv{v^k}{y^i}\vb{g}_k + v^j \Gamma^k_{ij}\vb{g}_k = \Big( \pdv{v^k}{y^i}+\Gamma^k_{ij}v^j \Big) \vb{g}_k.
+\end{equation}
+In short $\pdv{\vb{v}}{y^i} = \Big(\pdv{v^k}{y^i}+\Gamma^k_{ij}v^j\Big) \vb{g}_k$. Compare it to $\pdv{\vb{v}}{x^i}=\pdv{v^k}{x^i}\vb{e}_k$. This leads us to the definition
+
+\begin{definition}[Covariant derivative of a vector field]
+    The quantity:
+\begin{equation}
+	v^k|_i = \pdv{v^k}{y^i}+\Gamma^k_{ij}v^j,
+\end{equation}
+is called the \textbf{covariant derivative of the vector field }$\vb{v}$
+\end{definition}
+
+\subsubsection{Dot product}
+\label{sec:dot_product}
+
+The number $\vb{v}\vdot \vb{u}$ is obtained in a special manner:
+\[
+	\vb{v} \vdot \vb{u}= v^i \vb{e}_i \vdot u^j \vb{e}_j = (\vb{e}_i \vdot \vb{e}_j) v^i u^j = \delta_{ij}v^i u^j.
+\]
+I can of course write the vectors in a different basis:
+
+\[
+	\vb{v}\vdot \vb{u} = v^i \vb{g}_i \vdot u^j \vb{g}_j = (\vb{g}_i \vdot \vb{g}_j) v^i u^j = g_{ij}v^i u^j.
+\]
+
+\begin{definition}[Metric tensor]
+    The tensor $\tensorq{g}$ such that $\forall \vb{v} = v^i \vb{g}_i, \vb{u}= u^j \vb{g}_j$ it holds:
+    \[
+	    \vb{v} \vdot \vb{u}=g_{ij} v^i u^j, g_{ij}= \vb{g}_i \vdot \vb{g}_j,
+    \]
+    is called the \textbf{metric tensor}.
+\end{definition}
+
+
+\subsubsection{Dual space}
+\label{sec:dual_space}
+
+The (vector) dual space is the space of all linear forms on the underlying vector space. In particular it is a vector basis itselfs, so $\forall \vb{l} \in V^{*}: \vb{l} = l_i \vb{e}^i$, where $\vb{e}^i$ is the i-th basis vector. The action of the forms can be described as
+\[
+	\vb{l}(\vb{v}) = l_i \vb{e}^i(v^j \vb{e}_j) = l_i v^j \vb{e}^i(\vb{e}_j), \forall \vb{v} \in V.
+\]
+If it holds $\vb{e^i}(\vb{e}_j) = \delta^i_j$, we call the basis $\vb{e}^i$ dual to $\vb{e}_j$. What about curvilinear setting? We can adopt the same definition
+\begin{definition}
+    We call the basis $\vb{g}^j$ of $V^{*}$ the dual basis to $\vb{g}_i$ iff
+
+\[
+	\vb{g}^j(\vb{g}_i) = \delta^j_i.
+\]
+\end{definition}
+
+For the original basis we had $\vb{g}_i = \pdv{\vb{\gamma}}{y^i} = \pdv{x^j}{y^i}\vb{e}_j$, in the dual case (using the chain rule):
+
+\[
+	\delta^i_j = \pdv{y^i}{y^j}= \pdv{y^i}{x^k}\pdv{x^k}{y^j},
+\]
+so i can conclude
+\[
+	\vb{g}^j = \pdv{y^j}{x^k}\vb{e}^k.
+\]
+
+Recall that we have the \textit{Riesz representation theorem}:
+\[
+	\forall \vb{l} \in V^{*}, \exists \quad{unique} \vb{u} \in V: \vb{l}(\vb{v}) = \vb{u} \vdot \vb{u}, \forall \vb{v} \in V.
+\]
+
+This implies
+
+\[
+	l_i \vb{g}^i (v^j \vb{g}_j) = u^m u^n g_{mn}, \quad{i.e.} l_i v^j \delta^i_j = u^m v^n g_{mn}, \quad{i.e.} l^i v_i = u^m v^i g_{mi}, \quad{i.e.} l_i = g_{im} u^m.
+\]
+
+So $l_i = g_{im}u^m$, where $\vb{u}$ represents $\vb{l}$. It is common to write
+
+\[
+	l_i = g_{im}l^m.
+\]
+
+\subsubsection{Covector fields}
+\label{sec:covector_fields}
+
+How to compute $\pdv{\vb{l}}{y^i}$? Just change the location of the index :)
+\[
+	\pdv{\vb{l}}{y^i} = \pdv{(l_j \vb{g}^j)}{y^i} = \pdv{l^j}{y^i}\vb{g}^j + \pdv{\vb{g}^j}{y^i}l_j.
+\]
+Again, the last term must be expressable in the dual basis, so 
+
+\begin{equation}
+	\pdv{\vb{l}}{y^i}= \pdv{l_j}{y^i}\vb{g}^j+ \tilde{\Gamma}^j_{im}l_j \vb{g}^m,
+\end{equation}
+
+
+where again $\tilde{\Gamma^j_{im}} = \tilde{\Gamma^j_{mi}}$ are the coefficients of the linear combinations, "that are symmetric".
+
+What is the relation between $\Gamma^k_{im}$ and $\tilde{\Gamma^k_{im}}$? Recall $\delta^i_j = \vb{g}^i(\vb{g}_j)$, so differentiating can lead us to
+
+\begin{equation}
+	\label{eq:relationGammas}
+    \Gamma^j_{im} = - \Gamma^j_{im}.
+\end{equation}
+
+\begin{definition}
+    Let $\vb{l}$ be a covector field. The quantity
+    \begin{equation}
+        \vb{l}_m|_j = \pdv{\vb{l}}{y^j}-\Gamma \indices{^l_{jm}}v_l,
+    \end{equation}
+    is called \textbf{the covariant derivative of the covector field} $\vb{l}$.
+\end{definition}
+
+TODO $\tensorq{A} = A_{mn}\vb{g}^m \otimes \vb{g}^n.$
+
+\subsubsection{Direct expression of the Christoffel symbols}
+\label{sec:christoffel_expression}
+With the above relation, we can express $g_{mn}|_j$. Moreover, we can directly differentiate.
+\[
+	\pdv{g_{mn}}{y^j}=\pdv{\qty(\vb{g}_m \vdot \vb{g}_n)}{y^j} = \pdv{\vb{g}_m}{y^j} \vdot \vb{g}_n + \vb{g}_m \pdv{\vb{g}_n}{y^j}=\Gamma \indices{^k_{mj}}\vb{g}_k \vdot \vb{g}_n + \vb{g}_m \vdot \Gamma \indices{^k_{nj}}\vb{g}_k = \Gamma \indices{^k_{mj}}g_{kn} + \Gamma \indices{^k_{nj}}g_{mk}
+\]
+,
+\[
+	g_{mn}|_j = \pdv{g_{mn}}{y^j}-g_{kn}\Gamma \indices{^k_{jm}}-g_{mk} \Gamma \indices{^k_{jn}}.
+\]
+From this, it follows
+\begin{equation}
+    g_{mn}|_j = 0.
+\end{equation}
+
+This property is particularly useful, as it allows us to express the Christoffel symbols. Using cyclic permuation, we can write
+
+\begin{align*}
+A=	\pdv{g_{mn}}{y^j} &= \Gamma \indices{^k_{mj}}g_{kn} + \Gamma \indices{^k_{nj}}g_{mk}, \\
+B=	\pdv{g_{jm}}{y^j} &= \Gamma \indices{^k_{jn}} g_{kn} + \Gamma \indices{^k_{mn}}g_{jk}, \\
+C=	\pdv{g_{nj}}{y^n} &= \Gamma \indices{^k_{nm}}g_{kj} + \Gamma \indices{^k_{jm}} g_{nk}.
+\end{align*}
+Taking $A-B-C$ yields
+\[
+	\pdv{g_{mn}}{y^j}-\pdv{g_{jm}}{y^n}-\pdv{g_{nj}}{y^m} = -2 \Gamma \indices{^k_{nm}}g_{jk},
+\]
+multiplying by $g^{jl}$ gives
+\[
+	-2 \Gamma \indices{^k_{nm}}\delta^l_k = g^{jl}\qty(\pdv{g_{mn}}{y^j}-\pdv{g_{jm}}{y^n}-\pdv{g_{nj}}{y^m}),
+\]
+from which it follows
+\begin{equation}
+	\label{eq:christoffel}
+	\Gamma \indices{^l_{nj}} = \frac{1}{2}g^{lm}\qty(\pdv{g_{mn}}{y^j}+\pdv{g_{jm}}{y^n}-\pdv{g_{nj}}{y^m}).
+\end{equation}
+
+
+\subsubsection{Interchangability of the derivatives}
+\label{sec:interchangability}
+In euclidian space:
+\[
+	\pdv[2]{\vb{v}}{y^j}{y^i} = \pdv[2]{\qty(v^k \vb{e}_k)}{y^j}{y^i}= \qty(\pdv[2]{v^k}{x^j}{x^i}) \vb{e}_k,
+\]
+when $\vb{e}_k$ are basis vectors of \textit{cartesian coordinate system.} Will it hold even in curvilinear coordinate systems?
+\begin{align*}
+	0 &= \pdv[2]{\vb{v}}{x^j}{x^k} - \pdv[2]{\vb{v}}{x^j}{x^k} = \, \text{apply the covariant derivative two times}= \, \\&=
+   \qty(v^k|_{ij} - v^k|_{ji})\vb{g}_k = \qty(\pdv{\Gamma \indices{^i_{jm}}}{y^k} - \pdv{\Gamma \indices{^i_{km}}}{y^i} + \Gamma \indices{^i_{lk}} \Gamma \indices{^l_{jm}}- \Gamma \indices{^i_{lj}} \Gamma \indices{^l_{km}})v^m \vb{g}_i.
+\end{align*}
+
+	\begin{definition}[Riemann curvature tensor]
+    The \textit{tensor}
+    \begin{equation}
+R \indices{^i_{jkm}}=\pdv{\Gamma \indices{^i_{jm}}}{y^k} - \pdv{\Gamma \indices{^i_{km}}}{y^i} + \Gamma \indices{^i_{lk}} \Gamma \indices{^l_{jm}}- \Gamma \indices{^i_{lj}} \Gamma \indices{^l_{km}},
+    \end{equation}
+    is called the \textbf{Riemann curvature tensor}
+\end{definition}
+We see that if the Riemann curvature tensor is zero, then effectively, we are in the case of a flat euclidian space, as the derivatives commute (?).
+In other words, in flat euclidian space, the Riemann curvature tensor is always zero. If we flip this, we see that if we have a space with zero Riemann curvature tensor, \textit{we have a chance} that the derivatives commute, i.e. that the structure is euclidian.
+
+\begin{tcolorbox}
+\begin{example}[Interpretation in continuum mechanics]
+	\begin{align*}
+		\vb{x} = \vb{x}\qty(\vb{y}) \, &\text{vs} \, \vb{x}=\vb*{\chi}\qty(\vb{X}), \\
+		\vb{g}_i = \pdv{\vb{x}}{y^i} \, &\text{vs} \, \vb{g}_i = \pdv{\vb*{\chi}}{X^i}, \, \text{i.e.} \, (\vb{g}_m)^i = F \indices{^i_m} = \pdv{\chi^i}{X^m}, \\
+												  &	g_{ij}=\vb{g}_i \vdot \vb{g}_j = (\transpose{\fgrad} \fgrad)_{ij}=(\rcg)_{ij}, \\
+		\end{align*}
+		So
+		\begin{equation}
+			\label{eq:cauchy_metric}
+			\tensorq{g}=\rcg.
+		\end{equation}
+		We can calculate:
+		\[
+			\pdv{\vb{g}_m}{X^j} = \Gamma \indices{^k_{mj}}\vb{g}_k,
+		\]
+		which is a system of equations for the basis vectors. There are some solvability conditions
+		\begin{equation*}
+			\partial_{JI}\vb{g}_m = \partial_{IJ}\vb{g}_m = \pdv{\qty(\Gamma \indices{^k_{im}} \vb{g}_k)}{X^j} = \pdv{\qty(\Gamma \indices{^k_{mj}} \vb{g}_k)}{X^i} ,
+		\end{equation*}
+		this is equivalent to 
+		\[
+			\partial_{JI}\vb{g}_m - \partial_{IJ} \vb{g}_n =0 \Leftrightarrow \dots R \indices{^i_{jkm}} = 0.
+		\]
+	\end{example}
+	\textit{So this implies that all physically admissable deformations produce a deformed space with zero Riemann curvature.}
+\end{tcolorbox}
+
+\subsection{Calculus}
+\label{sec:calculus}
+
+\subsubsection{Gradient}
+\label{sec:gradient}
+
+Remember $(\grad \varphi)_i = \pdv{\varphi}{x^i}$, so that means
+\[
+	\grad \varphi = \pdv{\varphi}{x^i} \vb{e}^i.
+\]
+\textbf{The gradient is a covector.}
+
+\[
+	\grad \varphi = \pdv{\varphi}{x^i}\vb{e}^i = \pdv{\varphi}{\xi^j}\underbrace{\pdv{\xi^j}{x^i}\vb{e}^i}_{=\vb{g}^j} = \pdv{\varphi}{\xi^j}\vb{g}^j,
+\]
+
+What about the gradient of a vector field? In cartesian coordinate system:
+\[
+	\grad \vb{v} = \grad(v^i \vb{e}_i) = \pdv{v^i}{x^j}\vb{e}_i \otimes \vb{e}^j = \vb{v} \otimes \grad.
+\]
+In curvilinear coordinates:
+\begin{align*}
+	\grad(v^i \vb{g}_i)& = \grad \qty(v^i \pdv{x^m}{\xi^i}\vb{e}_m) = \pdv{x^j}\qty(v^i \pdv{x^m}{\xi^i})\vb{e}_m \otimes \vb{e}^j = \qty(\pdv{v^i}{x^j} \pdv{x^m}{\xi^i}+v^i \pdv[2]{x^m}{x^j}{\xi^i})\vb{e}_m \otimes \vb{e}^j = \\
+			   & = \qty(\pdv{v^i}{\xi^n}\pdv{\xi^n}{x^j}\pdv{x^m}{\xi^i}+v^i \pdv[2]{x^m}{x^j}{\xi^i})\vb{e}_m \otimes \vb{e}^j = \pdv{v^i}{\xi^n} \qty(\pdv{x^m}{\xi^u}\vb{e}_m)\otimes \qty(\pdv{\xi^n}{x^j}\vb{e}^j)+v^i \pdv{\xi^l}\qty(\pdv{x^m}{\xi^i})\pdv{\xi^l}{x^j}\vb{e}_m \otimes \vb{e}^j = \\
+			   & = \pdv{v^i}{\xi^n} \qty(\pdv{x^m}{\xi^i}\vb{e}_m)\otimes \qty(\pdv{\xi^n}{x^j}\vb{e}^j)+ v^i \pdv{\xi^l}\qty(\pdv{x^m}{\xi^i}\vb{e}_m)\otimes \qty(\pdv{\xi^l}{x^j}\vb{e}^j) = \pdv{v^i}{\xi^n}\vb{g}_i \otimes \vb{g}^n+ v^i \pdv{\vb{g}^i}{\xi^l} \otimes \vb{g}^l = \\
+			   &= \pdv{v^i}{\xi^n}\vb{g}_i \otimes \vb{g}^n + v^i \Gamma \indices{^s_{il}}\vb{g}_s \otimes \vb{g}^l = \qty(\pdv{v^s}{\xi^l}+\Gamma \indices{^s_{il}}v^i)\vb{g}_s \otimes \vb{g}^l = \\
+			    & = v^s|_l \vb{g}_s \otimes \vb{g}^l.
+\end{align*}
+
+Until now, we have not discussed the fact $|\vb{g}_i| \neq 1,$ which is a kind of a problem. Let us define
+\[
+	\vb{v}=v^i \vb{g}_i = v^i |\vb{g}_i| \frac{\vb{g}_i}{|\vb{g}_i|} = v^{\hat{i}} \vb{g}_{\hat{i}},
+\]
+where we have defined
+\[
+	v^{\hat{i}} = |\vb{g}^i| v^i, \vb{g}_{\hat{i}} = \frac{\vb{g}_i}{|\vb{g}_i|}.
+\]
+But! the differential formulas work for $v^i, \vb{g}_i$, \textbf{not for} $v^{\hat{i}}, \vb{g}_{\hat{i}}$!
+
+\begin{align}
+	\grad \varphi &= \pdv{\varphi}{\xi^j}\vb{g}^j = |\vb{g}^i|\pdv{\varphi}{\xi^i} \vb{g}^{\hat{i}},\\
+	\grad \vb{v} &= v^s|_l \vb{g}_s \otimes \vb{g}^l = |\vb{g}_s| |\vb{g}^l| v^s|_l \vb{g}_{\hat{s}} \otimes \vb{g}^{\hat{l}}, 
+\end{align}
+For the divergence of a vector field, we know: $\tr\qty(\vb{u} \otimes \vb{v})$, so
+\[
+	\divergence{\vb{v}} = \tr\qty(\grad \vb{v}) = \tr\qty(v^s|_l \vb{g}_s \otimes \vb{g}^l) = v^s|_s.
+\]
+The divergence of a tensor field a can be tricky, but be guided by the summation convention; for the tensor $\tensorq{A} = A^{is}\vb{g}_i \otimes \vb{g}_s$ we can define
+\[
+	\divergence{\tensorq{A}} = A^{is}|_s \vb{g}_i.
+\]
+\textit{For the tensors of a different type, we need to change the position of the indices to obtain a bivector.}
+
+\subsubsection{Laplace-Beltrami operator}
+\label{sec:laplace_beltrami}
+
+\[
+	\laplace \varphi = \frac{1}{\sqrt{\det \tensorq{g}}}\pdv{\xi^i}\qty(\sqrt{\det \tensorq{g}} g^{ij} \pdv{\varphi}{\xi^j}),
+\]
+
+on one hand:
+\begin{equation*}
+	\laplace \varphi = \divergence{\grad \varphi}= \qty(\grad \varphi)^i|_i = \eval{\qty(g^{ij}\pdv{\varphi}{\xi^j})}_i = 
+\end{equation*}
+where we have rised the index $ \qty(\grad \varphi)^i = g^{ij}\qty(\grad \varphi)_j = g^{ij} \pdv{\varphi}{\xi^j},$ so using the covariant derivative definition
+\[
+	\divergence{\grad \varphi} = \pdv{\xi^i}\qty(g^{ij}\pdv{\varphi}{\xi^j})+ \Gamma \indices{^i_{il}} g^{lj} \pdv{\varphi}{\xi^j},
+\]
+on the other
+
+\begin{align*}
+\laplace \varphi &= \frac{1}{\sqrt{\det \tensorq{g}}}\qty(\pdv{\xi^i}\qty(\sqrt{\det \tensorq{g}})g^{ij}\pdv{\varphi}{\xi^j}+ \sqrt{\det \tensorq{g}} \pdv{g^{ij}}{\xi^i}\pdv{\varphi}{\xi^j}+ \sqrt{\det \tensorq{g}} g^{ij} \pdv[2]{\varphi}{\xi^i}{\xi^j}) = \\
+			 &= \frac{1}{\sqrt{\det \tensorq{g}}} \qty(\frac{1}{2\sqrt{\det \tensorq{g}}}\pdv{\xi^i} \qty(\det \tensorq{g})g^{ij}\pdv{\varphi}{\xi^j}+\sqrt{\det \tensorq{g}}\pdv{g^{ij}}{\xi^i}+ \sqrt{\det \tensorq{g}} g^{ij}\pdv[2]{\varphi}{\xi^i}{\xi^j}) = \\
+			 & = \frac{1}{\sqrt{\det \tensorq{g}}}\qty(\frac{1}{2}\tr\qty(\inverse{\tensorq{g}} \pdv{\tensorq{g}}{\xi^i})g^{ij}\pdv{\varphi}{\xi^j}-\sqrt{\det \tensorq{g}} \qty(\Gamma \indices{^j_{kn}}g^{in}- \Gamma \indices{^i_{km}}g^{mj})+ \sqrt{\det \tensorq{g}}g^{ij}\pdv[2]{\varphi}{\xi^i}{\xi^j}) = \\
+			 & = \frac{1}{\sqrt{\det \tensorq{g}}}\qty(\frac{1}{2}\qty(g^{mn} \pdv{g_{mn}}{\xi^i})g^{ij}\pdv{\varphi}{\xi^j}-)
+\end{align*}
+
+\subsubsection{Bipolar coordinates}
+\label{sec:bipolar_coordinates}
+
+Define $\vb*{\xi} = [\alpha,\beta],$ where
+\[
+	\alpha+i \beta = \log \frac{y+i(x+a)}{y+i(x-a)}.
+\]
+This can be inversed and write
+\begin{align*}
+	x&=\frac{a \sinh \alpha}{\cosh \alpha - \cos \beta},\\
+	y&= \frac{a \sin \beta}{\cosh \alpha -\cos \beta},
+\end{align*}
+moreover,
+
+\begin{align*}
+	(x-a \coth \alpha)^{2}+y^{2} &= \frac{a^{2}}{\sinh^{2}\alpha}, \\
+	x^{2}+(y-a \cot \beta)^{2} &= \frac{a^2}{\sin^{2}\beta}.
+\end{align*}
+
+Calculate \textit{everything} for this coordinate system.
+
+In general $\vb{g}_i=\pdv{x^j}{\xi^i}\vb{e}_j,$ so in our case
+\begin{align*}
+	\vb{g}_{\alpha}&=\pdv{x}{\alpha}\vb{e}_x+\pdv{y}{\alpha}\vb{e}_y\\
+		       &=\qty(\frac{(a \cosh \alpha)(\cosh \alpha-\cos \beta)-a \sinh \alpha\sinh \alpha}{\qty(\cosh \alpha - \cos \beta)^{2}})\vb{e}_x+\qty(\frac{a \cos \beta(\cosh \alpha-\cos \beta)-a \sin \beta \sinh \alpha}{\qty(\cosh \alpha - \cos \beta)^{2}})\vb{e}_y = \\
+		       & = \frac{a}{\qty(\cosh \alpha - \cos \beta)^{2}}\qty((1-\cosh \alpha \cos \beta)\vb{e}_x-(\sin \beta \sinh \alpha) \vb{e}_y),\\
+	\vb{g}_{\beta}& = \pdv{x}{\beta}\vb{e}_x+\pdv{y}{\beta}\vb{e}_y\\
+		      &= \dots =\\
+		      &= \frac{a}{\qty(\cosh \alpha-\cos \beta)^{2}}\qty(-\qty(\sin \beta \sinh \alpha)\vb{e}_x + \qty(-1+\cosh \alpha \cos \beta)\vb{e}_y).
+\end{align*}
+We can see that $\vb{g}_{\alpha} \vdot \vb{g}_{\beta}=0$ and so
+\[
+	\tensorq{g}=\qty(\frac{a}{\cosh \alpha - \cos \beta})^{2}\identity, \inverse{\tensorq{g}} = \qty(\frac{\cosh \alpha-\cos \beta}{a})^{2} \identity.
+\]
+
+Coming back to Laplace-Beltrami operator, we can calculate
+\[
+	\qty(\sqrt{\det \tensorq{g}}\inverse{\tensorq{g}})=\qty(\frac{a}{\cosh \alpha-\cos \beta})^{2} \qty(\frac{\cosh \alpha-\cos \beta}{\alpha})^{2} \identity = \dots = \identity,
+\]
+and calculating a bit more yields
+\[
+	\laplace \varphi \to \qty(\frac{\cosh \alpha-\cos \beta}{a})^{2} \laplace_{\alpha \beta}\varphi.
+\]
+\begin{remark}[Relation to complex analysis]
+    This can be seen as a conformal transformation
+    \[
+	    \gamma = f(z),
+    \]
+    where
+    \begin{align*}
+	    \gamma &= \alpha + i \beta, \\
+	    z &= x+iy,
+    \end{align*}
+
+Let us write
+\[
+	f(z) = f^x(x,y) +i f^y(x,y) \Leftrightarrow \vb{f}(\vb{x})=[f^x\qty(\vb{x}),f^y\qty(\vb{x})], z = x+iy,
+\]
+and compute
+\[
+	\pdv{\vb{f}}{\vb{x}} = \begin{bmatrix}
+		\pdv{f^x}{x} & \pdv{f^x}{y}\\
+		\pdv{f^y}{x} & \pdv{f^y}{y}
+	\end{bmatrix}.
+\]
+Recall Cauchy-Riemmann conditions:
+\begin{align*}
+	\pdv{f^x}{x}&=\pdv{f^y}{y}, \\
+	\pdv{f^x}{y}&=-\pdv{f^y}{x},
+\end{align*}
+using which the gradient becomes:
+\[
+	\pdv{\vb{f}}{\vb{x}} = \begin{bmatrix}
+		\pdv{f^x}{x} & \pdv{f^x}{y}\\
+		-\pdv{f^x}{y} & \pdv{f^y}{y}
+	\end{bmatrix},
+\]
+which is an \textbf{orthogonal matrix:}
+\[
+	\qty(\pdv{\vb{f}}{\vb{x}}) \transpose{\qty(\pdv{\vb{f}}{\vb{x}})} = \qty(\qty(\pdv{f^x}{x})^{2}+\qty(\pdv{f^y}{y})^{2})\identity.
+\]
+Realize that all this structure comes just from the fact that the transformation is given through a holomorfic function.
+\end{remark}
+
+\subsubsection{Compatibility conditions in linearised elasticity}
+\label{sec:compt_cond}
+
+\[
+	R \indices{^i_{jkm}}= \pdv{\Gamma \indices{^i_{jm}}}{\xi^k}-\pdv{\Gamma \indices{^i_{km}}}{\xi^j}+\Gamma \indices{^i_{lk}}\Gamma \indices{^l_{jm}}-\Gamma \indices{^i_{lj}}\Gamma \indices{^l_{km}},
+\]
+and we know
+\[
+	R \indices{^i_{jkm}} = 0 \Leftrightarrow \rcg = \transpose{\fgrad} \fgrad, \fgrad = \pdv{\vb*{\chi}}{\vb{X}}.
+\]
+All this works in fully \textit{nonlinear setting!}. In the classical lecture, we have been able to obtain compatibility condition in \textit{linearised elasticity}: $\curl{\tensorq{\varepsilon}} = \tensorq{0}, \tensorq{e}=\frac{1}{2}\qty(\grad \vb{u}+\transpose{\qty(\grad \vb{u})}).$
+
+Consider the following setting:
+\begin{align*}
+	\vb{x}&=\vb*{\chi}\qty(\vb{X}),\\
+	\vb{u}&= \vb{\chi}\qty(\vb{X})-\vb{X},\\
+	\grad \vb{u} &= \fgrad - \identity, \\
+	\fgrad &= \identity + \grad \vb{u},\\
+\end{align*}
+then
+\[
+	\rcg = \transpose{\fgrad}\fgrad=\qty(\identity+\transpose{\qty(\grad \vb{u})})\qty(\identity+\grad \vb{u}) = \identity + 2 \tensorq{\varepsilon} + \, \text{h.o.t.} \,,
+\]
+and so
+\[
+	\inverse{\tensorq{g}} = \identity - 2 \tensorq{\varepsilon}.
+\]
+
+The Christoffel symbols are
+
+\begin{align*}
+	\Gamma \indices{^l_{nj}}&= \frac{1}{2}g^{lm}\qty(\pdv{g_{mn}}{X^j}+\pdv{g_{jm}}{X^n}-\pdv{g_{nj}}{X^m}) \\
+				&\approx \frac{1}{2}\qty(\identity-2 \tensorq{\varepsilon})^{lm}\qty(\pdv{X^j}\qty(\identity+2 \tensorq{\varepsilon})_{mn}+\pdv{X^n}\qty(\identity+2 \varepsilon)_{jm}-\pdv{X^m}\qty(\identity+2 \varepsilon)_{nj}), \\
+				&\approx \delta^{lm}\qty(\pdv{\varepsilon_{mn}}{X^j}+\pdv{\varepsilon_{jm}}{X^n}-\pdv{\varepsilon_{nj}}{X^m}) = \pdv{\varepsilon_{n}^l}{X^j}+\pdv{\varepsilon_{j}^l}{X^n}-\pdv{\varepsilon_{nj}}{X^m},
+\end{align*}
+
+the Riemann curvature tensor is (linear approximation)
+
+\begin{align*}
+0 = R \indices{^i_{jkm}}& \approx \pdv{\Gamma \indices{^i_{jm}}}{X^k}-\pdv{\Gamma \indices{^i_{km}}}{X^j}\\
+			& = \pdv{X^k}\qty(\pdv{\varepsilon^i_j}{X^m}+\pdv{\varepsilon^i_m}{X^j}-\pdv{\varepsilon_{mj}}{X^i})-\pdv{X^j}\qty(\pdv{\varepsilon^i_k}{X^m}+\pdv{\varepsilon^i_m}{X^k}-\pdv{\varepsilon_{km}}{X^i}) =\\
+			 =& \pdv[2]{\varepsilon_{ij}}{X^k}{X^m}-\pdv[2]{\varepsilon_{mj}}{X^k}{X^i}-\pdv[2]{\varepsilon_{ik}}{X^j}{X^m}+\pdv[2]{\varepsilon_{km}}{X^j}{X^i},
+\end{align*}
+so the compatibility conditions are
+\[
+	\pdv[2]{\varepsilon_{ij}}{X^k}{X^m}-\pdv[2]{\varepsilon_{mj}}{X^k}{X^i}-\pdv[2]{\varepsilon_{ik}}{X^j}{X^m}+\pdv[2]{\varepsilon_{km}}{X^j}{X^i} = 0.
+\]
+
+\subsection{Surface geometry}
+\label{sec:surface_geometry}
+
+In this part, we will work with surfaces embedded in $\R^3$.
+
+Let $G = \{\vb{u}\} \subset \R^2 $ be the parametrization space and $\vb*{\Phi}:G \subset \R^2 \to \R^3$ is the parametrization, so the points of the surface are
+\[
+	\vb{x}=\vb*{\Phi}\qty(\vb{u}), \vb{x} \in \R^3.
+\]
+
+\begin{definition}
+	The indices $i,j,k, \dots \in \{1,2,3\}$ will denote objects from $\R^3$ and indices $\alpha, \beta, \gamma, \dots \in \{1,2\}$ will denote indices of objects from $\R^2$.
+\end{definition}
+
+\subsubsection{Tangent and normal vectors}
+\label{sec:tangent_normal_vectors}
+As in the previous story, we can define (basis) tangent vectors:
+\[
+	\vb{t}_1 = \pdv{\vb*{\Phi}}{u^1}, \vb{t}_2 = \pdv{\vb*{\Phi}}{u^2},
+\]
+and on surfaces, of importance is also the normal vector
+\[
+	\vb{n}=\frac{\vb{t}_1 \cross \vb{t}_2}{|\vb{t}_1 \cross \vb{t}_2|}.
+\]
+
+\subsubsection{Distances and angles}
+\label{sec:distances_angles}
+
+The metric tensor on the surface is given by
+\[
+	\tensorq{g}_s = \begin{bmatrix} \vb{t}_1 \vdot \vb{t}_1 & \vb{t}_1 \vdot \vb{t}_2 \\ \vb{t}_1 \vdot \vb{t}_2 & \vb{t}_2 \vdot \vb{t}_2 \end{bmatrix},
+\]
+or in context of diff. geo. it is called \textbf{the first fundamental form}.
+
+\subsubsection{Derivatives}
+\label{sec:derivatives_on_surfaces}
+In $\R^3$, we know how to differentiate tangent vectors (using Christoffel symbols).
+The metric tensor in $\R^3$ is given by 
+
+\[
+	\tensorq{g} = 
+	\begin{bmatrix}
+		\tensorq{g}_s & 0 \\
+		0 & 1 
+	\end{bmatrix}
+\]
+Realize that, veiwed in $\R^3$ the relation can be written as
+\[
+	\pdv{\vb{t}_{\alpha}}{u^{\beta}} = \Gamma \indices{^\gamma_{\alpha \beta}} \vb{t}_{\gamma}+b_{\alpha \beta} \vb{n},
+\]
+because viewed from $\R^3$, the basis vectors are $\vb{t}_1, \vb{t}_2, \vb{n}$ and we have just denoted $b_{\alpha \beta} = \Gamma \indices{^3 _{\alpha \beta}}.$
+
+What about the derivative of the normal vector? From the length of $\vb{n}$ we know
+\[
+	\vb{n}\vdot \vb{n} = 1 \Rightarrow \pdv{\vb{n}}{u^{\alpha}}\vdot \vb{n} = 0,
+\]
+so that means the derivative is perpendicular to the normal direction, so
+\[
+	\pdv{\vb{n}}{u^\alpha}= A \indices{^\gamma_{\alpha}} \vb{t}_{\gamma}.
+\]
+
+Next trick is to realize
+\[
+	0 = \pdv{u^{\alpha}}\qty(\vb{n}\vdot \vb{t}_{\beta}) = \pdv{\vb{n}}{u^{\alpha}} \vdot \vb{t}_{\beta}+ \vb{n}\vdot \pdv{\vb{t}_{\beta}}{u^{\alpha}} = A \indices{^{\gamma}_{\alpha}}\vb{t}_{\gamma} \vdot \vb{t}_{\beta}+ \vb{n}\vdot \qty(\Gamma \indices{^{\delta}_{\alpha \beta}} \vb{t}_{\delta}+b_{\alpha \beta} \vb{n}) = A \indices{^\gamma _{\alpha}} g_{s, \gamma \beta}+ b_{\alpha \beta},
+\]
+from which it follows
+
+\[
+	A \indices{^{\gamma}_{\alpha}} = -g \indices{^{\gamma \beta}}b_{\beta \alpha}.
+\]
+
+\subsubsection{Commutation of derivatives}
+\label{sec:com_der}
+
+What are the \textit{implications} of
+\[
+	\pdv[2]{\vb{t}_{\alpha}}{u^{\beta}}{u^{\gamma}} = \pdv[2]{\vb{t}_{\alpha}}{u^{\beta}}{u^{\alpha}}?
+	\]
+Write
+\[
+	0 = \pdv[2]{\vb{t}_{\alpha}}{u^{\beta}}{u^{\gamma}} - \pdv[2]{\vb{t}_{\alpha}}{u^{\beta}}{u^{\alpha}} = (\, \text{something} \,) \vb{t}_{\delta}+(\, \text{something different} \,) \vb{n},
+\]
+so we see the whole thing splits into two parts. It can be shown
+\begin{theorem}[Gauss relation]
+	\[
+		R \indices{_{\psi \beta \delta \alpha}} = b_{\alpha \beta}b_{\psi \delta} - b_{\alpha \delta} b_{\psi \beta}.
+	\]
+\end{theorem}
+
+\begin{theorem}[Codazzi-Mainardi relation]
+	\[
+		b_{\alpha \beta}|_{\delta}- b_{\alpha \delta}|_{\beta}=0
+	\]
+\end{theorem}
+
+\subsubsection{Surfaces evolving in time}
+\label{sec:time_evolving_surfaces}
+
+Now the points of the surface are given by
+\[
+	\vb{x}=\vb*{\Phi}\qty(t,\vb{u}), \, \text{where} \,\vb*{\Phi}: \R \times G \to \R^3.
+\]
+
+We can define the \textbf{velocity of the surface}:
+\begin{equation*}
+	\vb{v}_s = \pdv{\vb*{\Phi}}{t}\qty(t,\vb{u}).
+\end{equation*}
+
+The basis of everything has always been Gauss theorem; we will be interested in the quantity of the type
+
+\[
+	\dv{t} \int_{S(t)}\psi\qty(t,\vb{x})\dd{S},
+\]
+where $S(t)$ is a time-dependent surface. Let us try the approach from Reynolds:
+\[
+	\dv{t} \int_{S(t)}\psi\qty(t,\vb{x})\dd{S} = \dv{t} \int_{\inverse{\vb*{\Phi}\qty(t,\vb{x}(t))}}\psi(t,\vb*{\Phi}(t,\vb{u})) \sqrt{\det \tensorq{g}_s}\dd{u^1} \dd{u^2} = ,
+\]
+and now we need to calculate the derivatives. Start slow:
+
+\begin{align*}
+	\dv{\vb{t}_{\alpha}}{t} &= \pdv{t}\qty(\pdv{\vb{\Phi}}{u^\alpha}\qty(t,\vb{u})) = \pdv{u^{\alpha}}\underbrace{\qty(\pdv{\vb{\Phi}}{t}\qty(t,\vb{u}))}_{= \vb{v}_s(t,\vb{u})} = \pdv{u^{\alpha}}\qty(\vb{v}_{\parallel}+v_{\perp}\vb{n}) = \\
+				&= \pdv{\vb{v}_{\parallel}}{u^{\alpha}}+\pdv{\qty(v_{\perp} \vb{n})}{u^{\alpha}} = \pdv{\qty(v^{\beta}_{\parallel}\vb{t}_{\beta})}{u^{\alpha}}+\pdv{v_{\perp}}{u^{\alpha}}\vb{n}+ v_{\perp} \pdv{\vb{n}}{u^{\alpha}} = \\
+				&=\pdv{v_{\perp}^{\beta}}{u^{\alpha}}\vb{t}_{\beta}+\pdv{\vb{t}_{\beta}}{u^{\alpha}}v^{\beta}_{\parallel}+\pdv{v_{per}}{u^{\alpha}}\vb{n} - v_{\perp} g^{\gamma \beta}b_{\beta \alpha}\vb{t}_{\gamma} = \\
+				& = \pdv{v^{\beta}_{\parallel}}{u^{\alpha}}\vb{t}_{\beta}+v^{\beta}_{\parallel}\Gamma \indices{^{\gamma}_{\alpha \beta}} \vb{t}_{\gamma}+ v_{\parallel}^{\beta}b_{\alpha \beta} \vb{n} + \pdv{v_{\perp}}{u^{\alpha}}\vb{n}- v_{\perp}g^{\gamma \beta}b_{\alpha \beta}\vb{t}_{\gamma} =\\
+				& = v^{\beta}_{\parallel}|_{\alpha} \vb{t}_{\beta}- v_{\perp}g^{\gamma \beta} b_{\alpha \beta}\vb{t}_{\gamma}+\qty(v^{\beta}_{\parallel}b_{\alpha \beta}+ \pdv{v_{\perp}}{u^{\alpha}})\vb{n} = \\
+				& = \qty(v_{\parallel}^{\beta}|_{\alpha}-v_{\perp}g^{\beta \gamma} b_{\alpha \gamma})\vb{t}_{\beta}+ \qty(v_{\parallel}^{\beta}b_{\alpha \beta} + \pdv{v_{\perp}}{u^{\alpha}})\vb{n}.
+\end{align*}
+So all in all
+\[
+	\dv{\vb{t}_{\alpha}}{t}= \qty(v_{\parallel}^{\beta}|_{\alpha}-v_{\perp}g^{\beta \gamma} b_{\alpha \gamma})\vb{t}_{\beta}+ \qty(v_{\parallel}^{\beta}b_{\alpha \beta} + \pdv{v_{\perp}}{u^{\alpha}})\vb{n}.
+\]
+
+Next ingredient is the quantity $\dv{t} \tensorq{g}_s$, so in components:
+\[
+	\dv{g_{\alpha \beta}}{t} = \dv{t}\qty(\vb{t}_{\alpha} \vdot \vb{g}_{\beta}) = \dots = v_{\parallel}^\delta|_{\alpha}g_{\delta \beta}+ v^{\delta}_{\parallel}|_{\beta}g_{\delta \alpha}-2v_{\perp}b_{\alpha \beta}.
+\]
+After some further manipulation, the final formula becomes
+
+\begin{equation}
+	\dv{t} \int_{S(t)}\psi(t,\vb{x})\dd{S} = \int_{S(t)}\dv{\psi}{t}\qty(t,\vb{x})+\psi(t,\vb{x})\qty(\divergence{\vb{v}_{\parallel S}} - 2 v_{\perp}\qty(t,\vb{x})K\qty(t,\vb{x}))\dd{S},
+\end{equation}
+where
+\[
+	\divergence{\vb{v}_{\parallel S}} - 2 v_{\perp}K \coloneq \eval{v^{\beta}(t,\vb{u})_{\parallel}|_{\beta}-2v_{\perp}(t,\vb{u})K(t,\vb{u})}_{\vb{u}=\inverse{\vb*{\Phi}\qty(t,\vb{x})}},
+	\]
+
+	\[
+		K = \frac{1}{2}g^{\beta \alpha} b_{\alpha \beta}
+	\]
+	is the mean curvature.
+\bibliographystyle{chicago} %\bibliography
+
+\section{Linearised elasticity}
+\label{sec:linearised_elasticity}
+
+The static setting of the linearised elasticity theory is
+
+\begin{align}
+\label{eq:static_momentum_balance}
+\divergence{\tensorq{\tau}} + \vb{f} = \vb{0},
+\end{align}
+and for now we will want to solve for the stress, that is
+
+\[
+	\tensorq{\tau} = \begin{bmatrix}
+		\tau_{xx} & \tau_{xy} & \tau_{xz} \\
+			  & \tau_{yy} & \tau_{yz} \\
+			  & & \tau_{zz}
+	\end{bmatrix},
+\]
+since $\tensorq{\tau}$ is symmetric. Recall the compatibility conditions
+
+\begin{align}
+  \label{eq:compatibility}
+  \tensorq{\tau} &= \lambda \qty(\tr \tensorq{\varepsilon})\identity + 2 \mu \tensorq{\varepsilon}, \\
+  \tensorq{\varepsilon} &= \frac{1}{2}\qty(\grad \vb{u}+ \transpose{\qty(\grad \vb{u})}),\\
+  \curl{\qty(\transpose{\qty(\curl{\tensorq{ \varepsilon}})})} &= \tensorq{0}, \\
+  \laplace \tensorq{\tau}+\frac{1}{1+\nu} \grad \grad \tr \tensorq{\tau} &= -\qty(\grad \vb{f} \transpose{\qty(\grad \vb{f})}) - \frac{\nu}{1-\nu} \qty(\divergence{\vb{f}})\identity
+\end{align}
+
+\subsection{Plane stress/strain problems}
+\label{sec:plane_problems}
+
+In each of the cases, the stress/strain tensors have a \textit{special structure}:
+\begin{equation}
+	\label{eq:plane_structure}
+	\tensorq{\tau}\qty(x,y)=\begin{bmatrix}
+		\tau_{xx}\qty(x,y) & \tau_{xy}\qty(x,y) & 0\\
+		\tau_{xy}\qty(x,y) & \tau_{yy}\qty(x,y) & 0\\
+		0 & 0 & 0
+	\end{bmatrix},
+\end{equation}
+and the same for the strain tensor. Inverting the stress-strain relation yields
+
+\[
+	\tensorq{\varepsilon} = \frac{1}{2 \mu}\qty(\tensorq{\tau}-\frac{\lambda}{3 \lambda+2 \mu}\qty(\tr \tensorq{\tau})\identity),
+\]
+but since $I_{zz} = 1$, in general we have
+\[
+	\tensorq{\varepsilon}\qty(x,y)=\begin{bmatrix}
+		\varepsilon_{xx}\qty(x,y) & \varepsilon_{xy}\qty(x,y) & 0 \\
+		\varepsilon_{xy}\qty(x,y) & \varepsilon_{yy}\qty(x,y) & 0 \\
+		0 & 0 & \varepsilon_{zz}(x,y)
+	\end{bmatrix},
+\]
+for $\varepsilon_{zz}(x,y) \neq 0$.
+
+\begin{remark}[Notation]
+Note that in the following, operators acting on tensors will always respect the dimensionality of the tensor (so i will write $\tr \tensorq{\tau}_{2D}$ instead of $\tr_{2D} \tensorq{\tau}_{2D}.$ And the same for the laplacian, divergence and so on
+\end{remark}
+
+\subsection{Plane stress problem}
+\label{sec:plane_stress_problem}
+
+The stress is given as
+\[
+	\tensorq{\tau} = 2 \mu \tensorq{\varepsilon} + \lambda \qty(\tr \tensorq{\varepsilon})\identity,
+\]
+where $\tensorq{\tau}$ has the structure \ref{eq:plane_structure}. It must hold
+\[
+	0 = \tau_{zz} = 2 \mu \varepsilon_{zz}+\lambda\qty(\varepsilon_{xx}+\varepsilon_{yy}+\varepsilon_{zz}),
+\]
+so 
+\[
+	0 = \lambda\qty(\varepsilon_{xx}+ \varepsilon_{yy})+\qty(2 \mu + \lambda)\varepsilon_{zz},
+\]
+and that yields a condition on $\varepsilon_{zz}$:
+\[
+	\varepsilon_{zz} = -\frac{\lambda}{2 \mu+ \lambda} \tr_{2D}\tensorq{\varepsilon}_{2D}.
+\]
+The constitutive relation can than be rewritten as
+\[
+	\tensorq{\tau}_{2D} = 2 \mu \tensorq{\varepsilon}_{2D}+ \lambda \qty(\tr \tensorq{\varepsilon}_{2D}+\varepsilon_{zz})\identity_{2D} = 2 \mu\qty(\tensorq{\varepsilon}_{2D}+\frac{\lambda}{2 \mu+\lambda}\qty(\tr \tensorq{\varepsilon}_{2D})\identity_{2D}).
+\]
+The "2D Beltrami-Michel equations" can be derived from:
+\[
+	\laplace \tensorq{\tau}+\frac{1}{1+\nu} \grad \grad \tr \tensorq{\tau} = -\qty(\grad \vb{f} +\transpose{\qty(\grad \vb{f})}) - \frac{\nu}{1-\nu} \qty(\divergence{\vb{f}})\identity,
+\]
+but there is a problem: the $zz$ equation yields: 
+\[
+	0 + \frac{1}{1+\nu}\pdv[2]{z}\qty(\tr \tensorq{\tau}_{2D} = 0 - \frac{\nu}{1- \nu}\qty(\divergence{\vb{f}_{2D}})),
+\]
+but in our case $\tensorq{\tau}_{2D}$ is not a function of $z$, so of course we would have
+\[
+	\divergence{\vb{f}_{2D}} = 0,
+\]
+\textit{which is not generally true!} The forces are given to us. Try something different: take the trace of the Beltrami-Michell equation and obtain (after some calculation)
+
+\[
+	\laplace \tr \tensorq{\tau} = - \frac{1+\nu}{1-\nu} \divergence{\vb{f}},
+\]
+so rewritting in "2D" view:
+
+\[
+	\qty(\laplace_{2D}+\pdv[2]{z})\tr \tensorq{\tau}_{2D} = -\frac{1+\nu}{1-\nu}\divergence{\vb{f}_{2D}}.
+\]
+That maybe did not help much, because the $z$ derivative is still zero, but here comes the time for some handwaving: what about we use the above equation to replace the troublemaking term? We would obtain
+
+\[
+	\laplace_{2D} \tr \tensorq{\tau}_{2D} - \nu \frac{1+ \nu}{1- \nu} \divergence{\vb{f}_{2D}} = - \frac{1+\nu}{1- \nu}\qty(\divergence{ \vb{f}_{2D}}),
+\]
+so after some manipulation
+
+\[
+	\laplace \tr \tensorq{\tau}_{2D} = -\qty(1+\nu)\divergence{\vb{f}_{2D}}.
+\]
+
+In total, the problem is described as
+
+\begin{align}
+  \label{eq:plane_stress_formulation}
+  \vb{0}_{2D} &= \divergence{\tensorq{\tau}_{2D}} + \vb{f}_{2D},\\
+  \tensorq{\tau}_{2D} &= 2 \mu\qty(\tensorq{\varepsilon}_{2D}+\frac{\lambda}{2 \mu+\lambda}\qty(\tr \tensorq{\varepsilon}_{2D})\identity_{2D}) \\
+  \laplace \tr \tensorq{\tau}_{2D} &= -\qty(1+\nu)\divergence{\vb{f}_{2D}}.
+\end{align}
+
+\subsection{Plain strain problem}
+\label{sec:plain_strain_problem}
+This time, the structure of the stress and strain are:
+\[
+	\tensorq{\varepsilon}\qty(x,y)=\begin{bmatrix}
+		\varepsilon_{xx}\qty(x,y) & \varepsilon_{xy}\qty(x,y) & 0 \\
+		\varepsilon_{xy}\qty(x,y) & \varepsilon_{yy}\qty(x,y) & 0 \\
+		0 & 0 & 0
+	\end{bmatrix}, 	
+	\tensorq{\tau}\qty(x,y)=\begin{bmatrix}
+		\tau_{xx}\qty(x,y) & \tau_{xy}\qty(x,y) & 0 \\
+		\tau_{xy}\qty(x,y) & \tau_{yy}\qty(x,y) & 0 \\
+		0 & 0 & \tau_{zz}\qty(x,y)
+	\end{bmatrix}.
+\]
+Using a similiar approach, we can calculate, using $\tensorq{\varepsilon} = \frac{1}{2 \mu}\qty(\tensorq{\tau}-\frac{\lambda}{3 \lambda + 2 \mu}\qty(\tr \tensorq{\tau})\identity)$,
+\[
+	\tau_{zz} = \lambda \tr \tensorq{\varepsilon}_{2D},
+\]
+so the constituive relation is
+\[
+	\tensorq{\varepsilon}_{2D} = \frac{1}{2 \mu}\qty(\tensorq{\tau}_{2D}- \frac{\lambda}{3 \lambda+ 2 \mu}\qty(\tr \tensorq{\tau}_{2D}+\tau_{zz})\identity_{2D}) = \frac{1}{2 \mu}\qty(\tensorq{\tau}_{2D}-\frac{\lambda}{3 \lambda+ 2 \mu}\qty(\tr \tensorq{\tau}_{2D})\identity_{2D}-\frac{\lambda}{3 \lambda+ 2 \mu}\lambda \qty(\tr \tensorq{\varepsilon}_{2D})\identity_{2D}),
+\]
+so taking the trace we can obtain: $\tau_{zz} = \frac{\lambda}{\lambda\qty(\lambda+\mu)} \tr \tensorq{\tau}_{2D}$ and plugging it into the original equation yields
+
+\[
+	\tensorq{\varepsilon}_{2D} = \frac{1}{2 \mu}\qty(\tensorq{\tau}_{2D}-\frac{\lambda}{2\qty(\lambda+\mu)}\qty(\tr \tensorq{\tau}_{2D})\identity_{2D}).
+\]
+As for the Beltami-Michell equations, taking the trace gives us again
+\[
+	\laplace \tr \tensorq{\tau} = - \frac{1+\nu}{1-\nu}\divergence{\vb{f}},
+\]
+and in \textit{plain strain}, we are able to simply do
+
+\[
+	\laplace \tr \tensorq{\tau}_{2D} = - \frac{1}{1-\nu}\divergence{\vb{f}_{2D}},
+\]
+without any magic. In total, the equations we are solving are
+
+\begin{align}
+  \label{eq:plain_strain_formulation}
+  \vb{0}_{2D} &= \divergence{\tensorq{\tau}_{2D}}+ \vb{f}, \\
+  \tensorq{\varepsilon}_{2D} &= \frac{1}{2 \mu}\qty(\tensorq{\tau}_{2D}-\frac{\lambda}{2\qty(\lambda+\mu)}\qty(\tr \tensorq{\tau}_{2D})\identity_{2D}),\\
+  \laplace \tr \tensorq{\tau}_{2D} &= - \frac{1}{1-\nu}\divergence{\vb{f}_{2D}}.
+\end{align}
+
+\subsection{Airy stress function}
+\label{sec:airy_stress_function}
+
+Let us assume that the force is given as
+\[
+	\vb{f}_{2D} = - \grad \varphi,
+\]
+i.e. the force is conservative. Moreover, let us use the following ansatz:
+\[
+	\tensorq{\tau}_{2D}= \begin{bmatrix}
+		\pdv[2]{\Phi}{y} + \varphi & \pdv[2]{\Phi}{x}{y} \\
+		\pdv[2]{\Phi}{x}{y} & \pdv[2]{\Phi}{x} + \varphi
+	\end{bmatrix},
+\]
+for some function $\Phi\qty(x,y)$ called the \textit{Airy stress function}. Why that would be useful? Calculate the divergence of the stress:
+\[
+	\divergence{\tensorq{\tau}_{2D}} = \begin{bmatrix}
+		\pdv{x}\qty(\pdv[2]{\Phi}{y}+\varphi) - \pdv{y}\qty(\pdv[2]{\Phi}{x}{y}) \\
+		-\pdv{x}\qty(\pdv[2]{\Phi}{x}{y}) + \pdv{y}\qty(\pdv[2]{\Phi}{x}+\varphi)
+	\end{bmatrix}
+	= \grad \varphi,
+\]
+so identically we have
+\[
+	\vb{0}_{2D} = \divergence{\tensorq{\tau}_{2D}} - \grad \varphi,
+\]
+and one of our equations is solved. What about the remaining ones? Beltrami-Michell:
+\[
+	\laplace \tr \tensorq{\tau}_{2D} = \laplace\qty(\laplace \Phi+2 \varphi) = \laplace \laplace \Phi + \laplace \varphi.
+\]
+
+Using this in plain strain case:
+
+\[
+	\laplace \laplace \Phi + \frac{1-2 \nu}{1-\nu}\laplace \varphi = 0,
+\]
+and in plain stress case:
+
+\[
+	\laplace \laplace \Phi + \qty(1- \nu)\laplace \varphi = 0.
+\]
+
+Let us take a glimpse at the biharmonic equation.
+\subsection{Bending of a narrow rectangular beam by uniform load}
+\label{sec:beam_uniform}
+Assume we have a narrow rectangular beam of length $L$, height $h$ and width $b$, subjected to the load $q \vb{e}_y$, which is constant in the x-direction. $[q] = \frac{\, \text{N} \,}{\, \text{m} \,}$.
+
+\begin{tikzpicture}
+  % long beam, ex to the right, ey downwards, ez through the monitor, center is in the middle.
+\end{tikzpicture}
+
+Boundary conditions are \textit{essential}: they specify the problem. In our case, the \textbf{front/back face} is traction free:
+\[
+	\pm\tensorq{\tau} \vb{e}_z = \vb{0}, \, \text{on} \, \{z = \pm \frac{b}{2} \},
+\]
+the \textbf{bottom face} is also stress free:
+\[
+	\tensorq{\tau}\vb{e}_{y} = \vb{0}, \, \text{on} \, \{y=\frac{h}{2}\},
+\]
+the \textbf{top face} is subjected to the load
+\[
+	\tensorq{\tau}\vb{e}_y = \frac{-q}{b}\vb{e}_y, \, \text{on} \, \{y=-\frac{h}{2}\}.
+\]
+
+On the lateral faces, we would like \textit{something like}
+\[
+	\pm\tensorq{\tau} \vb{e}_x = \vb{f}\qty(y,z), \, \text{on} \, \{x=\pm \frac{L}{2}\},
+\]
+however, in our analysis, we are only interested in the fact whether the force can support the beam - but we dont care about the exact distribution of it. Thus, we require the \textit{balance of forces:}
+\begin{equation}
+\label{eq:bal_forces}
+    \int_{-\frac{h}{2}}^{\frac{h}{2}}\int_{-\frac{b}{2}}^{\frac{b}{2}}\vb{f}\qty(y,z)\dd{y}\dd{z} = \frac{qL}{2}\vb{e}_y,
+\end{equation}
+and moreover we require the \textit{balance of torques:}
+
+\begin{equation}
+    \label{eq:bal_torques}
+    \int_{-\frac{h}{2}}^{\frac{h}{2}}\int_{-\frac{b}{2}}^{\frac{b}{2}}\vb{r}\cross\vb{f}\qty(y,z)\dd{y}\dd{z} = \vb{0},
+\end{equation}
+
+So the roadplan is to find the stress $\tensorq{\tau}$ and check whether \ref{eq:bal_forces} and \ref{eq:bal_torques} are satisfied.
+
+From the symmetry of the load, we assume that
+\[
+	\tau^{zz} = 0,
+\]
+so our problem is essentialy a \textit{plane stress problem}. Let us sum up our analysis (this takes some work)
+
+\begin{align*}
+	t^{xy}\qty(x,y=\frac{h}{2}) &= 0\\
+	t^{yy}\qty(x,y=\frac{h}{2}) &= 0\\
+	t^{xy}\qty(x,y=-\frac{h}{2}) &= 0\\
+	t^{yy}\qty(x,y=-\frac{h}{2}) &= - \frac{q}{b}\\
+	b\int_{-\frac{h}{2}}^{\frac{h}{2}}\tau^{xy}\qty(x=\pm \frac{L}{2},y)\dd{y} &= \mp \frac{qL}{2},\\
+	b\int_{-\frac{h}{2}}^{\frac{h}{2}}\tau^{xx}\qty(x=\pm \frac{L}{2},y)\dd{y} &= 0, \\
+	b\int_{-\frac{h}{2}}^{\frac{h}{2}}y \tau^{xx}\qty(x= \pm \frac{L}{2},y) \dd{y} &=0\footnote{The other equations are identically met from the oddness of the integrand and the properties of the cross product. Also, it is not a bright idea to use footnotes in mathematical equations.} 
+\end{align*}
+Remember, that on the lateral sides, $x$ is fixed, so \textit{the coordinates are y and z}; some manipulation with the cross product and stuff is needed, for example:
+\[
+	\vb{r}\cross \tensorq{\tau} \vb{e}_x = \pm\qty(z \tau^{xx}\vb{e}_z \cross \vb{e}_x+ z \tau^{xy}\vb{e}_z \cross \vb{e}_y + y \tau^{xx}\vb{e}_{y} \cross \vb{e}_x + y \tau^{xy} \vb{e}_y \cross \vb{e}_y)
+\]
+
+Evidently, the system is complicated enough. We thus make the following assumptions:
+
+\begin{itemize}
+	\item the material of interest is a homogenous isotropc elastic solid
+	\item the beam is massless $\Leftrightarrow$ the predominant force is the external load (not the body force)
+\end{itemize}
+
+From our work on the plain-stress problem, we know the Airy-stress function will be helpful for us. It will be convenient to find $\Phi$ in the form
+\[
+	\Phi = \Phi\qty(x,y) = A y^{3} + b y^5 + C yx^{2}+ D x^{2}y^{3}+Ex^{2},
+\]
+where $A,B,C,D,E$ are some constants fitted so that $\Phi$ solves the homogenous biharmonic equation: 
+\[
+	\laplace \laplace \Phi = 0,
+\]
+(recall that since we have no body forces, $\varphi = 0.$) Once we solve for the stress field, we can obtain the strain field using the constitutive relation and then solve for the displacement (solve a linear PDE) using the definition of the linearised strain tensor; see \ref{sec:plane_stress_problem}.
+
+It can be shown the deflection of the middle point is 
+\[
+	\delta = \frac{5}{384}\frac{qL^4}{EI_{zz}}\qty(1+\frac{12}{5}\frac{h^{2}}{L^{2}}\qty(\frac{4}{5}+\frac{\nu}{2})),
+\]
+where $I_{zz}$ is a component of the inertia tensor:
+\[
+	I_{zz} = \frac{bh^{3}}{12}
+\]
+\end{document}
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 
