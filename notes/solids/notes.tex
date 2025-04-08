@@ -619,6 +619,150 @@ Not everything is lost...
 	\]
 	and the result follows from the embedding theorems and strong convergence (strong times weak gives weak convergence).
 \end{proof}
+
+\subsection{Rank-one convexity}
+\label{sec:rank-one}
+
+
+	Assume the following domain: $\Omega = (1,2) \cross (0,4 \pi) \cross (1,2)$ and the deformation $\vb{y}: \overline{\Omega} \to \R^3, \vb{y}\qty(x_1,x_2,x_3) = \qty(x_1 \cos x_2, x_1 \sin x_2, x_3), \fgrad  = \begin{bmatrix}
+		\cos x_2 & -x_1 \sin x_2 & 0\\
+		\sin x_2 & x_1 \cos x_2 & 0\\
+		0 & 0 & 1
+	\end{bmatrix}.$
+	We can calculate $\detf = x_1 \cos^{2}x_2 + x_1 \sin^{2}x_2 = x_1.$ But even though the deformation has positive determinant, we still face self-penetration issues, i.e., \textit{$\vb{y}$ is not injective}.
+
+	\begin{theorem}[Ciarlet-Nečas condition]
+    Let $p>3$ and let $\detf > 0$ a.e. in $\Omega \subset \R^3, \vb{y} \in \WkpSet[1][p]{\Omega; \R^3}.$ If
+    \[
+	    \int_{\Omega}\detf\qty(\vb{x})\dd{\vb{x}} \leq \lambda\qty(\vb{y}\qty(\Omega))
+    \]
+    then $\vb{y}$ is injective almost everywhere in $\Omega$, i.e., $\exists \omega \subset \Omega: \lambda\qty(\omega) = 0, \vb{y}|_{\Omega / \omega}$ is injective.
+\end{theorem}
+
+Is the determinant condition of any use? Let us compute, assuming $\vb{y}= \vb{0} \, \text{on } \, \partial \Omega.$
+\[
+	\int_{\Omega}\detf\dd{\vb{x}} = \int_{\Omega}\pdv{x_1}\qty(y_1 \pdv{y_2}{x_{2}})-\pdv{x_2}\qty(y_1 \pdv{y_2}{x_1})\dd{\vb{x}} = \int_{\partial \Omega}y_1 \pdv{y_2}{x_2}n_1 - y_1 \pdv{y_2}{x_1} n_2\dd{S} \underbrace{\Rightarrow}_{y=0 \, \text{on} \, \partial \Omega} \int_{\Omega}\detf\qty(\vb{x})\dd{\vb{x}} = 0.
+\]
+This is powerful! Assume that $\vb{y}\qty(\vb{x}) = \fgrad \vb{x}$ on $\partial \Omega$, then
+\[
+	\int_{\Omega}\detf\qty(\vb{x})\dd{\vb{x}} = \lambda\qty(\Omega)\detf.
+\]
+Now let
+\[
+	I\qty(\vb{y}) = \int_{\Omega}\detf\qty(\vb{x})\dd{\vb{x}}, \vb{y}\in \WkpSet[1][p]{\Omega; \R^3}, \vb{y}\qty(\vb{x}) = \fgrad \vb{x}.
+\]
+Then $I$ is constant\footnote{All constant functionals are convex.} and it holds
+\[
+	I\qty(\vb{y}) = \lambda\qty(\Omega)\detf.
+\]
+
+\section{Linearized elasticity}
+\label{sec:linearized_elasticity}
+
+Recall the Right Cauchy-Green tensor: $\rcg = \transpose{\fgrad}\fgrad$. Using it, we can define
+
+\begin{theorem}[Green-Lagrange strain tensor/Green-St.-Venaint strain tensor]
+    Let $\rcg$ be the Right Cauchy-Green tensor. We define the Green-Lagrange strain tensor/Green-St.-Venaint strain tensor as
+    \[
+	    \gsv = \frac{1}{2}\qty(\rcg - \identity).
+    \]
+\end{theorem}
+\begin{remark}
+    The Green-St.-Venaint strain tensor can be rewritten as:
+    \[
+	    \gsv = \frac{1}{2}\qty(\transpose{\qty(\identity+\grad \vb{u})}\qty(\identity + \grad \vb{u})- \identity) = \frac{1}{2}\qty(\grad \vb{u}+\transpose{\qty(\grad \vb{u})})+ \frac{1}{2}\transpose{\qty(\grad \vb{u})}\grad \vb{u} = \tensorq{e}\qty(\vb{u}) + \frac{1}{2}\rcg\qty(\grad \vb{u}).
+    \]
+\end{remark}
+For the stored energy density, we can write
+\[
+	W\qty(\fgrad) = W\qty(\tensorq{R}\fgrad) = \overline{W}\qty(\rcg\qty(\fgrad)) = \hat{W}\qty(\gsv\qty(\fgrad)).
+\]
+and also
+\[
+	W\qty(\fgrad) = \hat{W}\qty(\tensorq{e}\qty(\vb{u})+\rcg\qty(\grad \vb{u})).
+\]
+It is our assumption that
+\[
+	\hat{W}\qty(\tensorq{0}) = 0, \hat{W}\qty(\gsv)>0 \, \text{if} \, \gsv \neq \tensorq{0},
+\]
+and also that
+\[
+	\rcg\qty(\grad \vb{u}) = \vb{0}.
+\]
+Using Taylor expansion, we can write
+
+\[
+	\hat{W}\qty(\tensorq{e}\qty(\vb{u}))= \hat{W}\qty(\tensorq{0})+ \pdv{\hat{W}}{\tensorq{e}}\qty(\tensorq{0})\tensorq{e}\qty(\vb{u})+\frac{1}{2}\pdv[2]{\hat{W}}{\tensorq{e}}\qty(\tensorq{0})\tensorq{e}\qty(\vb{u}) \vb{e}\qty(u) + \, \text{h.o.t.} \,.
+\]
+Since $\hat{W}\qty(\tensorq{0}) = \pdv{\hat{W}}{\tensorq{0}}\qty(\tensorq{0}) = 0$ the above (formal) manipulation leads us to the definition
+\begin{definition}[Tensor of elastic constants]
+	\[
+		\tensorq{C} = \pdv[2]{\hat{W}}{\tensorq{e}}\qty(\tensorq{0}), C_{ijkl} = \pdv[2]{\hat{W}}{e_{ij}e_{kl}}.
+	\]
+\end{definition}
+\begin{remark}
+    Since we assume $\hat{W}$ is smooth, we have some symmetries, and from the general 81 components of $C_{ijkl}$ only 21 are unique.
+\end{remark}
+
+With the notion of a tensor of elastic constants, we can then write the stored energy density as
+\[
+	w\qty(\tensorq{e}) = \frac{1}{2}(\tensorq{C}\tensorq{e}):\tensorq{e}.
+\]
+Following our definition $\pkstress = \pdv{\hat{W}}{\fgrad}$ we see
+\[
+	\tensorq{\sigma} = \pdv{w\qty(\tensorq{e})}{\tensorq{e}} = \tensorq{C}\tensorq{e}, \sigma_{ij} = C_{ijkl}e_{kl}.
+\]
+Is a useful notion of stress. It is denoted as the \textit{Cauchy stress}.
+or in components
+\[
+	\sigma_{ij}=C_{ijkl}e_{kl}.
+\]
+
+\subsection{Equations}
+\label{sec:linel_equations}
+
+Rewritting the equations in the linearized elasticity setting we obtain the system
+\begin{align*}
+	-\divergence{\tensorq{\sigma}} = - \divergence{\qty(\tensorq{C}\tensorq{e})} &= \vb{f} \, \text{in} \, \Omega \\
+	\tensorq{\sigma}\vb{n} &= \vb{g} \, \text{on} \, \Gamma_{N}, \\
+	\vb{u} &= \vb{0} \, \text{on} \, \Gamma_{D}.
+\end{align*}
+The weak formulation can be obtained as
+\[
+	\int_{\Omega} \pdv{x_j}\qty(C_{ijkl}e_{kl})v_i \dd{\vb{x}} = \int_{\Omega}\vb{f}\vdot \vb{v}\dd{\vb{x}}, \forall \vb{v} \in \WkpSet[1][2]{\Omega;\R^3}, u=0 \, \text{on} \, \Gamma_D,
+\]
+so
+\[
+	\int_{\Omega}C_{ijkl}e_{kl} \pdv{v_i}{x_j}\dd{\vb{x}}-\int_{\partial \Omega}C_{ijkl}e_{kl}v_i n_j \dd{S} = \int_{\Omega}\vb{f}\vdot \vb{v}\dd{\vb{x}},
+\]
+which can be rewritten as
+\[
+	\underbrace{\int_{\Omega}\tensorq{C}\tensorq{e}\qty(\vb{u}) \vdot \tensorq{e}\qty(\vb{v})\dd{\vb{x}}}_{\coloneq B\qty(u,v)} = \underbrace{\int_{\Omega}\vb{f} \vdot \vb{v}\dd{\vb{x}} + \int_{\Gamma_N}\vb{g}\vdot \vb{v}\dd{S}}_{\coloneq L(v)},
+\]
+where we have denoted
+\[
+	\tensorq{e}\qty(\vb{v}) = \, \text{sym} \,\qty(\grad \vb{v}).
+\]
+We are looking for
+\[
+	u \in V = \{ u \in \WkpSet[1][2]{\Omega; \R^3}, \tr u = 0 \, \text{on} \,\Gamma_D\}: B\qty(u,v) = L(v) \forall v \in V,
+\]
+and to prove the existence, we will use the Lax-Milgram lemma. Show that
+\begin{itemize}
+	\item $L \in V^{*}$
+	\item $B:V \times V \to \R$ is V-bounded and V-coercive
+\end{itemize}
+Realize that in order to show the properties, we would have to be able to control $\grad \vb{u}$ by $\, \text{sym} \,\qty(\grad \vb{u}).$ Is that even possible?
+
+\begin{example}
+	Let $u=0 \, \text{on} \, \partial \Omega.$ Then
+	\[
+		\exists C>0: \int_{\Omega}|\tensorq{e}\qty(\vb{u})|^{2}\dd{\vb{x}} \geq c \int_{\Omega}|\grad \vb{u}|^{2}\dd{\vb{x}}.
+	\]
+\end{example}
+\begin{theorem}[Korn's inequality]
+
+\end{theorem}
 \section{Tutorials}
 \label{sec:tutorials}
 

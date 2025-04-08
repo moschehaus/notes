@@ -32,6 +32,78 @@
 \DeclareMathOperator{\ad}{ad} % adjoint ad_X (Y) = [X,Y]  
 \DeclareMathOperator{\distanceop}{dist} % distance in a metric space
 
+% Load xparse (if not already loaded)
+\usepackage{xparse}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Lebesgue Spaces and Their Norms
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Generic Lebesgue space on a set.
+\DeclareDocumentCommand{\LpSet}{ o m }{%
+	\ensuremath{\text{L}_{\IfNoValueTF{#1}{\text{p}}{#1}}\!\left( #2 \right)}%
+}
+
+
+\newcommand{\LinfSet}[1]{%
+	\ensuremath{\text{L}_{\infty}\!\,\left(#1 \right)}}%
+
+
+% Norm in a Lebesgue space on a set.
+\DeclareDocumentCommand{\NormLpSet}{ O{p} m m }{%
+	\ensuremath{\norm{#2}_{\text{L}_{\IfNoValueTF{#1}{\text{p}}{#1}}\!\left( #3 \right)}}%
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Lebesgue-Bochner Spaces and Their Norms
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%Generic Lebesgue - Bochner space on a set.
+\newcommand{\LpIntX}[4]{%
+	\ensuremath{\text{L}_{\text{#1}}\!\,\Bigl( (#2,#3);\text{#4} \Bigr)}%
+}
+
+\newcommand{\LinfIntX}[3]{%
+	\ensuremath{\text{L}_{\infty}\!\,\Bigl( (#1,#2);\text{#3} \Bigr)}%
+}
+
+% Norm in a Lebesgue space on a set.
+\newcommand{\NormLpIntX}[5]{%
+	\ensuremath{\norm{#1}_{\text{L}_{\text{#2}}\!\,\left( (#3,#4);\text{#5} \right)}}%
+}
+
+\newcommand{\NormLinfIntX}[4]{%
+	\ensuremath{\norm{#1}_{\text{L}_{\infty}\!\,\left( (#2,#3);\text{#4} \right)}}%
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Sobolev Spaces and Their Norms
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Generic Sobolev space on a set.
+\DeclareDocumentCommand{\WkpSet}{ o o m }{%
+	\ensuremath{\text{W}^{\IfNoValueTF{#1}{\text{k}}{#1},\IfNoValueTF{#2}{\text{p}}{#2}}\!\left( #3 \right)}%
+}
+
+
+% Sobolev space with zero boundary conditions on a set.
+\DeclareDocumentCommand{\WkpzeroSet}{ o o m }{%
+	\ensuremath{\text{W}^{\IfNoValueTF{#1}{\text{k}}{#1},\IfNoValueTF{#2}{\text{p}}{#2}}_0\!\left( #3 \right)}%
+}
+
+% Norm in a Sobolev space on a set.
+\DeclareDocumentCommand{\NormWkpSet}{ O{k} O{p} m m }{%
+	\ensuremath{\norm{#3}_{W^{\IfNoValueTF{#1}{\text{k}}{#1},\IfNoValueTF{#2}{\text{p}}{#2}}\!\left( #4 \right)}}%
+}
+
+
+\newcommand{\WminfSet}[2]{%
+	\ensuremath{\text{W}^{#1, \infty}\!\,\left(#2 \right)}}%
+% Norm in a Sobolev space with zero boundary conditions on a set.
+\DeclareDocumentCommand{\NormWkpzeroSet}{ O{k} O{p} m m }{%
+	\ensuremath{\norm{#3}_{W^{\IfNoValueTF{#1}{\text{k}}{#1},\IfNoValueTF{#2}{\text{p}}{#2}}_0\!\left( #4 \right)}}%
+}
 
 % Kernel, range, rank
 \DeclareMathOperator{\kernelop}{{\mathcal N}}
@@ -230,9 +302,9 @@
 \newcommand{\skewdgradientc}{\mathrm{\omega}}
 
 % Lagrangean and Eulerian strain
-\newcommand{\lstrain}{\tensorq{E}} % Green--Saint-Venant strain
+\newcommand{\gsv}{\tensorq{E}} % Green--Saint-Venant strain
 \newcommand{\lstrainc}{\tensorc{E}} % Green--Saint-Venant strain, components
-\newcommand{\estrain}{\tensorq{e}} % Euler--Almansi strain, components
+\newcommand{\eual}{\tensorq{e}} % Euler--Almansi strain, components
 \newcommand{\estrainc}{\tensorc{e}} % Euler--Almansi strain, components
 
 % Hencky strain
