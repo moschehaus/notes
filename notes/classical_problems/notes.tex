@@ -1028,8 +1028,159 @@ where $I_{zz}$ is a component of the inertia tensor:
 \[
 	I_{zz} = \frac{bh^{3}}{12}
 \]
+
+
+\subsection{Biharmonic equation in $\R^2$}
+\label{sec:biharmonic}
+
+Let $\Phi\qty(x,y)$ be the Airy stress function. In the previous, we have come up to the problem of solving
+\[
+	\begin{cases}\laplace \laplace \Phi = 0, \, &\text{in} \, \Omega \subset \R^2,\\
+	\, \text{some boundary conditions} \,, &\, \text{on} \, \partial  \Omega.\end{cases}
+\]
+We are in $\R^2$, so we immedietaly use complex analysis: $z = x+iy, x = \frac{z+\overline{z}}{2}, y = \frac{z-\overline{z}}{2i},$ and for a function $f: \R^2 \to \R$ we make the following identification
+\[
+	f(x,y) \Leftrightarrow f(z,\overline{z}),
+\]
+and the derivatives are
+\[
+	\pdv{f}{x}\qty(x,y) = \pdv{f}{z}\qty(z,\overline{z})\pdv{z}{x}+\pdv{f}{z}\qty(z,\overline{z})\pdv{\overline{z}}{x} = \pdv{f}{z}\qty(z,\overline{z})+\pdv{f}{z}\qty(z,\overline{z}),
+\]
+\[
+	\pdv{f}{y}\qty(x,y) = i\qty(\pdv{f}{z}\qty(z,\overline{z})-\pdv{f}{\overline{z}}\qty(z,\overline{z})),
+\]
+from which it follows
+\begin{align*}
+	\pdv{f}{z}\qty(z,\overline{z}) &= \frac{1}{2}\qty(\pdv{f}{x}\qty(x,y)-i \pdv{f}{y}\qty(x,y)), \\
+	\pdv{f}{\overline{z}}\qty(z,\overline{z}) &= \frac{1}{2}\qty(\pdv{f}{x}\qty(x,y)+i \pdv{f}{y}\qty(x,y)).
+\end{align*}
+
+If we now take a look at the laplacian of a function $f(x,y)$, we can formally manipulate:
+\[
+	\laplace f\qty(x,y) = \qty(\pdv[2]{x}+\pdv[2]{y})f\qty(x,y) = \qty(\pdv{x}+i\pdv{y})\qty(\pdv{x}-i\pdv{y})f\qty(x,y) = 4 \pdv[2]{f\qty(z,\overline{z})}{\overline{z}}{z},
+\]
+so in total
+\[
+	\laplace f\qty(x,y) = 4 \pdv[2]{f}{z}{\overline{z}}\qty(z,\overline{z}).
+\]
+Using this, we can rewrite the \textit{Laplace equation} to the form
+\[
+	\pdv[2]{g\qty(z,\overline{z})}{z}{\overline{z}} = 0.
+\]
+Let us solve it. It must be:
+\[
+	\pdv{g\qty(z,\overline{z})}{\overline{z}} = C_1\qty(\overline{z}), g\qty(z,\overline{z}) = \underbrace{\int C_1\qty(\overline{z})\dd{\overline{z}}}_{\coloneq d_1\qty(\overline{z})} + d_2\qty(z)
+\]
+so
+\[
+	g\qty(z,\overline{z}) = d_1(\overline{z}) + d_2\qty(z).
+\]
+Now for the biharmonic equation, we need to solve
+\[
+	\pdv[2]{\Phi}{z}{\overline{z}} = d_1\qty(\overline{z})+d_2\qty(z),
+\]
+so that gives $\pdv{\Phi}{\overline{z}} = z d_1\qty(\overline{z})+D_2(z) + e_1(\overline{z}),$ and
+\[
+	\Phi\qty(z,\overline{z}) = z D_1\qty(\overline{z})+\overline{z}D_2(z) + E_1(\overline{z}) + E_2\qty(z).
+\]
+In total, we have been able to derive:
+\[
+	\Phi\qty(x,y) = \eval{\Re\qty(\qty(\overline{z}\gamma(z)+\chi(z)))}_{z=x+iy} = \Re\qty(\overline{\qty(x+iy)}\gamma\qty(x+iy)+\chi\qty(x+iy)).
+\]
+
+\subsection{Elliptic hole in uniformly stressed infinite plane}
+\label{sec:elliptic_hole}
+
+Suppose an infinite plane with a elliptic hole $\Omega$ with the standard paramateres $a,b$. The boundary conditions are
+\begin{align*}
+	\tensorq{\tau} \vb{n} &= \vb{0}, \, \text{on} \, \partial \Omega,\\
+	\lim_{x^{2}+y^{2}\to \infty}\tensorq{\tau}\qty(x,y) &= S \identity,
+\end{align*}
+where $S \in \R$ is given. The problem can be reformulated as
+\begin{equation}
+	\laplace \laplace \Phi\qty(x,y) = 0, \tensorq{\tau} = \begin{bmatrix}
+		\pdv[2]{\Phi}{y} & -\pdv[2]{\Phi}{x}{y} \\
+		- \pdv[2]{\Phi}{x}{y} & \pdv[2]{\Phi}{x}
+	\end{bmatrix},
+\end{equation}
+plus the boundary conditions. The general representation of the solution is $ \Phi = \Re\qty(\overline{z}\psi(z)+\chi(z))$, moreover, we adopt a sensible coordinate system: \textbf{elliptical coordinates}
+\begin{align*}
+	z &= c \cosh \zeta,\\
+	z &= x + i y.
+\end{align*}
+Equivalently
+\begin{align*}
+	x &= c \cosh \xi \cos \eta, \\
+	y &= c \sinh \xi \sin \eta, \\
+	\zeta &= \xi + i \eta.
+\end{align*}
+It follows immedietaly:
+\begin{align*}
+	\qty(\frac{x}{c\cosh \xi})^{2} + \qty(\frac{y}{c\sinh \xi})^{2} &= 1, \\ 
+	\qty(\frac{x}{c\cos \eta})^{2}-\qty(\frac{y}{c \sin \eta})^{2} &= 1,
+\end{align*}
+so the lines $\xi = \, \text{const} \,$ are \textit{ellipses} and the lines $\eta = \, \text{const} \,$ are hyperbolas. This will be useful, as we can represent the boundary of the ellipse $\partial \Omega$ as some coordinate line $\xi = \, \text{const} \,.$
+
+Through some simple calculation, we can show
+\begin{align*}
+	\vb{g}_{\eta} &= \sqrt{J}\qty(-\sin \alpha \vb{e}_1+ + \cos \alpha\vb{e}_2), \\
+	\vb{g}_{\zeta} &= \sqrt{J}\qty(\cos \alpha \vb{e}_1 + \sin \alpha \vb{e}_2),
+\end{align*}
+where $\alpha$ is the angle between the $x$ axis and $\vb{g}_{\xi}\qty(\xi,\eta)$ and
+\[
+	J = c^{2}\qty(\sinh^{2}\zeta \cos^{2}\eta + \cosh^{2}\zeta \sin^{2}\eta).
+\]
+We are interested in the quantity \footnote{That describes the rotation of the coordinate lines, which could mean "the ripping of the ellipse" when pulling}
+\[
+	\exp\qty(i 2 \alpha) = \frac{\sinh \zeta}{\sinh \overline{\zeta}},
+\]
+Formally, for the normalised vectors, we can write something like
+\[
+	\begin{bmatrix}
+		\vb{g}_{\hat{\xi}} \\ \vb{g}_{\hat{\eta}} 
+	\end{bmatrix}
+	= \begin{bmatrix}
+		\cos \alpha & \sin \alpha \\
+		- \sin \alpha & \cos \alpha 
+	\end{bmatrix}
+	\begin{bmatrix}
+		\vb{e}_x \\
+		\vb{e}_y
+	\end{bmatrix} =
+\]
+To solve for the stress, we need to express the stress in the elliptical coordinates: 
+\begin{equation*}
+  \tensorq{\tau} = \begin{bmatrix}
+	  \tau^{\xi \xi} & \tau^{\xi \eta} \\
+	  \tau^{\xi \eta} & \tau^{\eta \eta}
+  \end{bmatrix} = \tau^{xx}\vb{e}_x \otimes \vb{e}_x + \dots = t^{\hat{\xi}\hat{\xi}}\vb{g}_{\hat{\xi}}\otimes \vb{g}_{\hat{\xi}} + \dots.
+\end{equation*}
+Thats just some similiarity transformation, we are representing the matrix in a different basis. The traces must be preserved:
+
+\[
+	\tau^{xx}+\tau^{yy}=\tau^{\hat{\xi}\hat{\xi}}+\tau^{\hat{\eta}\hat{\eta}}
+\]
+and similiarly, it can be shown
+\[
+	\tau^{\hat{\eta}\hat{\eta}}-\tau^{\hat{\xi}\hat{\xi}}+2i \tau^{\hat{\xi}\hat{\eta}} = \exp\qty(i 2 \alpha)\qty(\tau^{yy}-t^{xx}+2i \tau^{xy}).
+\]
+Combining \textbf{all of this} we obtain for the Airy stress function the following relations 
+\begin{align*}
+	\tau^{xx} + \tau^{yy} &= 4 \Re \dv{\psi}{z},\\
+	\tau^{yy} - \tau^{xx} + 2 i \tau^{xy} &= 2\qty(z \overline{\dv[2]{\psi}{z}} + \overline{\dv[2]{\chi}{z}}).
+\end{align*}
+\textit{Solving this system} (heh) gives 
+\begin{align*}
+	\psi &= \frac{1}{2}S \sinh \zeta, \\
+	\chi & = \frac{1}{2}S c^{2} \zeta \cosh\qty(2 \xi_0) \\
+	t^{\hat{\eta}\hat{\eta}} &= \frac{2 S \sinh \qty(2\xi_0)}{\cosh\qty(2 \xi_0) - \cos \qty(2 \eta)}, \\
+	\max_{\eta \in (0,2 \pi)} \tau^{\hat{\eta}\hat{\eta}} &= 2 S \frac{a}{b}, \\
+	\min_{\eta \in (0,2 \pi)} \tau^{\hat{\eta}\hat{\eta}} &= 2 S \frac{b}{a}.
+\end{align*}
+We see that if $b$ is small (the ellipse is very flat), the maximum explodes; the quantity $2\frac{a}{b}$ is called the stress coefficient factor. Just note that even if the stress at infinity is controlled, the stress at the tips can be enormous.
+
 \end{document}
-%%% Local Variables: 
+%% Local Variables: 
 %%% mode: latex
 %%% TeX-master: t
 %%% End: 
