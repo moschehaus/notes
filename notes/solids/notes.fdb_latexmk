@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1744032558.20054 "notes.tex" "notes.pdf" "notes" 1744032562.48268 0
+["pdflatex"] 1744199336.96077 "notes.tex" "notes.pdf" "notes" 1744199341.96797 0
   "/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1742685315 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "/usr/share/texmf-dist/fonts/enc/dvips/mnsymbol/MnSymbolA.enc" 1742685315 3341 78e600b269762aa2a25a5293cc4535c0 ""
   "/usr/share/texmf-dist/fonts/enc/dvips/mnsymbol/MnSymbolC.enc" 1742685315 3275 8d7166dfdbc31ffdc8aba0c31b3bd5c8 ""
@@ -128,6 +128,7 @@
   "/usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb" 1742685315 32762 224316ccc9ad3ca0423a14971cfa7fc1 ""
   "/usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb" 1742685315 32726 0a1aea6fcd6468ee2cf64d891f5c43c8 ""
   "/usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb" 1742685315 37944 359e864bd06cde3b1cf57bb20757fb06 ""
+  "/usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti7.pfb" 1742685315 36607 d654cb3f2bc54f57509240071db3bffa ""
   "/usr/share/texmf-dist/fonts/type1/public/bbold-type1/bbold10.pfb" 1742685315 25452 d4e98a3bf6b13d4b7dcffd6302990a65 ""
   "/usr/share/texmf-dist/fonts/type1/public/bbold-type1/bbold7.pfb" 1742685315 25570 857e8ef1d068e88b2d8db4f6176e0f5c ""
   "/usr/share/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb" 1742685315 138258 6525c253f16cededa14c7fd0da7f67b2 ""
@@ -287,10 +288,10 @@
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1743674043 5311557 9da84c45f5b388655502706482323571 ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1743673972 2008231 401c56e7e2db0204dd1ee943df81c91a ""
   "macros.tex" 1744030871.22943 30074 526083298dc879962f55d3c91c40d933 ""
-  "notes.aux" 1744032561.65856 6858 457465e3c7a9864e67f6b8298394edfb "pdflatex"
-  "notes.out" 1744032561.66156 4921 8062f8b77e1bf3c3c095a3f431660ee6 "pdflatex"
-  "notes.tex" 1744032557.75356 45294 92a4245891cfe163ae87b3388941f540 ""
-  "notes.toc" 1744032561.66256 2536 fb35716ad8a02f0a831e5fca0b5f7f6b "pdflatex"
+  "notes.aux" 1744199341.00442 7203 1613effffbe5b478fc9fdeb34f226f0c "pdflatex"
+  "notes.out" 1744199341.00942 5151 a2d6553731807f67a443e81a65a6ede8 "pdflatex"
+  "notes.tex" 1744199341.55742 50842 f5244f33b8adee179933892281e6b90d ""
+  "notes.toc" 1744199341.01042 2675 d3acb3f9137e314baa4533ab4e72da89 "pdflatex"
   (generated)
   "notes.aux"
   "notes.log"

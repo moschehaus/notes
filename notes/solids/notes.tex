@@ -72,6 +72,17 @@
 \maketitle
 
 \tableofcontents
+
+\section{TODO}
+\label{sec:todo}
+
+\begin{itemize}
+	\item include missing lecture about potential forces 
+	\item include missing lecture about rank one convexity
+	\item include weak convergence symbol
+	\item fix bold greek letters
+\end{itemize}
+
 \section{Geometry}
 \label{sec:geometry}
 
@@ -755,15 +766,122 @@ and to prove the existence, we will use the Lax-Milgram lemma. Show that
 Realize that in order to show the properties, we would have to be able to control $\grad \vb{u}$ by $\, \text{sym} \,\qty(\grad \vb{u}).$ Is that even possible?
 
 \begin{example}
-	Let $u=0 \, \text{on} \, \partial \Omega.$ Then
+	Let $u=0 \, \text{on} \, \partial \Omega.$ In particular, let us take $\vb{u} \in \mathcal{D}\qty(\Omega; \R^n).$ Then
 	\[
 		\exists C>0: \int_{\Omega}|\tensorq{e}\qty(\vb{u})|^{2}\dd{\vb{x}} \geq c \int_{\Omega}|\grad \vb{u}|^{2}\dd{\vb{x}}.
 	\]
+	Can this hold? Make a quick test: Take $\vb{u}$ such that $\tensorq{e}\qty(\vb{u}) = \tensorq{0}, $ so $\frac{1}{2}\qty(\pdv{u_i}{x_j}+\pdv{u_j}{x_i}) = 0$, so of course:
+	\[
+		\grad \vb{u} = - \transpose{\qty(\grad \vb{u})},
+	\]
+	and $\grad \vb{u}$ must have the form
+	\[
+		\grad \vb{u} = \begin{bmatrix}
+			0 & \pdv{u_1}{x_2} \\
+			\pdv{u_2}{x_1} & 0
+		\end{bmatrix},
+	\]
+	where $\pdv{u_1}{x_1} = \pdv{u_2}{x_2} = 0,$ but since $\vb{u} = \vb{0}$ at the boundary, it also holds that $\vb{u} = \vb{0}$ in $\Omega$. Okay, so that not disprove the above inequality.
+
+	Let us try something else (although unsure what this means):
+	\begin{align*}
+		\int_{\Omega}|\tensorq{e}(\vb{u})|^{2}\dd{x} &= \frac{1}{4}\int_{\Omega}\qty(\pdv{u_i}{x_j}+\pdv{u_j}{x_i})\qty(\pdv{u_i}{x_j}+\pdv{u_j}{x_i})\dd{x} \\
+								 &= \frac{1}{4} \int_{\Omega}\qty(\pdv{u_i}{x_j})^{2} + 2\pdv{u_i}{x_j}\pdv{u_j}{x_i} + \qty(\pdv{u_j}{x_i})^{2} \dd{x} = \frac{1}{2}\int_{\Omega}\qty(\pdv{u_i}{x_j})^{2}+ \pdv{u_i}{x_j}\pdv{u_j}{x_i}\dd{x},
+	\end{align*}
+	where we used the symmetry property. Integrating by parts two times to obtain "$\partial_{i}u_i \partial_{j}u_j = \qty(\partial_{j}u_j)^{2}$ \footnote{Sign does not change as we integrate 2 times. Also, we have homogenous Dirichlet}. All in all
+	\[
+		\frac{1}{2}\int_{\Omega}\qty(\pdv{u_i}{x_j})^{2} + \qty(\pdv{u_i}{x_i})^{2}\dd{x} \geq 0.
+	\]
 \end{example}
 \begin{theorem}[Korn's inequality]
-
+Let $\Omega \subset \R^n$ be bounded Lipschitz domain ($\Omega \in C^{0,1}$). Then there exists $C>0$ such that $\forall \vb{u} \in \WkpSet[1][2]{\qty(\Omega;\R^n)}$ it holds
+\[
+\qty(\norm{\tensorq{e}\qty(\vb{u})}_{\LpSet[2]{(\Omega; \R^{n \times n)}}}^{2}+\norm{\vb{u}}_{\LpSet[2]{(\Omega; \R^n)}}^{2}) \geq c \norm{\vb{u}}_{\WkpSet[1][2]{(\Omega;\R^n)}}.
+\]
 \end{theorem}
-\section{Tutorials}
+
+
+\begin{definition}[Axial vectors]
+	Let $\tensorq{A} = - \transpose{\tensorq{A}}, \tensorq{A} \in \R^{n \times n}.$ Then there is $b \in \R^n$ such that $\tensorq{A} \vb{v} = \vb{b} \cross \vb{v}, \forall \vb{v} \in \R^n.$ The vector $\vb{b}$ is called the axial vector of $\tensorq{A}.$
+\end{definition}
+
+\begin{remark}[$\R^n$]
+    This truly holds in $\R^n$, not only in $\R^3$. We only have to replace $\cross$ by $\wedge$, the outter product.
+\end{remark}
+
+Assume that $\vb{u} \in C^2\qty(\Omega ; \R^3).$ Then
+\[
+	\pdv[2]{u_i}{x_j}{x_k} = \pdv{e_{ik}}{x_j}\qty(\vb{u}) + \pdv{e_{ij}}{x_k}\qty(\vb{u}) - \pdv{e_{jk}}{x_i}\qty(\vb{u}).
+\]
+If now $\tensorq{e}\qty(\vb{u}) = \tensorq{0}, $ then $\vb{u}$ is an affine function, because $\pdv[2]{u_i}{x_j}{x_k}, \forall i,j,k \in \{1, 2, 3\}.$ \footnote{Recall that $\Omega$ is simply connected.} It must thus hold
+\[
+	u_i(x) = a_i + b_{ij}x_j,
+\]
+and $\pdv{u_i}{x_j} = b_{ij} = - b_{ji},$ because $\tensorq{e}\qty(\vb{u}) = \tensorq{0},$ so it must be skew symmetric. The skew-symmetry also means it can be written
+\[
+	\vb{u}\qty(\vb{x}) = \vb{a} + \vb{d} \cross \vb{x}.
+\]
+
+If additionaly we assume that $\vb{u} = \vb{0}$ on some $\Gamma_D \subset \partial \Omega, \mathcal{H}\qty(\Gamma_{D})>0$ and $\vb{u}\qty(\vb{x}) = \vb{a}+ \vb{d} \cross \vb{x},$ then $\vb{u} = \vb{0}$ identically in $\Omega$
+This moreover means that
+\[
+	\vb{u} \mapsto \norm{\tensorq{e}\qty(\vb{u})}_{\LpSet[2]{\qty(\Omega; \R^{n \times n})}}
+\]
+is a norm on
+\[
+	V = \{ \vb{w} \in \WkpSet[1][2]{\qty(\Omega; \R^3)}, \vb{w} = \vb{0} \, \text{on} \, \Gamma_D \}
+\]
+which is equivalent to the norm of $\WkpSet[1][2]{\qty(\Omega; \R^3)}.$
+
+Coming back to our equation $B\qty(u,v) = L(v), \forall v \in V$, we have showed everything to use Lax-Milgram $\Rightarrow \exists ! u \in V.$ This also means the functional
+\[
+	J(\vb{v}) = \frac{1}{2} \int_{\Omega}\qty(\tensorq{C}\tensorq{e}\qty(\vb{v}) :\tensorq{e}\qty(\vb{v})-L\qty(\vb{v}))\dd{\vb{x}}, \forall v \in V.
+\]
+has an unique minimizer.
+
+\section{Convex analysis}
+\label{sec:convex_analysis}
+
+We will deal with the analysis of the functions $f: \R^n \to \R \cup \{+ \infty \}, f$ is convex.
+
+\begin{definition}[Epigraph of a set]
+	The epigraph of a function $f$ is the set
+	\[
+		\, \text{epi} \, f = \{\qty(x,y): y \geq f(x) \}
+	\]
+\end{definition}
+
+\begin{remark}
+    With the notion of $\, \text{epi} \,f$ we can work with sets instead of functions. Moreover, it holds
+    \begin{itemize}
+	    \item $\, \text{epi} \,f$ is closed $\Leftrightarrow$ $f$ is lower-semicontinuous,
+	    \item $f$ is convex $\Leftrightarrow\, \text{epi} \,f$ is convex
+    \end{itemize}
+\end{remark}
+From one of the consequences of Hahn-Banach theorem (oddělovací věty), we obtain the existence of such $\xi \in \R^n$ (dependent of $x$) that for fixed $x$ it yields
+\[
+	f(z) \geq f(x) + \xi \vdot (z-x), \forall z \in \R^n.
+\]
+\textit{If $f$ is differentiable} at $x$, then
+\[
+	\xi = \grad f(x).
+\]
+But in general it does not have to be differentiable. This motivates the following definition
+
+\begin{definition}[Subgradient, subdifferential]
+	The function $\xi(x)$ such that
+	\[
+		f(z) \geq f(x) + \xi(x) \vdot (z-x), \forall z \in \R^n,
+	\]
+	is called the \textbf{subgradient} of $f$ at $x$.
+	The set of all subgradients of $f$ at $x$ is called the \textbf{subdifferential} of $f$ at $x$ and it is denoted $\partial f (x).$
+\end{definition}
+
+\begin{remark}
+It holds: $0 \in \partial f(x) \forall x \in \R^n$ is a condition for the minimizer.
+\end{remark}
+
+\section{(Some) tutorials}
 \label{sec:tutorials}
 
 
