@@ -69,6 +69,7 @@
 \end{comment}
 
 \maketitle
+\tableofcontents
 
 \section{Winter semester addendum}
 \label{chap:addendum}
@@ -635,6 +636,7 @@ It remains to show the validity for a general $q$. Let $q \in [1,p^{*}): \norm{v
 
 \subsection{Difference quotients}
 \label{sec:difference_quotients}
+
 \section{Nonlinear elliptic equations as compact perturbations}
 \label{sec:nonlinear_elliptic_compact}
 
@@ -1010,6 +1012,196 @@ where $T \geq 0$, so from strict monotonicity we obtain $T =0 \, \text{a.e. in} 
 \begin{remark}
     The method of the presented proof is \textbf{\textit{very important.}}
 \end{remark}
+
+\begin{theorem}
+	Let $\Omega \in C^{0,1}.$ Let $X = \WkpzeroSet[1][r]{\Omega}, r \in \qty(1,\infty)$ with equivalent norm $|\norm{u}| = \norm{\grad u}_{\WkpzeroSet[1][r]{\Omega}}.$ Then
+	\[
+		\forall \in X^{*} \exists \vb{F} \in \LpSet[r']{\Omega} \, \text{s.t.} \,: \forall \varphi \in \WkpzeroSet[1][r]{\Omega}: \Phi(\varphi) = \int_{\Omega}\vb{F} \vdot \grad \varphi\dd{x}, \norm{\Phi}_{X^{*}} = \norm{\vb{F}}_{\LpSet[r']{\Omega}}.
+	\]
+\end{theorem}
+\begin{proof}
+    We solve the problem
+    \[
+	    \begin{cases}
+		    - \divergence{\qty(|\grad u|^{r-2}\grad u)} = \Phi, & \, \text{in} \, \Omega, \\
+		    u = 0, & \, \text{on} \, \partial \Omega
+	    \end{cases}.
+    \]
+    Such $u \in \WkpzeroSet[1][r]{\Omega}$ exists and is unique by the above theorem. In this case: $a\qty(x,z,p) = |p|^{r-2} p, a_0() = 0.$ Coercivity is clear, monotonicity will be shown in the tutorials. Write the weak formulation of the above problem:
+    \[
+	    \forall \varphi \in \WkpzeroSet[1][r]{\Omega}: \int_{\Omega}|\grad u|^{r-2} \grad u \vdot \grad \varphi \dd{x} = \Phi\qty(\varphi).
+    \]
+    Set
+    \[
+	    \vb{F} = |\grad u|^{r-2} \grad u,
+    \]
+    and test the weak formulation with $u$ itself:
+    \[
+	    \norm{\grad u}_{\LpSet[r]{\Omega}}^r = \Phi(u) \leq \norm{\Phi}_{X^{*}} \norm{\grad u}_{\LpSet[r]{\Omega}}.
+    \]
+    If now $\norm{\grad u}_{\LpSet[r]{\Omega}} = 0$, then $\Phi = 0$ and we are finished, if it is nonzero, then
+    \[
+	    \norm{\grad u}_{\LpSet[r]{\Omega}}^{r-1} \leq \norm{\Phi}_{X^{*}}.
+    \]
+    Realize now
+    \[
+	    \norm{\grad u}_{\LpSet[r]{\Omega}}^{r-1} = \norm{| \grad u|^{r-1}}_{\LpSet[\frac{r}{r-1}]{\Omega}} = \norm{\vb{F}}_{\LpSet[r']{\Omega}} \Rightarrow \norm{\vb{F}}_{\LpSet[r']{\Omega}} \leq \norm{\Phi}_{X^{*}}.
+    \]
+    On the other hand:
+    \[
+	    \norm{\Phi}_{X^{*}} = \sup_{\text{B}_{X}(0,1)} |\Phi(\varphi)| = \sup_{\text{B}_{X}(0,1)} |\int_{\Omega}\vb{F} \vdot \grad \varphi|\dd{x} \leq \sup_{\text{B}_{X}(0,1)} \norm{\vb{F}}_{\LpSet[r']{\Omega}} \norm{\grad \varphi}_{\LpSet[r]{\Omega}} = \norm{\vb{F}}_{\LpSet[r']{\Omega}},
+    \]
+    so
+    \[
+	    \norm{\Phi}_{X^{*}} = \norm{\vb{F}}_{\LpSet[r']{\Omega}}.
+    \]
+
+\end{proof}
+
+
+\section{Calculus of variations}
+\label{sec:calculus_of_variations}
+
+Our motivation is the following: search for a point of minimum for a mapping
+    \[
+	    I: X \subset \WkpSet[1][r]{\Omega} \to \R, u \mapsto \int_{\Omega}F\qty(\vdot, u, \grad u)\dd{x},
+    \]
+    with the basic assumptions $\Omega \in C^{0,1}, r \in \qty(1, \infty), X = u_0 + \WkpzeroSet[1][r]{\Omega}, u_0 \in \WkpSet[1][r]{\Omega}, F: \Omega \times \R \times \R^d \to \R$ Caratheodory. Moreover,
+    \[
+	    \exists C_1 > 0, c_2 \in \LpSet[1]{\Omega}, \, \text{a.e.} \, x \in \Omega, \forall z \in \R, \forall p \in \R^d : F\qty(x,z,p)\geq C_1|p|^r - c_2(x).
+    \]
+
+    \begin{remark}
+        From the assumptions it follows $\int_{\Omega}F\qty(\vdot, u, \grad u)\dd{x}$ is defined $\forall u \in \WkpSet[1][r]{\Omega}.$
+    \end{remark}
+
+Hold on, we are interested in PDE's. Why should we care about calculus of variations...?
+
+\begin{lemma}
+    Let $\Omega \in C^{0,1}, r \in(1,\infty), X = u_0 + \WkpzeroSet[1][r]{\Omega}, u_0 \in \WkpSet[1][r]{\Omega}, F$ Caratheodory. Moreover, let the following condition hold
+    \[
+	    \exists C>0, h \in \LpSet[1]{\Omega}: \forall \, \text{a.a} \, x \in \Omega, \forall z \in \R, \forall p \in \R^d: |\grad_p F\qty(x,z,p)|+|\partial_{z}F\qty(x,z,p)| \leq C\qty(|z|^r + |p|^r)+ |h(x)|, F(x,\vdot, \vdot) \in C^1\qty(\R^{d+1}).
+    \]
+    Let now $u \in u_0 + \WkpzeroSet[1][r]{\Omega}$ be a local minimizer of $I$ over $X$, i.e.,
+    \[
+	    \exists \rho>0: \forall v \in \mathcal{D}\qty(\Omega), \norm{v}_{\WkpSet[1][r]{\Omega}} < \rho: \int_{\Omega}F\qty(\vdot, u, \grad u)\dd{x} \leq \int_{\Omega}F\qty(\vdot, u+v, \grad\qty(u+v))\dd{x}, F\qty(\vdot, u, \grad u) \in \LpSet[1]{\Omega}.
+    \]
+    Then $u$ is the weak solution to the \textbf{Euler-Lagrange equations}:
+    \[
+	    \begin{cases}
+		    - \divergence{\qty(\grad_p F\qty(\vdot, u, \grad u)+ \partial_{z}F\qty(\vdot, u, \grad u))} = 0, & \, \text{in} \, \Omega \\
+		    u = u_0, & \, \text{on} \, \partial \Omega
+	    \end{cases},
+    \]
+    i.e.,
+    \[
+	    \forall \varphi \in \mathcal{D}\qty(\Omega): \int_{\Omega}\grad_p F\qty(\vdot, u, \grad u) \vdot \grad \varphi + \partial_{z}F\qty(\vdot, u, \grad u) \varphi \dd{x} = 0, \tr u = \tr u_0 \, \text{on} \, \partial \Omega.
+    \]
+\end{lemma}
+\begin{proof}
+	First $\tr u = \tr u_0$ holds, so we are fine. Now fix $\varphi \in \mathcal{D}\qty(\Omega)$ and define
+	\[
+		\iota:\R \to \R^{*}, \iota\qty(\tau) = \int_{\Omega}\underbrace{F\qty(\vdot, u + \tau \varphi, \grad \qty(u+ \tau \varphi))}_{\coloneq l\qty(\tau, \vdot)}\dd{x}.
+	\]
+	Now $\iota$ has a local minimum in $0$. We show that $\iota'(0)$ exists and is equal to the of Euler-Lagrange equations. 
+	\begin{itemize}
+		\item $l\qty(\tau, \vdot)$ is measurable for $\tau$ from some neighbourhood of $0$.
+		\item $l\qty(\tau, \vdot)$ is differentiable
+	\end{itemize}
+	Moreover
+	\begin{align*}
+		\partial_{\tau}l\qty(\tau, \vdot) &= \partial_{z}F\qty(\vdot, u+\tau \varphi, \grad\qty(u+\tau \varphi))\varphi + \grad_p F\qty(\vdot, u+\tau \varphi, \grad\qty(u+\tau \varphi))\vdot \grad \varphi =\\ =
+						  & = \partial_{z}F\qty(\vdot, u+\tau \varphi, \grad \qty(u+\tau \varphi))\varphi + \grad_p F\qty(\vdot, u+\tau \varphi, \grad\qty(u+\tau \varphi))\vdot \grad \varphi.
+	\end{align*}
+	Also
+	\[
+		i(0) = \int_{\Omega}F\qty(\vdot, u, \grad u)\dd{x} < \infty
+	\]
+and
+\[
+	|\partial_{\tau} l\qty(\tau, \vdot)| \leq \qty(C\qty(|u|^r+|\varphi|^r+|\grad u|^r + |\grad \varphi|^r)+|h(x)|)\qty(|\varphi|+|\grad \varphi|) \in \LpSet[1]{\Omega}.
+\]
+Altogether, $\iota\qty(\tau)$ is finite on $(-1,1), \iota'\qty(\tau)$ exists and
+\[
+	\iota'\qty(0) = \int_{\Omega}\partial_{z}F\qty(\vdot, u, \grad u)\varphi + \grad_p F\qty(\vdot, u, \grad u) \vdot \grad \varphi\dd{x}.
+\]
+\end{proof}
+
+\begin{example}
+    Let
+    \[
+	    F\qty(x,z,p) = \frac{1}{r}\qty(1)+|p|^{2})^{\frac{r}{2}} - gz - Gp,
+    \]
+    then
+    \[
+	    - \grad_p F\qty(x,z,p) = \qty(\frac{r}{2}\frac{1}{r} 2 \qty(1+|p|^{2})^{\frac{r-2}{2}})p -G = \qty(1+|p|^{2})^{\frac{r-2}{2}}p-G, \partial_{z}F\qty(x,z,p) = -g.
+    \]
+    We have
+    \[
+	    |\qty(1+|p|^{2}^{\frac{r-2}{2}})p| \leq \qty(1+|p|^{2})^{\frac{r-2}{2}}\qty(1+|p|^{2})^{\frac{1}{2}} = \qty(1+|p|^{2})^{\frac{r-1}{2}}\leq C\qty(1+|p|^r).
+    \]
+    So the estimates are met (somehow with some fantasy).
+    The Euler-Lagrange equations are
+    \[
+	    \begin{cases}
+		    - \divergence{\qty(\qty(1+|\grad u|^{2})^{\frac{r-2}{2}}\grad u)} = - \divergence{G} + g, & \, \text{in} \, \Omega\\
+		    u = u_0, & \, \text{on} \, \partial \Omega.
+	    \end{cases},
+    \]
+    whereas their weak form:
+    \[
+	    \forall \varphi \in \mathcal{D}\qty(\Omega):\int_{\Omega}\qty(1+|\grad u|^{2})^{\frac{r-2}{2}}\grad u \vdot \grad \varphi\dd{x} = \int_{\Omega}\qty(G \vdot \grad\varphi + g \varphi) \dd{x}.
+    \]
+\end{example}
+
+\begin{remark}
+	We have $\{u_n\}\subset X \, \text{s.t.} \, \lim_{n\to \infty} I(u_n) = \inf_X I.$ Then use
+	\begin{itemize}
+		\item compacntess: $u_n \to u$ in some sonse (weak convergence)
+		\item weak lower semicontinuity $I(u) \leq \liminf_{n\to \infty}I\qty(u_n)$
+	\end{itemize}
+\end{remark}
+
+\begin{lemma}
+    Let $F: \R^N \to \R, F \in \C^1\qty(\R^N), N \in \N.$ Then 
+    \begin{enumerate}
+	    \item $F$ is (strictly) convex $\Leftrightarrow$ $\grad F$ is (strictly) monotone
+	\item If $F$ is (strictly) convex, then
+		\[
+			\forall \xi_1, \xi_2 \in \R^N, \xi_1 \neq \xi_2: F\qty(\xi_1)-F\qty(\xi_2)\geq \grad F\qty(\xi_2)\vdot \qty(\xi_1 - \xi_2).
+		\]
+    \end{enumerate}
+\end{lemma}
+\begin{proof}
+    Fix $\xi_1, \xi_2, \xi_1 \neq \xi_2,$ define $\varphi(t) = F\qty(\xi_2 + t\qty(\xi_1 - \xi_2)).$ Then $\varphi \in C^1\qty(\R)$ and
+    \[
+	    \varphi'(t) = \grad F\qty(\xi_2 +t\qty(\xi_1 - \xi_2))\vdot \qty(\xi_1 - \xi_2).
+    \]
+    So
+    \[
+	    "\Rightarrow": \qty(\grad F\qty(\xi_1) - \grad F\qty(\xi_2))\vdot\qty(\xi_1-\xi_2) = \varphi'(1)-\varphi'(0) \underbrace{\geq}_{\varphi \text{convex or strictly convex}} 0.
+    \]
+    And $"\Leftarrow":$ Fix $t_1 > t_2$ and compute
+    \[
+	    \varphi'\qty(t_1) - \varphi'\qty(t_2) = \qty(\grad F\qty(\xi_2 + t_1\qty(\xi_1 - \xi_2))- \grad F\qty(\xi_2 + t_2\qty(\xi_1-\xi_2)))\vdot\qty(\xi_1-\xi_2)\qty(t_1-t_2),
+    \]
+    define
+    \[
+	    \eta_1 - \eta_2 = \qty(\xi_1 - \xi_2)\qty(t_1-t_2)
+    \]
+    and we obtain
+    \[
+	    \varphi'(t_1) - \varphi'(t_2) = \qty(\grad F\qty(\eta_1)-\grad F\qty(\eta_2))\vdot \qty(\eta_1 - \eta_2)
+    \]
+    and we are in the same situation as before. For 2) we already know $F$ (strictly) convex $\Rightarrow \varphi$ (strictly) convex
+    \[
+	    \Rightarrow \forall t \in (0,\frac{1}{2}): \frac{\varphi(1)-\varphi(0)}{1} \geq \frac{\varphi(t)-\varphi(0)}{t}\to \varphi'(0),
+    \]
+    as $t\to 0_+.$ And so
+    \[
+	    F\qty(\xi_1) - F\qty(\xi_2) \geq \grad F\qty(\xi_2)\vdot \qty(\xi_1 - \xi_2).
+    \]
+\end{proof}
 \section{Exercises}
 \label{sec:exercises}
 

@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1744121778.96539 "notes.tex" "notes.pdf" "notes" 1744121784.8587 2
+["pdflatex"] 1744723650.96619 "notes.tex" "notes.pdf" "notes" 1744723656.61416 2
   "/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1742685315 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "/usr/share/texmf-dist/fonts/enc/dvips/mnsymbol/MnSymbolA.enc" 1742685315 3341 78e600b269762aa2a25a5293cc4535c0 ""
   "/usr/share/texmf-dist/fonts/enc/dvips/mnsymbol/MnSymbolC.enc" 1742685315 3275 8d7166dfdbc31ffdc8aba0c31b3bd5c8 ""
@@ -224,12 +224,14 @@
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1743674043 5311557 9da84c45f5b388655502706482323571 ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1743673972 2008231 401c56e7e2db0204dd1ee943df81c91a ""
   "macros.tex" 1743689722.85783 30127 bdcb919b5a68d6a86074ea7ada0979c7 ""
-  "notes.aux" 1744121783.65243 3671 ca80ae0c11c148b00dfc895b0d2ef838 "pdflatex"
-  "notes.out" 1744121783.65543 2880 b72fcc90a9ab3f2dbcbc322580c8db93 "pdflatex"
-  "notes.tex" 1744121778.35543 57498 ba1e12694414562683c39973cb0c3ab4 ""
+  "notes.aux" 1744723655.40606 3875 83a98454643df6ac1e3cfcfd3e62fd3a "pdflatex"
+  "notes.out" 1744723655.40906 3040 8c49501b84ba30bc757dd13b2642f127 "pdflatex"
+  "notes.tex" 1744723650.86306 66554 6c44c8f3c1ba9e201e30d2dd1cfaa090 ""
+  "notes.toc" 1744723655.41006 1532 e6a599cc47b845fe318485a8699d7153 "pdflatex"
   (generated)
   "notes.aux"
   "notes.log"
   "notes.out"
   "notes.pdf"
+  "notes.toc"
   (rewritten before read)
