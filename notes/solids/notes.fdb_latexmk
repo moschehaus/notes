@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1744199336.96077 "notes.tex" "notes.pdf" "notes" 1744199341.96797 0
+["pdflatex"] 1744637311.33176 "notes.tex" "notes.pdf" "notes" 1744637317.48528 0
   "/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1742685315 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "/usr/share/texmf-dist/fonts/enc/dvips/mnsymbol/MnSymbolA.enc" 1742685315 3341 78e600b269762aa2a25a5293cc4535c0 ""
   "/usr/share/texmf-dist/fonts/enc/dvips/mnsymbol/MnSymbolC.enc" 1742685315 3275 8d7166dfdbc31ffdc8aba0c31b3bd5c8 ""
@@ -118,7 +118,9 @@
   "/usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb" 1742685315 36554 b67dc2cfa451409e100b3fcf5f506509 ""
   "/usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb" 1742685315 36299 5f9df58c2139e7edcf37c8fca4bd384d ""
   "/usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb" 1742685315 37912 77d683123f92148345f3fc36a38d9ab1 ""
+  "/usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb" 1742685315 37166 8ab3487cbe3ab49ebce74c29ea2418db ""
   "/usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb" 1742685315 36281 c355509802a035cadc5f15869451dcee ""
+  "/usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb" 1742685315 35469 70d41d2b9ea31d5d813066df7c99281c ""
   "/usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb" 1742685315 36912 b448ef9ad9d7228ec3c6e71005136d55 ""
   "/usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb" 1742685315 35752 024fb6c41858982481f6968b5fc26508 ""
   "/usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb" 1742685315 32722 d7379af29a190c3f453aba36302ff5a9 ""
@@ -136,7 +138,9 @@
   "/usr/share/texmf-dist/fonts/type1/public/mnsymbol/MnSymbol-Bold7.pfb" 1742685315 234894 3ab9a32d11bce9456225b6997fb7b839 ""
   "/usr/share/texmf-dist/fonts/type1/public/mnsymbol/MnSymbol10.pfb" 1742685315 230551 5ba6b427b352fee1ec24cb4d22d70733 ""
   "/usr/share/texmf-dist/fonts/type1/public/mnsymbol/MnSymbol5.pfb" 1742685315 232258 537a065578b4931defe0c3c7d4f4b7ce ""
+  "/usr/share/texmf-dist/fonts/type1/public/mnsymbol/MnSymbol6.pfb" 1742685315 228561 f013e042f586e685f4f490b0a6ea8e0a ""
   "/usr/share/texmf-dist/fonts/type1/public/mnsymbol/MnSymbol7.pfb" 1742685315 232813 dd63bd67606579f859986fea3188446f ""
+  "/usr/share/texmf-dist/fonts/type1/public/mnsymbol/MnSymbol8.pfb" 1742685315 228273 1b9652077d8f9fdc99f210b93860040b ""
   "/usr/share/texmf-dist/tex/context/base/mkii/supp-pdf.mkii" 1742685315 71627 94eb9990bed73c364d7f53f960cc8c5b ""
   "/usr/share/texmf-dist/tex/generic/atbegshi/atbegshi.sty" 1742685315 24708 5584a51a7101caf7e6bbf1fc27d8f7b1 ""
   "/usr/share/texmf-dist/tex/generic/babel-english/english.ldf" 1742685315 7008 9ff5fdcc865b01beca2b0fe4a46231d4 ""
@@ -288,10 +292,10 @@
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1743674043 5311557 9da84c45f5b388655502706482323571 ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1743673972 2008231 401c56e7e2db0204dd1ee943df81c91a ""
   "macros.tex" 1744030871.22943 30074 526083298dc879962f55d3c91c40d933 ""
-  "notes.aux" 1744199341.00442 7203 1613effffbe5b478fc9fdeb34f226f0c "pdflatex"
-  "notes.out" 1744199341.00942 5151 a2d6553731807f67a443e81a65a6ede8 "pdflatex"
-  "notes.tex" 1744199341.55742 50842 f5244f33b8adee179933892281e6b90d ""
-  "notes.toc" 1744199341.01042 2675 d3acb3f9137e314baa4533ab4e72da89 "pdflatex"
+  "notes.aux" 1744637316.29703 7636 c15767a514b6f520b1d97c0a9c2ed2be "pdflatex"
+  "notes.out" 1744637316.30203 5521 8c54cef3829a04f0cde0445d270fcf72 "pdflatex"
+  "notes.tex" 1744637305.01603 56662 02fbc8ef22ad84d8e583f507b95aacef ""
+  "notes.toc" 1744637316.30403 2864 8d50f7d923be15f82888b816dc04f488 "pdflatex"
   (generated)
   "notes.aux"
   "notes.log"

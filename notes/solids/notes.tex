@@ -839,7 +839,7 @@ Coming back to our equation $B\qty(u,v) = L(v), \forall v \in V$, we have showed
 \]
 has an unique minimizer.
 
-\section{Convex analysis}
+\subsection{Convex analysis}
 \label{sec:convex_analysis}
 
 We will deal with the analysis of the functions $f: \R^n \to \R \cup \{+ \infty \}, f$ is convex.
@@ -875,15 +875,173 @@ But in general it does not have to be differentiable. This motivates the followi
 	\]
 	is called the \textbf{subgradient} of $f$ at $x$.
 	The set of all subgradients of $f$ at $x$ is called the \textbf{subdifferential} of $f$ at $x$ and it is denoted $\partial f (x).$
+
+	Let $f: \R^{n \times m} \to \R \cup \{\infty\}, $ convex and lower semicontinuous \footnote{$f\qty(x) \leq \liminf_{k\to \infty}f(x_k), x_k \to x$}, $f \neq \infty$. The function $\xi\qty(\tensorq{X})$ such that
+	\[
+		f\qty(\tensorq{Y}) \geq f\qty(\tensorq{X})+ \xi\qty(\tensorq{X}) \vdot \qty(\tensorq{Y}- \tensorq{X}), \forall \tensorq{Y} \in \R^{n \times m},
+	\]
+	 is called the subgradient of $f$ at $\tensorq{X}$. The set of all subgradients of $f$ at $\tensorq{X}$ is called the subdifferential and denoted $\partial f\qty(\tensorq{X})$. 
+
+\end{definition}
+
+
+\begin{remark}
+	\begin{itemize}
+		\item If $\partial f\qty(\tensorq{X})$ is a singleton, then $\grad f\qty(\tensorq{X})$ exist.
+		\item $\partial f\qty(\tensorq{X})$ is convex
+		\item  $0 \in \partial f(x) \forall x \in \R^n$ is a condition for the minimizer.
+	\end{itemize}
+\end{remark}
+
+\begin{definition}[Indicator function]
+    Let $K \subset \R^{n \times m}$ be a closed convex nonempty set. The function $I_K\qty(\tensorq{X})$ given as
+    \[
+	    I_K\qty(\tensorq{X})=\begin{cases}
+		    0, & \, \text{if} \, \tensorq{X} \in K \\
+		    + \infty,& \, \text{otherwise} \,
+	    \end{cases},
+    \]
+    is called the indicator function of $K$
+\end{definition}
+
+The indicator function is hepful for constraint minimization. If $f$ is reasonably (at least finitely valued on $K$) then it holds:
+
+\[
+	\min_K f = \min_{\R^{n \times m}}\qty(f + I_K).
+\]
+
+\begin{example}[Unit interval]
+
+	Let $K = [0,1].$ What is $\partial I_K(x)?$ 
+
+	If $x \in (0,1)$, then $I_K(x) = 0$ so the only $\xi$ such that $I_K(y) \geq 0 + \xi (y-x)$ holds is $\xi = 0.$
+
+	If $x = 0, x=1$ then $\partial I_K(0) = (-\infty, 0], \partial I_K(1) = [0, \infty).$ This resembles a normal "vector", but in fact it is not a single vector and more a "cone" of vectors.
+\end{example}
+
+\begin{definition}[Normal cone to a set]
+    Let $K$ be closed convex nonempty set. The subdifferential of the indicator function $I_K$ is called the normal cone to the set $K$ and it is denoted by $N_K$.
+\end{definition}
+
+\begin{example}
+	Minimize $x^{2}$ on $[1,2]$. We are looking for
+	\[
+		\min_{[1,2]}x^{2} = \min_{\R}\qty(x^{2}+I_{[1,2]}\qty(x)).
+	\]
+	It must hold at the minimum
+	\[
+		0 \in \partial \qty(x^{2}+I_{[1,2]}\qty(x)) \Leftrightarrow - \partial I_{[1,2]}(x) \subset \partial x^{2} \Leftrightarrow \qty(x^{2})' \in -N_{[1,2]}(x)
+	\]
+\end{example}
+
+\begin{example}
+	Take a square $K = [0,1] \times [0,1] \subset \R^2.$ We know $K \in C^{0,1}$ so the outter normal exist at a.a. points on the boundary. The outter normal does not exist in the corners, but the normal cone does.
+	\begin{tikzpicture}
+		%\draw (0,0) square;
+	\end{tikzpicture}
+\end{example}
+
+\begin{definition}[Fenchel (convex) conjugate | Legendre transformation]
+Let $x^{*}$ be a slope i have chosen (it is given). I require
+\[
+	f(x) \geq x^{*} \vdot x - k, \forall x \in \R^{n \times m},
+\]
+which means $k \geq x^{*} \vdot x - f(x), \forall x\R^{n \times m},$ and so we can define
+\[
+	f^{*}\qty(x^{*}) \coloneq \sup_{x \in \R^{n \times m}}\qty(x^{*} \vdot x - f(x)).
+\]
 \end{definition}
 
 \begin{remark}
-It holds: $0 \in \partial f(x) \forall x \in \R^n$ is a condition for the minimizer.
+	$f^{*}$ is always convex even if $f$ is not. But when $f$ is convex and lower-semicontinuous, then
+	\[
+		f^{**} = f, \, \text{(biconjugate)} \,.
+	\]
 \end{remark}
+
+\begin{theorem}[Fenchel identity]
+Let $x^{*} \in \partial f(x).$ Then
+
+\[
+	x^{*} \vdot x = f(x) + f^{*}(x^{*}).
+\]
+\begin{proof}
+Let us assume that $x^{*} \in \partial f(x)$. Then it must hold
+\[
+	f(y) \geq f(x) + x^{*} \vdot \qty(y-x), \forall y,
+\]
+so
+\[
+	x^{*} \vdot x - f(x) \geq x^{*} \vdot y - f\qty(y),
+\]
+and taking the supremum over $y$ yields\footnote{The inequality becomes equality, as it can be reached by taking $y=x$.}
+\[
+	x^{*} \vdot x -f (x) = \sup_y \qty(x^{*} \vdot y - f(y)) = f^{*}\qty(x^{*}).
+\]
+We have thus obtained
+\[
+	x^{*} \vdot x = f(x) + f^{*}(x^{*}).
+\]
+
+\end{proof}
+\end{theorem}
+
+\begin{remark}[Minimization of $f \Leftrightarrow$ minimization of $f^{*}$]
+	We see that it holds:
+	\[
+		x^{*} \in \partial f(x) \Leftrightarrow x \in \partial f^{*}\qty(x^{*}).
+	\]
+\end{remark}
+
+\subsection{Problem of a man...}
+\label{sec:problem}
+
+Assume a person is pulling a box of weight $m$ of weight $m$ of weight $m$ of weight $m$ by a spring. If he is pulling just a little, the box does not move, only the spring is deformed - but in a reversible, elastic way.
+To move the box, the man needs to pull at least with the force $\sigma_0 = mgc,$ where c is some friction coefficient. When he us pulling with force greater than $\sigma_0,$ the box is moving and does not require any extra force to be moved (the system to be deformed). The deformation can be decomposed as
+\[
+	\tensorq{e} = \tilde{\tensorq{e}} + \tensorq{p},
+\]
+where $\tensorq{e}$ is the total strain, $\tilde{\tensorq{e}}$ is the elastic strain and $\tensorq{p}$ is the plastic strain.
+
+\subsection{von Mieses elatoplasticity}
+\label{sec:von_mieses}
+
+The elasticity part is described as
+\[
+	\begin{cases}
+		- \divergence{\tensorq{\sigma}} = \vb{f}, &  \, \text{in the bulk} \,\\
+		\tensorq{\sigma} \vb{n} = \vb{g}, & \, \text{on the boundary} \, \\
+	\end{cases},
+\]
+with some constituive relation $\tensorq{\sigma} = \tensorq{C}\tilde{\tensorq{e}} = \tensorq{C}\qty(\tensorq{e}-\tensorq{p}).$
+What about the plastic part? 
+\[
+	\begin{cases} 
+		\dot{\tensorq{p}}(t) \in N_K\qty(\tensorq{\sigma}), & \\
+		\tensorq{p}(0)=\tensorq{p}_0, &
+	\end{cases}
+\]
+where $K$ is a convex closed subset such that $0 \in K$. This means that the plastic deformation is zero inside $K$, i.e. for some stresses. 
+
+\begin{remark}
+    Very often, the deformation is considered "incompressible", i.e.,
+    \[
+	    \det \fgrad = 1,
+    \]
+    which in linear case translates into
+    \[
+	    \tr \tensorq{\varepsilon} = 0.
+    \]
+\end{remark}
+
+In most cases, the set $K$ is given as
+\[
+	K = \{ \tensorq{\sigma}:\varphi\qty(\tensorq{\sigma}) \leq 0\},
+\]
+where $\varphi$ is the yield function.
 
 \section{(Some) tutorials}
 \label{sec:tutorials}
-
 
 \subsection{Change of observer}
 \label{sec:chobserver}
