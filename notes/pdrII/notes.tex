@@ -1202,6 +1202,49 @@ Altogether, $\iota\qty(\tau)$ is finite on $(-1,1), \iota'\qty(\tau)$ exists and
 	    F\qty(\xi_1) - F\qty(\xi_2) \geq \grad F\qty(\xi_2)\vdot \qty(\xi_1 - \xi_2).
     \]
 \end{proof}
+
+\begin{theorem}
+    Let $M,N \in \N, \Omega$ open, $F: \Omega \times \R^{N+M} \to \R$ Caratheodory, $F$ convex in $p \in \R^{n}, \, \text{\textit{i.e.}} \, \forall \, \text{\textit{a.e.}} \,x \in \Omega, \forall z \in \R^{M}: F\qty(x,z,\vdot)$ is convex and $\exists c_2 \in \LpSet[1]{\Omega}, \forall\, \text{\textit{a.e.}} \, x \in \Omega, \forall z \in \R^{M}, \forall p \in \R^{N}: F\qty(x,z,p)\geq c_2(x).$ Let $u_n \to u$ in $\LpSet[1]{\Omega}, U_n \rightharpoonup U \, \text{in} \, \LpSet[1]{\Omega}.$ Then
+    \[
+	    \int_{\Omega}F\qty(\vdot,u,U)\dd{x} \leq \liminf_{n\to \infty} \int_{\Omega}F\qty(\vdot, u_n, U_n) \dd{x}.
+    \]
+\end{theorem}
+
+\begin{proof}
+    The proof will be given only if moreover $\forall \, \text{\textit{a.e.}} \,x \in \Omega, \forall z \in \R^{M}: F\qty(x,z,\vdot) \in C^1\qty(\R^N).$ Idea: by the previous lemma:
+    \[
+	    \int_{\Omega}F\qty(\vdot, u_n, U_n)\dd{x} \geq \int_{\Omega}\qty(F\qty(\vdot, u_n, U) + \grad_p F\qty(\vdot, u_n, U)\vdot\qty(U_n - U))\dd{x},
+    \]
+    and we have uniform convergence in the first term and second term and weak convergence in $\LpSet[1]{\Omega}$ in the last term. If $\Omega$ is bounded, we can find $K_k \subset K_{k+1} \subset \Omega \, \text{\textit{s.t.}} \, \lambda\qty(\Omega \ \bigcup_{k \in \N}K_k) = 0,$ and moreover $ \forall k \in \N: K_k \subset \overline{K_k} \subset \Omega, \overline{K_k} \, \text{are compact} \,, u_n \to \to u \, \text{on} \,K_k, \norm{u}_{\LinfSet{K_k}}+\norm{U}_{\LinfSet{K_k}}\leq k$ up to a subsequence. We can now extract a subsequence $u_n \to u \, \text{\textit{a.e.}} \,$ and apply the Egorov theorem
+    \[
+	    \forall k \in \N, \exists \tilde{E_k} \, \text{\textit{s.t.}} \, u_n \to \to u \, \text{on} \, \tilde{E_k}\wedge \lambda\qty(\Omega \ \tilde{E_k})< \frac{1}{k}.
+    \]
+    Now define
+    \[
+	    \hat{E_k} = \bigcup_{j=1}^k \tilde{E_j}, E_k = \hat{E_k} \cap \{ x \in \Omega, \dist\qty(x,\partial \Omega) > \frac{1}{k}\},
+    \]
+    and $E_k$ satisfy \footnote{"This is homework", says doc. Kaplicky}
+    \[
+	    \lambda\qty(\Omega \ \bigcup_{k}E_k) = 0.
+    \]
+    Finally, set
+    \[
+	    F_k = \{x \in \Omega, |u(x)| \leq k \wedge |U(x)| \leq k\}
+    \]
+    and we also have $\lambda\qty(\Omega \ \bigcup_{k}F_k) = 0.$ FINALLY, set
+    \[
+	    K_k = E_k \cap F_k \Rightarrow \lambda\qty(\Omega \ \bigcup_{k}K_k)=0.
+    \]
+\end{proof}
+\begin{remark}
+\begin{itemize}
+\item if $U_n \to U$ strongly $\Rightarrow u_n \to u, U_n \to U$ \textit{a.e.} (up to a subsequence) and the claim follows from the Fatou lemma. \footnote{For Fatou, we need nonnegativity of the integrand, but that can be met from the assumptions $F-c_2 \geq 0, F-c_2 \in \LpSet[1]{\Omega}$}
+\item norm is weakly lower semicontinuous:
+\[
+	\grad u_n \rightharpoonup \grad u \, \text{in} \, \LpSet{\Omega} \Rightarrow \int_{\Omega}|\grad u|^p\dd{x} \leq \liminf_{n \to \infty} \int_{\Omega}|\grad u_n|^p\dd{x}.
+\]
+\end{itemize}
+\end{remark}
 \section{Exercises}
 \label{sec:exercises}
 
