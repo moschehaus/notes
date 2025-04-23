@@ -1179,7 +1179,288 @@ Combining \textbf{all of this} we obtain for the Airy stress function the follow
 \end{align*}
 We see that if $b$ is small (the ellipse is very flat), the maximum explodes; the quantity $2\frac{a}{b}$ is called the stress coefficient factor. Just note that even if the stress at infinity is controlled, the stress at the tips can be enormous.
 
-\end{document}
+\section{Stability of fluid flows}
+\label{sec:stability}
+
+Let us investigate the following PDE:
+\[
+	\begin{cases}
+		\partial_t u = \pdv[2]{u}{x} + au, & \, \text{in} \, \Omega = (0,1) \\
+		u(t,x) = 0, & \, \text{on} \, x=0, x=1
+	\end{cases}.
+\]
+Clearly, $\hat{u}(t,x) = 0$ is a solution, moreover it is a \textit{steady solution}. Our interest is whether, given some $u(t=0,x) = u_0(x)$ initial condition, the solution converges to the steady one; in other words, whether
+\[
+	" \lim_{t \to \infty}u(t,x) = 0",
+\]
+in some sense of convergence. We will be interested in certain questions:
+
+\begin{enumerate}
+	\item In what sense is the convergence?
+\end{enumerate}
+
+\subsection{Energy theory}
+\label{sec:energy_theory}
+As opposed to the ODE stability theory, we do not want to linearize anything. Let use measure the convergence in the $\LpSet[2]{\Omega}$ norm, "the energy norm", \textit{i.e.}
+\[
+	\norm{u}_{\LpSet[2]{\Omega}} = \qty(\int_{\Omega}|u|^{2}\dd{x})^{\frac{1}{2}}.
+\]
+Meaning we are interested in the conditions under which
+\[
+	u \to 0 \, \text{in} \,\LpSet[2]{\Omega} \Leftrightarrow \norm{u}_{\LpSet[2]{\Omega}} \to 0.
+\]
+Let us investigate the following quantity:
+\begin{align*}
+	\frac{1}{2}\dv{t} \norm{u}_{\LpSet[2]{\Omega}}^{2} &= \frac{1}{2} \dv{t} \int_{\Omega}u\qty(t,x) u\qty(t,x)\dd{x} = \int_{\Omega}\partial_t u\qty(t,x) u\qty(t,x)\dd{x} =\\
+							   &=\int_{\Omega}\qty( \partial_{xx}u+ a u^{2})\dd{x} = -\int_{\Omega}\qty(\partial_x u)^{2}\dd{x} + a \int_{\Omega}u^{2}\dd{x} = \\
+							   & = -\norm{\partial_x u}_{\LpSet[2]{\Omega}}^{2} + a \norm{u}_{\LpSet[2]{\Omega}}^{2} \leq - \frac{1}{C_p^{2}}\norm{u}_{\LpSet[2]{\Omega}}^{2}+a \norm{u}_{\LpSet[2]{\Omega}}^{2} =\\
+							   &=-\qty(\frac{1}{C_p^{2}}-a)\norm{u}_{\LpSet[2]{\Omega}}^{2},
+\end{align*}
+where we used the Poincare inequality in the form $\norm{u}_{\LpSet[2]{\Omega}} \leq C_p \norm{\partial_x u}_{\LpSet[2]{\Omega}}$ (we have zero trace). So we have :
+\[
+	\dv{t} \norm{u}_{\LpSet[2]{\Omega}}^{2} \leq -2\qty(\frac{1}{C_p^{2}}-a)\norm{u}_{\LpSet[2]{\Omega}}^{2},
+\]
+so if
+\[
+	\frac{1}{C_p^{2}}-a>0,
+\]
+the system has the following solution: \textbf{ADD IT}, and so
+\[
+	\norm{u(t,x)}_{\LpSet[2]{\Omega}} \to 0, \, \text{as} \, t\to \infty.
+\]
+We are not happy yet. The Poincare constant is undetermined, so let us get an estimate for it. The equation has the form
+\begin{align*}
+	\frac{1}{2}\dv{t} \norm{u}_{\LpSet[2]{\Omega}}^{2} &= - \norm{\partial_x u}_{\LpSet[2]{\Omega}}^{2}+a \norm{u}_{\LpSet[2]{\Omega}}^{2} = -a \norm{\partial_x}_{\LpSet[2]{\Omega}}^{2}\qty(\frac{1}{a}-\frac{\norm{u}_{\LpSet[2]{\Omega}}^{2}}{\norm{\partial_x}_{\LpSet[2]{\Omega}}^{2}}) \leq \\
+	&\leq -a \norm{\partial_x u}_{\LpSet[2]{\Omega}}^{2}\qty(\frac{1}{a}-\max_{u \in \WkpzeroSet[1][2]{\Omega}}\frac{\norm{u}_{\LpSet[2]{\Omega}}^{2}}{\norm{\partial_x u}_{\LpSet[2]{\Omega}}}),
+\end{align*}
+let us define
+\[
+	\frac{1}{a_{\, \text{crit} \,}} = \max_{u \in \WkpzeroSet[1][2]{\Omega}}\frac{\norm{u}_{\LpSet[2]{\Omega}}^{2}}{\norm{\partial_x u}_{\LpSet[2]{\Omega}}^{2}},
+\]
+and so we have
+\[
+	\frac{1}{2}\dv{t}\norm{u}_{\LpSet[2]{\Omega}}^{2} \leq -a \norm{\partial_x u}_{\LpSet[2]{\Omega}}^{2}\qty(\frac{1}{a}-\frac{1}{a_{\, \text{crit} \,}}) = -a \norm{\partial_x u}_{\LpSet[2]{\Omega}}^{2} \frac{a_{\, \text{crit} \,}-a}{a a_{\, \text{crit} \,}}.
+\]
+We see that if $a < a_{\, \text{crit} \,} \Leftrightarrow \frac{1}{a} > \frac{1}{a_{\, \text{crit} \,}}$ the $\LpSet[2]{\Omega}$ norm vanishes exponentially.
+But \textit{how much is it?} That depends on $a_{\, \text{crit} \,},$ so let us define the functional
+\[
+	F: \LpSet[2]{\Omega} \to \R^+, F: u \mapsto \frac{\norm{u}_{\LpSet[2]{\Omega}}^{2}}{\norm{\partial_x u}_{\LpSet[2]{\Omega}}^{2}},
+\]
+and find its extrema. The Gateux derivative at the extrema is
+\begin{align*}
+	0 = &\delta F\qty(u_{\, \text{ext} \,})[v] = \dv{t} \eval{F\qty(u_{\, \text{ext} \,} + t v)}_{t=0} = \dv{t} \eval{\frac{\int_{\Omega}\qty(u_{\, \text{ext} \,}+tv)\qty(u_{\, \text{ext} \,}+tv)\dd{x}}{\int_{\Omega}\qty(\partial_x u_{\, \text{ext} \,}+t \partial_x v)\qty(\partial_x u_{\, \text{ext} \,}+t \partial_xv)\dd{x}}}_{t=0} =\\
+	    & = 2\frac{\int_{\Omega}u_{\, \text{ext} \,}v\dd{x}\int_{\Omega}\qty(\partial_x u_{\, \text{ext} \,})^{2}\dd{x} - \int_{\Omega}u_{\, \text{ext} \,}^{2}\dd{x}\int_{\Omega}\partial_x u_{\, \text{ext} \,} \partial_x v\dd{x}}{\qty(\int_{\Omega}\qty(\partial_x u_{\text{ext}})^{2}\dd{x})^{2}} = \\
+	    & = \frac{1}{\qty(\int_{\Omega}\qty(\partial_x u_{\, \text{ext} \,})^{2}\dd{x})^{2}}\qty(\int_{\Omega}u_{\, \text{ext} \,}v\dd{x}-\frac{\int_{\Omega}u_{\, \text{ext} \,}^{2}\dd{x}}{\int_{\Omega}\qty(\partial_x u_{\text{ext}})^{2}\dd{x}} \int_{\Omega}\partial_x u_{\, \text{ext} \,} \partial_x v\dd{x}) = \frac{1}{\int_{\Omega} (\partial_x u_{\, \text{ext} \,})^{2}\dd{x}} \frac{1}{a_{\, \text{crit} \,}}\qty(\int_{\Omega}\qty(a_{\, \text{crit} \,}u_{\, \text{ext} \,}v - \partial_x u_{\, \text{ext} \,}\partial_x v)\dd{x}),
+\end{align*}
+and so we see
+\[
+	\delta F\qty(u_{\, \text{ext} \,})[v] = 0 \Leftrightarrow \int_{\Omega}\qty(a_{\, \text{crit} \,} u_{\, \text{ext} \,} v - \partial_x u_{\, \text{ext} \,} \partial_x v)\dd{x}, \forall v \in \WkpzeroSet[1][2]{\Omega}.
+\]
+This is a weak formulation of the problem
+\[
+	\int_{\Omega}\qty(a_{\, \text{crit} \,} u_{\, \text{ext} \,}+ \partial_{xx}u_{\, \text{ext} \,})v\dd{x}, \forall v \in \WkpzeroSet[1][2]{\Omega} \Leftrightarrow \begin{cases}\partial_{xx}u_{\, \text{ext} \,} = - a_{\, \text{crit} \,}u_{\, \text{ext} \,}, & \, \text{in} \,\Omega \\
+		u_{\, \text{ext} \,} = 0,& \, \text{on} \, \partial \Omega 
+	\end{cases}.
+	\]
+	This is an \textit{eigenproblem for the elliptic operator}. The solution is the following:
+	\begin{align*}
+		u_{\, \text{ext} \,}^n &= C \sin\qty(\sqrt{a_{\, \text{crit} \,}^n}x), \\
+		a^n_{\, \text{crit} \,} &= n^{2}\pi^{2}, n \in \N
+	\end{align*}
+The \textit{smallest eigenvalue} is
+\[
+	a_{\, \text{crit} \,} = \pi^{2}.
+\]
+This means that $\forall a < a_{\, \text{crit} \,} = \pi^{2}$ the perturbations in the initial condition decay exponentially.
+
+\subsection{Rayleigh-Bénard convection}
+\label{sec:convection}
+Let us use the developed theory on the problem of Rayleigh-Bénard convection. 
+\begin{tikzpicture}
+  % two parallel plates, fluid in between, spaced d away, ez to the sky, ex to me, ey to the right
+\end{tikzpicture}
+There are two plates, the top with the temperature $T_t$ and the bottom one with the temperature $T_b$ in the gravitational field $\vb{g}= - g \vb{e}_z.$ The governing equations are
+\[
+	\begin{cases}
+		\dv{\rho}{t} + \rho \qty(\divergence{\vb{v}}) = 0, \\
+		\rho \dv{\vb{v}}{t} = \rho \vb{g} + \divergence{\qty(-\pth\qty(\rho, \theta)\identity + \lambda \qty(\divergence{\vb{v}})\identity + 2 \mu \symvgrad)} \\
+		\rho c_{V}\dv{\theta}{t} = \divergence{\qty(\kappa \grad \theta)}+\qty(\pth\qty(\theta, \rho)-\pdv{\pth\qty(\theta, \rho)}{\theta})\qty(\divergence{\vb{v}}) + \cstress : \symvgrad,
+	\end{cases}
+\]
+Why something happens?
+\begin{itemize}
+	\item gravitational field is crucial, as without it, buyoancy oscillations won't work
+	\item dependence of density on temperature is also essential
+\end{itemize}
+
+\subsubsection{Boussinesq approximation}
+\label{sec:boussinesq_approximation}
+Doing a stability analysis of a system of nonlinear PDEs is difficult. Make the following assumptions: Ober-Boussinesq approximation
+
+\begin{itemize}
+	\item the density depends only on the temperature, not on pressure, and only linearly: $\rho(\theta) = \rho_{\, \text{ref} \,}\qty(1- \alpha\qty(\theta - \theta_{\, \text{ref} \,}))$
+	\item working with compressible fluids is a nightmare, lets make it incompressible: $\divergence{\vb{v}} = 0.$
+	\item the density in the momentum equation is constant in the first term and the same in the temperature equation
+	\item ignore all the nonlinear terms in the thermal equation
+\end{itemize}
+Doing all this produces the following system of equations:
+\begin{align*}
+	\divergence{\vb{v}} &= 0, \\
+	\rho_{\, \text{ref} \,} \dv{\vb{v}}{t} &= \rho_{\, \text{ref} \,}\qty(1- \alpha\qty(\theta-\theta_{\, \text{ref} \,})) \vb{g} + \divergence{\qty(-\pth\qty(\rho, \theta)\identity +  2 \mu \symvgrad)} \\
+	\rho_{\, \text{ref} \,} c_{V}\dv{\theta}{t} &= \divergence{\qty(\kappa \grad \theta)},
+	\end{align*}
+with the boundary conditions
+\[
+	\begin{cases}
+		\theta = T_{top}&, \, \text{on} \, z=d \\
+		\theta = T_{bot}&, \, \, \text{on} \,z=0
+	\end{cases}
+	\]
+
+Note that ,physically, this makes no sense. Since $\cstress : \symvgrad = 0$, there is no viscous dissipation, but since $\cstress \neq \tensorq{0}$, we are just losing energy but the temperature does not increase.
+
+\subsubsection{Steady state, pure conduction $\qty(\vb{v} = \vb{0})$}
+\label{sec:steady_state}
+In the case $\vb{v} = \vb{0}$ the equation for the temperature $\theta$ becomes $0 = \divergence{\qty(\kappa \grad \theta)}$ that has the solution
+\[
+	\hat{\theta} = - \frac{T_{bot}-T_{top}}{d}z + T_{bot} = -\beta z + T_{bot},
+\]
+and the equation for the pressure reads as
+\[
+	0 = - \grad p - \rho_{\, \text{ref} \,}\qty(1-\alpha\qty(\theta - \theta_{\, \text{ref} \,}))g \vb{e}_{z}.
+\]
+\subsubsection{Perturbation of the steady}
+\label{sec:perturbation}
+What happens if now perturb the steady state? We are solving the following system
+\[
+	\begin{cases}
+		\divergence{\vb{v}} = 0, \\
+		\rho_{\, \text{ref} \,}\qty(\partial_t \vb{v}+ \qty(\vb{v} \vdot \grad)\vb{v}) = -\rho_{\, \text{ref} \,}\qty(1- \alpha\qty(\theta-\theta_{\, \text{ref} \,}))g \vb{e}_z - \grad p + \mu \laplace \vb{v}\\ 
+		\rho_{\, \text{ref} \,} c_{V}\qty(\partial_t \theta + \qty(\vb{v} \vdot \grad)\theta) = \kappa \laplace\theta
+	\end{cases},
+\]
+with the initial condiitons $\vb{v} = \hat{\vb{v}} + \tilde{\vb{v}} = \tilde{\vb{v}}, \theta = \hat{\theta}+ \tilde{\theta}, p = \hat{p}+ \tilde{p}$ all at $t =0$ and the hatted variables being the steady state \ref{sec:steady_state}. The equations for the perturbations (after some manipulation) become 
+\[
+	\begin{cases}
+		\divergence{\tilde{\vb{v}}} = 0, \\
+		\rho_{\, \text{ref} \,}\qty(\partial_t \tilde{\vb{v}}+ \qty(\tilde{\vb{v}} \vdot \grad)\tilde{\vb{v}}) = +\rho_{\, \text{ref} \,} \alpha\tilde{\theta}g \vb{e}_z - \grad \tilde{p} + \mu \laplace \tilde{\vb{v}}\\ 
+		\rho_{\, \text{ref} \,} c_{V}\qty(\partial_t \tilde{\theta} + \qty(\tilde{\vb{v}} \vdot \grad)\qty(\hat{\theta + \tilde{\theta}})) = \kappa \laplace\tilde{\theta}
+	\end{cases},
+\]
+\subsubsection{Non-dimensonalisation}
+\label{sec:dimless}
+Next, we need to non-dimensionalize the equations. For that, we need to chose 
+\begin{itemize}
+	\item a characteristic length: $l_{char} \coloneq d$
+	\item a characteristic density $\rho_{char} \coloneq  \rho_{\, \text{ref} \,}$
+	\item a characteristic temperature $\theta_{char} = T_{bot}-T_{top}$
+	\item a characteristic time $t_{char} = ?$
+\end{itemize}
+There is however a problem: how to choose the characteristic time? We have no characteristic velocity \footnote{If we would, that would suffice, as we have characteristic length}, because $\hat{\vb{v}} = \vb{0}.$ There are some candidates whose units include seconds: $[\mu] = \, \text{Pa s} \,, [g] = \frac{\, \text{m} \,}{\, \text{s}^{2}}, [\kappa] = \frac{\, \text{W} \,}{\, \text{m K} \,}.$
+
+Whatever, let us continue:
+\[
+	\tilde{\vb{v}} = v_{char}\vb{v}^{*}, \tilde{\theta} = \theta_{char}\theta^{*}, \vb{x} = l_{char}\vb{x}^{*},
+\]
+where the starred variables denote dimensionless ones. Plugging all this into the equations yields
+\begin{align*}
+		\grad^{*} \vdot \vb{v}^{*} &= 0 \\
+		\frac{\rho_{ref}d^{2}}{\mu t_{char}}\qty(\partial_{t^{*}} \vb{v}^{*} + \qty(\vb{v}^{*} \vdot \grad^{*})\vb{v}^{*}) &= - \grad^{*} p^{*} + \laplace^{*} \vb{v}^{*} + \frac{\alpha g \theta_{char}d \rho_{ref} t_{char}}{\mu}\theta^{*} \vb{e}_z\\
+		\partial_{t^{*}}\theta^{*} + \qty(\vb{v}^{*} \vdot \grad^{*})\theta^{*}&= \divergence{\qty(\frac{\kappa t_{char}}{\rho_{ref}c_V d^{2}}\grad^{*} \theta^{*})}+ \underbrace{v^{*}_z}_{\rho c_V \tilde{\vb{v}}\vdot \grad \hat{\theta}}, 
+\end{align*}
+
+And now we see how the choice of $t_{char}$ influences the equations. I can require one of the following
+\begin{align*}
+		\frac{\rho_{ref}d^{2}}{\mu t_{char}} &= 1\\
+		\frac{\alpha g \theta_{char}d \rho_{ref}t_{char}}{\mu} &= 1\\
+		\frac{\kappa t_{char}}{\rho_{ref}c_Vd^{2}} &=1
+	.
+\end{align*}
+Each of these choices are sensible. In our case, we are inrested in the thermal conduction mainly, so let us choose
+\[
+	t_{char} = \frac{\rho_{ref}c_V d^{2}}{\kappa}.
+\]
+Finally, we arrive to the following system of equations (we omit the stars and tildas)
+\begin{align*}
+	\divergence{\vb{v}} &= 0, \\
+	\frac{1}{\, \text{Pr} \,}\qty(\partial_t \vb{v}+\qty(\vb{v} \vdot \grad)\vb{v}) &= - \grad p + \laplace \theta + \, \text{Ra} \,\theta \vb{e}_z, \\
+	\partial_t \theta + \qty(\vb{v} \vdot \grad)\theta &=  \laplace \theta + v_z,
+\end{align*}
+where
+\begin{equation}
+\label{eq:prandtl_number}
+	\, \text{Pr} \, = \frac{\nu}{k} = \frac{\rho_{ref} d^{2}}{\mu t_{char}},
+\end{equation}
+is the Prandtl number and
+\begin{equation}
+\label{eq:rayleigh_number}
+	\, \text{Ra} \, = \frac{\alpha g \theta_{char}d^{3}}{\nu k}, \nu = \frac{\mu}{\rho_{ref}}, k = \frac{\kappa}{\rho_{ref}c_V}.
+\end{equation}
+is the Rayleigh number.
+
+
+Another form of the equations can be derived when rescaling the temperateure (choosing a different characteristic temperature)\footnote{Of course $\theta^{*}$ is totally different than the previous one}
+\[
+	\theta = \frac{\, \text{Pr} \,}{\sqrt{\, \text{Ra} \,}}\theta^{*},
+\]
+and this leads (of course, other quantities will have to be rescaled as well)
+
+\begin{align*}
+	 \grad^{*} \vdot \vb{v}^{*}&= 0 \\
+	\partial_{t^{*}} \vb{v}^{*} + \qty(\vb{v}^{*} \vdot \grad^{*})\vb{v}^{*} &= - \grad^{*} p^{*} + \laplace^{*} \vb{v}^{*} + \sqrt{\, \text{Ra} \,}\theta^{*} \vb{e}_z \\
+	\, \text{Pr} \,\qty(\partial_{t^{*}}\theta^{*} + \qty(\vb{v}^{*} \vdot \grad^{*})\theta^{*}) &= \laplace^{*} \theta^{*} + \sqrt{\, \text{Ra} \,}v^{*}_z.
+\end{align*}
+This scaling is popular in mathematical literature and \textit{we will stick to it.} It is also common to denote
+\[
+	R \coloneq \sqrt{\, \text{Ra} \,}.
+\]
+So finally finally, we are solving
+
+\begin{align*}
+	\divergence{\vb{v}}&= 0, \\
+	\partial_t \vb{v}+ \qty(\vb{v} \vdot \grad)\vb{v} &= - \grad p + \laplace \vb{v} + \, \text{R} \, \theta \vb{e}_z \\
+	\, \text{Pr} \,\qty(\partial_t \theta + \qty(\vb{v} \vdot \grad)\theta) & = \laplace \theta + \, \text{R} \,v_z.
+\end{align*}
+To add another issue, realise that we are working on unbounded domains, so integrals over the domain are problematic. This can be solved using periodic boundary conditions on lateral faces. 
+
+Let us take now the velocity equation, multiply $\vdot \vb{v}$ and integrate $\int_{\Omega}\dd{x}$.This yields:
+\[
+	\int_{\Omega}\qty(\, \text{equation} \,) \vdot \vb{v}\dd{x} = \dv{t}\qty(\frac{1}{2}\int_{\Omega}\vb{v} \vdot \vb{v}\dd{x} + \int_{\Omega}\qty(\vb{v}\vdot \grad)\vdot \vb{v}\dd{x}) = - \int_{\Omega}\grad p \vdot \vb{v}\dd{x} + \int_{\Omega}\laplace \vb{v} \vdot \vb{v}\dd{x} + \int_{\Omega}\, \text{R} \,\theta \vb{e}_z \vb{v}\dd{x},
+\]
+realize that
+\[
+	\int_{\Omega}\qty(\vb{v}\vdot \grad) \vdot\vb{v}\dd{x} = \int_{\Omega}\vb{v}\vdot \grad\qty(\frac{\vb{v}\vdot \vb{v}}{2})\dd{x} = \int_{\Omega}\qty(\divergence{\vb{v}})\frac{\vb{v}\vdot \vb{v}}{2}\dd{x} = 0,
+\]
+and
+\[
+	\int_{\Omega}\grad p \vdot \vb{v}\dd{x} = - \int_{\Omega}p \qty(\divergence{\vb{v}})\dd{x} = 0,
+\]
+and also
+\[
+	\int_{\Omega}\laplace \vb{v}\vdot \vb{v}\dd{x} = \int_{\Omega}\grad \vb{v} : \grad\vb{v}\dd{x},
+\]
+where we have used the periodicity of the boundary conditions and incompressibility.
+This means
+\[
+	\frac{1}{2} \dv{t}\qty(\int_{\Omega}\vb{v}\vdot \vb{v}\dd{x}) = \frac{1}{2} \dv{t} \norm{\vb{v}}_{\LpSet[2]{\Omega}}^{2} = - \norm{\grad \vb{v}}_{\LpSet[2]{\Omega}}^{2} + \int_{\Omega}\, \text{R} \, \theta \vb{e}_z \vdot \vb{v}\dd{x},
+\]
+which is exactly the similiar expression to the one derived at the beginning of our studies of the stability analysis. \footnote{We could again use Poincare to obtain the estimate for $\norm{\grad \vb{v}}_{\LpSet[2]{\Omega}}^{2} \leq \frac{1}{C_p} \norm{\vb{v}}_{\LpSet[2]{\Omega}}^{2}$ and stuff.}. It is evident that when
+\[
+	\, \text{R} \, = 0 = \, \text{Re} \,,
+\]
+the norm decays exponentially. 
+
+Let us repeat the previous maniupulation. Define
+\[
+	\psi = \frac{1}{2}\int_{\Omega}\vb{v}\vdot \vb{v}\dd{x} + \, \text{Pr} \, \frac{1}{2} \int_{\Omega}\theta^{2}\dd{x},
+\]
+and investigate (we are using the equations extensively)
+\[
+	\dv{\psi}{t} = -\int_{\Omega}\grad \vb{v} : \grad \vb{v}\dd{x} - \int_{\Omega}\grad \theta \vdot \grad \theta\dd{x} + 2\int_{\Omega}\, \text{R} \, \theta v_z\dd{x}
+\]
+
+
+\end{document} 
 %% Local Variables: 
 %%% mode: latex
 %%% TeX-master: t
