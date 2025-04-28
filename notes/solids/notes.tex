@@ -1038,7 +1038,112 @@ In most cases, the set $K$ is given as
 \[
 	K = \{ \tensorq{\sigma}:\varphi\qty(\tensorq{\sigma}) \leq 0\},
 \]
-where $\varphi$ is the yield function.
+where $\varphi$ is the \textbf{yield function.} The set
+\[
+	\{\tensorq{\sigma}| \varphi\qty(\tensorq{\sigma}) = 0\}
+\]
+is called the \textbf{yield surface.} Very often we have
+\[
+	\varphi\qty(\tensorq{\sigma}) = |\tensorq{\sigma}^D|-c_0,
+\]
+where $| \vdot |$ denotes the Frobenius norm and
+\[
+	\tensorq{\sigma}^D = \tensorq{\sigma} - \frac{1}{3}\qty(\tr \tensorq{\sigma})\identity,
+\]
+is the \textit{deviatoric part of the stress tensor}.
+
+\subsubsection{Plastic evolution}
+\label{sec:plastic_evolution}
+
+From the previous we have
+\[
+	\dot{\tensorq{p}} = \begin{cases}
+		\tensorq{0}, & \, \text{if} \, \varphi\qty(\tensorq{\sigma})<0, \\
+		\frac{\lambda}{|\tensorq{\sigma}^D|}\tensorq{\sigma}^D, & \, \text{if} \, \varphi\qty(\tensorq{\sigma}) = 0, \lambda \geq 0
+	\end{cases}.
+\]
+Also $\dot{\tensorq{p}} \in N_K\qty(\tensorq{\sigma}) = \partial I_K\qty(\tensorq{\sigma})$ so
+\[
+	\sigma \in \partial I_K^{*}\qty(\dot{\tensorq{p}}),
+\]
+where
+\[
+	I_K^{*}\qty(\dot{\tensorq{p}}) = \sup_{\tensorq{q}\in \R^{3 \times 3}}\qty(\dot{\tensorq{p}}: \tensorq{q}- I_K\qty(\tensorq{q})) = \sup_{\tensorq{q}\in K}\dot{\tensorq{p}}: \tensorq{q},
+\]
+is the Fenckel transformation of $I_K$, also called the \textbf{supporting function} of $\dot{\tensorq{p}}.$ We are able to rewrite the supremum to take the form\footnote{To utilize Cauchy-Schwarz later.}
+\[
+	I_K^{*}\qty(\dot{\tensorq{p}}) = \dot{\tensorq{p}} : \frac{c_0}{|\dot{\tensorq{p}}|}\dot{\tensorq{p}},
+\]
+if however the second term lies in $K$. Realize now that if $\tr \dot{\tensorq{p}} = 0$ then
+\[
+	I_K^{*}\qty(\dot{\tensorq{p}}) = c_0 |\dot{\tensorq{p}}|,
+\]
+and if $\tr \dot{\tensorq{p}} \neq 0$, then $I_K^{*}\qty(\dot{\tensorq{p}})= + \infty$. If we now define the \textbf{dissipation potential} $D$ as
+\[
+	D\qty(\dot{\tensorq{p}}) = \begin{cases}
+		c_0 |\dot{\tensorq{p}}|, & \, \text{if} \, \tr \dot{\tensorq{p}} = 0 \\
+		+ \infty, & \, \text{otherwise} \,
+	\end{cases},
+\]
+we get the following condition
+\[
+	\tensorq{\sigma} \in \partial D\qty(\dot{\tensorq{p}}).
+\]
+Let us summarise a bit. For the stress tensor we have $\tensorq{\sigma} = \tensorq{C}\qty(\tensorq{e}-\tensorq{p}) \in D\qty(\dot{\tensorq{p}}).$ The general relation also yields $\tensorq{\sigma}= \pdv{w\qty(\tilde{\tensorq{e}})}{\tilde{\tensorq{e}}} = \pdv{w\qty(\tensorq{e}-\tensorq{p})}{\tilde{\tensorq{e}}}, $ where $w\qty(\tilde{\tensorq{e}}) = \frac{1}{2}C \tilde{\tensorq{e}}: \tilde{\tensorq{e}}$ is the free energy density. Using the chain rule we obtain the condition
+\[
+	\pdv{w\qty(\tensorq{e}-\tensorq{p})}{\tensorq{p}} \in \partial D\qty(\dot{\tensorq{p}}).
+\]
+
+In total, we are solving the following system 
+\begin{equation*}
+    \begin{cases}
+	    0 \in \pdv{w\qty(\tensorq{e}-\tensorq{p})}{\tensorq{p}} + \partial D\qty(\dot{\tensorq{p}}), & \, \text{in} \, \Omega (\, \text{\textit{flow rule}}) \, \\
+	    \tensorq{p}(0) = \tensorq{p}_0, & \, \text{in} \, \Omega \\
+	    - \divergence{\qty(\tensorq{C}\qty(\tensorq{e}-\tensorq{p}))}= \vb{f}, &\, \text{in} \,\Omega \\
+	    \, \text{boundary condiitons} \,, & \, \text{on} \,\partial \Omega
+    \end{cases}.
+\end{equation*}
+
+How to solve the system?
+
+\subsubsection{Discrete time setting}
+\label{sec:discrete_time}
+
+Let us take $t \in [0, T]$ and fix $\tau = \frac{T}{N}, N \in \N$ for some $N >> 1$. Assume that using some discrete scheme, we are able to calculate $\tensorq{p}$ at a certain time. Then we must solve 
+\begin{equation*}
+    \begin{cases}
+	    0 \in \pdv{w\qty(\tensorq{e}-\tensorq{p})}{\tensorq{p}} + \partial D\qty(\dot{\frac{\tensorq{p}-\tensorq{p}_{k-1}}{\tau}}), & \, \text{in} \, \Omega \, \\
+	    - \divergence{\qty(\tensorq{C}\qty(\tensorq{e}_k-\tensorq{p}_k))}= \vb{f}_k, &\, \text{in} \,\Omega \\
+    \end{cases}.
+\end{equation*}
+
+Which are the E-L equations of the functional \footnote{We have guessed it.}
+\[
+	I\qty(\vb{u}, \tensorq{p}) = \int_{\Omega}w\qty(\tensorq{e}\qty(\vb{u})-\tensorq{p})\dd{x} + \tau \int_{\Omega}D\qty(\frac{1}{\tau}\qty(\tensorq{p}-\tensorq{p}_{k-1}))\dd{x} - \int_{\Omega}\vb{f}_k \vdot \vb{u}\dd{x} - \int_{\Gamma_N}\vb{g}_k \vdot u\dd{S}.
+\]
+Really, taking the variaton with respect to $\vb{u}$ gives us
+\[
+	- \divergence{\qty(\tensorq{C}\qty(\tensorq{e}_k -\tensorq{p}_k))} = \vb{f}_k,
+\]
+and the variation with respect to $\tensorq{p}$ gives us
+\[
+0 \in	- \tensorq{\sigma}+ \partial D\qty(\frac{1}{\tau}\qty(\tensorq{p}-\tensorq{p}_{k-1})).
+\]
+
+If we want to minimize this functional, \textit{i.e.}, solve the equations, it must hold \footnote{If not, we have no chance of minimizing it.} $D(\tensorq{q}) \neq +\infty$ (for $\tensorq{q}$ being the argument). From our assumptions on the dissipation potential this however implies.
+\[
+	D\qty(\tensorq{q}) = c_0 |\tensorq{q}|, \tr \tensorq{q} = 0,
+\]
+and we say the evolution is \textbf{rate-independent}. We see that $D$ is 1-homogenous:
+\[
+	D\qty(\alpha \tensorq{q}) = \alpha D\qty(\tensorq{q}).
+\]
+Rewritting the functional now yields:
+
+\[
+	I\qty(\vb{u}, \tensorq{p}) = \frac{1}{2} \int_{\Omega}\tensorq{C}\qty(\tensorq{e}\qty(\vb{u})-\tensorq{p}):\qty(\tensorq{e}\qty(\vb{u})-\tensorq{p})\dd{x} + \int_{\Omega}c_0 |\tensorq{p}-\tensorq{p}_{k-1}| \dd{x} - L_k\qty(\vb{u}), \tensorq{p}\qty(0) = \tensorq{p}_0,
+\]
+where $L_k\qty(\vb{u})$ is the loading.
 
 \section{(Some) tutorials}
 \label{sec:tutorials}

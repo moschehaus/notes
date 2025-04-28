@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1744637311.33176 "notes.tex" "notes.pdf" "notes" 1744637317.48528 0
+["pdflatex"] 1745846429.01741 "notes.tex" "notes.pdf" "notes" 1745846435.63712 0
   "/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1742685315 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "/usr/share/texmf-dist/fonts/enc/dvips/mnsymbol/MnSymbolA.enc" 1742685315 3341 78e600b269762aa2a25a5293cc4535c0 ""
   "/usr/share/texmf-dist/fonts/enc/dvips/mnsymbol/MnSymbolC.enc" 1742685315 3275 8d7166dfdbc31ffdc8aba0c31b3bd5c8 ""
@@ -132,6 +132,7 @@
   "/usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb" 1742685315 37944 359e864bd06cde3b1cf57bb20757fb06 ""
   "/usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti7.pfb" 1742685315 36607 d654cb3f2bc54f57509240071db3bffa ""
   "/usr/share/texmf-dist/fonts/type1/public/bbold-type1/bbold10.pfb" 1742685315 25452 d4e98a3bf6b13d4b7dcffd6302990a65 ""
+  "/usr/share/texmf-dist/fonts/type1/public/bbold-type1/bbold5.pfb" 1742685315 25754 c3afeb62cf34ff8e7693377d9df48e79 ""
   "/usr/share/texmf-dist/fonts/type1/public/bbold-type1/bbold7.pfb" 1742685315 25570 857e8ef1d068e88b2d8db4f6176e0f5c ""
   "/usr/share/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb" 1742685315 138258 6525c253f16cededa14c7fd0da7f67b2 ""
   "/usr/share/texmf-dist/fonts/type1/public/mnsymbol/MnSymbol-Bold10.pfb" 1742685315 235871 492342d3946b2cc10be82ecd28781075 ""
@@ -292,10 +293,10 @@
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1743674043 5311557 9da84c45f5b388655502706482323571 ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1743673972 2008231 401c56e7e2db0204dd1ee943df81c91a ""
   "macros.tex" 1744030871.22943 30074 526083298dc879962f55d3c91c40d933 ""
-  "notes.aux" 1744637316.29703 7636 c15767a514b6f520b1d97c0a9c2ed2be "pdflatex"
-  "notes.out" 1744637316.30203 5521 8c54cef3829a04f0cde0445d270fcf72 "pdflatex"
-  "notes.tex" 1744637305.01603 56662 02fbc8ef22ad84d8e583f507b95aacef ""
-  "notes.toc" 1744637316.30403 2864 8d50f7d923be15f82888b816dc04f488 "pdflatex"
+  "notes.aux" 1745846434.29735 8086 53110b402d28a3eaabeaee3af5a0c89a "pdflatex"
+  "notes.out" 1745846434.30235 5856 099755f4006abb33bec33652bbd52d38 "pdflatex"
+  "notes.tex" 1745846428.69135 61873 58d8b25670b96c91e6207c8af78eb9c1 ""
+  "notes.toc" 1745846434.30335 3056 07a8e915aea6a45cbd24d0b95934dd8e "pdflatex"
   (generated)
   "notes.aux"
   "notes.log"
