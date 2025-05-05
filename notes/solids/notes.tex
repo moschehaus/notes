@@ -122,7 +122,7 @@ Of large interest will be the \textbf{deformation gradient}
 \]
 on which we put some physically sound restrictions, such as$\det \fgrad> 0$. This means in particular that the determinant is nonzero, but also that preserves orientations of bases:
 \[
-(\vb{e}_1 \cross \vb{e}_2) \vdot \vb{e}_3 > 0 \Rightarrow(\fgrad\vb{e}_1 \cross \vb{e}_2) \vdot \fgrad \vb{e}_3 >0.
+(\vb{e}_1 \cross \vb{e}_2) \vdot \vb{e}_3 > 0 \Rightarrow(\fgrad\vb{e}_1 \cross \fgrad \vb{e}_2) \vdot \fgrad \vb{e}_3 >0.
 \]
 
 \begin{example}
@@ -174,7 +174,7 @@ so we write $\dd{\vb{x}^y} = \detf \dd{\vb{x}}$. This motivates "our" definition
 
 \begin{equation}
 \label{eq:detfdefinition}
-	\detf (\vb{x}) = \lim_{r\to 0} \frac{\lambda(B(\vb{x},r)}{\lambda(B(\vb{x},r))},
+	\detf (\vb{x}) = \lim_{r\to 0} \frac{\lambda(\vb{y}\qty(B(\vb{x},r))}{\lambda(B(\vb{x},r))},
 \end{equation}
 where $B(\vb{x},r)$ is a (closed) ball centered at $\vb{x}$ of radius $r$.
 
@@ -198,7 +198,7 @@ where we have denoted
 as the \textbf{Right Cauchy Green tensor}. 
 
 \begin{example}
-	Let the deformation $\vb{y}$ be given as $\vb{y}(\vb{x}) = \tensorq{R} \vb{x}+ \vb{v}, \vb{v} \in \R^d, \tensorq{R} \in \, \text{SO(d)} = \Big\{\tensorq{A} \in \R^{d \cross d}, \transpose{\tensorq{A}} \tensorq{A} = \tensorq{A} \transpose{\tensorq{A}} = \identity\Big\}$.
+	Let the deformation $\vb{y}$ be given as $\vb{y}(\vb{x}) = \tensorq{R} \vb{x}+ \vb{v}, \vb{v} \in \R^d, \tensorq{R} \in \, \text{SO(d)} = \Big\{\tensorq{A} \in \R^{d \cross d}, \transpose{\tensorq{A}} \tensorq{A} = \tensorq{A} \transpose{\tensorq{A}} = \identity, \det \tensorq{A} =1\footnote{From the fact $\tensorq{A}$ is orthogonal automatically follows $\det \tensorq{A} = \pm 1$.} \det \tensorq{A}>0\Big\}$.
 	Then \fgrad = \tensorq{R}, \rcg = \identity.
 \end{example}
 
@@ -315,7 +315,7 @@ Classical physics gives us 2 fundamental relations: Newtons second law for momen
 From second property it follows:
 
 \begin{equation}
-	\int_{\omega^y} \vb{f}^y(\vb{x}^y) \dd{\vb{x}^y} = \int_{\partial \omega^y} \tensorq{T}^y(\vb{x}^y) \vb{n}^y \dd{S}^y = 0 = \int_{\omega^y} \divergence{\tensorq{T}^y}(\vb{x}^{y}) \dd{\vb{x}^{y}},
+	\int_{\omega^y} \vb{f}^y(\vb{x}^y) \dd{\vb{x}^y} + \int_{\partial \omega^y} \tensorq{T}^y(\vb{x}^y) \vb{n}^y \dd{S}^y  =\int_{\omega^{y}}\vb{f}^{y}\qty(\vb{x})^{y}\dd{\vb{x}^{y}}+ \int_{\omega^y} \divergence{\tensorq{T}^y}(\vb{x}^{y}) \dd{\vb{x}^{y}} = 0,
 \end{equation}
 
 so using the localization theorem we get
@@ -414,7 +414,7 @@ as the contact force in the \textit{referential configuration}, we formally have
 \label{sec:elasticity}
 
 \begin{definition}[Elasticity]
-We say that a material is \textbf{elastic (or Cauchy elastic)} if there is a response function $\tilde{\tensorq{T}}^D:\Omega^{y} \cross \R^{3 \cross 3}_+ \to \R^{3 \cross 3}_{\, \text{sym} \,}$ such that
+We say that a material is \textbf{elastic (or Cauchy elastic)} if there is a response function $\tilde{\tensorq{T}}^D:\Omega \cross \R^{3 \cross 3}_+ \to \R^{3 \cross 3}_{\, \text{sym} \,}$ such that
 \[
 	\cstress\qty(\vb{x}^{y})= \tilde{\tensorq{T}}^D\qty(\vb{x},\fgrad).
 \]
@@ -708,7 +708,7 @@ Using Taylor expansion, we can write
 Since $\hat{W}\qty(\tensorq{0}) = \pdv{\hat{W}}{\tensorq{0}}\qty(\tensorq{0}) = 0$ the above (formal) manipulation leads us to the definition
 \begin{definition}[Tensor of elastic constants]
 	\[
-		\tensorq{C} = \pdv[2]{\hat{W}}{\tensorq{e}}\qty(\tensorq{0}), C_{ijkl} = \pdv[2]{\hat{W}}{e_{ij}e_{kl}}.
+	\mathcal{C} = \pdv[2]{\hat{W}}{\tensorq{e}}\qty(\tensorq{0}), C_{ijkl} = \pdv[2]{\hat{W}}{e_{ij}}{e_{kl}}.
 	\]
 \end{definition}
 \begin{remark}
@@ -717,7 +717,7 @@ Since $\hat{W}\qty(\tensorq{0}) = \pdv{\hat{W}}{\tensorq{0}}\qty(\tensorq{0}) = 
 
 With the notion of a tensor of elastic constants, we can then write the stored energy density as
 \[
-	w\qty(\tensorq{e}) = \frac{1}{2}(\tensorq{C}\tensorq{e}):\tensorq{e}.
+	w\qty(\tensorq{e}) = \frac{1}{2}(\mathcal{C}\tensorq{e}):\tensorq{e}.
 \]
 Following our definition $\pkstress = \pdv{\hat{W}}{\fgrad}$ we see
 \[
@@ -734,7 +734,7 @@ or in components
 
 Rewritting the equations in the linearized elasticity setting we obtain the system
 \begin{align*}
-	-\divergence{\tensorq{\sigma}} = - \divergence{\qty(\tensorq{C}\tensorq{e})} &= \vb{f} \, \text{in} \, \Omega \\
+	-\divergence{\tensorq{\sigma}} = - \divergence{\qty(\mathcal{C}\tensorq{e})} &= \vb{f} \, \text{in} \, \Omega \\
 	\tensorq{\sigma}\vb{n} &= \vb{g} \, \text{on} \, \Gamma_{N}, \\
 	\vb{u} &= \vb{0} \, \text{on} \, \Gamma_{D}.
 \end{align*}
@@ -1013,7 +1013,7 @@ The elasticity part is described as
 		\tensorq{\sigma} \vb{n} = \vb{g}, & \, \text{on the boundary} \, \\
 	\end{cases},
 \]
-with some constituive relation $\tensorq{\sigma} = \tensorq{C}\tilde{\tensorq{e}} = \tensorq{C}\qty(\tensorq{e}-\tensorq{p}).$
+with some constituive relation $\tensorq{\sigma} = \mathcal{C}\tilde{\tensorq{e}} = \mathcal{C}\qty(\tensorq{e}-\tensorq{p}).$
 What about the plastic part? 
 \[
 	\begin{cases} 
@@ -1089,7 +1089,7 @@ we get the following condition
 \[
 	\tensorq{\sigma} \in \partial D\qty(\dot{\tensorq{p}}).
 \]
-Let us summarise a bit. For the stress tensor we have $\tensorq{\sigma} = \tensorq{C}\qty(\tensorq{e}-\tensorq{p}) \in D\qty(\dot{\tensorq{p}}).$ The general relation also yields $\tensorq{\sigma}= \pdv{w\qty(\tilde{\tensorq{e}})}{\tilde{\tensorq{e}}} = \pdv{w\qty(\tensorq{e}-\tensorq{p})}{\tilde{\tensorq{e}}}, $ where $w\qty(\tilde{\tensorq{e}}) = \frac{1}{2}C \tilde{\tensorq{e}}: \tilde{\tensorq{e}}$ is the free energy density. Using the chain rule we obtain the condition
+Let us summarise a bit. For the stress tensor we have $\tensorq{\sigma} = \mathcal{C}\qty(\tensorq{e}-\tensorq{p}) \in D\qty(\dot{\tensorq{p}}).$ The general relation also yields $\tensorq{\sigma}= \pdv{w\qty(\tilde{\tensorq{e}})}{\tilde{\tensorq{e}}} = \pdv{w\qty(\tensorq{e}-\tensorq{p})}{\tilde{\tensorq{e}}}, $ where $w\qty(\tilde{\tensorq{e}}) = \frac{1}{2}C \tilde{\tensorq{e}}: \tilde{\tensorq{e}}$ is the free energy density. Using the chain rule we obtain the condition
 \[
 	\pdv{w\qty(\tensorq{e}-\tensorq{p})}{\tensorq{p}} \in \partial D\qty(\dot{\tensorq{p}}).
 \]
@@ -1099,7 +1099,7 @@ In total, we are solving the following system
     \begin{cases}
 	    0 \in \pdv{w\qty(\tensorq{e}-\tensorq{p})}{\tensorq{p}} + \partial D\qty(\dot{\tensorq{p}}), & \, \text{in} \, \Omega (\, \text{\textit{flow rule}}) \, \\
 	    \tensorq{p}(0) = \tensorq{p}_0, & \, \text{in} \, \Omega \\
-	    - \divergence{\qty(\tensorq{C}\qty(\tensorq{e}-\tensorq{p}))}= \vb{f}, &\, \text{in} \,\Omega \\
+	    - \divergence{\qty(\mathcal{C}\qty(\tensorq{e}-\tensorq{p}))}= \vb{f}, &\, \text{in} \,\Omega \\
 	    \, \text{boundary condiitons} \,, & \, \text{on} \,\partial \Omega
     \end{cases}.
 \end{equation*}
@@ -1113,7 +1113,7 @@ Let us take $t \in [0, T]$ and fix $\tau = \frac{T}{N}, N \in \N$ for some $N >>
 \begin{equation*}
     \begin{cases}
 	    0 \in \pdv{w\qty(\tensorq{e}-\tensorq{p})}{\tensorq{p}} + \partial D\qty(\dot{\frac{\tensorq{p}-\tensorq{p}_{k-1}}{\tau}}), & \, \text{in} \, \Omega \, \\
-	    - \divergence{\qty(\tensorq{C}\qty(\tensorq{e}_k-\tensorq{p}_k))}= \vb{f}_k, &\, \text{in} \,\Omega \\
+	    - \divergence{\qty(\mathcal{C}\qty(\tensorq{e}_k-\tensorq{p}_k))}= \vb{f}_k, &\, \text{in} \,\Omega \\
     \end{cases}.
 \end{equation*}
 
@@ -1123,7 +1123,7 @@ Which are the E-L equations of the functional \footnote{We have guessed it.}
 \]
 Really, taking the variaton with respect to $\vb{u}$ gives us
 \[
-	- \divergence{\qty(\tensorq{C}\qty(\tensorq{e}_k -\tensorq{p}_k))} = \vb{f}_k,
+	- \divergence{\qty(\mathcal{C}\qty(\tensorq{e}_k -\tensorq{p}_k))} = \vb{f}_k,
 \]
 and the variation with respect to $\tensorq{p}$ gives us
 \[
@@ -1141,10 +1141,99 @@ and we say the evolution is \textbf{rate-independent}. We see that $D$ is 1-homo
 Rewritting the functional now yields:
 
 \[
-	I\qty(\vb{u}, \tensorq{p}) = \frac{1}{2} \int_{\Omega}\tensorq{C}\qty(\tensorq{e}\qty(\vb{u})-\tensorq{p}):\qty(\tensorq{e}\qty(\vb{u})-\tensorq{p})\dd{x} + \int_{\Omega}c_0 |\tensorq{p}-\tensorq{p}_{k-1}| \dd{x} - L_k\qty(\vb{u}), \tensorq{p}\qty(0) = \tensorq{p}_0,
+	I\qty(\vb{u}, \tensorq{p}) = \frac{1}{2} \int_{\Omega}\mathcal{C}\qty(\tensorq{e}\qty(\vb{u})-\tensorq{p}):\qty(\tensorq{e}\qty(\vb{u})-\tensorq{p})\dd{x} + \int_{\Omega}c_0 |\tensorq{p}-\tensorq{p}_{k-1}| \dd{x} - L_k\qty(\vb{u}), \tensorq{p}\qty(0) = \tensorq{p}_0,
 \]
-where $L_k\qty(\vb{u})$ is the loading.
+where $L_k\qty(\vb{u})$ is the loading (at the $k$-th time step.) The sought solution is the pair $(\vb{u}_k,\tensorq{p}_k)$ which satisfies
 
+\[
+	I\qty(\vb{u}_k, \tensorq{p}_k) = \min_{\vb{u}, \tensorq{p}} I\qty(\vb{u},\tensorq{p}).
+\]
+
+
+\subsection{Rheological models}
+\label{sec:rheology}
+
+\subsubsection{Dashpots}
+\label{sec:dashpot}
+Or \textit{tlumič} in Czech. The stress is assumed to take the form
+
+\[
+	\tensorq{\sigma} = \mathcal{D}\dot{\tensorq{e}}\qty(\grad \vb{u}), \sigma_{ij} = D_{ijkl}\dot{e}_{kl}\qty(\grad \vb{u}),
+\]
+where $\mathcal{D}$ is the \textbf{tensor of viscosity constants.} \footnote{People say viscosity stresses or viscous stress. This is used, but nonetheless it is wrong.}
+
+\subsubsection{Kelvin-Voigt mateial}
+\label{sec:kelvin-voigt}
+The response of some materials can be modelled as a "parallel composition of a spring and a dashpot." Then, the total stress is
+\[
+	\tensorq{\sigma} = \tensorq{\sigma}_{p} + \tensorq{\sigma}_{e},
+\]
+that is the sum of the plastic and the elastic stresses. The strain is of course the same:
+
+\[
+	\tensorq{e} = \tensorq{e}_{p} = \tensorq{e}_{e}.
+\]
+
+The governing equations thus are
+
+\begin{align*}
+	- \divergence{\qty(\mathcal{C} \tensorq{e}\qty(\vb{u})+ \mathcal{D}\dot{\tensorq{e}}\qty(\vb{u}))} &= \vb{f}, \, \, \text{in} \,\Omega\\
+	\qty(\mathcal{C}\tensorq{e}+ \mathcal{D} \dot{\tensorq{e}})\vb{n} &= \vb{0}, \, \, \text{on} \, \Gamma_{N}\\
+	\vb{u} &= \vb{0}, \, \, \text{on} \,\Gamma_D \\
+	\tensorq{e}\qty(t = 0) &= \tensorq{e}_0, \, \, \text{in} \, \Omega.
+\end{align*}
+
+Let us obtain the energy \textit{formally} balance. As usual, multiply the first equation by $\dot{\vb{u}}$ and integrate $\int_{\Omega}\dd{\vb{x}}.$
+
+\[
+	\int_{\Omega}- \divergence{\qty(\mathcal{C}\tensorq{e}+ \mathcal{D}\dot{\tensorq{e}})} \vdot \dot{\vb{u}}\dd{x} = \int_{\Omega}\vb{f} \vdot \dot{\vb{u}}\dd{x},
+\]
+
+using Gauss 
+
+\[
+	\int_{\Omega}\qty(\mathcal{C} \tensorq{e}+ \mathcal{D} \dot{\tensorq{e}}): \grad \dot{\vb{u}}\dd{x} = \int_{\Omega}\vb{f} \vdot \dot{\vb{u}}\dd{x} =\footnote{It holds $\dot{\tensorq{e}}\qty(\vb{u}) = \tensorq{e}\qty(\dot{\vb{u}}).$} \int_{\Omega}\mathcal{C}\tensorq{e}:\dot{\tensorq{e}}\dd{x} + \int_{\Omega}\mathcal{D}\dot{\tensorq{e}}:\dot{\tensorq{e}}\dd{x} = \int_{\Omega}\vb{f}\vdot \vb{u}\dd{x},
+\]
+and now we rewrite 
+\[
+	= \int_{\Omega}\dv{t} \qty(\frac{1}{2} \mathcal{C} \tensorq{e}\qty(\vb{u}):\tensorq{e}\qty(\vb{u}))\dd{x} + \int_{\Omega}\mathcal{D} \dot{\tensorq{e}}\qty(\vb{u}): \dot{\tensorq{e}}\qty(\vb{u})\dd{x} = \int_{\Omega}\vb{f} \vdot \dot{\vb{u}}\dd{x},
+\]
+and integrate in time:
+\[
+	\int_0^T\int_{\Omega}\dv{t} \qty(\frac{1}{2} \mathcal{C} \tensorq{e}\qty(\vb{u}):\tensorq{e}\qty(\vb{u}))\dd{x}\dd{t} + \int_0^T\int_{\Omega}\mathcal{D} \dot{\tensorq{e}}\qty(\vb{u}): \dot{\tensorq{e}}\qty(\vb{u})\dd{x}\dd{t} =\int_0^T \int_{\Omega}\vb{f} \vdot \dot{\vb{u}}\dd{x} \dd{t}.
+\]
+Remember that
+\[
+	w\qty(\tensorq{e}\qty(\vb{u})) = \frac{1}{2}\mathcal{C}\tensorq{e}\qty(\vb{u}):\tensorq{e}\qty(\vb{u}),
+\]
+so we have obtained
+
+\[
+	\int_{\Omega}w\qty(\tensorq{e}\qty(\vb{u}(T)))\dd{x} - \int_{\Omega}w\qty(\tensorq{e}\qty(\vb{u}\qty(0)))\dd{x} + \int_0^T \int_{\Omega}\mathcal{D} \dot{\tensorq{e}}\qty(\vb{u}):\dot{\tensorq{e}}\qty(\vb{u})\dd{x} \dd{t} = \int_0^T \int_{\Omega}\vb{f} \vdot \dot{\vb{u}}\dd{x} \dd{t}.
+\]
+\subsubsection{Maxwell material}
+\label{sec:maxwell}
+This is the case when we "put the spring and the dashpot in serial composition". The total stress is
+\[
+	\tensorq{\sigma} = \tensorq{\sigma}_p = \tensorq{\sigma}_e,
+\]
+and the total strain is
+\[
+	\varepsilon = \tensorq{e}_{p}+ \tensorq{e}_{e}.
+\]
+
+
+\subsection{Internal parameters}
+\label{sec:internal_parameters}
+A lot of materials can be described using some internal parameters $z$ (scalars, vectos, tensors); for example, plastic strain, fatique, damage, length of a crack, delamination.
+
+The model 
+\[
+	\tensorq{\sigma} = \partial_{\dot{\tensorq{e}}} \zeta\qty(\dot{\tensorq{e}}, \dot{z}) + \partial_{\tensorq{e}}w\qty(\tensorq{e}, z),
+\]
+with the flow rule 
+$0 \in \partial_{\dot{z}} \zeta\qty(\dot{\tensorq{e}}, \dot{z}) + \partial_{z}w\qty(\tensorq{e},z).$
+is called the \textbf{generalized Kelvin-Voigt.}
 \section{(Some) tutorials}
 \label{sec:tutorials}
 

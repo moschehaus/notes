@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2026/dev/Arch Linux) (preloaded format=pdflatex 2025.4.3)  15 APR 2025 16:21
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2026/dev/Arch Linux) (preloaded format=pdflatex 2025.4.3)  29 APR 2025 15:38
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -692,14 +692,15 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 
 [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texmf-dist/fonts/enc/dvips/mnsymbol/MnSymbolC.enc}{/usr/share/texmf-dist/fonts/enc/dvips/mnsymbol/MnSymbolE.enc}{/usr/share/texmf-dist/fonts/enc/dvips/mnsymbol/MnSymbolD.enc}]
-
-[2{/usr/share/texmf-dist/fonts/enc/dvips/mnsymbol/MnSymbolF.enc}{/usr/share/texmf-dist/fonts/enc/dvips/mnsymbol/MnSymbolA.enc}]
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texmf-dist/fonts/enc/dvips/mnsymbol/MnSymbolC.enc}{/usr/share/texmf-dist/fonts/enc/dvips/mnsymbol/MnSymbolE.enc}{/usr/share/texmf-dist/fonts/enc/dvips/mnsymbol/MnSymbolD.enc}{/usr/share/texmf-dist/fonts/enc/dvips/mnsymbol/MnSymbolF.enc}]
 LaTeX Font Info:    Freeze math alphabet allocation in version normal.
 (Font)              Allocated math groups: 15 (local: 2) on input line 167.
 LaTeX Font Info:    Undo math alphabet allocation in version normal on input line 167.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 168.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 168.
+
+
+[2{/usr/share/texmf-dist/fonts/enc/dvips/mnsymbol/MnSymbolA.enc}{/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 169.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 170.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 171.
@@ -739,9 +740,6 @@ LaTeX Font Info:    No math alphabet change to frozen version normal on input li
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 201.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 201.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 208.
-
-
-[3{/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}{/usr/share/texmf-dist/fonts/enc/dvips/mnsymbol/MnSymbolS.enc}]
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 209.
 LaTeX Font Info:    Undo math alphabet allocation in version normal on input line 215.
 LaTeX Font Info:    Undo math alphabet allocation in version normal on input line 215.
@@ -769,6 +767,9 @@ LaTeX Font Info:    No math alphabet change to frozen version normal on input li
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 227.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 227.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 227.
+
+
+[3{/usr/share/texmf-dist/fonts/enc/dvips/mnsymbol/MnSymbolS.enc}]
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 229.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 231.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 238.
@@ -823,9 +824,6 @@ LaTeX Font Info:    No math alphabet change to frozen version normal on input li
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 252.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 252.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 252.
-
-
-[4]
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 255.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 255.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 255.
@@ -875,6 +873,9 @@ LaTeX Font Info:    No math alphabet change to frozen version normal on input li
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 274.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 274.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 274.
+
+
+[4]
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 278.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 278.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 278.
@@ -950,9 +951,6 @@ LaTeX Font Info:    No math alphabet change to frozen version normal on input li
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 311.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 311.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 311.
-
-
-[5]
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 313.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 316.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 316.
@@ -1021,6 +1019,9 @@ LaTeX Font Info:    No math alphabet change to frozen version normal on input li
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 334.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 334.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 334.
+
+
+[5]
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 336.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 337.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 337.
@@ -1309,9 +1310,6 @@ LaTeX Font Info:    No math alphabet change to frozen version normal on input li
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 379.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 379.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 379.
-
-
-[6]
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 387.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 387.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 387.
@@ -1396,6 +1394,9 @@ LaTeX Font Info:    No math alphabet change to frozen version normal on input li
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 407.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 407.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 409.
+
+
+[6]
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 412.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 413.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 413.
@@ -1881,9 +1882,6 @@ LaTeX Font Info:    No math alphabet change to frozen version normal on input li
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 439.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 439.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 439.
-
-
-[7]
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 439.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 441.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 441.
@@ -1903,6 +1901,9 @@ LaTeX Font Info:    No math alphabet change to frozen version normal on input li
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 443.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 443.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 443.
+
+
+[7]
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 447.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 448.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 448.
@@ -2400,9 +2401,6 @@ Overfull \hbox (42.27048pt too wide) detected at line 491
 []
  []
 
-
-
-[8]
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 491.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 496.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 496.
@@ -2414,6 +2412,9 @@ LaTeX Font Info:    No math alphabet change to frozen version normal on input li
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 498.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 498.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 498.
+
+
+[8]
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 499.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 500.
 LaTeX Font Info:    Undo math alphabet allocation in version normal on input line 504.
@@ -2574,9 +2575,6 @@ LaTeX Font Info:    No math alphabet change to frozen version normal on input li
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 522.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 523.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 523.
-
-
-[9]
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 526.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 530.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 531.
@@ -2603,6 +2601,9 @@ LaTeX Font Info:    No math alphabet change to frozen version normal on input li
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 556.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 556.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 556.
+
+
+[9]
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 557.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 558.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 558.
@@ -2702,9 +2703,6 @@ LaTeX Font Info:    No math alphabet change to frozen version normal on input li
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 594.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 594.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 595.
-
-
-[10]
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 597.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 597.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 597.
@@ -2815,6 +2813,9 @@ Overfull \hbox (54.8362pt too wide) detected at line 603
 []
  []
 
+
+
+[10]
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 603.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 604.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 607.
@@ -2981,9 +2982,6 @@ LaTeX Font Info:    No math alphabet change to frozen version normal on input li
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 620.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 623.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 623.
-
-
-[11]
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 624.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 625.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 625.
@@ -3050,6 +3048,9 @@ LaTeX Font Info:    No math alphabet change to frozen version normal on input li
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 644.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 644.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 644.
+
+
+[11]
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 646.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 646.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 647.
@@ -3086,9 +3087,6 @@ LaTeX Font Info:    No math alphabet change to frozen version normal on input li
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 676.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 676.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 676.
-
-
-[12]
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 682.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 682.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 682.
@@ -3113,6 +3111,9 @@ LaTeX Font Info:    No math alphabet change to frozen version normal on input li
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 696.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 699.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 699.
+
+
+[12]
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 700.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 703.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 703.
@@ -3231,9 +3232,6 @@ LaTeX Font Info:    No math alphabet change to frozen version normal on input li
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 733.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 733.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 733.
-
-
-[13]
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 734.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 735.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 735.
@@ -3289,6 +3287,9 @@ LaTeX Font Info:    No math alphabet change to frozen version normal on input li
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 741.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 741.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 741.
+
+
+[13]
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 742.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 745.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 745.
@@ -3515,11 +3516,7 @@ LaTeX Font Info:    No math alphabet change to frozen version normal on input li
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 780.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 780.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 780.
-
-
-[14]
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 780.
-
 ./notes.tex:780: Extra }, or forgotten $.
 \@quantity code ...8}{}{|#8|}} \ifnum \z@ =`{\fi }
                                                    
@@ -3576,6 +3573,9 @@ LaTeX Font Info:    No math alphabet change to frozen version normal on input li
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 796.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 796.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 796.
+
+
+[14]
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 797.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 798.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 800.
@@ -3737,9 +3737,6 @@ LaTeX Font Info:    No math alphabet change to frozen version normal on input li
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 835.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 835.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 835.
-
-
-[15]
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 837.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 837.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 837.
@@ -3856,6 +3853,9 @@ LaTeX Font Info:    No math alphabet change to frozen version normal on input li
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 843.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 843.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 843.
+
+
+[15]
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 844.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 851.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 851.
@@ -3981,9 +3981,6 @@ LaTeX Font Info:    No math alphabet change to frozen version normal on input li
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 888.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 888.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 888.
-
-
-[16]
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 889.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 894.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 894.
@@ -3997,6 +3994,9 @@ Overfull \hbox (132.10168pt too wide) in paragraph at lines 894--896
  \U/MnSymbolD/m/n/10 > \OML/cmm/m/it/10 C[]; u[] \U/MnSymbolD/m/n/10 > [][]  [] \OML/cmm/m/it/10 ; r \U/MnSymbolD/m/n/10 > \OMX/MnSymbolE/m/n/10 à\OT1/cmr/m/n/10 1\OML/cmm/m/it/10 ; \U/MnSymbolC/m/n/10 ™\OMX/MnSymbolE/m/n/10 ç\OML/cmm/m/it/10 ; \OMX/MnSymbolE/m/n/10 ò\OML/cmm/m/it/10 a[]\OMX/MnSymbolE/m/n/10 ù[] [] $
  []
 
+
+
+[16]
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 908.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 908.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 908.
@@ -4050,6 +4050,7 @@ LaTeX Font Info:    No math alphabet change to frozen version normal on input li
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 922.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 922.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 922.
+
 ./notes.tex:922: Misplaced alignment tab character &.
 l.922 		F\qty(\alpha^n) \vdot \alpha^n &
                                         \geq \int_{\Omega}a\qty(\vdot, u^n, ...
@@ -4214,13 +4215,13 @@ LaTeX Font Info:    No math alphabet change to frozen version normal on input li
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 933.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 933.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 933.
-
-
-[17]
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 934.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 937.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 937.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 937.
+
+
+[17]
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 938.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 940.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 940.
@@ -4610,9 +4611,6 @@ LaTeX Font Info:    No math alphabet change to frozen version normal on input li
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 982.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 982.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 982.
-
-
-[18]
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 983.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 984.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 984.
@@ -4624,6 +4622,9 @@ LaTeX Font Info:    No math alphabet change to frozen version normal on input li
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 986.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 986.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 986.
+
+
+[18]
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 987.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 991.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 991.
@@ -4808,9 +4809,6 @@ LaTeX Font Info:    No math alphabet change to frozen version normal on input li
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1036.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1036.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1036.
-
-
-[19]
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1037.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1038.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1040.
@@ -4823,6 +4821,9 @@ LaTeX Font Info:    No math alphabet change to frozen version normal on input li
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1040.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1040.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1040.
+
+
+[19]
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1041.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1042.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1042.
@@ -5023,9 +5024,6 @@ LaTeX Font Info:    No math alphabet change to frozen version normal on input li
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1093.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1094.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1094.
-
-
-[20]
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1095.
 LaTeX Font Info:    Undo math alphabet allocation in version normal on input line 1098.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1098.
@@ -5167,6 +5165,9 @@ LaTeX Font Info:    No math alphabet change to frozen version normal on input li
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1104.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1104.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1104.
+
+
+[20]
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1105.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1106.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1106.
@@ -5472,15 +5473,11 @@ LaTeX Font Info:    No math alphabet change to frozen version normal on input li
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1153.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1153.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1153.
-
-
-[21]
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1154.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1158.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1158.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1160.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1161.
-
 ./notes.tex:1166: Undefined control sequence.
 l.1166     Let $F: \R^N \to \R, F \in \C
                                         ^1\qty(\R^N), N \in \N.$ Then
@@ -5507,6 +5504,9 @@ LaTeX Font Info:    No math alphabet change to frozen version normal on input li
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1171.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1171.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1171.
+
+
+[21]
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1172.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1176.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1176.
@@ -5625,9 +5625,6 @@ LaTeX Font Info:    No math alphabet change to frozen version normal on input li
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1209.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1209.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1209.
-
-
-[22]
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1210.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1214.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1214.
@@ -5743,6 +5740,9 @@ LaTeX Font Info:    No math alphabet change to frozen version normal on input li
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1224.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1224.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1224.
+
+
+[22]
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1225.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1226.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1226.
@@ -5777,76 +5777,2523 @@ LaTeX Font Info:    No math alphabet change to frozen version normal on input li
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1244.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1244.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1245.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1249.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1249.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1252.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1256.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1256.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1259.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1265.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1266.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1267.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1267.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1267.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1267.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1267.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1267.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1267.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1267.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1267.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1267.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1267.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1267.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1267.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1267.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1267.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1267.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1267.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1267.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1267.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1267.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1267.
+ Excluding 'comment' comment.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1286.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1286.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1286.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1286.
+
+./notes.tex:1286: Missing $ inserted.
+<inserted text> 
+                $
+l.1286 ... is precompact in $\LpIntX{p}{0}{T}{V_2}
+                                                  .$ That will be done in th...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./notes.tex:1286: Extra }, or forgotten $.
+\textdef@ ...th {#1}\let \f@size #2\selectfont #3}
+                                                  }
+l.1286 ... is precompact in $\LpIntX{p}{0}{T}{V_2}
+                                                  .$ That will be done in th...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./notes.tex:1286: Extra }, or forgotten $.
+\textdef@ ...h {#1}\let \f@size #2\selectfont #3}}
+                                                  
+l.1286 ... is precompact in $\LpIntX{p}{0}{T}{V_2}
+                                                  .$ That will be done in th...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./notes.tex:1286: Extra }, or forgotten $.
+\text@ ...e {\textdef@ \displaystyle \f@size {#1}}
+                                                  {\textdef@ \textstyle \f@s...
+l.1286 ... is precompact in $\LpIntX{p}{0}{T}{V_2}
+                                                  .$ That will be done in th...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./notes.tex:1286: Missing $ inserted.
+<inserted text> 
+                $
+l.1286 ... is precompact in $\LpIntX{p}{0}{T}{V_2}
+                                                  .$ That will be done in th...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./notes.tex:1286: Extra }, or forgotten $.
+\textdef@ ...th {#1}\let \f@size #2\selectfont #3}
+                                                  }
+l.1286 ... is precompact in $\LpIntX{p}{0}{T}{V_2}
+                                                  .$ That will be done in th...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./notes.tex:1286: Extra }, or forgotten $.
+\textdef@ ...h {#1}\let \f@size #2\selectfont #3}}
+                                                  
+l.1286 ... is precompact in $\LpIntX{p}{0}{T}{V_2}
+                                                  .$ That will be done in th...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./notes.tex:1286: Extra }, or forgotten $.
+\text@ ...xtstyle \f@size {\firstchoice@false #1}}
+                                                  {\textdef@ \textstyle \sf@...
+l.1286 ... is precompact in $\LpIntX{p}{0}{T}{V_2}
+                                                  .$ That will be done in th...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./notes.tex:1286: Missing $ inserted.
+<inserted text> 
+                $
+l.1286 ... is precompact in $\LpIntX{p}{0}{T}{V_2}
+                                                  .$ That will be done in th...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./notes.tex:1286: Extra }, or forgotten $.
+\textdef@ ...th {#1}\let \f@size #2\selectfont #3}
+                                                  }
+l.1286 ... is precompact in $\LpIntX{p}{0}{T}{V_2}
+                                                  .$ That will be done in th...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./notes.tex:1286: Extra }, or forgotten $.
+\textdef@ ...h {#1}\let \f@size #2\selectfont #3}}
+                                                  
+l.1286 ... is precompact in $\LpIntX{p}{0}{T}{V_2}
+                                                  .$ That will be done in th...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./notes.tex:1286: Extra }, or forgotten $.
+\text@ ...tstyle \sf@size {\firstchoice@false #1}}
+                                                  {\textdef@ \textstyle \ssf...
+l.1286 ... is precompact in $\LpIntX{p}{0}{T}{V_2}
+                                                  .$ That will be done in th...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./notes.tex:1286: Missing $ inserted.
+<inserted text> 
+                $
+l.1286 ... is precompact in $\LpIntX{p}{0}{T}{V_2}
+                                                  .$ That will be done in th...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./notes.tex:1286: Extra }, or forgotten $.
+\textdef@ ...th {#1}\let \f@size #2\selectfont #3}
+                                                  }
+l.1286 ... is precompact in $\LpIntX{p}{0}{T}{V_2}
+                                                  .$ That will be done in th...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./notes.tex:1286: Extra }, or forgotten $.
+\textdef@ ...h {#1}\let \f@size #2\selectfont #3}}
+                                                  
+l.1286 ... is precompact in $\LpIntX{p}{0}{T}{V_2}
+                                                  .$ That will be done in th...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./notes.tex:1286: Extra }, or forgotten $.
+\text@ ...style \ssf@size {\firstchoice@false #1}}
+                                                  \check@mathfonts }
+l.1286 ... is precompact in $\LpIntX{p}{0}{T}{V_2}
+                                                  .$ That will be done in th...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./notes.tex:1286: Extra }, or forgotten $.
+\text@ ...firstchoice@false #1}}\check@mathfonts }
+                                                  
+l.1286 ... is precompact in $\LpIntX{p}{0}{T}{V_2}
+                                                  .$ That will be done in th...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./notes.tex:1288: Missing \endgroup inserted.
+<inserted text> 
+                \endgroup 
+l.1288 		\item M
+                ollify $M$ by convolution
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./notes.tex:1288: Missing } inserted.
+<inserted text> 
+                }
+l.1288 		\item M
+                ollify $M$ by convolution
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./notes.tex:1288: Missing } inserted.
+<inserted text> 
+                }
+l.1288 		\item M
+                ollify $M$ by convolution
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./notes.tex:1288: Missing $ inserted.
+<inserted text> 
+                $
+l.1288 		\item M
+                ollify $M$ by convolution
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./notes.tex:1288: Missing } inserted.
+<inserted text> 
+                }
+l.1288 		\item M
+                ollify $M$ by convolution
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./notes.tex:1288: Missing } inserted.
+<inserted text> 
+                }
+l.1288 		\item M
+                ollify $M$ by convolution
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./notes.tex:1288: Missing } inserted.
+<inserted text> 
+                }
+l.1288 		\item M
+                ollify $M$ by convolution
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./notes.tex:1288: Missing $ inserted.
+<inserted text> 
+                $
+l.1288 		\item M
+                ollify $M$ by convolution
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./notes.tex:1288: Missing } inserted.
+<inserted text> 
+                }
+l.1288 		\item M
+                ollify $M$ by convolution
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./notes.tex:1288: Missing } inserted.
+<inserted text> 
+                }
+l.1288 		\item M
+                ollify $M$ by convolution
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./notes.tex:1288: Missing } inserted.
+<inserted text> 
+                }
+l.1288 		\item M
+                ollify $M$ by convolution
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./notes.tex:1288: Missing $ inserted.
+<inserted text> 
+                $
+l.1288 		\item M
+                ollify $M$ by convolution
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./notes.tex:1288: Missing } inserted.
+<inserted text> 
+                }
+l.1288 		\item M
+                ollify $M$ by convolution
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1288.
+./notes.tex:1288: Missing } inserted.
+<inserted text> 
+                }
+l.1288 		\item M
+                ollify $M$ by convolution
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./notes.tex:1288: Missing } inserted.
+<inserted text> 
+                }
+l.1288 		\item M
+                ollify $M$ by convolution
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./notes.tex:1288: Missing $ inserted.
+<inserted text> 
+                $
+l.1288 		\item M
+                ollify $M$ by convolution
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./notes.tex:1288: Missing } inserted.
+<inserted text> 
+                }
+l.1288 		\item M
+                ollify $M$ by convolution
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./notes.tex:1288: Missing { inserted.
+<to be read again> 
+                   $
+l.1288 		\item M
+                ollify $M$ by convolution
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+./notes.tex:1288: Missing } inserted.
+<inserted text> 
+                }
+l.1288 		\item M
+                ollify $M$ by convolution
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./notes.tex:1288: Missing { inserted.
+<to be read again> 
+                   $
+l.1288 		\item M
+                ollify $M$ by convolution
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+./notes.tex:1288: Missing } inserted.
+<inserted text> 
+                }
+l.1288 		\item M
+                ollify $M$ by convolution
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./notes.tex:1288: Missing { inserted.
+<to be read again> 
+                   $
+l.1288 		\item M
+                ollify $M$ by convolution
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+./notes.tex:1288: Missing } inserted.
+<inserted text> 
+                }
+l.1288 		\item M
+                ollify $M$ by convolution
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./notes.tex:1288: Missing } inserted.
+<inserted text> 
+                }
+l.1288 		\item M
+                ollify $M$ by convolution
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1288.
+
+./notes.tex:1288: LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1288 		\item M
+                ollify $M$ by convolution
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1288.
 
 
 [23]
-LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1258.
-LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1259.
-LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1259.
-LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1259.
-LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1259.
-LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1262.
-LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1262.
-LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1262.
-LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1265.
-LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1266.
-LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1269.
-LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1270.
-LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1277.
-LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1277.
-LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1277.
-LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1277.
-LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1277.
-LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1277.
-LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1277.
-LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1277.
-LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1277.
-LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1277.
-LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1277.
-LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1277.
-LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1281.
-LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1281.
-LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1281.
-LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1281.
-LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1281.
-LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1281.
-LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1281.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1290.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1290.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1290.
 
-Overfull \hbox (54.50461pt too wide) detected at line 1284
-[]\OMX/MnSymbolE/m/n/10 à\OML/cmm/m/it/10 p[] \U/MnSymbolC/m/n/10 ^^P \OML/cmm/m/it/10 p[]\OMX/MnSymbolE/m/n/10 ç \U/MnSymbolD/m/n/10 ^^@ [][] [] [] [][][]\OMX/MnSymbolE/m/n/10 à\OML/cmm/m/it/10 p[] \U/MnSymbolC/m/n/10 ^^T \OML/cmm/m/it/10 s\OMX/MnSymbolE/m/n/10 à\OML/cmm/m/it/10 p[] \U/MnSymbolC/m/n/10 ^^P \OML/cmm/m/it/10 p[]\OMX/MnSymbolE/m/n/10 çç [] à\OML/cmm/m/it/10 p[] \U/MnSymbolC/m/n/10 ^^P \OML/cmm/m/it/10 p[]\OMX/MnSymbolE/m/n/10 ç[]
- []
+./notes.tex:1290: Missing $ inserted.
+<inserted text> 
+                $
+l.1290 ...ow compactness in $\LpIntX{p}{0}{T}{V_3}
+                                                  $
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
 
-LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1284.
+./notes.tex:1290: Extra }, or forgotten $.
+\textdef@ ...th {#1}\let \f@size #2\selectfont #3}
+                                                  }
+l.1290 ...ow compactness in $\LpIntX{p}{0}{T}{V_3}
+                                                  $
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./notes.tex:1290: Extra }, or forgotten $.
+\textdef@ ...h {#1}\let \f@size #2\selectfont #3}}
+                                                  
+l.1290 ...ow compactness in $\LpIntX{p}{0}{T}{V_3}
+                                                  $
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./notes.tex:1290: Extra }, or forgotten $.
+\text@ ...e {\textdef@ \displaystyle \f@size {#1}}
+                                                  {\textdef@ \textstyle \f@s...
+l.1290 ...ow compactness in $\LpIntX{p}{0}{T}{V_3}
+                                                  $
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./notes.tex:1290: Missing $ inserted.
+<inserted text> 
+                $
+l.1290 ...ow compactness in $\LpIntX{p}{0}{T}{V_3}
+                                                  $
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./notes.tex:1290: Extra }, or forgotten $.
+\textdef@ ...th {#1}\let \f@size #2\selectfont #3}
+                                                  }
+l.1290 ...ow compactness in $\LpIntX{p}{0}{T}{V_3}
+                                                  $
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./notes.tex:1290: Extra }, or forgotten $.
+\textdef@ ...h {#1}\let \f@size #2\selectfont #3}}
+                                                  
+l.1290 ...ow compactness in $\LpIntX{p}{0}{T}{V_3}
+                                                  $
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./notes.tex:1290: Extra }, or forgotten $.
+\text@ ...xtstyle \f@size {\firstchoice@false #1}}
+                                                  {\textdef@ \textstyle \sf@...
+l.1290 ...ow compactness in $\LpIntX{p}{0}{T}{V_3}
+                                                  $
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./notes.tex:1290: Missing $ inserted.
+<inserted text> 
+                $
+l.1290 ...ow compactness in $\LpIntX{p}{0}{T}{V_3}
+                                                  $
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./notes.tex:1290: Extra }, or forgotten $.
+\textdef@ ...th {#1}\let \f@size #2\selectfont #3}
+                                                  }
+l.1290 ...ow compactness in $\LpIntX{p}{0}{T}{V_3}
+                                                  $
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./notes.tex:1290: Extra }, or forgotten $.
+\textdef@ ...h {#1}\let \f@size #2\selectfont #3}}
+                                                  
+l.1290 ...ow compactness in $\LpIntX{p}{0}{T}{V_3}
+                                                  $
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./notes.tex:1290: Extra }, or forgotten $.
+\text@ ...tstyle \sf@size {\firstchoice@false #1}}
+                                                  {\textdef@ \textstyle \ssf...
+l.1290 ...ow compactness in $\LpIntX{p}{0}{T}{V_3}
+                                                  $
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./notes.tex:1290: Missing $ inserted.
+<inserted text> 
+                $
+l.1290 ...ow compactness in $\LpIntX{p}{0}{T}{V_3}
+                                                  $
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./notes.tex:1290: Extra }, or forgotten $.
+\textdef@ ...th {#1}\let \f@size #2\selectfont #3}
+                                                  }
+l.1290 ...ow compactness in $\LpIntX{p}{0}{T}{V_3}
+                                                  $
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./notes.tex:1290: Extra }, or forgotten $.
+\textdef@ ...h {#1}\let \f@size #2\selectfont #3}}
+                                                  
+l.1290 ...ow compactness in $\LpIntX{p}{0}{T}{V_3}
+                                                  $
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./notes.tex:1290: Extra }, or forgotten $.
+\text@ ...style \ssf@size {\firstchoice@false #1}}
+                                                  \check@mathfonts }
+l.1290 ...ow compactness in $\LpIntX{p}{0}{T}{V_3}
+                                                  $
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./notes.tex:1290: Extra }, or forgotten $.
+\text@ ...firstchoice@false #1}}\check@mathfonts }
+                                                  
+l.1290 ...ow compactness in $\LpIntX{p}{0}{T}{V_3}
+                                                  $
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./notes.tex:1291: Missing } inserted.
+<inserted text> 
+                }
+l.1291 		\item a
+                pply Ehrling lemma and show compactness in $\LpIntX{p}{0}{T}...
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./notes.tex:1291: Missing } inserted.
+<inserted text> 
+                }
+l.1291 		\item a
+                pply Ehrling lemma and show compactness in $\LpIntX{p}{0}{T}...
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./notes.tex:1291: Missing $ inserted.
+<inserted text> 
+                $
+l.1291 		\item a
+                pply Ehrling lemma and show compactness in $\LpIntX{p}{0}{T}...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./notes.tex:1291: Missing } inserted.
+<inserted text> 
+                }
+l.1291 		\item a
+                pply Ehrling lemma and show compactness in $\LpIntX{p}{0}{T}...
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./notes.tex:1291: Missing } inserted.
+<inserted text> 
+                }
+l.1291 		\item a
+                pply Ehrling lemma and show compactness in $\LpIntX{p}{0}{T}...
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./notes.tex:1291: Missing } inserted.
+<inserted text> 
+                }
+l.1291 		\item a
+                pply Ehrling lemma and show compactness in $\LpIntX{p}{0}{T}...
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./notes.tex:1291: Missing $ inserted.
+<inserted text> 
+                $
+l.1291 		\item a
+                pply Ehrling lemma and show compactness in $\LpIntX{p}{0}{T}...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./notes.tex:1291: Missing } inserted.
+<inserted text> 
+                }
+l.1291 		\item a
+                pply Ehrling lemma and show compactness in $\LpIntX{p}{0}{T}...
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./notes.tex:1291: Missing } inserted.
+<inserted text> 
+                }
+l.1291 		\item a
+                pply Ehrling lemma and show compactness in $\LpIntX{p}{0}{T}...
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./notes.tex:1291: Missing } inserted.
+<inserted text> 
+                }
+l.1291 		\item a
+                pply Ehrling lemma and show compactness in $\LpIntX{p}{0}{T}...
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./notes.tex:1291: Missing $ inserted.
+<inserted text> 
+                $
+l.1291 		\item a
+                pply Ehrling lemma and show compactness in $\LpIntX{p}{0}{T}...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./notes.tex:1291: Missing } inserted.
+<inserted text> 
+                }
+l.1291 		\item a
+                pply Ehrling lemma and show compactness in $\LpIntX{p}{0}{T}...
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1291.
+./notes.tex:1291: Missing } inserted.
+<inserted text> 
+                }
+l.1291 		\item a
+                pply Ehrling lemma and show compactness in $\LpIntX{p}{0}{T}...
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./notes.tex:1291: Missing } inserted.
+<inserted text> 
+                }
+l.1291 		\item a
+                pply Ehrling lemma and show compactness in $\LpIntX{p}{0}{T}...
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./notes.tex:1291: Missing $ inserted.
+<inserted text> 
+                $
+l.1291 		\item a
+                pply Ehrling lemma and show compactness in $\LpIntX{p}{0}{T}...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./notes.tex:1291: Missing } inserted.
+<inserted text> 
+                }
+l.1291 		\item a
+                pply Ehrling lemma and show compactness in $\LpIntX{p}{0}{T}...
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./notes.tex:1291: Missing { inserted.
+<to be read again> 
+                   $
+l.1291 		\item a
+                pply Ehrling lemma and show compactness in $\LpIntX{p}{0}{T}...
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+./notes.tex:1291: Missing } inserted.
+<inserted text> 
+                }
+l.1291 		\item a
+                pply Ehrling lemma and show compactness in $\LpIntX{p}{0}{T}...
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./notes.tex:1291: Missing { inserted.
+<to be read again> 
+                   $
+l.1291 		\item a
+                pply Ehrling lemma and show compactness in $\LpIntX{p}{0}{T}...
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+./notes.tex:1291: Missing } inserted.
+<inserted text> 
+                }
+l.1291 		\item a
+                pply Ehrling lemma and show compactness in $\LpIntX{p}{0}{T}...
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./notes.tex:1291: Missing { inserted.
+<to be read again> 
+                   $
+l.1291 		\item a
+                pply Ehrling lemma and show compactness in $\LpIntX{p}{0}{T}...
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+./notes.tex:1291: Missing } inserted.
+<inserted text> 
+                }
+l.1291 		\item a
+                pply Ehrling lemma and show compactness in $\LpIntX{p}{0}{T}...
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./notes.tex:1291: Missing } inserted.
+<inserted text> 
+                }
+l.1291 		\item a
+                pply Ehrling lemma and show compactness in $\LpIntX{p}{0}{T}...
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1291.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1291.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1291.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1291.
+./notes.tex:1291: Missing $ inserted.
+<inserted text> 
+                $
+l.1291 ...ow compactness in $\LpIntX{p}{0}{T}{V_2}
+                                                  .$
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./notes.tex:1291: Extra }, or forgotten $.
+\textdef@ ...th {#1}\let \f@size #2\selectfont #3}
+                                                  }
+l.1291 ...ow compactness in $\LpIntX{p}{0}{T}{V_2}
+                                                  .$
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./notes.tex:1291: Extra }, or forgotten $.
+\textdef@ ...h {#1}\let \f@size #2\selectfont #3}}
+                                                  
+l.1291 ...ow compactness in $\LpIntX{p}{0}{T}{V_2}
+                                                  .$
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./notes.tex:1291: Extra }, or forgotten $.
+\text@ ...e {\textdef@ \displaystyle \f@size {#1}}
+                                                  {\textdef@ \textstyle \f@s...
+l.1291 ...ow compactness in $\LpIntX{p}{0}{T}{V_2}
+                                                  .$
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./notes.tex:1291: Missing $ inserted.
+<inserted text> 
+                $
+l.1291 ...ow compactness in $\LpIntX{p}{0}{T}{V_2}
+                                                  .$
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./notes.tex:1291: Extra }, or forgotten $.
+\textdef@ ...th {#1}\let \f@size #2\selectfont #3}
+                                                  }
+l.1291 ...ow compactness in $\LpIntX{p}{0}{T}{V_2}
+                                                  .$
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./notes.tex:1291: Extra }, or forgotten $.
+\textdef@ ...h {#1}\let \f@size #2\selectfont #3}}
+                                                  
+l.1291 ...ow compactness in $\LpIntX{p}{0}{T}{V_2}
+                                                  .$
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./notes.tex:1291: Extra }, or forgotten $.
+\text@ ...xtstyle \f@size {\firstchoice@false #1}}
+                                                  {\textdef@ \textstyle \sf@...
+l.1291 ...ow compactness in $\LpIntX{p}{0}{T}{V_2}
+                                                  .$
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./notes.tex:1291: Missing $ inserted.
+<inserted text> 
+                $
+l.1291 ...ow compactness in $\LpIntX{p}{0}{T}{V_2}
+                                                  .$
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./notes.tex:1291: Extra }, or forgotten $.
+\textdef@ ...th {#1}\let \f@size #2\selectfont #3}
+                                                  }
+l.1291 ...ow compactness in $\LpIntX{p}{0}{T}{V_2}
+                                                  .$
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./notes.tex:1291: Extra }, or forgotten $.
+\textdef@ ...h {#1}\let \f@size #2\selectfont #3}}
+                                                  
+l.1291 ...ow compactness in $\LpIntX{p}{0}{T}{V_2}
+                                                  .$
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./notes.tex:1291: Extra }, or forgotten $.
+\text@ ...tstyle \sf@size {\firstchoice@false #1}}
+                                                  {\textdef@ \textstyle \ssf...
+l.1291 ...ow compactness in $\LpIntX{p}{0}{T}{V_2}
+                                                  .$
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./notes.tex:1291: Missing $ inserted.
+<inserted text> 
+                $
+l.1291 ...ow compactness in $\LpIntX{p}{0}{T}{V_2}
+                                                  .$
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./notes.tex:1291: Extra }, or forgotten $.
+\textdef@ ...th {#1}\let \f@size #2\selectfont #3}
+                                                  }
+l.1291 ...ow compactness in $\LpIntX{p}{0}{T}{V_2}
+                                                  .$
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./notes.tex:1291: Extra }, or forgotten $.
+\textdef@ ...h {#1}\let \f@size #2\selectfont #3}}
+                                                  
+l.1291 ...ow compactness in $\LpIntX{p}{0}{T}{V_2}
+                                                  .$
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./notes.tex:1291: Extra }, or forgotten $.
+\text@ ...style \ssf@size {\firstchoice@false #1}}
+                                                  \check@mathfonts }
+l.1291 ...ow compactness in $\LpIntX{p}{0}{T}{V_2}
+                                                  .$
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./notes.tex:1291: Extra }, or forgotten $.
+\text@ ...firstchoice@false #1}}\check@mathfonts }
+                                                  
+l.1291 ...ow compactness in $\LpIntX{p}{0}{T}{V_2}
+                                                  .$
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./notes.tex:1292: Undefined control sequence.
+\enit@endenumerate ->\enit@after 
+                                 \endlist \ifx \enit@series \relax \else \if...
+l.1292 	\end{enumerate}
+                       
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./notes.tex:1292: Missing } inserted.
+<inserted text> 
+                }
+l.1292 	\end{enumerate}
+                       
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./notes.tex:1292: Missing } inserted.
+<inserted text> 
+                }
+l.1292 	\end{enumerate}
+                       
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./notes.tex:1292: Missing $ inserted.
+<inserted text> 
+                $
+l.1292 	\end{enumerate}
+                       
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./notes.tex:1292: Missing } inserted.
+<inserted text> 
+                }
+l.1292 	\end{enumerate}
+                       
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./notes.tex:1292: Missing } inserted.
+<inserted text> 
+                }
+l.1292 	\end{enumerate}
+                       
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./notes.tex:1292: Missing } inserted.
+<inserted text> 
+                }
+l.1292 	\end{enumerate}
+                       
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./notes.tex:1292: Missing $ inserted.
+<inserted text> 
+                $
+l.1292 	\end{enumerate}
+                       
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./notes.tex:1292: Missing } inserted.
+<inserted text> 
+                }
+l.1292 	\end{enumerate}
+                       
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./notes.tex:1292: Missing } inserted.
+<inserted text> 
+                }
+l.1292 	\end{enumerate}
+                       
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./notes.tex:1292: Missing } inserted.
+<inserted text> 
+                }
+l.1292 	\end{enumerate}
+                       
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./notes.tex:1292: Missing $ inserted.
+<inserted text> 
+                $
+l.1292 	\end{enumerate}
+                       
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./notes.tex:1292: Missing } inserted.
+<inserted text> 
+                }
+l.1292 	\end{enumerate}
+                       
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1292.
+./notes.tex:1292: Missing } inserted.
+<inserted text> 
+                }
+l.1292 	\end{enumerate}
+                       
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./notes.tex:1292: Missing } inserted.
+<inserted text> 
+                }
+l.1292 	\end{enumerate}
+                       
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./notes.tex:1292: Missing $ inserted.
+<inserted text> 
+                $
+l.1292 	\end{enumerate}
+                       
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./notes.tex:1292: Missing } inserted.
+<inserted text> 
+                }
+l.1292 	\end{enumerate}
+                       
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./notes.tex:1292: Missing { inserted.
+<to be read again> 
+                   $
+l.1292 	\end{enumerate}
+                       
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+./notes.tex:1292: Missing } inserted.
+<inserted text> 
+                }
+l.1292 	\end{enumerate}
+                       
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./notes.tex:1292: Missing { inserted.
+<to be read again> 
+                   $
+l.1292 	\end{enumerate}
+                       
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+./notes.tex:1292: Missing } inserted.
+<inserted text> 
+                }
+l.1292 	\end{enumerate}
+                       
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./notes.tex:1292: Missing { inserted.
+<to be read again> 
+                   $
+l.1292 	\end{enumerate}
+                       
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+./notes.tex:1292: Missing } inserted.
+<inserted text> 
+                }
+l.1292 	\end{enumerate}
+                       
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./notes.tex:1292: Missing } inserted.
+<inserted text> 
+                }
+l.1292 	\end{enumerate}
+                       
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1292.
+./notes.tex:1292: Undefined control sequence.
+\enit@endenumerate ...\else \ifnum \enit@resuming 
+                                                  =\@ne \enit@setresumekeys ...
+l.1292 	\end{enumerate}
+                       
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./notes.tex:1292: Missing number, treated as zero.
+<to be read again> 
+                   =
+l.1292 	\end{enumerate}
+                       
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+./notes.tex:1292: Undefined control sequence.
+\enit@setresumekeys ...xpandafter {\enit@savekeys 
+                                                  }\xdef \enit@afterlist {#2...
+l.1292 	\end{enumerate}
+                       
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./notes.tex:1292: Undefined control sequence.
+\enit@endenumerate ...t \fi \ifnum \enit@resuming 
+                                                  =\thr@@ \enit@setresumekey...
+l.1292 	\end{enumerate}
+                       
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./notes.tex:1292: Missing number, treated as zero.
+<to be read again> 
+                   =
+l.1292 	\end{enumerate}
+                       
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+./notes.tex:1292: Undefined control sequence.
+\enit@setresumekeys ...xpandafter {\enit@savekeys 
+                                                  }\xdef \enit@afterlist {#2...
+l.1292 	\end{enumerate}
+                       
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
 
 
-[24] (./notes.aux)
- ***********
-LaTeX2e <2024-11-01> patch level 2
-L3 programming layer <2025-01-18>
- ***********
+./notes.tex:1292: LaTeX Error: \begin{proof} on input line 1285 ended by \end{enumerate}.
 
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1292 	\end{enumerate}
+                       
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
 
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+./notes.tex:1294: Undefined control sequence.
+l.1294 Fix $M \sub
+                   \mathcal{U}$ bounded. Then $\exists C^{*} > 0: \forall u ...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
 
-Package rerunfilecheck Info: File `notes.out' has not changed.
-(rerunfilecheck)             Checksum: 8C49501B84BA30BC757DD13B2642F127;3040.
- ) 
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1294.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1294.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1299.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1300.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1300.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1302.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1302.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1304.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1304.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1304.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1304.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1304.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1304.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1304.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1304.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1304.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1304.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1304.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1304.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1305.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1305.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1305.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1305.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1305.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1305.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1306.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1306.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1306.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1307.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1307.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1308.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1311.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1313.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1313.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1313.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1313.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1313.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1313.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1313.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1313.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1313.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1313.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1313.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1313.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1313.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1313.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1313.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1313.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1314.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1315.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1315.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1315.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1315.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1315.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1315.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1315.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1315.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1315.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1315.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1315.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1315.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1315.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1315.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1315.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1315.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1315.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1315.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1315.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1315.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1315.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1315.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1315.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1315.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1315.
+./notes.tex:1315: Missing $ inserted.
+<inserted text> 
+                $
+l.1315 ...[0,T];V_2) \subset \LpIntX{p}{0}{T}{V_2}
+                                                  .$
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./notes.tex:1315: Extra }, or forgotten $.
+\textdef@ ...th {#1}\let \f@size #2\selectfont #3}
+                                                  }
+l.1315 ...[0,T];V_2) \subset \LpIntX{p}{0}{T}{V_2}
+                                                  .$
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./notes.tex:1315: Extra }, or forgotten $.
+\textdef@ ...h {#1}\let \f@size #2\selectfont #3}}
+                                                  
+l.1315 ...[0,T];V_2) \subset \LpIntX{p}{0}{T}{V_2}
+                                                  .$
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./notes.tex:1315: Extra }, or forgotten $.
+\text@ ...e {\textdef@ \displaystyle \f@size {#1}}
+                                                  {\textdef@ \textstyle \f@s...
+l.1315 ...[0,T];V_2) \subset \LpIntX{p}{0}{T}{V_2}
+                                                  .$
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./notes.tex:1315: Missing $ inserted.
+<inserted text> 
+                $
+l.1315 ...[0,T];V_2) \subset \LpIntX{p}{0}{T}{V_2}
+                                                  .$
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./notes.tex:1315: Extra }, or forgotten $.
+\textdef@ ...th {#1}\let \f@size #2\selectfont #3}
+                                                  }
+l.1315 ...[0,T];V_2) \subset \LpIntX{p}{0}{T}{V_2}
+                                                  .$
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./notes.tex:1315: Extra }, or forgotten $.
+\textdef@ ...h {#1}\let \f@size #2\selectfont #3}}
+                                                  
+l.1315 ...[0,T];V_2) \subset \LpIntX{p}{0}{T}{V_2}
+                                                  .$
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./notes.tex:1315: Extra }, or forgotten $.
+\text@ ...xtstyle \f@size {\firstchoice@false #1}}
+                                                  {\textdef@ \textstyle \sf@...
+l.1315 ...[0,T];V_2) \subset \LpIntX{p}{0}{T}{V_2}
+                                                  .$
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./notes.tex:1315: Missing $ inserted.
+<inserted text> 
+                $
+l.1315 ...[0,T];V_2) \subset \LpIntX{p}{0}{T}{V_2}
+                                                  .$
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./notes.tex:1315: Extra }, or forgotten $.
+\textdef@ ...th {#1}\let \f@size #2\selectfont #3}
+                                                  }
+l.1315 ...[0,T];V_2) \subset \LpIntX{p}{0}{T}{V_2}
+                                                  .$
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./notes.tex:1315: Extra }, or forgotten $.
+\textdef@ ...h {#1}\let \f@size #2\selectfont #3}}
+                                                  
+l.1315 ...[0,T];V_2) \subset \LpIntX{p}{0}{T}{V_2}
+                                                  .$
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./notes.tex:1315: Extra }, or forgotten $.
+\text@ ...tstyle \sf@size {\firstchoice@false #1}}
+                                                  {\textdef@ \textstyle \ssf...
+l.1315 ...[0,T];V_2) \subset \LpIntX{p}{0}{T}{V_2}
+                                                  .$
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./notes.tex:1315: Missing $ inserted.
+<inserted text> 
+                $
+l.1315 ...[0,T];V_2) \subset \LpIntX{p}{0}{T}{V_2}
+                                                  .$
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./notes.tex:1315: Extra }, or forgotten $.
+\textdef@ ...th {#1}\let \f@size #2\selectfont #3}
+                                                  }
+l.1315 ...[0,T];V_2) \subset \LpIntX{p}{0}{T}{V_2}
+                                                  .$
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./notes.tex:1315: Extra }, or forgotten $.
+\textdef@ ...h {#1}\let \f@size #2\selectfont #3}}
+                                                  
+l.1315 ...[0,T];V_2) \subset \LpIntX{p}{0}{T}{V_2}
+                                                  .$
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./notes.tex:1315: Extra }, or forgotten $.
+\text@ ...style \ssf@size {\firstchoice@false #1}}
+                                                  \check@mathfonts }
+l.1315 ...[0,T];V_2) \subset \LpIntX{p}{0}{T}{V_2}
+                                                  .$
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./notes.tex:1315: Extra }, or forgotten $.
+\text@ ...firstchoice@false #1}}\check@mathfonts }
+                                                  
+l.1315 ...[0,T];V_2) \subset \LpIntX{p}{0}{T}{V_2}
+                                                  .$
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./notes.tex:1317: Missing $ inserted.
+<inserted text> 
+                $
+l.1317 ...d $M_{\delta}$ in $\LpIntX{p}{0}{T}{V_3}
+                                                  :$ for
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./notes.tex:1317: Extra }, or forgotten $.
+\textdef@ ...th {#1}\let \f@size #2\selectfont #3}
+                                                  }
+l.1317 ...d $M_{\delta}$ in $\LpIntX{p}{0}{T}{V_3}
+                                                  :$ for
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./notes.tex:1317: Extra }, or forgotten $.
+\textdef@ ...h {#1}\let \f@size #2\selectfont #3}}
+                                                  
+l.1317 ...d $M_{\delta}$ in $\LpIntX{p}{0}{T}{V_3}
+                                                  :$ for
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./notes.tex:1317: Extra }, or forgotten $.
+\text@ ...e {\textdef@ \displaystyle \f@size {#1}}
+                                                  {\textdef@ \textstyle \f@s...
+l.1317 ...d $M_{\delta}$ in $\LpIntX{p}{0}{T}{V_3}
+                                                  :$ for
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./notes.tex:1317: Missing $ inserted.
+<inserted text> 
+                $
+l.1317 ...d $M_{\delta}$ in $\LpIntX{p}{0}{T}{V_3}
+                                                  :$ for
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./notes.tex:1317: Extra }, or forgotten $.
+\textdef@ ...th {#1}\let \f@size #2\selectfont #3}
+                                                  }
+l.1317 ...d $M_{\delta}$ in $\LpIntX{p}{0}{T}{V_3}
+                                                  :$ for
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./notes.tex:1317: Extra }, or forgotten $.
+\textdef@ ...h {#1}\let \f@size #2\selectfont #3}}
+                                                  
+l.1317 ...d $M_{\delta}$ in $\LpIntX{p}{0}{T}{V_3}
+                                                  :$ for
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./notes.tex:1317: Extra }, or forgotten $.
+\text@ ...xtstyle \f@size {\firstchoice@false #1}}
+                                                  {\textdef@ \textstyle \sf@...
+l.1317 ...d $M_{\delta}$ in $\LpIntX{p}{0}{T}{V_3}
+                                                  :$ for
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./notes.tex:1317: Missing $ inserted.
+<inserted text> 
+                $
+l.1317 ...d $M_{\delta}$ in $\LpIntX{p}{0}{T}{V_3}
+                                                  :$ for
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./notes.tex:1317: Extra }, or forgotten $.
+\textdef@ ...th {#1}\let \f@size #2\selectfont #3}
+                                                  }
+l.1317 ...d $M_{\delta}$ in $\LpIntX{p}{0}{T}{V_3}
+                                                  :$ for
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./notes.tex:1317: Extra }, or forgotten $.
+\textdef@ ...h {#1}\let \f@size #2\selectfont #3}}
+                                                  
+l.1317 ...d $M_{\delta}$ in $\LpIntX{p}{0}{T}{V_3}
+                                                  :$ for
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./notes.tex:1317: Extra }, or forgotten $.
+\text@ ...tstyle \sf@size {\firstchoice@false #1}}
+                                                  {\textdef@ \textstyle \ssf...
+l.1317 ...d $M_{\delta}$ in $\LpIntX{p}{0}{T}{V_3}
+                                                  :$ for
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./notes.tex:1317: Missing $ inserted.
+<inserted text> 
+                $
+l.1317 ...d $M_{\delta}$ in $\LpIntX{p}{0}{T}{V_3}
+                                                  :$ for
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./notes.tex:1317: Extra }, or forgotten $.
+\textdef@ ...th {#1}\let \f@size #2\selectfont #3}
+                                                  }
+l.1317 ...d $M_{\delta}$ in $\LpIntX{p}{0}{T}{V_3}
+                                                  :$ for
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./notes.tex:1317: Extra }, or forgotten $.
+\textdef@ ...h {#1}\let \f@size #2\selectfont #3}}
+                                                  
+l.1317 ...d $M_{\delta}$ in $\LpIntX{p}{0}{T}{V_3}
+                                                  :$ for
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./notes.tex:1317: Extra }, or forgotten $.
+\text@ ...style \ssf@size {\firstchoice@false #1}}
+                                                  \check@mathfonts }
+l.1317 ...d $M_{\delta}$ in $\LpIntX{p}{0}{T}{V_3}
+                                                  :$ for
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./notes.tex:1317: Extra }, or forgotten $.
+\text@ ...firstchoice@false #1}}\check@mathfonts }
+                                                  
+l.1317 ...d $M_{\delta}$ in $\LpIntX{p}{0}{T}{V_3}
+                                                  :$ for
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./notes.tex:1319: Missing $ inserted.
+<inserted text> 
+                $
+l.1319 	u \in
+              M, t \in (0,T): \tilde{u}(t) - \tilde{u}_{\delta}(t) = \tilde{...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./notes.tex:1320: Missing $ inserted.
+<inserted text> 
+                $
+l.1320 \]
+         
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./notes.tex:1323: Missing $ inserted.
+<inserted text> 
+                $
+l.1323 ...varphi_{\delta}\qty(\sigma)\dd{\sigma}}^
+                                                  0_{s=-\delta}- \int_{-\del...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./notes.tex:1324: Missing $ inserted.
+<inserted text> 
+                $
+l.1324 \]
+         
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./notes.tex:1328: Missing $ inserted.
+<inserted text> 
+                $
+l.1328 	= - \int
+                _{-\delta}^0 \int_{\sigma}^0 \tilde{u'}\qty(t-s)\dd{s}\varph...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./notes.tex:1329: Missing $ inserted.
+<inserted text> 
+                $
+l.1329 \]
+         
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./notes.tex:1332: Missing $ inserted.
+<inserted text> 
+                $
+l.1332 	\norm{\tilde{u}(t)-\tilde{u_{\delta}}(t)}
+                                                 _{V_3} \leq \int_{-\delta}^...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./notes.tex:1332: Extra }, or forgotten $.
+\@braces code ...t #7} } } } } \ifnum \z@ =`{\fi }
+                                                   
+l.1332 	\norm{\tilde{u}(t)-\tilde{u_{\delta}}(t)}
+                                                 _{V_3} \leq \int_{-\delta}^...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./notes.tex:1333: Missing $ inserted.
+<inserted text> 
+                $
+l.1333 \]
+         
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./notes.tex:1333: Missing } inserted.
+<inserted text> 
+                }
+l.1333 \]
+         
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./notes.tex:1336: Missing $ inserted.
+<inserted text> 
+                $
+l.1336 $\LpIntX{1}{0}{T}{V_3}
+                             $ estimate:
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./notes.tex:1336: Extra }, or forgotten $.
+\textdef@ ...th {#1}\let \f@size #2\selectfont #3}
+                                                  }
+l.1336 $\LpIntX{1}{0}{T}{V_3}
+                             $ estimate:
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./notes.tex:1336: Extra }, or forgotten $.
+\textdef@ ...h {#1}\let \f@size #2\selectfont #3}}
+                                                  
+l.1336 $\LpIntX{1}{0}{T}{V_3}
+                             $ estimate:
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./notes.tex:1336: Extra }, or forgotten $.
+\text@ ...e {\textdef@ \displaystyle \f@size {#1}}
+                                                  {\textdef@ \textstyle \f@s...
+l.1336 $\LpIntX{1}{0}{T}{V_3}
+                             $ estimate:
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./notes.tex:1336: Missing $ inserted.
+<inserted text> 
+                $
+l.1336 $\LpIntX{1}{0}{T}{V_3}
+                             $ estimate:
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./notes.tex:1336: Extra }, or forgotten $.
+\textdef@ ...th {#1}\let \f@size #2\selectfont #3}
+                                                  }
+l.1336 $\LpIntX{1}{0}{T}{V_3}
+                             $ estimate:
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./notes.tex:1336: Extra }, or forgotten $.
+\textdef@ ...h {#1}\let \f@size #2\selectfont #3}}
+                                                  
+l.1336 $\LpIntX{1}{0}{T}{V_3}
+                             $ estimate:
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./notes.tex:1336: Extra }, or forgotten $.
+\text@ ...xtstyle \f@size {\firstchoice@false #1}}
+                                                  {\textdef@ \textstyle \sf@...
+l.1336 $\LpIntX{1}{0}{T}{V_3}
+                             $ estimate:
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./notes.tex:1336: Missing $ inserted.
+<inserted text> 
+                $
+l.1336 $\LpIntX{1}{0}{T}{V_3}
+                             $ estimate:
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./notes.tex:1336: Extra }, or forgotten $.
+\textdef@ ...th {#1}\let \f@size #2\selectfont #3}
+                                                  }
+l.1336 $\LpIntX{1}{0}{T}{V_3}
+                             $ estimate:
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./notes.tex:1336: Extra }, or forgotten $.
+\textdef@ ...h {#1}\let \f@size #2\selectfont #3}}
+                                                  
+l.1336 $\LpIntX{1}{0}{T}{V_3}
+                             $ estimate:
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./notes.tex:1336: Extra }, or forgotten $.
+\text@ ...tstyle \sf@size {\firstchoice@false #1}}
+                                                  {\textdef@ \textstyle \ssf...
+l.1336 $\LpIntX{1}{0}{T}{V_3}
+                             $ estimate:
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./notes.tex:1336: Missing $ inserted.
+<inserted text> 
+                $
+l.1336 $\LpIntX{1}{0}{T}{V_3}
+                             $ estimate:
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./notes.tex:1336: Extra }, or forgotten $.
+\textdef@ ...th {#1}\let \f@size #2\selectfont #3}
+                                                  }
+l.1336 $\LpIntX{1}{0}{T}{V_3}
+                             $ estimate:
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./notes.tex:1336: Extra }, or forgotten $.
+\textdef@ ...h {#1}\let \f@size #2\selectfont #3}}
+                                                  
+l.1336 $\LpIntX{1}{0}{T}{V_3}
+                             $ estimate:
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./notes.tex:1336: Extra }, or forgotten $.
+\text@ ...style \ssf@size {\firstchoice@false #1}}
+                                                  \check@mathfonts }
+l.1336 $\LpIntX{1}{0}{T}{V_3}
+                             $ estimate:
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./notes.tex:1336: Extra }, or forgotten $.
+\text@ ...firstchoice@false #1}}\check@mathfonts }
+                                                  
+l.1336 $\LpIntX{1}{0}{T}{V_3}
+                             $ estimate:
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./notes.tex:1338: Missing $ inserted.
+<inserted text> 
+                $
+l.1338 	\int
+            _{0}^T \norm{u(t)-u_{\delta}(t)}_{V_3}\dd{t} \leq \int_{0}^T \in...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./notes.tex:1338: Missing $ inserted.
+<inserted text> 
+                $
+l.1338 ...q 2 \delta \NormLpIntX{u'}{1}{0}{T}{V_3}
+                                                   \leq 2 \delta C^{*}
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./notes.tex:1338: Extra }, or forgotten $.
+\textdef@ ...th {#1}\let \f@size #2\selectfont #3}
+                                                  }
+l.1338 ...q 2 \delta \NormLpIntX{u'}{1}{0}{T}{V_3}
+                                                   \leq 2 \delta C^{*}
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./notes.tex:1338: Extra }, or forgotten $.
+\textdef@ ...h {#1}\let \f@size #2\selectfont #3}}
+                                                  
+l.1338 ...q 2 \delta \NormLpIntX{u'}{1}{0}{T}{V_3}
+                                                   \leq 2 \delta C^{*}
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./notes.tex:1338: Extra }, or forgotten $.
+\text@ ...e {\textdef@ \displaystyle \f@size {#1}}
+                                                  {\textdef@ \textstyle \f@s...
+l.1338 ...q 2 \delta \NormLpIntX{u'}{1}{0}{T}{V_3}
+                                                   \leq 2 \delta C^{*}
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./notes.tex:1338: Missing $ inserted.
+<inserted text> 
+                $
+l.1338 ...q 2 \delta \NormLpIntX{u'}{1}{0}{T}{V_3}
+                                                   \leq 2 \delta C^{*}
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./notes.tex:1338: Extra }, or forgotten $.
+\textdef@ ...th {#1}\let \f@size #2\selectfont #3}
+                                                  }
+l.1338 ...q 2 \delta \NormLpIntX{u'}{1}{0}{T}{V_3}
+                                                   \leq 2 \delta C^{*}
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./notes.tex:1338: Extra }, or forgotten $.
+\textdef@ ...h {#1}\let \f@size #2\selectfont #3}}
+                                                  
+l.1338 ...q 2 \delta \NormLpIntX{u'}{1}{0}{T}{V_3}
+                                                   \leq 2 \delta C^{*}
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./notes.tex:1338: Extra }, or forgotten $.
+\text@ ...xtstyle \f@size {\firstchoice@false #1}}
+                                                  {\textdef@ \textstyle \sf@...
+l.1338 ...q 2 \delta \NormLpIntX{u'}{1}{0}{T}{V_3}
+                                                   \leq 2 \delta C^{*}
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./notes.tex:1338: Missing $ inserted.
+<inserted text> 
+                $
+l.1338 ...q 2 \delta \NormLpIntX{u'}{1}{0}{T}{V_3}
+                                                   \leq 2 \delta C^{*}
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./notes.tex:1338: Extra }, or forgotten $.
+\textdef@ ...th {#1}\let \f@size #2\selectfont #3}
+                                                  }
+l.1338 ...q 2 \delta \NormLpIntX{u'}{1}{0}{T}{V_3}
+                                                   \leq 2 \delta C^{*}
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./notes.tex:1338: Extra }, or forgotten $.
+\textdef@ ...h {#1}\let \f@size #2\selectfont #3}}
+                                                  
+l.1338 ...q 2 \delta \NormLpIntX{u'}{1}{0}{T}{V_3}
+                                                   \leq 2 \delta C^{*}
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./notes.tex:1338: Extra }, or forgotten $.
+\text@ ...tstyle \sf@size {\firstchoice@false #1}}
+                                                  {\textdef@ \textstyle \ssf...
+l.1338 ...q 2 \delta \NormLpIntX{u'}{1}{0}{T}{V_3}
+                                                   \leq 2 \delta C^{*}
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./notes.tex:1338: Missing $ inserted.
+<inserted text> 
+                $
+l.1338 ...q 2 \delta \NormLpIntX{u'}{1}{0}{T}{V_3}
+                                                   \leq 2 \delta C^{*}
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./notes.tex:1338: Extra }, or forgotten $.
+\textdef@ ...th {#1}\let \f@size #2\selectfont #3}
+                                                  }
+l.1338 ...q 2 \delta \NormLpIntX{u'}{1}{0}{T}{V_3}
+                                                   \leq 2 \delta C^{*}
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./notes.tex:1338: Extra }, or forgotten $.
+\textdef@ ...h {#1}\let \f@size #2\selectfont #3}}
+                                                  
+l.1338 ...q 2 \delta \NormLpIntX{u'}{1}{0}{T}{V_3}
+                                                   \leq 2 \delta C^{*}
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./notes.tex:1338: Extra }, or forgotten $.
+\text@ ...style \ssf@size {\firstchoice@false #1}}
+                                                  \check@mathfonts }
+l.1338 ...q 2 \delta \NormLpIntX{u'}{1}{0}{T}{V_3}
+                                                   \leq 2 \delta C^{*}
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./notes.tex:1338: Extra }, or forgotten $.
+\text@ ...firstchoice@false #1}}\check@mathfonts }
+                                                  
+l.1338 ...q 2 \delta \NormLpIntX{u'}{1}{0}{T}{V_3}
+                                                   \leq 2 \delta C^{*}
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./notes.tex:1338: Extra \right.
+<argument> ...\,\left ( (0,T);\text {V_3} \right )
+                                                  }
+l.1338 ...q 2 \delta \NormLpIntX{u'}{1}{0}{T}{V_3}
+                                                   \leq 2 \delta C^{*}
+I'm ignoring a \right that had no matching \left.
+
+./notes.tex:1338: Extra }, or forgotten $.
+<argument> ...,\left ( (0,T);\text {V_3} \right )}
+                                                  
+l.1338 ...q 2 \delta \NormLpIntX{u'}{1}{0}{T}{V_3}
+                                                   \leq 2 \delta C^{*}
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./notes.tex:1339: Missing $ inserted.
+<inserted text> 
+                $
+l.1339 \]
+         
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./notes.tex:1339: Missing } inserted.
+<inserted text> 
+                }
+l.1339 \]
+         
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./notes.tex:1339: Missing } inserted.
+<inserted text> 
+                }
+l.1339 \]
+         
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./notes.tex:1339: Missing } inserted.
+<inserted text> 
+                }
+l.1339 \]
+         
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./notes.tex:1339: Missing $ inserted.
+<inserted text> 
+                $
+l.1339 \]
+         
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./notes.tex:1339: Missing } inserted.
+<inserted text> 
+                }
+l.1339 \]
+         
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./notes.tex:1339: Missing } inserted.
+<inserted text> 
+                }
+l.1339 \]
+         
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./notes.tex:1339: Missing } inserted.
+<inserted text> 
+                }
+l.1339 \]
+         
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./notes.tex:1339: Missing $ inserted.
+<inserted text> 
+                $
+l.1339 \]
+         
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./notes.tex:1339: Missing } inserted.
+<inserted text> 
+                }
+l.1339 \]
+         
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./notes.tex:1339: Missing } inserted.
+<inserted text> 
+                }
+l.1339 \]
+         
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./notes.tex:1339: Missing } inserted.
+<inserted text> 
+                }
+l.1339 \]
+         
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./notes.tex:1339: Missing $ inserted.
+<inserted text> 
+                $
+l.1339 \]
+         
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./notes.tex:1339: Missing } inserted.
+<inserted text> 
+                }
+l.1339 \]
+         
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./notes.tex:1339: Missing } inserted.
+<inserted text> 
+                }
+l.1339 \]
+         
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./notes.tex:1339: Missing } inserted.
+<inserted text> 
+                }
+l.1339 \]
+         
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./notes.tex:1339: Missing { inserted.
+<to be read again> 
+                   \endgroup 
+l.1339 \]
+         
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+./notes.tex:1339: Missing } inserted.
+<inserted text> 
+                }
+l.1339 \]
+         
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./notes.tex:1339: Missing { inserted.
+<to be read again> 
+                   \endgroup 
+l.1339 \]
+         
+(That makes 100 errors; please try again.) 
 Here is how much of TeX's memory you used:
- 18161 strings out of 475171
- 274351 string characters out of 5767096
- 678237 words of memory out of 5000000
- 40718 multiletter control sequences out of 15000+600000
+ 18150 strings out of 475171
+ 274184 string characters out of 5767096
+ 677237 words of memory out of 5000000
+ 40711 multiletter control sequences out of 15000+600000
  592837 words of font info for 153 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 79i,24n,93p,832b,715s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 79i,56n,93p,832b,740s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-pdfTeX warning (dest): name{Hfootnote.1} has been referenced but does not exist, replaced by a fixed one
-
-</usr/share/texmf-dist/fonts/type1/public/mnsymbol/MnSymbol-Bold10.pfb></usr/share/texmf-dist/fonts/type1/public/mnsymbol/MnSymbol-Bold7.pfb></usr/share/texmf-dist/fonts/type1/public/mnsymbol/MnSymbol10.pfb></usr/share/texmf-dist/fonts/type1/public/mnsymbol/MnSymbol5.pfb></usr/share/texmf-dist/fonts/type1/public/mnsymbol/MnSymbol7.pfb></usr/share/texmf-dist/fonts/type1/public/mnsymbol/MnSymbol8.pfb></usr/share/texmf-dist/fonts/type1/public/bbold-type1/bbold10.pfb></usr/share/texmf-dist/fonts/type1/public/bbold-type1/bbold5.pfb></usr/share/texmf-dist/fonts/type1/public/bbold-type1/bbold7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti7.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb>
-Output written on notes.pdf (24 pages, 479477 bytes).
-PDF statistics:
- 475 PDF objects out of 1000 (max. 8388607)
- 379 compressed objects within 4 object streams
- 113 named destinations out of 1000 (max. 500000)
- 137 words of extra memory for PDF output out of 10000 (max. 10000000)
-
+./notes.tex:1339:  ==> Fatal error occurred, no output PDF file produced!

@@ -1166,7 +1166,7 @@ Altogether, $\iota\qty(\tau)$ is finite on $(-1,1), \iota'\qty(\tau)$ exists and
     Let $F: \R^N \to \R, F \in \C^1\qty(\R^N), N \in \N.$ Then 
     \begin{enumerate}
 	    \item $F$ is (strictly) convex $\Leftrightarrow$ $\grad F$ is (strictly) monotone
-	\item If $F$ is (strictly) convex, then
+	    \item If $F$ is (strictly) convex, then
 		\[
 			\forall \xi_1, \xi_2 \in \R^N, \xi_1 \neq \xi_2: F\qty(\xi_1)-F\qty(\xi_2)\geq \grad F\qty(\xi_2)\vdot \qty(\xi_1 - \xi_2).
 		\]
@@ -1245,6 +1245,190 @@ Altogether, $\iota\qty(\tau)$ is finite on $(-1,1), \iota'\qty(\tau)$ exists and
 \]
 \end{itemize}
 \end{remark}
+\begin{lemma}[Arzela-Ascoli]
+	Let $X,Y$ be Banach spaces, $X \subset \subset Y.$ Then
+	\[
+		C^1\qty([0,T];X) \subset \subset C\qty([0,T];Y).
+	\]
+\end{lemma}
+
+\begin{lemma}[Ehrling]
+	Let $V_1, V_2, V_3$ be Banach spaces \textit{s.t.} $V_1 \subset \subset V_2 \subset V_3.$ Then
+	\[
+		\forall \varepsilon >0 \exists C>0: \forall u \in V_1: \norm{u}_{V_2} \leq \varepsilon \norm{u}_{V_1}+C \norm{u}_{V_3}.
+	\]
+\end{lemma}
+
+\begin{proof}
+	By contradicition, assume
+	\[
+		\exists \varepsilon >0 \, \text{\textit{s.t.}} \, \forall n \in N \exists u_n \in V_1: \norm{u_n}_{V_2} > \varepsilon \norm{u_n}_{V_1}+n \norm{u_n}_{V_3}.
+	\]
+	WLOG we can assume $\{u_n\} \subset \text{S}_{V_2}(0,1)$: truly, the inequaility is 1-homogenous and holds if $u_n = 0.$ In particular we see $\norm{u_n}_{V_3} < \frac{1}{n}$, so $u_n \to 0$ in $V_3.$ Moreover, $\{u_n\}$ is bounded in $V_1$ and since $V_1 \subset \subset V_2$ there exists $\{u_{n_k}\} \subset \{u_n\}$ \textit{s.t.}: $u_{n_k} \to u$ in $V_2$ strongly. Since $\{u_n\} \subset \text{S}_{V_2}(0,1),$ also $\norm{u}_{V_2} = 1.$ Finally, taking the limit passage yields $0 \geq \norm{u}_{V_3}$ and so $u = 0$ in $V_3$ and also in $V_2$. But that is a contradiction with the fact $\{u_n\} \subset \text{S}_{V_2}(0,1).$
+\end{proof}
+\begin{comment}
+\begin{theorem}[Au|bin-Lions]
+	Let $V_1, V_2, V_3$ be Banach spaces \textit{s.t.} $V_1 \subset \subset V_2 \subset V_3, p \in [1, \infty).$ Then the space
+	\[
+		\mathcal{U} = \{u\in \LpIntX{p}{0}{T}{V_1},  \partial_t u \in \LpIntX{1}{0}{T}{V_3}\},
+	\]
+	with the norm
+	\[
+		|\norm{u}| = \NormLpIntX{u}{p}{0}{T}{V_1}+ \NormLpIntX{\partial_t u}{1}{0}{T}{V_3},
+	\]
+	satisfies
+	\[
+		\mathcal{U} \subset \subset \LpIntX{p}{0}{T}{V_2}.
+	\]
+\end{theorem}
+\end{comment}
+\begin{proof}
+	Strategy: I want to fix $M \subset \mathcal{U}$ bounded and show that it is precompact in $\LpIntX{p}{0}{T}{V_2}.$ That will be done in the following way:
+	\begin{enumerate}
+		\item Mollify $M$ by convolution
+		\item use Arzela-Ascoli
+		\item show compactness in $\LpIntX{p}{0}{T}{V_3}$
+		\item apply Ehrling lemma and show compactness in $\LpIntX{p}{0}{T}{V_2}.$
+	\end{enumerate}
+
+Fix $M \sub \mathcal{U}$ bounded. Then $\exists C^{*} > 0: \forall u \in M: |\norm{u}| \geq C^{*}$. 
+
+Next, take
+\[
+	\varphi : \R \to [0, \infty), \varphi \in C^{\infty}\qty(\R), \supp \varphi \subset (-1,0), \int_{\R}\varphi\dd{x} = 1,
+\]
+a regularization kernel, then $\forall \delta >0$ define $\varphi_{\delta}(t) \coloneq = \frac{1}{\delta}\varphi\qty(\frac{t}{\delta}).$
+
+Now, extend functions from $M$ to $(0,2T)$ in the following way:
+\[
+	\forall u \in M: \tilde{u}\qty(t) \coloneq \begin{cases}
+		u(t), & t \in (0,T) \\
+		u\qty(2T-t), & t \in (T,2T)
+	\end{cases}.
+\]
+
+
+Now mollify: for $\delta >0, \delta <T $ fixed define
+\[
+	M_{\delta} = \{\eval{\qty(\tilde{u} \star \varphi_{\delta})}_{(0,T)}| u \in M\}.
+\]
+From the properties of regularization it follows $M_{\delta} \subset C^1\qty([0,T]; V_1) \underbrace{\subset \subset}_{\, \text{A.A.} \,} C\qty([0,T];V_2) \subset \LpIntX{p}{0}{T}{V_2}.$
+
+Now estimate the distance of $M$ and $M_{\delta}$ in $\LpIntX{p}{0}{T}{V_3}:$ for
+\[
+	u \in M, t \in (0,T): \tilde{u}(t) - \tilde{u}_{\delta}(t) = \tilde{u}(t) - \int_{-\delta}^0 \tilde{u}\qty(t-s)\varphi_{\delta})(s)\dd{s} = \int_{-\delta}^0\qty(\tilde{u}(t)-\tilde{u}\qty(t-s))\varphi_{\delta}(s)\dd{s} = \int_{-\delta}^0\qty(\tilde{u}(t)-\tilde{u}(t-s))\dv{s} \int_{-\delta}^{s-\delta}\varphi_{\delta}\qty(\sigma)\dd{\sigma}\dd{s},
+\]
+and this is equal to
+\[
+	\eval{\qty(\tilde{u}(t)-\tilde{u}\qty(t-s))\int_{-\delta}^s \varphi_{\delta}\qty(\sigma)\dd{\sigma}}^0_{s=-\delta}- \int_{-\delta}^0 \dv{s} \qty(\tilde{u}(t)-\tilde{u}(t-s))\int_{-\delta}^s \varphi_{\delta}\qty(\sigma)\dd{\sigma}\dd{s},
+\]
+since the first bracket is $0$ and by denoting the first term in the second integrand by $\tilde{u'}\qty(t-s)$ this becomes (using Fubini)
+
+\[
+	= - \int_{-\delta}^0 \int_{\sigma}^0 \tilde{u'}\qty(t-s)\dd{s}\varphi_{\sigma}\qty(\sigma)\dd{\sigma},
+\]
+and we see
+\[
+	\norm{\tilde{u}(t)-\tilde{u_{\delta}}(t)}_{V_3} \leq \int_{-\delta}^0 \int_{\sigma}^0 \norm{\tilde{u'}\qty(t-s)}_{V_3}\dd{s}\varphi_{\sigma}\qty(\sigma)\dd{\sigma}.
+\]
+
+
+$\LpIntX{1}{0}{T}{V_3}$ estimate:
+\[
+	\int_{0}^T \norm{u(t)-u_{\delta}(t)}_{V_3}\dd{t} \leq \int_{0}^T \int_{-\delta}^0 \int_{\sigma}^0 \norm{\tilde{u'(t-s)}}_{V_3}\dd{s}\varphi_{\delta}\qty(\sigma)\dd{\sigma}\dd{t} \leq 2 \delta \NormLpIntX{u'}{1}{0}{T}{V_3} \leq 2 \delta C^{*}
+\]
+
+
+$\LinfIntX{0}{T}{V_3}$ estimate:
+\[
+	\NormLinfIntX{u-u_{\delta}}{O}{T}{V_3}\leq 2 \NormLpIntX{u'}{1}{0}{T}{V_3} \leq 2 C^{*}
+\]
+
+
+It remains to show $M_{\delta} \subset \subset \LpIntX{p}{0}{T}{V_2}:$
+\[
+	\NormLpIntX{u-u_{\delta}}{p}{0}{T}{V_3}\leq \NormLpIntX{u-u_{\delta}}{1}{0}{T}{V_3}^{1/p} \NormLinfIntX{u-u_{\delta}}{O}{T}{V_3}^{1-1/p} \leq 2 C^{*} \delta^{1/p}.
+\]
+
+Finally, from Ehrling we have
+\[
+	\forall \mu >0 \exists C_{\mu}>0: \forall u \in \mathcal{U}: \NormLpIntX{u-u_{\delta}}{p}{0}{T}{V_2}\leq \mu \NormLpIntX{u-u_{\delta}}{p}{0}{T}{V_1}+ C_{\mu}\NormLpIntX{u-u_{\delta}}{p}{0}{T}{V_3}.
+\]
+This means
+\[
+	\forall u \in M: \NormLpIntX{u-u_{\delta}}{p}{0}{T}{V_2}\leq C^{*} + C \mu 2 C^{*} \delta^{1/p}.
+\]
+Now fix $\varepsilon > 0$ and find
+\[
+	\mu >0: \mu C^{*} < \frac{\varepsilon}{2}, \delta >0, C_{\mu}2 C^{*} \delta^{1/p} < \frac{\varepsilon}{2} \Rightarrow \forall u \in M: \NormLpIntX{u-u_{\delta}}{p}{0}{T}{V_2}< \varepsilon.
+\]
+This means $\exists \{ w_k \}_{k=1}^N \subset M: \{\qty(w_k)_{\delta}\}_{k=1}^n	$ is $\varepsilon-$net in $M$ in $\LpIntX{p}{0}{T}{V_2}.$ If we now fix $u \in M,$ then
+\[
+	\exists K \in \{1, \dots, N\}: \NormLpIntX{u_{\delta-\qty(w_K)_{\delta}}}{p}{0}{T}{V_2} < \varepsilon.
+\]
+\end{proof}
+\begin{remark}
+	The pair $\qty(\mathcal{U}, |||\vdot|||)$ is a Banach space.
+\end{remark}
+
+We will be dealing with the following problem:
+\[
+	\begin{cases}
+		\partial_t u - \divergence{a\qty(\vdot, u, \grad u)}+ a_0\qty(\vdot, u, \grad u) = f &\, \text{in} \, (0,T) \times \Omega, \\
+		u = u_0, &\, \text{on} \, \{0\} \times \Omega, \\
+	u = 0, &\, \text{on} \, (0,T) \times \partial \Omega
+\end{cases}.
+\]
+The unknown is the functioon $u: \qty(0,T) \times \Omega \to \R,$ and we are given $\Omega \in C^{0,1}, T>0, Q_T = (0,T) \times \Omega, f: Q \to \R$ or $f: \qty(0,T) \to X$ a Banach space, $u_0: \Omega \to \R, a: \Omega \times \R \R^{d} \to \R^{d}, a_0: \Omega \times \R \times \R^{d}\to \R$ are Caratheodory (the last 2). Moreover, the functions satisfy the following growth conditions: $ \exists r >1, \exists C > 0: \, \text{\textit{a.e.}} \, x \in \Omega, \forall (z,p) \in \R^{d+1}: |a_0\qty(x,z,p)|+|a\qty(x,z,p)| \leq C\qty(1+|z|^{r-1}+|p|^{r-1})$ and $\exists C_1, C_2>0, q \in (1, \max(2,r)) \, \text{\textit{a.e.}} \,x \in \Omega, \forall (z,p) \in \R^{d+1}: a\qty(x,z,p)p + a_0(\dots) z \geq C_1 |p|^r - C_2\qty(1+|z|q).$
+
+\begin{theorem}
+	Let $\Omega \in C^{0,1}, a, a_0$ satisfy growth conditions and coercivity, let $\{a_i\}_{i=0}^d$ be monotone. Denote $V = \WkpzeroSet[1][r]{\Omega} \cap \LpSet[2]{\Omega}.$ Then $\forall f \in \LpIntX{r'}{0}{T}{V^{*}}, u_0 \in \LpSet[2]{\Omega} \exists u \in  \LpIntX{r}{0}{T}{V} \, \text{\textit{s.t.}} \, \partial_t u \in \LpIntX{r'}{0}{T}{V^{*}}, u \in C\qty([0,T]; \LpSet[2]{\Omega}), u(0) = u_0$ and moreover
+	\[
+		\, \text{\textit{a.e.}} \,t \in (0,T), \forall \varphi \in V: <\partial_t u, \varphi> + \int_{\Omega}a\qty(\vdot, u, \grad u) \grad \varphi + a_0\qty(\vdot, u, \grad u)\varphi\dd{x} = <f, \varphi>.
+	\]
+	Finally, the solution is unique.
+\end{theorem}
+\begin{proof}
+    The strategy is the following 
+    \begin{enumerate}
+	    \item approximate: either using Galerkin or using the Rothe method
+	    \item a-priori estimates
+	    \item convergences
+	    \item limit passage
+	    \item identification of the limits
+    \end{enumerate}
+
+    \textit{Rothe method:} Fix $h \in \{\frac{T}{n}, n \in \N\}$ and approximate the derivative with
+    \[
+	    \partial_t u (t,x) \approx \frac{1}{h}\qty(u\qty(t,x)-u(t-h,x)).
+    \]
+    Define $u_0 = u_0, u_{k+1} \in V$ as a solution of
+    \[
+	    \frac{1}{h}\qty(u_{k+1}-u_{k}) - \divergence{a\qty(\vdot, u_{k+1,}, \grad u_{k+1})} + a_0\qty(\vdot, u_{k+1}, \grad u_{k+1}) = f_{k+1} \, \text{in} \, \Omega, u_{k+1} = 0 \, \text{on} \, \partial \Omega.
+    \]
+    Define
+    \[
+	    f_{k+1} \coloneq \int_{kh}^{(k+1)h}f\dd{t},
+    \]
+    then the weak formulation becomes
+    \[
+	    \int_{\Omega}\frac{u_{k+1}-u_k}{h}\varphi + a\qty(\vdot, u_{k+1}, \grad u_{k+1}) \vdot \grad \varphi a_0\qty(\vdot, u_{k+1}, \grad u_{k+1})\varphi\dd{x} = <f_{k+1}, \varphi>.
+    \]
+    We \textit{claim without a proof} that the solutions $\{u_k\}_{k=0}^n \subset V$ exist.
+
+    To obtain a-priori estimates, tes the equation with $u_{k+1}$. This yields:
+    \[
+	    \int_{\Omega}|u_{k+1}|^{2} - u_k u_{k+1}\dd{x} = \int_{\Omega}\frac{1}{2}|u_{k+1}|^{2} + \frac{1}{2}\qty(u_{k+1}- u_k) - \frac{|u_k|^{2}}{2}\dd{x} \Rightarrow \sum_{k=0}^{j-1}\int_{\Omega}|u_{k+1}|^{2} - u_{k+1}u_k\dd{x}  = \frac{1}{2} \norm{u_j}_{\LpSet[2]{\Omega}}^{2} - \frac{1}{2}\norm{u_0}_{\LpSet[2]{\Omega}}^{2} + \sum_{k=0}^{j-1}\qty(u_{k+1}-u_k)^{2},
+    \]
+    so
+    \[
+	    \int_{\Omega}a\qty(\dots) \grad \vdot u_{k+1} + a_0\qty(\dots) u_{k+1} \dd{x} \geq C_1 \int_{\Omega}|\grad u_{k+1}|^r\dd{x} - C_2 \int_{\Omega}\qty(1+|u_{k+1}|^q)\dd{x},
+    \]
+    \[
+	    <f_{k+1}, u_{k+1}> \leq \norm{f_{k+1}}_{V^{*}}\qty(\norm{u_{k+1}}_{\WkpzeroSet[1][r]{\Omega}}+ \norm{u_{k+1}}_{\LpSet[2]{\Omega}}) \leq \varepsilon \qty(\norm{u_{k+1}}_{\WkpzeroSet[1][r]{\Omega}}^r + \norm{u_{k+1}}_{\LpSet[2]{\Omega}}^{2}) + C\qty(\norm{f_{k+1}}^{r'}_{V^{*}}+\norm{f_{k+1}}^{2}_{V^{*}}).
+    \]
+    So together $\norm{u_j}_{\LpSet[2]{\Omega}}^{2} + \sum_{k=0}^{j-1}\qty[\qty(u_{k+1}-u_k)^{2} + h \norm{u_{k+1}}_{\WkpzeroSet[1][r]{\Omega}}^r] \leq C\qty(\norm{u_0}_{\LpSet[2]{\Omega}}^{2}+ \sum_{k=0}^{j-1}h \norm{u_{k+1}}_{\LpSet[2]{\Omega}}^{2} + \sum_{k=0}^{j-1}h \qty(\norm{f}_{V^{*}}^{r'}\norm{f}_{V^{*}}^{2}))$
+\end{proof}
 \section{Exercises}
 \label{sec:exercises}
 
