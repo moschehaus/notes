@@ -86,7 +86,7 @@
 \section{Geometry}
 \label{sec:geometry}
 
-\subsection{Deformation}
+\section{Deformation}
 \label{sec:deformation}
 
 Suppose we are given an abstract body $\Omega \subset \R^d, d=2,3$. Choosing a particular state, we denote it the \textbf{reference configuration}. After the acting of forces, the body deforms into the \textbf{current, deformed configuration}. 
@@ -1225,15 +1225,181 @@ and the total strain is
 
 \subsection{Internal parameters}
 \label{sec:internal_parameters}
-A lot of materials can be described using some internal parameters $z$ (scalars, vectos, tensors); for example, plastic strain, fatique, damage, length of a crack, delamination.
+A lot of materials can be described using some internal parameters $\tensorq{z}$ (scalars, vectos, tensors; we take the tensor case for generality); for example, plastic strain, fatique, damage, length of a crack, delamination.
 
 The model 
 \[
-	\tensorq{\sigma} = \partial_{\dot{\tensorq{e}}} \zeta\qty(\dot{\tensorq{e}}, \dot{z}) + \partial_{\tensorq{e}}w\qty(\tensorq{e}, z),
+	\tensorq{\sigma} = \partial_{\dot{\tensorq{e}}} \zeta\qty(\dot{\tensorq{e}}, \dot{\tensorq{z}}) + \partial_{\tensorq{e}}w\qty(\tensorq{e}, \tensorq{z}),
 \]
 with the flow rule 
-$0 \in \partial_{\dot{z}} \zeta\qty(\dot{\tensorq{e}}, \dot{z}) + \partial_{z}w\qty(\tensorq{e},z).$
-is called the \textbf{generalized Kelvin-Voigt.}
+\[
+	0 \in \partial_{\dot{\tensorq{z}}} \zeta\qty(\dot{\tensorq{e}}, \dot{\tensorq{z}}) + \partial_{\tensorq{z}}\varphi\qty(\tensorq{e},\tensorq{z}).
+\]
+is called the \textbf{generalized Kelvin-Voigt} model/material. From now on, we will be using $\varphi$ for the stored energy density. There is some analogy:
+\begin{itemize}
+	\item $\varphi$ is the stored energy density $=$ potential of stress
+	\item $\zeta$ is the (pseudo)potential of dissipative forces.
+\end{itemize}
+To do anything, we need to obtain some energy balance, so test by $\dot{\vb{u}}.$
+Investigate the terms:
+\[
+	\tensorq{\sigma} : \dot{\tensorq{e}} = \partial_{\dot{\tensorq{e}}}\zeta\qty(\dot{\tensorq{e}}, \dot{\tensorq{z}}): \dot{\tensorq{e}}+ \partial_{\tensorq{e}}\varphi\qty(\tensorq{e},\tensorq{z}):\dot{\tensorq{e}},
+\]
+realize now that from the flow rule it follows
+\[
+	\qty(\partial_{\dot{\tensorq{z}}}\zeta\qty(\dot{\tensorq{e}},\dot{z})+\partial_{\tensorq{z}}\varphi\qty(\tensorq{e},\tensorq{z})):\dot{\tensorq{z}} =0,
+\]
+so i can add it to the previous term and obtain
+\[
+	\tensorq{\sigma} : \dot{\tensorq{e}} = \partial_{\dot{\tensorq{e}}}\zeta\qty(\dot{\tensorq{e}}, \dot{\tensorq{z}}): \dot{\tensorq{e}}+ \partial_{\tensorq{e}}\varphi\qty(\tensorq{e},\tensorq{z}):\dot{\tensorq{e}} + \partial_{\dot{\tensorq{z}}}\zeta\qty(\dot{\tensorq{e}},\dot{\tensorq{z}}):\dot{\tensorq{z}}+\partial_{\tensorq{z}}\varphi\qty(\tensorq{e},\tensorq{z}):\dot{\tensorq{z}} =0,
+\]
+Realize now that we have obtained
+\[
+	\partial_{\tensorq{e}} \varphi\qty(\tensorq{e},\tensorq{z})\dot{\tensorq{e}} + \partial_{\tensorq{z}}\varphi\qty(\tensorq{e},\tensorq{z}) = \dv{t} \varphi\qty(\tensorq{e},\tensorq{z}),
+\]
+and denoting the quantity
+\[
+	\xi\qty(\dot{\tensorq{e}}, \dot{\tensorq{z}})\coloneq \partial_{\dot{\tensorq{e}}}\zeta\qty(\dot{\tensorq{e}}, \dot{\tensorq{z}}): \dot{\tensorq{e}} + \partial_{\dot{\tensorq{z}}}\zeta\qty(\dot{\tensorq{e}}, \dot{\tensorq{z}}):\dot{\tensorq{z}},
+\]
+as the \textit{rate of the dissipation} we obtain
+\[
+	\tensorq{\sigma}: \dot{\tensorq{e}} = \dv{t} \varphi\qty(\tensorq{e},\tensorq{z})+ \xi\qty(\dot{\tensorq{e}}, \dot{\tensorq{z}}).
+\]
+
+What are the properties of $\xi$? First of all, we require
+\[
+	\xi \geq 0.
+\]
+Assume $\zeta$ is a covex function:
+
+\[
+	\zeta\qty(0,0) \geq \zeta\qty(\dot{\tensorq{e}}, \dot{\tensorq{z}})+ \partial_{\dot{\tensorq{e}}} \zeta\qty(\dot{\tensorq{e}}, \dot{\tensorq{z}}):\qty(- \dot{\tensorq{e}})+ \partial_{\dot{\tensorq{z}}}\zeta\qty(\dot{\tensorq{e}}, \dot{\tensorq{z}}):(-\dot{\tensorq{z}}).
+\]
+Moreover, assume now $\zeta\qty(0,0) = 0.$ We have
+\[
+	\xi\qty(\dot{\tensorq{e}}, \dot{\tensorq{z}}) = \partial_{\dot{\tensorq{e}}}\zeta\qty(\dot{\tensorq{e}}, \dot{\tensorq{z}}): \dot{\tensorq{e}} + \partial_{\dot{\tensorq{z}}}\zeta\qty(\dot{\tensorq{e}}, \dot{\tensorq{z}}):\dot{\tensorq{z}} \geq \zeta\qty(\dot{\tensorq{e}}, \dot{\tensorq{z}}) \geq 0.
+\]
+
+Finally, the total power balance becomes
+
+
+\[
+	\int_{\Omega}\frac{1}{2}\dv{t} \rho |\dot{\vb{u}}|^{2}\dd{x} + \int_{\Omega}\dv{t} \varphi\qty(\tensorq{e}, z)\dd{x} + \int_{\Omega}\xi\qty(\dot{\tensorq{e}}, \dot{z})\dd{x} = \int_{\Omega}\vb{f} \vdot \dot{\vb{u}}\dd{x},
+\]
+and the total energy balance becomes
+
+\[
+\int_{\Omega}\frac{1}{2}\rho\qty(|\dot{\vb{u}}(T)|^{2}-|\dot{\vb{u}}(0)|^{2})\dd{x} + \int_{\Omega}(\varphi\qty(\tensorq{e}(T), z(T)) - \varphi\qty(\tensorq{e}(0), z(0)))\dd{x} + \int_0^T \int_{\Omega}\xi\qty(\dot{\tensorq{e}}, \dot{z})\dd{x} \dd{t} = \int_0^T \int_{\Omega}\vb{f} \vdot \dot{\vb{u}}\dd{x} \dd{t}.
+\]
+
+
+\section{Thermodynamics in the framework of GSM (generalized standard materials)}
+\label{sec:thermo}
+\textit{Having obtained some knowledge of thermodynamical quantites, we are ready to generalize the theory. We will see that the evolution of a specimen can be acquired by the knowledge of the stored energy density $\psi$ and the dissipation "potential" $\zeta$}
+
+
+Denote
+\[
+	\psi = \psi\qty(\tensorq{e}, \tensorq{z}, \theta), \zeta = \zeta\qty(\dot{\tensorq{e}}, \dot{\tensorq{z}})
+\]
+to be \textit{the stored energy} and the \textit{dissipation potential}. Here $\theta >0 $ denotes the absolute thermodynamic temperature. Let us denote 
+
+\[
+\tensorq{\sigma}_{el} = \pdv{\psi}{\tensorq{e}}, \tensorq{\sigma}_{in} = \pdv{\psi}{\tensorq{z}}, s = - \pdv{\psi}{\theta},
+\]
+as the elastic and inelastic stress and the entropy density. Moreover, define
+\[
+	w\qty(\tensorq{e},\tensorq{z},\theta,s) = \psi\qty(\tensorq{e},\tensorq{z},\theta)+\theta s
+\]
+as the \textbf{internal energy density}. If we calculate the time derivative of the internal energy density we obtain:
+\[
+	\dot{w} = \pdv{t}\qty(\psi\qty(\tensorq{e},z,\theta)+\theta s) = \pdv{\psi}{\tensorq{e}}: \dot{\tensorq{e}} + \pdv{\psi}{\tensorq{z}}:\dot{\tensorq{z}} + \underbrace{\pdv{\psi}{\theta}\dot{\theta} + \dot{\theta} s}_{=-s \dot{\theta} + \dot{\theta} s = 0} + \theta \dot{s}.
+\]
+We \textit{postulate}:
+\[
+	\dot{w} = \tensorq{\sigma}_{el}: \dot{\tensorq{e}} + \tensorq{\sigma}_{in}:\dot{\tensorq{z}} + \xi\qty(\dot{\tensorq{e}}, \dot{\tensorq{z}}) - \divergence{\vb{j}},
+\]
+where $\vb{j}$ is the heat flux. From this postulate, we obtain
+
+\begin{equation}
+	\label{eq:dissipation}
+	\xi\qty(\dot{\tensorq{e}}, \dot{\tensorq{z}}) = \theta \dot{s} + \divergence{\vb{j}}.
+\end{equation}
+A common modelling choice is the dependency
+
+\[
+	\vb{j} = \vb{j}\qty(\theta, \tensorq{e}, \tensorq{z}, \grad \theta) = - \tensorq{K}\qty(\tensorq{e}, \tensorq{z}, \theta)\grad \theta,
+\]
+known as the \textit{Fourier law}. Here
+\[
+	\tensorq{K} \in \{ \tensorq{A} \in \R^{3 \times 3}| \tensorq{A} >0\},
+\]
+is the \textit{matrix of heat flux coefficients.} This is a classical example of a constitutive law.
+
+
+\begin{align*}
+	\dv{t} \int_{\Omega}s\qty(t,\vb{x})\dd{\vb{x}} &= \int_{\Omega}\frac{1}{\theta}\qty(\xi-\divergence{\vb{j}})\dd{\vb{x}} = \int_{\Omega}\frac{\xi}{\theta}\dd{\vb{x}} + \int_{\Omega}\frac{\divergence{\qty(\tensorq{K} \grad \theta)}}{\theta}\dd{\vb{x}} = \\
+						       & = \int_{\partial \Omega}\frac{\tensorq{K}\grad \theta}{\theta} \vdot \vb{n}\dd{S} - \int_{\Omega}\tensorq{K} \grad \theta \vdot \grad\qty(\frac{1}{\theta})\dd{\vb{x}}+\int_{\Omega}\frac{\xi}{\theta}\dd{\vb{x}} = \\
+						       & = \int_{\Omega}\qty(\frac{\xi}{\theta}+ \frac{\tensorq{K}\grad \theta \vdot \grad \theta}{\theta^{2}})\dd{\vb{x}}-\int_{\partial \Omega}\frac{\vb{j}}{\theta} \vdot \vb{n}\dd{S}.
+\end{align*}
+This relation is known as the \textit{Clausius-Duhem inequality.}\footnote{Although inequalty, there appears only the equality sign "=". I do not actually know what that means.}
+
+From the definition of $s$
+
+\[
+	s = - \pdv{\psi}{\theta}\qty(\theta, \tensorq{e}, \tensorq{z}),
+\]
+it follows
+\[
+	\dot{s} = -\pdv[2]{\psi}{\theta} \theta - \pdv[2]{\psi}{\theta}{\tensorq{e}}:\dot{\tensorq{e}} - \pdv[2]{\psi}{\theta}{\tensorq{z}}:\dot{\tensorq{z}},
+\]
+and so
+\[
+	\theta \dot{s} = \underbrace{- \pdv[2]{\psi}{\theta} \theta}_{\coloneq C_V} \dot{\theta} - \pdv[2]{\psi}{\theta}{\tensorq{e}}:\qty(\dot{\tensorq{e}} \theta) - \pdv[2]{\psi}{\theta}{\tensorq{z}}:\qty(\dot{\tensorq{z}}\theta) = C_V \dot{\theta} - \pdv[2]{\psi}{\theta}{\tensorq{e}}:\qty(\dot{\tensorq{e}}\theta)- \pdv[2]{\psi}{\theta}{\tensorq{z}}:\qty(\dot{\tensorq{z}}\theta),
+\]
+where we have identified
+\[
+	C_V = - \theta \pdv[2]{\psi}{\theta},
+\]
+as the \textit{heat capacity at the constant volume.} Coming back to \ref{eq:dissipation}, we read
+
+\[
+	C_V \dot{\theta} + \divergence{\vb{j}} = \xi\qty(\dot{\tensorq{e}}, \dot{\tensorq{z}}) + \theta \pdv[2]{\psi}{\theta}{\tensorq{e}}: \dot{\tensorq{e}} + \theta \pdv[2]{\psi}{\theta}{\tensorq{z}}: \dot{\tensorq{z}}.
+\]
+This is our \textit{heat equation,} the right hand side are the sources. We could identify the derivatives of the potential with lets say some derivative of $\tensorq{\sigma}_{el}$, but let us keep the "thermodynamics and mechanics separated."; although it does not really make sense. In total
+
+\begin{align*}
+	C_V \dot{\theta} - \divergence{\qty(\tensorq{K} \grad \theta)} & = \xi + \theta \pdv[2]{\psi}{\theta}{\tensorq{e}}:\dot{\tensorq{e}}+ \theta \pdv[2]{\psi}{\theta}{\tensorq{z}}:\dot{\tensorq{z}}, \\
+	\rho \ddot{\vb{u}} - \divergence{\qty(\tensorq{\sigma}_{el}+ \tensorq{\sigma}_{in})} &= \vb{f}, \\
+	0 &\in \partial_{\dot{\tensorq{z}}}\zeta\qty(\dot{\tensorq{e}}, \dot{\tensorq{z}})+ \partial_{\tensorq{z}}\psi\qty(\tensorq{e}, \tensorq{z}, \theta),
+\end{align*}
+plus of course some initial and boundary conditions.
+
+\section{Summary}
+\label{sec:summary}
+\textit{At the end, the lecture is summarized.}
+
+
+It began with deformation:
+\[
+	\vb{y}: \overline{\Omega} \to \R^{3}, \grad \vb{y} = \fgrad, \rcg = \transpose{\fgrad}\fgrad, \detf >0.
+\]
+and some quantities associated with these. A little excursion allowed as to define
+\[
+	W = W\qty(\grad \vb{y}) = W\qty(\fgrad),
+\]
+to be the stored energy density. Note that later on, we have called it $\psi$. 
+Coming back to deformation, we have defined various stress measures:
+\[
+	\cstress, \pkstress = \cstress \cof \fgrad, \spkstress =\inverse{\fgrad} \pkstress.
+\]
+
+Wanting to show existence of solutions, we needeed the convexity of some functionals. A problem with rotations however meant we needed to lower our expectations and we had to discover polyconvexity and rank-1 convexity. This included \textit{e.g.} Legendre-Hadamard condition.
+
+Realizing we are stuck in full theory, we began exploring linearized elasticity. To show existence, we refreshed the Korn's inequality. And because that all seemed easy, a question about time dependence has been asked: is everything truly stationary?
+
+No, it is not; that lead us to von Mises elastoplasticity and to a class of materials, such as Kelvin-Voigt or Maxwell materials. Generalizing this framework and also including some internal variables, we have given the foundations of (the thermodynamics of)gave generalized standard materials: this was especially elegant, as from the Helmholtz free energy and the dissipation potential, we were able to derive evolution equations for the important thermodynamical quantites. This included some energy/power estimates, balances and the notion of entropy and its rate. 
+
 \section{(Some) tutorials}
 \label{sec:tutorials}
 

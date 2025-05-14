@@ -1,0 +1,42 @@
+\babel@toc {english}{}\relax 
+\contentsline {section}{\numberline {1}TODO}{2}{section.1}%
+\contentsline {section}{\numberline {2}Geometry}{2}{section.2}%
+\contentsline {section}{\numberline {3}Deformation}{2}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Displacement}{3}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Changes of measures}{3}{subsection.3.2}%
+\contentsline {subsubsection}{\numberline {3.2.1}Change of volume}{4}{subsubsection.3.2.1}%
+\contentsline {subsubsection}{\numberline {3.2.2}Change of lengths}{4}{subsubsection.3.2.2}%
+\contentsline {subsubsection}{\numberline {3.2.3}Change of surfaces}{4}{subsubsection.3.2.3}%
+\contentsline {subsection}{\numberline {3.3}Affine transformations}{5}{subsection.3.3}%
+\contentsline {section}{\numberline {4}Forces}{6}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Forces in the deformed configuration}{6}{subsection.4.1}%
+\contentsline {subsubsection}{\numberline {4.1.1}Cauchy stress tensor}{6}{subsubsection.4.1.1}%
+\contentsline {subsubsection}{\numberline {4.1.2}Balance equations in the deformed configuration}{6}{subsubsection.4.1.2}%
+\contentsline {subsection}{\numberline {4.2}Forces in the undeformed configuration}{7}{subsection.4.2}%
+\contentsline {subsubsection}{\numberline {4.2.1}Piola-Kirchhoff stresses}{7}{subsubsection.4.2.1}%
+\contentsline {subsubsection}{\numberline {4.2.2}Balance equations in the deformed configuration}{7}{subsubsection.4.2.2}%
+\contentsline {section}{\numberline {5}Elasticity}{8}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Frame invariance principle}{8}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}Isotropic material}{8}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.3}Hyperelastic materials}{9}{subsection.5.3}%
+\contentsline {subsection}{\numberline {5.4}Properties of W}{9}{subsection.5.4}%
+\contentsline {subsection}{\numberline {5.5}Rank-one convexity}{12}{subsection.5.5}%
+\contentsline {section}{\numberline {6}Linearized elasticity}{13}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Equations}{14}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}Convex analysis}{16}{subsection.6.2}%
+\contentsline {subsection}{\numberline {6.3}Problem of a man...}{18}{subsection.6.3}%
+\contentsline {subsection}{\numberline {6.4}von Mieses elatoplasticity}{18}{subsection.6.4}%
+\contentsline {subsubsection}{\numberline {6.4.1}Plastic evolution}{19}{subsubsection.6.4.1}%
+\contentsline {subsubsection}{\numberline {6.4.2}Discrete time setting}{20}{subsubsection.6.4.2}%
+\contentsline {subsection}{\numberline {6.5}Rheological models}{21}{subsection.6.5}%
+\contentsline {subsubsection}{\numberline {6.5.1}Dashpots}{21}{subsubsection.6.5.1}%
+\contentsline {subsubsection}{\numberline {6.5.2}Kelvin-Voigt mateial}{21}{subsubsection.6.5.2}%
+\contentsline {subsubsection}{\numberline {6.5.3}Maxwell material}{22}{subsubsection.6.5.3}%
+\contentsline {subsection}{\numberline {6.6}Internal parameters}{22}{subsection.6.6}%
+\contentsline {section}{\numberline {7}Thermodynamics in the framework of GSM (generalized standard materials)}{23}{section.7}%
+\contentsline {section}{\numberline {8}Summary}{25}{section.8}%
+\contentsline {section}{\numberline {9}(Some) tutorials}{25}{section.9}%
+\contentsline {subsection}{\numberline {9.1}Change of observer}{25}{subsection.9.1}%
+\contentsline {subsection}{\numberline {9.2}Change of reference configuration}{26}{subsection.9.2}%
+\contentsline {subsection}{\numberline {9.3}Consequences of isotropic hyperelastic solid}{26}{subsection.9.3}%
+\contentsline {subsection}{\numberline {9.4}Representation in terms of principial stresses}{28}{subsection.9.4}%

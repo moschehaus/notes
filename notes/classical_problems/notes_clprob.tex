@@ -1295,7 +1295,7 @@ Why something happens?
 
 \subsubsection{Boussinesq approximation}
 \label{sec:boussinesq_approximation}
-Doing a stability analysis of a system of nonlinear PDEs is difficult. Make the following assumptions: Ober-Boussinesq approximation
+Doing a stability analysis of a system of nonlinear PDEs is difficult. Make the following assumptions: Oberbeck-Boussinesq approximation
 
 \begin{itemize}
 	\item the density depends only on the temperature, not on pressure, and only linearly: $\rho(\theta) = \rho_{\, \text{ref} \,}\qty(1- \alpha\qty(\theta - \theta_{\, \text{ref} \,}))$
@@ -1456,9 +1456,290 @@ Let us repeat the previous maniupulation. Define
 \]
 and investigate (we are using the equations extensively)
 \[
-	\dv{\psi}{t} = -\int_{\Omega}\grad \vb{v} : \grad \vb{v}\dd{x} - \int_{\Omega}\grad \theta \vdot \grad \theta\dd{x} + 2\int_{\Omega}\, \text{R} \, \theta v_z\dd{x}
+	\dv{\psi}{t} = -\int_{\Omega}\grad \vb{v} : \grad \vb{v}\dd{x} - \int_{\Omega}\grad \theta \vdot \grad \theta\dd{x} + 2\int_{\Omega}\, \text{R} \, \theta v^z\dd{x}.
+\]
+Introduce yet a different notation:
+\[
+	\mathcal{D} \coloneq \int_{\Omega} \grad \vb{v}: \grad \vb{v}\dd{x} + \int_{\Omega}\grad \theta \vdot \grad \theta\dd{x}, \mathcal{I} = 2 \int_{\Omega}\theta v^z\dd{x},
+\]
+so we have
+\[
+	\dv{\psi}{t} = - \mathcal{D} + \sqrt{\Rayleigh}\mathcal{J} = -\mathcal{D} \sqrt{\Rayleigh}\qty(\frac{1}{\sqrt{\Rayleigh}}-\frac{\mathcal{J}}{\mathcal{D}}).
 \]
 
+Denote
+\[
+	\sqrt{\Rayleigh_{\, \text{crit} \,}} \coloneq \max_{\theta \in \WkpzeroSet[1][2]{\Omega}, \vb{v} \in \WkpzeroSet[1][2]{\Omega}_{\, \text{xiv} \,}} \frac{\mathcal{J}}{\mathcal{D}},
+\]
+and we are interested when
+\[
+	\frac{1}{\sqrt{\Rayleigh}}- \frac{1}{\sqrt{\Rayleigh_{\, \text{crit} \,}}} = \frac{\sqrt{\Rayleigh_{\, \text{crit} \,}}- \sqrt{\Rayleigh}}{\sqrt{\Rayleigh_{\, \text{crit} \,} \sqrt{\Rayleigh}}} >0.
+\]
+Let us define the functional
+\[
+	\mathcal{F}\qty(\vb{v}, \theta) \coloneq \frac{\mathcal{I}\qty(\vb{v}, \theta)}{\mathcal{D}\qty(\vb{v}, \theta)} - \int_{\Omega}\lambda\qty(\vb{x}) \qty(\divergence{\vb{v}})\dd{x},
+\]
+for some Lagrange multiplier $\lambda(\vb{x})$. We now seek:
+\[
+	\max_{\vb{v}\in \WkpzeroSet[1][2]{\Omega}, \theta \in \WkpzeroSet[1][2]{\Omega}}\mathcal{F}\qty(\vb{v}, \theta),
+\]
+so evaluate the Gateaux derivative
+
+
+\[
+	\delta \mathcal{F}(\vb{v}^{*}, \theta^{*})[\vb{v}, \theta] =\eval{\dv{t} (\frac{\mathcal{I}(\vb{v}^{*}+ t \vb{v}, \theta^{*} + t \theta)}{\mathcal{D}(\vb{v}^{*}+t \vb{v}, \theta^{*}+t \theta)} - \int_{\Omega}\lambda \divergence{(\vb{v}^{*}+t \vb{v})}\dd{x})}_{t=0},
+\]
+
+it is easy to realize the numerator is
+\[
+	2 \int_{\Omega}\theta v^{*z} + \theta v^z\dd{x},
+\]
+and the denominator is
+\[
+	2 \int_{\Omega}\grad \vb{v}^{*} : \grad \vb{v} + \grad \theta^{*} \vdot \grad \theta \dd{x},
+\]
+so using the Leibniz rule we obtain
+
+\begin{align*}
+	0 &= \frac{1}{\mathcal{D}\qty(\vb{v}^{*}, \theta^{*})}\qty(\dv{\mathcal{I}\qty(\vb{v}^{*}, \theta^{*})}{t} - \frac{\mathcal{I}}{\mathcal{D}}\qty(\vb{v}^{*}, \theta^{*})\dv{\mathcal{D}}{t}\qty(\vb{v}^{*}, \theta^{*})- \int_{\Omega}\lambda \qty(\divergence{\vb{v}^{*}})\dd{x}) \\
+	  &\equiv \frac{1}{\mathcal{D}^{*}}\qty(\dv{\mathcal{I}^{*}}{t}-\sqrt{\Rayleigh_{\, \text{crit} \,}}\dv{\mathcal{D}^{*}}{t}-\int_{\Omega}\lambda \qty(\divergence{\vb{v}^{*}})\dd{x}),
+\end{align*}
+where we have just rescaled the Lagrange multiplier. This becomes
+\[
+	= \frac{1}{\mathcal{D}^{*}}\qty(\int_{\Omega} \theta v^{*z} + \theta^{*} v^z\dd{x} - \sqrt{\Rayleigh_{\, \text{crit} \,}} \qty(\int_{\Omega}\grad \vb{v}^{*} : \vb{v}\dd{x} + \int_{\Omega}\grad \theta^{*} \vdot \grad \theta\dd{x} - \int_{\Omega}\lambda \qty(\divergence{\vb{v}^{*}})\dd{x})).
+\]
+Hmm, this is familiar - it is a weak formulation of some problem! (If we take $\vb{v}, \theta$ to be test functions...). The problem then becomes
+
+\begin{align*}
+	- \int_{\Omega}\qty(-\sqrt{\Rayleigh_{\, \text{crot} \,}}\laplace \theta^{*} + v^{*z}) \theta\dd{x} = 0 &\Leftrightarrow -\frac{1}{\sqrt{\Rayleigh_{\, \text{crit} \,}}}\laplace \theta^{*} + v^{*z} = 0, \\
+	\int_{\Omega}\qty(\theta^{*} \vb{e}_z - \sqrt{\Rayleigh_{\, \text{crit} \,}}\laplace \vb{v}^{*} - \grad \lambda)\vdot \vb{v}\dd{x} = 0 &\Leftrightarrow - \frac{1}{\sqrt{\Rayleigh_{\, \text{crit} \,}}}\laplace \vb{v}^{*} + \theta^{*} \vb{e}_z - \grad \lambda =0.
+\end{align*}
+So the pair $\qty(\vb{v}^{*}, \theta^{*})$ maximizes $\mathcal{F}\qty(\vb{v}, \theta)$ iff it solves the system above. We must thus solve now
+
+\begin{align*}
+	- \laplace \vb{v}^{*} - \grad \lambda + \sqrt{\Rayleigh_{\, \text{crit} \,}}\theta^{*} \vb{e}_z &= 0, \\
+	\laplace \theta^{*} + \sqrt{\Rayleigh_{\, \text{crit} \,}}v^{*z} &= 0,, \\
+	\divergence{\vb{v}^{*}}&= 0,
+\end{align*}
+which is \textit{exactly the system for the perturbtion, only linearized nd stationary.} It can be rewritten in this "suggestive notation":
+
+\[
+	\begin{bmatrix}
+		\laplace & - \grad & 0 \\
+		\grad \vdot & 0 & 0 \\
+		0 & 0 & \laplace
+	\end{bmatrix}
+	\begin{bmatrix}
+		\vb{v}^{*}\\
+		\lambda \\
+		\theta^{*}
+	\end{bmatrix}
+	= -\sqrt{\Rayleigh_{\, \text{crit} \,}}\begin{bmatrix}
+		0 & 0 & \vb{e}_z \\
+		0 & 0 & 0 \\
+		\vb{e}_z \vdot & 0 & 0
+	\end{bmatrix}
+	\begin{bmatrix}
+		\vb{v}^{*} \\
+		\lambda \\
+		\theta^{*}
+	\end{bmatrix}
+\]
+which is a generalized eigenvalue problem
+\[
+	\tensorq{A} \vb{x} = \mu \tensorq{B} \vb{x},
+\]
+and so we see that we are interested in the (generalized) spectrum of some operators. Coming back to our conditions for maximizing, taking the divergence of the first equation:
+\[
+	0 = \underbrace{- \divergence{\laplace \vb{v}^{*}}}_{= \laplace \qty(\divergence{\vb{v}}) = 0}- \laplace \lambda + \sqrt{\Rayleigh_{\, \text{crit} \,}}\qty(\divergence{\qty(\theta \vb{e}_z)}),
+\]
+taking the laplacian of the first one yields
+\[
+	\laplace \laplace \vb{v}^{*} - \underbrace{\laplace \grad \lambda}_{=\grad \laplace \lambda} + \sqrt{\Rayleigh_{\, \text{crit} \,}}\laplace\qty(\theta^{*} \vb{e}_{z}),
+\]
+so combining the two yields (eliminating $\lambda$):
+
+\begin{align*}
+	\laplace \laplace \vb{v}^{*} + \sqrt{\Rayleigh_{\, \text{crit} \,}}\grad \qty(\divergence{\qty(\theta^{*} \vb{e}_z)}) + \sqrt{\Rayleigh_{\, \text{crit} \,}}\laplace\qty(\theta^{*} \vb{e}_z) &= 0, \\
+	\laplace \theta^{*} + \sqrt{\Rayleigh_{\, \text{crit} \,}} v^{*z} &= 0.
+\end{align*}
+
+Now let us take the $z$ component of the first equation, so we are solving
+\begin{align*}
+	\laplace \laplace \vb{v}^{*z} - \sqrt{\Rayleigh_{\, \text{crit} \,}}\pdv[2]{\theta^{*}}{z}  + \sqrt{\Rayleigh_{\, \text{crit} \,}}\laplace\qty\theta^{*}  &= 0, \\
+	\laplace \theta^{*} + \sqrt{\Rayleigh_{\, \text{crit} \,}} v^{*z} &= 0,
+\end{align*}
+and Fourier transform it:
+\[
+	\vb{v}^{*} = \hat{\vb{v}}(z) \exp\qty(i(k_x x + k_y y)), \theta^{*} = \hat{\theta}(z) \exp\qty(i(k_x x+ k_y y)),
+\]
+so formally
+\[
+	\laplace \to \dv[2]{z} - k^{2},
+\]
+and the equations become \textbf{(now we are solving for the hatted variables, the amplitudes, without renaming anything.)}
+
+\begin{align}
+\label{eq:eqn_transformed}
+0 &= \qty(\dv[2]{z}-k^{2})^{2} v^{*z} - \sqrt{\Rayleigh_{\, \text{crit} \,}} \\
+		0 &= \qty(\dv[2]{z}-k^{2})\theta^{*} + \sqrt{\Rayleigh_{\, \text{crit} \,}} v^{*z}.
+\end{align}
+
+Now we apply the Fourier transformed laplacian to the first one and write
+
+\[
+	0 = \qty(\dv[2]{z}-k^{2})^{3} v^{*z}- \sqrt{\Rayleigh_{\, \text{crit} \,}} k^{2}\qty(\dv[2]{z}-k^{2})\theta^{*},
+\]
+and plug this into the remaining equation gives
+
+\[
+	\qty(\dv[2]{z}-k^{2})^{3} v^{*z} = - \sqrt{\Rayleigh_{\, \text{crit} \,}}k^{2} v^{*z}, z \in [0,1].
+\]
+We have thus derived a sixth order ODE for the velocity, which is in fact an \textit{eigenvalue problem for the (linear unbounded) operator}. The problem is about the boundary condition: it makes \textit{some} sense to assume:
+
+\begin{align*}
+	v^{*z} &= 0, \\
+	\dv[2]{v^{*z}}{z} &= 0,\\
+	\dv[4]{v^{*z}}{z} &= 0,
+\end{align*}
+all on $\{z = 0,1\}.$ Really, it can be shown
+\[
+	v^{*z} = \sum_{n=1}^{\infty}v_n^{*z}\sin\qty(n \pi z),
+\]
+for some numbers $v_n^{*z}.$ This representation really \textit{splnuje} the above boundary conditions. Plug this an write:
+
+\[
+	\qty(-n^{2} \pi^{2} - k^{2})^{3}v^{*z}_n = -\sqrt{\Rayleigh_{\, \text{crit} \,}}v^{*z}_n,
+\]
+and so 
+\[
+	\sqrt{\Rayleigh^n_{\, \text{crit} \,}} = \frac{\qty(\pi^{2}n^{2}+k^{2})^{3}}{k^{2}}, n \in \N.
+\]
+As we are looking for the smallest one, our value is:
+
+\[
+	\sqrt{\Rayleigh_{\, \text{crit} \,}} = \frac{\qty(\pi^{2}+k^{2})^{3}}{k^{2}}.
+\]
+Notice that this still depends on $k_n = \frac{2 \pi}{L}n$ the choice of $L$, \textit{i.e.}, the choice of the periodicity of the boundary. So in fact we want to minimize this
+
+\[
+	\pdv{\sqrt{\Rayleigh_{\, \text{crit} \,}}}{k} = \frac{\qty(k^{2}+\pi^{2})^{2}\qty(3k^{2}-\qty(k^{2}+\pi^{2}))}{k^{2}} = 0 \Rightarrow k_{\, \text{crit} \,} = \frac{\pi^{2}}{2},
+\]
+plugging this yields
+
+\begin{equation}
+    \label{eq:Rayileigh_crit}
+    \sqrt{\Rayleigh_{\, \text{crit} \,}} = \frac{27}{4}\pi^4 \Leftrightarrow \Rayleigh_{\, \text{crit} \,} = \frac{729}{16}\pi^8,
+\end{equation}
+
+\subsubsection{Free-free boundary conditions}
+\label{sec:free_free}
+
+But hold on, how did we get the boundary conditions? Those are called the \textit{free-free} boundary conditions.
+
+\[
+	v^z = 0 \, \text{on} \,\{z = 0,1 \},\cstress \vb{n} = - p_{\, \text{ambient} \,} \vb{n},\, \text{on} \, \{z = 0,1\},
+\]
+and
+\[
+	\vb{v} = \vb{0} + \tilde{\vb{v}}, \cstress = -\qty(\hat{p}+\tilde{p})\identity + \dots.
+\]
+The pressure in the steady case also satisfies the boundary conditions, namely
+\[
+	-\hat{p}\identity \vb{n} = - p_{\, \text{ambient} \,}\vb{n}.
+\]
+This means
+\[
+	\tilde{\cstress}= - \tilde{p}\identity + 2 \mu\qty(\frac{1}{2}\qty(\grad \tilde{\vb{v}})+\transpose{\qty(\grad \tilde{\vb{v}})}),
+\]
+with the following boundary conditions
+\[
+	\tilde{\cstress}\vb{n} = \vb{0} , \tilde{v}^z = 0 \, \text{on} \, \{z = 0,1\}.
+\]
+This translates to\footnote{on $\{z = 0,1\}$ the outer unit normal $\vb{n}$ equals to $\vb{e}_z$.}
+\[
+	\transpose{[T_{zx}, T_{yz}, T_{zz}]} = \vb{0},
+\]
+which implies
+\[
+	\pdv{\tilde{v}^x}{z} + \pdv{\tilde{v}^z}{x} = 0, \pdv{\tilde{v}^y}{z}+ \pdv{\tilde{v}^z}{y} = 0,
+\]
+again on $\{z = 0,1\}.$ Since $\tilde{v}^z = 0$ there, also its derivative (assuming continuity...) is zero there, and so those conditions really mean
+\[
+	\pdv{\tilde{v}^x}{z} = 0, \pdv{\tilde{v}^y}{z} = 0.
+\]
+
+Recall that
+\[
+	\divergence{\vb{v}} = \pdv{\tilde{v}^x}{x}+ \pdv{\tilde{v}^y}{y} + \pdv{\tilde{v}^z}{z} = 0,
+\]
+\textit{inside of $\Omega$.} Let us however suppose that it holds also \textit{on the boundary\footnote{We are on $\{z = 0,1\}$.}}. Differentiate w.r.t $z$, swap the derivatives and obtain
+
+\[
+	\pdv{x}\qty(\pdv{\tilde{v}^x}{z})+\pdv{y}\qty(\pdv{v^y}{z})+\pdv[2]{v^z}{z} = 0,
+\]
+on $\{z = 0,1\}.$ Since the first two terms are zero, we read
+\[
+	\pdv[2]{\tilde{v}^z}{z} = 0 \, \text{on} \, \{z = 0,1\}.
+\]
+
+Finally, let us deal with the BC for the forth derivative. For that, recall that we have not yet discussed the boundary conditions for the temperature, which are: $\tilde{\theta} = 0 \, \text{on} \, \{z = 0,1\}.$ Take a look at \ref{eq:eqn_transformed} now, using the boundary conditions and the definition of $\laplace$, we obtain \footnote{Again, we are also assuming the equations hold on the boundary aswell.}
+
+\[
+	\qty(\dv[2]{z}-k^{2})^{2}v^{*z} = 0 \, \text{on} \, \{z = 0,1\},
+\]
+so in particular
+\[
+	\dv[4]{v^{*z}}{z} = 0 \, \text{on} \, \{z = 0,1\}.
+\]
+
+\subsubsection{The case $\Rayleigh > \Rayleigh_{\, \text{crit} \,}$ "slightly"}
+\label{sec:r>r_crit}
+
+What happens when we perturb the system with
+\[
+	\Rayleigh > \Rayleigh_{\, \text{crit} \,},
+\]
+meaning \textit{slightly larger}? That would mean
+
+\[
+	\frac{\qty(\pi^{2}+k^{2})^{3}}{k^{2}}>\frac{\qty(\pi^{2}+k_{\, \text{crit} \,}^{2})^{3}}{k_{\, \text{crit} \,}^{2}},
+\]
+
+%picture of a almost parabola, nonsymmetric, with a horizontal line cutting the parabola. At the minimum of the parabola, the k_crit takes place
+
+As a toy problem, let us suppose the following ODE
+
+\[
+	\dv{t} \begin{bmatrix}
+		q_1 \\
+		q_2
+	\end{bmatrix}
+	= - \begin{bmatrix}
+		\gamma_1\qty(\Rayleigh) & 0 \\
+		0 & \gamma_2\qty(\Rayleigh)
+	\end{bmatrix}
+	\begin{bmatrix}
+		q_1 \\
+		q_2
+	\end{bmatrix}
+	+
+	\begin{bmatrix}
+		-a q_1 q_2 \\
+		b q_1^{2}
+	\end{bmatrix},
+\]
+where $\gamma_1\qty(\Rayleigh), \gamma_2\qty(\Rayleigh)$ are some functions of the Rayleigh number. THere are some regimes:
+
+\begin{itemize}
+	\item $\gamma_1>0, \Rayleigh < \Rayleigh_{\, \text{crit} \,}:$ then $q_1$ is \textit{damped exponentially} and the nonlinearity does not play a role,
+	\item $\gamma_1<0, \Rayleigh > \Rayleigh_{\, \text{crit} \,}:$ then $q_1$ \textit{grows exponentially} and therefore the nonlinearity cannot be ignored.
+	\item $\gamma_2 >>1$ means that the second equation is (almost) only a algebraic one, which we can solve, substitue back into the first one and obtain
+		\[
+			\dv{q_1}{t} = -\gamma_1 q_1 - \frac{ab}{\gamma_2}q_1^{3} = -\gamma_1 q_1\qty(1+\frac{ab}{\gamma_1\gamma_2}q_1^{2}),
+		\]
+		which is really interesting; it is only a cubic correction to a linear system (\textit{i.e.}, a \textit{quadratic} nonlinearity.) This model might serve as a precursor to the \textit{Ginzburg - Landau} equations.
+\end{itemize}
 
 \end{document} 
 %% Local Variables: 
