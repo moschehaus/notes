@@ -1548,7 +1548,166 @@ and differentiate this:
 	\dv{\omega(s)}{s} = \dv{\vb{g}_1}{s}\vdot \lcg \vb{g}_1  + \vb{g}_1 \dv{\lcg}{s}\vb{g}_1+\vb{g}_1 \vdot \lcg \dv{\vb{g}}{s} = \frac{1}{2} + +0.
 \]
 
+\subsection{Hyperelasticity with constraints}
+\label{sec:constraints}
+Very often, some other considerations have taken to be in account when describing some materials. Examples include
+
+\begin{itemize}
+	\item \textit{incompressibility}: $\detf = 1$,
+	\item \textit{inextensibility}:$\vb{l} \vdot \rcg \vb{l} = 1,$ for some $\vb{l} \in \R^{3}$ (\textit{i.e.}, T.A. materials)
+\end{itemize}
+
+\subsection{Rational thermodynamics}
+\label{sec:rational_thermodynamics}
+
+In rational thermodynamics, we \textit{postulate}:
+
+\begin{equation}
+	\label{eq:rational}
+	\vb{J}_{\eta} = \frac{1}{\theta_R} \vb{Q}, R_{\eta} = \frac{R}{\theta},
+\end{equation}
+\textit{i.e.}, the flux/production of entropy is the flux/production of heat divided by temperature. This \textit{makes sense to assume.}
+
+\subsubsection{Clausius-Duhem inequality}
+\label{sec:clausius}
+
+Recall \textit{balance of mass}:
+\[
+	\rho\qty(t,\vb{x}) \detF = \rho_{R}\qty(\vb{X}),
+\]
+\textit{balance of momentum}:
+\[
+	\rho_r\qty(\vb{x})\pdv[2]{\vb*{\chi}}{t} = \divergence{\pkstress}+ \rho_R \vb{B}\qty(t,\vb{X}),
+\]
+
+\textit{balance of internal energy}:
+\[
+	\rho_r \pdv{e_r}{t}\qty(t,\vb{X}) = \underbrace{- \divergence{\vb{Q}}}_{= - \divergence{\qty(\detf \inverse{\fgrad}\vb{q}\qty(t,\vb{x}))}} + \dot{\fgrad}: \pkstress + \rho_R R\qty(t,\vb{X}),
+\]
+
+where also
+\[
+	\dot{\fgrad}:\pkstress = \frac{1}{2}\spkstress: \dot{\rcg},
+\]
+and the \textit{balance of entropy}:
+
+\[
+	\rho_R \pdv{\eta_R}{t} = -\divergence{\vb{J}_{\eta}}+\rho_R R_{\eta} + \xi_R.
+\]
+
+The definition of the Helmholtz free energy is: $\psi = e - \theta \eta,$ or in the reference configuration:
+
+\[
+	\psi_R = e_R - \theta_R \eta_R.
+\]
+Take the time derivative and calculate 
+
+\begin{align*}
+	\rho_R \dot{\psi}_R &= \rho_R\qty(\dot{e}_R - \dot{\theta}\eta - \theta \dot{\eta}) = \divergence{\vb{Q}} + \dot{\fgrad} : \pkstress + \rho_R \qty(R - \dot{\theta} \eta) - \theta\qty(-\divergence{\vb{J}_{\eta}}+\rho_R R_{\eta}+\xi_R) = \\
+			    & = - \divergence{\vb{Q}}+\dot{\fgrad} : \pkstress - \rho_{R} \dot{\theta_R}\eta + \frac{\theta_R}{\theta_R}\divergence{\qty(\vb{Q})} - \theta_R \xi_R +  \theta_R \grad\qty(\frac{1}{\theta_R})\vdot\vb{Q},
+\end{align*}
+where we have used \ref{eq:rational} to cancel some terms. In total we obtain
+
+\[
+	\rho_R\qty(\dot{\psi_R}+ \eta_R \dot{\theta_R}) - \dot{\fgrad}: \pkstress - \theta_R \vb{Q}\vdot \grad\qty(\frac{1}{\theta_R})	= -\theta_R \xi_R \leq 0.
+\]
+
+Rational thermodynamics also \textit{postulates} Clausius-Duhem inequality holds for all thermodynamically admissable proccesses.
+
+\subsubsection{Isothermal setting}
+\label{sec:isothermal}
+Let us consider a special case - an \textit{isothermal setting}, meaning $0 = \dot{\theta} = \grad\qty(\frac{1}{\theta_R}) = 0.$ The Clausius-Duhem inequality then becomes:
+\[
+	\rho_R \dot{\psi_R} - \dot{\fgrad} : \pkstress \leq 0,
+\]
+for all admissable proccesses. Realize that this is the same as:
+
+\[
+	\pdv{\qty(\rho_R \psi_R)}{t} - \frac{1}{2}\spkstress:\dot{\rcg},
+\]
+and that $\rho_R \psi_R = W.$ By hyperelasticity $W = W\qty(\fgrad)$ and so from material frame indifference $W = \overline{W}\qty(\rcg).$ Taking the time derivative means:
+
+\[
+	\qty(\pdv{W}{\rcg}-\frac{1}{2}\dot{\pkstress}):\dot{\rcg} \leq 0, \forall \rcg, \dot{\rcg}
+\]
+and that can only be met when
+\[
+	2 \pdv{W}{\rcg} = \spkstress,
+\]
+since $\rcg, \dot{\rcg}$ are independent.
+
+Really, define the motion
+\[
+	\vb*{\chi}\qty(t,\vb{X}) = \vb{X}_0 = \exp\qty(\qty(t-t_0)\tensorq{D}) \fgrad_0\qty(\vb{X}-\vb{X}_0),
+\]
+then
+\[
+	\fgrad\qty(t,\vb{X}) = \exp\qty(\qty(t-t_0)\tensorq{D})\fgrad_0,
+\]
+so $\fgrad\qty(t_0, \vb{X}_0) = \fgrad_0.$ Time derivative can be computed to be:
+
+\[
+	\dot{\fgrad} \qty(t,\vb{X})= \tensorq{D} \exp\qty(\qty(t-t_0))\fgrad,
+\]
+and $\dot{\fgrad}\qty(t_0, \vb{X}_0) = \tensorq{D}\fgrad_0.$ This means
+\[
+	\rcg\qty(t_0, \vb{X}_0) = \transpose{\fgrad_0}\fgrad_0,
+\]
+and
+\[
+	\dot{\rcg}\qty(t_0, \vb{X}_0) = 2 \transpose{\fgrad_0} \tensorq{D} \fgrad_0,
+\]
+
+We see that we can choose $\rcg\qty(t_0, \vb{X}_0)$ and $\dot{\rcg}\qty(t_0, \vb{X}_0)$ independetly.
+
+Suppose we are given the constraint
+\[
+	f\qty(\rcg) = 0,
+\]
+which fits the conditions
+\[
+	\, \text{\textit{e.g.}} \,\vb{l}\vdot \rcg \vb{l}-1 = 0, \det \rcg -1 =0.
+\]
+
+Thus we have:
+\[
+	\qty(\pdv{W}{\rcg}- \frac{1}{2}\dot{\spkstress}): \dot{\rcg} \leq 0, \forall \rcg, \dot{\rcg} \, \text{\textit{s.t.}} \, f\qty(\rcg)=0.
+\]
+The condition is "almost equivalent" to
+\[
+	\pdv{f}{\rcg}:\dot{rcg} = 0,
+\]
+which is convenient, as we have the following theorem.
+
+\begin{theorem}
+Let $\tensorq{A} \in \R^{n \times m}, \vb{b} \in \R^{n \times 1}, \vb*{\alpha}\in \R^{m \times 1}, \beta \in \R$ such that
+\begin{align*}
+	\tensorq{A}\vb{x}+\vb{b} &= 0, \\
+	\vb*{\alpha}\vdot \vb{x} + \beta &\leq 0,
+\end{align*}
+for some $\vb{x} \in \R^{m}.$
+    Let $S$ be the set of solutions of the equation and assume it is nonempty. Then the following are equivalent:
+\begin{itemize}
+	\item $\forall \vb{x} \in S$ the equation holds
+	\item $\exists \lambda \in \R^n \neq 0 \, \text{\textit{s.t.}} \, \transpose{\vb*{\alpha}}- \transpose{\lambda}\tensorq{A} =0, \beta - \lambda \vdot \vb{b} \leq 0.$
+\end{itemize}
+\end{theorem}
+
+\begin{remark}
+	In our case, we have
+	\[
+		\vb{b} =0, \tensorq{A} = \pdv{f}{\rcg}, \vb{x} = \dot{\rcg}.
+	\]
+\end{remark}
+
+Using this it can be shown that under this constraint the Cauchy stress must take the form\footnote{use $\cstress = \detf \inverse{\fgrad} \cstress \transposei{\fgrad},$ differentiate and realize $\pdv{f}{\rcg} = \det \rcg \transposei{rcg}, \detf = 1 = \det \rcg,$ and plug this in.}
+
+\[
+	\cstress = \lambda \identity + 2 \fgrad \pdv{W}{\rcg} \transpose{\fgrad}.
+\]
+We usually identify $\lambda = p_{\, \text{th} \,},$ with the thermodynamically determined stress.
 \bibliographystyle{chicago} %\bibliography{}
+
 \end{document}
 
 %%% Local Variables: 
