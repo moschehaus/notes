@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1747242027.14661 "notes.tex" "notes.pdf" "notes" 1747242031.09068 0
+["pdflatex"] 1747820714.7111 "notes_clprob.tex" "notes_clprob.pdf" "notes_clprob" 1747820723.53969 0
   "/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1742685315 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "/usr/share/texmf-dist/fonts/enc/dvips/mnsymbol/MnSymbolA.enc" 1742685315 3341 78e600b269762aa2a25a5293cc4535c0 ""
   "/usr/share/texmf-dist/fonts/enc/dvips/mnsymbol/MnSymbolC.enc" 1742685315 3275 8d7166dfdbc31ffdc8aba0c31b3bd5c8 ""
@@ -58,6 +58,7 @@
   "/usr/share/texmf-dist/fonts/tfm/public/cm/cmr6.tfm" 1742685315 1300 b62933e007d01cfd073f79b963c01526 ""
   "/usr/share/texmf-dist/fonts/tfm/public/cm/cmr8.tfm" 1742685315 1292 21c1c5bfeaebccffdb478fd231a0997d ""
   "/usr/share/texmf-dist/fonts/tfm/public/cm/cmti10.tfm" 1742685315 1480 aa8e34af0eb6a2941b776984cf1dfdc4 ""
+  "/usr/share/texmf-dist/fonts/tfm/public/cm/cmti7.tfm" 1742685315 1492 86331993fe614793f5e7e755835c31c5 ""
   "/usr/share/texmf-dist/fonts/tfm/public/mnsymbol/MnSymbolA-Bold10.tfm" 1742685315 1380 970a366ffeb93afa860f1f8ca45ca402 ""
   "/usr/share/texmf-dist/fonts/tfm/public/mnsymbol/MnSymbolA-Bold5.tfm" 1742685315 1380 748ad69cbc5cc7af06845c7b26e54377 ""
   "/usr/share/texmf-dist/fonts/tfm/public/mnsymbol/MnSymbolA-Bold6.tfm" 1742685315 1380 6f2e32c1b75231f401432eb25c4fc2cc ""
@@ -319,12 +320,14 @@
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1743674043 5311557 9da84c45f5b388655502706482323571 ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1743673972 2008231 401c56e7e2db0204dd1ee943df81c91a ""
   "macros.tex" 1744797638.42615 30141 6527c2ef2384165f4cf97c451bfc9f2e ""
-  "notes.aux" 1747242030.60812 10627 9f63ecd02d4a07512babc496676fc004 "pdflatex"
-  "notes.out" 1747242030.61009 7216 23aa025dbeb1c45facc112c54f4591a2 "pdflatex"
-  "notes.tex" 1747242023.59812 79540 2a308208c9c220cb79c6606ab93bc6ae ""
+  "notes_clprob.aux" 1747820722.20386 11497 115ec50154f3b0e3df1cd893dbefc417 "pdflatex"
+  "notes_clprob.out" 1747820722.20986 7860 8f02d831346f8c758b2a55e20e6b81a9 "pdflatex"
+  "notes_clprob.tex" 1747820697.30486 88332 01170291032b81d28cbaba13df4d3dd3 ""
+  "notes_clprob.toc" 1747820722.21086 4060 00863961539cb7be93262736dca8017d "pdflatex"
   (generated)
-  "notes.aux"
-  "notes.log"
-  "notes.out"
-  "notes.pdf"
+  "notes_clprob.aux"
+  "notes_clprob.log"
+  "notes_clprob.out"
+  "notes_clprob.pdf"
+  "notes_clprob.toc"
   (rewritten before read)

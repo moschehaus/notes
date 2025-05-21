@@ -73,6 +73,8 @@
 
 \maketitle
 
+\tableofcontents
+
 \section{Curvilinear coordinates, tensor \& vector calculus}
 \label{sec:curvilinear_coords}
 How to write $\divergence{\vb{u}}, \curl{\vb{u}}$ etc. in polar, cylindrical and other coordinates? Notice that there are similiarities between change of coordinats $\vb{x} = \vb{x}(\vb*{\gamma})$ and deformation $\vb{x}=\vb*{\chi}(\vb{x})$, the $\lcg$ tensor and the metric tensor $\tensorq{g}$.
@@ -1581,19 +1583,19 @@ and the equations become \textbf{(now we are solving for the hatted variables, t
 
 \begin{align}
 \label{eq:eqn_transformed}
-0 &= \qty(\dv[2]{z}-k^{2})^{2} v^{*z} - \sqrt{\Rayleigh_{\, \text{crit} \,}} \\
-		0 &= \qty(\dv[2]{z}-k^{2})\theta^{*} + \sqrt{\Rayleigh_{\, \text{crit} \,}} v^{*z}.
+0 &= \qty(\dv[2]{z}-k^{2})^{2} v^{*z} - \Rayleigh_{\, \text{crit} \,} \\
+		0 &= \qty(\dv[2]{z}-k^{2})\theta^{*} + \Rayleigh_{\, \text{crit} \,} v^{*z}.
 \end{align}
 
 Now we apply the Fourier transformed laplacian to the first one and write
 
 \[
-	0 = \qty(\dv[2]{z}-k^{2})^{3} v^{*z}- \sqrt{\Rayleigh_{\, \text{crit} \,}} k^{2}\qty(\dv[2]{z}-k^{2})\theta^{*},
+	0 = \qty(\dv[2]{z}-k^{2})^{3} v^{*z}- \Rayleigh_{\, \text{crit} \,} k^{2}\qty(\dv[2]{z}-k^{2})\theta^{*},
 \]
 and plug this into the remaining equation gives
 
 \[
-	\qty(\dv[2]{z}-k^{2})^{3} v^{*z} = - \sqrt{\Rayleigh_{\, \text{crit} \,}}k^{2} v^{*z}, z \in [0,1].
+	\qty(\dv[2]{z}-k^{2})^{3} v^{*z} = - \Rayleigh_{\, \text{crit} \,}k^{2} v^{*z}, z \in [0,1].
 \]
 We have thus derived a sixth order ODE for the velocity, which is in fact an \textit{eigenvalue problem for the (linear unbounded) operator}. The problem is about the boundary condition: it makes \textit{some} sense to assume:
 
@@ -1609,27 +1611,27 @@ all on $\{z = 0,1\}.$ Really, it can be shown
 for some numbers $v_n^{*z}.$ This representation really \textit{splnuje} the above boundary conditions. Plug this an write:
 
 \[
-	\qty(-n^{2} \pi^{2} - k^{2})^{3}v^{*z}_n = -\sqrt{\Rayleigh_{\, \text{crit} \,}}v^{*z}_n,
+	\qty(-n^{2} \pi^{2} - k^{2})^{3}v^{*z}_n = -\Rayleigh_{\, \text{crit} \,}v^{*z}_n,
 \]
 and so 
 \[
-	\sqrt{\Rayleigh^n_{\, \text{crit} \,}} = \frac{\qty(\pi^{2}n^{2}+k^{2})^{3}}{k^{2}}, n \in \N.
+	\Rayleigh^n_{\, \text{crit} \,} = \frac{\qty(\pi^{2}n^{2}+k^{2})^{3}}{k^{2}}, n \in \N.
 \]
 As we are looking for the smallest one, our value is:
 
 \[
-	\sqrt{\Rayleigh_{\, \text{crit} \,}} = \frac{\qty(\pi^{2}+k^{2})^{3}}{k^{2}}.
+	\Rayleigh_{\, \text{crit} \,} = \frac{\qty(\pi^{2}+k^{2})^{3}}{k^{2}}.
 \]
 Notice that this still depends on $k_n = \frac{2 \pi}{L}n$ the choice of $L$, \textit{i.e.}, the choice of the periodicity of the boundary. So in fact we want to minimize this
 
 \[
-	\pdv{\sqrt{\Rayleigh_{\, \text{crit} \,}}}{k} = \frac{\qty(k^{2}+\pi^{2})^{2}\qty(3k^{2}-\qty(k^{2}+\pi^{2}))}{k^{2}} = 0 \Rightarrow k_{\, \text{crit} \,} = \frac{\pi^{2}}{2},
+	\pdv{\Rayleigh_{\, \text{crit} \,}}{k} = \frac{\qty(k^{2}+\pi^{2})^{2}\qty(3k^{2}-\qty(k^{2}+\pi^{2}))}{k^{2}} = 0 \Rightarrow k_{\, \text{crit} \,} = \frac{\pi^{2}}{2},
 \]
 plugging this yields
 
 \begin{equation}
     \label{eq:Rayileigh_crit}
-    \sqrt{\Rayleigh_{\, \text{crit} \,}} = \frac{27}{4}\pi^4 \Leftrightarrow \Rayleigh_{\, \text{crit} \,} = \frac{729}{16}\pi^8,
+    \Rayleigh_{\, \text{crit} \,} = \frac{27}{4}\pi^4 
 \end{equation}
 
 \subsubsection{Free-free boundary conditions}
@@ -1741,7 +1743,330 @@ where $\gamma_1\qty(\Rayleigh), \gamma_2\qty(\Rayleigh)$ are some functions of t
 		which is really interesting; it is only a cubic correction to a linear system (\textit{i.e.}, a \textit{quadratic} nonlinearity.) This model might serve as a precursor to the \textit{Ginzburg - Landau} equations.
 \end{itemize}
 
+Try a similiar thing: suppose this system
+
+\[
+	\dv{t} \begin{bmatrix}
+		u \\
+		v	
+	\end{bmatrix}
+	=  \begin{bmatrix}
+		- \frac{1}{\Reynolds} & 1 \\
+		0 & - \frac{1}{\Reynolds}
+	\end{bmatrix}
+	\begin{bmatrix}
+		u \\
+		v
+	\end{bmatrix}
+	+ u
+	\begin{bmatrix}
+		0 & -1 \\
+		1 & 0 
+	\end{bmatrix}
+	\begin{bmatrix}
+	  u \\
+	  v
+	\end{bmatrix}
+	=  \begin{bmatrix}
+		- \frac{1}{\Reynolds} & 1 \\
+		0 & - \frac{1}{\Reynolds}
+	\end{bmatrix}
+	\begin{bmatrix}
+		u \\
+		v
+	\end{bmatrix}
+	+ \begin{bmatrix}
+	u^{2} \\
+	- uv
+	\end{bmatrix},
+\]
+and investigate its stability.
+
+First, linearize around the steady state $\vb{0}$:
+
+\[
+	\grad \begin{bmatrix}
+		-\frac{1}{\Reynolds}u +v + u^{2}\\
+		- \frac{1}{\Reynolds}v - uv
+	\end{bmatrix}\qty(\vb{0}) = \begin{bmatrix}
+	-\frac{1}{\Reynolds} + 2u & 1 \\
+	-v & -\frac{1}{\Reynolds} - u
+	\end{bmatrix}\qty(\vb{0}) = 
+	\begin{bmatrix}
+		-\frac{1}{\Reynolds} & 1 \\
+		0 & -\frac{1}{\Reynolds}
+	\end{bmatrix}.
+\]
+The eigenvalues are $- \frac{1}{\Reynolds}$ with the degeneracy 2. So for $\Reynolds$ not too large, this is negative and the steady state is stable, but for $\Reynolds \to \infty, $ this goes to zero and we can not really say anything using this theorem.
+
+It is crucial that the matrix is symmetric. Let us investigate
+\[
+	\dot{\vb{u}} = \tensorq{A} \vb{u}, \tensorq{A} = \begin{bmatrix}
+		\lambda & 1 \\
+		0 & \mu
+	\end{bmatrix},
+\]
+where $\lambda, \mu$ are eigenvalues. The solution of course is
+\[
+	\vb{u}(t) = \exp\qty(t \tensorq{A}) \vb{u}_0.
+\]
+
+Calculate the exponential, so start with Jordan decomposition of $\tensorq{A})$
+
+\[
+	\tensorq{A} = \begin{bmatrix}
+		1 & \frac{1}{\mu - \lambda} \\
+		0 & 1 
+	\end{bmatrix}
+	\begin{bmatrix}
+		\lambda & 0 \\
+		0 & \mu 
+	\end{bmatrix}
+	\begin{bmatrix}
+		1 & - \frac{1}{\mu - \lambda}
+		0 & 1
+	\end{bmatrix},
+\]
+and the eigenvectors are
+\[
+	\vb{v}_1 = \begin{bmatrix}
+		1 \\
+		0
+		\end{bmatrix}, \vb{v}_2 = \frac{1}{\sqrt{1+ \frac{1}{(\mu-\lambda)^{2}}}}\begin{bmatrix}
+		\frac{1}{\mu- \lambda}\\
+		1
+	\end{bmatrix}.
+\]
+Notice that the eigenvectors are \textit{not orthogonal}. The exponential thus is
+\[
+	\exp(t \tensorq{A}) = \begin{bmatrix}
+		e^{\lambda t} & \frac{e^{\mu t} - e^{\lambda t}}{\mu - \lambda}\\
+		0 & e^{\mu t}
+	\end{bmatrix}
+\]
+If we Taylor expand this, we obtain
+\[
+	\exp(t \tensorq{A}) \approx \identity + \begin{bmatrix}
+		\lambda & 1 \\
+		0 & \mu
+	\end{bmatrix}t,
+\]
+and so the general solution thus is
+\[
+	\vb{u} = \exp\qty(t \tensorq{A}) \vb{u}_0 \approx \begin{bmatrix}
+		\qty(1+\lambda t)u_{0,1}+ t u_{0,1} \\
+		(1+\mu t) u_{0,2}
+	\end{bmatrix}
+\]
+
+This means that even though (supposing the eigenvalues are negative)
+\[
+	\lim_{t\ \to \infty} \vb{u}(t) = \vb{0},
+\]
+initially, the solution grows linearly with time. 
+
+But anyways, the linearized stability tells us that the origin is stable.
+
+Let us try the energy method. Investigate $\dv{t} |\tilde{\vb{u}}|, $ so calculate
+\[
+	\tilde{\vb{u}} \vdot \dv{t} \tilde{\vb{u}} = \frac{1}{2} \dv{t} |\tilde{\vb{u}}|^{2} = \begin{bmatrix}
+		- \frac{1}{\Reynolds} & 0 \\
+		0 & - \frac{1}{\Rayleigh}
+	\end{bmatrix}
+	\begin{bmatrix}
+		\tilde{u} \\
+		\tilde{v}
+	\end{bmatrix}
+	\vdot \begin{bmatrix}
+		\tilde{u}\\
+		\tilde{v}
+	\end{bmatrix}
+	+ \begin{bmatrix}
+		0 & 1 \\
+		0 & 0
+	\end{bmatrix}
+	\begin{bmatrix}
+		\tilde{u} \\
+		\tilde{v}
+	\end{bmatrix}
+	\begin{bmatrix}
+		\tilde{u} \\
+		\tilde{v}
+	\end{bmatrix} + \underbrace{u\begin{bmatrix}
+	0 & -1 \\
+	1 & 0
+	\end{bmatrix}
+	\begin{bmatrix}
+	  \tilde{u} \\
+	  \tilde{v}
+\end{bmatrix}}_{= 0},
+\]
+so rewriting this gives
+\[
+	\frac{1}{2}\dv{t} |\tilde{\vb{u}}|^{2} = - \frac{1}{\Rayleigh}|\tilde{\vb{u}}|^{2}+ \tilde{u} \tilde{v}.
+\]
+This is remarkable analogy; the first one is the "laplacian", the missing term is the convective nonlinear term, which does not add to the energy balance and the last one is the is the interaction term.
+
+Using Younge:
+
+\[
+	\frac{1}{2}\dv{t} |\tilde{\vb{u}}|^{2} \leq - \frac{1}{\Reynolds}|\tilde{\vb{u}}|^{2} + \frac{1}{2}\qty(|\tilde{u}|^{2} + |\tilde{v}|^{2}) = \qty(- \frac{1}{\Reynolds}+ \frac{1}{2})|\tilde{\vb{u}}|^{2},
+\]
+and so
+\[
+	\dv{t} |\tilde{\vb{u}}|^{2} \leq \qty(1-\frac{2}{\Reynolds})|\tilde{\vb{u}}|^{2},
+\]
+which means that for $\Reynolds > 2, $ the perturbations do not decay, and for $\Reynolds \leq 2, $ the perturbations decay (exponentially). 
+
+Do the complete analysis of the problem: solve
+
+\[
+	\dv{t} \begin{bmatrix}
+		\tilde{u} \\
+		\tilde{v}
+	\end{bmatrix}
+	= \begin{bmatrix}
+		- \frac{1}{\Reynolds} & 0 \\
+		0 & - \frac{1}{\Reynolds}
+	\end{bmatrix}
+	\begin{bmatrix}
+		\tilde{u} \\
+		\tilde{v}
+	\end{bmatrix}
+	+ \tilde{u} \begin{bmatrix}
+		0 & -1 \\
+		1 & 0
+	\end{bmatrix}
+	\begin{bmatrix}
+		\tilde{u} \\
+		\tilde{v}
+	\end{bmatrix}.
+\]
+
+The stready solutions are (after some computations)
+\begin{align*}
+	\tilde{u}^* &= \frac{1}{2}\qty(1 \pm \sqrt{1-\frac{4}{\Reynolds^{2}}}), \\
+	\tilde{v}^{*} &= \Reynolds \, \tilde{u}^{*2},
+\end{align*}
+and also the origin $\vb{0}.$ Realize however that the first steady state exists only if $\Reynolds \geq 2.$
+
+So if when $\Reynolds < 2, $ there is only one stationary point, the origin
+\[
+	\tilde{\vb{u}} = \vb{0},
+\]
+and all trajectories are attracted towards that point. If $\Reynolds > 2,$ there are 3 stationary points, lying on the parabola $\tilde{v} = \Reynolds \, \tilde{u}^{*2}$ with $\tilde{u} = \frac{1}{2}\qty(1 \pm \sqrt{1-\frac{4}{\Reynolds^{2}}}).$ We see that 
+\[
+	\lim_{\Reynolds \to \infty}\frac{1}{2}\qty(1 - \sqrt{1-\frac{4}{\Reynolds^{2}}}) = 0,
+\]
+which corresponds to the linearization theory. This can also be used to quantify how large of neighbourhood can be obtained in the linerized stability theory, as the "minus" stationary point is unstable.
+
+\subsection{Orr-Sommerfeld system}
+\label{sec:orr_sommerfeld}
+This is a system describing the stability of shear flows with a parabolic inflow profile in a channel. The velocity has the profile
+
+\[
+	\vb{v} = \hat{\vb{v}}(y)\exp\qty(i \qty(\beta x + \alpha z - \omega t)).
+\]
+
+The equation for the perturbation of the vertical component $\tilde{v}^y$ of the velocity is (in the Fourier space)
+
+\[
+	\qty(\dv[2]-k^{2})\qty(-i \omega + i \alpha v^z)\tilde{v}^y - i \alpha \dv[2]{v^z}{y}\tilde{v}^y = \frac{1}{\Reynolds}\qty(\dv[2]{y}-k^{2})^{2} \tilde{v}^y,
+\]
+where $v^z(y) = 1-y^{2}.$
+
+
+
+\subsection{Eigenvalue problem}
+\label{sec:eigenproblem}
+How to solve the eigenvalue problem? We are interested in only the \textit{smallest} eiegenvalue. Techniques will be presented on the toy problem:
+
+\begin{align*}
+	\dv[4]{u}{x} &= \lambda u, \\
+	u &= 0, \, \text{on} \, \qty{x = 0,1}\\
+	\dv[2]{u}{x} &= 0, \, \text{on} \, \qty{x = 0,1}
+\end{align*}
+
+\subsubsection{Analytical approach}
+\label{sec:analytical_approoach}
+
+Imagine we are using finite differences to solve the equation with the RHS $f$:
+
+\[
+	\begin{bmatrix}
+		\dv[2]{u}{x} = 0, \, \text{on} \, \qty{x = 0} \\
+		\dv[4]{u}{x} \\
+		\dv[2]{u}{x} = 0, \, \text{on} \, \qty{x = 1} \\
+	\end{bmatrix}
+	\begin{bmatrix}
+		u_1 \\
+		\dots \\
+		u_N
+	\end{bmatrix}
+	=
+	\begin{bmatrix}
+		0 \\
+		f_k \\
+		0
+	\end{bmatrix},
+\]
+but when we are trying to solve the eigenproblem, we encounter a problem with the weird boundary conditions (try to think about the RHS).
+
+Since the operator is linear, we can write the solution analytically
+\[
+	u(x) = c_1 \cos\qty(x \lambda^{1/4}) + c_2 \sin\qty(x \lambda^{1/4}) + c_3 e^{-x \lambda^{1/4}} + c_4 e^{x \lambda^{1/4}},
+\]
+where $c_1, c_2, c_3, c_4$ are the coefficients to be determined from the boundary conditions. To have $\vb{c} \neq \vb{0},$ we require :
+\[
+	\tensorq{A} \vb{c} = \vb{0}, \det \tensorq{A} = 0,
+\]
+which yields a condition for $\lambda$, in particular
+
+\[
+	4\qty(e^{-\lambda^{1/4}}-e^{\lambda^{1/4}})\lambda \sin\qty(\lambda^{1/4}) = 0.
+\]
+This is a non-linear algebraic equation, that can be solved using \textit{e.g.} numerics.
+
+\subsubsection{Numerical approach}
+\label{sec:numerical_approach}
+
+Some existing software packages are able to solve eigenvalue problems of the type
+\[
+	\vb{L}u = \lambda u,
+\]
+where $\vb{L}$ is a second order operator. We are able to rewrite this equation in the form
+\[
+	\vb{D}_k \vb{D}_k u = \lambda u,
+\]
+where
+\[
+	\vb{D}_k = \dv[2]{x}-k^{2},
+\]
+and we are solving:
+\[
+	\vb{D}_k v = \lambda u, \vb{D}_k u - v = \lambda u, \, \text{\textit{i.e.}} \,, \begin{bmatrix}
+		0 & \vb{D}_k \\
+		\vb{D}_k & -1
+	\end{bmatrix} \begin{bmatrix}
+		u \\
+		v
+	\end{bmatrix}
+	= \lambda \begin{bmatrix}
+		u \\
+		v
+	\end{bmatrix}.
+\]
+This is equivalent to
+\[
+	\vb{D}_k = \qty(\lambda+1)v, \vb{D}_k \vb{D}_k u = \qty(\lambda+1)\vb{D}_k v, \Rightarrow \vb{D}_k \vb{D}_k u = \lambda \qty(\lambda +1) u
+\]
+so if we solve the above eigenvalue problem for $\lambda,$ we have found the eigenvalue $\mu = \lambda \qty(\lambda +1)$ of the original problem. What about the boundary conditions? Again assuming the equations hold also on the boundary, we are able to show
+\[
+	u = v = 0, \, \text{on} \, \qty{x = 0,1}.
+\]
+
 \end{document} 
+
 %% Local Variables: 
 %%% mode: latex
 %%% TeX-master: t
