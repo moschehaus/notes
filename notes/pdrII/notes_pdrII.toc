@@ -1,19 +1,19 @@
 \babel@toc {english}{}\relax 
 \contentsline {section}{\numberline {1}Winter semester addendum}{1}{section.1}%
 \contentsline {subsubsection}{\numberline {1.0.1}Weak$^*$ convergence}{1}{subsubsection.1.0.1}%
-\contentsline {section}{\numberline {2}Sobolev spaces revisited}{3}{section.2}%
-\contentsline {subsection}{\numberline {2.1}Tools from functional analysis}{3}{subsection.2.1}%
-\contentsline {subsection}{\numberline {2.2}Density of smooth functions}{4}{subsection.2.2}%
-\contentsline {subsection}{\numberline {2.3}Extension of Sobolev functions}{6}{subsection.2.3}%
-\contentsline {subsection}{\numberline {2.4}Embedding theorems}{8}{subsection.2.4}%
-\contentsline {subsection}{\numberline {2.5}Trace theorems}{12}{subsection.2.5}%
-\contentsline {subsection}{\numberline {2.6}Composition of sobolev functions}{12}{subsection.2.6}%
-\contentsline {subsection}{\numberline {2.7}Difference quotients}{12}{subsection.2.7}%
-\contentsline {section}{\numberline {3}Nonlinear elliptic equations as compact perturbations}{12}{section.3}%
-\contentsline {subsubsection}{\numberline {3.0.1}Problem protypes}{13}{subsubsection.3.0.1}%
-\contentsline {section}{\numberline {4}Nonlinear elliptic equations - monotone operator theory}{16}{section.4}%
-\contentsline {section}{\numberline {5}Calculus of variations}{20}{section.5}%
-\contentsline {section}{\numberline {6}Semigroup theory}{28}{section.6}%
-\contentsline {section}{\numberline {7}(Some) exercises}{35}{section.7}%
-\contentsline {subsection}{\numberline {7.1}4.3.2025}{35}{subsection.7.1}%
-\contentsline {subsection}{\numberline {7.2}8.4.2025}{35}{subsection.7.2}%
+\contentsline {section}{\numberline {2}Sobolev spaces revisited}{4}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Tools from functional analysis}{5}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Density of smooth functions}{6}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Extension of Sobolev functions}{7}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}Embedding theorems}{10}{subsection.2.4}%
+\contentsline {subsection}{\numberline {2.5}Trace theorems}{14}{subsection.2.5}%
+\contentsline {subsection}{\numberline {2.6}Composition of sobolev functions}{14}{subsection.2.6}%
+\contentsline {subsection}{\numberline {2.7}Difference quotients}{14}{subsection.2.7}%
+\contentsline {section}{\numberline {3}Nonlinear elliptic equations as compact perturbations}{14}{section.3}%
+\contentsline {subsubsection}{\numberline {3.0.1}Problem protypes}{15}{subsubsection.3.0.1}%
+\contentsline {section}{\numberline {4}Nonlinear elliptic equations - monotone operator theory}{17}{section.4}%
+\contentsline {section}{\numberline {5}Calculus of variations}{22}{section.5}%
+\contentsline {section}{\numberline {6}Semigroup theory}{30}{section.6}%
+\contentsline {section}{\numberline {7}(Some) exercises}{37}{section.7}%
+\contentsline {subsection}{\numberline {7.1}4.3.2025}{37}{subsection.7.1}%
+\contentsline {subsection}{\numberline {7.2}8.4.2025}{37}{subsection.7.2}%

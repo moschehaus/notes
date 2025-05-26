@@ -43,6 +43,7 @@
 \usepackage{lineno}
 
 \usepackage{multicol}
+\usepackage{tcolorbox}
 
 % SELECTIVELY INCLUDE/EXCLUDE PARTS OF TEXT
 \usepackage{comment}
@@ -271,11 +272,11 @@ This implies $\cof \fgrad = \fgrad$. Recall Piola's identity:
 	\vb{0} = \divergence{\cof \fgrad} = \divergence{\fgrad (\vb{x})} = \laplacian \vb{y}(\vb{x}).
 \]
 We have the identity:
-\begin{comment}
+
 \begin{equation}
-	\frac{1}{2}(\norm{\grad{\vb{y}})^{2} = \norm{\grad \grad \vb{y}}^{2} + \grad{\vb{y}} \vdot \grad \laplacian \vb{y},
+	\frac{1}{2}(\norm{\grad\vb{y}})^{2} = \norm{\grad \grad \vb{y}}^{2} + \grad{\vb{y}} \vdot \grad \laplacian \vb{y},
 \end{equation}
-\end{comment}
+
 and since the LHS is zero, we also have $\norm{\grad \grad \vb{y}} = 0 \Rightarrow \vb{y}(\vb{x}) = \tensorq{R}\vb{x}+\vb{v}$.
 Let $\tensorq{R}$ be piecewise affine. Then $\tensorq{R}_1 (\identity - \vb{n} \otimes \vb{n}) = \tensorq{R}_2(\identity - \vb{n}\otimes \vb{n})$, so $\tensorq{R}_1 - \tensorq{R}_2 = (\tensorq{R}_1 = \tensorq{R}_2) = (\tensorq{R}_1 - \tensorq{R}_2) \vb{n} \otimes \vb{n} = \vb{a} \otimes \vb{b}$, but that is not possible for two rotations; the rank of the RHS is one, whereas the LHS is not.
 \end{example}
@@ -1573,7 +1574,7 @@ In rational thermodynamics, we \textit{postulate}:
 
 Recall \textit{balance of mass}:
 \[
-	\rho\qty(t,\vb{x}) \detF = \rho_{R}\qty(\vb{X}),
+	\rho \qty(t,\vb{x}) \detf = \rho_{R}\qty(\vb{X}),
 \]
 \textit{balance of momentum}:
 \[
@@ -1608,9 +1609,12 @@ Take the time derivative and calculate
 \end{align*}
 where we have used \ref{eq:rational} to cancel some terms. In total we obtain
 
-\[
+\begin{tcolorbox}
+\begin{equation}
+	\label{eq:clausis_duhem}
 	\rho_R\qty(\dot{\psi_R}+ \eta_R \dot{\theta_R}) - \dot{\fgrad}: \pkstress - \theta_R \vb{Q}\vdot \grad\qty(\frac{1}{\theta_R})	= -\theta_R \xi_R \leq 0.
-\]
+\end{equation}
+\end{tcolorbox}
 
 Rational thermodynamics also \textit{postulates} Clausius-Duhem inequality holds for all thermodynamically admissable proccesses.
 
@@ -1669,14 +1673,18 @@ which fits the conditions
 	\, \text{\textit{e.g.}} \,\vb{l}\vdot \rcg \vb{l}-1 = 0, \det \rcg -1 =0.
 \]
 
-Thus we have:
-\[
+Thus the Clausis-Duhem inequality with constraints reduces to:
+\begin{tcolorbox}
+\begin{equation}
+	\label{eq:constraint_CD}
 	\qty(\pdv{W}{\rcg}- \frac{1}{2}\dot{\spkstress}): \dot{\rcg} \leq 0, \forall \rcg, \dot{\rcg} \, \text{\textit{s.t.}} \, f\qty(\rcg)=0.
-\]
+\end{equation}
+
 The condition is "almost equivalent" to
 \[
-	\pdv{f}{\rcg}:\dot{rcg} = 0,
+	\pdv{f}{\rcg}:\dot{\rcg} = 0,
 \]
+\end{tcolorbox}
 which is convenient, as we have the following theorem.
 
 \begin{theorem}
@@ -1706,7 +1714,212 @@ Using this it can be shown that under this constraint the Cauchy stress must tak
 	\cstress = \lambda \identity + 2 \fgrad \pdv{W}{\rcg} \transpose{\fgrad}.
 \]
 We usually identify $\lambda = p_{\, \text{th} \,},$ with the thermodynamically determined stress.
-\bibliographystyle{chicago} %\bibliography{}
+
+\begin{theorem}
+    The followig statements are equivalent:
+
+    \begin{itemize}
+	    \item $\forall \vb{x} \in S = \qty{\vb{x}: \tensorq{A}\vb{x}+\vb{b} = \vb{0}}: \vb*{\alpha} \vdot \vb{x} + \beta \geq 0$,
+	    \item $\exists \vb*{\lambda} \neq \vb{0} \, \text{\textit{s.t.}} \, \transpose{\vb*{\alpha}} - \transpose{\vb*{\lambda}} \tensorq{A} = \vb{0} \wedge b - \lambda \vdot \beta \geq 0$
+    \end{itemize}
+\end{theorem}
+\begin{proof}
+	first ii) $\Rightarrow$ i): multiply the first row by $\vb{x}$: $\vb*{\alpha} \vdot \vb{v} - \vb*{\lambda} \vdot \tensorq{A} \vb{x} = 0,$ sum it up with the second inequality and obtain
+	\[
+		\vb*{\alpha} \vdot \vb{x} + \beta - \vb*{\lambda} \vdot \qty(\tensorq{A} \vb{x}+\vb{b}) \geq 0,
+	\]
+	so when $\vb{x} \in S, \tensorq{A}\vb{x} + \vb{b} = \vb{0},$ and we obtain
+	\[
+		\vb*{\alpha} \vdot \vb{x} + \beta \geq 0.
+	\]
+
+	Now i) $\Rightarrow$ ii). It suffices to show i)
+	\[
+		\Rightarrow \exists \vb*{\lambda} \neq \vb{0} \, \text{\textit{s.t.}} \, \transpose{\vb*{\alpha}} - \transpose{\vb*{\lambda}}\tensorq{A} =0,
+	\]
+	since if $\vb*{\alpha} \vdot \vb{x} + \beta \geq 0 \forall \vb{x}\in S, $ then $\vb*{\alpha} \vdot \vb{x} - \vb*{\lambda} \vdot \tensorq{A}\vb{x} = 0, $  where $\tensorq{A} \vb{x} = - \vb{b} \forall \vb{x} \in S.$ This immediately implies the sought result.
+	This proof is by contradiction: suppose
+	\[
+		\qty(\tensorq{A}\vb{x} + \vb{b} = 0 \Rightarrow \vb*{\alpha} \vdot \vb{x} + \beta \geq 0) \wedge \exists \vb{x}_0 \, \text{\textit{s.t.}} \, \tensorq{A}\vb{x}_0 = \vb{0} \wedge \vb*{\alpha} \vdot \vb{x}_0 \neq 0.
+	\]
+	We can now take
+	\[
+		\tensorq{A}\qty(\vb{x} + \delta \vb{x}_0) + \vb{b} = \vb{0} \Rightarrow \vb*{\alpha} \vdot \qty(\vb{x} + \delta \vb{x}_0) + \beta \geq 0,
+	\]
+	for an arbitrary $\delta \in \R.$ But this is clearly not possible, as we can take $\delta < 0, |\delta| >> 1$ and surely the second relation will not be met.
+\end{proof}
+
+\subsection{Inflation of a hyperelastic balloon}
+\label{sec:inflation}
+
+To prepare ourselves, first we examine the \textit{biaxial deformation of a incompressible hyperelastic sheet.}
+
+\subsubsection{Biaxial deformation of a incompressible hyperelastic sheet}
+\label{sec:biaxial}
+The deformation gradient is
+
+\[
+	\fgrad = \begin{bmatrix}
+		\lambda_1 & 0 0 \\
+		0 & \lambda_2 & 0 \\
+		0 & 0 & \lambda_3
+	\end{bmatrix},
+	\lcg = \fgrad \transpose{\fgrad} = \begin{bmatrix}
+		\lambda_1^{2} & 0 0 \\
+		0 & \lambda_2^{2} & 0 \\
+		0 & 0 & \lambda_3^{2}
+	\end{bmatrix}.
+\]
+Moreover, assume the material is the incompressible Ogden:
+\begin{align*}
+	W\qty(\lambda_1, \lambda_2, \lambda_3) &= \sum_{k=1}^N \frac{\mu_k}{\alpha_k}\qty(\lambda_1^{\alpha_k} + \lambda_2^{\alpha_k} + \lambda_3^{\alpha_k}-3), \\
+	\lambda_1 \lambda_2 \lambda_3 &= 1.
+\end{align*}
+Cauchy stress then would be
+\[
+	\cstress = - p \identity + \frac{2}{J} \pdv{W\qty(\lcg)}{\lcg}\lcg = -p \identity + 2 \sum_{j=1}^3 \pdv{W}{\lambda_j}\pdv{\lambda_j}{\lcg}\lcg,
+\]
+recall that
+\[
+	J = 1, \pdv{\lambda_j}{\lcg} = \frac{1}{2 \lambda_j}\vb{g}_j \otimes \vb{g}_j, \lcg = \sum_{j = 1}^3 \lambda_j^{2}\qty(\vb{g}_j \otimes \vb{g}_j.)
+\]
+We must calculate
+\[
+	\pdv{W}{\lambda_j} = \sum_{k=1}^N \frac{\mu_k}{\lambda_k} \alpha_k \lambda_j^{\alpha_k - 1},
+\]
+and so 
+\[
+	\cstress = - p \identity + 2 \sum_{j=1}^3 \sum_{k=1}^N \mu_k \frac{1}{2} \lambda_j^{\alpha_k - 2} \qty(\vb{g}_j \otimes \vb{g}_j)\sum_{l=1}^3 \lambda_l^{2}\qty(\vb{g}_l \otimes \vb{g}_l) = - p \identity + \sum_{j=1}^3 \sum_{k=1}^N \mu_k \lambda_j^{\alpha_k}\qty(\vb{g}_j \otimes \vb{g}_j).
+\]
+
+We now assume
+\[
+	T_{33} = 0,
+\]
+called the \textit{thin sheet assumption}, \textit{i.e.}, plane-stress problem. This means
+\[
+	0 = - p + \sum_{k=1}^N \mu_k \lambda_3^{\alpha_k},
+\]
+since $\vb{g}_j =  \vb{e}_j.$ The pressure thus is
+\[
+	p = \sum_{k=1}^N \mu_k \lambda_3^{\alpha_k}.
+\]
+
+The remaining stresses are
+\[
+	T_{11} = - \sum_{k=1}^N \mu_k \lambda_3^{\alpha_k} + \sum_{k=1}^N \mu_k \lambda^{\alpha_k}_1,
+\]
+where
+\[
+	\lambda_3 = \frac{1}{\lambda_1 \lambda_2},
+\]
+so
+\[
+	T_{11} = \sum_{k=1}^N \mu_k \qty(\lambda_1^{\alpha_k} - \qty(\lambda_1 \lambda_2)^{-\alpha_k}),
+\]
+and similiarly
+
+\[
+	T_{22} = \sum_{k=1}^N \mu_k \qty(\lambda_2^{\alpha_k}- \qty(\lambda_1 \lambda_2)^{-\alpha_k}).
+\]
+Alltogether,
+\[
+	\cstress = T_{11} \qty(\vb{e}_1 \otimes \vb{e}_1) + T_{22} \qty(\vb{e}_2 \otimes \vb{e}_2) \equiv \sigma_1 \qty(\vb{e}_1 \otimes \vb{e}_2) + \sigma_2 \qty(\vb{e}_2 \otimes \vb{e}_2).$
+\]
+
+\subsubsection{Simplified approach for a balloon}
+\label{sec:balloon_simplified}
+
+Assume now
+\[
+	\sigma_1 = \sigma_2 \equiv \sigma,
+\]
+meaning the the balloon is being stretched the same way in both directions. This is equivalent to
+\[
+	\lambda_1 = \lambda_2 \equiv \lambda,
+\]
+\textit{i.e.},
+\[
+	\sigma = \sum_{k=1}^N \mu_k \qty(\lambda^{\alpha_k} - \lambda^{-2 \alpha_k}).
+\]
+
+Let the thickness of the baloon be $h$ and assume $h << 1.$ We also define
+\[
+	\sigma_T = \sigma h,
+\]
+as in fact the \textit{surface tension}. The virtual work principle states
+\[
+	p_0 \delta V = \sigma_T \delta S, 
+\]
+where $p_0$ is the overpressure. This can be manioulated into
+
+\[
+	p_0 \frac{4}{3} \pi 3 \pi r^{2} \delta r= \sigma_T 2 \pi r \delta r
+\]
+\[
+	p_0 r^{2} = 2 r \sigma_T,
+\]
+and so
+\[
+	p_0 = \frac{2 \sigma_T}{r} = 2 \sigma_T K,
+\]
+which is the \textit{Laplace-Young} condition. The pressure in the baloon is the greater the less the radius the balloon has, or the greater the curvature $K$ gets.
+
+Subsituting for $\sigma_T$ yields
+\[
+p_0 = \frac{2 \sigma h}{r} = 2 \sigma\underbrace{\qty(\frac{h}{H})}_{= \lambda_3 = \frac{1}{\lambda^{2}}} \frac{H}{R} \underbrace{\qty(\frac{R}{r})}_{= \frac{1}{\lambda} = \frac{2 \sigma}{\lambda^{3}}} = \frac{2H}{R \lambda^{3}} \sum_{k=1}^N \mu_k \qty(\lambda^{\alpha_k}- \lambda^{-2 \lambda_k}),
+\]
+where $H,R$ are the reference thickness and radius and $h,r$ are the thickness and radius in the deformed configuration.
+so finally 
+
+\[
+	p_0 = \frac{2H}{R}\sum_{k=1}\mu_k \qty(\lambda^{\alpha_k-3}- \lambda^{-2 \lambda_k -3}).
+\]
+
+Plotting this for a rubber-like material, the dependency $p_0\qty(\lambda)$ shows that first, starting from 0, $p_0$ is very steep, but suddenly at a one time the material expands very rapidly.
+
+
+\subsubsection{Exact solution}
+\label{sec:exact_solution}
+
+Denote now $A,B,H$ to be the inner radius, outer radius and the thickness, the same for $a,b,h.$ It will be advantegous to use spherical coordinates:
+\begin{align*}
+	R &\in [A,B],\\
+	\Theta &\in [0, \pi), \\
+	\Phi &\in [0, 2 \pi), \\
+\end{align*}
+The deformation is 
+\begin{align*}
+	r &= f(R) R, \\
+	\theta &= \Theta, \\
+	\varphi &= \Phi
+\end{align*}
+This gets sophisticated now, as
+\[
+	\fgrad = \pdv{\xi^i}{X^J}\vb{g}_i \otimes \vb{G}^J, \vb{g}_i = \pdv{\vb{x}\qty(\xi^1, \xi^2, \xi^3)}{\xi^i},
+\]
+in curvilinear coordinates. It can be obtained:
+
+\[
+	\fgrad = \pdv{\qty(f(R)R)}{R} \qty(\vb{g}_r \otimes \vb{G}^R) + \vb{g}_{\theta}\otimes \vb{G}^{\Theta} + \vb{g}_{\varphi}\otimes \vb{G}^{\Phi},
+\]
+but every decent person works in coordinate \textit{s.t.} $\norm{\vb{g}_r} = 1$ etc. Calculation gives
+\[
+	\norm{\vb{G}_R} = 1, \norm{\vb{G}_{\Theta}} = R, \norm{\vb{G}_{\Phi}} = R \sin \Theta,
+\]
+and the inverse for the forms. Now we write the deformation gradient in the "normalized" coordinates, without writing things like $\vb{g}_{\hat{r}}.$
+
+\[
+	\fgrad = R f'(R)\qty(\vb{g}_r \otimes \vb{G}^R)+ f(R)\identity.
+\]
+
+After long and complicated calculations, it can be shown
+
+\[
+	p_0 = \int_{\lambda_a}^{\lambda_b} \frac{\tilde{W}'\qty(\lambda)}{\lambda^{3}-1} \dd{\lambda},
+\]
+
+where $\tilde{W} = W\qty(\frac{1}{\lambda^{2}}, \lambda, \lambda).$
 
 \end{document}
 

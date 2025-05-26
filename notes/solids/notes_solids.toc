@@ -44,3 +44,7 @@
 \contentsline {subsection}{\numberline {9.6}Rational thermodynamics}{29}{subsection.9.6}%
 \contentsline {subsubsection}{\numberline {9.6.1}Clausius-Duhem inequality}{29}{subsubsection.9.6.1}%
 \contentsline {subsubsection}{\numberline {9.6.2}Isothermal setting}{30}{subsubsection.9.6.2}%
+\contentsline {subsection}{\numberline {9.7}Inflation of a hyperelastic balloon}{32}{subsection.9.7}%
+\contentsline {subsubsection}{\numberline {9.7.1}Biaxial deformation of a incompressible hyperelastic sheet}{32}{subsubsection.9.7.1}%
+\contentsline {subsubsection}{\numberline {9.7.2}Simplified approach for a balloon}{33}{subsubsection.9.7.2}%
+\contentsline {subsubsection}{\numberline {9.7.3}Exact solution}{34}{subsubsection.9.7.3}%

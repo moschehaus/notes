@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1747751276.40349 "notes_pdrII.tex" "notes_pdrII.pdf" "notes_pdrII" 1747751294.89224 0
+["pdflatex"] 1748289643.47935 "notes_pdrII.tex" "notes_pdrII.pdf" "notes_pdrII" 1748289647.57598 0
   "/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1742685315 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "/usr/share/texmf-dist/fonts/enc/dvips/mnsymbol/MnSymbolA.enc" 1742685315 3341 78e600b269762aa2a25a5293cc4535c0 ""
   "/usr/share/texmf-dist/fonts/enc/dvips/mnsymbol/MnSymbolC.enc" 1742685315 3275 8d7166dfdbc31ffdc8aba0c31b3bd5c8 ""
@@ -228,10 +228,10 @@
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1743674043 5311557 9da84c45f5b388655502706482323571 ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1743673972 2008231 401c56e7e2db0204dd1ee943df81c91a ""
   "macros.tex" 1747256524.46929 30099 8145961db123899293fdb4bf0b6692a4 ""
-  "notes_pdrII.aux" 1747751290.31417 4069 aeb9fec17441aee4cb7cc6ee4bb169c8 "pdflatex"
-  "notes_pdrII.out" 1747751290.34617 3211 82d3e78b9cf1b2be13afd6470875d297 "pdflatex"
-  "notes_pdrII.tex" 1747751276.31918 99380 3902ea45a643bdda87d51e083c51bf50 ""
-  "notes_pdrII.toc" 1747751290.34917 1612 b419039f19bd7dd0d95230b2285b2132 "pdflatex"
+  "notes_pdrII.aux" 1748289646.7273 4071 728b2c55d1b965bc85db9965405bf04c "pdflatex"
+  "notes_pdrII.out" 1748289646.7293 3211 82d3e78b9cf1b2be13afd6470875d297 "pdflatex"
+  "notes_pdrII.tex" 1748289641.5653 104824 6e70bb8283ec0e8f48ae6225f8cfba6b ""
+  "notes_pdrII.toc" 1748289646.7293 1613 46543f72b461bfee0e1900aa90c5b5f3 "pdflatex"
   (generated)
   "notes_pdrII.aux"
   "notes_pdrII.log"

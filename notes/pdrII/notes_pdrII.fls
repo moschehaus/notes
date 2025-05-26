@@ -317,8 +317,8 @@ INPUT /usr/share/texmf-dist/fonts/tfm/public/mnsymbol/MnSymbolD-Bold5.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/jknappen/ec/tcrb1000.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/jknappen/ec/tcrb0700.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/jknappen/ec/tcrb0500.tfm
-INPUT /usr/share/texmf-dist/fonts/enc/dvips/mnsymbol/MnSymbolF.enc
 INPUT /usr/share/texmf-dist/fonts/enc/dvips/mnsymbol/MnSymbolA.enc
+INPUT /usr/share/texmf-dist/fonts/enc/dvips/mnsymbol/MnSymbolF.enc
 INPUT /usr/share/texmf-dist/fonts/tfm/public/mnsymbol/MnSymbolS10.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/public/mnsymbol/MnSymbolS7.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/public/mnsymbol/MnSymbolS5.tfm

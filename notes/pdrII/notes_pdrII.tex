@@ -76,12 +76,28 @@
 
 \subsubsection{Weak$^*$ convergence}
 \label{sec:weakstarconv}
-Since $\LinfIntX{0}{T}{\LpSet[2]{\Omega}}$ is not reflexive, we cannot extracting a convergent subsequence; however, we know the predual of $\LinfIntX{0}{T}{\LpSet[2]{\Omega}}$ is reflexive, i.e.
+Since $\LinfIntX{0}{T}{\LpSet[2]{\Omega}}$ is not reflexive, we cannot extract a (weakly) convergent subsequence; however, we know the predual of $\LinfIntX{0}{T}{\LpSet[2]{\Omega}}$ is reflexive, i.e.
 \[
-	\LinfIntX{0}{T}{\LpSet[2]{\Omega}} \approx (\LpIntX{1}{0}{T}{\LpSet[2]{\Omega}})^{*},
+	\LinfIntX{0}{T}{\LpSet[2]{\Omega}} \cong \qty(\LpIntX{1}{0}{T}{\LpSet[2]{\Omega}})^{*},
 \]
 which means that balls in $\LinfIntX{0}{T}{\LpSet[2]{\Omega}}$ are weakly$^{*}$ compact. Moreover, $\LpIntX{1}{0}{T}{\LpSet[2]{\Omega}}$ is \textit{separable}, from which it follows $\LinfIntX{0}{T}{\LpSet[2]{\Omega}}$ with the weak$^{*}$ topology is metrizable and thus there exists s weakly $^{*}$ converging subsequence (from the balls).
 
+\begin{example}[For people without Functional Analysis I]
+	Let $X$ be a linear normed space, $\qty{x_n} \subset X$ a sequence in $X$. We say $x_n$ converges weakly to $x \in X$ whenever
+	\[
+		f(x_n) \to f(x), \forall f \in X^{*}.
+	\]
+	Let $X*$ be the topological dual to $X$, $\qty{x_n} \subset X^{*}$ a sequence in $X$. We say $f_n$ converges weakly* to $f \in X^{*}$ whenever
+	\[
+		f_n(x) \to f(x), \forall x \in X^{*}, \, \text{\textit{i.e.}} \, x(f_n) \to x(f),
+	\]
+	where by $x(y), x \in X, y \in X.*$ we understand
+	\[
+		\varepsilon_x : X^{*} \to \mathbb{K}, y \mapsto y(x).
+	\]
+
+	Since $\LinfIntX{0}{T}{\LpSet[2]{\Omega}} \cong \qty(\LpIntX{1}{0}{T}{\LpSet[2]{\Omega}})^{*} ,$ every point $x \in \LinfIntX{0}{T}{\LpSet[2]{\Omega}}$ can be interpreted as a linear functional on $\LpIntX{1}{0}{T}{\LpSet[2]{\Omega}},$ so given $\qty{x_n} \subset \LinfIntX{0}{T}{\LpSet[2]{\Omega}},$ we can interpret is as a $\qty{x_n} \subset \qty(\LpIntX{1}{0}{T}{\LpSet[2]{\Omega}})^{*},$ meaning given a weakly converging sequence in $\LinfIntX{0}{T}{\LpSet[2]{\Omega}},$ it is actually a weakly* converging sequence in $\LpIntX{1}{0}{T}{\LpSet[2]{\Omega}}.$
+\end{example}
 \begin{theorem}
 	Let the assumptions of the previous theorem hold and $\Omega \in \text{C}^{1,1}, \delta \in (0,1).$ Then $ u \in \LpIntX{2}{\delta}{T}{\WkpSet[2][2]{\Omega}}$.
 \end{theorem}
@@ -91,7 +107,7 @@ which means that balls in $\LinfIntX{0}{T}{\LpSet[2]{\Omega}}$ are weakly$^{*}$ 
 	\begin{equation*}
 		\int_{\Omega} \tensorq{A} \grad{u} \vdot \grad{\varphi}  = \int_{\Omega}f \varphi - bu \varphi - \vb{c}\vdot \grad{u} \varphi - \int_{\Omega} \partial_t u \varphi = \int_{\Omega}(f-bu-\vb{c}\vdot \grad{u} - \partial_t u) \varphi,
 	\end{equation*}
-	and the integrand of the last integral is in $\LpSet[2]{\Omega}$ for a.e. $t \in (\delta,T)$. We can thus use the elliptic regularity results and write:
+	and the integrand of the last integral is in $\LpSet[2]{\Omega}$ for a.e. $t \in (\delta,T)$. We can thus use the elliptic regularity results and write:u
 
 	\begin{equation*}
 		\norm{u}_{\WkpSet[2][2]{\Omega}}^{2} \leq C(\norm{f}_{\LpSet[2]{\Omega}}^{2} + \norm{u}_{\WkpSet[1][2]{\Omega}}^{2} + \norm{\partial_t u}_{\LpSet[2]{\Omega}}^{2}),
@@ -120,21 +136,68 @@ which means that balls in $\LinfIntX{0}{T}{\LpSet[2]{\Omega}}$ are weakly$^{*}$ 
 \end{theorem}
 
 \begin{proof}
-	It is enough that if $u_0 = 0, u_1 = 0 \Rightarrow u = 0 \in Q_T$. To do that, take the weak equation, multiply it by $\varphi \in V$ fixed and integrate in time and space:
-
-	\begin{equation*}
-		<\partial_t u(t), \varphi> + \int_{\Omega} \int_0^t \tensorq{A}(s) \grad{u}(s) \grad{\varphi}\dd{s} + \int_{\Omega} \int_0^t (bu(s) + \vb{c} \vdot \grad{u}(s) )\varphi - \int_{\Omega} \int_0^t u(s)\vb{d}(s)\vdot \grad{\varphi} = 0, 
-	\end{equation*}
-	next take $\varphi = u(t)$ as a test function and integrate $\int_0^\tau \dd{t}, \tau \in (0,T)$. The duality term becomes
+	It is enough that if $u_0 = 0, u_1 = 0 \Rightarrow u = 0 \in Q_T$. To do that, take the equation, multiply it by $\varphi \in V$ fixed and integrate over $\Omega$ for $t \in (0,T)$ fixed:
 	\[
-		\int_0^\tau \frac{1}{2} \partial_t \norm{u(t)}_{\LpSet[2]{\Omega}}^{2} \dd{t},
+		<\partial_{tt}u(t), \varphi> + \int_{\Omega}\tensorq{A}(t) \grad u(t) \vdot \grad \varphi \dd{x} + \int_{\Omega}\qty(b u (t)+ \vb{c} \vdot \grad u (t))\varphi\dd{x} - \int_{\Omega} u(t) \vb{d}(t) \vdot \grad \varphi\dd{x} = 0.
 	\]
-	the remaining terms are (we are using Fubini theorem)
+	Now, take a special test function
+	\[
+		\psi(t) = \qty(\int_t^s u(\tau) \dd{\tau})\chi_{(0,s)}(t),
+	\]
+	for some $s \in (0,T).$ Then $\partial_t \psi(t) = -u(t)$ on $t \in (0,s)$. Next, integrate the equation in time over $(0,s).$
+	\[
+		\int_0^s <\partial_{tt}u(t),\psi>\dd{t} + \int_0^s \int_{\Omega}\tensorq{A}(t) \grad u(t) \vdot \grad \psi\dd{x} \dd{t} + \int_0^s \int_{\Omega}\qty(bu(t) + \vb{c} \vdot \grad u(t))\psi\dd{x} \dd{t} - \int_0^s \int_{\Omega}u(t) \vb{d}(t) \vdot \grad \psi\dd{x} \d{t} = 0,
+	\]
+Now use per partes on the first term (deploy Gelfand triple):
+\[
+	\int_0^s<\partial_{tt}u(t),\varphi>\dd{t} = <\partial_{t}u(s), \psi(s)> - <\partial_t u(0), \psi(0)> - \int_0^s <\partial_t u(t), \partial_t \psi(t)>\dd{t},
+\]
 
-	\begin{equation*}
-		\int_0^\tau \int_0^t \int_{\Omega} \tensorq{A} \grad{u} \vdot \grad{u}(t) \dd{s} \dd{t} = \int_{\Omega} \int_0^\tau \int_s^\tau \grad{u}(t) \dd{t} \tensorq{A}(s) \grad{u}(s)\dd{s},
-	\end{equation*}
-	denote $\partial_{s}w(s) = - u(s)$, then
+	and realize $\psi(s) = 0, \partial_t u(0) =0,$ so
+	\[
+		- \int_0^s <\partial_t u(t), \partial_t \psi(t)> \dd{t}+ \int_0^s \int_{\Omega}\tensorq{A}(t) \grad u(t) \vdot \grad \psi\dd{x} \dd{t} + \int_0^s \int_{\Omega}\qty(bu(t) + \vb{c} \vdot \grad u(t))\psi\dd{x} \dd{t} - \int_0^s \int_{\Omega}u(t) \vb{d}(t) \vdot \grad \psi\dd{x} \d{t} = 0,
+	\]
+	but since $\partial_t \psi(t) = - u(t),$ we can actually write (\textbf{notice we have kept $u(t)$ for Gronwall}:
+	\[
+		 \int_0^s<\partial_t u(t), u(t)> \dd{t}- \int_0^s \int_{\Omega}\tensorq{A}(t) \grad \partial_t \psi (t) \vdot \grad \psi\dd{x} \dd{t} - \int_0^s \int_{\Omega}\qty(-bu(t) + \vb{c} \vdot \grad \partial_t \psi(t))\psi\dd{x} \dd{t} + \int_0^s \int_{\Omega}\psi(t) \vb{d}(t) \vdot \grad \psi\dd{x} \d{t} = 0,
+	\]
+	and so
+	\[
+		\int_0^s \dv{t} \frac{1}{2}\qty(\norm{u(t)}_{\LpSet[2]{\Omega}}^{2}- \int_{\Omega}\tensorq{A}(t) \grad \psi(t) \vdot \grad \psi(t)\dd{x}) = - \int_0^s \int_{\Omega}\psi(t) \vb{d}(t) \vdot \grad \psi(t)\dd{x}\dd{t} + \int_0^s \int_{\Omega}\qty(-b u(t) + \vb{c} \vdot \grad  \psi(t))\psi\dd{x}\dd{t}.
+	\]
+	Integrating the LHS and realizing $u(0) = 0, \grad \psi (s) = 0,$yields
+	\[
+		\frac{1}{2}\qty(\norm{u(s)}_{\LpSet[2]{\Omega}}^{2} + \int_{\Omega}\tensorq{A}(0) \grad \psi(0) \vdot \grad\psi(0)\dd{x}) = - \int_0^s \int_{\Omega}\psi(t) \vb{d}(t) \vdot \grad \psi(t)\dd{x}\dd{t} + \int_0^s \int_{\Omega}\qty(-b u(t) - \vb{c} \vdot \grad  \psi(t))\psi\dd{x}\dd{t}.
+	\]
+	Using the ellipticity of $\tensorq{A}$ and the regularity of the data: \begin{align*}
+		\int_{\Omega}\tensorq{A}(0) \grad \psi(0) \vdot \psi(0)\dd{x} &\geq C_1 \norm{\grad \psi(0)}_{\LpSet[2]{\Omega}} \Rightarrow - \int_{\Omega}\tensorq{A}(0) \grad \psi(0) \vdot \psi(0)\dd{x} \leq -C_1 \norm{\grad \psi(0)}_{\LpSet[2]{\Omega}} \leq -C_1 \norm{\psi(0)}_V, \\
+		\int_{\Omega}\psi \vb{d} \vdot \grad \psi\dd{x} &\leq \norm{\vb{d}}_{\LinfSet{\Omega}}\norm{\psi}_{\LpSet[2]{\Omega}}\norm{\grad \psi}_{\LpSet[2]{\Omega}}\leq \norm{\vb{d}}_{\LinfSet{\Omega}}\norm{\psi}_{\WkpSet[1][2]{\Omega}}^{2}, \\
+		\int_{\Omega}\qty(-bu + \vb{c} \vdot \grad \psi)\dd{x} &\leq \qty(\norm{b}_{\LinfSet{\Omega}} \norm{u}_{\LpSet[2]{\Omega}} + \norm{\vb{c}}_{\LinfSet{\Omega}}\norm{u}_{\WkpSet[1][2]{\Omega}}) \norm{\psi}_{\WkpSet[1][2]{\Omega}},
+	\end{align*}
+and so
+\[
+	\norm{u(s)}_{\LpSet[2]{\Omega}}^{2} + \norm{\psi(0)}_{\WkpSet[1][2]{\Omega}}^{2} \leq C\qty(\int_0^s \norm{\psi}_{\WkpSet[1][2]{\Omega}}^{2} + \norm{u}_{\LpSet[2]{\Omega}}^{2} + \norm{\psi(0)}_{\LpSet[2]{\Omega}}).
+\]
+If we now choose a test function such that $\chi(t) = \int_0^t u(\tau) \dd{\tau}, t \in (0,T],$ and repeat the whole procedure (again $\partial_t \chi(t) = u(t), \chi(0) = 0,$ we obtain the estimates
+\[
+	\norm{u(s)}_{\LpSet[2]{\Omega}}^{2} + \norm{\chi(s)}_{\WkpSet[1][2]{\Omega}}^{2} \leq C\qty(\int_0^s \norm{\chi(t) - \chi(s)}_{\WkpSet[1][2]{\Omega}}^{2} + \norm{u(t)}_{\LpSet[2]{\Omega}}^{2} + \norm{\chi(s)}_{\LpSet[2]{\Omega}}^{2}),
+\]
+and since $\norm{\chi(t) - \chi(s)}_{\WkpSet[1][2]{\Omega}}^{2} \leq 2 \qty(\norm{\chi(t)}_{\WkpSet[1][2]{\Omega}} + \norm{\chi(s)}_{\WkpSet[1][2]{\Omega}}^{2}),$ the above inequality in fact implies
+
+\[
+	\norm{u(s)}_{\LpSet[2]{\Omega}}^{2} + \qty(1-2 s C_1)\norm{\chi(s)}_{\WkpSet[1][2]{\Omega}}^{2} \leq C_1 \int_0^s \qty(\norm{\chi}_{\WkpSet[1][2]{\Omega}}^{2}+ \norm{u}_{\LpSet[2]{\Omega}}^{2} )\dd{t}.
+\]
+If we now choose $T_1 \leq T$ so small that $1-2T_1 C_1 \geq \frac{1}{2},$ and restrict ourselves on $s \in [0,T_1]$, combining the two estimates yields
+\[
+	\norm{u(s)}_{\LpSet[2]{\Omega}}^{2} + \norm{\chi(s)}_{\WkpSet[1][2]{\Omega}}^{2} \leq C \int_0^s\qty(\norm{u(t)}_{\LpSet[2]{\Omega}}^{2} + \norm{\chi(t)}_{\WkpSet[1][2]{\Omega}}^{2})\dd{t},
+\]
+which implies $u = 0$ on $[0,T_1]$ by the Gronwall lemma: we have
+\[
+	\xi(t) \leq \int_0^t \xi(s) \dd{s}, \, \text{for} \, \, \text{\textit{a.a.}} \, t \in (0,T) \Rightarrow \xi(t) = 0 \, \text{\textit{a.e.}} \,.
+\]
+for $\xi \in \LpSet[1]{(0,T)}$ nonnegative.
+If we now boostrap on $[T_1, 2T_1], [2T_1, 3T_1]$ etc., we obtain $u = 0$ on $(0,T]$.
+
 
 \end{proof}
 \bibliographystyle{chicago}

@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1747661532.04596 "notes_solids.tex" "notes_solids.pdf" "notes_solids" 1747661540.43187 2
+["pdflatex"] 1747828274.81924 "notes_solids.tex" "notes_solids.pdf" "notes_solids" 1747828282.39148 2
   "/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1742685315 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "/usr/share/texmf-dist/fonts/enc/dvips/mnsymbol/MnSymbolA.enc" 1742685315 3341 78e600b269762aa2a25a5293cc4535c0 ""
   "/usr/share/texmf-dist/fonts/enc/dvips/mnsymbol/MnSymbolC.enc" 1742685315 3275 8d7166dfdbc31ffdc8aba0c31b3bd5c8 ""
@@ -238,6 +238,7 @@
   "/usr/share/texmf-dist/tex/latex/caption/caption3.sty" 1742685315 72619 ee90b6612147680fd73c3b1406a74245 ""
   "/usr/share/texmf-dist/tex/latex/comment/comment.sty" 1742685315 10197 204f75d5d8d88aa345a8c402e879e63b ""
   "/usr/share/texmf-dist/tex/latex/enumitem/enumitem.sty" 1742685315 52272 63d293bc0d496619edb57585740861a2 ""
+  "/usr/share/texmf-dist/tex/latex/environ/environ.sty" 1742685315 4378 f429f0da968c278653359293040a8f52 ""
   "/usr/share/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty" 1742685315 13886 d1306dcf79a944f6988e688c1785f9ce ""
   "/usr/share/texmf-dist/tex/latex/etoolbox/etoolbox.sty" 1742685315 46850 d87daedc2abdc653769a6f1067849fe0 ""
   "/usr/share/texmf-dist/tex/latex/eurosym/eurosym.sty" 1742685315 3028 8faeef64adee9b964b5e7f5e45921024 ""
@@ -283,9 +284,12 @@
   "/usr/share/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty" 1742685315 9714 ba3194bd52c8499b3f1e3eb91d409670 ""
   "/usr/share/texmf-dist/tex/latex/srcltx/srcltx.sty" 1742685315 5060 90fd593dd07098b5600fb650e86733ff ""
   "/usr/share/texmf-dist/tex/latex/subfig/subfig.sty" 1742685315 21369 9ef165ca6df8815c92e693146a376c92 ""
+  "/usr/share/texmf-dist/tex/latex/tcolorbox/tcolorbox.sty" 1742685315 105823 554671f5b2d97c7efbbaf6dae11c29a8 ""
   "/usr/share/texmf-dist/tex/latex/tensor/tensor.sty" 1742685315 5283 06cc789a7c0b2b10732d82ef7c6c78b3 ""
   "/usr/share/texmf-dist/tex/latex/tools/bm.sty" 1742685315 13236 1aba485b47e3c79a47dc0906cc971820 ""
   "/usr/share/texmf-dist/tex/latex/tools/multicol.sty" 1742685315 32879 f4cfa2226c995da5b04a89ee47abf182 ""
+  "/usr/share/texmf-dist/tex/latex/tools/verbatim.sty" 1742685315 7532 d2e1111e17bfebb1607d8ffa779705ec ""
+  "/usr/share/texmf-dist/tex/latex/trimspaces/trimspaces.sty" 1742685315 1380 971a51b00a14503ddf754cab24c3f209 ""
   "/usr/share/texmf-dist/tex/latex/units/nicefrac.sty" 1742685315 4029 0462ee5ab265cf59dc15a41a3b883101 ""
   "/usr/share/texmf-dist/tex/latex/units/units.sty" 1742685315 2134 65ad9fb19763b1681bea4cb389fe84f8 ""
   "/usr/share/texmf-dist/tex/latex/url/url.sty" 1742685315 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
@@ -294,10 +298,10 @@
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1743674043 5311557 9da84c45f5b388655502706482323571 ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1743673972 2008231 401c56e7e2db0204dd1ee943df81c91a ""
   "macros.tex" 1747241495.27908 30062 cadfae651f48556df3f29069896c89c1 ""
-  "notes_solids.aux" 1747661538.5165 10655 20526697ae3ee86bbe9afa0cae510b74 "pdflatex"
-  "notes_solids.out" 1747661538.5225 7844 0a95d2f8566ada43a490252e34c8e1e6 "pdflatex"
-  "notes_solids.tex" 1747661531.9955 81950 bd18808b36f3ecc85be43976b1dc2ff7 ""
-  "notes_solids.toc" 1747661538.5235 4070 76d2b2360feb274301b98aeab1d1c3d3 "pdflatex"
+  "notes_solids.aux" 1747828280.62357 11788 8c5ca307124c39d5800462bed455e501 "pdflatex"
+  "notes_solids.out" 1747828280.62857 8851 bef43b93124c150662f5e5baf60a977f "pdflatex"
+  "notes_solids.tex" 1747828274.76157 89826 16a17b4b83965dcfef891c4a5497f232 ""
+  "notes_solids.toc" 1747828280.62957 4508 3e2863e95856070d74a30f0567f68a62 "pdflatex"
   (generated)
   "notes_solids.aux"
   "notes_solids.log"
