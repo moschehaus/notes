@@ -220,7 +220,7 @@ If we now boostrap on $[T_1, 2T_1], [2T_1, 3T_1]$ etc., we obtain $u = 0$ on $(0
 
 \section{Sobolev spaces revisited}
 \label{sec:sobolev_revisited}
-Let $\Omega \subset \R^d \quad{open}, p \in [1,+\infty], k \in N.$ We define
+Let $\Omega \subset \R^d \, \text{open} \,, p \in [1,+\infty], k \in N.$ We define
 \[
 	\WkpSet{\Omega} = \Big\{f \in \LpSet{\Omega}; D^\alpha f \in \LpSet{\Omega}, \forall |\alpha| \leq k \Big\},
 \]
@@ -252,7 +252,11 @@ Recall that:
 \end{definition}
 
 \begin{definition}[Regularization of a function]
-	Let $\eta$ be a regularization kernel. Set $\eta_{\varepsilon}(x) = \varepsilon^{-d} \eta (x/\varepsilon), \varepsilon >0.$ We define the smoothing of $f$ by
+	Let $\eta$ be a regularization kernel. Set\footnote{Another common choice is $\eta_k = k^d \eta\qty(kx), k \in \N.$}
+	\[
+		\eta_{\varepsilon}(x) = \frac{1}{\varepsilon^{d}} \eta (x/\varepsilon), \varepsilon >0.
+	\]
+	We define the smoothing of $f \in \LpSet[1]{\Omega}_{\, \text{loc} \,}$ by
 	\[
 		f_{\varepsilon}(x) = (f \star \eta_{\varepsilon})(x).
 	\]
@@ -263,7 +267,7 @@ Recall that:
 	\begin{itemize}
 		\item $f \in \LpSet{\Omega} \Rightarrow f_{\varepsilon} \to f \, \text{in} \, \LpSet{\Omega}$ and also a.e
 		\item $f \in \LinfSet{\Omega} \Rightarrow f_{\varepsilon} \to f \, \text{a.e and *-weak} \,$
-		\item $f_{\varepsilon}(x) = \int_{\R^d}f(y)\eta_{\varepsilon}(x-y)\dd{y} = \int_{\text{U}(x,\varepsilon)}f_y \eta_{\varepsilon}(x-y)\dd{y}$
+		\item $f_{\varepsilon}(x) = \int_{\R^d}f(y)\eta_{\varepsilon}(x-y)\dd{y} = \int_{\text{U}(x,\varepsilon)}f(y) \eta_{\varepsilon}(x-y)\dd{y}$
 		\item $\supp f_{\varepsilon} \subset \overline{U(\Omega,\varepsilon)}, f=0 \, \text{on} \,\text{U}(x,\varepsilon) \Rightarrow f_{\varepsilon}(x)=0$
 	\end{itemize}
 \end{remark}
@@ -273,20 +277,22 @@ Recall that:
 \end{definition}
 
 \begin{lemma}[Approximation of Sobolev functions using regularization]
-	Assume $p \in [1, \infty), \Omega \subset \R^d \, \text{open} \,, k \in \N, u \in \WkpSet{\Omega}, \Omega' \subset \subset \Omega.$ Then it holds
+	Assume $p \in [1, \infty), \Omega \subset \R^d \, \text{open} \,, k \in \N, u \in \WkpSet{\Omega}, \Omega_{\varepsilon} = \qty{x \in \Omega | \dist\qty(x, \partial \Omega)>\varepsilon}, f \, \text{locally integrable} \,$ Then it holds
 	\begin{enumerate}
-		\item $\dist\, (\overline{\Omega}', \partial \Omega) = D >0$
-		\item $D^\alpha(f_{\varepsilon}) = (D^\alpha f)_{\varepsilon}$ in $\Omega', \forall \varepsilon \in (0,D), \forall |\alpha| \leq k$
-		\item $f_{\varepsilon}\to f$ in $\WkpSet{\Omega}, \varepsilon \to 0^+$
+		\item $D^\alpha(f_{\varepsilon}) = (D^\alpha f)_{\varepsilon}$ \textit{a.e.} in $\Omega_{\varepsilon}, \forall |\alpha| \leq k$
+		\item $f_{\varepsilon}\to f$ in $\WkpSet{\Omega}_{\, \text{loc} \,}, \varepsilon \to 0^+$
 	\end{enumerate}
 \end{lemma}
 
 \begin{proof}
-	\begin{enumerate}
-		\item disjoint compact and closed set
-		\item WLOG $\pdv{f_{\varepsilon}}{x^k} = \pdv{\int_{\R^d}f_y \eta_{\varepsilon}(x-y)\dd{y}}{x^k} = \int_{\Omega}f_y \pdv{\eta_{\varepsilon}}{x^k}(x-y)\dd{y} = - \int_{\Omega}f(y)\pdv{\eta_{\varepsilon}}{y^k}(x-y)\dd{y} =  - \int_{\Omega}\pdv{f}{y^k}\eta_{\varepsilon}(x-y)\dd{y} = (D^\alpha f)_{\varepsilon}(x).$
-		\item follows from 2) and the remark above applied to $f, D^\alpha f, |\alpha| \leq k$.
-	\end{enumerate}
+	First of all: \[
+		\forall x \in \Omega: D^{\alpha}\qty(u_{\varepsilon}(x)) = D^{\alpha}\qty(\int_{\R^d}u(y)\eta_{\varepsilon}(x-y)\dd{y}) = \int_{\R^d}u(y)D_x^{\alpha}\eta_{\varepsilon}(x-y)\dd{y} = \int_{\Omega}u(y)D_x^{\alpha}\eta_{\varepsilon}(x-y)\dd{y},
+	\]
+	the integrable majorants are \textit{e.g.} $\norm{\eta_{\varepsilon}}_{\infty}|u|\chi_{\text{U}(0,\varepsilon)}(x) \in \LpSet[1]{\Omega}.$ Now picking $x \in \Omega_{\varepsilon}$ we realize $\forall y \in \R^d / \Omega: x-y \geq \dist\qty(x,\partial \Omega) \geq \varepsilon,$ and so $\eta_{\varepsilon}\qty(x-y) = 0.$ Exchanging derivatives and using the definition of the weak derivative
+	\[
+		\int_{\Omega}u(y) D_x^{\alpha}\eta_{\varepsilon}(x-y)\dd{y} =(-1)^{|\alpha|}\int_{\Omega}u(y)D_y^{\alpha}\eta_{\varepsilon}\qty(x-y)\dd{y} = \int_{\Omega}D^{\alpha}_y u(y) \eta_{\varepsilon}(x-y)\dd{y}= \int_{\R^d}D^{\alpha}_y u(y) \eta_{\varepsilon}(x-y)\dd{y} = \qty(D^{\alpha}u)_{\varepsilon}.
+	\]
+	From the properties of regularization we immediately have $u_{\varepsilon} \to u$ in $\LpSet{\Omega}$ locally. The convergences of $D^{\alpha}u_{\varepsilon} = \qty(D^{\alpha}u)_{\varepsilon}, |\alpha| \leq k$ follow from the first point and the fact $D^{\alpha}u \in \LpSet{\Omega}.$
 \end{proof}
 
 \begin{lemma}[Partition of unity]
