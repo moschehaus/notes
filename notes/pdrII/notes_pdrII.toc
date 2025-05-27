@@ -1,17 +1,19 @@
 \babel@toc {english}{}\relax 
-\contentsline {section}{\numberline {1}Winter semester addendum}{1}{section.1}%
-\contentsline {subsubsection}{\numberline {1.0.1}Weak$^*$ convergence}{1}{subsubsection.1.0.1}%
-\contentsline {section}{\numberline {2}Sobolev spaces revisited}{4}{section.2}%
+\contentsline {section}{\numberline {1}Winter semester addendum}{2}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Weak$^*$ convergence}{2}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Regularity of parabolic problems}{2}{subsection.1.2}%
+\contentsline {subsection}{\numberline {1.3}Uniqueness of solutions to hyperbolic problems}{3}{subsection.1.3}%
+\contentsline {section}{\numberline {2}Sobolev spaces revisited}{5}{section.2}%
 \contentsline {subsection}{\numberline {2.1}Tools from functional analysis}{5}{subsection.2.1}%
 \contentsline {subsection}{\numberline {2.2}Density of smooth functions}{6}{subsection.2.2}%
-\contentsline {subsection}{\numberline {2.3}Extension of Sobolev functions}{7}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.3}Extension of Sobolev functions}{8}{subsection.2.3}%
 \contentsline {subsection}{\numberline {2.4}Embedding theorems}{10}{subsection.2.4}%
 \contentsline {subsection}{\numberline {2.5}Trace theorems}{14}{subsection.2.5}%
 \contentsline {subsection}{\numberline {2.6}Composition of sobolev functions}{14}{subsection.2.6}%
 \contentsline {subsection}{\numberline {2.7}Difference quotients}{14}{subsection.2.7}%
 \contentsline {section}{\numberline {3}Nonlinear elliptic equations as compact perturbations}{14}{section.3}%
 \contentsline {subsubsection}{\numberline {3.0.1}Problem protypes}{15}{subsubsection.3.0.1}%
-\contentsline {section}{\numberline {4}Nonlinear elliptic equations - monotone operator theory}{17}{section.4}%
+\contentsline {section}{\numberline {4}Nonlinear elliptic equations - monotone operator theory}{18}{section.4}%
 \contentsline {section}{\numberline {5}Calculus of variations}{22}{section.5}%
 \contentsline {section}{\numberline {6}Semigroup theory}{30}{section.6}%
 \contentsline {section}{\numberline {7}(Some) exercises}{37}{section.7}%

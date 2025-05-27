@@ -289,11 +289,9 @@ INPUT /usr/share/texmf-dist/fonts/tfm/jknappen/ec/tcrm1000.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/jknappen/ec/tcrm0700.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/jknappen/ec/tcrm0500.tfm
 OUTPUT notes_pdrII.toc
-INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmti10.tfm
 INPUT /var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map
 INPUT /usr/share/texmf-dist/fonts/enc/dvips/mnsymbol/MnSymbolC.enc
-INPUT /usr/share/texmf-dist/fonts/enc/dvips/mnsymbol/MnSymbolE.enc
-INPUT /usr/share/texmf-dist/fonts/enc/dvips/mnsymbol/MnSymbolD.enc
+INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmti10.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmti7.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmti7.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/public/mnsymbol/MnSymbolF-Bold10.tfm
@@ -317,6 +315,8 @@ INPUT /usr/share/texmf-dist/fonts/tfm/public/mnsymbol/MnSymbolD-Bold5.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/jknappen/ec/tcrb1000.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/jknappen/ec/tcrb0700.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/jknappen/ec/tcrb0500.tfm
+INPUT /usr/share/texmf-dist/fonts/enc/dvips/mnsymbol/MnSymbolE.enc
+INPUT /usr/share/texmf-dist/fonts/enc/dvips/mnsymbol/MnSymbolD.enc
 INPUT /usr/share/texmf-dist/fonts/enc/dvips/mnsymbol/MnSymbolA.enc
 INPUT /usr/share/texmf-dist/fonts/enc/dvips/mnsymbol/MnSymbolF.enc
 INPUT /usr/share/texmf-dist/fonts/tfm/public/mnsymbol/MnSymbolS10.tfm
@@ -334,6 +334,7 @@ INPUT /usr/share/texmf-dist/fonts/type1/public/mnsymbol/MnSymbol-Bold10.pfb
 INPUT /usr/share/texmf-dist/fonts/type1/public/mnsymbol/MnSymbol-Bold7.pfb
 INPUT /usr/share/texmf-dist/fonts/type1/public/mnsymbol/MnSymbol10.pfb
 INPUT /usr/share/texmf-dist/fonts/type1/public/mnsymbol/MnSymbol5.pfb
+INPUT /usr/share/texmf-dist/fonts/type1/public/mnsymbol/MnSymbol6.pfb
 INPUT /usr/share/texmf-dist/fonts/type1/public/mnsymbol/MnSymbol7.pfb
 INPUT /usr/share/texmf-dist/fonts/type1/public/mnsymbol/MnSymbol8.pfb
 INPUT /usr/share/texmf-dist/fonts/type1/public/bbold-type1/bbold10.pfb
