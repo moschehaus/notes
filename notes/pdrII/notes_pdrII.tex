@@ -276,77 +276,6 @@ Recall that:
 	$O \subset \subset \Omega$ means $\overline{O}$ is compact and $\overline{O}\subset \Omega$.
 \end{definition}
 
-\begin{lemma}[Approximation of Sobolev functions using regularization]
-	Assume $p \in [1, \infty), \Omega \subset \R^d \, \text{open} \,, k \in \N, u \in \WkpSet{\Omega}, \Omega_{\varepsilon} = \qty{x \in \Omega | \dist\qty(x, \partial \Omega)>\varepsilon}, f \, \text{locally integrable} \,$ Then it holds
-	\begin{enumerate}
-		\item $D^\alpha(f_{\varepsilon}) = (D^\alpha f)_{\varepsilon}$ \textit{a.e.} in $\Omega_{\varepsilon}, \forall |\alpha| \leq k$
-		\item $f_{\varepsilon}\to f$ in $\WkpSet{\Omega}_{\, \text{loc} \,}, \varepsilon \to 0^+$
-	\end{enumerate}
-\end{lemma}
-
-\begin{proof}
-	First of all: \[
-		\forall x \in \Omega: D^{\alpha}\qty(u_{\varepsilon}(x)) = D^{\alpha}\qty(\int_{\R^d}u(y)\eta_{\varepsilon}(x-y)\dd{y}) = \int_{\R^d}u(y)D_x^{\alpha}\eta_{\varepsilon}(x-y)\dd{y} = \int_{\Omega}u(y)D_x^{\alpha}\eta_{\varepsilon}(x-y)\dd{y},
-	\]
-	the integrable majorants are \textit{e.g.} $\norm{\eta_{\varepsilon}}_{\infty}|u|\chi_{\text{U}(0,\varepsilon)}(x) \in \LpSet[1]{\Omega}.$ Now picking $x \in \Omega_{\varepsilon}$ we realize $\forall y \in \R^d / \Omega: x-y \geq \dist\qty(x,\partial \Omega) \geq \varepsilon,$ and so $\eta_{\varepsilon}\qty(x-y) = 0.$ Exchanging derivatives and using the definition of the weak derivative
-	\[
-		\int_{\Omega}u(y) D_x^{\alpha}\eta_{\varepsilon}(x-y)\dd{y} =(-1)^{|\alpha|}\int_{\Omega}u(y)D_y^{\alpha}\eta_{\varepsilon}\qty(x-y)\dd{y} = \int_{\Omega}D^{\alpha}_y u(y) \eta_{\varepsilon}(x-y)\dd{y}= \int_{\R^d}D^{\alpha}_y u(y) \eta_{\varepsilon}(x-y)\dd{y} = \qty(D^{\alpha}u)_{\varepsilon}.
-	\]
-	From the properties of regularization we immediately have $u_{\varepsilon} \to u$ in $\LpSet{\Omega}$ locally. The convergences of $D^{\alpha}u_{\varepsilon} = \qty(D^{\alpha}u)_{\varepsilon}, |\alpha| \leq k$ follow from the first point and the fact $D^{\alpha}u \in \LpSet{\Omega}.$
-\end{proof}
-
-\begin{lemma}[Partition of unity]
-	Let $E \subset \R^d, \mathcal{G} \quad{open covering}$. Then there exists a countable system $\mathcal{F}$ of nonnegative functions $\varphi \in \mathcal{D}(\R^d)$ such that $0 \leq \varphi \leq 1$ and 
-	\begin{enumerate}
-		\item $\mathcal{F}$ is subordinate to $\mathcal{G}: \forall \varphi \exists U \in \mathcal{Q}: \supp \varphi \subset U$
-		\item $\mathcal{F}$ is locally finite: $\forall K \subset E \quad{compact}, \supp \varphi \cap K \neq \emptyset$ for at most finitely many $\varphi \in \mathcal{F}$.
-		\item $\sum_{\varphi \in \mathcal{F}} \varphi(x) = 1, \forall x \in E$.
-	\end{enumerate}
-\end{lemma}
-\begin{proof}
-	(Sketch)
-	\textit{Step 1 ($E$ is compact)}:
-
-	$E$ compact $\Rightarrow \exists N \in \N: U_j \in \mathcal{Q} \quad{s.t.} E \subset \bigcup_{j=1}^{m}U_j$. Moreover, $\exists K_j \subset U_j$ compact such that $E \subset \cup_{j=1}^m K_j$. That follows from the exhaustion argument: for $U \subset \R^d$ open, you can approximate it by a compact set: $K_m = \Big\{x \in U, \dist\qty(x,\partial \Omega) \geq \frac{1}{m}, \norm{x} \leq m \Big\}.$ Then clearly $K_1 \subset K_2 \dots $, and they "converge monotonously to $U$.
-	Next, find $\phi_j \in C_c(U_j), \phi_j >0 \, \text{on} \, K_j$, e.g. $\phi_j = \theta\qty(\dist(x,\partial U_j)).$ Then use convolution: $\psi_j = (\phi_j)_{\varepsilon}, \varepsilon > 0$ small and take finally $\varphi_j = \frac{\psi_j}{\sum_j \psi_j}$.
-
-	\textit{Step 2 ($E$ is open)}:
-
-	Use exhaustion argument, then finite $\to$ countable.
-\end{proof}
-
-\subsection{Density of smooth functions}
-\label{sec:density}
-
-\begin{theorem}[Density of smooth functions I]
-	Let $\Omega \subset \R^d$ be open, $k \in \N, p \in [1,\infty).$ Then $\Big\{ f \in C^\infty(\Omega), \supp f \quad{bounded}\Big\} \cap \WkpSet{\Omega}$ is dense in $\WkpSet{\Omega}$.
-\end{theorem}
-\begin{proof}
-	Let $u \in \WkpSet{\Omega}, \varepsilon >0$. I want to show $\exists v \in C^\infty(\Omega) \cap \WkpSet{\Omega} \quad{s.t} \norm{u-v}_{\WkpSet{\Omega}} < \varepsilon$.
-	Using the exhaustion argument, define
-	\[
-		\Omega_j = \Big\{ x \in \Omega, \dist\qty(x,\partial \Omega) > \frac{1}{j}\Big\}.
-	\]
-	Clearly, $\Omega_j \subset \Omega_{j+1}, \cup_{j=1}^\infty \Omega_j =\Omega$. Next, set $U_j = \Omega_{j+1} \ \overline{\Omega_{j-1}}, j=1,2, \dots$, where $\Omega_0 = \Omega_{-1} = \emptyset$. Using the partition of unity lemma, $\exists \{\varphi_j\} $ partition of unity subordinate to $\{U_j\}$. We can write $u = \sum_j u \varphi_j$, where $u \varphi_j \in \WkpSet{\Omega}, \supp u \varphi_j \subset U_j \subset \Omega_{j+1} \subset \subset \Omega$. This is ready for convolution with $\varepsilon_j >0$ sufficiently small: set $ v_j = (u \varphi_j)_{\varepsilon_j}$. By the properties of regularization, we now
-	\[
-		\norm{u - u \varphi_j }_{\WkpSet{\Omega}} < \frac{\varepsilon}{2^j},
-	\]
-	by taking $\varepsilon_j$ small enough. Set $v = \sum_j v_j$ and use the following trick:
-
-	Fix $N \in \N$ and estimate $\norm{v-u}_{\WkpSet{\Omega}}$. Observe $u-v = \sum_{j=1}^\infty(u \varphi_j - v_j)$, so taking $x \in \Omega_N$ i have $(u-v)(x) = \sum_{j=1}^{N+1}(u \varphi_j - v_j)$. The norm of this is
-
-	\begin{equation*}
-		\norm{u-v}_{\WkpSet{\Omega_N}} \leq \sum_{j=1}^{N+1}\norm{u \varphi_j - v_j}_{\WkpSet{\Omega}} < \varepsilon.
-	\end{equation*}
-	It only remains to let $N \to \infty$ and realize $\norm{u-v}_{\WkpSet{\Omega_N}} \to \norm{u-v}_{\WkpSet{\Omega}}$ by Lévi's theorem: $\int_{\Omega_N}|D^\alpha f|\dd{x} \to \int_{\Omega}|D^\alpha|\dd{x}$. 
-\end{proof}
-
-\begin{remark}
-	It is nice that we only require $\Omega$ to be open (no boundary regularity required), but on the other hand, we don't have any information about the function's behaviour near it.
-\end{remark}
-
-Recall $\Omega \in C^{0}$ means $\exists U_j, j=1, \dots, m \quad{open}, \exists \alpha, \beta >0, a_j: \overline{U(0,\alpha)} \to \R, \tensorq{A}_j: \R^d \to \R^d \quad{aff. orthogonal}, \quad{such that} \partial \Omega \subset \cup_{j=1}^m U_j, \partial \Omega \cap U_j = \Big\{ (x',a(x'), x' \in U(0,\alpha)\Big\}.$ Setting $G_j(x',b) = \tensorq{A}_j(x',a(x')+b)$ we moreover require $G_j(U(0,\alpha) \cross (0,\beta)) \subset \Omega, G_j(U(0,\alpha) \cross (-\beta,0)) \subset \overline{\R^d / \Omega}$. 
-
 \begin{definition}[Shift operator]
 	For $u \in \LpSet{\Omega}, k \in \{1,\dots,d\}, h >0, $ we introduce the shift operator
 	\begin{equation*}
@@ -358,7 +287,132 @@ Recall $\Omega \in C^{0}$ means $\exists U_j, j=1, \dots, m \quad{open}, \exists
 	For $u \in \LpSet{\Omega}$, it holds $\tau_h u \to u$ in $\LpSet{\Omega}, h\to 0^+$.
 \end{lemma}
 
-\begin{theorem}[Density of smooth functions II]
+\begin{lemma}[Partition of unity]
+	Let $E \subset \R^d, \mathcal{G}$ be an open covering of $E$ (possibly uncountable.) Then there exists a countable system $\mathcal{F}$ of nonnegative functions $\varphi \in \mathcal{D}(\R^d)$ such that $0 \leq \varphi \leq 1$ and 
+	\begin{enumerate}
+		\item $\mathcal{F}$ is subordinate to $\mathcal{G}: \forall \varphi \in \mathcal{F} \exists U \in \mathcal{G}: \supp \varphi \subset U$
+		\item $\mathcal{F}$ is locally finite\footnote{In other words, $\varphi_K$ is nonzero for at most finitely many $\varphi \in \mathcal{F} \Leftrightarrow$ points in $K$ can be represented by finitely many functions $\varphi \in \mathcal{F}.$}: $\forall K \subset E \, \text{compact} \,, \supp \varphi \cap K \neq \emptyset$ for at most finitely many $\varphi \in \mathcal{F}$.
+		\item $\sum_{\varphi \in \mathcal{F}} \varphi(x) = 1, \forall x \in E$ .
+	\end{enumerate}
+\end{lemma}
+\begin{proof}
+	(Sketch)
+	\textit{Step 1 (If $E$ is compact)}:
+
+	$E$ compact $\Rightarrow \exists m \in \N: \exists U_j \in \mathcal{G} \, \text{\textit{s.t.}} \, E \subset \bigcup_{j=1}^{m}U_j$ . Moreover, $\exists K_j \subset U_j$ compact such that $E \subset \cup_{j=1}^m K_j$. That follows from the exhaustion argument: for $U \subset \R^d$ open, you can approximate it by a compact set:
+	\[
+		K_m = \Big\{x \in U| \dist\qty(x,\partial \Omega) \geq \frac{1}{m}, \norm{x} \leq m \Big\}.
+	\]
+	Then clearly $K_1 \subset K_2 \dots $, and they "converge monotonously to $U$.
+	Next, find $\phi_j \in C_c(U_j), \phi_j >0 \, \text{on} \, K_j$, e.g. $\phi_j = \theta\qty(\dist(x,\partial U_j)).$ Then use convolution: $\psi_j = (\phi_j)_{\varepsilon}, \varepsilon > 0$ small and take finally
+	\[
+		\varphi_j = \frac{\psi_j}{\sum_k \psi_k}
+	\]
+	.
+
+	\textit{Step 2 (If $E$ is open)}:
+
+	Approximate $E$ by $K \subset E$ compact by the exhaustion argument, then the covering will enlarge from finite $\to$ countable (nontrivial reasoning).
+\end{proof}
+
+
+\subsection{Density of smooth functions}
+\label{sec:density}
+
+\begin{lemma}[Local approximation by smooth functions (using regularization)]
+	Assume $p \in [1, \infty), \Omega \subset \R^d \, \text{open} \,, k \in \N, u \in \WkpSet{\Omega}, \Omega_{\varepsilon} = \qty{x \in \Omega | \dist\qty(x, \partial \Omega)>\varepsilon}.$ Then it holds
+	\begin{enumerate}
+		\item $D^\alpha(u_{\varepsilon}) = (D^\alpha u)_{\varepsilon}$ \textit{a.e.} in $\Omega_{\varepsilon}, \forall |\alpha| \leq k$
+		\item $u_{\varepsilon}\to u$ in $\WkpSet{\Omega}_{\, \text{loc} \,}, \varepsilon \to 0^+$
+	\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+	First of all: \[
+		\forall x \in \Omega: D^{\alpha}\qty(u_{\varepsilon}(x)) = D^{\alpha}\qty(\int_{\R^d}u(y)\eta_{\varepsilon}(x-y)\dd{y}) = \int_{\R^d}u(y)D_x^{\alpha}\eta_{\varepsilon}(x-y)\dd{y} = \int_{\Omega}u(y)D_x^{\alpha}\eta_{\varepsilon}(x-y)\dd{y},
+	\]
+	the integrable majorants are \textit{e.g.} $\norm{\eta_{\varepsilon}}_{\infty}|u|\chi_{\text{U}(0,\varepsilon)}(x) \in \LpSet[1]{\Omega}.$ Now picking $x \in \Omega_{\varepsilon}$ we realize $\forall y \in \R^d / \Omega: x-y \geq \dist\qty(x,\partial \Omega) \geq \varepsilon,$ and so $\eta_{\varepsilon}\qty(x-y) = 0.$ Exchanging derivatives and using the definition of the weak derivative
+	\[
+		\int_{\Omega}u(y) D_x^{\alpha}\eta_{\varepsilon}(x-y)\dd{y} =(-1)^{|\alpha|}\int_{\Omega}u(y)D_y^{\alpha}\eta_{\varepsilon}\qty(x-y)\dd{y} = \int_{\Omega}D^{\alpha}_y u(y) \eta_{\varepsilon}(x-y)\dd{y}= \int_{\R^d}D^{\alpha}_y u(y) \eta_{\varepsilon}(x-y)\dd{y} = \qty(D^{\alpha}u)_{\varepsilon}.
+	\]
+	Take $V \subset \subset \Omega$ open, then
+	\[
+		\norm{u - u_{\varepsilon}}_{\WkpSet{V}} = \sum_{|\alpha|\leq k}\norm{D^{\alpha}u - D^{\alpha}u_{\varepsilon}}_{\LpSet{V}} \to 0,
+	\]
+	because $D^{\alpha}u_{\varepsilon} = (D^{\alpha}u)_{\varepsilon} \to D^{\alpha}u \, \text{in} \, \LpSet{V},$ from the properties of regularization.
+\end{proof}
+
+\begin{theorem}[Global approximation by smooth functions]
+	Let $\Omega \subset \R^d$ be open, $k \in \N, p \in [1,\infty).$ Then $C = \Big\{ f \in C^\infty(\Omega), \supp f \, \text{bounded} \,\Big\} \bigcap \WkpSet{\Omega}$ is dense in $\WkpSet{\Omega}, \, \text{\textit{i.e.}} \,$
+	\[
+		\overline{C \bigcap \WkpSet{\Omega}}^{\norm{\vdot}_{\WkpSet{\Omega}}} = \WkpSet{\Omega}.
+	\]
+	If moreover $\Omega$ is bounded, it holds:
+	\[
+		\overline{C^{\infty}\bigcap \WkpSet{\Omega}}^{\norm{\vdot}_{\WkpSet{\Omega}}} = \WkpSet{\Omega}.
+	\]
+\end{theorem}
+\begin{proof}
+	Let $u \in \WkpSet{\Omega}, \varepsilon >0$. I want to show $\exists v \in C^\infty(\Omega) \bigcap \WkpSet{\Omega} \, \text{\textit{s.t.}} \, \norm{u-v}_{\WkpSet{\Omega}} < \varepsilon$.
+For every $j \in \N$ define an open set
+	\[
+		\Omega_j = \Big\{ x \in \Omega, \dist\qty(x,\partial \Omega) > \frac{1}{j}\Big\}.
+	\]
+	Clearly, $\Omega_j \subset \Omega_{j+1} \forall j \in \N, \bigcup_{j=1}^\infty \Omega_j =\Omega$. Next, set
+	\[
+		U_j = \Omega_{j+1} /\,  \overline{\Omega_{j-1}}, j=1,2, \dots,
+	\]
+	where $\Omega_0 = \Omega_{-1} = \emptyset$. Since $\Omega_j$ are open, $U_j$ are also open and $\Omega \subset \bigcup_{j \in \N}U_j  \Rightarrow \exists \{\varphi_j\}_{j\in \N} $ partition of unity subordinate to $\{U_j\}_{j \in \N}$. We can write $u = \sum_{j \in \N} u \varphi_j$, where $u \varphi_j \in \WkpSet{\Omega}, \supp u \varphi_j \subset U_j \subset \Omega_{j+1} \subset \subset \Omega$. This is ready for convolution with $\varepsilon_j >0$: set $ v_j = (u \varphi_j)_{\varepsilon_j}$ and fix an arbitrary $\delta>0.$ By the properties of regularization, we have
+	\[
+		\norm{v_j - u \varphi_j }_{\WkpSet{\Omega}} < \frac{\delta}{2^{j-1}},
+	\]
+	for $\varepsilon_j > 0$ sufficiently small, which we now fix so the above inequality holds. To have a nice inequality, we actually want:
+	\[
+		\norm{v_j - u \varphi_j}_{\WkpSet{\Omega}} < \frac{2^N}{2^{N+1}-1} \frac{\delta}{2^{j-1}},
+	\]
+	meaning of $N \in \N$ will be evident later. 
+
+
+	Set
+	\[
+		v = \sum_{j\in \N} v_j,
+	\]
+	then $v \in C^{\infty}\qty(\Omega),$ as $\forall x \in \Omega$ the sum contains at most finitely many terms ($ \mathcal{F}$ is locally finite.)
+
+
+	Take the $N \in \N$ and estimate the norm $\norm{u-v}_{\WkpSet{\Omega}}$. Observe (the sum again contains only finitely many terms)
+	\[
+		u-v = \sum_{j=1}^\infty(u \varphi_j - v_j),
+	\]
+	so taking $x \in \Omega_N$ i have
+	\[
+		(u-v)(x) = \sum_{j=1}^{N+1}(u \varphi_j - v_j),
+	\]
+		because for $m > N+1, \, \text{\textit{i.e.}}, \, m-1 >N$ it holds $U_m = \Omega_{m+1}/ \overline{\Omega_{m-1}}, \Omega_N \subset \Omega_{m-1}$ meaning $\forall j \geq m > N+1: U_m \cap \Omega_N = \emptyset \Rightarrow \supp u \varphi_j \cap \Omega_N = \supp v_j \cap \Omega_N = \emptyset,$ since $\supp u \varphi_j \subset U_j, \supp v_j \subset \supp u \varphi_j \subset U_j, \forall j \geq m.$ 
+	The norm of sum is
+
+	\begin{equation*}
+		\norm{u-v}_{\WkpSet{\Omega_N}} \leq \sum_{j=1}^{N+1}\norm{u \varphi_j - v_j}_{\WkpSet{\Omega}} <\delta \frac{2^N}{2^{N+1}-1}\sum_{j=1}^{N+1} \frac{1}{2^j} = \delta.
+	\end{equation*}
+	It only remains to let $N \to \infty$ and realize
+	\[
+		\norm{u-v}_{\WkpSet{\Omega_N}} \to \norm{u-v}_{\WkpSet{\Omega}}
+	\]
+	by Lévi's theorem:
+	\[
+		\int_{\Omega_N}|D^\alpha f| \dd{x} = \int_{\R^d}|D^{\alpha}f|\chi_{\Omega_N}(x)\dd{x} \to \int_{\R^d}|D^\alpha f|\chi_{\Omega}(x)	\dd{x} = \int_{\Omega}|D^{\alpha}f|\dd{x},
+	\]
+	since $\sup_{N \in \N} \Omega_N = \Omega, \Omega_{N-1} \subset \Omega_{N} \forall N \in \N,$ and $|D^{\alpha}f|$ is nonnegative, so the sequence of the integrals is increasing.
+	 
+\end{proof}
+
+\begin{remark}
+	It is nice that we only require $\Omega$ to be open (no boundary regularity required), but on the other hand, we don't have any information about the function's behaviour near it.
+\end{remark}
+
+Recall $\Omega \in C^{0}$ means $\exists U_j, j=1, \dots, m \quad{open}, \exists \alpha, \beta >0, a_j: \overline{U(0,\alpha)} \to \R, \tensorq{A}_j: \R^d \to \R^d \quad{aff. orthogonal}, \quad{such that} \partial \Omega \subset \cup_{j=1}^m U_j, \partial \Omega \cap U_j = \Big\{ (x',a(x'), x' \in U(0,\alpha)\Big\}.$ Setting $G_j(x',b) = \tensorq{A}_j(x',a(x')+b)$ we moreover require $G_j(U(0,\alpha) \cross (0,\beta)) \subset \Omega, G_j(U(0,\alpha) \cross (-\beta,0)) \subset \overline{\R^d / \Omega}$. 
+
+\begin{theorem}[Global approximation by smooth functions up to the boundary]
 	Let $\Omega \in C^0$ bounded, $k \in \N, p \in [1,\infty)$. Then $C^\infty_{\overline{\Omega}}(\R^d)$ is dense in $\WkpSet{\Omega}$.
 
 

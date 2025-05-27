@@ -324,9 +324,9 @@ INPUT /usr/share/texmf-dist/fonts/tfm/public/mnsymbol/MnSymbolS7.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/public/mnsymbol/MnSymbolS5.tfm
 INPUT /usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc
 INPUT /usr/share/texmf-dist/fonts/enc/dvips/mnsymbol/MnSymbolS.enc
-INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmbxti10.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/public/mnsymbol/MnSymbolS8.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/public/mnsymbol/MnSymbolS6.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmbxti10.tfm
 INPUT notes_pdrII.aux
 INPUT ./notes_pdrII.out
 INPUT ./notes_pdrII.out
