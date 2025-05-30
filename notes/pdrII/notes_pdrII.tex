@@ -460,7 +460,7 @@ For every $j \in \N$ define an open set
 		\norm{v_0 - u \varphi_0}_{\WkpSet{\Omega}} < \frac{\varepsilon}{m+1}.
 	\]
 
-\begin{figure}[h]
+\begin{figure}
   \begin{center}
 	  \includegraphics[width=\linewidth]{figures/mollification.pdf}
 	  \caption{A cumbersome sketch of $\Omega_j, S_j, \Omega_j^{\delta}, S_j^{\delta}$}
@@ -570,68 +570,155 @@ Finally,
 \subsection{Extension of Sobolev functions}
 \label{sec:extension}
 
-\textit{Problem of extension}: For $u \in \WkpSet{\Omega}$, does there exist $\overline{u} \in \WkpSet{\R^d}, \quad{s.t. } \overline{u}|_{\Omega}=u, \norm{\overline{u}}_{\WkpSet{\R^d}} \leq C(\Omega) \norm{u}_{\WkpSet{\Omega}}$?
+\textit{Problem of extension}: For $u \in \WkpSet{\Omega}$, does there exist
+\[
+	\overline{u} \in \WkpSet{\R^d}, \, \text{\textit{s.t.}} \,\overline{u}|_{\Omega}=u, \norm{\overline{u}}_{\WkpSet{\R^d}} \leq C(\Omega) \norm{u}_{\WkpSet{\Omega}}
+\]
 
-The answer is \textbf{yes}, if $\Omega$ is nice enough.
+?
 
-\begin{lemma}
-	Let $\alpha, \beta >0, K \subset U(0,\alpha) \cross [\alpha,\beta]$ be compact. Then
-	\[
-		\exists C>0, \exists E:C^1(\overline{U(0,\alpha)} \cross [0,\beta]) \to C^1(\overline{U(0,\alpha)} \cross [-\beta, \beta]), \exists \tilde{K} \subset U(0,\alpha) \cross [-\beta, b) \, \text{compact} \,
-	\]
-	such that:
+The answer is \textbf{yes}, if $\Omega$ is nice enough. We will be using $\, \text{C} \,^1$ diffeomorphisms heavily, so we investigate some of their properties first.
+
+\begin{lemma}[Properties of $C^1$ diffeomorphisms]
+	Let $U,V \subset \R^d$ be open, $\Phi: U \to V$ be a $C^1$ diffeomorphism and let $\tilde{U} \subset \R^{d}\, \text{\textit{s.t.}} \, \tilde{U} \subset \subset U$. Then
 	\begin{enumerate}
-		\item $\norm{Eu}_{\WkpSet[1][p]{U(0,\alpha) \cross (-\beta,\beta)}} \leq \norm{u}_{\WkpSet[1][p]{U(0,\alpha) \cross (-\beta, \beta)}} $
-		\item if $\supp u \subset K \Rightarrow \supp Eu \subset \tilde{K}$
+		\item $\Phi(\tilde{U}) \subset \subset V,$
+		\item if moreover $\tilde{U}$ is compact, then \footnote{For $\tilde{U}$ compact: $\tilde{U} \subset \subset V \Leftrightarrow \tilde{U} \subset V$.} 
+			\[
+				\exists C>0: \forall u \in C^1\qty(V): \norm{u \circ \Phi}_{\WkpSet[1][p]{\tilde{U}}} \leq C \norm{u}_{\WkpSet[1][p]{\Phi(\tilde{U})}}.
+			\]
 	\end{enumerate}
 \end{lemma}
 
 \begin{proof}
-	Use the following trick:
 
-	\begin{equation*}
-		\overline{u}(x) = 
-		\begin{cases}
-			u(x),& x_d > 0 \\
-			-3u(x_1, \dots, x_{d-1}, -x_d) + 4u(x_1, \dots, x_{d-1},-\frac{x_d}{2}) ,& x_d < 0.\\
-		\end{cases}
-	\end{equation*}
-	Is this extension $C^1$? Take some $a=(x_1,\dots, x_{d-1},0)$. Then
-
-	\begin{equation*}
-		u(x \to a) = 
-		\begin{cases}
-			u(a), & x_d>0 \\
-			-3u(a)+ 4u(a) = u(a), & x_d<0, \\
-		\end{cases}
-	\end{equation*}
-	so $\overline{u}$ is continuous. Its derivative
-
-	$\partial_{k}\overline{u}, k=1, \dots, d-1$ is the same as for $u$, where as
-	\begin{equation*}
-		\partial_{d}\overline{u} = 
-		\begin{cases}
-			\partial_{d}u ,& x_d >0 \\
-			-3 \partial_{d} u (x_1,\dots,x_{d-1},-x_d)(-1) + 4 \partial_{d}u(x_1,\dots,x_{d-1},-\frac{x_d}{2}) (\frac{-1}{2}) = 3 \partial_{d} u - 2 \partial_{d}u ,& x_d<0,\\
-		\end{cases}
-	\end{equation*}
-	so the the derivative is also continuous. Thus, we have $Eu = \overline{u} \in C^1 \subset \WkpSet[1][p]{U(0,\alpha) \cross (-\beta,\beta)}$ and estimate of the norm $\norm{Eu}_{\WkpSet[1][p]{U(0,\alpha) \cross (-\beta,\beta)}}$ is clear, as the wanted term is just some linear combination. 
+	\textit{Ad 1.}: No proof has been given.
 
 
-
-	\textit{Mr. Prazak is not sure how this should be correctly finished and i am not also.}
+	\textit{Ad 2.}:
+	\[
+		\norm{u \circ \Phi}_{\LpSet{\tilde{U}}}^p = \int_{\tilde{U}}(u \circ \Phi)^p |\det \grad \Phi| \dd{x} \leq C_0^{-1}\int_{\tilde{U}}|u \circ \Phi|^p |\det \grad \Phi|\dd{x},
+	\]
+	where $\det \grad \Phi >0 \, \text{in} \,U, \, \text{so} \, \det \grad \phi \geq C_0 > 0 \, \text{in} \,\tilde{U}$. Together
+	\[
+		\norm{u \circ \Phi}_{\LpSet{\tilde{U}}}^p = C_0^{-1} \int_{\Phi(\tilde{U})}|u|^p\dd{x} = C_0^{-1}\norm{u}_{\LpSet{\Phi(\tilde{U})}}.
+	\]
 \end{proof}
 
-\begin{lemma}[Change of variables under $C^1$ diffeomorphisms]
-	Let $U,V \subset \R^d$ be open, $\phi: U \to V$ be $C^1$ diffeomorphism. Let $\tilde{U} \subset \subset U$. Then
+
+
+\begin{lemma}[Flat extension]
+	Let $\alpha, \beta >0, K \subset \subset U(0,\alpha) \times [0,\beta)$ be compact. Then there $\exists C >0 $, a linear operator
 	\[
-		\phi(\tilde{U}) \subset \subset V,\, \text{and} \, \exists C>0: \forall u \in C^1(V): \norm{u \circ \phi}_{\WkpSet[1][p]{\tilde{U}}} \leq C \norm{u}_{\WkpSet[1][p]{\phi(\tilde{U})}}
+		E:\CkSet{1}{(\text{B}(0,\alpha) \cross [0,\beta])} \to \CkSet{1}{(\text{B}(0,\alpha) \cross [-\beta, \beta])}, 
 	\]
+	and the set $\tilde{K} \subset \subset \text{U}(0,\alpha) \times [-\beta, \beta)$ such that $\forall u \in \CkSet{1}{\text{B}(0,\alpha) \times [0,\beta]})$ it holds
+	\begin{enumerate}
+		\item $Eu = u$ on $\text{B}(0,\alpha) \times [0,\beta]$,
+		\item $\norm{Eu}_{\WkpSet[1][p]{\text{U}(0,\alpha) \times (-\beta,\beta)}} \leq \norm{u}_{\WkpSet[1][p]{\text{U}(0,\alpha) \times (0, \beta)}} $
+		\item if $\supp u \subset K \, \text{then} \,\supp Eu \subset \tilde{K}$
+	\end{enumerate}
 \end{lemma}
 
 \begin{proof}
-	$\norm{u \circ \phi}_{\LpSet{\tilde{U}}}^p = \int_{\tilde{U}}(u \circ \phi)^p |\det \grad \phi| \dd{x} \leq C_0^{-1}\int_{\tilde{U}}|u \circ \phi|^p |\det \grad \phi|\dd{x}$, where $\det \grad \phi >0 \, \text{in} \,U, \, \text{so} \, \det \grad \phi \geq C_0 > 0 \, \text{in} \,\tilde{U}$. Together
-	$\norm{u \circ \phi}_{\LpSet{\tilde{U}}}^p = C_0^{-1} \int_{\phi(\tilde{U})}|u|^p\dd{x} = C_0^{-1}\norm{u}_{\LpSet{\phi(\tilde{U})}}$
+	(The set $\text{U}(0,\alpha) \times [0,\beta)$ is a cylinder of radius $\alpha$ and height $\beta$)
+
+	The proof is constructive: for the assumed $u$ we write ($x = (x',x_d),$ where $x' \in \text{B}(0,\alpha) \subset \R^{d-1}, x_d \in [0,\beta] \subset \R$)
+
+	\begin{equation*}
+		Eu(x',x_d) = 
+		\begin{cases}
+			u(x',x_d),& x_d \geq 0 \\
+			-3u(x',-x_d) + 4u(x' ,-\frac{x_d}{2}) ,& x_d < 0.\\
+		\end{cases}
+	\end{equation*}
+	Does $Eu$ lie in $\CkSet{1}{\text{B}(0,\alpha)\times [-\beta, \beta]}$? Since $u \in \CkSet{1}{\text{B}(0,\alpha)\times [0,\beta]}$, it us continuous in the "lower cylinder", check only the transition through the origin plane: take some $a=(x',0) \in \text{B}(0,\alpha)\times \qty{0}$. Then
+
+	\begin{equation*}
+		\lim_{x \to a} Eu(x) = 
+		\begin{cases}
+			u(a), & x_d \geq 0 \\
+			-3u(a)+ 4u(a) = u(a), & x_d<0, \\
+		\end{cases}
+	\end{equation*}
+	so $Eu$ is continuous. The derivatives 
+
+	\begin{equation*}
+		\lim_{x\to a}\partial_{d} Eu(x',x_d) = 
+		\begin{cases}
+			\partial_{d}u(x', 0) ,& x_d \geq 0 \\
+			\eval{\qty(-3 \partial_{d} u (x',-x_d)(-1) + 4 \partial_{d}u(x',-\frac{x_d}{2}) (-\frac{1}{2}))}_{x_d = 0} = \partial_{d} u(x', 0),& x_d<0,\\
+		\end{cases}
+	\end{equation*}
+	and also for any $i \in \qty{1, \dots, d-1}$ 
+	\begin{equation*}
+	  \lim_{x\to a}\partial_{i} Eu(x_1, \dots, x_d) = 
+	  \begin{cases}
+		  = \partial_{i} u (x_1, \dots, 0) , & x_d \geq 0 \\
+		  = -3 \partial_{i} u(x_1, \dots, 0) + 4 \partial_{i} u(x_1, \dots, 0) = \partial_{i} u(x_1, \dots, 0)
+	  \end{cases}
+	\end{equation*}
+	
+	so the the derivative is also continuous. Thus, we have
+	\[
+		Eu  \in C^1 \subset \WkpSet[1][p]{U(0,\alpha) \cross (-\beta,\beta)}.
+	\]
+	The first property is clear from the definition of $Eu$, the estimates of the norm: (all derivatives can in fact be assumed classical)
+	\begin{align*}
+		\norm{Eu}_{\WkpSet[1][p]{\text{U}(0,\alpha) \times (-\beta,\beta)}}^p &= \norm{Eu}_{\LpSet{\text{U}(0,\alpha)\times (-\beta,\beta)}}^p + \sum_{|\alpha| = 1}\norm{D^{\alpha}Eu}_{\LpSet{\text{U}(0,\alpha)\times (-\beta, \beta)}}^p = \\
+		&= \norm{Eu}_{\LpSet{\text{U}(0,\alpha) \times (0,\beta)}}^p +\norm{Eu}_{\LpSet{\text{U}(0,\alpha) \times (-\beta,0)}}^p \\ +
+		& + \sum_{|\alpha| = 1}\norm{D^{\alpha}Eu}_{\LpSet{\text{U}(0,\alpha)\times (0, \beta)}}^p + \sum_{|\alpha| = 1}\norm{D^{\alpha}Eu}_{\LpSet{\text{U}(0,\alpha)\times (-\beta, 0)}}^p = \\
+		& = \norm{u}_{\LpSet{\text{U}(0,\alpha)\times (0,\beta)}}^p + \norm{4u - 3u}_{\LpSet{\text{U}(0,\alpha)\times (-\beta, 0)}}^p + \\
+		& + \sum_{|\alpha| = 1}\norm{D^{\alpha}u}_{\LpSet{\text{U}(0,\alpha)\times (0,\beta)}}^p + \sum_{|\alpha| =1}\norm{D^{\alpha}\qty(4u - 3u)}_{\LpSet{\text{U}(0,\alpha)\times (-\beta,0)}}^p \\
+		&= 2 \norm{u}_{\LpSet{\text{U}(0,\alpha)\times (0,\beta)}}^p + 2 \sum_{|\alpha| =1}\norm{D^{\alpha}u}_{\LpSet{\text{U}(0,\alpha)\times (0,\beta)}}^p = 2 \norm{u}_{\WkpSet{\text{U}(0,\alpha)\times (0,\beta)}}^p
+	\end{align*}
+	and so
+	\[
+		\norm{Eu}_{\WkpSet[1][p]{\text{U}(0,\alpha)\times (-\beta,\beta)}} = 2^{\frac{1}{p}} \norm{u}_{\WkpSet[1][p]{\text{U}(0,\alpha)\times (0,\beta)}}.
+	\]
+	Where we have used the obvious fact
+	\[
+		\int_{\text{U}(0,\alpha)\times (0,\beta)}|f|^p\dd{x} = \int_{\text{U}(0,\alpha)\times (-\beta,0)}|f|^p\dd{x},
+	\]
+
+	We will assume (although this is \textit{with} a loss of generality), that
+	\[
+		Eu\qty(x', x_d) = 0 \Leftrightarrow (u(x', x_d) = 0 \vee 3u(x',-x_d) = 0 \vee 4u(x', - \frac{x_d}{2})= 0),
+	\]
+	\textit{i.e.}, that support lies in
+	\begin{align*}
+		\supp Eu &\subset\qty{(x',x_d) \in \text{U}(0,\alpha) \times [0, \beta] | u(x', x_d) = 0} \cup \qty{(x',x_d) \in \text{U}(0,\alpha) \times [-\beta,0]| u(x', - x_d) \neq 0}\cup \\
+			 &\cup \qty{(x',x_d) \in \text{U}(0,\alpha) \times [-\beta,0]| u(x', - \frac{x_d}{2}) \neq 0}.
+	\end{align*}
+	Denote $\Phi_1, \Phi_2: \text{U}(0,\alpha) \times (0,\beta) \to \text{U}(0,\alpha) \times (-\beta,\beta)$ to be the mappings
+	\begin{align*}
+		\Phi_1 (x',x_d) &= (x', -x_d),\\
+		\Phi_2 (x',x_d) &= (x', - \frac{x_d}{2}),
+	\end{align*}
+	then clearly $\Phi_1, \Phi_2$ are $\, \text{C} \,^1$ diffeomorphisms and
+	\[
+		u(x',-x_d) = \qty(u \circ \Phi_1)(x',x_d), u\qty(x', - \frac{x_d}{2}) = \qty(u \circ \Phi_2)\qty(x',x_d),
+	\]
+	\textit{i.e.},
+	\[
+		u\qty(x',x_d) = \qty(u \circ \Phi_1^{-1})\qty(x', -x_d) = \qty(u \circ \Phi_2^{-1})\qty(x',-\frac{x_d}{2}),
+	\]
+	and so
+	\[
+		\supp Eu \subset \supp u \cup \Phi_1^{-1}\qty(\supp u) \cup \Phi_2^{-1}\qty(\supp u) \subset K \cup \Phi_1^{-1}\qty(K) \cup \Phi_2^{-1}\qty(K),
+	\]
+	as $\supp u \subset \subset K.$ Let us define
+	\[
+		\tilde{K} \coloneq \overline{K \cup \Phi_1^{-1}\qty(K) \cup \Phi_2^{-1}\qty(K)},
+	\]
+	then $\tilde{K}$ is a compact set: since $\Phi_{1}, \Phi_{2}$ are $\, \text{C} \,^1$ diffeomorphisms, also their inverses are, and the image of compact set $K$ under a $\, \text{C} \,^1$ diffeomorphism is also a compact set. Union of compact sets is bounded, and closure of a bounded subset of $\R^{d} \times \R^{d}$ is compact. Also
+	\[
+		\supp Eu \subset K \cup \Phi_1^{-1}\qty(K) \cup \Phi_2^{-1}\qty(K) \subset \overline{K \cup \Phi_1^{-1}\qty(K) \cup \Phi_2^{-1}\qty(K)} = \tilde{K}.
+	\]
+	Finally, we have $K \subset \subset \text{U}(0,\alpha) \times [0,\beta) \Rightarrow K \subset \subset \text{U}(0,\alpha) \times (-\beta,\beta) \Rightarrow \Phi_1^{-1}\qty(K), \Phi_2^{-1}\qty(K)\subset \subset \text{U}(0,\alpha)\times (0,\beta),$ which really implies
+	\[
+		\tilde{K} \subset \subset \text{U}(0,\alpha) \times [-\beta, \beta).
+	\]
 \end{proof}
 
 \begin{lemma}
