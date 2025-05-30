@@ -460,6 +460,14 @@ For every $j \in \N$ define an open set
 		\norm{v_0 - u \varphi_0}_{\WkpSet{\Omega}} < \frac{\varepsilon}{m+1}.
 	\]
 
+\begin{figure}[h]
+  \begin{center}
+	  \includegraphics[width=\linewidth]{figures/mollification.pdf}
+	  \caption{A cumbersome sketch of $\Omega_j, S_j, \Omega_j^{\delta}, S_j^{\delta}$}
+	  \label{fig:mollification}
+  \end{center}
+\end{figure}
+
 	\textit{Case $j \in \{1,\dots,m\} $}.
 	We have a problem now: $\qty{U_j}_{j=1}^m$ covers $\partial \Omega,$ which is a \textit{closed} set and we cannot simply use local approximation theorem. One could imagine if we were to mollify in the neighbourhood of $\partial \Omega,$ the kernel would pick up values from outside of $\Omega,$ where $u=0$ and the mollification would not be a good approximation. Instead, we approximate $u_j$ on a larger \textit{open} domain containing $\overline{\Omega}$ and then show this is also a good aproximation of $u_j$ on $\Omega \subset \overline{\Omega}.$
 
@@ -521,11 +529,14 @@ which is equivalent to
 Our choice has been $\delta \in \qty(0, \frac{\beta}{2}),$ and $\beta > 0$ from the definition of $\Omega \in \Ckl{0}{0},$ so the second statement is clearly true $\forall j \in {1, \dots, m}$. Consequently $\partial \Omega \not \subset \overline{S}_j$ which leads to $\partial \Omega \subset \Omega_j^{\delta},$ and since also $\Omega \subset \Omega_j^{\delta},$ we have $\overline{\Omega} \subset \Omega_j^{\delta}.$
 
 \textit{Approximation of $\tau_{\delta}u_j$.}
-Since $\Omega_{j}^\delta$ is open there $\exists v_j \in \CinfSet{\Omega_j^{\delta}}$ such that
+Since $\Omega_{j}^\delta$ is open there $\exists w_j \in \CinfSet{\Omega_j^{\delta}}$ such that
 \[
-	\norm{\tau_{\delta}u_j - v_j}_{\WkpSet{\Omega}} \leq \norm{\tau_{\delta}w_j - v_j}_{\WkpSet{\Omega_{j}^\delta}} < \frac{\varepsilon}{2(m+1)}.
+	\norm{\tau_{\delta}u_j - w_j}_{\WkpSet{\Omega}} \leq \norm{\tau_{\delta}u_j - w_j}_{\WkpSet{\Omega_{j}^\delta}} < \frac{\varepsilon}{4(m+1)}.
 \]
-What is more, since $\overline{\Omega} \subset \Omega_j^{\delta},$ we see $v_j \in \CinfSet{\overline{\Omega}}$ in fact.
+What is more, since $\overline{\Omega} \subset \Omega_j^{\delta},$ we see $w_j \in \CinfSet{\overline{\Omega}}$ in fact. What is even more, we see $\supp w_j \subset \supp u_j - \delta$ so $\supp \tau_{-\delta} w_j \subset \supp u_j \subset \subset \Omega,$ and since $w_j$ is defined on the whole $\R^{d},$ also $v_j \coloneq \tau_{-\delta}w_j$ is defined on the whole $\R^{d}.$ Alltogether, $v_j = \tau_{-\delta}w_j \in \DSet{\R^{d}},$ and from the properties of the shift operator, there $\exists \delta >0$ \textit{s.t.}
+\[
+	\norm{v_j - w_j}_{\WkpSet{\Omega}} < \frac{\varepsilon}{4\qty(m+1)}.
+\]
 
 
 \textit{Approximation of $u$.}
@@ -534,20 +545,17 @@ Finally, let us set
 \[
 	v = \sum_{j=0}^m v_j.
 \]
-Then $v \in \CinfSet{\overline{\Omega}}$ and it holds
+Then $v \in \DSet{\R^{d}}$ and it holds
 \begin{align*}
 	\norm{u-v}_{\WkpSet{\Omega}} &= \norm{\sum_{j=0}^m u_j- \sum_{j=0}^m v_j}_{\WkpSet{\Omega}} = \norm{\sum_{j=0}^m u_j - v_j}_{\WkpSet{\Omega}} \leq \sum_{j=0}^m \norm{u_j - v_j}_{\WkpSet{\Omega}} \leq \\
-	& \leq \frac{\varepsilon}{m+1} + \sum_{j=1}^m \norm{v_j-u_j}_{\WkpSet{\Omega}} \leq \frac{\varepsilon}{m+1} + \sum_{j=1}^m \norm{v_j - \tau_{\delta}u_j}_{\WkpSet{\Omega}} + \sum_{j=1}^m \norm{\tau_{\delta}u_j - u_j}_{\WkpSet{\Omega}}\\
-	&< \frac{\varepsilon}{m+1} + 2 \sum_{j=1}^m \frac{\varepsilon}{2\qty(m+1)} = \varepsilon
+	& \leq \frac{\varepsilon}{m+1} + \sum_{j=1}^m \norm{v_j-u_j}_{\WkpSet{\Omega}} \leq \frac{\varepsilon}{m+1} + \sum_{j=1}^m \norm{v_j - w_j}_{\WkpSet{\Omega}} + \sum_{j=1}^m \norm{w_j - \tau_{\delta}u_j}_{\WkpSet{\Omega}} + \sum_{j=1}^m \norm{\tau_{\delta}u_j - u_j}_{\WkpSet{\Omega}}\\
+	&< \frac{\varepsilon}{m+1} +  2\sum_{j=1}^m \frac{\varepsilon}{4\qty(m+1)} + \sum_{j=1}^m \frac{\varepsilon}{2\qty(m+1)} = \varepsilon
 \end{align*}
+Finally,
+\[
+	\DSet{\R^{d}} \subset \, \text{C} \,^{\infty}_{\overline{\Omega}}\qty(\R^{d}) \subset \CinfSet{\overline{\Omega}}.
+\]
 
-\begin{figure}
-  \begin{center}
-	  \includegraphics[width=\linewidth]{figures/mollification.pdf}
-	  \caption{A cumbersome sketch of $\Omega_j, S_j, \Omega_j^{\delta}, S_j^{\delta}$}
-	  \label{fig:mollification}
-  \end{center}
-\end{figure}
 \end{proof}	
 
 \begin{remark}[What is $\, \text{C} \,^{\infty}_{\overline{\Omega}}\qty(\R^{d})$]
@@ -555,10 +563,6 @@ Then $v \in \CinfSet{\overline{\Omega}}$ and it holds
 	\[
 		C^\infty_{\overline{\Omega}}(\R^d) = \Big\{u|_{\overline{\Omega}}, u \in C^{\infty}(\R^d) \Big\}.
 	\]
-In other literature, it is stated that also $\CinfSet{\overline{\Omega}}$ is dense in $\WkpSet{\Omega}$ if $\Omega \in \Ckl{0}{0}.$ This probably means
-\[
-	\CinfSet{\overline{\Omega}} \subset \, \text{C} \,^{\infty}_{\overline{\Omega}}\qty(\R^{d}).
-\]
 \end{remark}
 
 
