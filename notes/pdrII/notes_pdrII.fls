@@ -326,6 +326,11 @@ INPUT /usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc
 INPUT /usr/share/texmf-dist/fonts/enc/dvips/mnsymbol/MnSymbolS.enc
 INPUT /usr/share/texmf-dist/fonts/tfm/public/mnsymbol/MnSymbolS8.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/public/mnsymbol/MnSymbolS6.tfm
+INPUT ./figures/mollification.pdf
+INPUT ./figures/mollification.pdf
+INPUT ./figures/mollification.pdf
+INPUT ./figures/mollification.pdf
+INPUT ./figures/mollification.pdf
 INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmbxti10.tfm
 INPUT notes_pdrII.aux
 INPUT ./notes_pdrII.out
@@ -338,6 +343,7 @@ INPUT /usr/share/texmf-dist/fonts/type1/public/mnsymbol/MnSymbol6.pfb
 INPUT /usr/share/texmf-dist/fonts/type1/public/mnsymbol/MnSymbol7.pfb
 INPUT /usr/share/texmf-dist/fonts/type1/public/mnsymbol/MnSymbol8.pfb
 INPUT /usr/share/texmf-dist/fonts/type1/public/bbold-type1/bbold10.pfb
+INPUT /usr/share/texmf-dist/fonts/type1/public/bbold-type1/bbold5.pfb
 INPUT /usr/share/texmf-dist/fonts/type1/public/bbold-type1/bbold7.pfb
 INPUT /usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 INPUT /usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb

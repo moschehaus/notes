@@ -306,9 +306,9 @@ Recall that:
 	Then clearly $K_1 \subset K_2 \dots $, and they "converge monotonously to $U$.
 	Next, find $\phi_j \in C_c(U_j), \phi_j >0 \, \text{on} \, K_j$, e.g. $\phi_j = \theta\qty(\dist(x,\partial U_j)).$ Then use convolution: $\psi_j = (\phi_j)_{\varepsilon}, \varepsilon > 0$ small and take finally
 	\[
-		\varphi_j = \frac{\psi_j}{\sum_k \psi_k}
+		\varphi_j = \frac{\psi_j}{\sum_k \psi_k}.
 	\]
-	.
+	
 
 	\textit{Step 2 (If $E$ is open)}:
 
@@ -377,7 +377,7 @@ For every $j \in \N$ define an open set
 	\[
 		v = \sum_{j\in \N} v_j,
 	\]
-	then $v \in C^{\infty}\qty(\Omega),$ as $\forall x \in \Omega$ the sum contains at most finitely many terms ($ \mathcal{F}$ is locally finite.)
+	then $v \in C^{\infty}\qty(\Omega),$ (not clearly in $\WkpSet{\Omega}$ however) as $\forall x \in \Omega$ the sum contains at most finitely many terms ($ \mathcal{F}$ is locally finite.)
 
 
 	Take the $N \in \N$ and estimate the norm $\norm{u-v}_{\WkpSet{\Omega}}$. Observe (the sum again contains only finitely many terms)
@@ -400,48 +400,168 @@ For every $j \in \N$ define an open set
 	\]
 	by Lévi's theorem:
 	\[
-		\int_{\Omega_N}|D^\alpha f| \dd{x} = \int_{\R^d}|D^{\alpha}f|\chi_{\Omega_N}(x)\dd{x} \to \int_{\R^d}|D^\alpha f|\chi_{\Omega}(x)	\dd{x} = \int_{\Omega}|D^{\alpha}f|\dd{x},
+	\sup_{N\in \N}\int_{\Omega_N}|D^\alpha f| \dd{x} = \sup_{N \in \N}\int_{\R^d}|D^{\alpha}f|\chi_{\Omega_N}(x)\dd{x} = \int_{\R^d}\sup_{N \in \N}|D^{\alpha}f| \chi_{\Omega_N}\dd{x} \int_{\R^d}|D^\alpha f|\chi_{\Omega}(x)	\dd{x} = \int_{\Omega}|D^{\alpha}f|\dd{x},
 	\]
-	since $\sup_{N \in \N} \Omega_N = \Omega, \Omega_{N-1} \subset \Omega_{N} \forall N \in \N,$ and $|D^{\alpha}f|$ is nonnegative, so the sequence of the integrals is increasing.
-	 
+	since $\Omega_{N-1} \subset \Omega_{N} \forall N \in \N,$ and $|D^{\alpha}f|$ is nonnegative, so the sequence under the integral is nondecreasing. Alltogether,
+	\[
+		\norm{u-v}_{\WkpSet{\Omega}}\leq \delta, \forall \delta>0
+	\]
+	from which it follows $v \in \WkpSet{\Omega}$ (this was not totally evident) and thus $v \in \WkpSet{\Omega} \cap C^{\infty}\qty(\Omega)$ so indeed we have showed the desired density.
 \end{proof}
 
 \begin{remark}
 	It is nice that we only require $\Omega$ to be open (no boundary regularity required), but on the other hand, we don't have any information about the function's behaviour near it.
 \end{remark}
 
-Recall $\Omega \in C^{0}$ means $\exists U_j, j=1, \dots, m \quad{open}, \exists \alpha, \beta >0, a_j: \overline{U(0,\alpha)} \to \R, \tensorq{A}_j: \R^d \to \R^d \quad{aff. orthogonal}, \quad{such that} \partial \Omega \subset \cup_{j=1}^m U_j, \partial \Omega \cap U_j = \Big\{ (x',a(x'), x' \in U(0,\alpha)\Big\}.$ Setting $G_j(x',b) = \tensorq{A}_j(x',a(x')+b)$ we moreover require $G_j(U(0,\alpha) \cross (0,\beta)) \subset \Omega, G_j(U(0,\alpha) \cross (-\beta,0)) \subset \overline{\R^d / \Omega}$. 
+\begin{remark}[$\Ckl{k}{\lambda}$ domain]
+	Recall we call $\Omega \subset \R^{d}$ to be of class $\Ckl{k}{\lambda}$ if: $\Omega$ is open and bounded, $\exists m \in \N, k \in \N_0, \lambda \in [0,1], \alpha, \beta \in \R^+, \exists \, \text{open sets} \, U_j \subset \R^d, \exists a_j: \text{B}(0,\alpha) \subset \R^{d-1}: \to \R \, \text{\textit{s.t.}} \, a_j \in \CklSet{k}{\lambda}{\text{B}(0,\alpha)}, \exists \tensorq{A}_j \R^{d} \to \R^{d} \, \text{affine orthogonal matrices} \,$ such that 
+	\begin{enumerate}
+		\item $\partial \Omega \subset \bigcup_{j=1}^m U_j,$
+		\item $\forall j \leq m: \emptyset \neq \partial \Omega \cap U_j = \tensorq{A}_j\qty(\qty{(x',a_j\qty(x') \in \R^d | x' \in \text{U}(0,\alpha)\subset \R^{d-1}}),$
+		\item $\forall j \leq m: \tensorq{A}_j\qty(\qty{(x', a_j(x') + b) | x' \in \text{U}(0,\alpha), b \in (0,\beta)}) \subset \Omega,$
+		\item $\forall j \leq m: \tensorq{A}_j\qty(\qty{(x', a_j(x') - b) | x' \in \text{U}(0,\alpha), b \in (0,\beta)}) \subset \R^d/ \overline{\Omega}.$
+\end{enumerate}
+	If $\lambda = 0$ we sometimes drop it and write $\Omega \in \Ckl{k}{0} \Leftrightarrow \Omega \in \, \text{C} \,^k,$ if $k = 0, \lambda =1$ we call $\Omega \in \Ckl{0}{1}$ to be a Lipschitz domain.
+\textit{Remember that $\lambda\qty(\Omega)<\infty$ is a part of the definition.}
+
+\end{remark}
 
 \begin{theorem}[Global approximation by smooth functions up to the boundary]
-	Let $\Omega \in C^0$ bounded, $k \in \N, p \in [1,\infty)$. Then $C^\infty_{\overline{\Omega}}(\R^d)$ is dense in $\WkpSet{\Omega}$.
+	Let $\Omega \in \Ckl{0}{0}$, $k \in \N, p \in [1,\infty)$. Then $\text{C}^{\,\infty}_{\,\overline{\Omega}}\qty(\R^d)$ is dense in $\WkpSet{\Omega}$.
 
 
 \end{theorem}
 
 \begin{proof}
-	Let $u \in \WkpSet{\Omega}, \varepsilon >0 \quad{given},$ i am looking for $v \in C^{\infty}_c(\R^d) \quad{such that} \norm{u-v}_{\WkpSet{\Omega}} < \varepsilon$.
+	Let $u \in \WkpSet{\Omega},$ and $\varepsilon >0,$ be given. We wish  to find $v \in \CinfSet{\overline{\Omega}}\, \text{\textit{s.t.}} \,  \norm{u-v}_{\WkpSet{\Omega}} < \varepsilon$.
 
-	The sketch is simple: covering of $\overline{\Omega},$ partition of unity.
-	Clearly, $\Omega \subset \cup_{j=0}^m U_j,$ where $U_0 = \Omega, U_j$ are from the definition of $C^0$ boundary. Take $\{\varphi_j\}$ to be the partition of unity on $\overline{\Omega}$, subordinate to this cover. Observe that $u \varphi_j \in \WkpSet{\Omega}, \supp u \varphi_j \subset U_j$. Find
-	\[
-		v_j \in \mathcal{D}(\R^d) \quad{s.t.} \norm{v_j - u \varphi_j}_{\WkpSet{\Omega}}< \frac{\varepsilon}{m+1}.
-	\]
-	If i am able to do this, i am finished: just take
-	\[
-		v=\sum_{j=0}^m v_j
-	\]
-	.
+	The sketch is simple:  
+	\begin{enumerate}
+		\item covering of $\overline{\Omega},$
+		\item partition of unity,
+		\item approximation of $u$ on the covering sets,
+		\item glue it together.
+	\end{enumerate}
 
-	\textit{Case $j=0$}. We have $ \supp u \varphi_0 \subset \subset \Omega$, take $v_0 = (u \varphi_0)_{\varepsilon}$, so if we take $\varepsilon >0 $ small enough, i can use the previous lemma.
+	Set $U_0 = \Omega,$ and let $\qty{U_j}_{j=1}^m$ be from the definition of $\Ckl{0}{0}$ boundary. Then\footnote{Our choice $U_0 = \Omega$ is important, as without it the definition of $\Ckl{0}{0}$ boundary only means $\partial \Omega \subset \bigcup_{j=1}^m U_j.$}
+	\[
+		\overline{\Omega} \subset \bigcup_{j=0}^m U_j,
+	\]
+	Take $\{\varphi_j\}$ to be the partition of unity on $\overline{\Omega}$, subordinate to $\qty{U_j}_{j=0}^m$. Since
+	\[
+		u = \sum_{j=0}^m u \varphi_j, \, \text{on} \, \Omega
+	\]
+	observe that $u_j \coloneq u \varphi_j \in \WkpSet{\Omega}, \supp u_j \subset \supp \varphi_j \subset \subset U_j$. \textbf{Also, we define $u(x) = 0, \forall x \in \R^{d}/\Omega.$} 
+	The proofs differs in the cases $j = 0$ and $j \in \qty{1, \dots, m}.$
+
+	\textit{Case $j=0$}.
+	We have $ \supp u \varphi_0 \subset \subset U_0 = \Omega.$ That means that after the extension of $u \varphi_0$ by zero outside of $\Omega$, it holds $u \varphi_0 \in \WkpSet{\R^d}.$ Since $\WkpSet{\R^d} = \WkpzeroSet{\R^d} = \overline{\DSet{\R^{d}}}^{\norm{\vdot}_{\WkpSet{\R^{d}}}},$ we can find $v_0 \in \DSet{\R^{d}} \, \text{\textit{s.t.}} \,$
+	\[
+		\norm{v_0 - u \varphi_0}_{\WkpSet{\Omega}} < \frac{\varepsilon}{m+1}.
+	\]
 
 	\textit{Case $j \in \{1,\dots,m\} $}.
-	Set $w_j = u \varphi_j, \tau_{\delta}w_j(x', x_d) = w(x', x_d + \delta)$ (ignore $\tensorq{A_j}$), observe $t_{\delta}u_j \in \WkpSet{U^{\delta}_j}, U_j \subset \subset U^{\delta}_j$. Finally, set $v_j = (t_{\delta}w_j)_{\varepsilon_j}, \varepsilon_j >0$ small enough. From the properties of the shift $\tau_{\delta} w_j$ is close to $w_j$ in $\LpSet{U_j \cap \Omega}$ and $D^\alpha \tau_{\delta}w_j = \tau_{\delta}(D^\alpha w_j)$ close to $D^\alpha w_j$ in $\LpSet{U_j \cap \Omega}$. Finally, set $v_j = (t_{\delta} w_j)_{\varepsilon_j}, \varepsilon_j >0 $ small enough $\Rightarrow v_j \in \mathcal{D}(\R^d), \supp v_j \subset U_j$ by the previous lemma $ \norm{v_j - \tau_{\delta}w_j}_{\WkpSet{\Omega}}$ small. 
+	We have a problem now: $\qty{U_j}_{j=1}^m$ covers $\partial \Omega,$ which is a \textit{closed} set and we cannot simply use local approximation theorem. One could imagine if we were to mollify in the neighbourhood of $\partial \Omega,$ the kernel would pick up values from outside of $\Omega,$ where $u=0$ and the mollification would not be a good approximation. Instead, we approximate $u_j$ on a larger \textit{open} domain containing $\overline{\Omega}$ and then show this is also a good aproximation of $u_j$ on $\Omega \subset \overline{\Omega}.$
 
+	Set $w_j = u \varphi_j,$ and denote
+	\begin{align*}
+		S_j &=\tensorq{A}_j\qty(\qty{(x',x_d) | a_j(x') - \frac{\beta}{2}  < x_d < a_j(x') , x' \in \text{U}(0,\alpha)}), \\
+	\Omega_j &= \R^{d} / \overline{S_j},
+	\end{align*}
+	\textit{i.e.},
+	\[
+		"\Omega_j = \Omega \cup \tensorq{A}_j\qty(\qty{(x',x_d)| x_d \leq a_j(x')- \frac{\beta}{2}}),"
+	\]
+	(although this is a bit inaccurate). Realize that since $u = 0$ outside of $\Omega,$ also $u_j$ is zero there and in particular it is zero on that "lower strip". Clearly then $u_j \in \WkpSet{\Omega_j}.$ Now pick $\delta \in \qty(0,\frac{\beta}{2}),$ where $\beta$ is from the definition of $\Ckl{0}{0}$ and set
+	\begin{align*}
+	  		S_{j}^{\delta} &= \tensorq{A}_j\qty(\qty{(x',x_d) | a_j(x') - \frac{\beta}{2} - \delta < x_d < a_j(x') -\delta, x' \in \text{U}(0,\alpha)}), \\
+		\Omega_j^{\delta} &= \R^{d} / \overline{S_{j}^{\delta}}, 
+	\end{align*}
+	\textit{i.e.},
+	\[
+		"\Omega_j^\delta = \Omega \cup \tensorq{A}_j\qty(\qty{(x',x_d)| a_j(x')-\delta < x_d < a_j (x')}) \cup \tensorq{A}_j \qty(\qty{(x',x_d)| x_d < a_j(x') - \frac{\beta}{2} - \delta})."
+	\]
+The trick is to shift the (support of) function $u_j$ "into" $\Omega_{j}^\delta$
+
+	\[
+		\tau_{\delta}u_j\qty(\tensorq{A}_j\qty(x', a_j(x'))) = u_j\qty(\tensorq{A}_j\qty(x', a_j(x') + \delta)), x' \in \text{U}(0,\alpha) \subset \R^{d-1}.
+	\]
+	Realize that in fact
+	\[
+		\supp\qty(\tau_{\delta}u_j) = \supp\qty(u_j) - \delta,
+	\]
+	from which it follows $\tau_{\delta}u_j \in \WkpSet{\Omega_j^{\delta}};$ we have only shifted the function $u_j$, but since we have also shifted $S_j$, qualitatively there is no difference. Since $ \Omega \subset \Omega_j^\delta \subset \Omega_j^{\delta} \cap \Omega_j, \Omega \subset \Omega_j \subset \Omega_j^{\delta} \cap \Omega_j,$ and the fact $\tau_{\delta}$ is an isometry between Sobolev spaces, we also have $u_j, \tau_{\delta}u_j \in \WkpSet{\Omega_{j} \cap \Omega_j^{\delta}}.$ Moreover, from the properties of the shift operator it follows $\exists \delta >0$ \textit{s.t.}
+	\[
+		\norm{u_j - \tau_{\delta}u_j}_{\WkpSet{\Omega}}\leq \norm{u_j - \tau_{\delta}u_j}_{\WkpSet{\Omega_j \cap \Omega_j^{\delta}}} < \frac{\varepsilon}{2\qty(m+1)}.
+	\]
+
+	We are on a good track. Since we know $\tau_{\delta}u_j$ is already close to $u_j,$ we are done once we approximate $\tau_{\delta}u_j$ by a function from $\CinfSet{\overline{\Omega}}.$ Notice that if we show $\overline{\Omega} \subset \Omega_j^{\delta},$ then clearly $\CinfSet{\Omega_j^{\delta}} \subset \CinfSet{\overline{\Omega}}.$
+
+\textit{Show $\Omega \subset \subset \Omega_j^{\delta}$:}
+We already know $\Omega \subset \Omega_j^{\delta},$ so it suffices to show $\partial \Omega \subset \Omega_j^{\delta}.$ Our parametrization of the boundary yields
+\[
+	\partial \Omega = \bigcup_{k=1}^m \tensorq{A}_k\qty(\qty{(x',x_d)| x_d = a_k(x'), x' \in \text{U}(0,\alpha)}),
+\]
+and the set $\Omega_j^{\delta}$ is given as $\Omega_{j}^{\delta} = \R^{d} / \overline{S_j},$ where
+\[
+	S_j = \tensorq{A}_j\qty(\qty{(x',x_d)| a_j(x') - \frac{\beta}{2} - \delta < x_d < a_j(x') - \delta, x' \in \text{U}(0,\alpha)}).
+\]
+Realize it suffices to show $\partial \Omega \not \subset \overline{S_j}$, as then it wont be excluded from $\R^{d}$ and thus will end up in $\Omega_j^\delta.$ \textit{Thanks to continuity of $a_j$}, we may write
+\[
+	\overline{S_j} = \tensorq{A}_j\qty(\qty{(x',x_d)| a_j(x') - \frac{\beta}{2} - \delta \leq x_d \leq a_j(x') - \delta, x' \in \text{U}(0,\alpha)}),
+\]
+\textit{i.e.}, the $"<"$ have changed to $"\leq"$. Since we are doing everything locally, it is enough to show
+\[
+	\tensorq{A}_j\qty(\qty{(x',x_d)|x_d = a_j(x'), x' \in \text{U}(0,\alpha)}`) \not \subset \tensorq{A}_j\qty(\qty{(x',x_d)| a_j(x') - \frac{\beta}{2} - \delta \leq x_d \leq a_j(x') - \delta, x' \in \text{U}(0,\alpha)}),
+\]
+which is equivalent to
+\[
+	\qty((a_j \leq a_j - \delta) \wedge (a_j < a_j - \frac{\beta}{2} - \delta)) \vee \qty((a_j > a_j - \delta) \wedge (a_j \geq a_j - \frac{\beta}{2} - \delta)).
+\]
+Our choice has been $\delta \in \qty(0, \frac{\beta}{2}),$ and $\beta > 0$ from the definition of $\Omega \in \Ckl{0}{0},$ so the second statement is clearly true $\forall j \in {1, \dots, m}$. Consequently $\partial \Omega \not \subset \overline{S}_j$ which leads to $\partial \Omega \subset \Omega_j^{\delta},$ and since also $\Omega \subset \Omega_j^{\delta},$ we have $\overline{\Omega} \subset \Omega_j^{\delta}.$
+
+\textit{Approximation of $\tau_{\delta}u_j$.}
+Since $\Omega_{j}^\delta$ is open there $\exists v_j \in \CinfSet{\Omega_j^{\delta}}$ such that
+\[
+	\norm{\tau_{\delta}u_j - v_j}_{\WkpSet{\Omega}} \leq \norm{\tau_{\delta}w_j - v_j}_{\WkpSet{\Omega_{j}^\delta}} < \frac{\varepsilon}{2(m+1)}.
+\]
+What is more, since $\overline{\Omega} \subset \Omega_j^{\delta},$ we see $v_j \in \CinfSet{\overline{\Omega}}$ in fact.
+
+
+\textit{Approximation of $u$.}
+
+Finally, let us set
+\[
+	v = \sum_{j=0}^m v_j.
+\]
+Then $v \in \CinfSet{\overline{\Omega}}$ and it holds
+\begin{align*}
+	\norm{u-v}_{\WkpSet{\Omega}} &= \norm{\sum_{j=0}^m u_j- \sum_{j=0}^m v_j}_{\WkpSet{\Omega}} = \norm{\sum_{j=0}^m u_j - v_j}_{\WkpSet{\Omega}} \leq \sum_{j=0}^m \norm{u_j - v_j}_{\WkpSet{\Omega}} \leq \\
+	& \leq \frac{\varepsilon}{m+1} + \sum_{j=1}^m \norm{v_j-u_j}_{\WkpSet{\Omega}} \leq \frac{\varepsilon}{m+1} + \sum_{j=1}^m \norm{v_j - \tau_{\delta}u_j}_{\WkpSet{\Omega}} + \sum_{j=1}^m \norm{\tau_{\delta}u_j - u_j}_{\WkpSet{\Omega}}\\
+	&< \frac{\varepsilon}{m+1} + 2 \sum_{j=1}^m \frac{\varepsilon}{2\qty(m+1)} = \varepsilon
+\end{align*}
+
+\begin{figure}
+  \begin{center}
+	  \includegraphics[width=\linewidth]{figures/mollification.pdf}
+	  \caption{A cumbersome sketch of $\Omega_j, S_j, \Omega_j^{\delta}, S_j^{\delta}$}
+	  \label{fig:mollification}
+  \end{center}
+\end{figure}
 \end{proof}	
 
-\begin{remark}
-	Recall $C^\infty_{\overline{\Omega}}(\R^d) = \Big\{u|_{\overline{\Omega}}, u \in C^{\infty}(\R^d) \Big\}$.
+\begin{remark}[What is $\, \text{C} \,^{\infty}_{\overline{\Omega}}\qty(\R^{d})$]
+	Recall
+	\[
+		C^\infty_{\overline{\Omega}}(\R^d) = \Big\{u|_{\overline{\Omega}}, u \in C^{\infty}(\R^d) \Big\}.
+	\]
+In other literature, it is stated that also $\CinfSet{\overline{\Omega}}$ is dense in $\WkpSet{\Omega}$ if $\Omega \in \Ckl{0}{0}.$ This probably means
+\[
+	\CinfSet{\overline{\Omega}} \subset \, \text{C} \,^{\infty}_{\overline{\Omega}}\qty(\R^{d}).
+\]
 \end{remark}
+
+
 
 \subsection{Extension of Sobolev functions}
 \label{sec:extension}

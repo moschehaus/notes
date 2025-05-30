@@ -26,6 +26,7 @@
 \DeclareMathOperator{\Sym}{Sym}
 \DeclareMathOperator{\signum}{sign}
 \DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\diam}{diam}
 \DeclareMathOperator{\cof}{cof} % cofactor
 \DeclareMathOperator{\residue}{res}
 \DeclareMathOperator{\ad}{ad} % adjoint ad_X (Y) = [X,Y]  
@@ -33,6 +34,26 @@
 
 % Load xparse (if not already loaded)
 \usepackage{xparse}
+
+% Continuous functions
+
+
+\newcommand{\CkSet}[2]{%
+	\ensuremath{\text{C}^{#1}\!\,\left(#2 \right)}}%
+
+\newcommand{\CinfSet}[1]{%
+	\ensuremath{\text{C}^{\infty}\!\,\left(#1 \right)}}%
+
+\newcommand{\DSet}[1]{%
+	\ensuremath{\mathcal{D}\!\,\left(#1 \right)}}%
+
+\newcommand{\CklSet}[3]{%
+	\ensuremath{\text{C}^{\!\, \,#1,#2}\!\,\left(#3 \right)}}%
+
+\newcommand{\Ckl}[2]{%
+\ensuremath{\text{C}^{\!\,\, #1,#2}}}%
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Lebesgue Spaces and Their Norms

@@ -6,16 +6,16 @@
 \contentsline {section}{\numberline {2}Sobolev spaces revisited}{5}{section.2}%
 \contentsline {subsection}{\numberline {2.1}Tools from functional analysis}{5}{subsection.2.1}%
 \contentsline {subsection}{\numberline {2.2}Density of smooth functions}{6}{subsection.2.2}%
-\contentsline {subsection}{\numberline {2.3}Extension of Sobolev functions}{9}{subsection.2.3}%
-\contentsline {subsection}{\numberline {2.4}Embedding theorems}{11}{subsection.2.4}%
-\contentsline {subsection}{\numberline {2.5}Trace theorems}{15}{subsection.2.5}%
-\contentsline {subsection}{\numberline {2.6}Composition of sobolev functions}{15}{subsection.2.6}%
-\contentsline {subsection}{\numberline {2.7}Difference quotients}{15}{subsection.2.7}%
-\contentsline {section}{\numberline {3}Nonlinear elliptic equations as compact perturbations}{15}{section.3}%
-\contentsline {subsubsection}{\numberline {3.0.1}Problem protypes}{16}{subsubsection.3.0.1}%
-\contentsline {section}{\numberline {4}Nonlinear elliptic equations - monotone operator theory}{19}{section.4}%
-\contentsline {section}{\numberline {5}Calculus of variations}{23}{section.5}%
-\contentsline {section}{\numberline {6}Semigroup theory}{31}{section.6}%
-\contentsline {section}{\numberline {7}(Some) exercises}{38}{section.7}%
-\contentsline {subsection}{\numberline {7.1}4.3.2025}{38}{subsection.7.1}%
-\contentsline {subsection}{\numberline {7.2}8.4.2025}{38}{subsection.7.2}%
+\contentsline {subsection}{\numberline {2.3}Extension of Sobolev functions}{11}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}Embedding theorems}{15}{subsection.2.4}%
+\contentsline {subsection}{\numberline {2.5}Trace theorems}{19}{subsection.2.5}%
+\contentsline {subsection}{\numberline {2.6}Composition of sobolev functions}{19}{subsection.2.6}%
+\contentsline {subsection}{\numberline {2.7}Difference quotients}{19}{subsection.2.7}%
+\contentsline {section}{\numberline {3}Nonlinear elliptic equations as compact perturbations}{19}{section.3}%
+\contentsline {subsubsection}{\numberline {3.0.1}Problem protypes}{20}{subsubsection.3.0.1}%
+\contentsline {section}{\numberline {4}Nonlinear elliptic equations - monotone operator theory}{22}{section.4}%
+\contentsline {section}{\numberline {5}Calculus of variations}{27}{section.5}%
+\contentsline {section}{\numberline {6}Semigroup theory}{35}{section.6}%
+\contentsline {section}{\numberline {7}(Some) exercises}{42}{section.7}%
+\contentsline {subsection}{\numberline {7.1}4.3.2025}{42}{subsection.7.1}%
+\contentsline {subsection}{\numberline {7.2}8.4.2025}{42}{subsection.7.2}%
