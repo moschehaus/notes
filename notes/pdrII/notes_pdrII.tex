@@ -556,6 +556,7 @@ Finally,
 	\DSet{\R^{d}} \subset \, \text{C} \,^{\infty}_{\overline{\Omega}}\qty(\R^{d}) \subset \CinfSet{\overline{\Omega}}.
 \]
 
+\textit{This proof may still have some flaws, but the author has decided to move on.}
 \end{proof}	
 
 \begin{remark}[What is $\, \text{C} \,^{\infty}_{\overline{\Omega}}\qty(\R^{d})$]
@@ -577,7 +578,9 @@ Finally,
 
 ?
 
-The answer is \textbf{yes}, if $\Omega$ is nice enough. We will be using $\, \text{C} \,^1$ diffeomorphisms heavily, so we investigate some of their properties first.
+The answer is \textbf{yes}, if $\Omega$ is nice enough. 
+
+We will be using $\, \text{C} \,^1$ diffeomorphisms heavily, so we investigate some of their properties first.
 
 \begin{lemma}[Properties of $C^1$ diffeomorphisms]
 	Let $U,V \subset \R^d$ be open, $\Phi: U \to V$ be a $C^1$ diffeomorphism and let $\tilde{U} \subset \R^{d}\, \text{\textit{s.t.}} \, \tilde{U} \subset \subset U$. Then
@@ -595,16 +598,22 @@ The answer is \textbf{yes}, if $\Omega$ is nice enough. We will be using $\, \te
 	\textit{Ad 1.}: No proof has been given.
 
 
-	\textit{Ad 2.}:
+	\textit{Ad 2.}: Just a change of variables formula:
 	\[
-		\norm{u \circ \Phi}_{\LpSet{\tilde{U}}}^p = \int_{\tilde{U}}(u \circ \Phi)^p |\det \grad \Phi| \dd{x} \leq C_0^{-1}\int_{\tilde{U}}|u \circ \Phi|^p |\det \grad \Phi|\dd{x},
+		\norm{u \circ \Phi}_{\LpSet{\tilde{U}}}^p = \int_{\tilde{U}}|u \circ \Phi|^p\dd{x} = \int_{\Phi\qty(\tilde{U})}|u|^p | \det \grad \Phi|^{-1}\dd{x}.
 	\]
-	where $\det \grad \Phi >0 \, \text{in} \,U, \, \text{so} \, \det \grad \phi \geq C_0 > 0 \, \text{in} \,\tilde{U}$. Together
+	Since $\Phi$ is one-to-one, we know $|\det \grad \Phi| >0$ on $U$, and since $\Phi \in \CkSet{1}{U}$ and $\tilde{U} \subset U \Rightarrow \Phi \in \CkSet{1}{\tilde{U}} \Rightarrow \det \grad \Phi \in \CkSet{0}{\tilde{U}},$ and since $\tilde{U}$ is compact, $|\det \grad \Phi| \geq C_1 > 0 \Leftrightarrow |\det \grad \Phi|^{-1}\leq \frac{1}{C_1}.$ In total	
 	\[
-		\norm{u \circ \Phi}_{\LpSet{\tilde{U}}}^p = C_0^{-1} \int_{\Phi(\tilde{U})}|u|^p\dd{x} = C_0^{-1}\norm{u}_{\LpSet{\Phi(\tilde{U})}}.
+		\norm{u \circ \Phi}_{\LpSet{\tilde{U}}}^p \leq \frac{1}{C_1} \int_{\Phi(\tilde{U})}|u|^p\dd{x} = C\norm{u}_{\LpSet{\Phi(\tilde{U})}}^p.
 	\]
+	As for the derivative, we have $\forall i \in \qty{1,\dots,d}:$
+	\begin{align*}
+		\int_{\tilde{U}}|\partial_{i}(u \circ \Phi)|^p\dd{x} &\leq \int_{\tilde{U}}|\grad (u \circ \Phi)|^p\dd{x} = \int_{\tilde{U}}| \grad \Phi \Big(\qty(\grad u)\circ \Phi\Big)|^p\dd{x}\leq \\
+									 &\leq \norm{\grad \Phi} \int_{\tilde{U}}|(\grad u) \circ \Phi|^p\dd{x} = \norm{\grad \Phi} \int_{\Phi\qty(\tilde{U})}|\grad u|^p |\det \grad \Phi|^{-1}\dd{x} \leq C\norm{\grad \Phi} \int_{\Phi\qty(\tilde{U})}|\grad u|^p\dd{x} \leq \\
+										 &\leq C \norm{\grad u}_{\LpSet[p]{\Phi\qty(\tilde{U})}}^p,
+	\end{align*}
+	where $\norm{\grad \Phi}$ is \textit{e.g.} the operator norm of the matrix $\grad \Phi.$
 \end{proof}
-
 
 
 \begin{lemma}[Flat extension]
@@ -615,7 +624,10 @@ The answer is \textbf{yes}, if $\Omega$ is nice enough. We will be using $\, \te
 	and the set $\tilde{K} \subset \subset \text{U}(0,\alpha) \times [-\beta, \beta)$ such that $\forall u \in \CkSet{1}{\text{B}(0,\alpha) \times [0,\beta]})$ it holds
 	\begin{enumerate}
 		\item $Eu = u$ on $\text{B}(0,\alpha) \times [0,\beta]$,
-		\item $\norm{Eu}_{\WkpSet[1][p]{\text{U}(0,\alpha) \times (-\beta,\beta)}} \leq \norm{u}_{\WkpSet[1][p]{\text{U}(0,\alpha) \times (0, \beta)}} $
+		\item $\norm{Eu}_{\WkpSet[1][p]{\text{U}(0,\alpha) \times (-\beta,\beta)}} \leq \norm{u}_{\WkpSet[1][p]{\text{U}(0,\alpha) \times (0, \beta)}} $. Actually,
+			\[
+				\norm{E}_{\mathcal{L}\qty(\WkpSet[1][p]{\text{U}(0,\alpha)\times (0,\beta)},\WkpSet[1][p]{\text{U}(0,\alpha)\times(-\beta,\beta)})} = 2^{\frac{1}{p}}
+			\]
 		\item if $\supp u \subset K \, \text{then} \,\supp Eu \subset \tilde{K}$
 	\end{enumerate}
 \end{lemma}
@@ -709,52 +721,40 @@ The answer is \textbf{yes}, if $\Omega$ is nice enough. We will be using $\, \te
 	\]
 	as $\supp u \subset \subset K.$ Let us define
 	\[
-		\tilde{K} \coloneq \overline{K \cup \Phi_1^{-1}\qty(K) \cup \Phi_2^{-1}\qty(K)},
+		\tilde{K} \coloneq K \cup \Phi_1^{-1}\qty(K) \cup \Phi_2^{-1}\qty(K),
 	\]
-	then $\tilde{K}$ is a compact set: since $\Phi_{1}, \Phi_{2}$ are $\, \text{C} \,^1$ diffeomorphisms, also their inverses are, and the image of compact set $K$ under a $\, \text{C} \,^1$ diffeomorphism is also a compact set. Union of compact sets is bounded, and closure of a bounded subset of $\R^{d} \times \R^{d}$ is compact. Also
+	Then we see
 	\[
-		\supp Eu \subset K \cup \Phi_1^{-1}\qty(K) \cup \Phi_2^{-1}\qty(K) \subset \overline{K \cup \Phi_1^{-1}\qty(K) \cup \Phi_2^{-1}\qty(K)} = \tilde{K}.
+		\supp Eu \subset K \cup \Phi_1^{-1}\qty(K) \cup \Phi_2^{-1}\qty(K) = \tilde{K},
 	\]
-	Finally, we have $K \subset \subset \text{U}(0,\alpha) \times [0,\beta) \Rightarrow K \subset \subset \text{U}(0,\alpha) \times (-\beta,\beta) \Rightarrow \Phi_1^{-1}\qty(K), \Phi_2^{-1}\qty(K)\subset \subset \text{U}(0,\alpha)\times (0,\beta),$ which really implies
+	And, finally, we have $K \subset \subset \text{U}(0,\alpha) \times [0,\beta) \Rightarrow K \subset \subset \text{U}(0,\alpha) \times (-\beta,\beta) \Rightarrow \Phi_1^{-1}\qty(K), \Phi_2^{-1}\qty(K)\subset \subset \text{U}(0,\alpha)\times (0,\beta),$ which really implies
 	\[
 		\tilde{K} \subset \subset \text{U}(0,\alpha) \times [-\beta, \beta).
 	\]
 \end{proof}
 
-\begin{lemma}
-	Let $\alpha, \beta >0, K \subset \text{U}(0,\alpha) \cross [0,\beta), K$ compact. Then there is $C>0, E: C^1\qty(\overline{\text{U}(0,\alpha) \cross [0,\beta)}) \to C^1\qty(\overline{\text{U}(0,\alpha)} \cross [-\beta,\beta]), \tilde{K} \subset \text{U}(0,\alpha) \cross [-\beta, \beta)$ compact such that
-	\begin{itemize}
-		\item $\norm{E}_{\mathcal{L}(\WkpSet[1][p]{\text{U}(0,\alpha) \cross (0,\beta)}, \WkpSet[1][p]{\text{U}(0,\alpha)\cross(-\beta,\beta)}} \leq C$
-		\item $u \in C^1\qty(\overline{\text{U}(0,\alpha)} \cross [0,\beta]), \supp u \subset K \Rightarrow \supp Eu \subset \tilde{K}$
-	\end{itemize}
-\end{lemma}
-\begin{proof}
-	No proof.
-\end{proof}
-
-\begin{lemma}
-	Let $U,V \subset \R^d$ open, $\Phi: U \to V, C^1$ diffeomoprhism, $\tilde{U} \subset \subset U$ compact. Then $\Phi(\tilde{U}) \subset \subset V$ and
-	\[
-		\exists C>0: \forall u \in C^1\qty(V): \norm{u \circ \Phi}_{\WkpSet[1][p]{\tilde{U}}} \leq C \norm{u}_{\WkpSet[1][p]{\Phi(\tilde{U})}}.
-	\]
-
-\end{lemma}
-\begin{proof}
-	No proof.
-\end{proof}
+Let us prove the main result.
 
 \begin{theorem}[Extension of Sobolev functions]
 	Let $\Omega \in C^{k-1,1}, k \in \N, p \in [1,\infty], V \subset \R^d$ open such that $\Omega \subset \subset V.$ Then there is $E: \WkpSet{\Omega} \to \WkpSet{\R^d}$ bounded linear operator such that
 	\begin{enumerate}
-		\item $ \forall u \in \WkpSet{\Omega}: Eu=u \, \text{a.e. in} \, \Omega$,
-		\item $ \forall u \in \WkpSet{\Omega}: \supp Eu \subset V$,
-		\item $\norm{E} \leq C, C=C(p,\Omega,V).$
+		\item $ \forall u \in \WkpSet{\Omega}: Eu=u \, \text{\textit{a.e.}} \,\, \text{in} \, \Omega$,
+		\item $ \forall u \in \WkpSet{\Omega}: \supp Eu \subset V \supset \supset \Omega$,
+		\item $\norm{E}_{\mathcal{L}\qty(\WkpSet{\Omega},\WkpSet{\R^{d}})} \leq C, C=C(p,\Omega,V).$
 	\end{enumerate}
 \end{theorem}
 
 \begin{proof}
-	Only for $k=1, \Omega \in C^1, p < \infty$. We know $C^{\infty}_{\overline{\Omega}}\qty(\R^d)$ is dense in $\WkpSet[1][p]{\Omega}$, we show existence of $E$ for $u \in C^{\infty}_{\overline{\Omega}}\qty(\R^d)$ with properties 1),2),3) and then extend $E$ to $\WkpSet[1][p]{\Omega}$ by density.
-	\\
+	\textbf{Will only be presented for $k=1, \Omega \in C^1, p < \infty$.} The strategy is:
+	\begin{enumerate}
+		\item covering of $\overline{\Omega}$ \& partition of unity
+		\item obtain a diffeomorphism from the fact $\Omega \in \Ckl{1}{0},$
+		\item suitable composition \& cut off,
+		\item flat extension,
+		\item show existence of $E: \, \text{C} \,^{\infty}_{\overline{\Omega}}\qty(\R^{d})\to \WkpSet{\R^{d}}$ with the desired properties,
+		\item extend via density
+	\end{enumerate}
+
 	\textit{Covering of $\Omega$:}
 	\[
 		\overline{\Omega} \subset \Omega \cup \bigcup_{j=1}^m U_j
