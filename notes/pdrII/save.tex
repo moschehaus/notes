@@ -873,7 +873,7 @@ From the definition of $\WkpSet{\Omega}$ it immediately follows $\WkpSet{\Omega}
 	\end{align*}
 	so
 	\[
-		\norm{u}_{\LpSet[2]{\R^{2}}} \leq \norm{\grad u}_{\LpSet[1]{\R^{2}}}.
+		\norm{u}_{\LpSet[2]{\R^{2}}} = \norm{\grad u}_{\LpSet[1]{\R^{2}}}.
 	\]
 \end{example}
 
@@ -898,36 +898,17 @@ This can be generalized in two ways:
 \begin{proof}
 	Induction by dimension:
 	\textit{The case $d = 2$.}:
-	\begin{align*}
-		\int_{\R^{2}}u_1\qty(x_1,x_2)u_2\qty(x_1,x_2)\dd{x}_1 \dd{x}_2 &= \int_{\R^{2}}\hat{u}_1\qty(x_2) \hat{u}_2\qty(x_1)\dd{x}_1 \dd{x}_2 = \qty(\int_{\R}\hat{u}_1\qty(x_2)\dd{x}_2) \qty(\int_{\R}\hat{u}_2\qty(x_1)\dd{x}_1) = \\
-		&=\qty(\int_{\R}\hat{u}_1\qty(\hat{x}_1)\hat{\dd{x}_1})\qty(\int_{\R}\hat{u}_2\qty(\hat{x}_2)\hat{\dd{x}_2}).
-	\end{align*}
-	(an equality in fact.) We have used Fubini once, which is permitted, as we have measurability + nonnegativity.
+	\[
+		\int_{\R^d}u_1(x_1,x_2) u_2(x_1,x_2)\dd{x_1}\dd{x_2} = \int_{\R^2}\hat{u}_1\qty(x_2)\hat{u}_2\qty(x_1)\dd{x_1}\dd{x_2} \underbrace{=}_{\, \text{Fubini} \,} \int_{\R}\hat{u}_1\qty(x_2)\dd{x_2} \int_{\R}\hat{u}_2\dd{x_1}.
+	\]
 
 	\textit{The case $d \to d+1$}
-	Before we procceed, recall the "generalized Holder", all functions are nonnegative
-
-	\[
-		\int_{\Omega}\prod_{j=1}^d f_j\dd{x} \leq \prod_{j=1}^d \qty(\int_{\Omega}f_j^{p_j}\dd{x})^{\frac{1}{p_j}},
-	\]
-	where $\sum_{j=1}^d \frac{1}{p_j}  = 1.$ See that if we take $p_j = d,$ then $\sum_{j=1}^d \frac{1}{d} = \frac{1}{d} \sum_{j=1}^d 1 =1,$ so
-	\[
-		\int_{\Omega}\prod_{j=1}^d f_j \dd{x} \leq \prod_{j=1}^d\qty(\int_{\Omega}f_j^d\dd{x})^{\frac{1}{d}}.
-	\]
-	Let us compute:
 	\begin{align*}
-		\int_{\R^{d+1}}\prod_{j=1}^{d+1} u_j\qty(x)\dd{x}&=\int_{\R^d}\int_{\R}\prod_{j=1}^d u_j \overbrace{u_{d+1}}^{=\hat{u}\qty(\hat{x}_{d+1})}\overbrace{\dd{x}_1 \dots \dd{x}_d}^{=\hat{\dd{x}}_{d+1}}\dd{x}_{d+1} = \int_{\R^{d}}\underbrace{\qty(\int_{\R}\prod_{j=1}^d u_j\dd{x}_{d+1})}_{\text{Holder}}u_{d+1}\hat{\dd{x}}_{d+1} \leq \\
-								 &\leq \int_{\R^d}\underbrace{\qty(\prod_{j=1}^d \int_{\R}u_j^d\dd{x_{d+1}})^{\frac{1}{d}}u_{d+1}}_{\text{Holder}}\hat{\dd{x_{d+1}}} \leq \qty(\int_{\R^{d}}u_{d+1}^d\dd{\hat{x}_{d+1}})^{\frac{1}{d}}\qty(\int_{\R^d}\qty(\prod_{j=1}^d \int_{\R}u_j^d(x)\dd{x_{d+1}})^{\frac{1}{d}\frac{d}{d-1}}\dd{\hat{x}_{d+1}})^{\frac{d-1}{d}} \leq \\
-								 &\leq \qty(\int_{\R^d}u_{d+1}^d\dd{\hat{x}_{d+1}})^{\frac{1}{d}}\qty(\prod_{j=1}^d\int_{\R^{d-1}}\qty(\int_{\R}u_j^d\dd{x_{d+1}})^{\frac{1}{d-1}\frac{d-1}{1}}\dd{\hat{x}_j}\dd{\hat{x}_{d+1}})^{\frac{d-1}{d} \frac{1}{d-1}} = \\
-								 &= \qty(\int_{\R^{d}}u_{d+1}^d \dd{\hat{x}_{d+1}})^{\frac{1}{d}}\prod_{j=1}^d\qty(\int_{\R^{d-1}}\int_{\R}u_j^d\dd{x}_{d+1}\dd{\hat{x}_{j}}\dd{\hat{x}_{d+1}})^{\frac{1}{d}} = \qty(\int_{\R^{d}}u_{d+1}^d\dd{\hat{x}_{d+1}})^\frac{1}{d} \prod_{j=1}^d \qty(\int_{\R^{d}}u_j^d\dd{\hat{x}_j})^{\frac{1}{d}} = \\
-								 &= \prod_{j=1}^{d+1} \qty(\int_{\R^{d}}u_j^d\dd{\hat{x}_j})^{\frac{1}{d}},
+	\int_{\R^{d+1}}\prod_{j=1}^{d+1} u_j\qty(x)\dd{x}&=\int_{\R^d}\int_{\R}\prod_{j=1}^d u_j\qty(x)\dd{x_{d+1}}u_{d+1}\dd{x}\hat{\dd{x_{d+1}}} \\
+									   &\underbrace{\leq}_{\, \text{Holder} \,} \int_{\R^d}\qty(\prod_{j=1}^d \int_{\R}\qty(u_j\qty(x))^d\dd{x_{d+1}})^{\frac{1}{d}}u_{d+1}\qty(x)\hat{\dd{x_{d+1}}} \\
+									   &\underbrace{\leq}_{\, \text{Holder} \,} \qty(\int_{\R^d}\qty(\prod_{j=1}^d \int_{\R}u_j^d(x)\dd{x_{d-1}})^{\frac{1}{d-1}}\dd{\hat{x_{d+1}}})^{\frac{d-1}{d}}\qty(\int_{\R^d}u^d_{d+1}\dd{\hat{x_{d+1}}})^{\frac{1}{d}} \\ 
+									   &\underbrace{\leq}_{\, \text{induction step} \footnote{for the function $v_j=\qty(\int_{\R}u)j^d\qty(x)\dd{x_{d+1}})^{\frac{1}{d-1}}$}} \qty(\int_{\R^d}u_{d+1}^d\dd{\hat{x}_{d+1}})^{\frac{1}{d}}\qty(\prod_{j=1}^d\int_{\R^{d-1}}\int_{\R}u_j^d(x)\dd{x_{d+1}}\dd{\hat{x}_j}\dd{\hat{x}_{d+1}})^{\frac{d-1}{d} \frac{1}{d-1}}.
 	\end{align*}
-	where the induction step is taken for the function
-	\[
-		v_j=\qty(\int_{\R}u_j^d\dd{x_{d+1}})^{\frac{1}{d-1}},
-	\]
-	that is clearly nonnegative and measurable.
-	Realize also $\dd{x}_{d+1}\dd{\hat{x}_j}\dd{\hat{x}}_{d+1} = \dd{\hat{x}_d},$ as the only "missing variable" is exactly $x_d.$
 \end{proof}
 
 \begin{remark}
@@ -2319,4 +2300,4 @@ The opposite inclusion is simple: fix $\lambda >0: \lambda \in \rho(A) \cap \rho
 %%% mode: latex
 
 %%% TeX-master: t
-%%% End: 
+%%% End:

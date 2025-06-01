@@ -13,9 +13,9 @@
 \contentsline {subsection}{\numberline {2.7}Difference quotients}{23}{subsection.2.7}%
 \contentsline {section}{\numberline {3}Nonlinear elliptic equations as compact perturbations}{23}{section.3}%
 \contentsline {subsubsection}{\numberline {3.0.1}Problem protypes}{24}{subsubsection.3.0.1}%
-\contentsline {section}{\numberline {4}Nonlinear elliptic equations - monotone operator theory}{26}{section.4}%
-\contentsline {section}{\numberline {5}Calculus of variations}{31}{section.5}%
+\contentsline {section}{\numberline {4}Nonlinear elliptic equations - monotone operator theory}{27}{section.4}%
+\contentsline {section}{\numberline {5}Calculus of variations}{32}{section.5}%
 \contentsline {section}{\numberline {6}Semigroup theory}{39}{section.6}%
 \contentsline {section}{\numberline {7}(Some) exercises}{46}{section.7}%
 \contentsline {subsection}{\numberline {7.1}4.3.2025}{46}{subsection.7.1}%
-\contentsline {subsection}{\numberline {7.2}8.4.2025}{46}{subsection.7.2}%
+\contentsline {subsection}{\numberline {7.2}8.4.2025}{47}{subsection.7.2}%
