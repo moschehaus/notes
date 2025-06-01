@@ -847,11 +847,14 @@ from which it clearly follows $\norm{E}_{\mathcal{L}\qty(\WkpSet[1][p]{\Omega}, 
 \end{proof}
 
 \begin{remark}[$\Omega \in C^{0,1}$ suffices]
-	The theorem is still valid if we assume only $C^{0,1}$ and $p \in (1,\infty), k>1.$
+	The theorem is still valid if we assume only $\Omega \in \Ckl{0}{1}$ and $p \in (1,\infty), k \in \N,$ but the construction of the extension must be different. "It seems the result is not known for $\Omega \in \Ckl{0}{1}$ and $p = 1,$ or $p = \infty.$"
 \end{remark}
 
 \subsection{Embedding theorems}
 \label{sec:embedding}
+
+From the definition of $\WkpSet{\Omega}$ it immediately follows $\WkpSet{\Omega} \subset \LpSet{\Omega}.$ Can we obtain $\WkpSet{\Omega} \subset \LpSet[q]{\Omega}$ for some $q > p?$ The answer \textbf{yes}, if $\Omega$ is again nice enough (and there will also be some dependence on the dimension of $\R^{d}.$)
+
 
 \begin{example}
 	Let $u \in \mathcal{D}\qty(\R^2)$. Then 
@@ -960,6 +963,10 @@ from which it clearly follows $\norm{E}_{\mathcal{L}\qty(\WkpSet[1][p]{\Omega}, 
 	for $q$ such that $\frac{qd}{d-1}\leq p^{*}$.
 \end{remark}
 
+
+\begin{definition}[Continuous \& compact embeddings]
+    Let $X,Y$ be linear normed spaces.
+\end{definition}
 
 \begin{theorem}[Embedding theorem]
 	Let $\Omega \subset C^{0,1}, p^{*} = \frac{dp}{1-p}$ If $p \in [1,d)$ then
