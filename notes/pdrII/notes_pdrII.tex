@@ -863,39 +863,61 @@ From the definition of $\WkpSet{\Omega}$ it immediately follows $\WkpSet{\Omega}
 		u\qty(x_1,x_2) = \int_{-\infty}^{x_1} \partial_{1}u\qty(s,x_2)\dd{s} = \int_{-\infty}^{x_2} \partial_{2}u(x_1,s)\dd{s},
 	\end{equation*}
 	so 
-	\begin{equation*}
-		\int_{\R^2}\int_{\R^2}|u(x_1,x_2)|^{2}\dd{x_1} \dd{x_2} \leq \int_{\R}|\partial_{1}u(s,x_2)|\dd{s} \int_{\R}|\partial_{2}u\qty(x_1,s)|\dd{s} \dd{x_1} \dd{x_2} \leq \Big(\int_{\R^2}|\grad u|^{2}\dd{\lambda^{2}}\Big)^{2},
-	\end{equation*}
+	\begin{align*}
+		\norm{u}_{\LpSet[2]{\R^{2}}}^{2} = \int_{\R^2}|u(x_1,x_2)|^{2}\dd{x_1} \dd{x_2} &= \int_{\R}\int_{\R}|u(x_1,x_2)|^{2}\dd{x_1}\dd{x_2}\leq \\
+		&\leq \qty(\int_{\R}\int_{-\infty}^{x_1}|\partial_{1}u(s,x_2)|\dd{s}\dd{x_2}) \qty(\int_{\R}\int_{-\infty}^{x_2}|\partial_{2} u(x_1,s)|\dd{s}\dd{x_2}) \leq \\
+		&\leq \qty(\int_{\R}\int_{\R}|\partial_{1}u(s,x_2)|\dd{s}\dd{x_2})\qty(\int_{\R}\int_{\R}|\partial_{2}u(x_1,s)|\dd{s}\dd{x_2}) \leq \\
+		& \leq \qty(\int_{\R}\int_{\R}|\grad u(s,x_2)|\dd{s}\dd{x_2})\qty(\int_{\R}\int_{\R}|\grad u(x_1,s)|\dd{s}\dd{x_2}) = \\
+		& = \qty(\int_{\R^2}|\grad u|\dd{x}) \qty(\int_{\R^{2}}|\grad u|\dd{x}) = \qty(\int_{\R^{2}}|\grad u|\dd{x})^{2} = \\
+		& = \norm{\grad u}_{\LpSet[1]{\R^{2}}}^{2},
+	\end{align*}
 	so
 	\[
-		\norm{u}_{\LpSet[2]{\R^2}} \leq \norm{\grad u}_{\LpSet[1]{\R^2}}.
+		\norm{u}_{\LpSet[2]{\R^{2}}} = \norm{\grad u}_{\LpSet[1]{\R^{2}}}.
 	\]
 \end{example}
 
-\begin{lemma}
-	Let $d\geq 2$. Let $\hat{u_i}:\R^{d-1} \to \R$ be nonnegative and measurable for $j \in \{1,\dots,d\}.$ We define
+This can be generalized in two ways: 
+\begin{itemize}
+	\item $d > 2,$
+	\item less smoothness.
+\end{itemize}
+
+\begin{lemma}[Gagliardo]
+	Let $d\geq 2$. Let $\hat{u}_i:\R^{d-1} \to \R$ be nonnegative and measurable for $j \in \{1,\dots,d\}.$ We define
 	\[
-		\hat{x_j} = (x_1, \dots, x_{j-1}, x_{j+1}, \dots, x_d), \hat{\dd{x_j}} = \dd{x_1} \dots \dd{x_{j-1}} \dd{x_{j+1}} \dots \dd{x_d}.
+		\hat{x}_j = (x_1, \dots, x_{j-1}, x_{j+1}, \dots, x_d), \hat{\dd{x}_j} = \dd{x}_1 \dots \dd{x}_{j-1} \dd{x}_{j+1} \dots \dd{x}_d.
 	\]
-	Consider the functions $u_j:\R^d \to \R, u_j\qty(x)=\hat{u_j}(\hat{x_j}).$ Then
+	Consider the functions $u_j:\R^d \to \R, u_j\qty(x)=\hat{u}_j(\hat{x}_j).$ Then
 	\begin{equation}
-		\int_{\R^d}\prod_{j=1}^d u_j\qty(x)\dd{x} \leq \prod_{j=1}^d \qty(\int_{\R^{d-1}}\qty(\hat{u_j}\qty(\hat{x_j}))^{d-1}\hat{\dd{x_j}})^{\frac{1}{d-1}}.
+		\int_{\R^d}\prod_{j=1}^d u_j\qty(x)\dd{x} \leq \prod_{j=1}^d \qty(\int_{\R^{d-1}}\qty(\hat{u}_j\qty(\hat{x}_j))^{d-1}\hat{\dd{x}_j})^{\frac{1}{d-1}}.
 	\end{equation}
+	(Both integrals can be infinity.)
 \end{lemma}
 
 \begin{proof}
-	Induction by d.
-	\begin{enumerate}
-		\item $d=2: \int_{\R^d}u_1(x_1,x_2) u_2(x_1,x_2)\dd{x_1}\dd{x_2} = \int_{\R^2}\hat{u}_1\qty(x_2)\hat{u}_2\qty(x_1)\dd{x_1}\dd{x_2} \underbrace{=}_{\, \text{Fubini} \,} \int_{\R}\hat{u}_1\qty(x_2)\dd{x_2} \int_{\R}\hat{u}_2\dd{x_1}.$
-		\item
-			\begin{align*}
-				d\to d+1: \int_{\R^{d+1}}\prod_{j=1}^{d+1} u_j\qty(x)\dd{x}&=\int_{\R^d}\int_{\R}\prod_{j=1}^d u_j\qty(x)\dd{x_{d+1}}u_{d+1}\dd{x}\hat{\dd{x_{d+1}}} \\
-											   &\underbrace{\leq}_{\, \text{Holder} \,} \int_{\R^d}\qty(\prod_{j=1}^d \int_{\R}\qty(u_j\qty(x))^d\dd{x_{d+1}})^{\frac{1}{d}}u_{d+1}\qty(x)\hat{\dd{x_{d+1}}} \\
-											   &\underbrace{\leq}_{\, \text{Holder} \,} \qty(\int_{\R^d}\qty(\prod_{j=1}^d \int_{\R}u_j^d(x)\dd{x_{d-1}})^{\frac{1}{d-1}}\dd{\hat{x_{d+1}}})^{\frac{d-1}{d}}\qty(\int_{\R^d}u^d_{d+1}\dd{\hat{x_{d+1}}})^{\frac{1}{d}} \\ 
-											   &\underbrace{\leq}_{\, \text{induction step} \footnote{for the function $v_j=\qty(\int_{\R}u)j^d\qty(x)\dd{x_{d+1}})^{\frac{1}{d-1}}$}} \qty(\int_{\R^d}u_{d+1}^d\dd{\hat{x}_{d+1}})^{\frac{1}{d}}\qty(\prod_{j=1}^d\int_{\R^{d-1}}\int_{\R}u_j^d(x)\dd{x_{d+1}}\dd{\hat{x}_j}\dd{\hat{x}_{d+1}})^{\frac{d-1}{d} \frac{1}{d-1}}.
-			\end{align*}
-	\end{enumerate}
+	Induction by dimension:
+	\textit{The case $d = 2$.}:
+	\[
+		\int_{\R^d}u_1(x_1,x_2) u_2(x_1,x_2)\dd{x_1}\dd{x_2} = \int_{\R^2}\hat{u}_1\qty(x_2)\hat{u}_2\qty(x_1)\dd{x_1}\dd{x_2} \underbrace{=}_{\, \text{Fubini} \,} \int_{\R}\hat{u}_1\qty(x_2)\dd{x_2} \int_{\R}\hat{u}_2\dd{x_1}.
+	\]
+
+	\textit{The case $d \to d+1$}
+	\begin{align*}
+	\int_{\R^{d+1}}\prod_{j=1}^{d+1} u_j\qty(x)\dd{x}&=\int_{\R^d}\int_{\R}\prod_{j=1}^d u_j\qty(x)\dd{x_{d+1}}u_{d+1}\dd{x}\hat{\dd{x_{d+1}}} \\
+									   &\underbrace{\leq}_{\, \text{Holder} \,} \int_{\R^d}\qty(\prod_{j=1}^d \int_{\R}\qty(u_j\qty(x))^d\dd{x_{d+1}})^{\frac{1}{d}}u_{d+1}\qty(x)\hat{\dd{x_{d+1}}} \\
+									   &\underbrace{\leq}_{\, \text{Holder} \,} \qty(\int_{\R^d}\qty(\prod_{j=1}^d \int_{\R}u_j^d(x)\dd{x_{d-1}})^{\frac{1}{d-1}}\dd{\hat{x_{d+1}}})^{\frac{d-1}{d}}\qty(\int_{\R^d}u^d_{d+1}\dd{\hat{x_{d+1}}})^{\frac{1}{d}} \\ 
+									   &\underbrace{\leq}_{\, \text{induction step} \footnote{for the function $v_j=\qty(\int_{\R}u)j^d\qty(x)\dd{x_{d+1}})^{\frac{1}{d-1}}$}} \qty(\int_{\R^d}u_{d+1}^d\dd{\hat{x}_{d+1}})^{\frac{1}{d}}\qty(\prod_{j=1}^d\int_{\R^{d-1}}\int_{\R}u_j^d(x)\dd{x_{d+1}}\dd{\hat{x}_j}\dd{\hat{x}_{d+1}})^{\frac{d-1}{d} \frac{1}{d-1}}.
+	\end{align*}
 \end{proof}
+
+\begin{remark}
+	Sometimes, the lemma is stated as $\hat{u}_i \in \LinfSet{\R^{d-1}}, \supp \hat{u}_i$ is compact $\forall i \in \qty{1,\dots,d}.$ Then
+	\[
+		\int_{\R^{d}}\prod_{j=1}^d|u_j(x)|\dd{x} \leq \prod_{j=1}\qty(\int_{\R^{d-1}}|\hat{u}_j(\hat{x}_j)|^{d-1}\hat{\dd{x_i}})^{\frac{1}{d-1}} = \prod_{j=1}^d \norm{\hat{u}_j}_{\LpSet[d-1]{\R^{d-1}}}.
+	\]
+	The difference is that in our version, we have nonnegativity in the assumptions and do not requiry compact supports and essential boundedness, as we work with integrals that are possibly infinite.
+\end{remark}
 
 \begin{theorem}[Gagliardo-Nirenberg]
 	Let $p \in [1,d).$ Then $\forall u \in \WkpSet[1][p]{\R^d}$:
@@ -965,7 +987,7 @@ From the definition of $\WkpSet{\Omega}$ it immediately follows $\WkpSet{\Omega}
 
 
 \begin{definition}[Continuous \& compact embeddings]
-    Let $X,Y$ be linear normed spaces.
+    Let $X,Y$ be linear normed spaces. $\hookrightarrow$
 \end{definition}
 
 \begin{theorem}[Embedding theorem]
