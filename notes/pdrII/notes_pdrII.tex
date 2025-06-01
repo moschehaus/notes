@@ -578,7 +578,7 @@ Finally,
 
 ?
 
-The answer is \textbf{yes}, if $\Omega$ is nice enough. 
+The answer is \textbf{yes}, if $\Omega$ is nice enough. Notice however this is not as simple as in the case of Lebesgue spaces, where we could just extend the function by zero trivailly. We are dealing with derivatives, that are somehow regular, and if we extend a nonzero function by zero, it might mess up the regularity of the derivatives.
 
 We will be using $\, \text{C} \,^1$ diffeomorphisms heavily, so we investigate some of their properties first.
 
@@ -756,40 +756,93 @@ Let us prove the main result.
 	\end{enumerate}
 
 	\textit{Covering of $\Omega$:}
+	In the following,  $U_j,a_j, \tensorq{A}_j, \alpha, \beta$ are as in the definition of a $\Ckl{1}{0}$ domain. Set $U_0 = \Omega$ and realize
 	\[
-		\overline{\Omega} \subset \Omega \cup \bigcup_{j=1}^m U_j
+		\overline{\Omega} \subset \bigcup_{j=0}^m U_j,
 	\]
-	with $U_j,a_j, \tensorq{A}_j, \alpha, \beta$ as in the definition of a $C^1$ domain. In particular, $a_j \in C^1\qty(\text{U}(0,\alpha)).$
-	\\
-	\textit{Construction of $E$:}
-	We denote $\{\varphi_j \}_{j=0}^m$ partition of unity subordinate to $\{U_j\}_{j=1}^m.$ For $j \in \{1, \dots, n\}$ we define $\phi_j : \text{U}(0,\alpha) \cross (-\beta,\beta) \to U_j$ by
+	\textit{i.e.}, $\qty{U_j}_{j=0}^m$ is an open covering of $\overline{\Omega}$. Denote $\{\varphi_j \}_{j=0}^m$ as the partition of unity subordinate to $\{U_j\}_{j=0}^m.$
+
+
+	\textit{Diffeomorphism \& flat extension}
+	For $j \in \{1, \dots, m\}$ we define $\Phi_j : \text{U}(0,\alpha) \cross (-\beta,\beta) \to U_j$ by
 	\[
-		\phi_j\qty(y',y_d) = \tensorq{A}_j (y', a_j(y') + y_d), y' \in \R^{d-1}, y_d \in \R.
+		\Phi_j\qty(y',y_d) = \tensorq{A}_j (y', a_j(y') + y_d), y' \in \R^{d-1}, y_d \in \R.
 	\]
-	Trivially $\phi_j$ is $C^1$ diffemorphism. Let us denote by $\tilde{E}$ the extension operator from the previous lemma. Then we have for $u \in C^{\infty}_{\overline{\Omega}}\qty(\R^d): u = \sum_{j=1}^m \varphi_j u.$ We define
+
+	(A bit confusingly, we will however be "interpreting" $\Phi_j$ as $\Phi_j : \text{U}(0,\alpha) \times \qty(-\beta, \beta) \to \R^{d},$ with it being extended by zero on $\R^{d}/ \overline{U_j},$ as we need $\Phi_j^{-1}$ to be defined on the whole $\R^{d}.$)
+
+	As $\Omega \in \Ckl{1}{0},$ we know $a_j \in \CkSet{1}{\text{B}(0,\alpha)}\subset \CkSet{1}{\text{U}(0,\alpha)},$ and so $\phi_j$ is a $\text{C}^1$ diffemorphism. Let us denote by $\tilde{E}: \CkSet{1}{\text{B}(0,\alpha)\times [-\beta, \beta]} \to \CkSet{1}{\text{B}(0,\alpha)\times [-2 \beta, \beta]}$ the extension operator from the Flat extension lemma. Then we for any $u \in C^{\infty}_{\overline{\Omega}}\qty(\R^d): u = \sum_{j=1}^m \varphi_j u$ define
 	\[
-		Eu=\varphi_0 u + \sum_{j=1}^m \qty(\eta \tilde{E}\qty((\varphi_j u) \circ \phi_j)) \circ \inverse{\phi_j},
+		Eu=\varphi_0 u + \sum_{j=1}^m \qty(\eta \tilde{E}\qty((\varphi_j u) \circ \Phi_j)) \circ \inverse{\Phi_j},
 	\]
-	where $\eta$ is a cut-off function $\eta = 1 \, \text{on} \, y_d \geq 0, \in (0,1) \, \text{else} \,, =0 \, \text{on} \, y_d \leq -h$, for some parameter $h>0$ which will be defined later. We also take $\eta \in C^\infty$. Due to our construction,
+	where $\eta \in \CinfSet{\text{U}(0,\alpha)\times \R}$ is a cut-off function
+	\begin{equation*}
+		\eta\qty(y',y_d)  
+		\begin{cases}
+			=1 \, \text{on} \, &y_d \geq 0,\\
+			= 0 \, \text{on} \,& y_d \leq -h, \\
+			\in (0,1) \, &\text{else} \,.
+		\end{cases},
+	\end{equation*}
+for some parameter $h>0$ which will be defined later.
+With this definition, $\forall x \in \Omega$ it holds
+\begin{align*}
+	\qty(Eu)(x) &= \qty(\varphi_0 u)(x) + \sum_{j=1}^{m}\qty(\eta \tilde{E}\qty(u \varphi_j \circ \Phi_j))\underbrace{\qty(\Phi_j^{-1}(x))}_{\in \text{U}(0,\alpha)\times \qty(-\beta, \beta)} =\\
+	&= \qty(\varphi_0 u)(x) + \sum_{j=1}^m \qty(u \varphi_j \circ \Phi_j)\qty(\Phi_j^{-1}(x)) = \qty(\varphi_0 u)(x) + \sum_{j=1}^m \qty(u \varphi_j)(x) = \sum_{j=0}^m \qty(u \varphi_j)(x) = u(x) \sum_{j=0}^m \varphi_j(x) = u(x),
+\end{align*}
+since $\eta(y) = 1, \tilde{E}\qty(\varphi_j u \circ \Phi_j) (y) = \qty(\varphi_j u \circ \Phi_j)(y)$ for $y \in \text{U}(0,\alpha) \times (-\beta, \beta), $ according to our definition of $\eta$ and the properties of the extension $\tilde{E}.$
+
+The motivation behind the cutoff is the following: we know $\supp \varphi_j \subset U_j,$ so since $\Phi_j: \text{U}(0,\alpha)\times(-\beta,\beta) \to U_j, $ we have $\supp u \varphi_j \circ \Phi_j \subset \text{U}(0,\alpha)\times (-\beta, \beta)$ and from the properties of the flat extension operator we also have $\supp \tilde{E}\qty(u \varphi_j \circ \Phi_j) \subset \text{U}(0,\alpha)\times (-2 \beta, \beta)$. Since moreover $\supp \eta = \text{U}(0,\alpha) \times (-2h, \infty),$ in total
+\[
+ \supp \eta \tilde{E}\qty(u \varphi_j \circ \Phi_j) = \supp \eta \cap \supp \tilde{E}\qty(u \varphi_j \circ \Phi_j) = \text{U}(0,\alpha) \times (-2h, \infty) \cap (-\beta, \beta),
+\]
+and also \footnote{Generally, $\supp v \circ \Psi^{-1} = \overline{\qty{x \in \R^{d}| u\qty(\Psi^{-1}(x)) \neq 0}} = \overline{\qty{x \in \R^{d}| \Psi^{-1}(x) \in \supp u}} = \overline{\qty{x \in \R^{d}| x \in \Psi\qty(\supp u)}} = \Psi\qty(\supp u).$}
+\[
+	\supp Eu \subset \Phi_j\qty(\supp \eta \tilde{E}\qty(u \varphi_j \circ \Phi_j)).
+\]
+We need to prove $\supp Eu \subset V,$ where $V$ is some neighbourhood of $\Omega$. If it holds
+\[
+	\supp \eta \tilde{E}\qty(u \varphi_j \circ \Phi_j) \subset \text{U}(0,\alpha) \times (-\beta,\beta),
+\]
+the desired property holds, as then
+\[
+	\supp Eu \subset \Phi_j \qty( \supp \eta \tilde{E}\qty(u \varphi_j \circ \Phi_j)) \subset \Phi_j\qty(\text{U}(0,\alpha)\times (-\beta, \beta)) \subset U_j \subset \overline{\Omega} \subset V.
+\]
+In total,  
+\[
+	\supp \eta \tilde{E}\qty(u \varphi_j \circ \Phi_j) = \text{U}(0,\alpha) \times (-2h, \infty) \cap (-\beta, \beta) \subset \text{U}(0,\alpha) \times (-\beta,\beta).
+\]
+So if $h$ is such that $-2h > -\beta \Leftrightarrow h < \frac{\beta}{2}$, we can guarantee $\supp Eu \subset V$ and that is what we want.
+
+Finally, $E$ is clearly linear, its norm: (we are using the lemma about flat extension and the properties of $\, \text{C} \,^1$ diffeomorphisms together with the facts $ \eta \leq \, \text{on} \, \text{U}(0,\alpha) \times (-\beta, \beta),$ $\Phi_j\qty(\text{U}(0,\alpha)\times (0,\beta)) \subset U_{j},$$ \Phi_j^{-1}\qty(\R^{d}) \subset \footnote{We can somehow extend $\Phi_j^{-1}$ by zero from $U_j \subset \Omega \subset \R^{d}$ to be defined on the whole $\R^{d}$ (i guess)}, \text{U}(0,\alpha)\times \qty(-\beta,\beta)$, \footnote{...even though the assumptions to use those are not totally valid... but doc. Kaplicky is okay with that})
+
+\begin{align*}
+\norm{Eu}_{\WkpSet[1][p]{\R^{d}}} &= \norm{\qty(\eta \tilde{E}\qty(\varphi u_j \circ \Phi_j))\circ \Phi_j^{-1}}_{\WkpSet[1][p]{\R^{d}}} \leq C\norm{\eta \tilde{E} \qty(\varphi u_j \circ \Phi_j)}_{\WkpSet[1][p]{\text{U}(0,\alpha)\times (-\beta,\beta)}} = \\
+				  &= C \norm{\tilde{E}\qty(u \varphi_j \circ \Phi_j)}_{\WkpSet[1][p]{\text{U}(0,\alpha)\times (-\beta, \beta)}} \leq C \norm{u \varphi_j \circ \Phi_j}_{\WkpSet[1][p]{\text{U}(0,\alpha)\times (0,\beta)}} \leq \\
+				  &\leq C \norm{u \varphi_j}_{\WkpSet[1][p]{U_j \cap \Omega}} \leq C \norm{u}_{\WkpSet[1][p]{\Omega}},
+\end{align*}
+from which it clearly follows $\norm{E}_{\mathcal{L}\qty(\WkpSet[1][p]{\Omega}, \WkpSet[1][p]{\R^d})} \leq C.$
+
+	So all the properties hold for $u \in C^{\infty}_{\overline{\Omega}}\qty(\R^d)$, let us show them also for $u \in \WkpSet[1][p]{\Omega}$.
+	Pick an arbitrary $u \in \WkpSet[1][p]{\Omega}, \, \text{find} \, \{u_k\} \subset C^{\infty}_{\overline{\Omega}}\qty(\R^d): u_k \to u \, \text{in} \, \WkpSet[1][p]{\Omega}.$ Since $E$ is continous, we know $\lim_{k\to \infty}E u_k$ exists. Let us set
 	\[
-		\inverse{\phi_j} \qty(\text{U}(0,\alpha) \cross [-2h, \beta)) \subset \text{U}(\Omega,\varepsilon) \subset \text{U}(\Omega,2 \varepsilon) \subset V,  
+		E u \coloneq \lim_{k\to \infty}E u_k,
 	\]
-	for some $\varepsilon>0.$
-	\\
-	\textit{Properties of $E$:}
-	It is clear that
-	\begin{itemize}
-		\item $E$ is linear from its definition
-		\item 1) holds, as $\phi_j$ and $\inverse{\phi_j}$ cancel \textit{somewhere}
-		\item 2) holds for $h<\frac{\beta}{2}$ 
-		\item 3) we use the previous lemma:
-			\begin{align*}
-				\norm{\underbrace{\qty(\eta \tilde{E}\qty(\varphi_j u \circ \phi_j))}_{\supp () \subset \text{U}(0,\alpha) \cross (-\beta, \beta)} \circ \inverse{\phi_j}}_{\WkpSet[1][p]{\R^d}} & \leq C \norm{\eta \tilde{E}\qty(\varphi_j u \circ \phi_j)}_{\WkpSet[1][p]{\text{U}(0,\alpha) \cross (-\beta, \beta)}} \\ &\underbrace{\leq}_{\, \text{previous lemma} \,} C \norm{\varphi_j u \circ \phi_j}_{\WkpSet[1][p]{\text{U}(0,\alpha) \cross (0,\beta)}}\\ &\underbrace{\leq}_{\text{previous lemma}} C \norm{\varphi_j u}_{\WkpSet[1][p]{U_j \cap \Omega}} \leq \norm{u}_{\WkpSet[1][p]{\Omega}} \Rightarrow \norm{E} \leq C.
-			\end{align*}
-	\end{itemize}
-	So all the properties hold for $u \in C^{\infty}_{\overline{\Omega}}\qty(\R^d)$. We need to show them also for $u \in \WkpSet[1][p]{\Omega}$. Pick an arbitrary $u \in \WkpSet[1][p]{\Omega}, \, \text{find} \, \{u_k\} \subset C^{\infty}_{\overline{\Omega}}\qty(\R^d): u_k \to u \, \text{in} \, \WkpSet[1][p]{\Omega}.$ \\
-	Ad 1): Since $E$ is continuous, then $E u_k \to Eu \, \text{in} \, \WkpSet[1][p]{\R^d}.$ Since $\Omega \subset \R^d \Rightarrow Eu=u \, \text{in} \, \WkpSet[1][p]{\Omega}.$ \\
+	where $Eu_k$ is defined above for $u_k \in \, \text{C} \,^{\infty}_{\overline{\Omega}}\qty(\R^{d}).$
+
+	Ad 3): Clearly $E \qty(\alpha u) = \lim_{k \to \infty}E \qty(\alpha u_k) = \alpha E u, E \qty(u + v) = \lim_{k\to \infty}E\qty(u_k + v_k) = \lim_{k \to \infty}Eu_k + Ev_k = Eu + Ev,$ since $E$ on the continous functions is linear. Also
+
+
+	\[
+		\norm{Eu}_{\WkpSet[1][p]{\R^{d}}} = \norm{\lim_{k\to \infty}E u_k}_{\WkpSet[1][p]{\R^{d}}} = \lim_{k\to \infty} \norm{E u_k}_{\WkpSet[1][p]{\R^{d}}} \leq \norm{E} \lim_{k\to \infty}\norm{u_k}_{\WkpSet[1][p]{\R^{d}}} = \norm{E} \norm{u}_{\WkpSet[1][p]{\R^{d}}},
+	\]
+	(we are using $\qty{E u_k}$ has a limit); we see our above definition truly yields a continuous linear operator.\\
+	Ad 1): $\forall \, \text{\textit{a.a.}} \, x \in \Omega: Eu(x) = \lim_{k\to \infty}Eu_k(x) = \lim_{k \to \infty}u_k(x) = u(x),$\\
 	Ad 2): $\supp Eu_k \subset \text{U}(\Omega,\varepsilon) \Rightarrow \supp Eu \subset \overline{\text{U}(\Omega,\varepsilon)} \subset V.$
+	\[
+		\supp Eu = \qty{x \in \R^{d}| \lim_{k\to \infty}Eu_k \neq 0}\subset \bigcap_{k=1}^{\infty}\underbrace{\supp Eu_k}_{\subset V} \subset V.
+	\]
+	We are done.
 
 \end{proof}
 

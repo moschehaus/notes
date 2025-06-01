@@ -7,15 +7,15 @@
 \contentsline {subsection}{\numberline {2.1}Tools from functional analysis}{5}{subsection.2.1}%
 \contentsline {subsection}{\numberline {2.2}Density of smooth functions}{6}{subsection.2.2}%
 \contentsline {subsection}{\numberline {2.3}Extension of Sobolev functions}{13}{subsection.2.3}%
-\contentsline {subsection}{\numberline {2.4}Embedding theorems}{17}{subsection.2.4}%
-\contentsline {subsection}{\numberline {2.5}Trace theorems}{21}{subsection.2.5}%
-\contentsline {subsection}{\numberline {2.6}Composition of sobolev functions}{21}{subsection.2.6}%
-\contentsline {subsection}{\numberline {2.7}Difference quotients}{21}{subsection.2.7}%
-\contentsline {section}{\numberline {3}Nonlinear elliptic equations as compact perturbations}{21}{section.3}%
-\contentsline {subsubsection}{\numberline {3.0.1}Problem protypes}{22}{subsubsection.3.0.1}%
-\contentsline {section}{\numberline {4}Nonlinear elliptic equations - monotone operator theory}{25}{section.4}%
-\contentsline {section}{\numberline {5}Calculus of variations}{29}{section.5}%
-\contentsline {section}{\numberline {6}Semigroup theory}{37}{section.6}%
-\contentsline {section}{\numberline {7}(Some) exercises}{44}{section.7}%
-\contentsline {subsection}{\numberline {7.1}4.3.2025}{44}{subsection.7.1}%
-\contentsline {subsection}{\numberline {7.2}8.4.2025}{44}{subsection.7.2}%
+\contentsline {subsection}{\numberline {2.4}Embedding theorems}{18}{subsection.2.4}%
+\contentsline {subsection}{\numberline {2.5}Trace theorems}{22}{subsection.2.5}%
+\contentsline {subsection}{\numberline {2.6}Composition of sobolev functions}{22}{subsection.2.6}%
+\contentsline {subsection}{\numberline {2.7}Difference quotients}{22}{subsection.2.7}%
+\contentsline {section}{\numberline {3}Nonlinear elliptic equations as compact perturbations}{22}{section.3}%
+\contentsline {subsubsection}{\numberline {3.0.1}Problem protypes}{23}{subsubsection.3.0.1}%
+\contentsline {section}{\numberline {4}Nonlinear elliptic equations - monotone operator theory}{26}{section.4}%
+\contentsline {section}{\numberline {5}Calculus of variations}{30}{section.5}%
+\contentsline {section}{\numberline {6}Semigroup theory}{38}{section.6}%
+\contentsline {section}{\numberline {7}(Some) exercises}{45}{section.7}%
+\contentsline {subsection}{\numberline {7.1}4.3.2025}{45}{subsection.7.1}%
+\contentsline {subsection}{\numberline {7.2}8.4.2025}{45}{subsection.7.2}%
