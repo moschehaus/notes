@@ -929,11 +929,10 @@ This can be generalized in two ways:
 		v_j=\qty(\int_{\R}u_j^d\dd{x_{d+1}})^{\frac{1}{d-1}},
 	\]
 	that is clearly nonnegative and measurable.
-	Realize also $\dd{x}_{d+1}\dd{\hat{x}_j}\dd{\hat{x}}_{d+1} = \dd{\hat{x}_d},$ as the only "missing variable" is exactly $x_d.$
 \end{proof}
 
 \begin{remark}
-	Sometimes, the lemma is stated as $\hat{u}_i \in \LinfSet{\R^{d-1}}, \supp \hat{u}_i$ is compact $\forall i \in \qty{1,\dots,d}.$ Then
+	Sometimes, the lemma is stated as: $\hat{u}_i \in \LinfSet{\R^{d-1}}, \supp \hat{u}_i$ is compact $\forall i \in \qty{1,\dots,d}.$ Then
 	\[
 		\int_{\R^{d}}\prod_{j=1}^d|u_j(x)|\dd{x} \leq \prod_{j=1}\qty(\int_{\R^{d-1}}|\hat{u}_j(\hat{x}_j)|^{d-1}\hat{\dd{x_i}})^{\frac{1}{d-1}} = \prod_{j=1}^d \norm{\hat{u}_j}_{\LpSet[d-1]{\R^{d-1}}}.
 	\]
@@ -1058,7 +1057,7 @@ This can be generalized in two ways:
 \end{definition}
 
 \begin{theorem}[Embedding theorem for $p\leq d$]
-	Let $\Omega \in \Ckl{0}{1}, p^{*} = \frac{dp}{1-p}.$ Then
+	Let $\Omega \in \Ckl{0}{1}, p^{*} = \frac{dp}{d-p}.$ Then
 
 	\begin{itemize}
 		\item if $p \in [1,d),$ then
@@ -1071,42 +1070,103 @@ This can be generalized in two ways:
 			\]
 		\item if $p = d,$ then
 			\[
-				\WkpSet[1][p]{\Omega} \hookrightarrow \LpSet[q]{\Omega} \forall q \in [1, \infty),
+				\WkpSet[1][d]{\Omega} \hookrightarrow \LpSet[q]{\Omega} \forall q \in [1, \infty),
 			\]
 		\item if $p = d, $ then
 			\[
-				\WkpSet[1][p]{\Omega} \hookrightarrow \hookrightarrow \LpSet[q]{\Omega} \forall q \in [1,\infty),
+				\WkpSet[1][d]{\Omega} \hookrightarrow \hookrightarrow \LpSet[q]{\Omega} \forall q \in [1,\infty),
 			\]
 			(the same as above, \textit{i.e.}, every continuous embedding is also compact.)
 	\end{itemize}
 \end{theorem}
 
 	\begin{proof}
-	We would like to use the previous theorem + extension. 
+	We would like to use the previous lemmas + extension. 
 
-	Ad continuity for $p<d: E:\WkpSet[1][p]{\Omega} \to \WkpSet[1][p]{\R^d}$ the extension is continuous. We also know
+
+	\textit{Ad continuity for $p<d$}:
+
+	Recall that the composition of continuous operators yields a continuous operator. In our case:
 	\begin{itemize}
-		\item identity $I_1:\WkpSet[1][p]{\R^d}\to \LpSet[p^{*}]{\R^d}$ is continous, 
-		\item restriction $I_2: \LpSet[p^{*}]{\R^d}\to \LpSet[p^{*}]{\Omega}$ is continuous, 
-		\item identity $I_3: \LpSet[p^{*}]{\Omega} \to \LpSet[q]{\Omega}$ is continous.
+		\item the extension operator $E:\WkpSet[1][p]{\Omega} \to \WkpSet[1][p]{\R^d}$ is continuous
+		\item identity $I_1:\WkpSet[1][p]{\R^d}\to \LpSet[p^{*}]{\R^d}$ is continous (Gagliardo-Nirenberg: $\norm{u}_{\LpSet[p^{*}]{\R^{d}}}\leq \frac{p(d-1)}{d-p}\norm{\grad u}_{\LpSet[p]{\R^{d}}} \leq C \norm{u}_{\WkpSet[1][p]{\R^{d}}}.$)
+		\item restriction $I_2: \LpSet[p^{*}]{\R^d}\to \LpSet[p^{*}]{\Omega}$ is continuous (monotonicity of the L. integral: $\Omega \subset \R^{d} \Rightarrow \norm{u}_{\LpSet[p^{*}]{\Omega}} \leq \norm{u}_{\LpSet[p^{*}]{\R^{d}}}.$)
+		\item identity $I_3: \LpSet[p^{*}]{\Omega} \to \LpSet[q]{\Omega}$ is continous (embedding of Lebesgue spaces: $\Omega$ is bounded $\Rightarrow \LpSet[p^{*}]{\Omega} \hookrightarrow \LpSet[q]{\Omega} \forall q \in [1,p^{*}]$)
 	\end{itemize}
-	Together, the mapping $id:\WkpSet[1][p]{\Omega}: \LpSet[q]{\Omega}, id=I_3 \circ I_2 \circ I_1 \circ E$ identity is continuous. If p=d, then $\WkpSet[1][d]{\Omega} \subset \WkpSet[1][r]{\Omega} \forall r \in [1,d),$ and $r^{*} \to \infty$ as $r\to d-.$ For $q \in [1,\infty)$ find $r \in [1,d) \, \text{s.t.} \, r^{*} >q.$ Then
+	Together, the mapping
 	\[
-		\WkpSet[1][d]{\Omega} \subset \WkpSet[1][r]{\Omega} \subset \LpSet[r^{*}]{\Omega} \subset \LpSet[q]{\Omega},
+		\text{id}:\WkpSet[1][p]{\Omega} \to \LpSet[q]{\Omega}, \text{id}=I_3 \circ I_2 \circ I_1 \circ E
 	\]
-	using the previous results.
+	is continuous, and so $\WkpSet[1][p]{\Omega} \hookrightarrow \LpSet[q]{\Omega}, \forall q \in [1, p^{*}].$\\
 
-	Ad compactness: We show $\WkpSet[1][p]{\Omega} \subset \subset \LpSet[q]{\Omega}$ using Arzela-Ascoli and then it will get technical: show compactness in smooth functions, then show compactness in $\LpSet[1]{\Omega}$, then approximate the norm of $\LpSet[q]{\Omega}$ using the obtained quantities.
 
-	Consider $B=\text{U}_{\WkpSet[1][p]{\Omega}}(0,1)$ and extend it to $EB$. Fix $\delta>0$ and let $\eta$ be a regularization kernel. Then $\exists R>0: \supp \qty(EB)_{\delta} \subset \overline{\text{U}(0,R)} \subset \R^d$ (i.e. all the functions from $EB$ have the support contained in the ball). Moreover, $\qty(EB)_{\delta} \subset C^1\qty(\overline{\text{U}(0,R)}).$ Actually, it is bounded in $C^1\qty(\overline{\text{U}(0,R)}). \underbrace{\subset \subset}_{\, \text{Arzela-Ascoli} \,} C\qty(\overline{\text{U}(0,R)})$ (uniform equicontinuity comes from uniform boundedness of the gradients, $\grad\qty(u * \eta_{\delta}) = u * \grad \eta_{\delta}$.)
-	Altogether $(EB)_{\delta}$ is relatively compact in
+	\textit{Ad continuity for $p =d$}:
+
+	If $p=d$, we have (this holds generally)  $\WkpSet[1][d]{\Omega} \hookrightarrow \WkpSet[1][r]{\Omega} \forall r \in [1,d),$ (embedding of Lebesgue spaces, $\LpSet[d]{\Omega}\hookrightarrow \LpSet[r]{\Omega}, \forall r \in [1,d)$). Notice $r^{*} = \frac{r d}{r-d} \to \infty$ as $r\to d-,$ which means we can for all $q \in [1,\infty)$ find $r \in [1,d) \, \text{s.t.} \, r^{*} >q.$ Consequently,
 	\[
-		C\qty(\overline{\text{U}(0,R)}) \underbrace{\Rightarrow}_{\, \text{the space} \, C\qty(\overline{\text{U}(0,R)}) \, \text{is complete} \,}\, \text{bounded in} \,C\qty(\overline{\text{U}(0,R)}) \underbrace{\Rightarrow}_{\, \text{bounded domain} \,} \, \text{bounded in} \, \LpSet[1]{\text{U}(0,R)}.
+		\forall q \in [1,\infty) \exists r \in [1,d) \, \text{\textit{s.t.}} \, \LpSet[r^{*}]{\Omega} \hookrightarrow \LpSet[q]{\Omega}.
 	\]
-	Next, take
+	Notice also that $\forall r \in [1,d)$ we always have
+	\[
+		\WkpSet[1][r]{\Omega} \hookrightarrow \LpSet[r^{*}]{\Omega}
+	\]
+	(that's just renaming $p$ with $r$ in Gagliardo-Nirenberg). Then it holds
+	\[
+		\WkpSet[1][d]{\Omega} \hookrightarrow \WkpSet[1][r]{\Omega} \hookrightarrow \LpSet[r^{*}]{\Omega} \hookrightarrow \LpSet[q]{\Omega},
+	\]
+	and so $\WkpSet[1][d]{\Omega} \hookrightarrow \LpSet[q]{\Omega}, \forall q \in [1,\infty).$\\
+
+	\textit{Ad compactness for $p<d$}:
+
+	It suffices to show $U = \text{U}_{\WkpSet[1][p]{\Omega}}(0,1)$ is relatively compact in $\LpSet[q]{\Omega},$ which is, since $\LpSet[q]{\Omega}$ is complete, equivalent to $U$ being totally bounded in $\LpSet[q]{\Omega}.$\footnote{A metric space $P$ is totally bounded if there exists a finite $\varepsilon-$net: a finite open covering of $P$ by balls centered in $P$ of radii smaller than $\varepsilon$.} Extend the functions to $\WkpSet[1][p]{\R^{d}}$ using the extension operator $E$, so $EU \subset \WkpSet[1][p]{\R^{d}}.$ Take some yet undetermined $\delta>0$ and denote by $(EU)_{\delta}$ the set of regularized functions from $EU$ with some kernel $\eta$. Our next strategy is the following:
+
+	\begin{enumerate}
+		\item show $\qty(EU)_{\delta}$ is totally bounded in $\LpSet[1]{\text{U}(0,R)},$
+		\item show $\WkpSet[1][p]{\Omega} \hookrightarrow \hookrightarrow \LpSet[1]{\Omega},$
+		\item show $\WkpSet[1][p]{\Omega} \hookrightarrow \hookrightarrow \LpSet[q]{\Omega}.$
+	\end{enumerate}
+
+	Since functions from $\qty(EU)_{\delta}$ are finitely supported, there $\exists R>0$ \textit{s.t.}
+	\[
+		\forall u_{\delta} \in \qty(EU)_{\delta}: \supp u_{\delta} \subset \text{B}(0,R) \subset \R^d.
+	\]
+	(Also remember that $\Omega \subset \text{B}(0,R).$)
+	Moreover, from the properties of mollification it follows: \footnote{We have something like $\CinfSet{K} \hookrightarrow \CkSet{1}{K}$ for $K$ compact.}
+	\[
+		\qty(EU)_{\delta} \subset \CkSet{1}{\qty(\text{B}(0,R))}.
+	\]
+
+	Next up, calculate for $v \in (EU)_{\delta}$ the norm $\norm{v}_{\CkSet{1}{\text{B}(0,1)}}.$ Realize that in fact $v = (Eu)_{\delta}$ for some $u \in U,$ and so
+	\[
+		|\int_{\R^{d}}Eu(y) \eta_{\delta}(x-y)\dd{y}| \leq \norm{Eu}_{\LpSet{\R^{d}}}\norm{\eta_{\delta}}_{\LpSet[p']{\R^{d}}} \leq C \norm{Eu}_{\WkpSet[1][p]{\R^{d}}} \leq C \norm{E}_{\mathcal{L}\qty(\WkpSet[1][p]{\Omega}, \WkpSet[1][p]{\R^{d}})} \norm{u}_{\WkpSet[1][p]{\Omega}} \leq C,
+	\]
+	as $U = \text{U}_{\WkpSet[1][p]{\Omega}}(0,1).$ Also
 	\begin{align*}
-		u \in B: \norm{u-\qty(Eu)_{\delta}}_{\LpSet[q]{\Omega}} &\leq \norm{Eu-(Eu)_{\delta}}_{\LpSet[q]{\text{U}(0,R)}} = \int_{\text{U}(0,R)}|v-v_{\delta}|\dd{x} = \int_{\R^d}|\int_{\R^d}v\qty(x+y)-v(x) \eta_{\delta}(y)\dd{y}|\dd{x}\leq \\
-									&\leq \int_{\R^d}|\int_{\R^d}\frac{|v(x+y)-v(x)|}{|y|}|\eta_{\delta}(y)| |y| \dd{y}\dd{x} \underbrace{\leq}_{\, \text{Fubini} \,} \int_{\R^d}\int_{\R^d}\frac{|v(x+y)-v(x)|}{|y|}\dd{x}|y| \eta_{\delta}(y)\dd{y}.
+		|\grad \int_{\R^{d}}Eu(y) \eta_{\delta}(x-y)\dd{y}| &=|\int_{\R^{d}}Eu(y) \grad_x \eta_{\delta}(x-y)\dd{y}| \leq \norm{Eu}_{\LpSet{\R^{d}}} \norm{\grad \eta_{\delta}}_{\LpSet[p']{\R^{d}}} \leq \\
+		&\leq C \norm{Eu}_{\WkpSet[1][p]{\R^{d}}} \leq C \norm{E}_{\mathcal{L}\qty(\WkpSet[1][p]{\Omega}, \WkpSet[1][p]{\R^{d}})} \norm{u}_{\WkpSet[1][p]{\Omega}} \leq C,
+	\end{align*}
+	using the same arguments. In total
+	\[
+		\forall v \in \qty(EU)_{\delta}: \norm{v}_{\CkSet{1}{\text{B}(0,R)}}\leq C,
+	\]
+	or in other words, all functions from $\qty(EU)_{\delta}$ are uniformly bounded and uniformly equicontinuous (that i s implied by uniform boundedness of the derivatives). Thus we can use Arzela-Ascoli theorem and state
+	\[
+		\CkSet{1}{\text{B}(0,R)} \hookrightarrow \hookrightarrow \CkSet{0}{\text{B}(0,R)}.
+	\]
+	This however implies $\CkSet{1}{\qty(\text{B}(0,R))}$ is relatively compact in $\CkSet{0}{\text{B}(0,R)}$ $\overbrace{\Rightarrow}^{\CkSet{1}{\text{B}(0,R)}\, \text{is complete} \,}$ totally bounded in $\CkSet{0}{\text{B}(0,R)}$ $\overbrace{\Rightarrow}^{\text{B}(0,R) \, \text{is compact} \,}$ totally bounded in $\LpSet[1]{\text{U}(0,R)}.$ The last implication follows from:\footnote{Take some sequence $\qty{f_k} \subset \CkSet{0}{\text{B}(0,R)}$ that is bounded, then
+		\[
+			\lim_{k \to \infty}\int_{\text{U}(0,R)}|f_k|\dd{x} = \int_{\text{U}(0,R)}\lim_{k \to \infty} |f_k|\dd{x} = \int_{\text{U}(0,R)}|f|\dd{x} = \int_{\text{B}(0,R)}|f|\dd{x} \leq \infty,
+		\]
+	the majorant being \textit{e.g.} $\max_{k \in \N}\norm{f_k}_{\infty}.$ Hence every bounded sequence in $\CkSet{0}{\text{B}(0,R)}$ has a converging (sub)sequence in $\LpSet[1]{\text{U}(0,R)}$.}
+	\[
+		\CkSet{0}{\text{B}(0,R)} \hookrightarrow \hookrightarrow \LpSet[1]{\text{U}(0,R)}.
+	\]
+
+	In total, $\qty(EU)_{\delta}$ is totally bounded in $\LpSet[1]{\text{U}(0,R)}.$
+	Next, take an arbitrary $u \in U$ and compute (we are using the fact $Eu = u \, \text{\textit{a.e.}} \, \, \text{in} \, \Omega, \Omega \subset \text{U}(0,R).$)
+	\begin{align*}
+		\norm{u-\qty(Eu)_{\delta}}_{\LpSet[q]{\Omega}} &\leq \norm{\overbrace{Eu}^{\coloneq v}-(Eu)_{\delta}}_{\LpSet[q]{\text{U}(0,R)}} = \int_{\text{U}(0,R)}|v-v_{\delta}|\dd{x} = \int_{\R^d}|\int_{\R^d}v\qty(x+y)-v(x) \eta_{\delta}(y)\dd{y}|\dd{x}\leq \\
+									&\leq \int_{\R^d}\int_{\R^d}\frac{|v(x+y)-v(x)|}{|y|}|\eta_{\delta}(y)| |y| \dd{y}\dd{x} \underbrace{\leq}_{\, \text{Fubini} \,} \int_{\R^d}\int_{\R^d}\frac{|v(x+y)-v(x)|}{|y|}\dd{x}|y| \eta_{\delta}(y)\dd{y}.
 	\end{align*}
 	Estimate the inner integral: assume $v$ is smooth and write
 
