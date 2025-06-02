@@ -855,6 +855,8 @@ from which it clearly follows $\norm{E}_{\mathcal{L}\qty(\WkpSet[1][p]{\Omega}, 
 
 From the definition of $\WkpSet{\Omega}$ it immediately follows $\WkpSet{\Omega} \subset \LpSet{\Omega}.$ Can we obtain $\WkpSet{\Omega} \subset \LpSet[q]{\Omega}$ for some $q > p?$ The answer \textbf{yes}, if $\Omega$ is again nice enough (and there will also be some dependence on the dimension of $\R^{d}.$)
 
+\subsubsection{Theorems for $p \leq d$}
+\label{sec:embedding_p_leq_q}
 
 \begin{example}
 	Let $u \in \mathcal{D}\qty(\R^2)$. Then 
@@ -947,34 +949,64 @@ This can be generalized in two ways:
 \end{theorem}
 
 \begin{proof}
-	Estimate for $u \in \mathcal{D}\qty(\R^d):$
+	Estimate for $u \in \mathcal{D}\qty(\R^d),$ then use density, as $\WkpSet[1][p]{\R^{d}} = \WkpzeroSet[1][p]{\R^{d}}.$
 	\[
-		\forall j \in \{1,\dots,d\}, x \in \R^d: u\qty(x)=\int_{-\infty}^{x_j}\partial_{j}u\qty(x_1,\dots,x_{j-1},s,x_{j+1},\dots,x_d)\dd{s}
+		\forall j \in \{1,\dots,d\}, x \in \R^d: u\qty(x)=\int_{-\infty}^{x_j}\partial_{j}u\qty(x_1,\dots,x_{j-1},s,x_{j+1},\dots,x_d)\dd{s}.
 	\]
-	independet of $x_j$, so
+	This estimate is independent of $j \in \qty{1, \dots,d},$ so it holds 
 	\[
 		|u\qty(x)| \leq \int_{\R}|\grad u|\qty(\dots,s,\dots)\dd{s}.
 	\]
 	Next, consider $p=1, p^{*}=\frac{d}{d-1}$ and estimate:
 	\[
-		|u|^{\frac{d}{d-1}}\leq\prod_{j=1}^d\underbrace{\qty(\int_{\R}|\grad u| (\dots, s, \dots) \dd{s})^{\frac{1}{d-1}}}_{u_j \, \text{independent of } \,x_j},
+		|u|^{\frac{d}{d-1}}\leq \qty(\int_{\R^{d}}|\grad u| \qty(\dots, s, \dots)\dd{s})^{\frac{d}{d-1}} = \prod_{j=1}^d\qty(\int_{\R}|\grad u| (\dots, s, \dots) \dd{s})^{\frac{1}{d-1}}.
 	\]
-	so the integral
+	Denote
 	\[
-		\int_{\R^d}|u|^{\frac{d}{d-1}}\dd{x} \leq \int_{\R^d}\prod_{j=1}^d u)j \dd{x} \underbrace{\leq}_{\text{previous lemma}} \qty(\prod_{j=1}^d \int_{\R^{d-1}}\int_{\R}|\grad u|\qty(x)\dd{x_j}\dd{\hat{x}_j})^{\frac{1}{d-1}} = \qty(\int_{\R^d}|\grad u|\dd{x})^{\frac{d}{d-1}}.
+		u_j(x_1, \dots, x_{j-1}, x_{j+1}, \dots, x_d) = \qty(\int_{\R^{d}}|\grad u|\overbrace{\qty(\dots, x_j, \dots)}^{=x \, \text{in fact} \,}\dd{x_j})^{\frac{1}{d-1}},
 	\]
-	If $p \in (1,d),$ compute
+	which is a function independent of $x_j, u_j \equiv u_j\qty(\hat{x}_j).$
+	So the integral (the $\LpSet[\frac{d}{d-1}]{\R^{d}}$ norm)
+	\begin{align*}
+		\int_{\R^d}|u|^{\frac{d}{d-1}}\dd{x} &\leq \int_{\R^d}\prod_{j=1}^d u_j \dd{x} \underbrace{\leq}_{\text{Gagliardo lemma}}\qty(\prod_{j=1}^d \int_{\R^{d-1}}u_j^{d-1}\qty(\hat{x}_j)\dd{\hat{x}_j})^{\frac{1}{d-1}}=\\
+						     &=\qty(\prod_{j=1}^d \int_{\R^{d-1}}\int_{\R}|\grad u|\qty(x)\dd{x_j}\dd{\hat{x}_j})^{\frac{1}{d-1}} = \qty(\int_{\R^d}|\grad u|\dd{x})^{\frac{d}{d-1}},
+	\end{align*}
+	and so
 	\[
-		\norm{u}_{\LpSet[\frac{qd}{d-1}]{\R^d}}^q = \norm{|u|^q}_{\LpSet[\frac{d}{d-1}]{\R^d}} \leq \norm{\grad (|u|^q)}_{\LpSet[1]{\R^d}} = \int_{\R^d}q|u|^{q-1} |\grad u| \dd{x} \underbrace{\leq}_{\, \text{Holder} \,} \norm{\grad u}_{\LpSet[p]{\R^d}} \norm{u}_{\LpSet[(q-1)p']{\R^d}}^{q-1}.
-	\] We want $\frac{(q-1)p'}{p-1} = \frac{qd}{d-1}$, so
+		\norm{u}_{\LpSet[\frac{d}{d-1}]{\R^{d}}}^{\frac{d}{d-1}}\leq \norm{\grad u}_{\LpSet[1]{\R^{d}}}^{\frac{d}{d-1}},
+	\]
+	meaning ($1^{*} = \frac{d}{d-1})$
+	\[
+		\norm{u}_{\LpSet[1^{*}]{\R^{d}}}\leq 1 \norm{\grad u}_{\LpSet[1]{\R^{d}}}.
+	\]
+	If now $p \in (1,d),$ we investigate for what $q$ can we obtain estimate of $\norm{|u|^q}_{\LpSet[\frac{d}{d-1}]{\R^{d}}}$:
+	\begin{align*}
+		\norm{u}_{\LpSet[\frac{qd}{d-1}]{\R^d}}^q = \norm{|u|^q}_{\LpSet[\frac{d}{d-1}]{\R^d}} \leq \norm{\grad (|u|^q)}_{\LpSet[1]{\R^d}} = \int_{\R^d}q|u|^{q-1} |\grad u| \dd{x} \underbrace{\leq}_{\, \text{Holder} \,}&q \norm{\grad u}_{\LpSet[p]{\R^{d}}}\norm{|u|^{q-1}}_{\LpSet[p']{\R^{d}}}= \\
+		=&q \norm{\grad u}_{\LpSet[p]{\R^d}} \norm{u}_{\LpSet[(q-1)p']{\R^d}}^{q-1}.
+	\end{align*} We want $(q-1)p' = \frac{qd}{d-1}$, so we can divide both sides:
 	\[
 		q \qty(\frac{p}{p-1} - \frac{d}{d-1}) = \frac{p}{p-1}, \Leftrightarrow q\frac{pd-p-pd+d}{(p-1)(d-1)}=\frac{d-p}{\qty(p-1)\qty(d-1)}=\frac{p}{p-1} \Leftrightarrow q=\frac{d-1}{d-p}p.
 	\]
 	Also
 	\[
-		q \frac{d}{d-1}=p^{*}.
+	\frac{q}{d-1} = \frac{p}{d-p} \Leftrightarrow \frac{qd}{d-1} = \frac{dp}{d-p} = p^{*},	q = \frac{p\qty(d-1)}{d-p}
 	\]
-	$\Rightarrow$ statement holds for $u \in \mathcal{D}\qty(\R^d)$. To finish, use density of $\mathcal{D}\qty(\R^d) \, \text{in} \, \WkpSet[1][p]{\R^d}.$
+	and thus
+	\[
+		\norm{u}_{\LpSet[p^{*}]{\R^{d}}}^q \leq q \norm{\grad u }_{\LpSet[p]{\R^{d}}} \norm{u}_{\LpSet[p^{*}]{\R^{d}}}^{q-1} \Leftrightarrow \norm{u}_{\LpSet[p^{*}]{\R^{d}}}\leq \frac{p\qty(d-1)}{d-p}\norm{\grad u}_{\LpSet[p]{\R^{d}}}.
+	\]
+	$\Rightarrow$ statement holds for $u \in \mathcal{D}\qty(\R^d)$. To finish, use density of $\mathcal{D}\qty(\R^d) \, \text{in} \, \WkpSet[1][p]{\R^d}:$ let $u \in \WkpSet[1][p]{\R^{d}},$ be arbitrary. Then $\exists \qty{u_k} \subset \DSet{\R^{d}}: u_k \to u \, \text{in} \,\WkpSet[1][p]{\R^{d}}.$ Moreover, we have showed that $\forall k \in \N:$
+	\[
+		\norm{u_k}_{\LpSet[p^{*}]{\R^{d}}} \leq \frac{p\qty(d-1)}{d-p}\norm{\grad u}_{\LpSet[p]{\R^{d}}},
+	\]
+	so passing to the (strong) limit and using the continuity of the norm indeed yields
+
+	\[
+		\norm{u}_{\LpSet[p^{*}]{\R^{d}}} \leq \frac{p\qty(d-1)}{d-p}\norm{\grad u}_{\LpSet[p]{\R^{d}}}.
+	\]
+	We are done.
+
+
 \end{proof}
 
 
@@ -993,7 +1025,7 @@ This can be generalized in two ways:
 	Let $\Omega \subset \R^d$ be open. Then $\forall u \in \WkpzeroSet[1][p]{\Omega}, \forall p \in [1,d)$ the statement of the previous theorem holds.
 \end{theorem}
 \begin{proof}
-	An immediate corollary of the previous theorem.
+	An immediate corollary of the previous theorem: we have showed the inequality for $u \in \DSet{\R^{d}},$ but WLOG it holds also for $u \in \DSet{\Omega}$ (i can keep the integrals over $\R^{d}$, but in the end only values from $\Omega$ count) and since $\WkpzeroSet[1][p]{\Omega} = \overline{\DSet{\Omega}}^{\norm{\vdot}_{\WkpSet[1][p]{\Omega}}},$ i can again extend it on the whole $\WkpzeroSet[1][p]{\Omega}.$
 \end{proof}
 
 \begin{remark}
@@ -1006,25 +1038,50 @@ This can be generalized in two ways:
 
 
 \begin{definition}[Continuous \& compact embeddings]
-    Let $X,Y$ be linear normed spaces. $\hookrightarrow$
+    Let $X,Y$ be linear normed spaces. We say 
+
+    \begin{itemize}
+	    \item $X$ is continuously embedded into $Y$, $X \hookrightarrow Y$, provided $X \subset Y$ (is a subspace) and
+		    \[
+			    \forall x \in X: \norm{x}_Y \leq C \norm{x}_X.
+		    \]
+	    \item $X$ is compactly embedded into $Y$, $X \hookrightarrow \hookrightarrow Y$, provided $X \subset Y$ (is a subspace) and
+		    \[
+			    \forall A \subset X \, \text{bounded} \,: \overline{A}^{Y} \, \text{is compact in} \, Y.
+		    \]
+    \end{itemize}
+    This is the same as saying\footnote{Really, we have $\norm{x}_{Y} = \norm{\, \text{id} \,x}_Y \leq \norm{\text{id}}_{\mathcal{L}\qty(X,Y)}\norm{x}_X,$ and if $A \subset X$ is bounded, than from the definition of $\, \text{id} \, \in \mathcal{K}\qty(X,Y): \text{id}(A) = A \subset Y$ is relatively compact in $Y$.} $X \subset Y$ (is a subspace) and the identity $\, \text{id} \,: X \to Y$ is
+    \begin{itemize}
+	    \item a bounded linear operator, $\, \text{id} \, \in \mathcal{L}\qty(X,Y)$
+	    \item is a compact linear operator, $\, \text{id} \, \in \mathcal{K}\qty(X,Y)$
+    \end{itemize}
 \end{definition}
 
-\begin{theorem}[Embedding theorem]
-	Let $\Omega \subset C^{0,1}, p^{*} = \frac{dp}{1-p}$ If $p \in [1,d)$ then
-	\[
-		\WkpSet[1][p]{\Omega} \subset \LpSet[q]{\Omega} \forall q \in [1,p^{*}].
-	\]
-	Moreover, if $q < p^{*}, $ then
-	\[
-		\WkpSet[1][p]{\Omega} \subset \subset \LpSet[q]{\Omega}.
-	\]
-	If $p=d$, then
-	\[
-		\WkpSet[1][p]{\Omega} \subset \LpSet[q]{\Omega} \forall q < \infty, \WkpSet[1][p]{\Omega} \subset \subset \LpSet[q]{\Omega} \forall 1 \leq q < \infty.
-	\]
+\begin{theorem}[Embedding theorem for $p\leq d$]
+	Let $\Omega \in \Ckl{0}{1}, p^{*} = \frac{dp}{1-p}.$ Then
+
+	\begin{itemize}
+		\item if $p \in [1,d),$ then
+			\[
+				\WkpSet[1][p]{\Omega} \hookrightarrow \LpSet[q]{\Omega} \forall q \in [1,p^{*}],
+			\]
+		\item if $p \in [1,d),$ then
+			\[
+				\WkpSet[1][p]{\Omega} \hookrightarrow \hookrightarrow \LpSet[q]{\Omega}, \forall q \in [1,p^{*}),
+			\]
+		\item if $p = d,$ then
+			\[
+				\WkpSet[1][p]{\Omega} \hookrightarrow \LpSet[q]{\Omega} \forall q \in [1, \infty),
+			\]
+		\item if $p = d, $ then
+			\[
+				\WkpSet[1][p]{\Omega} \hookrightarrow \hookrightarrow \LpSet[q]{\Omega} \forall q \in [1,\infty),
+			\]
+			(the same as above, \textit{i.e.}, every continuous embedding is also compact.)
+	\end{itemize}
 \end{theorem}
 
-\begin{proof}
+	\begin{proof}
 	We would like to use the previous theorem + extension. 
 
 	Ad continuity for $p<d: E:\WkpSet[1][p]{\Omega} \to \WkpSet[1][p]{\R^d}$ the extension is continuous. We also know
@@ -1077,6 +1134,9 @@ This can be generalized in two ways:
 		\norm{u-u_j}_{\LpSet[q]{\Omega}}\leq \norm{u-u_j}_{\LpSet[1]{\Omega}}^\alpha \underbrace{\norm{u-u_j}_{\LpSet[p^{*}]{\Omega}}^{1-\alpha}}_{\leq C, \WkpSet[1][p]{\Omega}\subset \LpSet[p^{*}]{\Omega}}\leq C \varepsilon^\alpha.
 	\]
 \end{proof}
+
+\subsubsection{Theorems for $p>d$}
+\label{sec:emedding_p_ge_q}
 
 \subsection{Trace theorems}
 \label{sec:traces}
