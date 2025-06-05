@@ -11,13 +11,15 @@
 \contentsline {subsubsection}{\numberline {2.4.1}Theorems for $p \leq d$}{18}{subsubsection.2.4.1}%
 \contentsline {subsubsection}{\numberline {2.4.2}Theorems for $p>d$}{27}{subsubsection.2.4.2}%
 \contentsline {subsection}{\numberline {2.5}Trace theorems}{33}{subsection.2.5}%
-\contentsline {subsection}{\numberline {2.6}Composition of Sobolev functions}{39}{subsection.2.6}%
-\contentsline {subsection}{\numberline {2.7}Difference quotients}{41}{subsection.2.7}%
-\contentsline {section}{\numberline {3}Nonlinear elliptic equations as compact perturbations}{41}{section.3}%
-\contentsline {subsubsection}{\numberline {3.0.1}Problem protypes}{42}{subsubsection.3.0.1}%
-\contentsline {section}{\numberline {4}Nonlinear elliptic equations - monotone operator theory}{45}{section.4}%
-\contentsline {section}{\numberline {5}Calculus of variations}{50}{section.5}%
-\contentsline {section}{\numberline {6}Semigroup theory}{57}{section.6}%
-\contentsline {section}{\numberline {7}(Some) exercises}{64}{section.7}%
-\contentsline {subsection}{\numberline {7.1}4.3.2025}{64}{subsection.7.1}%
-\contentsline {subsection}{\numberline {7.2}8.4.2025}{65}{subsection.7.2}%
+\contentsline {subsection}{\numberline {2.6}Fine properties of Sobolev spaces}{39}{subsection.2.6}%
+\contentsline {subsubsection}{\numberline {2.6.1}Composition of Sobolev functions}{39}{subsubsection.2.6.1}%
+\contentsline {subsubsection}{\numberline {2.6.2}Difference quotients}{42}{subsubsection.2.6.2}%
+\contentsline {subsubsection}{\numberline {2.6.3}Representation of duals}{44}{subsubsection.2.6.3}%
+\contentsline {section}{\numberline {3}Nonlinear elliptic equations as compact perturbations}{44}{section.3}%
+\contentsline {subsubsection}{\numberline {3.0.1}Problem protypes}{45}{subsubsection.3.0.1}%
+\contentsline {section}{\numberline {4}Nonlinear elliptic equations - monotone operator theory}{48}{section.4}%
+\contentsline {section}{\numberline {5}Calculus of variations}{53}{section.5}%
+\contentsline {section}{\numberline {6}Semigroup theory}{60}{section.6}%
+\contentsline {section}{\numberline {7}(Some) exercises}{67}{section.7}%
+\contentsline {subsection}{\numberline {7.1}4.3.2025}{67}{subsection.7.1}%
+\contentsline {subsection}{\numberline {7.2}8.4.2025}{68}{subsection.7.2}%

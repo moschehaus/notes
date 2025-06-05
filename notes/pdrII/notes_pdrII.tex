@@ -1647,7 +1647,7 @@ Moreover, in the case $p>d, \Omega \in \Ckl{0}{1}$ we already know $\forall u \i
 	\[
 		\tilde{\trace}\, u = u \restriction_{\partial \Omega}.
 	\]
-	Then clearly $\tilde{\trace}$ is linear continuous operator.
+	Then clearly $\tilde{\trace}$ is a well defined linear continuous \footnote{Even though  $\, \text{C} \,^{\infty}_{\overline{\Omega}}\qty(\R^{d}) = \qty{u \restriction_{\overline{\Omega}}| u \in \CinfSet{\R^{d}}}$ is not a normed space, it is a Frechet space, and so the notion of continuity is that of a topological vector space.} operator. 
 
 	(We are using the notation from the definition of a $\Ckl{0}{1}$ domain). Let us for clarity define (and also recall)
 
@@ -1878,7 +1878,11 @@ completes the proof for any $q \in [1, \infty].$ We are done once again.
 
 \end{proof}
 
-\subsection{Composition of Sobolev functions}
+\subsection{Fine properties of Sobolev spaces}
+\label{sec:fine_properties}
+In this last chapter, we present some other useful properties of Sobolev spaces.
+
+\subsubsection{Composition of Sobolev functions}
 \label{sec:composition}
 
 In the chapter about extension of functions from Sobolev spaces we have seen: $U,V \subset \R^{d}$ open, $u \in \WkpSet[1][p]{U}, \Phi: U \to V$ a $\, \text{C} \,^1$-diffemorphism $\Rightarrow u \circ \Phi \in \WkpSet[1][p]{V}.$ Is there any other class of mappings that guarantee the composition remains in some Sobolev spaces?
@@ -1977,20 +1981,165 @@ and so $\lim_{\varepsilon \to 0^+}f_{\varepsilon}(x) = f(x),$ and $\lim_{\vareps
 \textit{a.e.} in $\Omega$. Using the preivously obtained general expression and passing to the limit yields
 
 \[
-	- \int_{\Omega}\qty(f \circ u)\grad \varphi\dd{x} = \int_{\Omega}\grad u \varphi \chi_{x\in \Omega| u(x) > 0}\dd{x},
+	- \int_{\Omega}\qty(f \circ u)\grad \varphi\dd{x} = \int_{\Omega}\grad u \varphi \chi_{\qty{x\in \Omega| u(x) > 0}}\dd{x},
 \]
-and realizing $u^- = (-u)^+$, we also have
+and realizing\footnote{Recall $u^+ = \max\qty(0, u), u^- = -\min\qty(0, u)$ are both nonnegative functions, $u = u^+ - u^-, \abs{u} = u^+ + u^-.$ It holds trivially $u^- = - \min\qty(0, u) = \max\qty(0, -u) = \qty(-u)^{+}.$} $u^- = (-u)^+$, we also have
 \[
-	- \int_{\Omega}\qty(f \circ u)\grad \varphi\dd{x} = \int_{\Omega}\grad u \varphi \chi_{x\in \Omega| u(x) < 0}\dd{x},
+	- \int_{\Omega}\qty(f \circ u)\grad \varphi\dd{x} = -\int_{\Omega}\grad u \varphi \chi_{\qty{x\in \Omega| u(x) < 0}}\dd{x},
 \]
-meaning 
+meaning (in the weak sense)
+\[
+	\grad u^+ = \grad u \chi_{\qty{x \in \Omega | u(x) >0}}, \grad u^- = -\grad u\chi_{\qty{x \in \Omega | u(x) <0}}.
+\]
+But since $u = u^+ - u^-$, it holds $\grad u = \grad u^+ - \grad u^-$ \textit{a.e.}. We see $\grad u^- = \grad u^+ = 0,$ on $\Omega_0$, and so $\grad u = 0$ on \textit{a.e.} on $\Omega_0.$ Taking $\tilde{u} = u + c$ for $c \in \R$ arbitrary, we see $\grad \tilde{u} = \grad u = 0$ \textit{a.e.} on $\Omega_0$, meaning $\grad \tilde{u} = 0$ \textit{a.e.} on $\qty{x \in \Omega| \tilde{u}-c = 0} = \Omega_c.$ Since $\tilde{u}, c$ were arbitrary, we are done with this proof.
+
+If $u \notin S$, the above presentation works just fine. If $u(x) \in S,$ we know $\grad u = 0$ \textit{a.e.} on $\Omega_u$, and since $\lambda\qty(S) = 0$ by Rademacher theorem, we have also the above conclusion. This argumentation is sloppy, but has not been presented in full detail.
 
 \end{proof}
-\subsection{Difference quotients}
+
+\subsubsection{Difference quotients}
 \label{sec:difference_quotients}
+
+There is some interplay between the weak derivative and difference quotients, which can be useful in some proofs, \textit{e.g.}, regularity results for elliptic problems.
+We have seen that if a function posseses classical derivatives, it also has weak derivatives and they conincide \textit{a.e.}. Is something there something to be said about the opossite implication?
+
+\begin{definition}[Difference quotient]
+    Let $u: \R^{d} \to \R, h \in \R.$ For each $i \in \qty{1, \dots, d}$ we define the difference quotient as
+    \[
+	    \Delta_{h}^i u(x) = \frac{u\qty(x+h e_i) - u(x)}{h},
+    \]
+    where $e_i$ is the canoncal base vector of $\R^{d}.$
+\end{definition}
+
+\begin{remark}
+	If $\partial_{i}u(x)$ exists, then clearly
+	\[
+		\partial_{i}u(x) = \lim_{h\to 0}\Delta_h^i u(x).
+	\]
+\end{remark}
+
+Let us jump straight to the main result.
+
+\begin{theorem}
+	Let $\Omega \subset \R^{d}$ open, $p \in [1,\infty]$ and $u \in \LpSet{\Omega}.$ Denote $\forall \delta>0$ the set
+	\[
+		\Omega_{\delta} = \qty{x \in \Omega | \dist\qty(x, \partial \Omega)>\delta}.
+	\]
+	Then it holds
+
+	\begin{enumerate}
+		\item If moreover $u \in \WkpSet[1][p]{\Omega},$ then $\forall i \in \qty{1, \dots, d}, \delta \in (0,1), h \in \qty(0,\frac{\delta}{2})$
+			\[
+				\norm{\Delta_h^i u}_{\LpSet{\Omega_{\delta}}}\leq \norm{\partial_{i}u}_{\LpSet{\Omega}}.
+			\]
+		\item Let $p \in (1, \infty]$ and let there exist $\qty{C_i}_{i=1}^d$ constants \textit{s.t.} $\forall i \in \qty{1, \dots, d}, \delta \in (0,1), h \in \qty(0, \frac{\delta}{2})$ it holds
+			\[
+				\norm{\Delta_h^i u}_{\LpSet{\Omega_{\delta}}}\leq C_i.
+			\]
+			Then $u \in \WkpSet[1][p]{\Omega}$ and moreover $\forall i \in \qty{1, \dots, d}$ we have
+			\[
+				\norm{\partial_{i}u}_{\LpSet{\Omega}} \leq C_i.
+			\]
+	\end{enumerate}
+\end{theorem}
+\begin{proof}
+	\textit{Ad 1.}
+	Let first $p \in [1, \infty).$ \textit{What else do we use to estimate differences then..., right?} If needed, extend $u$ by zero outside of $\Omega$ and set $u_{\varepsilon} = u \star \omega_{\varepsilon}.$ Recall that $u_{\varepsilon} \to u$ in $\WkpSet[1][p]{\Omega_{\frac{\delta}{2}}}.$ Realize that since $u_{\varepsilon} \in \CkSet{1}{\R^{d}},$ we have
+	\[
+		\Delta_h^i u_{\varepsilon}(x) = \frac{u_{\varepsilon}\qty(x+h e_i)- u_{\varepsilon}\qty(x)}{h} = \frac{1}{h}\int_0^h \partial_{t} u_{\varepsilon}\qty(x+te_i)\dd{t}.
+	\]
+	Let us compute $\norm{\Delta_h^i}_{\LpSet[p]{\Omega_{\delta}}}.$ We have
+	\begin{align*}
+		\abs{\Delta_h^i u_{\varepsilon}}^{p} &= \abs{\frac{1}{h}\int_0^h \partial_{t} u_{\varepsilon}\qty(x+te_i)\dd{t}}^p \leq \frac{1}{h^p}\qty(\int_0^h \abs{\partial_t u_{\varepsilon}\qty(x+te_i)}\dd{t})^p \leq \frac{1}{h^p}\qty(\qty(\int_0^h \abs{\partial_t u_{\varepsilon}\qty(x+te_i)}^p \dd{t})^{\frac{1}{p}}\qty(\int_0^h 1 \dd{t})^{\frac{p-1}{p}})^p = \\ 
+				       &=\frac{1}{h^p}\int_0^h \abs{\partial_t u_{\varepsilon}(x+te_i)}^p \dd{t}h^{p-1} = \frac{1}{h}\int_0^h \abs{\partial_t u_{\varepsilon}\qty(x+te_i)}^p\dd{t},
+	\end{align*}
+	and so integrating over $\Omega_{\delta}$ yields
+	\[
+		\norm{\Delta_h^i u_{\varepsilon}}_{\LpSet{\Omega_{\delta}}}^p \leq \frac{1}{h} \int_{\Omega_{\delta}}\int_0^h \abs{\partial_t u_{\varepsilon}\qty(x+te_i)}^p\dd{t}\dd{x} = \frac{1}{h}\int_0^h \int_{\Omega_{\delta}}\abs{\partial_t u_{\varepsilon}\qty(x+te_i)}^p\dd{x}\dd{t},
+	\]
+	denote $z = x + te_i$, then $z \in \Omega_{\delta} + te_i,$ meaning the points have shifted towards $\Omega$ in one direction by at most $t \leq h < \frac{\delta}{2}.$ If we integrate over $\Omega_{\frac{\delta}{2}}$ instead, we make the domain larger and so 
+	\[
+		\norm{\Delta_h^i u_{\varepsilon}}_{\LpSet{\Omega_{\delta}}}^p\leq \frac{1}{h}\int_0^h \int_{\Omega_{\frac{\delta}{2}}}\abs{\partial_t u_{\varepsilon}(z)}^p\dd{z}\dd{t}\leq \frac{1}{h} h \norm{\partial_t u_{\varepsilon}}_{\LpSet[p]{\Omega_{\frac{\delta}{2}}}}^p,
+	\]
+	so if we pass to the limit $\varepsilon \to 0^+$ (we are in $\Omega_{\delta}$), we see
+
+	\[
+		\norm{\Delta_h^i u}_{\LpSet{\Omega_{\delta}}} \leq \norm{\partial_t u}_{\LpSet{\Omega_{\frac{\delta}{2}}}} \leq \norm{\partial_t u}_{\LpSet{\Omega}}.
+	\]
+	If now $p = \infty,$ the things are not that simple - $\Omega$ is not bounded apriori, so we have no ordering of Lebesgue spaces. Let us fix that: take some $R>0$ and denote $\Omega^R = \Omega \cap \text{U}(0,R).$ If $u \in \WkpSet[1][\infty]{\Omega},$ it must be $u \in \WkpSet[1][p]{\Omega^R}$ for all $p \in [1, \infty).$ On $\Omega^R_{\delta}$ we have from the above
+	\[
+		\norm{\Delta_h^i u}_{\LpSet{\Omega_{\delta}^R}}\leq \norm{\partial_t u}_{\LpSet{\Omega^R}},
+	\]
+	and since $\Omega_{\delta}^R$ is bounded, we can pass to the limit $p \to \infty$ and write
+	\[
+		\norm{\Delta_h^i u}_{\LinfSet{\Omega_{\delta}^R}}\leq \norm{\partial_t u}_{\LinfSet{\Omega^R}},
+	\]
+	and passing to the limit $R \to \infty$ we obtain
+	\[
+		\norm{\Delta_{h}^i u}_{\LinfSet{\Omega_{\delta}}} \leq \norm{\partial_t u}_{\LinfSet{\Omega}}.
+	\]
+
+	\textit{Ad 2.}
+	Once again extend $u$ by zero outside of $\Omega$ and let for the moment $p \in \qty(1,\infty)$. Fix $\qty{h_n} \subset \qty(0, \frac{\delta}{2}) \, \text{\textit{s.t.}} \, h_n \to 0$ and consider the functions
+	\[
+		v_n^i = \Delta_{h_n}^i u \chi_{\Omega_{2 h_n}}.
+	\]
+	Clearly
+	\[
+		\norm{v_n}^i_{\LpSet{\Omega}} = \norm{\Delta^i_{{h_n}} u}_{\LpSet{\Omega_{2 h_n}}} \leq \norm{\Delta^i_{{h_n}} u}_{\LpSet{\Omega_{\delta}}} \leq C_i,
+	\]
+	and from the reflexivity of $\LpSet{\Omega}, p \in \qty(1, \infty),$ we know $\exists v_i \in \LpSet{\Omega}$ such that
+	\[
+		v_n^i \rightharpoonup v^i,
+	\]
+	as $n \to \infty.$ Since the norm is weak lower semicontinuous, we also have the estimate
+	\[
+		\norm{v_i}_{\LpSet{\Omega}} \leq C_i.
+	\]
+	It remains to show now that $v_i$ are weak derivatives of $u$. Before we procced, let us mention the following identity: let $\varphi \in \DSet{\Omega},$ then
+	\[
+		\int_{\R^{d}}\Delta_h^i u \varphi\dd{x} = \int_{\R^{d}}u \Delta_{-h}^i \varphi\dd{x}.
+	\]
+	Really, it holds \textbf{THIS NEEDS TO BE FINISHED}
+	\[
+		\int_{\R^{d}}\Delta_h^i u \varphi\dd{x} = \int_{\R^{d}}\frac{u\qty(x+he_i) - u\qty(x)}{h}\varphi\dd{x} = \int_{\R^{d}}\frac{\varphi(x) u\qty(x+he_i) - \varphi(x) u(x)}{h}\dd{x},
+	\]
+	change the variables $y = x+ he_i,$ then the above integral is equal to
+	\[
+		\int_{\R^{d}}\frac{\varphi\qty(y - he_i)u(y) - \varphi(y - he_i) u\qty(y-he_i)}{h}\dd{y} =
+	\]
+	Using this, we can obtain 
+	\begin{align*}
+		\int_{\Omega}v_i \varphi\dd{x} &= \lim_{n \to \infty}\int_{\Omega}v_n^i \varphi \dd{x} = \lim_{n \to \infty}\int_{\Omega_{2h_n}}\Delta_{h_n}^i u \varphi\dd{x} = \lim_{n \to \infty} \int_{\R^{d}}\Delta_{h_n}^i u \varphi\dd{x} = \\
+					       &= \lim_{n\to \infty}\int_{\R^{d}}u \Delta_{-h_n}^i \varphi \dd{x} = \lim_{n \to \infty}\int_{\R^{d}}u \frac{\varphi(x- h_n e_i) - \varphi(x)}{h_n}u(x)\dd{x} =  -\int_{\R^{d}}u \partial_{i}\varphi\dd{x} = \\
+					       &=- \int_{\Omega}u \partial_{i} \varphi \dd{x}
+	\end{align*}
+which really means $v_i = \partial_{i} u$ in the weak sense. The fact we can integrate over $\R^{d}$ instead of $\Omega_{2h_n}$ comes from the fact $\supp \varphi \subset \Omega_{2h_n}$ for some $n$ large enough, and since the whole integrand is zero on any larger set then $\Omega_{2h_n},$ meaning we without a doubt expand the integration domain to the whole space. All in all, we have shown $v_i = \partial_{i} u$ weakly and $\norm{v_i}_{\LpSet{\Omega}} \leq C_i,$ so we are done with the case $p \in (1, \infty).$
+
+If $p = \infty,$ we can repeat the same arguments as in the above case: create a bounded domain $\Omega_R = \Omega \cap \text{U}(0,R),$ realize that
+\[
+	\norm{v_i}_{\LpSet{\Omega^R}} \leq C_i, \forall p \in (1, \infty),
+\]
+and then pass to the limits $R \to \infty, p \to \infty.$
+
+\end{proof}
+
+\subsubsection{Representation of duals}
+\label{sec:dual_representation}
 
 \section{Nonlinear elliptic equations as compact perturbations}
 \label{sec:nonlinear_elliptic_compact}
+
+So far we have dealt with only linear equations, \textit{i.e.}, linear operators. When dealing with nonlinear operators, things get much more involved. This chapter will be dedicated to the study of nonlinear problems using compactness methods, which will especially allow us to solve problems with nonlinearities in the non-leading terms. Let us start with some technical, mostly known lemmas.
+
+\begin{lemma}[Fatou]
+	Let $\Omega \subset \R^{d}$ be measurable, let $\qty{f_n}$ be a sequence of measurable nonnegative functions. Then it holds
+	\[
+		\int_{\Omega}\liminf_{n\to \infty}f_n\dd{x} \leq \liminf_{n \to \infty}\int_{\Omega}f_n\dd{x}.
+	\]
+	(Both integrals can be infinity.)
+    
+\end{lemma}
 
 \begin{theorem}[Nemytskii]
 	Let $f: \Omega \times \R^N \to \R, N \in N, \Omega \subset \R^d \, \text{measurable} \,, f \, \text{Caratheodory} \,$. Then
