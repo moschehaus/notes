@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1749153634.07655 "notes_pdrII.tex" "notes_pdrII.pdf" "notes_pdrII" 1749153638.42182 0
+["pdflatex"] 1749160457.50295 "notes_pdrII.tex" "notes_pdrII.pdf" "notes_pdrII" 1749160464.36859 0
   "/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1742685315 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "/usr/share/texmf-dist/fonts/enc/dvips/mnsymbol/MnSymbolA.enc" 1742685315 3341 78e600b269762aa2a25a5293cc4535c0 ""
   "/usr/share/texmf-dist/fonts/enc/dvips/mnsymbol/MnSymbolC.enc" 1742685315 3275 8d7166dfdbc31ffdc8aba0c31b3bd5c8 ""
@@ -233,10 +233,10 @@
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1743673972 2008231 401c56e7e2db0204dd1ee943df81c91a ""
   "figures/mollification.pdf" 1748613209.88633 112764 dd687206a932311c0a66dc0fcb4de640 ""
   "macros.tex" 1749083398.79114 30608 3e9554cf31cd6fbc6796741fd4f4bd19 ""
-  "notes_pdrII.aux" 1749153637.37212 5913 dafdf93ed0ad7cb16e1cbe65d1f7e4e8 "pdflatex"
-  "notes_pdrII.out" 1749153637.37477 4491 29b71c5c1c597c9dc1cef64f9937b852 "pdflatex"
-  "notes_pdrII.tex" 1749153633.33212 194104 02e308c9ac846a824dc7d75d6c165b52 ""
-  "notes_pdrII.toc" 1749153637.37477 2229 a27c3127faf19f02efcadcaf7760541e "pdflatex"
+  "notes_pdrII.aux" 1749160462.24915 5913 8fac032ba214b0a65612870c651efcdf "pdflatex"
+  "notes_pdrII.out" 1749160462.25215 4491 29b71c5c1c597c9dc1cef64f9937b852 "pdflatex"
+  "notes_pdrII.tex" 1749160456.74215 198274 0c47e699ff8d6da23de904e153f0f519 ""
+  "notes_pdrII.toc" 1749160462.25215 2229 b23a01aef7c2ceac4cf8f8330ecccf4f "pdflatex"
   (generated)
   "notes_pdrII.aux"
   "notes_pdrII.log"

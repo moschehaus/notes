@@ -2130,7 +2130,10 @@ and then pass to the limits $R \to \infty, p \to \infty.$
 \section{Nonlinear elliptic equations as compact perturbations}
 \label{sec:nonlinear_elliptic_compact}
 
-So far we have dealt with only linear equations, \textit{i.e.}, linear operators. When dealing with nonlinear operators, things get much more involved. This chapter will be dedicated to the study of nonlinear problems using compactness methods, which will especially allow us to solve problems with nonlinearities in the non-leading terms. Let us start with some technical, mostly known lemmas.
+So far we have dealt with only linear equations, \textit{i.e.}, linear operators. When dealing with nonlinear operators, things get much more involved. This chapter will be dedicated to the study of nonlinear problems using compactness methods, which will especially allow us to solve problems with nonlinearities in the non-leading terms. \textbf{Be especially careful about the assumptions on the operators - they do not need to be linear.}
+
+Let us start with some technical, mostly known lemmas.
+
 
 \begin{lemma}[Fatou]
 	Let $\Omega \subset \R^{d}$ be measurable, let $\qty{f_n}$ be a sequence of measurable nonnegative functions. Then it holds
@@ -2141,27 +2144,101 @@ So far we have dealt with only linear equations, \textit{i.e.}, linear operators
     
 \end{lemma}
 
-\begin{theorem}[Nemytskii]
-	Let $f: \Omega \times \R^N \to \R, N \in N, \Omega \subset \R^d \, \text{measurable} \,, f \, \text{Caratheodory} \,$. Then
-	\begin{enumerate}
-		\item if $u: \Omega \to \R^N$ is measurable then $f(\cdot, u)$ is also measurable
-		\item If there is $p_i \in [1, +\infty), i \in \{1,\dots,N\}, q \in [1, \infty), g \in \LpSet[q]{\Omega}, C>0$ such that for almost all
-			\[
-				x \in \Omega, \forall y \in \R^N: |f\qty(x,y)| \leq g(x) + c \sum_{i=1}^N |y_i|^{p_i/q}
-			\]
-			, then $u \mapsto f(\cdot, u)$ is continuous from $\LpSet[p_i]{\Omega} \times \dots \times \LpSet[p_N]{\Omega}$ to $\LpSet[q]{\Omega}$. Moreover, it maps bounded sets to bounded sets.
-	\end{enumerate}
+\begin{theorem}[Iegorov]
+	Let $\Omega \subset \R^{d}$ be measurable and of finite Lebesgue measure, let $\qty{f_n}$ and $f$ be measurable and finite \textit{a.e.} in $\Omega$. Then the following statements are equivalent
+\begin{enumerate}
+	\item $f_n(x) \to f(x), \forall \, \text{\textit{a.a.}} \,x \in \Omega,$
+	\item $\forall \varepsilon >0 \exists G \subset \Omega \, \text{open} \, \, \text{\textit{s.t.}} \, \lambda(G) < \varepsilon$ and $f_n \rightrightarrows f$ on $\Omega / G.$
+\end{enumerate}
 \end{theorem}
+
+\begin{theorem}[Vitali]
+    Let $\Omega \subset \R^{d}$ be measurable and of finite Lebesgue measure, let $\qty{f_n}$ and $f$ be measurable \textit{s.t.} $f_n(x) \to f(x)$for \textit{a.a.} $x \in \Omega$. Let moreover be true
+    \[
+	    \forall \varepsilon > 0 \exists \delta >0: \forall n \in \N, \forall H \subset \Omega \, \text{\textit{s.t.}} \, \lambda(H) < \delta \Rightarrow \int_{H}|f_n|\dd{x} \leq \varepsilon.
+    \]
+    Then
+    \[
+	    \lim_{n\to \infty} \int_{\Omega}f_n\dd{x} = \int_{\Omega}f\dd{x}.
+    \]
+\end{theorem}
+
+\begin{remark}[What is $f\qty(\vdot, x)$?]
+    In the following definitions and throughout the chapter in general, we use the "$\vdot$" to denote variables in the following sense. Just to make it clear, this means the following.
+    If $U,V,W$ are some sets and $f: U \times V \to W,$ we write
+    \begin{itemize}
+	    \item $f\qty(u, \vdot): V \to W,$ as the mapping $V \ni v \mapsto f(u,v) \in W$ for some $u \in U$ fixed,
+	    \item $f\qty(\vdot, v): U \to W,$ as the mapping $U \ni u \mapsto f(u,v) \in W$ for some $v \in V$ fixed.
+    \end{itemize}
+\end{remark}
+
+\begin{definition}[Caratheodory function]
+	Let $\Omega \subset \R^{d}$ be measurable, $N \in \N.$ We say the function $f: \Omega \times \R^{N} \to \R$ is Caratheodory if
+	\begin{enumerate}
+		\item $f\qty(x, \vdot): \R^{N} \to \R$ is continuous for almost all $x \in \Omega,$
+		\item $f\qty(\vdot, y): \Omega \to \R$ is measurable for all $y \in \R^{N}.$
+	\end{enumerate}
+\end{definition}
+
+\begin{definition}[Nemytskii operator]
+	Let $\Omega \subset \R^{d}$ be measurable, $N \in \N$ and $f: \Omega \times \R^{N} \to \R$ be Caratheodory. For $\vb{u}: \Omega \to \R^N, x \in \Omega$ we define the Nemytskii operator $N_f$: as
+    \[
+	    N_f: \vb{u}(x) \mapsto f(x,\vb{u}(x)),
+    \]
+    meaning $N_f$ is an operator between function spaces, whose image is the function $N_f\vb{u}:\Omega \to \R $ \textit{s.t.}
+    \[
+	    N_f\vb{u}(x) = f\qty(x,\vb{u}(x)), x \in \Omega.
+    \]
+    
+\end{definition}
+
+\begin{remark}
+    We write $\vb{u}$ in bold to stress $u: \Omega \to \R^{N}$ is a vector valued mapping, even though we might drop the notation later on.
+\end{remark}
+
+\begin{remark}
+    This definition is similiar to the one used in the Caratheodory theory of ordinary differential equations, but not the same.
+\end{remark}
+
+\begin{theorem}
+  Let $\Omega \subset \R^{d}$ be measurable, $N \in \N, f: \Omega \times \R^{N} \to \R$ be Caratheodory. Then
+
+  \begin{enumerate}
+	  \item if $\vb{u}: \Omega \to \R^{N}$ is measurable, then $N_f \vb{u}: \Omega \to \R$ is also measurable,
+	  \item if there are numbers $p_i \in [1, \infty), i \in \qty{1, \dots, N},$ an exponent $p \in [1, \infty),$ a function $g \, \text{\textit{s.t.}} \, g \in \LpSet{\Omega},$ and a constant $C>0$ such that for almost all $x \in \Omega$ and all $y \in \R^{N}$ it holds
+		  \[
+			  \abs{f(x,y)}\leq g(x) + C \sum_{i=1}^N\abs{y_i}^{\frac{p_i}{p}},
+		  \]
+		  then the Nemytskii operator $N_f: \vb{u} \mapsto N_f\vb{u}$ is continuous from $\LpSet[p_1]{\Omega} \times \LpSet[p_2]{\Omega} \times \dots \LpSet[p_N]{\Omega}$ to $\LpSet{\Omega}$ and moreover it maps sets bounded in $\LpSet[p_1]{\Omega} \times \LpSet[p_2]{\Omega} \times \dots \LpSet[p_N]{\Omega}$ to sets bounded in $\LpSet{\Omega}.$ We write
+		  \[
+			  N_f \in \mathcal{C}\qty(\LpSet[p_1]{\Omega}, \dots, \LpSet[p_N]{\Omega}; \LpSet{\Omega}).
+		  \]
+  \end{enumerate}
+\end{theorem}
+
 \begin{proof}
 	No proof
 \end{proof}
 
-\begin{definition}[Compact operator | Drábek, Milota: Methods of Nonlinear Analysis, Def 5.2.2]
-	Let $X,Y$ be normed linear spaces, $M \subset X.$ The mapping $F:M \to Y$ is called a compact operator on $M$ into $Y$ if $F$ is continuous and $F\qty(M \cap K)$ is relatively compact in $Y$ for any bounded $K \subset X.$
+\begin{remark}
+	The information about boundedness of images of bounded sets is not trivial - \textit{the Nemytskii operator is not linear in general.}
+\end{remark}
+
+\begin{definition}[Compact operator]
+	Let $X,Y$ be normed linear spaces, $M \subset X.$ The mapping $F:M \to Y$ is called a compact operator on $M$ into $Y$ provided
+	\begin{enumerate}
+		\item $F$ is continuous,
+		\item $F\qty(M \cap K) \subset Y$ is relatively compact in $Y$ for any bounded $K \subset X.$
+	\end{enumerate}
 \end{definition}
 
 \begin{remark}
-	We have no linearity of $F$! So continuity cannot follow from compactness (we have compactness $\Rightarrow $ boundedness $\neq$ continuity for nonlinear operators)
+
+	\begin{itemize}
+		\item	We have no linearity of $F$! So continuity cannot follow from compactness and we have to assume it explicitely. In general, compactness $\Rightarrow $ boundedness $\neq$ continuity for nonlinear operators.
+		\item one might wonder why just not state $F(K) \subset Y$ is relatively compact in $Y$ for $K \subset M $ bounded. First of all, this is pretty much the same, but in the applications, this formulation will be more suitable for us. Secondly, in general $M$ need not be a subspace of $X$, let alone a normed linear space;in such cases the notion of boundedness of $K \subset M$ is not defined at all. On the other hand, boundedness of $K \subset X$ can be measured in the metric of $X.$
+		\item	The definition is from \textit{Drábek, Milota: Methods of Nonlinear Analysis, Def 5.2.2}
+	\end{itemize}
 \end{remark}
 
 \begin{theorem}[Brouwer fixed point theorem]
