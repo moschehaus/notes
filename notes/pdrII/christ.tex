@@ -2123,25 +2123,17 @@ If $p = \infty,$ we can repeat the same arguments as in the above case: create a
 and then pass to the limits $R \to \infty, p \to \infty.$
 
 \end{proof}
-\begin{remark}
-    We have thus shown that if $p \in (1, \infty),$ then
-    \[
-	    \Delta_h^i u \rightharpoonup \partial_{i} u, h \to 0^+.
-    \]
-\end{remark}
 
 \subsubsection{Representation of duals}
 \label{sec:dual_representation}
 
-\section{Nonlinear elliptic equations - compactness methods}
+\section{Nonlinear elliptic equations as compact perturbations}
 \label{sec:nonlinear_elliptic_compact}
 
 So far we have dealt with only linear equations, \textit{i.e.}, linear operators. When dealing with nonlinear operators, things get much more involved. This chapter will be dedicated to the study of nonlinear problems using compactness methods, which will especially allow us to solve problems with nonlinearities in the non-leading terms. \textbf{Be especially careful about the assumptions on the operators - they do not need to be linear.}
 
 Let us start with some technical, mostly known lemmas.
 
-\subsection{Nemytskii operators}
-\label{sec:nemytskii_operators}
 
 \begin{lemma}[Fatou]
 	Let $\Omega \subset \R^{d}$ be measurable, let $\qty{f_n}$ be a sequence of measurable nonnegative functions. Then it holds
@@ -2208,12 +2200,12 @@ Let us start with some technical, mostly known lemmas.
     This definition is similiar to the one used in the Caratheodory theory of ordinary differential equations, but not the same.
 \end{remark}
 
-\begin{theorem}[On Nemytskii operators]
+\begin{theorem}
   Let $\Omega \subset \R^{d}$ be measurable, $N \in \N, f: \Omega \times \R^{N} \to \R$ be Caratheodory. Then
 
   \begin{enumerate}
 	  \item if $\vb{u}: \Omega \to \R^{N}$ is measurable, then $N_f \vb{u}: \Omega \to \R$ is also measurable,
-	  \item if there are numbers $p_i \in [1, \infty), i \in \qty{1, \dots, N},$ an exponent $p \in [1, \infty),$ a function $g \, \text{\textit{s.t.}} \, g \in \LpSet{\Omega},$ and a constant $C\geq 0$ such that for almost all $x \in \Omega$ and all $y \in \R^{N}$ it holds
+	  \item if there are numbers $p_i \in [1, \infty), i \in \qty{1, \dots, N},$ an exponent $p \in [1, \infty),$ a function $g \, \text{\textit{s.t.}} \, g \in \LpSet{\Omega},$ and a constant $C>0$ such that for almost all $x \in \Omega$ and all $y \in \R^{N}$ it holds
 		  \[
 			  \abs{f(x,y)}\leq g(x) + C \sum_{i=1}^N\abs{y_i}^{\frac{p_i}{p}},
 		  \]
@@ -2231,10 +2223,6 @@ Let us start with some technical, mostly known lemmas.
 \begin{remark}
 	The information about boundedness of images of bounded sets is not trivial - \textit{the Nemytskii operator is not linear in general.}
 \end{remark}
-
-\subsection{Fixed point theorems}
-\label{sec:fixed_points}
-The majority of the problems we will be dealing with will be solved by using some fixed points theorem. Here we state two of them (without proofs).
 
 \begin{definition}[Compact operator]
 	Let $X,Y$ be normed linear spaces, $M \subset X.$ The mapping $F:M \to Y$ is called a compact operator on $M$ into $Y$ provided
@@ -2254,39 +2242,29 @@ The majority of the problems we will be dealing with will be solved by using som
 \end{remark}
 
 \begin{theorem}[Brouwer fixed point theorem]
-	Let $N \in \N$ and $K \subset \R^N,$ be a nonempty convex closed bounded subset of $\R^{N}$. Assume further that $F: K \to K$ is continuous. Then $F$ has a fixed point in $K$, \textit{i.e.},
+	Let $K \subset \R^N, N \in \N$ be a nonempty convex closed bounded. Assume that $F: K \to K$ is continuous. Then $F$ has a fixed point in $K$, i.e.,
 	\[
 		\exists x_0 \in K: F\qty(x_{0}) = x_0.
 	\]
 \end{theorem}
-
 \begin{proof}
-	No proof.
+	No proof
 \end{proof}
-
 \begin{theorem}[Schauder fixed point theorem]
-	Let $X$ be a linear normed space and $K \subset X$ be a nonempty convex closed bonded subset of $X$. Assume further that $F: K \to K$ is compact on $K$ into $K$ and $F\qty(K) \subset K.$ Then there is fixed point of $F$ in $K,$ \textit{i.e.},
-	\[
-		\exists x_0 \in K: F\qty(x_0) = x_0.
-	\]
+	Let $K \subset X$ be a nonempty convex closed bonded subset of a linear normed space $X$. Assume that $F$ is compact on $K$ into $K$ and $F\qty(K) \subset K.$ Then there is fixed point of $F$ in $K.$
 \end{theorem}
-
 \begin{proof}
-	No proof.
+	No proof
 \end{proof}
-
-\begin{remark}
 \begin{itemize}
-	\item for Brouwer, $K \subset \R^N$ so since it is closed and bouded, it is automatically compact, and since $F: K \to K$ is continuous, $F$ is compact\footnote{Image of a compact set under continuous mapping is a compact set}. For Schauder, we have to assume this extra.
-	\item realize again that in Schauder, the set $K$ does not have to be a subspace of $X$.
+	\item for Brouwer, $K \subset \R^N$ so since it is closed and bouded, it is automatically compact, and since $F: K \to K$ is continuous, $F$ is compact. For Schauder, we have to assume this extra.
 	\item proof of Brouwer with N=1 is easy, based on Darboux property.
 \end{itemize}
-\end{remark}
 
-\subsection{Problem protypes}
+\subsubsection{Problem protypes}
 \label{sec:prototypes}
 
-In this chapter some nonlinear elliptic equations are discussed. The strategy of solving them (\textit{i.e.}, proving a solution exists) will be always the same - define a suitable operator and show it has a fixed point.
+In this chapter some nonlinear elliptic equations are discussed.
 
 \begin{example}
 	Suppose the following problem: 
@@ -2296,260 +2274,137 @@ In this chapter some nonlinear elliptic equations are discussed. The strategy of
 			u = 0 & \, \text{on} \, \partial \Omega,
 		\end{cases}
 	\]
-	where $f \in \qty(\WkpzeroSet[1][2]{\Omega})^{*}, g: \R \to \R$ is continuous and has a controlled grow \textit{s.t.} $\exists C>0, \exists \alpha \in (0,1]$:
+	where
 	\[
-		\forall s \in \R: |g(s)|\leq C\qty(1+|s|^{\alpha}).
+		g: \R \to \R, f \in \qty(\WkpzeroSet[1][2]{\Omega})^{*}, \, \text{continuous} \,, \exists \alpha \in [0,1): \forall s \in \R: |g(s)|\leq C\qty(1+|s|^{\alpha}).
 	\]
-	Even though $g$ might be nonlinear, we assume only (sub)linear growth of it - so this is kind of cheating.
 
 	\begin{theorem}[Existence]
 		Let $ \Omega \in C^{1,1}, f \in \qty(\WkpzeroSet[1][2]{\Omega})^{*}, g$ is as above. Then there is a weak solution to the above problem, i.e., it holds:
 		\[
-			\forall \varphi \in \WkpzeroSet[1][2]{\Omega}: \int_{\Omega}\grad u \vdot \grad \varphi + g(u) \varphi\dd{x} = <f,\varphi>_{(\WkpzeroSet[1][2]{\Omega})^{*}}.
+			\forall \varphi \in \WkpzeroSet[1][2]{\Omega}: \int_{\Omega}\grad u \vdot \grad \varphi\dd{x} = <f,\varphi>_{(\WkpzeroSet[1][2]{\Omega})^{*}}.
 		\]
 		If $f \in \LpSet[2]{\Omega}$, then the solution $u \in \WkpSet[2][2]{\Omega}.$
 	\end{theorem}
 	\begin{proof}
-		We define $S: \LpSet[2]{\Omega} \to \LpSet[2]{\Omega}$ such that\footnote{Meaning the image $Sw$ of $w$ is the function $u$ such that the integral equality holds. We could also assume $S: \LpSet[2]{\Omega} \to \WkpSet[1][2]{\Omega},$ but for compactness we need the origin and target spaces to be the same.}
+		We define $S: \LpSet[2]{\Omega} \to \LpSet[2]{\Omega}$ such that
 		\[
 			Sw = u \Leftrightarrow \forall \varphi \in \WkpzeroSet[1][2]{\Omega}: \int_{\Omega}\grad u \vdot \grad \varphi\dd{x} = <f,\varphi> - \int_{\Omega}g(w) \varphi\dd{x}.
 		\]
-		Clearly, when $Sw = w,$ \textit{i.e.}, $S$ has a fixed point and then
+		$S$ is well defined:
 		\[
-			Sw = w \Leftrightarrow \forall \varphi \in \WkpzeroSet[1][2]{\Omega}: \int_{\Omega}\grad w \vdot \grad \varphi \dd{x} = <f, \varphi> - \int_{\Omega}g(w) \varphi\dd{x},
-		\]
-		and so the solution $w$ to our problem exists. $S$ is defined in an implicit way, but it might be guiding to think of it, written in strong formulation, as
-		\[
-			Sw = -\qty(\laplace)^{-1}(f - g(w),
-		\]
-		meaning $Sw$ is the solution $u$ to (modulo boundary conditions)
-		\[
-			-\laplace u = f- g(w),
-		\]
-		also meaning $Sw$ is the solution $u$ to the Poisson equation with the RHS "build from $w$."
-
-		First, let us show $S$ is well defined:
-		\[
-			\abs{\int_{\Omega}g(w) \varphi\dd{x} + <f, \varphi>} \leq \norm{f}_{(\WkpzeroSet[1][2]{\Omega})^{*}} \norm{\varphi}_{\WkpSet[1][2]{\Omega}} + \norm{\varphi}_{\LpSet[2]{\Omega}} \norm{g(w)}_{\LpSet[2]{\Omega}},
+			|\, \text{RHS} \,| \leq \norm{f}_{(\WkpzeroSet[1][2]{\Omega})^{*}} \norm{\varphi}_{\WkpSet[1][2]{\Omega}} + \norm{\varphi}_{\LpSet[2]{\Omega}} \norm{g(w)}_{\LpSet[2]{\Omega}},
 		\] and
 		\[
-			\int_{\Omega}|g(w)|^{2}\dd{x} \leq \int_{\Omega}C^{2}\qty(1+|w|^{\alpha})^{2}\dd{x} \leq \int_{\Omega}2C^{2}\qty(1+|w|^{2 \alpha})\dd{x} \leq \int_{\Omega}2C^{2}\qty(1+|w|^2)\dd{x} < \infty,
+			\int_{\Omega}|g(w)|^{2}\dd{x} \leq \int_{\Omega}C\qty(1+|w|^{\alpha})^{2}\dd{x} \leq \int_{\Omega}C\qty(1+|w|^{2 \alpha})\dd{x} \leq \int_{\Omega}C\qty(1+|w|^2)\dd{x} \leq \infty,
 		\]
-		where we used the Young inequality\footnote{In the form $\qty(a+b)^{2} \leq 2\qty(a^{2}+b^{2}).$}, $\alpha \leq 1$ and the fact $S$ is defined on $\LpSet[2]{\Omega},$ meaning $w \in \LpSet[2]{\Omega}.$ With that information, we see the last integral is finite and so truly $S: \LpSet[2]{\Omega} \to \LpSet[2]{\Omega}$ is well defined.
-
-		Also, the estimate $\abs{g(w)} \leq C(1+\abs{w}^{\alpha}), \alpha \in (0,1]$ together with the fact $C(1+w^{\alpha}) \in \LpSet[2]{\Omega}$ for $w \in \LpSet[2]{\Omega}$ means the Nemytskii operator
-		\[
-			w \mapsto g(w) \in \mathcal{C}\qty(\LpSet[2]{\Omega}; \LpSet[2]{\Omega}),
-		\]
-		is continuous from $\LpSet[2]{\Omega}$ to $\LpSet[2]{\Omega}.$
-
-		Let us now show that $S$ is continuous as a whole. Define $I_g \in \qty(\WkpzeroSet[1][2]{\Omega})^{*}$ as
-		\[
-			I_g\qty(\varphi) = \int_{\Omega}g(w) \varphi\dd{x} - <f, \varphi>.
-		\]
-		We are interested in the continuity of the (nonlinear!) mapping $g \mapsto I_g$ as a mapping from $\LpSet[2]{\Omega}$ to $\qty(\WkpzeroSet[1][2]{\Omega})^{*}.$ Let $\qty{g_k} \subset \LpSet[2]{\Omega}$ be a sequence \textit{s.t.} $g_k \to g$ in  $\LpSet[2]{\Omega}.$ Then
-		\begin{align*}
-			\norm{I_{g_k}- I_g}_{\qty(\WkpzeroSet[1][2]{\Omega})^{*}} &= \sup_{\varphi \in \text{U}_{\WkpzeroSet[1][2]{\Omega}}(0,1)}\abs{\qty(I_{g_k}-I_g)\qty(\varphi)} = \sup_{\text{U}_{\WkpzeroSet[1][2]{\Omega}}(0,1)}\abs{\qty(\int_{\Omega}g_k \varphi\dd{x} - <f,\varphi> - \int_{\Omega}g \varphi\dd{x}+<f,\varphi>)} \leq \\
-										  &\sup_{\text{U}_{\WkpzeroSet[1][2]{\Omega}}(0,1)}\int_{\Omega}\abs{g - g_k}|\varphi|\dd{x} \leq \norm{g-g_k}_{\LpSet[2]{\Omega}} \to 0,
-		\end{align*}
-		so we have shown $g \to g_k$ in $\LpSet[2]{\Omega}$ $\Rightarrow I_g \to I_{g_k}$ in $\qty(\WkpzeroSet[1][2]{\Omega})^{*},$ and so $\qty(g \mapsto I_g) \in \mathcal{C}\qty(\LpSet[2]{\Omega}; \qty(\WkpzeroSet[1][2]{\Omega})^{*}).$ Finally, define the operator $L: \qty(\WkpzeroSet[1][2]{\Omega})^{*} \to \WkpzeroSet[1][2]{\Omega},$ as
-		\[
-			Lh = u \Leftrightarrow \forall \varphi \in \WkpzeroSet[1][2]{\Omega}: \int_{\Omega}\grad u \vdot \grad \varphi \dd{x} = <h, \varphi>,
-		\]
-		or in other words, $L$ maps $h \mapsto u$, where $u$ solves
-		\[
-			\begin{cases}
-				-\laplace u = h, & \, \text{in} \, \Omega, \\
-				u = 0, & \, \text{on} \, \partial \Omega
-			\end{cases}.
-		\]
-		or in other other, informal, words
-		\[
-			Lh = - \qty(\laplace)^{-1}h.
-		\]
-		Realize that this approach been studiud in the chapter about Fredholm theory extensively. In this simple case however, recall the apriori estimates that the solution satisfies (that is guaranteed from the properties of the Poisson equation)
-		\[
-			\norm{u}_{\WkpzeroSet[1][2]{\Omega}}\leq C \norm{h}_{\qty(\WkpzeroSet[1][2]{\Omega})^{*}},
-		\]
-		which together with the linearity of $L$ checks $h \mapsto u$ is continuous. Putting it all together:
+		where we used the Young inequality and $\alpha \leq 1$. We have thus shown the mapping $w \mapsto g(w)$ is continuous from $\LpSet[2]{\Omega}$ to $\LpSet[2]{\Omega}$ by Nemytskii.
+		Next, $S$ is continuous: 
 		\begin{itemize}
-			\item $\qty(w \mapsto g(w)) \in \mathcal{C}\qty(\LpSet[2]{\Omega};\LpSet[2]{\Omega})$,
-			\item $\qty(g(w) \mapsto f - g(w))  \in \mathcal{C}\qty(\LpSet[2]{\Omega}; \qty(\WkpzeroSet[1][2]{\Omega})^{*})$, \footnote{In the sense we interpret the RHS as a point in the dual space. Precisely, we should write something like $\qty(g(w) \mapsto \qty(\varphi \in \WkpzeroSet[1][2]{\Omega} \mapsto <f,\varphi>-\int_{\Omega}g(w) \varphi\dd{x})) \in \mathcal{C}\qty(\LpSet[2]{\Omega}; \qty(\WkpzeroSet[1][2]{\Omega})^{*})$.} 
-			\item $\qty(f - g(w) \mapsto u) \in \mathcal{C}\qty(\qty(\WkpzeroSet[1][2]{\Omega})^{*}; \WkpzeroSet[1][2]{\Omega})$, 
+			\item $w \mapsto g(w)$ is continuous from $\LpSet[2]{\Omega}$ to $\LpSet[2]{\Omega}$
+			\item $w \mapsto \qty(\varphi \WkpzeroSet[1][2]{\Omega} \to <f,\varphi>-\int_{\Omega}g(w) \varphi\dd{x})$ is continuous from $\LpSet[2]{\Omega}$ to $\qty(\WkpzeroSet[1][2]{\Omega})^{*}$
+			\item $F \to u$, where $u$ is the weak solution of
+				\[
+					\begin{cases}
+						-\laplace u = F & in \Omega \\
+						u = 0 & on \partial \Omega,
+					\end{cases}
+				\]
+				, is linear and continuous from $(\WkpzeroSet[1][2]{\Omega})^{*}$ to $\WkpzeroSet[1][2]{\Omega}$.
 		\end{itemize}
-		In total, the composition is continuous and yields $S$.
+		In total, the composition is continuous and yields $S$. Next, we would like to show $S$ is compact. We start with showing $S$ maps bounded sets in $\LpSet[2]{\Omega}$ to bounded sets in $\WkpzeroSet[1][2]{\Omega}$; for that we need apriori estimates: test the weak formulation with $u$:
+		\[
+			\norm{\grad u}_{\LpSet[2]{\Omega}}^{2} \leq \varepsilon \norm{u}_{\WkpSet[1][2]{\Omega}}^{2} + C\qty(\norm{f}_{\qty(\WkpSet[1][2]{\Omega})^{*}}^{2}+\norm{g(w)}_{\LpSet[2]{\Omega}}^{2}) \underbrace{\leq}_{\, \text{Younge}} \,C\qty(\norm{f}_{(\WkpzeroSet[1][2]{\Omega})^{*})}+1+\norm{w}_{\LpSet[2]{\Omega}}^{2}),
+		\]
+		from which follows $S$ is compact from $\LpSet[2]{\Omega}$ to $\LpSet[2]{\Omega}$ by compact embedding. Now we need to show $S\qty(\text{U}(0,R)) \subset \text{U}(0,R)$ for some $R>0.$ From the previous we know:
+		\[
+			\frac{C}{2}\norm{u}_{\WkpSet[1][2]{\Omega}}^{2} \leq \tilde{C}\qty(\norm{f}_{\qty(\WkpzeroSet[1][2]{\Omega})^{*}}+\norm{g}_{\LpSet[2]{\Omega}}^{2}),
+		\]
+		so since
+		\[
+			\tilde{C}\int_{\Omega}|g(w)|^{2}\dd{x} \leq \int_{\Omega}C\qty(1+|w|^{2 \alpha})\dd{x} \underbrace{\leq}_{\, \text{Younge} \,} \int_{\Omega}\qty(C+ \frac{c}{4}|w|^{2})\dd{x}
+		\]
+		we know
+		\[
+			\frac{c}{2}\norm{u}_{\LpSet[2]{\Omega}}^{2} \leq \frac{c}{2} \norm{u}_{\WkpSet[1][2]{\Omega}}^{2} \leq \tilde{C}\norm{f}_{(\WkpzeroSet[1][2]{\Omega})^{*}}^{2}+C \lambda\qty(\Omega)+ \frac{c}{4}\norm{w}_{\LpSet[2]{\Omega}}^{2},
+		\]
+		and thus
+		\[
+			\norm{u}_{\LpSet[2]{\Omega}}^{2} \leq \underbrace{\frac{2 \tilde{C}}{c} \norm{f}_{(\WkpzeroSet[1][2]{\Omega})^{*}}^{2} + 2 \frac{C}{c}}_{=\overline{C}}+\frac{1}{2}\norm{w}_{\LpSet[2]{\Omega}}^{2}.
+		\]
+		so if $\overline{C} + \frac{1}{2}R^{2}<R^{2}$, we are done \footnote{The constants are most probably messed up.}. But such an $R$ of course exists (says doc. Kaplicky) $\Rightarrow$ the image of a ball is in a ball for some $R \Rightarrow$ $S$ is compact and using Schauder we get the solution exists.
 
-		Next, we would like to show $S$ is a compact (nonlinear) operator. We start with showing $S$ maps bounded sets in $\LpSet[2]{\Omega}$ to bounded sets in $\WkpzeroSet[1][2]{\Omega} \hookrightarrow \hookrightarrow \LpSet[2]{\Omega}$; for that we need apriori estimates: test the weak formulation with $u$: (we are doing this a bit more careful that might seem needed, but come on, it is the first example...)
-\begin{align*}
-	\underbrace{\norm{\grad u}_{\LpSet[2]{\Omega}}^{2}}_{C_p^{2} \norm{u}_{\WkpzeroSet[1][2]{\Omega}}^{2} \leq} &\leq\norm{f}_{\qty(\WkpzeroSet[1][2]{\Omega})^{*}}\norm{u}_{\WkpzeroSet[1][2]{\Omega}} + \norm{g(w)}_{\LpSet[2]{\Omega}} \norm{u}_{\LpSet[2]{\Omega}}\leq \\
-														    &\leq \frac{\norm{f}_{\qty(\WkpzeroSet[1][2]{\Omega})^{*}}}{\sqrt{2 \varepsilon_1}}\sqrt{2 \varepsilon_1}\norm{u}_{\WkpzeroSet[1][2]{\Omega}} + \frac{\norm{g(w)}_{\LpSet[2]{\Omega}}}{\sqrt{2 \varepsilon_2}} \sqrt{2 \varepsilon_2}\norm{u}_{\WkpzeroSet[1][2]{\Omega}}\leq   \\
-														    &\leq \qty(\varepsilon_1 + \varepsilon_2)\norm{u}_{\WkpzeroSet[1][2]{\Omega}}^{2} + \frac{1}{4 \varepsilon_1} \norm{f}_{\qty(\WkpzeroSet[1][2]{\Omega})^{*}}^{2} + \frac{1}{4 \varepsilon_2} \norm{g(w)}_{\LpSet[2]{\Omega}}^{2} \leq \\
-														    &\leq \qty(\varepsilon_1 + \varepsilon_2)\norm{u}_{\WkpzeroSet[1][2]{\Omega}}^{2}+ \frac{1}{4\min\qty(\varepsilon_1, \varepsilon_2)}\qty(\norm{f}_{\qty(\WkpzeroSet[1][2]{\Omega})^{*}}^{2}+ \norm{g(w)}_{\LpSet[2]{\Omega}}^{2}),
-\end{align*}
-and since $\norm{g(w)}_{\LpSet[2]{\Omega}}^{2} \leq \norm{C\qty(1+\abs{w}^{\alpha})}_{\LpSet[2]{\Omega}}^{2} \leq 4C^{2}\qty(\qty(\lambda\qty(\Omega))^{2}+\norm{w}_{\LpSet[2]{\Omega}}^{2}) $ and Poincare inequality, we can write
-\[
-	\norm{u}_{\WkpzeroSet[1][2]{\Omega}}^{2} \leq \frac{1}{4\qty(C_p^{2} - \qty(\varepsilon_1 + \varepsilon_2))\min\qty(\varepsilon_1, \varepsilon_2)}\qty(\norm{f}_{\qty(\WkpzeroSet[1][2]{\Omega})^{*}}^{2}+ 4\qty(\qty(\lambda\qty(\Omega))^{2}+\norm{w}_{\LpSet[2]{\Omega}}^{2})),
-\]
-which, for $\varepsilon_1, \varepsilon_2$ sufficiently small, just an estimate of the type
-\[
-	\norm{u}_{\WkpzeroSet[1][2]{\Omega}}^{2} \leq C\qty(1+\norm{f}_{\qty(\WkpzeroSet[1][2]{\Omega})^{*}}^{2} + \norm{w}_{\LpSet[2]{\Omega}}^{2}).
-\]
-As we can see, if $w \in \LpSet[2]{\Omega}$ is bounded, also $u \in \WkpzeroSet[1][2]{\Omega}$ is bounded, so $S$ maps bounded sets from $\LpSet[2]{\Omega}$ to bounded sets in $\WkpzeroSet[1][2]{\Omega}.$ Since moreover $\WkpzeroSet[1][2]{\Omega} \hookrightarrow \hookrightarrow \LpSet[2]{\Omega}, $ this means $S$ is compact from $\LpSet[2]{\Omega}$ to $\LpSet[2]{\Omega}$.
+		For the regularity part of the assertion, realize that $u_0$ solves 
+		$\begin{cases}
+			-\laplace u_0 = f-g(u_0) \in \LpSet[2]{\Omega} & \, \text{in} \, \Omega \\
+			u_0 = 0 & \, \text{on} \, \partial \Omega. 
+		\end{cases}.$ So from the regularity theory for elliptic equations we get
+		\[
+			u \in \WkpSet[2][2]{\Omega}.
+		\]
+	\end{proof}
+	\begin{theorem}[Uniqueness]
+		Let $u_1, u_2 \in \WkpzeroSet[1][2]{\Omega}$ be weak solutions to the above problem. Let $f \in \qty(\WkpzeroSet[1][2]{\Omega})^{*},g$ be continuous. Let either 
+		\begin{enumerate}
+			\item $g$ is nondecreasing
+			\item $g \in C^1\qty(\R), \norm{g'}_{\infty}$ small.
+		\end{enumerate}
+		Then $u_1 = u_2$.
+	\end{theorem}
+	\begin{proof}
+		We subtract the equations for $u_1, u_2$ and test with $u_1 - u_2.$:
+		\[
+			\int_{\Omega}|\grad(u_1 - u_2)|^{2} + (g(u_1)-g(u_2))\qty(u_1-u_2)\dd{x} = 0.
+		\]
+		In the first case, the second term is nonnegative and so
+		\[
+			0=\norm{\grad(u_1 - u_2)}_{\LpSet[2]{\Omega}} \geq C \norm{u_1 - u_2}_{\WkpSet[1][2]{\Omega}}^{2} \Rightarrow u_1 - u_2 = 0.
+		\]
 
-To conclude the proof, we need that there exists $K \subset \LpSet[2]{\Omega}$ closed convex bounded nonempty \textit{s.t.} $S(K) \subset K,$ so we can use Schauder. That clearly will be the case when we show $S\qty(\text{B}_{\LpSet[2]{\Omega}}(0,R)) \subset \text{B}_{\LpSet[2]{\Omega}}(0,R)$ for some $R>0.$ But this is simple - the estimate
-
-\[
-	\norm{u}_{\LpSet[2]{\Omega}}^{2} \leq \norm{u}_{\WkpzeroSet[1][2]{\Omega}}^{2} \leq C\qty(\underbrace{1+\norm{f}_{\qty(\WkpzeroSet[1][2]{\Omega})^{*}}^{2}}_{\coloneq C_1} + \norm{w}_{\LpSet[2]{\Omega}}^{2}),
-\]
-tells us if the $R$ were to exist, it must hold
-\[
-	R^{2} \leq C C_1 + C R^{2} \Leftrightarrow R^{2}\qty(1-C)\leq C C_1.
-\]
-If $1-C >0,$ then just take $R \leq \sqrt{\frac{C C_1}{1-C}},$ if $1-C <0,$ any $R>0$ will do.
-
-And so we see such an $R$ exists in all cases  $\Rightarrow$ the image of a ball is in a ball for some $R \Rightarrow$ $S$ is compact on $\text{B}_{\LpSet[2]{\Omega}}(0,R)$ into $\text{B}_{\LpSet[2]{\Omega}}(0,R) \Rightarrow $ it has a fixed point by Schauder $\Leftrightarrow$ the solution exists.
-
-For the regularity part of the assertion, realize that $u_0$ solves 
-\[
-	\begin{cases}
-		-\laplace u_0 = f-g(u_0), & \, \text{in} \, \Omega \\
-		u_0 = 0, & \, \text{on} \, \partial \Omega. 
-	\end{cases},
-\]
-and if $f \in \LpSet[2]{\Omega},$ then $f-g\qty(u_0) \in \LpSet[2]{\Omega}$ and so from the regularity theory for elliptic equations we get
-\[
-	u \in \WkpSet[2][2]{\Omega}.
-\]
-\end{proof}
-
-\begin{theorem}[Uniqueness]
-	Let $u_1, u_2 \in \WkpzeroSet[1][2]{\Omega}$ be weak solutions to the above problem. Let $f \in \qty(\WkpzeroSet[1][2]{\Omega})^{*}$ and let $g$ be continuous. Let either extra 
-	\begin{enumerate}
-		\item $g$ is nondecreasing
-		\item $g \in C^1\qty(\R), \norm{g'}_{\LinfSet{\R}}$ small.
-	\end{enumerate}
-	Then $u_1 = u_2$.
-\end{theorem}
-\begin{proof}
-	In the linear case, $u_1 - u_2$ would be a solution to the problem with zero data. In the nonlinear case, we have now certainity $u_1 - u_2$ solves anything, so we will have to be more careful.
-	
-Subtract the equations for $u_1, u_2$ and test the weak formulation with $u_1 - u_2.$:
-	\[
-		\int_{\Omega}|\grad(u_1 - u_2)|^{2} + (g(u_1)-g(u_2))\qty(u_1-u_2)\dd{x} = 0.
-	\]
-	In the first case, the second term is nonnegative, so for the whole thing to be zero it has to hold 
-	\[
-		0=\norm{\grad(u_1 - u_2)}_{\LpSet[2]{\Omega}}^{2} \geq C_p \norm{u_1 - u_2}_{\WkpSet[1][2]{\Omega}}^{2} \Rightarrow u_1 - u_2 = 0 \in \WkpzeroSet[1][2]{\Omega}.
-	\]
-
-	In the second case, the second does not have a sign, but we can estimate it
-	\[
-		\abs{\int_{\Omega}(g(u_1)-g(u_2)(u_1-u_2))\dd{x}} \leq \int_{\Omega}\norm{g'}_{\LinfSet{\R}}\abs{u_1 - u_2|^{2}}\dd{x} \leq \norm{g'}_{\LinfSet{\R}} C_p \norm{\grad(u_1 - u_2)}_{\LpSet[2]{\Omega}}^{2}, 
-	\]
-	meaning
-	\[
-		\norm{\grad\qty(u_1 - u_2)}_{\LpSet[2]{\Omega}}^{2} \pm \norm{g}_{\LinfSet{\R}}C_p \norm{\grad\qty(u_1 - u_2)}_{\LpSet[2]{\Omega}}^{2}  = (1 \pm \norm{g}_{\LinfSet{\R}}C_p)\norm{\grad\qty(u_1 - u_2)}_{\LpSet[2]{\Omega}}^{2} \leq 0.
-	\]
-	If the term is positive we again obtain $u_1 = u_2$ in $\WkpzeroSet[1][2]{\Omega}$ from the Poincare inequality, if it is negative, we require
-	\[
-		\norm{g'}_{\LinfSet{\R}}C_p < 1,
-	\]
-	and then we have the same result.
-\end{proof}
+		\[
+			|\int_{\Omega}(g(u_1)-g(u_2)(u_1-u_2))\dd{x}| \leq \int_{\Omega}\norm{g'}_{\infty}|u_1 - u_2|^{2}\dd{x} \leq \norm{g'}_{\infty}C_P \norm{\grad(u_1 - u_2)}_{\LpSet[2]{\Omega}}^{2} = 0 \Rightarrow u_1 = u_2,
+		\]
+		whenever $C \norm{g'}_{\infty} <1.$
+	\end{proof}
 \end{example}
 
 \begin{example}
 	Suppose the following problem
 	\[
 		\begin{cases}
-			- \laplace u + b\qty(\grad u) = f, & \, \text{in} \, \Omega \\
-			u = 0, & \, \text{on} \, \partial \Omega.
+			- \laplace u + b\qty(\grad u) = f & \, \text{in} \, \Omega \\
+			u = 0 & \, \text{on} \, \partial \Omega.
 		\end{cases}
 	\]
-	where $f \in (\WkpzeroSet[1][2]{\Omega})^{*},$ and the function $b: \R^{d} \to \R$ is continuous and (essentialy) bounded. The weak formulation is: 
-
+	where $f \in (\WkpzeroSet[1][2]{\Omega})^{*}, b$ is continuous and bounded. The weak formulation is
 	\[
-	\, \text{find} \,	u \in \WkpzeroSet[1][2]{\Omega} \, \text{\textit{s.t.}} \,: \forall \varphi \in \WkpzeroSet[1][2]{\Omega}: \int_{\Omega}\grad u \vdot \grad \varphi + b\qty(\grad u) \varphi\dd{x} = <f,\varphi>_{\qty(\WkpzeroSet[1][2]{\Omega})^{*}},
+		u \in \WkpzeroSet[1][2]{\Omega} \wedge \forall \varphi \in \WkpzeroSet[1][2]{\Omega}: \int_{\Omega}\grad u \vdot \grad \varphi + b\qty(\grad u) \varphi\dd{x} = <f,\varphi>,
 	\]
-
+	and the first apriori estimates (test with $u$)
+	\[
+		\norm{\grad u}_{\LpSet[2]{\Omega}} \leq \norm{f}_{(\WkpzeroSet[1][2]{\Omega})^{*}} \norm{u}_{\WkpzeroSet[1][2]{\Omega}}+ \int_{\Omega}|u|\dd{x} \norm{b}_{\LinfSet{\Omega}}.
+	\]
 	\begin{theorem}
-		Let $f \in \qty(\WkpzeroSet[1][2]{\Omega})^{*}, \Omega \in C^{0,1}, b: \R^d \to \R$ continuous and essentialy bounded. Then there is a weak solution to the above problem.
+		Let $f \in \qty(\WkpzeroSet[1][2]{\Omega})^{*}, \Omega \in C^{0,1}, b: \R^d \to \R$ continuous and bounded. Then there is a weak solution to the above problem.
 	\end{theorem}
 	\begin{proof}
-		As in the previous: define the operator $S: \WkpzeroSet[1][2]{\Omega} \to \WkpzeroSet[1][2]{\Omega},$  such as
+		$S: \WkpzeroSet[1][2]{\Omega} \to \WkpzeroSet[1][2]{\Omega}, Sw = u$ iff $u$ solves
 		\[
-			Sw = u \Leftrightarrow \forall \varphi \in \WkpzeroSet[1][2]{\Omega}: \int_{\Omega}\grad u \vdot \grad \varphi \dd{x} = <f, \varphi> - \int_{\Omega}b\qty(\grad w)\varphi \dd{x},
-		\]
-		or equivalently
-		\[
-			Sw = u \Leftrightarrow u \, \text{is the solution to } \,
 			\begin{cases}
 				- \laplace u = f - b\qty(\grad w) & \, \text{in} \, \Omega \\
 				u = 0 & \, \text{on} \, \partial \Omega.
-			\end{cases}, 
+			\end{cases}, \, \text{i.e.} \,
 		\]
-		or informally
+		it holds
 		\[
-			Sw = -\qty(\laplace)^{-1}\qty(f - b(\grad w)),
+			\forall \varphi \in \WkpzeroSet[1][2]{\Omega}: \int_{\Omega}\grad u \vdot \grad \varphi\dd{x} = <f, \varphi> - \int_{\Omega}b\qty(\grad w) \varphi\dd{x}.
 		\]
-		modulo boundary conditions. Once again, if we are able to show $S$ has a fixed point, this information is equivalent to the considered problem having a solution.
-
-		Let us first show $S$ is well defined. Holder yields
+		Clearly, $S$ is well defined and
 		\[
-			\norm{\grad u}_{\LpSet[2]{\Omega}}\norm{\grad \varphi}_{\LpSet[2]{\Omega}} \leq \norm{f}_{(\WkpzeroSet[1][2]{\Omega})^{*}} \norm{\varphi}_{\WkpzeroSet[1][2]{\Omega}}+ \norm{b}_{\LinfSet{\R^{d}}} \norm{\varphi}_{\LpSet[1]{\Omega}},
+			\norm{Sw}_{\WkpzeroSet[1][2]{\Omega}} \leq \underbrace{C\qty(\norm{f}_{\qty(\WkpzeroSet[1][2]{\Omega})^{*}}+ \norm{b}_{\LinfSet{\Omega}})}_{\coloneq R},
 		\]
-		use Poincare inequality and $\WkpzeroSet[1][2]{\Omega} \hookrightarrow \LpSet[1]{\Omega},$ to obtain
-		\[
-			\norm{u}_{\WkpzeroSet[1][2]{\Omega}} \leq \underbrace{C\qty(\norm{f}_{\qty(\WkpzeroSet[1][2]{\Omega})^{*}}+ \norm{b}_{\LinfSet{\R^{d}}})}_{\coloneq R},
-		\]
-		and so we see that the target space really is $\WkpzeroSet[1][2]{\Omega}$. Also, the above estimate is extra nice, as it does not depend on $w$ whatsoever. If we denote the RHS by $R>0$, we immediately see $\norm{u}_{\WkpzeroSet[1][2]{\Omega}} = \norm{Sw}_{\WkpzeroSet[1][2]{\Omega}}\leq R$, meaning that for sure $S\qty(\text{B}_{\WkpzeroSet[1][2]{\Omega}}(0,R)) \subset \text{B}_{\WkpzeroSet[1][2]{\Omega}}(0,R).$
-		Let us show other properties needed for compactness.
-
-
-	First, $\grad: \WkpzeroSet[1][2]{\Omega} \to \LpSet[2]{\Omega;\R^{d}}, w \mapsto \grad w$ is linear and bounded,
-	\[
-		\norm{\grad w}_{\LpSet[2]{\Omega}} \leq \norm{w}_{\WkpzeroSet[1][2]{\Omega}},
-	\]
-	and so continuous, the map $\vb{y} \mapsto b\qty(\vb{y})$ satisfies the growth
-		\[
-			\abs{b\qty(\vb{y})} \leq \underbrace{\norm{b}_{\LinfSet{\R^{d}}}}_{" = g(x)"} + 0 \vdot \sum_{i=1}^d |y_i|^{2/2},
-		\]
-		and since $\lambda\qty(\Omega) < \infty,$ we have (in particular) $\norm{b}_{\LinfSet{\R^{d}}} \in \LpSet[2]{\Omega}.$ Putting this together means $N_b: \grad w \mapsto b\qty(\grad w)$ is continuous from\footnote{We should be more precise and write it is continuous from $\LpSet[2]{\Omega; \R^{d}}$ to $\LpSet[2]{\Omega;\R},$ as $b: \R^{d} \to \R.$} $\LpSet[2]{\Omega; \R^{d}}$ to $\LpSet[2]{\Omega;\R}$,
-		\[
-			\qty(\grad w \mapsto b\qty(\grad w)) \in \mathcal{C}\qty(\LpSet[2]{\Omega; \R^{d}}; \LpSet[2]{\Omega; \R})
-		\]
-		by Nemytskii. Next, the mapping
-		\[
-			b\qty(\grad w) \mapsto b\qty(\grad w) + f
-		\]
-		from $\LpSet[2]{\Omega}$ to $\qty(\WkpzeroSet[1][2]{\Omega})^{*}$ in the sense
-		\[
-			b\qty(\grad w) \mapsto \qty(\WkpzeroSet[1][2]{\Omega} \ni \varphi \mapsto <f, \varphi>_{\qty(\WkpzeroSet[1][2]{\Omega})^{*}}+ \int_{\Omega}b\qty(\grad w)\varphi\dd{x}),
-		\]
-		is also continous: let $\qty{b_k}\subset \LpSet[2]{\Omega} \, \text{\textit{s.t.}} \, b_k \to b,$ in $\LpSet[2]{\Omega},$ then
-		\begin{align*}
-			\sup_{\text{U}_{\WkpzeroSet[1][2]{\Omega}}(0,1)}\abs{<f, \varphi> -\int_{\Omega}b_k\qty(\grad )\varphi \dd{x} - <f, \varphi> + \int_{\Omega}b\qty(\grad w)\varphi\dd{x}} &\leq \sup_{\text{U}_{\WkpzeroSet[1][2]{\Omega}}(0,1)}\int_{\Omega}\abs{b\qty(\grad w)- b_k\qty(\grad w)}\abs{\varphi}\dd{x} \leq \\
-																								 &\leq \norm{b_k - b}_{\LpSet[2]{\Omega}} \to 0,
-		\end{align*}
-		and so the mapping $b\qty(\grad w) \mapsto b\qty(\grad w) + f$ is continuous from $\LpSet[2]{\Omega}$ to $\LpSet[2]{\Omega}.$ Finally, the mapping $L: \qty(\WkpzeroSet[1][2]{\Omega})^{*} \to \WkpzeroSet[1][2]{\Omega},$
-		\[
-			Lh = u \Leftrightarrow \forall \varphi \in \WkpzeroSet[1][2]{\Omega}: \int_{\Omega}\grad u \vdot \grad \varphi\dd{x} = <h, \varphi>,
-		\]
-		\textit{i.e.},
-		\[
-			Lh = u \Leftrightarrow u \, \text{solves} \, \begin{cases}
-				- \laplace u = h, & \, \text{in} \, \Omega, \\
-				u = 0, & \, \text{on} \, \partial \Omega,
-			\end{cases}
-		\]
-		is also continuous between the spaces - it is just again the solution operator to the Poisson equation with a RHS $h \in \qty(\WkpzeroSet[1][2]{\Omega})^{*}.$ Altogether
-		\begin{itemize}
-			\item $\qty(w \mapsto \grad w) \in \mathcal{C}\qty(\WkpzeroSet[1][2]{\Omega}; \LpSet[2]{\Omega;\R^{d}}),$
-			\item $\qty(\grad w \mapsto b(\grad w)) \in \mathcal{C}\qty(\LpSet[2]{\Omega;\R^{d}}; \LpSet[2]{\Omega;\R})$,
-			\item $\qty(b\qty(\grad w) \mapsto f - b\qty(\grad w)) \in \mathcal{C}\qty(\LpSet[2]{\Omega}; \qty(\WkpzeroSet[1][2]{\Omega})^{*})$,
-			\item $\qty(f - b\qty(\grad w) \mapsto u) \in \mathcal{C}\qty(\qty(\WkpzeroSet[1][2]{\Omega})^{*}; \WkpzeroSet[1][2]{\Omega})$,
-		\end{itemize}
-		and so $S$ as a composition of those mappings is continuous from $\WkpzeroSet[1][2]{\Omega}$ to $\WkpzeroSet[1][2]{\Omega}.$ It remains to show $S$ is compact: we already have continuity, consider $\{w_k\}_{k \in \N} \subset \WkpzeroSet[1][2]{\Omega}$ bounded. Then $\exists \{u_k\} \subset \WkpzeroSet[1][2]{\Omega}$ bounded: $u_k \to u$ in $\LpSet[1]{\Omega}$ by embedding up to a subsequence. Next, uss the following trick: substitue equation for $u_k$ from equation for $u_l$ and test with $u_l - u_k$
+		meaning $S\qty(\overline{\text{U}(0,R)}) \subset \overline{\text{U}(0,R)}.$
+		Moreover, $S$ ]s continuous, as $S$ is the composiiton of a Nemytskii operator and the solution operator of the Laplace equation. It remains to show $S$ is compact: we already have continuity, consider $\{w_k\}_{k \in \N} \subset \WkpzeroSet[1][2]{\Omega}$ bounded. Then $\exists \{u_k\} \subset \WkpzeroSet[1][2]{\Omega}$ bounded: $u_k \to u$ in $\LpSet[1]{\Omega}$ by embedding up to a subsequence. Next, uss the following trick: substitue equation for $u_k$ from equation for $u_l$ and test with $u_l - u_k$
 		\[
 			C \norm{u_l - u_k}_{\WkpzeroSet[1][2]{\Omega}}^{2} \leq	\norm{\grad\qty(u_l - u_k)}_{\LpSet[2]{\Omega}}^{2} \leq \int_{\Omega}|b(\grad u_l) - b\qty(\grad u_k)| |u_l - u_k|\dd{x} \leq 2 \norm{b}_{\LinfSet{\Omega}}\norm{u_l-u_k}_{\LpSet[1]{\Omega}}.
 		\]
