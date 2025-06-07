@@ -5,23 +5,26 @@
 \contentsline {subsection}{\numberline {1.3}Uniqueness of solutions to hyperbolic problems}{3}{subsection.1.3}%
 \contentsline {section}{\numberline {2}Sobolev spaces revisited}{5}{section.2}%
 \contentsline {subsection}{\numberline {2.1}Tools from functional analysis}{5}{subsection.2.1}%
-\contentsline {subsection}{\numberline {2.2}Density of smooth functions}{6}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.2}Density of smooth functions}{7}{subsection.2.2}%
 \contentsline {subsection}{\numberline {2.3}Extension of Sobolev functions}{13}{subsection.2.3}%
-\contentsline {subsection}{\numberline {2.4}Embedding theorems}{18}{subsection.2.4}%
-\contentsline {subsubsection}{\numberline {2.4.1}Theorems for $p \leq d$}{18}{subsubsection.2.4.1}%
-\contentsline {subsubsection}{\numberline {2.4.2}Theorems for $p>d$}{27}{subsubsection.2.4.2}%
-\contentsline {subsection}{\numberline {2.5}Trace theorems}{33}{subsection.2.5}%
-\contentsline {subsection}{\numberline {2.6}Fine properties of Sobolev spaces}{39}{subsection.2.6}%
-\contentsline {subsubsection}{\numberline {2.6.1}Composition of Sobolev functions}{39}{subsubsection.2.6.1}%
+\contentsline {subsection}{\numberline {2.4}Embedding theorems}{19}{subsection.2.4}%
+\contentsline {subsubsection}{\numberline {2.4.1}Theorems for $p \leq d$}{19}{subsubsection.2.4.1}%
+\contentsline {subsubsection}{\numberline {2.4.2}Theorems for $p>d$}{28}{subsubsection.2.4.2}%
+\contentsline {subsection}{\numberline {2.5}Trace theorems}{34}{subsection.2.5}%
+\contentsline {subsection}{\numberline {2.6}Fine properties of Sobolev spaces}{40}{subsection.2.6}%
+\contentsline {subsubsection}{\numberline {2.6.1}Composition of Sobolev functions}{40}{subsubsection.2.6.1}%
 \contentsline {subsubsection}{\numberline {2.6.2}Difference quotients}{42}{subsubsection.2.6.2}%
-\contentsline {subsubsection}{\numberline {2.6.3}Representation of duals}{44}{subsubsection.2.6.3}%
-\contentsline {section}{\numberline {3}Nonlinear elliptic equations - compactness methods}{44}{section.3}%
+\contentsline {subsubsection}{\numberline {2.6.3}Representation of duals}{45}{subsubsection.2.6.3}%
+\contentsline {section}{\numberline {3}Nonlinear elliptic equations - compactness methods}{45}{section.3}%
 \contentsline {subsection}{\numberline {3.1}Nemytskii operators}{45}{subsection.3.1}%
-\contentsline {subsection}{\numberline {3.2}Fixed point theorems}{46}{subsection.3.2}%
-\contentsline {subsection}{\numberline {3.3}Problem protypes}{47}{subsection.3.3}%
-\contentsline {section}{\numberline {4}Nonlinear elliptic equations - monotone operator theory}{53}{section.4}%
-\contentsline {section}{\numberline {5}Calculus of variations}{58}{section.5}%
-\contentsline {section}{\numberline {6}Semigroup theory}{65}{section.6}%
-\contentsline {section}{\numberline {7}(Some) exercises}{72}{section.7}%
-\contentsline {subsection}{\numberline {7.1}4.3.2025}{72}{subsection.7.1}%
-\contentsline {subsection}{\numberline {7.2}8.4.2025}{73}{subsection.7.2}%
+\contentsline {subsection}{\numberline {3.2}Fixed point theorems}{47}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Problem protypes}{48}{subsection.3.3}%
+\contentsline {section}{\numberline {4}Nonlinear elliptic equations - monotone operator theory}{54}{section.4}%
+\contentsline {section}{\numberline {5}Calculus of variations}{59}{section.5}%
+\contentsline {section}{\numberline {6}Evolutionary equations}{63}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Embedding theorems for Sobolev-Bochner spaces}{63}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}Nonlinear parabolic equations}{65}{subsection.6.2}%
+\contentsline {section}{\numberline {7}Semigroup theory}{67}{section.7}%
+\contentsline {section}{\numberline {8}(Some) exercises}{74}{section.8}%
+\contentsline {subsection}{\numberline {8.1}4.3.2025}{74}{subsection.8.1}%
+\contentsline {subsection}{\numberline {8.2}8.4.2025}{74}{subsection.8.2}%

@@ -288,10 +288,10 @@ INPUT /usr/share/texmf-dist/fonts/tfm/public/mnsymbol/MnSymbolD5.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/jknappen/ec/tcrm1000.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/jknappen/ec/tcrm0700.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/jknappen/ec/tcrm0500.tfm
-OUTPUT notes_pdrII.toc
 INPUT /var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map
 INPUT /usr/share/texmf-dist/fonts/enc/dvips/mnsymbol/MnSymbolC.enc
 INPUT /usr/share/texmf-dist/fonts/enc/dvips/mnsymbol/MnSymbolD.enc
+OUTPUT notes_pdrII.toc
 INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmti10.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmti7.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmti7.tfm
@@ -348,6 +348,7 @@ INPUT /usr/share/texmf-dist/fonts/type1/public/bbold-type1/bbold5.pfb
 INPUT /usr/share/texmf-dist/fonts/type1/public/bbold-type1/bbold7.pfb
 INPUT /usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 INPUT /usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
+INPUT /usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb
 INPUT /usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb
 INPUT /usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb
 INPUT /usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb

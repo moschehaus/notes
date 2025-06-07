@@ -349,7 +349,7 @@ Recall that:
 	\]
 	If moreover $\Omega$ is bounded, it holds:
 	\[
-		\overline{C^{\infty}\bigcap \WkpSet{\Omega}}^{\norm{\vdot}_{\WkpSet{\Omega}}} = \WkpSet{\Omega}.
+		\overline{\CinfSet{\Omega}\bigcap \WkpSet{\Omega}}^{\norm{\vdot}_{\WkpSet{\Omega}}} = \WkpSet{\Omega}.
 	\]
 \end{theorem}
 \begin{proof}
@@ -364,11 +364,23 @@ For every $j \in \N$ define an open set
 	\]
 	where $\Omega_0 = \Omega_{-1} = \emptyset$. Since $\Omega_j$ are open, $U_j$ are also open and $\Omega \subset \bigcup_{j \in \N}U_j  \Rightarrow \exists \{\varphi_j\}_{j\in \N} $ partition of unity subordinate to $\{U_j\}_{j \in \N}$. We can write $u = \sum_{j \in \N} u \varphi_j$, where $u \varphi_j \in \WkpSet{\Omega}, \supp u \varphi_j \subset U_j \subset \Omega_{j+1} \subset \subset \Omega$. This is ready for convolution with $\varepsilon_j >0$: set $ v_j = (u \varphi_j)_{\varepsilon_j}$ and fix an arbitrary $\delta>0.$ By the properties of regularization, we have
 	\[
-		\norm{v_j - u \varphi_j }_{\WkpSet{\Omega}} < \frac{\delta}{2^{j-1}},
+		\norm{v_j - u \varphi_j }_{\WkpSet{U}} < \frac{\delta}{2^{j-1}},
 	\]
-	for $\varepsilon_j > 0$ sufficiently small, which we now fix so the above inequality holds. To have a nice inequality, we actually want:
+	for any $U \subset \subset \Omega,$ for $\varepsilon_j > 0$ sufficiently smalls. In fact, if needed, make the $\varepsilon_j$ smaller so that
 	\[
-		\norm{v_j - u \varphi_j}_{\WkpSet{\Omega}} < \frac{2^N}{2^{N+1}-1} \frac{\delta}{2^{j-1}},
+		\supp v_j \subset \Omega_{j+2}/ \overline{\Omega_{j-2}}.
+	\]
+	That is completely possible: from the properties of regularization, we know
+	\[
+		\supp v_j \subset \text{B}(0,\varepsilon)+ \overline{U_j},
+	\]
+	and since
+	\[
+		\overline{U_j} = \overline{\Omega_{j+1}}/\Omega_{j-1} \subset \overline{\Omega_{j+2}}/\Omega_{j-2} \subset \overline{\overline{\Omega_{j+2}}/\Omega_{j-2}} = \Omega_{j+2}/ \overline{\Omega_{j-2}},
+	\]
+	the compact set $\overline{U_j}$ is contained in the open set $\Omega_{j+2}/ \overline{\Omega_{j-2}},$ meaning with $\varepsilon_j$ small, the set $\overline{U_j} + \text{B}(0,\varepsilon_j)$ will still be in $\Omega_{j+2}/ \overline{\Omega_{j-2}}.$ Also, let us take possibly $\varepsilon_j$ even smaller to have a nice inequality: for fixed $N \in \N$:
+	\[
+		\norm{v_j - u \varphi_j}_{\WkpSet{U}} < \frac{1}{2-\qty(\frac{1}{2})^{N+1}} \frac{\delta}{2^{j-1}},
 	\]
 	meaning of $N \in \N$ will be evident later. 
 
@@ -380,19 +392,24 @@ For every $j \in \N$ define an open set
 	then $v \in C^{\infty}\qty(\Omega),$ (not clearly in $\WkpSet{\Omega}$ however) as $\forall x \in \Omega$ the sum contains at most finitely many terms ($ \mathcal{F}$ is locally finite.)
 
 
-	Take the $N \in \N$ and estimate the norm $\norm{u-v}_{\WkpSet{\Omega}}$. Observe (the sum again contains only finitely many terms)
+	Take the $N \in \N$ and estimate the norm $\norm{u-v}_{\WkpSet{\Omega_N}}$. Observe (the sum again contains only finitely many terms)
 	\[
 		u-v = \sum_{j=1}^\infty(u \varphi_j - v_j),
 	\]
 	so taking $x \in \Omega_N$ i have
 	\[
-		(u-v)(x) = \sum_{j=1}^{N+1}(u \varphi_j - v_j),
+		(u-v)(x) = \sum_{j=1}^{N+2}(u \varphi_j - v_j),
 	\]
-		because for $m > N+1, \, \text{\textit{i.e.}}, \, m-1 >N$ it holds $U_m = \Omega_{m+1}/ \overline{\Omega_{m-1}}, \Omega_N \subset \Omega_{m-1}$ meaning $\forall j \geq m > N+1: U_m \cap \Omega_N = \emptyset \Rightarrow \supp u \varphi_j \cap \Omega_N = \supp v_j \cap \Omega_N = \emptyset,$ since $\supp u \varphi_j \subset U_j, \supp v_j \subset \supp u \varphi_j \subset U_j, \forall j \geq m.$ 
-	The norm of sum is
+		because for $m > N+2, \, \text{\textit{i.e.}}, \, m-2 >N$ it holds the functions $u_m, v_m, $ have their supports in
+		\begin{itemize}
+			\item $\supp u_m \subset U_m = \Omega_{m+1}/ \overline{\Omega_{m-1}},$
+			\item $\sup v_m \subset \Omega_{m+2}/ \overline{\Omega_{m-2}},$
+		\end{itemize}
+		but $\Omega_{m-1} \subset \Omega_{m-2} \subset \Omega_N,$ for $N < m-2,$ meaning that the set $\Omega_N$ does not lie in the supports of those functions.
+	The norm of sum is (recall $\Omega_N \subset \subset \Omega,$ so the above estimate holds)
 
 	\begin{equation*}
-		\norm{u-v}_{\WkpSet{\Omega_N}} \leq \sum_{j=1}^{N+1}\norm{u \varphi_j - v_j}_{\WkpSet{\Omega}} <\delta \frac{2^N}{2^{N+1}-1}\sum_{j=1}^{N+1} \frac{1}{2^j} = \delta.
+		\norm{u-v}_{\WkpSet{\Omega_N}} \leq \sum_{j=1}^{N+2}\norm{u \varphi_j - v_j}_{\WkpSet{\Omega_N}} <\delta \frac{1}{2-\qty(\frac{1}{2})^{N+1}}\sum_{j=1}^{N+2} \frac{1}{2^j} = \delta.
 	\end{equation*}
 	It only remains to let $N \to \infty$ and realize
 	\[
@@ -455,10 +472,15 @@ For every $j \in \N$ define an open set
 	The proofs differs in the cases $j = 0$ and $j \in \qty{1, \dots, m}.$
 
 	\textit{Case $j=0$}.
-	We have $ \supp u \varphi_0 \subset \subset U_0 = \Omega.$ That means that after the extension of $u \varphi_0$ by zero outside of $\Omega$, it holds $u \varphi_0 \in \WkpSet{\R^d}.$ Since $\WkpSet{\R^d} = \WkpzeroSet{\R^d} = \overline{\DSet{\R^{d}}}^{\norm{\vdot}_{\WkpSet{\R^{d}}}},$ we can find $v_0 \in \DSet{\R^{d}} \, \text{\textit{s.t.}} \,$
+	We have $ \supp u \varphi_0 \subset \subset U_0 = \Omega.$ That means that after the extension of $u \varphi_0$ by zero outside of $\Omega$, it holds\footnote{This would not hold if the support were not compactly contained in $\Omega$.} $u \varphi_0 \in \WkpSet{\R^d}.$ Since $\WkpSet{\R^d} = \WkpzeroSet{\R^d} = \overline{\DSet{\R^{d}}}^{\norm{\vdot}_{\WkpSet{\R^{d}}}},$ we can find $v_0 \in \DSet{\R^{d}} \, \text{\textit{s.t.}} \,$
 	\[
-		\norm{v_0 - u \varphi_0}_{\WkpSet{\Omega}} < \frac{\varepsilon}{m+1}.
+	\norm{v_0 -u_0}_{\WkpSet{\R^{d}}} = \norm{v_0 - u \varphi_0}_{\WkpSet{\Omega}} < \frac{\varepsilon}{m+1}.
 	\]
+	Notice that naturally
+	\[
+		\DSet{\R^{d}} \subset \, \text{C} \,^{\infty}_{\overline{\Omega}}\qty(\R^{d}),
+	\]
+	and so $v_0 \in \, \text{C} \,^{\infty}_{\overline{\Omega}}\qty(\R^{d}).$
 
 \begin{figure}
   \begin{center}
@@ -471,7 +493,7 @@ For every $j \in \N$ define an open set
 	\textit{Case $j \in \{1,\dots,m\} $}.
 	We have a problem now: $\qty{U_j}_{j=1}^m$ covers $\partial \Omega,$ which is a \textit{closed} set and we cannot simply use local approximation theorem. One could imagine if we were to mollify in the neighbourhood of $\partial \Omega,$ the kernel would pick up values from outside of $\Omega,$ where $u=0$ and the mollification would not be a good approximation. Instead, we approximate $u_j$ on a larger \textit{open} domain containing $\overline{\Omega}$ and then show this is also a good aproximation of $u_j$ on $\Omega \subset \overline{\Omega}.$
 
-	Set $w_j = u \varphi_j,$ and denote
+	Set $u_j = u \varphi_j,$ and denote
 	\begin{align*}
 		S_j &=\tensorq{A}_j\qty(\qty{(x',x_d) | a_j(x') - \frac{\beta}{2}  < x_d < a_j(x') , x' \in \text{U}(0,\alpha)}), \\
 	\Omega_j &= \R^{d} / \overline{S_j},
@@ -496,9 +518,9 @@ The trick is to shift the (support of) function $u_j$ "into" $\Omega_{j}^\delta$
 	\]
 	Realize that in fact
 	\[
-		\supp\qty(\tau_{\delta}u_j) = \supp\qty(u_j) - \delta,
+		\supp\qty(\tau_{\delta}u_j) = \supp\qty(u_j) - \text{B}(0,\delta),
 	\]
-	from which it follows $\tau_{\delta}u_j \in \WkpSet{\Omega_j^{\delta}};$ we have only shifted the function $u_j$, but since we have also shifted $S_j$, qualitatively there is no difference. Since $ \Omega \subset \Omega_j^\delta \subset \Omega_j^{\delta} \cap \Omega_j, \Omega \subset \Omega_j \subset \Omega_j^{\delta} \cap \Omega_j,$ and the fact $\tau_{\delta}$ is an isometry between Sobolev spaces, we also have $u_j, \tau_{\delta}u_j \in \WkpSet{\Omega_{j} \cap \Omega_j^{\delta}}.$ Moreover, from the properties of the shift operator it follows $\exists \delta >0$ \textit{s.t.}
+	from which it follows $\tau_{\delta}u_j \in \WkpSet{\Omega_j^{\delta}};$ we have only shifted the function $u_j$, but since we have also shifted $S_j$, qualitatively there is no difference. Since $\Omega \subset \Omega_j^\delta$ and $\Omega \subset \Omega_j^{\delta} \cap \Omega_j,$ and also $ \Omega \subset \Omega_j,$ $\Omega \subset \Omega_j^{\delta} \cap \Omega_j,$ and the fact $\tau_{\delta}$ is an isometry between Sobolev spaces, we also have $u_j, \tau_{\delta}u_j \in \WkpSet{\Omega_{j} \cap \Omega_j^{\delta}}.$ Moreover, from the properties of the shift operator it follows $\exists \delta >0$ \textit{s.t.}
 	\[
 		\norm{u_j - \tau_{\delta}u_j}_{\WkpSet{\Omega}}\leq \norm{u_j - \tau_{\delta}u_j}_{\WkpSet{\Omega_j \cap \Omega_j^{\delta}}} < \frac{\varepsilon}{2\qty(m+1)}.
 	\]
@@ -529,14 +551,15 @@ which is equivalent to
 Our choice has been $\delta \in \qty(0, \frac{\beta}{2}),$ and $\beta > 0$ from the definition of $\Omega \in \Ckl{0}{0},$ so the second statement is clearly true $\forall j \in {1, \dots, m}$. Consequently $\partial \Omega \not \subset \overline{S}_j$ which leads to $\partial \Omega \subset \Omega_j^{\delta},$ and since also $\Omega \subset \Omega_j^{\delta},$ we have $\overline{\Omega} \subset \Omega_j^{\delta}.$
 
 \textit{Approximation of $\tau_{\delta}u_j$.}
-Since $\Omega_{j}^\delta$ is open there $\exists w_j \in \CinfSet{\Omega_j^{\delta}}$ such that
+Since $\Omega_{j}^\delta$ is open, by the local approximation theorem there $\exists v_j \in \CinfSet{\R^{d}}$ such that for any $U \subset \subset \Omega_j^{\delta}$:
 \[
-	\norm{\tau_{\delta}u_j - w_j}_{\WkpSet{\Omega}} \leq \norm{\tau_{\delta}u_j - w_j}_{\WkpSet{\Omega_{j}^\delta}} < \frac{\varepsilon}{4(m+1)}.
+	\norm{\tau_{\delta}u_j - v_j}_{\WkpSet[k][p]{U}} \frac{\varepsilon}{2\qty(m+1)},
 \]
-What is more, since $\overline{\Omega} \subset \Omega_j^{\delta},$ we see $w_j \in \CinfSet{\overline{\Omega}}$ in fact. What is even more, we see $\supp w_j \subset \supp u_j - \delta$ so $\supp \tau_{-\delta} w_j \subset \supp u_j \subset \subset \Omega,$ and since $w_j$ is defined on the whole $\R^{d},$ also $v_j \coloneq \tau_{-\delta}w_j$ is defined on the whole $\R^{d}.$ Alltogether, $v_j = \tau_{-\delta}w_j \in \DSet{\R^{d}},$ and from the properties of the shift operator, there $\exists \delta >0$ \textit{s.t.}
+and so in particular, (as we have shown above $\Omega \subset \overline{\Omega} \subset \Omega_{j}^\delta,$)
 \[
-	\norm{v_j - w_j}_{\WkpSet{\Omega}} < \frac{\varepsilon}{4\qty(m+1)}.
+	\norm{\tau_{\delta}u_j - v_j}_{\WkpSet{\Omega}}  < \frac{\varepsilon}{2(m+1)}.
 \]
+Realize that the function $v_j$ is smooth on all $\R^{d},$ so in particular $v_j \in \, \text{C} \,_{\overline{\Omega}}^{\infty}\qty(\R^{d}).$
 
 
 \textit{Approximation of $u$.}
@@ -545,16 +568,12 @@ Finally, let us set
 \[
 	v = \sum_{j=0}^m v_j.
 \]
-Then $v \in \DSet{\R^{d}}$ and it holds
+Then $v \in \, \text{C} \,^{\infty}_{\overline{\Omega}}\qty(\R^{d})$ and it holds
 \begin{align*}
 	\norm{u-v}_{\WkpSet{\Omega}} &= \norm{\sum_{j=0}^m u_j- \sum_{j=0}^m v_j}_{\WkpSet{\Omega}} = \norm{\sum_{j=0}^m u_j - v_j}_{\WkpSet{\Omega}} \leq \sum_{j=0}^m \norm{u_j - v_j}_{\WkpSet{\Omega}} \leq \\
-	& \leq \frac{\varepsilon}{m+1} + \sum_{j=1}^m \norm{v_j-u_j}_{\WkpSet{\Omega}} \leq \frac{\varepsilon}{m+1} + \sum_{j=1}^m \norm{v_j - w_j}_{\WkpSet{\Omega}} + \sum_{j=1}^m \norm{w_j - \tau_{\delta}u_j}_{\WkpSet{\Omega}} + \sum_{j=1}^m \norm{\tau_{\delta}u_j - u_j}_{\WkpSet{\Omega}}\\
-	&< \frac{\varepsilon}{m+1} +  2\sum_{j=1}^m \frac{\varepsilon}{4\qty(m+1)} + \sum_{j=1}^m \frac{\varepsilon}{2\qty(m+1)} = \varepsilon
+	& \leq \frac{\varepsilon}{m+1} + \sum_{j=1}^m \norm{v_j-u_j}_{\WkpSet{\Omega}} \leq \frac{\varepsilon}{m+1} + \sum_{j=1}^m \norm{v_j - \tau_{\delta}u_j}_{\WkpSet{\Omega}} + \sum_{j=1}^m \norm{\tau_{\delta}u_j - u_j}_{\WkpSet{\Omega}} < \\
+	&< \frac{\varepsilon}{m+1} +  2\sum_{j=1}^m \frac{\varepsilon}{2\qty(m+1)}  = \varepsilon
 \end{align*}
-Finally,
-\[
-	\DSet{\R^{d}} \subset \, \text{C} \,^{\infty}_{\overline{\Omega}}\qty(\R^{d}) \subset \CinfSet{\overline{\Omega}}.
-\]
 
 \textit{This proof may still have some flaws, but the author has decided to move on.}
 \end{proof}	
@@ -1126,7 +1145,7 @@ This can be generalized in two ways:
 		\item show $\WkpSet[1][p]{\Omega} \hookrightarrow \hookrightarrow \LpSet[q]{\Omega}.$
 	\end{enumerate}
 
-	Since the supports of the functions from $EU$ are uniformly bounded\footnote{From the properties of extension, we know $ \forall u \in \WkpSet[1][p]{\Omega}:\supp Eu \subset V$ with $V$ open \textit{s.t.} $\Omega \subset \subset V.$}, we know \footnote{Properties of mollification include $\supp (Eu)_{\delta} \subset \overline{\delta + \supp Eu}.$} $\exists R>0$ \textit{s.t.}
+	Since the supports of the functions from $EU$ are uniformly bounded\footnote{From the properties of extension, we know $ \forall u \in \WkpSet[1][p]{\Omega}:\supp Eu \subset V$ with $V$ open \textit{s.t.} $\Omega \subset \subset V.$}, we know \footnote{Properties of mollification include $\supp (Eu)_{\delta} \subset \text{B}(0,\delta) + \supp Eu.$} $\exists R>0$ \textit{s.t.}
 	\[
 		\forall v \in \qty(EU)_{\delta}: \supp v \subsetneq \text{B}(0,R) \subset \R^d.
 	\]
@@ -2425,7 +2444,7 @@ and if $f \in \LpSet[2]{\Omega},$ then $f-g\qty(u_0) \in \LpSet[2]{\Omega}$ and 
 \begin{theorem}[Uniqueness]
 	Let $u_1, u_2 \in \WkpzeroSet[1][2]{\Omega}$ be weak solutions to the above problem. Let $f \in \qty(\WkpzeroSet[1][2]{\Omega})^{*}$ and let $g$ be continuous. Let either extra 
 	\begin{enumerate}
-		\item $g$ is nondecreasing
+		\item $g$ is nondecreasing, or
 		\item $g \in C^1\qty(\R), \norm{g'}_{\LinfSet{\R}}$ small.
 	\end{enumerate}
 	Then $u_1 = u_2$.
@@ -2549,17 +2568,99 @@ Subtract the equations for $u_1, u_2$ and test the weak formulation with $u_1 - 
 			\item $\qty(b\qty(\grad w) \mapsto f - b\qty(\grad w)) \in \mathcal{C}\qty(\LpSet[2]{\Omega}; \qty(\WkpzeroSet[1][2]{\Omega})^{*})$,
 			\item $\qty(f - b\qty(\grad w) \mapsto u) \in \mathcal{C}\qty(\qty(\WkpzeroSet[1][2]{\Omega})^{*}; \WkpzeroSet[1][2]{\Omega})$,
 		\end{itemize}
-		and so $S$ as a composition of those mappings is continuous from $\WkpzeroSet[1][2]{\Omega}$ to $\WkpzeroSet[1][2]{\Omega}.$ It remains to show $S$ is compact: we already have continuity, consider $\{w_k\}_{k \in \N} \subset \WkpzeroSet[1][2]{\Omega}$ bounded. Then $\exists \{u_k\} \subset \WkpzeroSet[1][2]{\Omega}$ bounded: $u_k \to u$ in $\LpSet[1]{\Omega}$ by embedding up to a subsequence. Next, uss the following trick: substitue equation for $u_k$ from equation for $u_l$ and test with $u_l - u_k$
+		and so $S$ as a composition of those mappings is continuous from $\WkpzeroSet[1][2]{\Omega}$ to $\WkpzeroSet[1][2]{\Omega}.$ It remains to show $S$ is compact: we already have continuity, consider now $\{w_k\}_{k \in \N} \subset \WkpzeroSet[1][2]{\Omega}$ bounded. Then, by the compact embedding $\WkpzeroSet[1][2]{\Omega} \hookrightarrow \hookrightarrow \LpSet[1]{\Omega},$ there $\exists \{u_k\} \subset \qty{w_k} \subset \WkpzeroSet[1][2]{\Omega}$ (also bounded) \textit{s.t.} $u_k \to u$ in $\LpSet[1]{\Omega}$. To conclude, use the following trick (as when showing uniqueness to the previous problem): subtract equation for $u_k$ from equation for $u_l$ and test with $u_l - u_k$
+		\begin{align*}
+			\int_{\Omega}\grad u_l \vdot \grad\qty(u_l - u_k)\dd{x} &+ \int_{\Omega}b\qty(\grad u_l)\qty(u_l - u_k)\dd{x} - <f, u_l -u_k> \\
+										&-\qty(\int_{\Omega}\grad u_k \vdot \grad\qty(u_l - u_k)\dd{x}+ \int_{\Omega}b\qty(\grad u_k)\qty(u_l - u_k)\dd{x} - <f, u_l - u_k),
+		\end{align*}
+		meaning
 		\[
-			C \norm{u_l - u_k}_{\WkpzeroSet[1][2]{\Omega}}^{2} \leq	\norm{\grad\qty(u_l - u_k)}_{\LpSet[2]{\Omega}}^{2} \leq \int_{\Omega}|b(\grad u_l) - b\qty(\grad u_k)| |u_l - u_k|\dd{x} \leq 2 \norm{b}_{\LinfSet{\Omega}}\norm{u_l-u_k}_{\LpSet[1]{\Omega}}.
+			C \norm{u_l - u_k}_{\WkpzeroSet[1][2]{\Omega}}^{2} \leq	\norm{\grad\qty(u_l - u_k)}_{\LpSet[2]{\Omega}}^{2} \leq \int_{\Omega}|b(\grad u_l) - b\qty(\grad u_k)| |u_l - u_k|\dd{x} \leq 2 \norm{b}_{\LinfSet{\Omega}}\norm{u_l-u_k}_{\LpSet[1]{\Omega}},
 		\]
-		All in all, $S$ has a fixed point by Schauder, which is of course the weak solution.
+		so 
+		\[
+			\norm{u_l-u_k}_{\WkpzeroSet[1][2]{\Omega}}^{2} \leq C\norm{u_l-u_k}_{\LpSet[q]{\Omega}}.
+		\]
+	And we are finished - the sequence $\qty{u_n}$ converges in $\LpSet[1]{\Omega},$ so is Cauchy in $\LpSet[1]{\Omega},$ and the above inequality proves that also $\qty{u_n}$ is Cauchy in a complete space $\WkpzeroSet[1][2]{\Omega},$ meaning $\qty{u_n}$ converges in $\WkpzeroSet[1][2]{\Omega}.$ All in all, $\qty{u_n} \subset \WkpzeroSet[1][2]{\Omega}$ is a convergent subsequence of a bounded sequence $\qty{w_k} \subset \WkpzeroSet[1][2]{\Omega},$ meaning $S$ is compact on $\text{B}_{\WkpzeroSet[1][2]{\Omega}}(0,R)$ into $\text{B}_{\WkpzeroSet[1][2]{\Omega}}(0,R)$ and so must possess a fixed point by the Schauder fixed point theorem.
 	\end{proof}
-	But this says $\{u_k\}$ is Cauchy in $\WkpzeroSet[1][2]{\Omega}.$
 \end{example}
 
 \section{Nonlinear elliptic equations - monotone operator theory}
 \label{sec:monotone_operator}
+
+The method of compact perturbations allowed us to solve some nonlinear problems. This relied on the fact that nonlinearities were present mainly in the nonleading terms and so we were able to use our theory we developed for linear equations (continuity of the solution operators, regularity results, etc.) In this chapter we examine a different approach that will allow us to solve a particular class of problems even with nonlinearities in the leading term.
+
+Consider the following problem:
+\begin{align*}
+	- \sum_{i=1}^d \partial_{i}\qty(a_i\qty(x,u(x),\grad u(x))) + a_0\qty(x,u(x),\grad u(x)) &= f(x), \, \text{in} \, \Omega \\
+	u &= u_0,  \, \text{on} \, \partial \Omega,
+\end{align*}
+or written more concisely
+
+\begin{align*}
+	- \divergence{\qty(\vb{a}\qty(x, u(x), \grad u(x)))} - a_0\qty(x, u(x), \grad u(x)) &= f(x), \, \text{in} \, \Omega, \\
+	u &= u_0, \, \text{on} \, \Omega,
+\end{align*}
+where $\vb{a}: \Omega \times \R \times \R^{d} \to \R^d,$
+\[
+	\vb{a}\qty(x, u(x), \grad u(x)) = \qty(a_1\qty(x, u(x), \grad u(x)), \dots, a_d\qty(x, u(x), \grad u(x)))),
+\]
+is some \textit{nonlinear} vector function. The data of the problem are
+
+\begin{itemize}
+	\item $\Omega \in C^{0,1},$
+	\item $a_i: \Omega \times \R \cross \R^d \to \R, i \in \qty{0,\dots,d}$ are Caratheodory in $x \in \Omega$ and $\qty(z, \vb{p}) \in \R \times \R^d$,
+		\item \textit{growth condition}: $\exists C>0, r \in (1,\infty), h \in \LpSet[r']{\Omega}: \forall i \in \qty{0, \dots, d}, \forall  \, \text{\textit{a.a.}} \, x\in \Omega, \forall z \in \R, \forall p \in \R^d:$
+			\[
+				\abs{a_i\qty(x,z,\vb{p})} \leq C\qty(\abs{z}^{r-1}+\abs{\vb{p}}^{r-1})+h(x),
+			\]
+		\item $f \in \qty(\WkpzeroSet[1][r]{\Omega})^{*},$
+\end{itemize}
+and the unknown is $u: \Omega \to \R.$
+\begin{remark}
+	The Nemytskii operator\footnote{Again meaning $N_{a_i}(u,\vb{p})(x) = a_i\qty(x, u(x), \vb{p}(x)).$} $(u,\vb{p}) \mapsto a_i\qty(\cdot, u, \vb{p})$ is continuous from $\qty(\LpSet[r]{\Omega})^{d+1}$ to $\LpSet[r']{\Omega}.$ by Nemystkii theorem. Truly, generally, the estimate
+	\[
+		\abs{f(x,\vb{y})} \leq g(x) + C \sum_{j=1}^d \abs{y_i}^{\frac{p_i}{p}}, g \in \LpSet{\Omega},
+	\]
+	guarantess continuity from $\LpSet[p_1]{\Omega} \times \dots \times \LpSet[p_d]{\Omega}$ to $\LpSet{\Omega}.$ So in our case, the target space is $\LpSet[r']{\Omega},$ since $h \in \LpSet[r']{\Omega},$ and the exponent from the origin space can be found by
+	\[
+		"p_i = \frac{p_i}{p} p,"
+	\]
+	\textit{i.e.}, taking the exponents we in fact have the estimates for and multiplying them by the target space exponent. In our case $p_i = \qty(r-1)r' = r-1 \frac{r}{r-1} = r.$ 
+\end{remark}
+
+
+\begin{definition}[Coercivity]
+	We say that $\qty{a_i}_{i=0}^d = \vb{a}$ is coercive if $\exists C_1 > 0, \exists C_2(x) \in \LpSet[1]{\Omega}: \forall \, \text{\textit{a.e.}} \, x \in \Omega, \forall (z,p) \in \R^{d+1}:$
+	\[
+		\sum_{i=1}^d a_i\qty(x,z,\vb{p})p_i + a_0\qty(x,z,\vb{p}) \geq C_1 |\vb{p}|^r-C_2(x), 
+	\]
+	\textit{i.e.},
+	\[
+		\vb{a}\qty(x,z,\vb{p}) \vdot \vb{p} + a_0\qty(x,z,\vb{p}) \geq C_1 |\vb{p}|^r - C_2(x)
+	\]
+\end{definition}
+
+\begin{definition}[Monotonicity]
+	We say that $\qty{a_i}_{i=0}^d = \vb{a}$ is monotone if $\forall \, \text{\textit{a.a.}} \, x \in \Omega, \forall \qty(z_1, \vb{p}_1), \qty(z_2, \vb{p}_2) \in \R^{d+1}:$
+	\[
+		\qty(\vb{a}\qty(x,z_1,\vb{p}_1)-\vb{a}\qty(x,z_2,\vb{p}_2))\vdot (\vb{p}_1 - \vb{p}_2) + (a_0\qty(x,z_1,\vb{p}_1)-a_0\qty(x,z_2,\vb{p}_2))(z_1 - z_2) \geq 0.
+	\]
+	Very similiarly we define strict monotonicity.
+\end{definition}
+
+\begin{definition}[Weak solution]
+	We say that $u \in \WkpSet[1][r]{\Omega}$ is a weak solution to the above problem provided
+	\[
+		\trace u = \trace u_0 \, \text{on} \, \partial \Omega
+	\]
+	and 
+	\[
+		\int_{\Omega}\vb{a}\qty(\vdot, u, \grad u)\vdot \grad \varphi +a_0\qty(\vdot, u, \grad u) \varphi \dd{x} = <f,\varphi>, \forall \varphi \in \WkpzeroSet[1][r]{\Omega}.
+	\]
+\end{definition}
+
+Now comes the proof of existence and uniqueness -- let us prepare for that with a useful lemma.
 
 \begin{lemma}
 	Let $g: \text{B}(0,R) \subset \R^n \to \R^N$ be continuous, $N \in \N, R>0,$ and $\forall c \in \text{S}(0,R): g(c) \vdot c \geq 0.$ Then, there is $c_0 \in \text{B}(0,R): g(c_0) = 0.$
@@ -2576,51 +2677,6 @@ Subtract the equations for $u_1, u_2$ and test the weak formulation with $u_1 - 
 	\end{proof}
 \end{lemma}
 
-Consider the following problem:
-\[
-	\begin{cases} 
-		- \sum_{i=1}^d \partial_{i}\qty(a_i\qty(x,u(x),\grad u(x)) + a_0\qty(x,u(x),\grad u(x))) = f(x) & \, \text{in} \, \Omega \\
-		u = u_0 & \, \text{on} \, \partial \Omega 
-	\end{cases}
-\]
-The date are
-\begin{itemize}
-	\item $\Omega \in C^{0,1},$
-	\item $a_i: \Omega \times \R \cross \R^d \to \R, i \in \{1,\dots,d\}$ are Caratheodory in $x$ and $(u,\grad u)$.
-		%\item \textit{growth condition}: $\exists C>0, r \in (1,\infty), h \in \LpSet[r']{\Omega}: \forall i \in \{0, \dots, d\}, \, \text{for almost all } \,x \in \Omega, \forall z \in \R, \forall p \in \R^d:|a_i\qty(x,z,p)| \leq C\qty(|z|^{r-1}+|p|^{r-1})+h(x),$
-	\item $f \in \qty(\WkpzeroSet[1][r]{\Omega})^{*},$
-\end{itemize}
-and the unknown is $u: \Omega \to \R.$
-\begin{remark}
-	The function $(u,p) \mapsto a_i\qty(\cdot, u, p)$ is continuous from $\qty(\LpSet[r]{\Omega})^{d+1}$ to $\LpSet[r']{\Omega}.$ by Nemystkii theorem.
-\end{remark}
-
-
-\begin{definition}[Coercivity]
-	We say that $\{a_i\}_{i=0}^d$ are coercive if $\exists C_1 > 0, C_2 \in \LpSet[1]{\Omega}: \, \text{a.e.} \, x \in \Omega, \forall (z,p) \in \R^{d+1}:$
-	\[
-		\sum_{i=1}^d a_i\qty(x,z,p)p_i + a_0\qty(x,z,p) \geq C_1 |p|^r-C_2(x), \, \text{i.e.} \, a\qty(x,z,p) \vdot p \geq C_1 |p|^r - C_2(x)
-	\]
-\end{definition}
-
-\begin{definition}[Monotonicity]
-	We say that $\{a_i\}_{i=0}^d = a$ is monotone if for almost all
-	\[
-		x \in \Omega, \forall (z_1,p_1), (z_2,p_2) \in \R^{d+1}: \qty(a\qty(x,z_1,p_1)-a\qty(x,z_2,p_2))\vdot (p_1 - p_2) + (a_0\qty(x,z_1,p_1)-a_0\qty(x,z_2,p_2))\vdot (z_1 - z_2) \geq 0.
-	\]
-	Very similiarly we define strict monotonicity.
-\end{definition}
-
-\begin{definition}[Weak solution]
-	We say that $u \in \WkpSet[1][r]{\Omega}$ is a weak solution to the above problem if
-	\begin{itemize}
-		\item $u = u_0$ in the sense of traces on $\partial \Omega$,
-		\item
-			\[
-				\int_{\Omega}a\qty(\vdot, u, \grad u)\vdot \grad \varphi +a_0\qty(\vdot, u, \grad u) \varphi \dd{x} = <f,\varphi>, \forall \varphi \in \WkpzeroSet[1][r]{\Omega}.
-			\]
-	\end{itemize}
-\end{definition}
 
 \begin{theorem}[Existence and uniqueness]
 	Let $\Omega \in C^{0,1}, u_0 \in \WkpSet[1][r]{\Omega}, r \in (1,\infty), \{a_i\}_{i=1}^d \, \text{be Caratheodory, coercive and monotone } \,$ and let them also satisfy the growth conditions. Finally, let $f \in \qty(\WkpSet[1][r]{\Omega})^{*}$. Then, there is a weak solution to the problem.
@@ -2961,6 +3017,13 @@ Hold on, we are interested in PDE's. Why should we care about calculus of variat
 			\]
 	\end{itemize}
 \end{remark}
+
+\section{Evolutionary equations}
+\label{sec:evolutionray_eqs}
+
+\subsection{Embedding theorems for Sobolev-Bochner spaces}
+\label{sec:Sobolev-Bochner}
+
 \begin{lemma}[Arzela-Ascoli]
 	Let $X,Y$ be Banach spaces, $X \subset \subset Y.$ Then
 	\[
@@ -3084,6 +3147,9 @@ Hold on, we are interested in PDE's. Why should we care about calculus of variat
 \begin{remark}
 	The pair $\qty(\mathcal{U}, |||\vdot|||)$ is a Banach space.
 \end{remark}
+
+\subsection{Nonlinear parabolic equations}
+\label{sec:nonlinear_parabolic}
 
 We will be dealing with the following problem:
 \[

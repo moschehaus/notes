@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1749249805.48077 "notes_pdrII.tex" "notes_pdrII.pdf" "notes_pdrII" 1749249812.7924 0
+["pdflatex"] 1749335574.93707 "notes_pdrII.tex" "notes_pdrII.pdf" "notes_pdrII" 1749335582.50211 0
   "/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1742685315 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "/usr/share/texmf-dist/fonts/enc/dvips/mnsymbol/MnSymbolA.enc" 1742685315 3341 78e600b269762aa2a25a5293cc4535c0 ""
   "/usr/share/texmf-dist/fonts/enc/dvips/mnsymbol/MnSymbolC.enc" 1742685315 3275 8d7166dfdbc31ffdc8aba0c31b3bd5c8 ""
@@ -117,6 +117,7 @@
   "/usr/share/texmf-dist/fonts/tfm/public/mnsymbol/MnSymbolS8.tfm" 1742685315 800 b927c2f006b863009b10bac831a571ed ""
   "/usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb" 1742685315 34811 78b52f49e893bcba91bd7581cdc144c0 ""
   "/usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb" 1742685315 32080 340ef9bf63678554ee606688e7b5339d ""
+  "/usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb" 1742685315 32166 b0c356b15f19587482a9217ce1d8fa67 ""
   "/usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb" 1742685315 36554 b67dc2cfa451409e100b3fcf5f506509 ""
   "/usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb" 1742685315 36299 5f9df58c2139e7edcf37c8fca4bd384d ""
   "/usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb" 1742685315 37912 77d683123f92148345f3fc36a38d9ab1 ""
@@ -233,10 +234,10 @@
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1743673972 2008231 401c56e7e2db0204dd1ee943df81c91a ""
   "figures/mollification.pdf" 1748613209.88633 112764 dd687206a932311c0a66dc0fcb4de640 ""
   "macros.tex" 1749083398.79114 30608 3e9554cf31cd6fbc6796741fd4f4bd19 ""
-  "notes_pdrII.aux" 1749249810.58415 6309 d48b7c5b326b0d9c9f9716b525ceb252 "pdflatex"
-  "notes_pdrII.out" 1749249810.58615 4791 1b0fc062fefb660f9b0e2fd109497325 "pdflatex"
-  "notes_pdrII.tex" 1749249804.67915 209828 ca3de389bb01e4a01a2897239df66ba7 ""
-  "notes_pdrII.toc" 1749249810.58715 2389 f732d8e138fae599ad9b868612242125 "pdflatex"
+  "notes_pdrII.aux" 1749335580.44644 6999 29cc158bf8b71e0bdd9521a9dc3079e4 "pdflatex"
+  "notes_pdrII.out" 1749335580.44844 5452 0c8b7667bfd6a3f92255577c077d8f2f "pdflatex"
+  "notes_pdrII.tex" 1749335574.89944 213972 b0350815f289b14182d845f7f4c11f3a ""
+  "notes_pdrII.toc" 1749335580.44944 2676 c5bc211a5fb6bfebbdacf7c598876d91 "pdflatex"
   (generated)
   "notes_pdrII.aux"
   "notes_pdrII.log"
