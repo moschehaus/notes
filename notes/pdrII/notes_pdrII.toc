@@ -13,18 +13,18 @@
 \contentsline {subsection}{\numberline {2.5}Trace theorems}{34}{subsection.2.5}%
 \contentsline {subsection}{\numberline {2.6}Fine properties of Sobolev spaces}{40}{subsection.2.6}%
 \contentsline {subsubsection}{\numberline {2.6.1}Composition of Sobolev functions}{40}{subsubsection.2.6.1}%
-\contentsline {subsubsection}{\numberline {2.6.2}Difference quotients}{42}{subsubsection.2.6.2}%
+\contentsline {subsubsection}{\numberline {2.6.2}Difference quotients}{43}{subsubsection.2.6.2}%
 \contentsline {subsubsection}{\numberline {2.6.3}Representation of duals}{45}{subsubsection.2.6.3}%
 \contentsline {section}{\numberline {3}Nonlinear elliptic equations - compactness methods}{45}{section.3}%
-\contentsline {subsection}{\numberline {3.1}Nemytskii operators}{45}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.1}Nemytskii operators}{46}{subsection.3.1}%
 \contentsline {subsection}{\numberline {3.2}Fixed point theorems}{47}{subsection.3.2}%
 \contentsline {subsection}{\numberline {3.3}Problem protypes}{48}{subsection.3.3}%
-\contentsline {section}{\numberline {4}Nonlinear elliptic equations - monotone operator theory}{54}{section.4}%
-\contentsline {section}{\numberline {5}Calculus of variations}{59}{section.5}%
-\contentsline {section}{\numberline {6}Evolutionary equations}{63}{section.6}%
-\contentsline {subsection}{\numberline {6.1}Embedding theorems for Sobolev-Bochner spaces}{63}{subsection.6.1}%
-\contentsline {subsection}{\numberline {6.2}Nonlinear parabolic equations}{65}{subsection.6.2}%
-\contentsline {section}{\numberline {7}Semigroup theory}{67}{section.7}%
-\contentsline {section}{\numberline {8}(Some) exercises}{74}{section.8}%
-\contentsline {subsection}{\numberline {8.1}4.3.2025}{74}{subsection.8.1}%
-\contentsline {subsection}{\numberline {8.2}8.4.2025}{74}{subsection.8.2}%
+\contentsline {section}{\numberline {4}Nonlinear elliptic equations - monotone operator theory}{55}{section.4}%
+\contentsline {section}{\numberline {5}Calculus of variations}{63}{section.5}%
+\contentsline {section}{\numberline {6}Evolutionary equations}{66}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Embedding theorems for Sobolev-Bochner spaces}{66}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}Nonlinear parabolic equations}{69}{subsection.6.2}%
+\contentsline {section}{\numberline {7}Semigroup theory}{71}{section.7}%
+\contentsline {section}{\numberline {8}(Some) exercises}{78}{section.8}%
+\contentsline {subsection}{\numberline {8.1}4.3.2025}{78}{subsection.8.1}%
+\contentsline {subsection}{\numberline {8.2}8.4.2025}{78}{subsection.8.2}%
