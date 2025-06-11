@@ -31,7 +31,7 @@
 \DeclareMathOperator{\residue}{res}
 \DeclareMathOperator{\ad}{ad} % adjoint ad_X (Y) = [X,Y]  
 \DeclareMathOperator{\dist}{dist} % distance in a metric space
-
+\DeclareMathOperator*{\esssup}{ess\,sup}
 % Load xparse (if not already loaded)
 \usepackage{xparse}
 
@@ -94,6 +94,24 @@
 
 \newcommand{\NormLinfIntX}[4]{%
 	\ensuremath{\norm{#1}_{\text{L}_{\infty}\!\,\left( (#2,#3);#4 \right)}}%
+}
+
+% Sobolev -Bochner spaces
+\newcommand{\WpIntX}[4]{%
+	\ensuremath{\text{W}^{1,\text{#1}}\!\,\Bigl( (#2,#3);#4 \Bigr)}%
+}
+
+\newcommand{\WinfIntX}[3]{%
+	\ensuremath{\text{W}^{1,\infty}\!\,\Bigl( (#1,#2);#3 \Bigr)}%
+}
+
+% Norms on Sobolev- Bochner spaces
+\newcommand{\NormWpIntX}[5]{%
+	\ensuremath{\norm{#1}_{\text{W}^{1,\text{#2}}\!\,\left( (#3,#4);#5 \right)}}%
+}
+
+\newcommand{\NormWinfIntX}[4]{%
+	\ensuremath{\norm{#1}_{\text{W}^{1,\infty}\!\,\left( (#2,#3);#4 \right)}}%
 }
 
 

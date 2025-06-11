@@ -2104,9 +2104,9 @@ Let us jump straight to the main result.
 	\[
 		v_n^i = \Delta_{h_n}^i u \chi_{\Omega_{2 h_n}}.
 	\]
-	Clearly
+	Clearly (meaning from the assumptions)
 	\[
-		\norm{v_n}^i_{\LpSet{\Omega}} = \norm{\Delta^i_{{h_n}} u}_{\LpSet{\Omega_{2 h_n}}} \leq \norm{\Delta^i_{{h_n}} u}_{\LpSet{\Omega_{\delta}}} \leq C_i,
+		\norm{v_n}^i_{\LpSet{\Omega}} = \norm{\Delta^i_{{h_n}} u}_{\LpSet{\Omega_{2 h_n}}}  \leq C_i,
 	\]
 	and from the reflexivity of $\LpSet{\Omega}, p \in \qty(1, \infty),$ we know $\exists v_i \in \LpSet{\Omega}$ such that
 	\[
@@ -2134,7 +2134,7 @@ Let us jump straight to the main result.
 					       &= \lim_{n\to \infty}\int_{\R^{d}}u \Delta_{-h_n}^i \varphi \dd{x} = \lim_{n \to \infty}\int_{\R^{d}}u \frac{\varphi(x- h_n e_i) - \varphi(x)}{h_n}u(x)\dd{x} =  -\int_{\R^{d}}u \partial_{i}\varphi\dd{x} = \\
 					       &=- \int_{\Omega}u \partial_{i} \varphi \dd{x}
 	\end{align*}
-which really means $v_i = \partial_{i} u$ in the weak sense. The fact we can integrate over $\R^{d}$ instead of $\Omega_{2h_n}$ comes from the fact $\supp \varphi \subset \Omega_{2h_n}$ for some $n$ large enough, and since the whole integrand is zero on any larger set then $\Omega_{2h_n},$ meaning we without a doubt expand the integration domain to the whole space. All in all, we have shown $v_i = \partial_{i} u$ weakly and $\norm{v_i}_{\LpSet{\Omega}} \leq C_i,$ so we are done with the case $p \in (1, \infty).$
+which really means $v_i = \partial_{i} u$ in the weak sense. The fact we can integrate over $\R^{d}$ instead of $\Omega_{2h_n}$ comes from the fact $\supp \varphi \subset \Omega_{2h_n}$ for some $n$ large enough, and since the whole integrand is zero on any larger set then $\Omega_{2h_n},$ meaning we without a doubt expand the integration domain to the whole space; the interchange of differentiation and integration is simple, because $\varphi$ has a compact support. All in all, we have shown $v_i = \partial_{i} u$ weakly and $\norm{v_i}_{\LpSet{\Omega}} \leq C_i,$ so we are done with the case $p \in (1, \infty).$
 
 If $p = \infty,$ we can repeat the same arguments as in the above case: create a bounded domain $\Omega_R = \Omega \cap \text{U}(0,R),$ realize that
 \[
@@ -2152,6 +2152,69 @@ and then pass to the limits $R \to \infty, p \to \infty.$
 
 \subsubsection{Representation of duals}
 \label{sec:dual_representation}
+
+The last stop within our adventure through Sobolev spaces will be the dual. We present a representation theorem for dual spaces of certain Sobolev spaces. The proof will use techniques developed later, in the chapter \ref{sec:monotone_operator}.
+
+\begin{theorem}
+	Let $\Omega \in C^{0,1}.$ Let $X = \WkpzeroSet[1][r]{\Omega}, r \in \qty(1,\infty)$ with equivalent norm $|\norm{u}| = \norm{\grad u}_{\WkpzeroSet[1][r]{\Omega}}.$ Then $\forall \Phi \in X^{*} \exists \vb{F} \in \LpSet[r']{\Omega}$ such that
+	\[
+		\forall \varphi \in \WkpzeroSet[1][r]{\Omega}: \Phi(\varphi) = \int_{\Omega}\vb{F} \vdot \grad \varphi\dd{x},
+	\]
+	and moreover it holds $ \norm{\Phi}_{X^{*}} = \norm{\vb{F}}_{\LpSet[r']{\Omega}}.$
+\end{theorem}
+\begin{proof}
+	We solve the problem
+	\begin{equation}
+		\begin{cases}
+			- \divergence{\qty(|\grad u|^{r-2}\grad u)} &= \Phi,  \, \text{in} \, \Omega, \\
+			u &= 0,  \, \text{on} \, \partial \Omega
+		\end{cases}.
+	\end{equation}
+	Let us check the solution exists: denote
+	\[
+		a_0 =0, \vb{a}\qty(x,z,\vb{p}) = \abs{\vb{p}}^{r-2}\vb{p}.
+	\]
+	Then clearly
+	\[
+		\abs{a_i\qty(x, z, \vb{p})} \leq \abs{\vb{p}}^{r-1},
+	\]
+	so we have the right grow conditions, next:
+	\[
+		\vb{a}\qty(x,z,p) \vdot \vb{p} = \abs{\vb{p}}^{r-2} \vb{p} \vdot \vb{p} = \abs{\vb{p}}^r,
+	\]
+	so we have coercivity, and finally monotonicity; realize that actually\footnote{$\grad \abs{\vb{p}}^r = r \abs{\vb{p}}^{r-1} \abs{\vb{p}}^{-1} \vb{p} = r \abs{\vb{p}}^{r-2}$}
+	\[
+		\vb{a}(x,z,p) = \frac{1}{r} \grad \abs{\vb{p}}^r,
+	\]
+and for $r>1$ is the function $\vb{p} \mapsto \abs{\vb{p}}^r$ strictly convex. So from the classification of convex functions we know
+\[
+	\frac{1}{r}\abs{\vb{p}}^r \, \text{is strictly convex} \, \Leftrightarrow \grad \frac{1}{r} \abs{\vb{p}}^r = \vb{a} \, \text{is strictly monotone} \,.
+\]
+
+By the existence \& uniqueness theorem on problems with monotone operator, we conclude such $u \in \WkpzeroSet[1][r]{\Omega}$ exists and is unique by. The weak formulation of the above problem is:
+	\[
+		\forall \varphi \in \WkpzeroSet[1][r]{\Omega}: \int_{\Omega}|\grad u|^{r-2} \grad u \vdot \grad \varphi \dd{x} = \Phi\qty(\varphi).
+	\]
+	So it seems proimising to set $\vb{F} = |\grad u|^{r-2} \grad u.$ If we test now the weak formulation with $u$ itself (recall what norm are we using on $X$)
+	\[
+		\norm{\grad u}_{\LpSet[r]{\Omega}}^r = \Phi(u) \leq \norm{\Phi}_{X^{*}} \abs{\norm{u}} = \norm{\Phi}_{X^{*}} \norm{\grad u}_{\LpSet[r]{\Omega}}.
+	\]
+	If now $\norm{\grad u}_{\LpSet[r]{\Omega}} = 0$, then $\Phi = 0$ and we are finished; if it is nonzero, then we can divide and write
+	\[
+		\norm{\grad u}_{\LpSet[r]{\Omega}}^{r-1} \leq \norm{\Phi}_{X^{*}}.
+	\]
+	Realize now
+	\[
+		\norm{\grad u}_{\LpSet[r]{\Omega}}^{r-1} = \norm{| \grad u|^{r-1}}_{\LpSet[\frac{r}{r-1}]{\Omega}} = \norm{\vb{F}}_{\LpSet[r']{\Omega}} \Rightarrow \norm{\vb{F}}_{\LpSet[r']{\Omega}} \leq \norm{\Phi}_{X^{*}}.
+	\]
+	On the other hand:
+	\[
+		\norm{\Phi}_{X^{*}} = \sup_{\text{B}_{X}(0,1)} \abs{\Phi(\varphi)} = \sup_{\text{B}_{X}(0,1)} \abs{\int_{\Omega}\vb{F} \vdot \grad \varphi \dd{x}} \leq \sup_{\text{B}_{X}(0,1)} \norm{\vb{F}}_{\LpSet[r']{\Omega}} \norm{\grad \varphi}_{\LpSet[r]{\Omega}} = \norm{\vb{F}}_{\LpSet[r']{\Omega}},
+	\]
+	which concludes $\norm{\Phi}_{X^{*}} = \norm{\vb{F}}_{\LpSet[r']{\Omega}}.$
+\end{proof}
+
+
 
 \section{Nonlinear elliptic equations - compactness methods}
 \label{sec:nonlinear_elliptic_compact}
@@ -2600,7 +2663,7 @@ or written more concisely
 
 \begin{align}
 	\label{eq:nonlin_prob}
-	- \divergence{\qty(\vb{a}\qty(x, u(x), \grad u(x)))} - a_0\qty(x, u(x), \grad u(x)) &= f(x), \, \text{in} \, \Omega, \\
+	- \divergence{\qty(\vb{a}\qty(x, u(x), \grad u(x)))} + a_0\qty(x, u(x), \grad u(x)) &= f(x), \, \text{in} \, \Omega, \\
 	u &= u_0, \, \text{on} \, \Omega,
 \end{align}
 where $\vb{a}: \Omega \times \R \times \R^{d} \to \R^d,$
@@ -2617,7 +2680,7 @@ is some \textit{nonlinear} vector function. The data of the problem are
 				\abs{a_i\qty(x,z,\vb{p})} \leq C\qty(\abs{z}^{r-1}+\abs{\vb{p}}^{r-1})+h(x),
 			\]
 		\item $f \in \qty(\WkpzeroSet[1][r]{\Omega})^{*},$
-		\item $f \in \WkpSet[1][4]{\Omega},$
+		\item $u_0 \in \WkpSet[1][r]{\Omega},$
 \end{itemize}
 and the unknown is $u: \Omega \to \R.$
 \begin{remark}
@@ -2659,9 +2722,9 @@ and the unknown is $u: \Omega \to \R.$
 \begin{definition}[Weak solution]
 	We say that $u \in \WkpSet[1][r]{\Omega}$ is a weak solution to the above problem \ref{eq:nonlin_prob} provided
 	\[
-		\trace u = \trace u_0 \, \text{on} \, \partial \Omega
+		\trace u = \trace u_0 \, \text{on} \, \partial \Omega,
 	\]
-	and 
+	$u - u_0 \in \WkpzeroSet[1][r]{\Omega}$ and it holds
 	\[
 		\forall \varphi \in \WkpzeroSet[1][r]{\Omega}: \int_{\Omega}\vb{a}\qty(\vdot, u, \grad u)\vdot \grad \varphi +a_0\qty(\vdot, u, \grad u) \varphi \dd{x} = <f,\varphi>_{\qty(\WkpSet[1][r]{\Omega})^{*}}, 
 	\]
@@ -2709,7 +2772,7 @@ Now comes the proof of existence and uniqueness -- let us prepare for that with 
 
 	\textbf{Galerkin}: 
 
-	Since $\WkpzeroSet[1][r]{\Omega}$ is separable there $\exists \{w_i\}_{i=1}^{\infty} \subset \WkpSet[1][r]{\Omega}$ that is a dense\footnote{It can be chosen such that it is itself dense, not only its span.} linearly independent subset. We search for $\qty{\alpha_n^j} \subset \R, n \in \N, j \in \qty{1, \dots, n}$ such that
+	Since $\WkpzeroSet[1][r]{\Omega}$ is separable there $\exists \{w_i\}_{i=1}^{\infty} \subset \WkpzeroSet[1][r]{\Omega}$ that is a dense\footnote{It can be chosen such that it is itself dense, not only its span.} linearly independent subset. We search for $\qty{\alpha_n^j} \subset \R, n \in \N, j \in \qty{1, \dots, n}$ such that
 	\[
 		u_n(x) \coloneq u_0(x) + \sum_{j=1}^n \alpha^j_n w_j(x),
 	\]
@@ -2724,8 +2787,8 @@ Now comes the proof of existence and uniqueness -- let us prepare for that with 
 
 	Let us show $\vb{F}$ is continuous (maybe more carefully then needed, but just to make it clear)
 	\begin{itemize}
-		\item $\qty(\alpha_n^1, \dots, \alpha_n^n) \mapsto \qty(u_n = u_0 + \sum_{j=1}^n \alpha^j_n w_j),$ is continuous from $\R^{n}$ to $\LpSet[r]{\Omega},$ it is just a (finite) linear combination\footnote{And $+, \vdot$ is continuous on normed spaces...}
-		\item $u_n \mapsto \grad u_n$ is continuous from $\LpSet[r]{\Omega}$ to $\qty(\LpSet[r]{\Omega})^{n},$ as it is linear and $\norm{\grad u_n}_{\LpSet[r]{\Omega}}\leq C_p \norm{u_n}_{\LpSet[r]{\Omega}}$ thanks to Poincare,
+		\item $\qty(\alpha_n^1, \dots, \alpha_n^n) \mapsto \qty(u_n = u_0 + \sum_{j=1}^n \alpha^j_n w_j),$ is continuous from $\R^{n}$ to $\WkpSet[1][r]{\Omega},$ it is just a (finite) linear combination\footnote{And $+, \vdot$ is continuous on normed spaces...}
+		\item $u_n \mapsto \grad u_n$ is continuous from $\WkpSet[1][r]{\Omega}$ to $\qty(\LpSet[r]{\Omega})^{n},$ as it is linear and $\norm{\grad u_n}_{\LpSet[r]{\Omega}}\leq  \norm{u_n}_{\WkpSet[1][r]{\Omega}}$,
 		\item $\qty(u_n, \grad u_n) \mapsto \vb{a}\qty(\vdot, u_n, \grad u_n)$ is continuous from $\LpSet[r]{\Omega} \times \qty(\LpSet[r]{\Omega})^{n}$ to $\qty(\LpSet[r']{\Omega})^d$ by Nemytskii and $\qty(u_n, \grad u_n) \mapsto a_0\qty(\vdot, u_n, \grad u_n)$ is also continuous from $\LpSet[r]{\Omega} \times \qty(\LpSet[r]{\Omega})^n$ to $\LpSet[r']{\Omega}$ by Nemytskii,
 		\item $I_{\grad w_j}:\vb{a}\qty(\vdot, u_n, \grad u_n) \mapsto \R,$ defined by $I_{\grad w_j}\qty(\vb{a}\qty(\vdot, u_n, \grad u_n)) = \int_{\Omega}\vb{a}\qty(x, u_n, \grad u_n) \vdot \grad w_j\dd{x},$ is continuos from $\qty(\LpSet[r']{\Omega})^{n}$ to $\R$, because it is linear and $\abs{\int_{\Omega}\vb{a} \vdot \grad w_j\dd{x}} \leq \norm{\vb{a}}_{\qty(\LpSet[r']{\Omega})^n} \norm{\grad w_j}_{(\LpSet[r]{\Omega})^n},$
 		\item $I_{w_j}:a_0\qty(\vdot, u_n, \grad u_n) \mapsto \R,$ defined by $I_{w_j}\qty(a_0\qty(\vdot, u_n, \grad u_n)) = \int_{\Omega}a_0\qty(x, u_n, \grad u_n)w_j\dd{x},$ is continuous from $\LpSet[r']{\Omega}$ to $\R$ because it is linear and $\abs{\int_{\Omega}a_0 w_j\dd{x}} \leq \norm{a_0}_{\LpSet[r']{\Omega}} \norm{w_j}_{\LpSet[r]{\Omega}},$
@@ -2845,69 +2908,103 @@ which is very nice, as it depends on data mostly. As for the first term, realize
 	\textbf{Limit passage}
 
 
-	From the separability of the spaces, we can extract sequences (not renamed):
+	Since the sequences $\qty{u_n}, \qty{a_i\qty(\vdot, u_n, \grad u_n)}$ are uniformly bounded, from the separability of the spaces we can extract sequences (not renamed):
 	\[
-		u^n \rightharpoonup u \, \text{in} \, \WkpSet[1][r]{\Omega}, a_j \rightharpoonup \alpha_j \, \text{in} \, \LpSet[r']{\Omega}.
+		u^n \rightharpoonup u \, \text{in} \, \WkpSet[1][r]{\Omega}, a_j \rightharpoonup b_j \, \text{in} \, \LpSet[r']{\Omega}, j \in  \qty{0, \dots, d}.
 	\]
-	We pass to the limit in the estimates and are able to write:
+	The weak convergences allow us to write
 	\[
-		\forall j \in \N: \int_{\Omega}\alpha \vdot \grad w_j + \alpha_0 w_j\dd{x} = <f,w_j>,
+		\lim_{n \to \infty}\int_{\Omega}\vb{a}\qty(x, u_n, \grad u_n) \vdot w_j + a_0\qty(x, u_n, \grad u_n) w_j\dd{x} - <f,w_j> = \int_{\Omega}\vb{b} \vdot \grad w_j + b_0 \vdot w_j\dd{x} -<f,w_j>, \forall j \in \N
 	\]
-	and from density of $\{w_j\}_{j \in \N}$ in $\WkpSet[1][r]{\Omega}$ we have
+	and so
 	\[
-		\forall \varphi \in \WkpzeroSet[1][r]{\Omega}: \int_{\Omega}\alpha \vdot \grad \varphi + \alpha_0 \varphi\dd{x} = <f. \varphi>.
+		\forall j \in \N \int_{\Omega}\vb{b} \vdot \grad w_j + b_0 w_j\dd{x} = <f,w_j>.
+	\]
+	And since $\qty{w_j}_{j \in \N}$ is dense in $\WkpzeroSet[1][r]{\Omega}$ (plus the convergences and linearity of the integral) we have
+	\[
+		\forall \varphi \in \WkpzeroSet[1][r]{\Omega}: \int_{\Omega}\vb{b} \vdot \grad \varphi + b_0 \varphi\dd{x} = <f, \varphi>.
 	\]
 	\\
 
 	\textbf{Identification of $\alpha$'s}
 
-
-	We want to show $\alpha_j = a_j\qty(\vdot, u, \grad u), j \in \{0, \dots, d\}$. For that, we use the \textit{Minty trick}:
+	To solve the problem, we need to show that actually $b_j(x) = a_j\qty(x, u, \grad u), \forall j \in \qty{0, \dots, d}$. For that, we use monotonicity \& the \textit{Minty trick}: take $u_n, \grad u_n, v, \vb{V}$ together with monotonicity
 	\begin{align*}
-		0 &\leq \int_{\Omega }\qty(a\qty(\vdot, u^n, \grad u^n) - a\qty(\vdot,v,V))\vdot\qty(\grad u^n - V) + \qty(a_0\qty(\vdot,u^n,\grad u^n)-a_0\qty(\vdot,v,V))\vdot \qty(u^n -v) \\
-		  &\leq \int_{\Omega}a\qty(\vdot, u^n, \grad u^n)\vdot \grad u^n + a_0\qty(\vdot, u^n, \grad u^n)\vdot u^n \dd{x} + \\
-		  &- \int_{\Omega}\qty(a\qty(\vdot, u^n, \grad u^n)V + a_0\qty(\vdot, u^n, \grad u^n)v-a\qty(\vdot,v,V)+a_0\qty(\vdot,v,V)\vdot\qty(u^n-v))\dd{x}.
+		0& \leq \int_{\Omega}\qty(\vb{a}\qty(x, u_n, \grad u_n) - \vb{a}\qty(x, v, \vb{V}))\vdot\qty(\grad u_n - \vb{V}) + \qty(a_0\qty(x, u_n, \grad u_n) - a_0\qty(x, v, \vb{V}))\qty(u_n - v)\dd{x}  = \\
+		 &= \underbrace{\int_{\Omega}\vb{a}\qty(x, u_n, \grad u_n) \vdot \grad u_n + a_0\qty(x, u_n, \grad u_n) u_n\dd{x}}_{= I_n} + \\
+& - \int_{\Omega}\vb{a}\qty(x, u_n, \grad u_n) \vdot \vb{V} + \vb{a}\qty(x, v, \vb{V}) \vdot \grad u_n + a_0\qty(x, u_n, \grad u_n) v + a_0\qty(x, v, \vb{V})u_n\dd{x} + \int_{\Omega}\vb{a}\qty(x, v, \vb{V}) \vdot \vb{V} + a_0\qty(x, v, \vb{V})v\dd{x}
 	\end{align*}
-	Denote
+If we now denote (just the first line)
 	\[
-		I^n = \int_{\Omega}a\qty(\vdot, u^n, \grad u^n) \vdot \grad \qty(u^n-u_0)+ a_0\qty(\vdot, u^n, \grad u^n)\vdot \qty(u^n - u_0))\dd{x} + \int_{\Omega}a\qty(\vdot, u^n, \grad u^n)\vdot u_0 + a_0(\vdot, u^n, \grad u^n)u_0\dd{x},
+		I_n = \underbrace{\int_{\Omega}\vb{a}\qty(x, u_n, \grad u_n) \vdot \grad \qty(u_n-u_0)+ a_0\qty(x, u_n, \grad u_n)\vdot \qty(u_n - u_0))\dd{x}}_{= <f, u_n - u_0>} + \int_{\Omega}\vb{a}\qty(x, u_n, \grad u_n)\vdot \grad u_0 + a_0(x, u_n, \grad u_n)u_0\dd{x},
 	\]
-	by using the equation we obtain
+	we may write (realize $u_n - u_0 = \sum_{j=1}^n \alpha_n^j w_j$, and as the equation is valid with testing by $w_j$, it is valid when testing with $u_n - u_o$) by using the equation 
 	\[
-		I^n = <f, u^n - u_0> + \int_{\Omega}a\qty(\vdot, u^n, \grad u^n)\vdot u_0 + a_0(\vdot, u^n, \grad u^n)u_0\dd{x} \to <f,u-u_0> + \int_{\Omega}\alpha \grad u_0 + \alpha_0 u_0\dd{x} = \int_{\Omega}\alpha \grad u + \alpha_0 u\dd{x},
+		I_n = <f, u_n - u_0> + \int_{\Omega}\vb{a}\qty(x, u_n, \grad u_n)\vdot \grad u_0 + a_0(x, u_n, \grad u_n)u_0\dd{x},
 	\]
-	as the rest has subtracted. In total, we have
+but the limit of that is
+\[
+	\lim_{n \to \infty}I_n = <f,u-u_0> + \int_{\Omega}\vb{b} \vdot \grad u_0 + b_0 u_0\dd{x} = \int_{\Omega}\vb{b} \vdot \grad (u - u_0) + b_0 \qty(u - u_0)\dd{x} + \int_{\Omega}\vb{b} \vdot \grad u_0 + b_0 u_0\dd{x} =  \int_{\Omega}\vb{b} \vdot \grad u + b_0 u\dd{x},
+\]
+	as the rest has subtracted. Taking this back to the original estimate and passing to the limit yields
+
+	\begin{align*}
+		0 &\leq \int_{\Omega}\vb{b} \vdot \grad u + b_0 u - \vb{b}\vdot \vb{V} - \vb{a}\qty(x,v,\vb{V}) \vdot \grad u - b_0 v - a_0\qty(x,v,\vb{V})u + \vb{a}\qty(x,v,\vb{V})\vdot \vb{V} + a_0\qty(x,v, \vb{V})v \dd{x} = \\
+		  & = \int_{\Omega}\vb{b}\vdot\qty(\grad u - \vb{V}) + b_0\qty(u - v) - \vb{a}\qty(x,v,\vb{V})\vdot\qty(\grad u - \vb{V}) - a_0\qty(x, v, \vb{V})\qty(u - v) \dd{x} = \\
+		  & = \int_{\Omega}\qty(\vb{b} - \vb{a}\qty(x,v, \vb{V}))\vdot\qty(\grad u - \vb{V}) + \qty(b_0 - a_0\qty(x, v, \vb{V})\qty(u - v))\dd{x}
+	\end{align*}
+
+	So far, $v,\vb{V}$ have been arbitrary. If we take them now as
 	\[
-		0 \leq \int_{\Omega}\qty(\alpha - a\qty(\vdot, v, V))\vdot \qty(\grad u - V)+\qty(\alpha_0 - a_0\qty(\vdot, v, V))(u-v)\dd{x}.
+		V = \grad u - \lambda \vb{g}, \vb{g} \in \LpSet[r]{\Omega}, v = u,
 	\]
-	So far, $v,V$ have been arbitrary. If we take
+	then
 	\[
-		V = \grad u - \lambda \psi, \psi \in \LpSet[r]{\Omega}, v = u,
+		0 \leq \int_{\Omega}\lambda \vb{g} \vdot \qty(\vb{b} - \vb{a}\qty(x, u, \grad u - \lambda \vb{g}))\dd{x}.
 	\]
-	then $ 0 \leq \int_{\Omega}\qty(\alpha - a\qty(\vdot, \grad u + \lambda \psi))\lambda \psi\dd{x}, $ so if we take $\lambda >0$ and pass to the limit $\lambda \to 0_+$ (using Nemytskii theorem) we can write
+
+	Also $\lambda$ is of our choosing - if it is $\lambda >0$, we can divide the inequality by it and pass to the limit $\lambda \to 0_+$ (using Nemytski and continuity in the variables of $\vb{a}$); this yields
 	\[
-		0 \leq \int_{\Omega}\qty(\alpha - a\qty(\vdot, u, \grad u))\psi\dd{x}.
+		0 \leq \int_{\Omega}\vb{g} \vdot \qty(\vb{b} - \vb{a}\qty(x, u, \grad u))\dd{x}.
 	\]
-	Since $\psi$ was arbitrary, we could have taken $\psi \to - \psi$, which in total means
+	Since $\vb{g}$ was arbitrary, we could have taken $\vb{g} \to - \vb{g}$, which would lead to
+
+
 	\[
-		0 = \int_{\Omega}\qty(\alpha - a\qty(\vdot, u, \grad u))\psi \dd{x}
+		0 \geq \int_{\Omega}\vb{g} \vdot\qty(\vb{b} - \vb{a}\qty(x, u, \grad u))\dd{x},
 	\]
-	Finally, from the previous results, we obtain
+	 
+	so
 	\[
-		\forall \varphi \in \WkpzeroSet[1][r]{\Omega}: \int_{\Omega}a\qty(\vdot, u, \grad u)\grad \varphi+a_0\qty(\vdot, u, \grad u)\varphi\dd{x} = <f,\varphi>,
+		\int_{\Omega}\vb{g} \vdot \qty(\vb{b} - \vb{a}\qty(x, u, \grad u))\dd{x} = 0, \forall \vb{g} \in \LpSet[r]{\Omega}.
 	\]
-	and we are almost done. It only remains to show the traces are correct, bt since $u^n \rightharpoonup u$ in $\WkpSet[1][r]{\Omega}$ and from the continuity of the traces, we obtain
+	Using the Fundamental lemma of the calculus of variation, we see this must really mean
+	\[
+		\vb{b} = \vb{a}\qty(x, u, \grad u), \, \text{\textit{a.e.}} \, \, \text{in} \, \Omega.
+	\]
+	Differently, we could argue that $\vb{b} = \vb{a}\qty(x, u, \grad u)$ in $\LpSet[r']{\Omega} = \qty(\LpSet[r]{\Omega})^{*}.$
+	almost everywhere. So from the previous results, we obtain
+	\[
+		\forall \varphi \in \WkpzeroSet[1][r]{\Omega}: \int_{\Omega}\vb{a}\qty(x, u, \grad u)\grad \varphi+a_0\qty(x, u, \grad u)\varphi\dd{x} = <f,\varphi>,
+	\]
+	and we are almost done. It only remains to show the traces are correct, but since $u_n \rightharpoonup u$ in $\WkpSet[1][r]{\Omega}$ and the trace operator is continuous, we immediately have
 	\[
 		\tr u = \tr u_0.
 	\]
 
-	\textbf{Uniqueness:} Let $u_1, u_2$ be two solutions. Use strict monotonicity, subtract the weak formulation and test with $u_2-u_1$:
-	
-
+	\textbf{Uniqueness:} Let $u_1, u_2$ be two solutions. Then Use strict monotonicity, subtract the weak formulation and test with $u_2-u_1$:
 	\[
-		\int_{\Omega}\underbrace{\qty(a\qty(\vdot, u_2, \grad u_2)-a\qty(\vdot, u_1, \grad u_1))\vdot \grad\qty(u_2 - u_1)+\qty(a_0\qty(\vdot, u_2, \grad u_2)-a_0\qty(\vdot, u_1, \grad u_1))\qty(u_2-u_1)}_{\coloneq T}\dd{x} =0,
+		\int_{\Omega}\vb{a}\qty(x, u_1, \grad u_1)\vdot \varphi + a_0\qty(x, u_1, \grad u_1)\dd{x} = <f, \varphi>,
 	\]
-	where $T \geq 0$, so from strict monotonicity we obtain $T =0 \, \text{a.e. in} \, \Omega$ but that means $u_1(x) = u_2(x) \wedge \grad u_1(x) = \grad u_2 (x), \, \text{a.e. in} \, \Omega \Rightarrow u_1 = u_2 \, \text{in} \, \WkpSet[1][r]{\Omega}.$
+	and
+	\[
+		\int_{\Omega}\vb{a}\qty(x, u_2, \grad u_2)\vdot \varphi + a_0\qty(x, u_2, \grad u_2)\dd{x} = <f, \varphi>,
+	\]
+so subtracting the two and taking $\varphi = u_1 - u_2 = \qty(u_1 - u_0) - \qty(u_2 - u_0) \in \WkpzeroSet[1][r]{\Omega}$ yields
+	\[
+		\int_{\Omega}\qty(\vb{a}\qty(x, u_2, \grad u_2)-\vb{a}\qty(x, u_1, \grad u_1))\vdot \grad\qty(u_2 - u_1)+\qty(a_0\qty(x, u_2, \grad u_2)-a_0\qty(x, u_1, \grad u_1))\qty(u_2-u_1)\dd{x} =0,
+	\]
+	with the integrand being nonnegative from monotonicity. But if we also have strict monotonocity, this would have to be strictly positive if $u_1 \neq u_2$ - and since it is zero, then it must mean $\qty(u_1, \grad u_1) = \qty(u_2, \grad u_2) \, \text{\textit{a.e.}} \,$ in $\Omega,$ and so really $u_1 = u_2$ in $\WkpSet[1][r]{\Omega}.$
 \end{proof}
 \begin{example}[Nonlinearities vs weak convergence]
 	Let $g_n(x) = \sin(nx), $ then $g \rightharpoonup 0$ in $\LpSet[2]{(0,4)}$ (Riemann-Lebesgue lemma). However,
@@ -2917,110 +3014,102 @@ which is very nice, as it depends on data mostly. As for the first term, realize
 	so $\{u_n^{2}\} = \{\sin^{2}\qty(nx)\}$ \textbf{does not converge weakly to } $0 = 0^{2}$.
 \end{example}
 \begin{remark}
-	The method of the presented proof is \textbf{\textit{very important.}}
+	It might seem that when dealing with nonlinear elliptic equation with a monotone coercive operator, it might seem one only needs to check the assumptions and then almost blindly use this theorem. However, the class of problems we can solve with the above procedure is quite broader than just the ones we discussed, but one needs to be a bit creative. So, it if benificial to think of the "proof" we have given above as not a typical proof of a mathematical statement, but rather as a procedure of solving similiar kinds of problems.
 \end{remark}
-\begin{theorem}
-	Let $\Omega \in C^{0,1}.$ Let $X = \WkpzeroSet[1][r]{\Omega}, r \in \qty(1,\infty)$ with equivalent norm $|\norm{u}| = \norm{\grad u}_{\WkpzeroSet[1][r]{\Omega}}.$ Then
-	\[
-		\forall \in X^{*} \exists \vb{F} \in \LpSet[r']{\Omega} \, \text{s.t.} \,: \forall \varphi \in \WkpzeroSet[1][r]{\Omega}: \Phi(\varphi) = \int_{\Omega}\vb{F} \vdot \grad \varphi\dd{x}, \norm{\Phi}_{X^{*}} = \norm{\vb{F}}_{\LpSet[r']{\Omega}}.
-	\]
-\end{theorem}
-\begin{proof}
-	We solve the problem
-	\begin{equation}
-		\begin{cases}
-			- \divergence{\qty(|\grad u|^{r-2}\grad u)} = \Phi, & \, \text{in} \, \Omega, \\
-			u = 0, & \, \text{on} \, \partial \Omega
-		\end{cases}.
-	\end{equation}
-	Such $u \in \WkpzeroSet[1][r]{\Omega}$ exists and is unique by the above theorem. In this case: $a\qty(x,z,p) = |p|^{r-2} p, a_0() = 0.$ Coercivity is clear, monotonicity will be shown in the tutorials\footnote{This was a lie}. Write the weak formulation of the above problem:
-	\[
-		\forall \varphi \in \WkpzeroSet[1][r]{\Omega}: \int_{\Omega}|\grad u|^{r-2} \grad u \vdot \grad \varphi \dd{x} = \Phi\qty(\varphi).
-	\]
-	Set $\vb{F} = |\grad u|^{r-2} \grad u,$ and test the weak formulation with $u$ itself:
-	\[
-		\norm{\grad u}_{\LpSet[r]{\Omega}}^r = \Phi(u) \leq \norm{\Phi}_{X^{*}} \norm{\grad u}_{\LpSet[r]{\Omega}}.
-	\]
-	If now $\norm{\grad u}_{\LpSet[r]{\Omega}} = 0$, then $\Phi = 0$ and we are finished, if it is nonzero, then
-	\[
-		\norm{\grad u}_{\LpSet[r]{\Omega}}^{r-1} \leq \norm{\Phi}_{X^{*}}.
-	\]
-	Realize now
-	\[
-		\norm{\grad u}_{\LpSet[r]{\Omega}}^{r-1} = \norm{| \grad u|^{r-1}}_{\LpSet[\frac{r}{r-1}]{\Omega}} = \norm{\vb{F}}_{\LpSet[r']{\Omega}} \Rightarrow \norm{\vb{F}}_{\LpSet[r']{\Omega}} \leq \norm{\Phi}_{X^{*}}.
-	\]
-	On the other hand:
-	\[
-		\norm{\Phi}_{X^{*}} = \sup_{\text{B}_{X}(0,1)} |\Phi(\varphi)| = \sup_{\text{B}_{X}(0,1)} |\int_{\Omega}\vb{F} \vdot \grad \varphi|\dd{x} \leq \sup_{\text{B}_{X}(0,1)} \norm{\vb{F}}_{\LpSet[r']{\Omega}} \norm{\grad \varphi}_{\LpSet[r]{\Omega}} = \norm{\vb{F}}_{\LpSet[r']{\Omega}},
-	\]
-	so $\norm{\Phi}_{X^{*}} = \norm{\vb{F}}_{\LpSet[r']{\Omega}}.$
-\end{proof}
-
 \section{Calculus of variations}
 \label{sec:calculus_of_variations}
 
-Our motivation is the following: search for a point of minimum for a mapping
+Our motivation is the following: search for a point of minimum for a mapping $I:X \mapsto \R$ 
 \[
-	I: X \subset \WkpSet[1][r]{\Omega} \to \R, u \mapsto \int_{\Omega}F\qty(\vdot, u, \grad u)\dd{x},
+	I(u) = \int_{\Omega}F\qty(x, u, \grad u)\dd{x},
 \]
-with the basic assumptions $\Omega \in C^{0,1}, r \in \qty(1, \infty), X = u_0 + \WkpzeroSet[1][r]{\Omega}, u_0 \in \WkpSet[1][r]{\Omega}, F: \Omega \times \R \times \R^d \to \R$ Caratheodory. Moreover,
-\[
-	\exists C_1 > 0, c_2 \in \LpSet[1]{\Omega}, \, \text{a.e.} \, x \in \Omega, \forall z \in \R, \forall p \in \R^d : F\qty(x,z,p)\geq C_1|p|^r - c_2(x).
-\]
+with some basic assumptions:
+\begin{itemize}
+	\item $\Omega \in \Ckl{0}{1},$
+	\item $r \in \qty(1, \infty),$
+	\item $X = u_0 + \WkpzeroSet[1][r]{\Omega},$ for some $u_0 \in \WkpSet[1][r]{\Omega},$
+	\item $F: \Omega \times \R \times \R^{d} \to \R$ that is Caratheodory in $x$ and $(z,\vb{p})$ with the following coercivity condition:
+		\[
+			\exists C_1 > 0, C_2 \in \LpSet[1]{\Omega}, \, \text{a.e.} \, x \in \Omega, \forall z \in \R, \forall p \in \R^d : F\qty(x,z,p)\geq C_1|p|^r - C_2(x).
+		\]
+\end{itemize}
 
 \begin{remark}
-	From the assumptions it follows $\int_{\Omega}F\qty(\vdot, u, \grad u)\dd{x}$ is defined $\forall u \in \WkpSet[1][r]{\Omega}.$
+	\begin{itemize}
+		\item from the assumptions it follows $\int_{\Omega}F\qty(\vdot, u, \grad u)\dd{x}$ is defined $\forall u \in \WkpSet[1][r]{\Omega},$
+		\item notice the setting is very similiar to the nonlinear equations previously,
+		\item the fact $u \in u_0 + \WkpzeroSet[1][r]{\Omega}, u_0 \in \WkpSet[1][r]{\Omega},$ is nothing new - even it the previous chapter we had $u_0 \in \WkpSet[1][r]{\Omega}, u \in \WkpSet[1][r]{\Omega}\, \text{\textit{s.t.}} \, u-u_0 \in \WkpzeroSet[1][r]{\Omega}.$ Also, since we know $\WkpzeroSet[1][r]{\Omega}$ is a closed subspace of $\WkpSet[1][r]{\Omega},$ the structure $u_0 + \WkpzeroSet[1][r]{\Omega}$ is exactly that of a factorspace.
+
+	\end{itemize}
 \end{remark}
 
-Hold on, we are interested in PDE's. Why should we care about calculus of variations...?
+The connection between PDE's and calculus of variations is presented in the following lemma.
 
 \begin{lemma}
-	Let $\Omega \in C^{0,1}, r \in(1,\infty), X = u_0 + \WkpzeroSet[1][r]{\Omega}, u_0 \in \WkpSet[1][r]{\Omega}, F$ Caratheodory. Moreover, let the following condition hold
+	Let $\Omega \in C^{0,1}, r \in(1,\infty), X = u_0 + \WkpzeroSet[1][r]{\Omega}, u_0 \in \WkpSet[1][r]{\Omega}, F$ Caratheodory. Moreover, let the following condition hold: $\exists C>0, h \in \LpSet[1]{\Omega}$ such that 
 	\[
-		\exists C>0, h \in \LpSet[1]{\Omega}: \forall \, \text{a.a} \, x \in \Omega, \forall z \in \R, \forall p \in \R^d: |\grad_p F(x,z,p)|+|\partial_{z} F(x,z,p)| \leq C\qty(|z|^r + |p|^r)+ |h(x)|, F(x,\vdot, \vdot) \in C^1\qty(\R^{d+1}).
+		 \forall \, \text{a.a} \, x \in \Omega, \forall z \in \R, \forall p \in \R^d: |\grad_p F(x,z,p)|+|\partial_{z} F(x,z,p)| \leq h(x) + C\qty(|z|^r + |p|^r),
 	\]
-	Let now $u \in u_0 + \WkpzeroSet[1][r]{\Omega}$ be a local minimizer of $I$ over $X$, i.e.,
+	and let moreover $F(x,\vdot, \vdot) \in C^1\qty(\R^{d+1})$ for \textit{a.a.} $x \in \Omega.$
+
+	Let now $u \in X$ be a local minimizer of $I$ over $X$, i.e., $I(u) < \infty$ and
 	\[
-		\exists \rho>0: \forall v \in \mathcal{D}\qty(\Omega), \norm{v}_{\WkpSet[1][r]{\Omega}} < \rho: \int_{\Omega}F\qty(\vdot, u, \grad u)\dd{x} \leq \int_{\Omega}F\qty(\vdot, u+v, \grad\qty(u+v))\dd{x}, F\qty(\vdot, u, \grad u) \in \LpSet[1]{\Omega}.
+		\exists \rho>0: \forall v \in \mathcal{D}\qty(\Omega), \norm{v}_{\WkpSet[1][r]{\Omega}} < \rho \Rightarrow I(u) \leq I(v).
 	\]
 	Then $u$ is the weak solution to the \textbf{Euler-Lagrange equations}:
-	\[
-		\begin{cases}
-			- \divergence{\qty(\grad_p F\qty(\vdot, u, \grad u)+ \partial_{z}F\qty(\vdot, u, \grad u))} = 0, & \, \text{in} \, \Omega \\
-			u = u_0, & \, \text{on} \, \partial \Omega
-		\end{cases},
-	\]
+		\begin{align*}
+			- \divergence{\qty(\grad_p F\qty(x, u, \grad u)+ \partial_{z}F\qty(x, u, \grad u))} &= 0, \, \text{in} \, \Omega \\
+			u &= u_0, \, \text{on} \, \partial \Omega,
+		\end{align*}
 	i.e.,
-	\[
-		\forall \varphi \in \mathcal{D}\qty(\Omega): \int_{\Omega}\grad_p F\qty(\vdot, u, \grad u) \vdot \grad \varphi + \partial_{z}F\qty(\vdot, u, \grad u) \varphi \dd{x} = 0, \tr u = \tr u_0 \, \text{on} \, \partial \Omega.
-	\]
+	\begin{align*}
+		\forall \varphi \in \mathcal{D}\qty(\Omega): \int_{\Omega}\grad_p F\qty(x, u, \grad u) \vdot \grad \varphi + \partial_{z}F\qty(x, u, \grad u) \varphi \dd{x} = 0,\\
+	\end{align*} 
+	and $\trace u = \trace u_0$ on $\partial \Omega.$
 \end{lemma}
 \begin{proof}
-	First $\tr u = \tr u_0$ holds, so we are fine. Now fix $\varphi \in \mathcal{D}\qty(\Omega)$ and define
+	First, if $u \in u_0 + \WkpzeroSet[1][r]{\Omega},$ then $\tr u = \tr u_0$ and that is true. Now fix some $\varphi \in \mathcal{D}\qty(\Omega)$ and define
 	\[
-		\iota:\R \to \R^{*}, \iota\qty(\tau) = \int_{\Omega}\underbrace{F\qty(\vdot, u + \tau \varphi, \grad \qty(u+ \tau \varphi))}_{\coloneq l\qty(\tau, \vdot)}\dd{x}.
+		\iota: \R \to \R^{*}: \iota\qty(t) = \int_{\Omega}F\qty(x, u + t \varphi, \grad\qty(u+ t \varphi))\dd{x}.
 	\]
-	Now $\iota$ has a local minimum in $0$. We show that $\iota'(0)$ exists and is equal to the of Euler-Lagrange equations. 
+	Since now $u$ minimizes $I,$ we see $\iota$ has a (local) minimum at $0.$ We will show $\iota'(0)$ exists and is equal to the Euler-Lagrange equations. 
+	Denote now
+	\[
+		l(\vdot, t) = F(\vdot, u + t \varphi, \grad \qty(u + t \varphi),
+	\]
+	for $t \in \R$. To do that, we would like to swap the derivative and the integral, namely to write
+	\[
+		\partial_t \iota(t)  = \partial_t \int_{\Omega}l\qty(\vdot, t)\dd{x} = \int_{\Omega}\partial_t l\qty(\vdot, t)\dd{x}.
+	\]
+	To do that, we have to check the assumptions: 
 	\begin{itemize}
-		\item $l\qty(\tau, \vdot)$ is measurable for $\tau$ from some neighbourhood of $0$.
-		\item $l\qty(\tau, \vdot)$ is differentiable
+		\item measurability of $l(\vdot,t),$
+		\item differentiability of $l\qty(\vdot,t),$
+		\item majorant for the derivative,
+		\item convergence of the integral on some neighbourhood of $t$.
 	\end{itemize}
-	Moreover
+
+	Recall that from our assumptions ($F$ is Caratheodory + smoothness)
+	\begin{itemize}
+		\item $F\qty(\vdot, z, \vb{p})$ is continuous $\forall (z, \vb{p}) \in \R \times \R^{d} \Rightarrow l(\vdot, t)$ is measurable. so in particular it is measurable on some neighbourhood of $t = 0,$ 
+		\item $F(x, \vdot, \vdot) \in \CkSet{1}{\R^{d+1}} \Rightarrow l\qty(\vdot, t)$ is differentable w.r.t $t$.
+	\end{itemize}
+	It is hence valid to now compute $\partial_{t} l\qty(\vdot, t)$  
 	\begin{align*}
-		\partial_{\tau}l\qty(\tau, \vdot) &= \partial_{z}F\qty(\vdot, u+\tau \varphi, \grad\qty(u+\tau \varphi))\varphi + \grad_p F\qty(\vdot, u+\tau \varphi, \grad\qty(u+\tau \varphi))\vdot \grad \varphi =\\ =
-						  & = \partial_{z}F\qty(\vdot, u+\tau \varphi, \grad \qty(u+\tau \varphi))\varphi + \grad_p F\qty(\vdot, u+\tau \varphi, \grad\qty(u+\tau \varphi))\vdot \grad \varphi.
+		\partial_t l(\vdot, t) &= \partial_{z}F\qty(\vdot, u+t \varphi, \grad \qty(u+t \varphi))\varphi + \grad_p F\qty(\vdot, u+t \varphi, \grad\qty(u+t \varphi))\vdot \grad \varphi.
 	\end{align*}
-	Also
+	We have a nice majorant for this expression straight from the assumptions:
+	\begin{align*}
+		\abs{\partial_t l(\vdot, t)} &=\abs{\partial_{z}F\qty(\vdot, u+t \varphi, \grad \qty(u+t \varphi))\varphi + \grad_p F\qty(\vdot, u+t \varphi, \grad\qty(u+t \varphi))\vdot \grad \varphi} \leq \\
+					     &\leq 2\qty(\abs{h(\vdot)} + C\qty(\abs{u + t \varphi}^r + \abs{\grad (u + t \varphi)}^r))\qty(\abs{\varphi} + \abs{\grad \varphi}),
+	\end{align*}
+	which is in $\LpSet[1]{\Omega}$ for $h \in \LpSet[1]{\Omega}, u \in \WkpSet[1][r]{\Omega}, \varphi \in \DSet{\Omega}.$ Also from the assumption $u$ is a local minimizer we have
 	\[
 		i(0) = \int_{\Omega}F\qty(\vdot, u, \grad u)\dd{x} < \infty
 	\]
-	and
+	Altogether, we have checked the necessary assumption, and we see that $\iota'\qty(0)$ exists and is equal to
 	\[
-		|\partial_{\tau} l(\tau, \vdot)| \leq (C(|u|^r+|\varphi|^r+|\grad u|^r + |\grad \varphi|^r)+|h(x)|)(|\varphi|+|\grad \varphi|) \in \LpSet[1]{\Omega}.
-	\]
-	Altogether, $\iota\qty(\tau)$ is finite on $(-1,1), \iota'\qty(\tau)$ exists and
-	\[
-		\iota'\qty(0) = \int_{\Omega}\partial_{z}F\qty(\vdot, u, \grad u)\varphi + \grad_p F\qty(\vdot, u, \grad u) \vdot \grad \varphi\dd{x}.
+		\iota'\qty(0) = \int_{\Omega}\partial_{z}F\qty(\vdot, u, \grad u)\varphi + \grad_p F\qty(\vdot, u, \grad u) \vdot \grad \varphi\dd{x} =0.
 	\]
 \end{proof}
 
@@ -3050,17 +3139,31 @@ Hold on, we are interested in PDE's. Why should we care about calculus of variat
 		\forall \varphi \in \mathcal{D}\qty(\Omega):\int_{\Omega}\qty(1+|\grad u|^{2})^{\frac{r-2}{2}}\grad u \vdot \grad \varphi\dd{x} = \int_{\Omega}\qty(G \vdot \grad\varphi + g \varphi) \dd{x}.
 	\]
 \end{example}
+We see that finding a minimizer is equivalent to solving the Euler-Lagrange equations. But how to find the minimizer? The approach is the following:
+\begin{remark}[General approach]
 
-\begin{remark}
-	We have $\{u_n\}\subset X \, \text{s.t.} \, \lim_{n\to \infty} I(u_n) = \inf_X I.$ Then use
+
 	\begin{itemize}
-		\item compacntess: $u_n \to u$ in some sonse (weak convergence)
-		\item weak lower semicontinuity $I(u) \leq \liminf_{n\to \infty}I\qty(u_n)$
+		\item find some minimizing sequence :$ \qty{u_n} \subset X$ such that
+			\[
+				\lim_{n \to \infty}I\qty(u_n) = \inf_X I.
+			\]
+		\item we would then like to find the minimizer as some sort of a limit of $\qty{u_n}$ - we need some kind of convergence or compactness. In our case, we will use weak convergence, thus from some compactness result, we will want to show
+			\[
+				u_n \rightharpoonup u
+			\]
+			for some $u,$
+		\item to check that actually $I(u)$ is the minimum of $I$, we need some kind of continuity of $I$ - in our case, weak sequential lower semicontinuity will be enough:
+			\[
+				I(u) \leq \liminf_{n \to \infty} I(u_n), \, \text{as} \, u_n \rightharpoonup u.
+			\]
 	\end{itemize}
 \end{remark}
 
+In the following, we try to derive some sufficient conditions for the functional $I = \int_{\Omega}F\qty(x, u, \grad u)\dd{x}$ to be weakly sequentially lower semicontinuous, \textit{i.e.}, some conditions for $F\qty(x, u, \grad u)$. 
+
 \begin{lemma}
-	Let $F: \R^N \to \R, F \in C^1\qty(\R^N), N \in \N.$ Then 
+	Let $N \in \N, F: \R^N \to \R, F \in C^1\qty(\R^N).$ Then 
 	\begin{enumerate}
 		\item $F$ is (strictly) convex $\Leftrightarrow$ $\grad F$ is (strictly) monotone
 		\item If $F$ is (strictly) convex, then
@@ -3070,17 +3173,25 @@ Hold on, we are interested in PDE's. Why should we care about calculus of variat
 	\end{enumerate}
 \end{lemma}
 \begin{proof}
-	Fix $\xi_1, \xi_2, \xi_1 \neq \xi_2,$ define $\varphi(t) = F\qty(\xi_2 + t\qty(\xi_1 - \xi_2)).$ Then $\varphi \in C^1\qty(\R)$ and
+	Fix $\xi_1, \xi_2, \xi_1 \neq \xi_2,$ define $\varphi(t) = F\qty(\xi_2 + t\qty(\xi_1 - \xi_2)).$ Then $\varphi \in C^1\qty(\R)$ and it is also (strictly) convex: $\forall s,t \in \R:$ 
+	\begin{align*}
+		\varphi\qty(\lambda s + (1- \lambda)t) &= F\qty(\xi_2 + \qty(\lambda t + \qty(1-\lambda)s)\qty(\xi_1 - \xi_2)) = F\qty(\lambda\qty(\xi_2 + t\qty(\xi_1 - \xi_2))- \lambda \xi_2 + \xi_2 + \qty(1-\lambda)s\qty(\xi_1 - \xi_2)) = \\
+						       &= F\qty(\lambda\qty(\xi_2 + t\qty(\xi_1 - \xi_2))+ \qty(1- \lambda)\qty(\xi_2 + s\qty(\xi_1 - \xi_2))) \leq \\
+						       &\leq \lambda F\qty(\xi_2 + t\qty(\xi_1 - \xi_2)) + \qty(1- \lambda)F\qty(\xi_2 +s \qty(\xi_1 - \xi_2)) = \lambda \varphi(s) + (1-\lambda) \varphi(s).
+	\end{align*}
+	The derivative of $\varphi$ is 
 	\[
-		\varphi'(t) = \grad F\qty(\xi_2 +t\qty(\xi_1 - \xi_2))\vdot \qty(\xi_1 - \xi_2).
+		\varphi'(t) = \grad F\qty(\xi_2 +t\qty(\xi_1 - \xi_2))\vdot \qty(\xi_1 - \xi_2),
 	\]
-	So
+	and so
 	\[
-		"\Rightarrow": \qty(\grad F\qty(\xi_1) - \grad F\qty(\xi_2))\vdot\qty(\xi_1-\xi_2) = \varphi'(1)-\varphi'(0) \underbrace{\geq}_{\varphi \text{convex or strictly convex}} 0.
+		"\Rightarrow": \qty(\grad F\qty(\xi_1) - \grad F\qty(\xi_2))\vdot\qty(\xi_1-\xi_2) = \varphi'(1)-\varphi'(0) \geq 0,
 	\]
+	if $\varphi$ is (strictly) convex.
+	
 	And $"\Leftarrow":$ Fix $t_1 > t_2$ and compute
 	\[
-		\varphi'\qty(t_1) - \varphi'\qty(t_2) = \qty(\grad F\qty(\xi_2 + t_1\qty(\xi_1 - \xi_2))- \grad F\qty(\xi_2 + t_2\qty(\xi_1-\xi_2)))\vdot\qty(\xi_1-\xi_2)\qty(t_1-t_2),
+		(t_1 - t_2)	(\varphi'\qty(t_1) - \varphi'\qty(t_2)) = \qty(\grad F\qty(\xi_2 + t_1\qty(\xi_1 - \xi_2))- \grad F\qty(\xi_2 + t_2\qty(\xi_1-\xi_2)))\vdot\qty(\xi_1-\xi_2)(t_1-t_2),
 	\]
 	define
 	\[
@@ -3088,54 +3199,71 @@ Hold on, we are interested in PDE's. Why should we care about calculus of variat
 	\]
 	and we obtain
 	\[
-		\varphi'(t_1) - \varphi'(t_2) = \qty(\grad F\qty(\eta_1)-\grad F\qty(\eta_2))\vdot \qty(\eta_1 - \eta_2)
+		(t_1 - t_2)(\varphi'(t_1) - \varphi'(t_2)) = \qty(\grad F\qty(\eta_1)-\grad F\qty(\eta_2))\vdot \qty(\eta_1 - \eta_2)
 	\]
-	and we are in the same situation as before. For 2) we already know $F$ (strictly) convex $\Rightarrow \varphi$ (strictly) convex
+	and so if the $\grad F$ is (strictly) monotonous, the LHS is (strictly) positive, meaning  (strict) convexity of $\varphi$.
+
+	For 2) we already know $F$ (strictly) convex $\Rightarrow \varphi$ (strictly) convex, and moreover realize
 	\[
-		\Rightarrow \forall t \in (0,\frac{1}{2}): \frac{\varphi(1)-\varphi(0)}{1} \geq \frac{\varphi(t)-\varphi(0)}{t}\to \varphi'(0),
+		\varphi(t) = \varphi(t \vdot 1 + \qty(1- t)\vdot0) \leq t \varphi(1) + (1-t) \varphi(0),
 	\]
-	as $t\to 0_+.$ And so
+	meaning
+	\[
+		\Rightarrow \forall t \in \qty(0,\frac{1}{2}): \frac{\varphi(1)-\varphi(0)}{1} \geq \frac{\varphi(t)-\varphi(0)}{t}\to \varphi'(0),
+	\]
+	as $t\to 0_+.$ And so $\varphi(1) - \varphi(0) \geq \varphi'(0),$ which is exactly the same as
 	\[
 		F\qty(\xi_1) - F\qty(\xi_2) \geq \grad F\qty(\xi_2)\vdot \qty(\xi_1 - \xi_2).
 	\]
 \end{proof}
 
-\begin{theorem}
-	Let $M,N \in \N, \Omega$ open, $F: \Omega \times \R^{N+M} \to \R$ Caratheodory, $F$ convex in $p \in \R^{n}, \, \text{\textit{i.e.}} \, \forall \, \text{\textit{a.e.}} \,x \in \Omega, \forall z \in \R^{M}: F\qty(x,z,\vdot)$ is convex and $\exists c_2 \in \LpSet[1]{\Omega}, \forall\, \text{\textit{a.e.}} \, x \in \Omega, \forall z \in \R^{M}, \forall p \in \R^{N}: F\qty(x,z,p)\geq c_2(x).$ Let $u_n \to u$ in $\LpSet[1]{\Omega}, U_n \rightharpoonup U \, \text{in} \, \LpSet[1]{\Omega}.$ Then
+\begin{theorem}[Sequential weak lower semicontinuity]
+	Let $N, M \in \N, \Omega$ be open and $F\qty(x, \vb{z}, \vb{p}): \Omega \times \R^{N} \times \R^{M} \to \R$ be Caratheodory and convex in $\vb{p}.$ Let moreover $\exists C(x) \in \LpSet[1]{\Omega}$ such that
 	\[
-		\int_{\Omega}F\qty(\vdot,u,U)\dd{x} \leq \liminf_{n\to \infty} \int_{\Omega}F\qty(\vdot, u_n, U_n) \dd{x}.
+		\forall \, \text{\textit{a.a.}} \, x \in \Omega, \forall \qty(\vb{z}, \vb{p}) \in \R^{N+M}: F\qty(x, \vb{z}, \vb{p}) \geq C(x).
+	\]
+	Let $\qty{\vb{u_n}} \subset \LpSet[1]{\Omega}$ converge to $\vb{u}$ in $\LpSet[1]{\Omega}, \vb{u}_n \to \vb{u}$ and let $\qty{\vb{U}_n} \subset \LpSet[1]{\Omega}$ converge weakly to $\vb{U}$ in $\LpSet[1]{\Omega}, \vb{U}_n \rightharpoonup \vb{U}.$ Then it holds
+
+	\[
+		\int_{\Omega}F\qty(x, \vb{u}, \vb{U})\dd{x} \leq \liminf_{n\to \infty} \int_{\Omega}F\qty(x, \vb{u}_n, \vb{U}_n)\dd{x}
 	\]
 \end{theorem}
 
 \begin{proof}
-	The proof will be given only if moreover $\forall \, \text{\textit{a.e.}} \,x \in \Omega, \forall z \in \R^{M}: F\qty(x,z,\vdot) \in C^1\qty(\R^N).$ Idea: by the previous lemma:
+	The proof will be given only if moreover $\forall \, \text{\textit{a.e.}} \,x \in \Omega, \forall z \in \R^{M}: F\qty(x,z,\vdot) \in C^1\qty(\R^N).$ The main idea is the following: by the previous lemma:
 	\[
-		\int_{\Omega}F\qty(\vdot, u_n, U_n)\dd{x} \geq \int_{\Omega}\qty(F\qty(\vdot, u_n, U) + \grad_p F\qty(\vdot, u_n, U)\vdot\qty(U_n - U))\dd{x},
+		\int_{\Omega}F\qty(\vdot, \vb{u}_n, \vb{U}_n)\dd{x} \geq \int_{\Omega}\qty(F\qty(\vdot, \vb{u}_n, \vb{U}) + \grad_p F\qty(\vdot, \vb{u}_n, \vb{U})\vdot\qty(\vb{U}_n - \vb{U}))\dd{x},
 	\]
-	and we have uniform convergence in the first term and second term and weak convergence in $\LpSet[1]{\Omega}$ in the last term. If $\Omega$ is bounded, we can find $K_k \subset K_{k+1} \subset \Omega \, \text{\textit{s.t.}} \, \lambda\qty(\Omega \ \bigcup_{k \in \N}K_k) = 0,$ and moreover $ \forall k \in \N: K_k \subset \overline{K_k} \subset \Omega, \overline{K_k} \, \text{are compact} \,, u_n \to \to u \, \text{on} \,K_k, \norm{u}_{\LinfSet{K_k}}+\norm{U}_{\LinfSet{K_k}}\leq k$ up to a subsequence. We can now extract a subsequence $u_n \to u \, \text{\textit{a.e.}} \,$ and apply the Egorov theorem
+	Since $\qty{\vb{u}_n}$ converges strongly in $\LpSet[1]{\Omega},$ there is a (not renamed) subsequence converging \textit{a.e.} in $\Omega.$ By Egorov theorem that means
 	\[
-		\forall k \in \N, \exists \tilde{E_k} \, \text{\textit{s.t.}} \, u_n \to \to u \, \text{on} \, \tilde{E_k}\wedge \lambda\qty(\Omega \ \tilde{E_k})< \frac{1}{k}.
+		\forall \varepsilon>0 \exists \Omega_{\varepsilon} \subset \Omega: \vb{u}_n \to \to \vb{u}_n, \lambda\qty(\Omega / \Omega_{\varepsilon})< \varepsilon.
 	\]
-	Now define
+	Let us then write (we are using the fact $F\qty(x, \vb{z}, \vb{p}) - C(x) \geq 0.$)
+	\begin{align*}
+		\int_{\Omega}F\qty(x, \vb{u}_n, \vb{U}_n)\dd{x} &= \int_{\Omega}\qty(F\qty(x, \vb{u}_n, \vb{U}_n) - C(x))\dd{x} + \int_{\Omega}C(x)\dd{x} \geq \\
+		&\geq \int_{\Omega_{\varepsilon}}F\qty(x, \vb{u}_n, \vb{U}) - C(x)\dd{x} + \int_{\Omega_{\varepsilon}}F\qty(x, \vb{u}_n, \vb{U}_n) - F\qty(x, \vb{u}_n, \vb{U})\dd{x} + \int_{\Omega}C(x)\dd{x} \geq \\
+		&\geq \int_{\Omega_{\varepsilon}}F\qty(x, \vb{u}_n, \vb{U}) - C(x)\dd{x} + \int_{\Omega_{\varepsilon}}\grad_p F\qty(x, \vb{u}_n, \vb{U}) \vdot \qty(\vb{U}_n - \vb{U})\dd{x} + \int_{\Omega}C(x)\dd{x}.
+	\end{align*}
+	Now we take the limes inferior of both sides and write 
+	\begin{align*}
+		\liminf_{n\to \infty}\int_{\Omega}F\qty(x, \vb{u}_n, \vb{U}_n)\dd{x} &\geq \liminf_{n \to \infty} \qty(\int_{\Omega_{\varepsilon}}F\qty(x, \vb{u}_n, \vb{U}) - C(x)\dd{x} + \int_{\Omega_{\varepsilon}}\grad_p F\qty(x, \vb{u}_n, \vb{U}) \vdot \qty(\vb{U}_n - \vb{U})\dd{x} + \int_{\Omega}C(x)\dd{x}) \geq \\
+										     &\geq \liminf_{n \to \infty} \int_{\Omega_{\varepsilon}}F\qty(x, \vb{u}_n, \vb{U}) - C(x)\dd{x} + \liminf_{n\to \infty}\qty(\int_{\Omega_{\varepsilon}}\grad_p F\qty(x, \vb{u}_n, \vb{U})\vdot\qty(\vb{u_n} - \vb{U})\dd{x}) + \int_{\Omega}C(x)\dd{x}.
+	\end{align*}
+	The second integral actually has a limit,
+	as $\vb{U}_n \rightharpoonup \vb{U}$ in $\Omega_{\varepsilon}$, so $\vb{U}$ is bounded and $\grad_p F\qty(x, \vb{u}_n, \vb{U}_n) \in \LinfSet{\Omega_{\varepsilon}},$ because $\vb{u}_n \to \to \vb{u}$ on $\Omega_{\varepsilon}$ and $\grad_p F\qty(x, \vb{u}_n, \vb{U})$ is continuous in $\vb{u}_n$ from Caratheodory. As the first integral is nonnegative, we can use Fatou to estimate from below. But since $F(x, \vdot, \vb{p})$ is continuous from Caratheodory property and $\vb{u}_n \to \to \vb{u}$ on $\Omega_{\varepsilon}$, the integrand has a limit and it actually holds:
+
 	\[
-		\hat{E_k} = \bigcup_{j=1}^k \tilde{E_j}, E_k = \hat{E_k} \cap \{ x \in \Omega, \dist\qty(x,\partial \Omega) > \frac{1}{k}\},
+		\liminf_{n\to \infty}\int_{\Omega}F\qty(x, \vb{u}_n, \vb{U}_n)\dd{x}\geq \int_{\Omega_{\varepsilon}}F\qty(x, \vb{u}, \vb{U})- C(x)\dd{x} + \int_{\Omega}C(x)\dd{x} = \int_{\Omega_{\varepsilon}}F\qty(x, \vb{u}, \vb{U})\dd{x} + \int_{\Omega / \Omega_{\varepsilon}}C(x)\dd{x},
 	\]
-	and $E_k$ satisfy \footnote{"This is homework", says doc. Kaplicky}
+	and by taking the limit $\varepsilon \to \varepsilon^+$ and using the monotone convergence theorem we actually have
 	\[
-		\lambda\qty(\Omega \ \bigcup_{k}E_k) = 0.
+		\liminf_{n \to \infty}\int_{\Omega}F\qty(x, \vb{u}_n, \vb{U}_n)\dd{x} \geq \int_{\Omega}F\qty(x, \vb{u}, \vb{U})\dd{x}.
 	\]
-	Finally, set
-	\[
-		F_k = \{x \in \Omega, |u(x)| \leq k \wedge |U(x)| \leq k\}
-	\]
-	and we also have $\lambda\qty(\Omega \ \bigcup_{k}F_k) = 0.$ FINALLY, set
-	\[
-		K_k = E_k \cap F_k \Rightarrow \lambda\qty(\Omega \ \bigcup_{k}K_k)=0.
-	\]
+
 \end{proof}
 \begin{remark}
 	\begin{itemize}
-		\item if $U_n \to U$ strongly $\Rightarrow u_n \to u, U_n \to U$ \textit{a.e.} (up to a subsequence) and the claim follows from the Fatou lemma. \footnote{For Fatou, we need nonnegativity of the integrand, but that can be met from the assumptions $F-c_2 \geq 0, F-c_2 \in \LpSet[1]{\Omega}$}
+		\item if $U_n \to U$ strongly $\Rightarrow u_n \to u, U_n \to U$ \textit{a.e.} (up to a subsequence) and the claim follows from the Fatou lemma. \footnote{For Fatou, we need nonnegativity of the integrand, but that can be again met from the assumptions $F-c_2 \geq 0, F-c_2 \in \LpSet[1]{\Omega}$}
 		\item norm is weakly lower semicontinuous:
 			\[
 				\grad u_n \rightharpoonup \grad u \, \text{in} \, \LpSet{\Omega} \Rightarrow \int_{\Omega}|\grad u|^p\dd{x} \leq \liminf_{n \to \infty} \int_{\Omega}|\grad u_n|^p\dd{x}.
@@ -3143,12 +3271,198 @@ Hold on, we are interested in PDE's. Why should we care about calculus of variat
 	\end{itemize}
 \end{remark}
 
+\begin{theorem}[Existence of a minimizer]
+    Let $d \in \N, \Omega \in \Ckl{0}{1}, r \in (1, \infty), u_0 \in \WkpSet[1][r]{\Omega},$ denote $X = u_0 + \WkpzeroSet[1][r]{\Omega}.$ Let $F:\Omega \times \R \times \R^{d} \to \R$ be Caratheodory with the coercivity condition: $\exists C > 0, h \in \LpSet[1]{\Omega}$ \textit{s.t.}:
+    \[
+	    \forall \, \text{\textit{a.a.}} \, x \in \Omega, \forall \qty(z, \vb{p}) \in \R \times \R^{d}: F\qty(x,z,\vb{p}) \geq C\abs{\vb{p}}^r - h.
+    \]
+    Let moreover $F$ be convex in the last variable, \textit{i.e.}, let $\vb{p} \mapsto F\qty(x, z, \vb{p})$ be convex $\forall$ \textit{a.a.} $x\in \Omega, \forall z \in \R.$ Then there exists $u \in X$ that minimizes $I$ on $X$, \textit{i.e.}, $\trace u = \trace u_0$ on $\partial \Omega$ and
+    \[
+	    \forall v \in X: I(u) \leq I(v).
+    \]
+\end{theorem}
+
+\begin{proof}
+    First of all, let us show
+    \[
+	    \Lambda \coloneq \inf_{u \in X} I(u) = \inf_{u \in X} \int_{\Omega}F\qty(x, u, \grad u)\dd{x},
+    \]
+    is bounded from below. Coercivity states
+    \[
+	    F\qty(x, u, \grad u) \geq C \abs{\grad u}^r - h(x),
+    \]
+    so
+    \[
+	   \int_{\Omega}F\qty(x, u, \grad u)\dd{x} \geq \int_{\Omega}C \abs{\grad u}^r - h(x)\dd{x} \geq C \norm{\grad u}_{\LpSet[r]{\Omega}}^r - \norm{h}_{\LpSet[1]{\Omega}} \geq - \norm{h}_{\LpSet[1]{\Omega}},
+    \]
+    and since $\norm{h}_{\LpSet[1]{\Omega}}$ is of course bounded, this means $\Lambda > - \infty.$ Next, we show there exists a minimizing sequence $\qty{u_n} \subset X,$ \textit{i.e.}, a sequence \textit{s.t.}
+    \[
+	    \lim_{n \to \infty}I\qty(u_n) = \Lambda.
+    \]
+    But that is easy - from the definition of infimum, $\forall n \in \N \exists u_n \in X$ such that
+    \[
+	    I\qty(u_n) \leq \Lambda + \frac{1}{n},
+    \]
+    and so we obtain our sequence $\qty{u_n} \subset X$ by just organizing those functions in a sequence. Now, also from the property of the infimum we may write
+    \[
+	    I(u_n) = \int_{\Omega}F\qty(x, u_n, \grad u_n)\dd{x} \leq \Lambda + 1,
+    \]
+    and so upon using coercivity and estimating the integral from below we may write
+    \[
+	    \int_{\Omega}F\qty(x, u_n, \grad u_n)\dd{x} \geq \int_{\Omega}C \abs{\grad u_n}^r - h\dd{x} \geq C \norm{\grad u_n}^r_{\LpSet[r]{\Omega}} - \norm{h}_{\LpSet[1]{\Omega}},
+    \]
+    and so
+    \[
+	    \norm{\grad u_n}_{\LpSet[r]{\Omega}}^r \leq \frac{1}{C}\qty(\Lambda + 1 + \norm{h}_{\LpSet[1]{\Omega}}), \, \text{\textit{i.e.}} \,, \norm{\grad u_n}_{\LpSet[r]{\Omega}} \leq C_1
+    \]
+    Realize also that
+    \[
+	    \norm{\grad u_n}_{\LpSet[r]{\Omega}} = \norm{\grad\qty(u_n - u_0) + \grad u_0}_{\LpSet[r]{\Omega}} \geq \norm{\grad\qty(u_n - u_0)}_{\LpSet[r]{\Omega}} - \norm{\grad u_0}_{\LpSet[r]{\Omega}} \geq C_p \norm{u_n - u_0}_{\WkpzeroSet[1][r]{\Omega}} - \norm{\grad u_0}_{\LpSet[r]{\Omega}},
+    \]
+
+meaning
+\[
+	\norm{u_n-u_0}_{\WkpzeroSet[1][r]{\Omega}} \leq \frac{1}{C_p}\qty(\norm{\grad u_n}_{\LpSet[r]{\Omega}}+ \norm{\grad u_0}_{\LpSet[r]{\Omega}}) \leq \frac{1}{C_p}\qty(C_1 + \norm{\grad u_0}_{\LpSet[r]{\Omega}}) = C_2,
+\]
+
+where we used Poincare and the fact $\qty{u_n} \subset X,$ so $\trace v_n = \trace u_0.$ Finally, using
+\[
+	\norm{u_n - u_0}_{\WkpzeroSet[1][r]{\Omega}} \geq \norm{u_n}_{\WkpSet[1][r]{\Omega}} - \norm{u_0}_{\WkpSet[1][r]{\Omega}},
+\]
+we have obtained
+\[
+	\norm{u_n}_{\WkpSet[1][r]{\Omega}} \leq C_2 + \norm{u_0}_{\WkpSet[1][r]{\Omega}} = C_3,
+\]
+which is an uniform bound of the functions from the sequence.  $\qty{u_n}$ is a bounded sequence in a reflexive space\footnote{$X$ is the space $X = u_0 + \WkpzeroSet[1][r]{\Omega},$ and since $\WkpzeroSet[1][r]{\Omega}$ is a closed subspace of $\WkpSet[1][r]{\Omega},$ the space $X$ is actually a factorspace and its reflexivity is implied by the reflexivity of $\WkpSet[1][r]{\Omega}.$}, so
+    \[
+	    u_n \rightharpoonup u, \, \text{in} \, \WkpSet[1][r]{\Omega},
+    \]
+    in particular
+    \[
+	    \grad u_n \rightharpoonup \grad u \, \text{in} \, \LpSet[r]{\Omega},
+    \]
+    and also
+    \[
+	    u_n \to u, \, \text{in} \, \LpSet[r]{\Omega}.
+    \]
+Finally, this means
+\[
+	\Lambda = \lim_{n \to \infty} \int_{\Omega}F\qty(x, u_n, \grad u_n)\dd{x} \geq \liminf_{n \to \infty} \int_{\Omega}F\qty(x, u_n, \grad u_n)\dd{x} \geq \int_{\Omega}F\qty(x, u, \grad u)\dd{x} \geq \Lambda,
+\]
+
+where we used the weak lower sequential semicontinuity of $I$ and the fact $u \in X,$ so $I(u) \geq \Lambda.$ But the above manipulation shows that in fact all the inequalities must be equalities, and thus
+\[
+	I(u) = \int_{\Omega}F\qty(x, u, \grad u)\dd{x} = \Lambda,
+\]
+\textit{i.e.}, $u$ is a minimizer.
+\end{proof}
 \section{Evolutionary equations}
 \label{sec:evolutionray_eqs}
 
 \subsection{Embedding theorems for Sobolev-Bochner spaces}
 \label{sec:Sobolev-Bochner}
+In the whole section, we take $X$ as a Banach space and $T>0.$ Let us recall just a few definitions
 
+\begin{definition}[Simple function, strong measurability, Bochner integral]
+	We call $s: I \to X$ a simple function, provided $\exists n \in \N$ such that $\exists \qty{x_j}_{j=1}^n, \exists \qty{E_j}_{j=1}^n \subset I$ that are pairwise disjoint and $\lambda_1\qty(\bigcup_{j=1}^n E_j) < \infty$ such that
+	\[
+		\forall t \in I: s(t) = \sum_{j=1}^n x_j \chi_{E_j}(t).
+	\]
+	For a simple function $s$ we define its Bochner integral over $I$ as
+	\[
+		\int_I s(t)\dd{t} = \sum_{j=1}^n x_j \lambda_1\qty(E_j).
+	\]
+	A function $f: I \to X$ is called (strongly) measurable, provided $\exists \qty{s_n}_{n \in \N}$ simple functions \textit{s.t.}
+	\[
+		s_n(t) \to f(t), \, \text{in} \, X,  \lambda_1-\, \text{\textit{a.a.}} \, t \in I,
+	\]
+	meaning
+	\[
+		\lim_{n \to \infty}\norm{s_n(t) - f(t)}_{X} = 0, \forall \lambda_1-\, \text{\textit{a.a.}} \,t \in I.
+	\]
+	We say a strongly measurable function $f: I \to X$ is Bochner integrable, provided $\exists \qty{s_n}_{n \in \N}$ simple functions \textit{s.t.} $s_n(t) \to f(t)$ in $X$ and $\lambda-1$ \textit{a.e.} in $I$ and also
+	\[
+		\lim_{n \to \infty} \int_I \norm{s_n(t) - f(t)}_X \dd{\lambda}_1 = 0.
+	\]
+	Then we define the Bochner integral of $f$ over $I$ as
+	\[
+		\int_I f(t) \dd{t} = \lim_{n \to \infty} s_n(t) \dd{t}.
+	\]
+\end{definition}
+
+\begin{definition}[Lebesgue-Bochner \& Sobolev-Bochner spaces]
+	We say a function $g \in \LpIntX{1}{0}{T}{X}_{\, \text{loc} \,}$  is the weak (time) derivative of the function $u \in \LpIntX{1}{0}{T}{X}$, provided it holds
+	\[
+		\forall \varphi \in \DSet{I}: \int_I g(t) \varphi(t) \dd{t} = - \int_I u(t) f'(t).
+	\]
+	We write $g = \partial_t u.$ 
+	For $p \in [1, \infty)$ we define
+	\[
+		\LpIntX{p}{0}{T}{X} = \qty{f: I \to X \, \text{strongly measurable} \,| \int_I \norm{f(t)}_X^p < \infty},
+	\]
+	and for $p = \infty$
+	\[
+		\LinfIntX{0}{T}{X} = \qty{f: I \to X \, \text{strongly measurable} \,| \esssup_{t \in I}\norm{f(t)}_X < \infty},
+	\]
+	together with the norms
+	\[
+		\NormLpIntX{f}{p}{0}{T}{X} = \qty(\int_T \norm{f(t)}_X^p \dd{t})^{\frac{1}{p}}, p \in [1, \infty)
+	\]
+	\[
+		\NormLinfIntX{f}{O}{T}{X} = \esssup_{t \in I} \norm{f(t)}_X.
+	\]
+
+	Next, we define the set
+	\[
+		\WpIntX{p}{0}{T}{X} = \qty{f: I \to X \, \text{strongly measurable} \,| f \in \LpIntX{p}{0}{T}{X}, \partial_t f \in \LpIntX{p}{0}{T}{X}},
+	\]
+	with the norms
+	\[
+		\NormWpIntX{f}{p}{0}{T}{X} = \qty(\NormLpIntX{u}{p}{0}{T}{X}^p + \NormLpIntX{\partial_t u}{p}{0}{T}{X}^p)^{\frac{1}{p}}, p \in [1, \infty)
+	\]
+	\[
+		\NormWinfIntX{f}{0}{T}{X} = \esssup_{t \in I}\qty(\NormLinfIntX{f}{0}{T}{X} + \NormLinfIntX{f}{0}{T}{X}), p = \infty.
+	\]
+	
+\end{definition}
+\begin{definition}[Continuous functions, strong derivatives]
+	The standard definition of limits in normed spaces work of course: function $f: I \to X$ is said to be continuous on $I$ provided $\forall \qty{t_n}_{n \in \N}$ such that $t_n \to t$ in $I$ it holds $f(t_n) \to f(t)$ in $X$.
+	We say $f$ has a derivative at $t_0 \in I$ denoted $f'(t_0) \in X $ if
+	\[
+		f'(t_0) = \lim_{h \to 0^+}\frac{f\qty(t_0 +h) -  f(t_0)}{h}
+	\]
+	the limit exists.
+	The spaces $\CkSet{k}{I;X}, \CinfSet{I;X}, \DSet{I;X}$ are then defined as expected.
+\end{definition}
+
+\begin{lemma}[Lebesgue theorem for vector valued functions]
+	Let $\qty{f_n}_{n \in \N} \subset \LpIntX{1}{0}{T}{X}$ such that $f_n(t) \to f(t)$ in $X$ for $\, \text{\textit{a.a.}} \, t \in I.$ Then $f \in \LpIntX{1}{0}{T}{X}$ and it holds
+	\[
+		\lim_{n \to \infty}\int_I f_n(t) \dd{t} = \int_I f(t) \dd{t}.
+	\]
+\end{lemma}
+\begin{proof}
+    No proof.
+\end{proof}
+
+\begin{lemma}
+    Let $p \in [1, \infty).$ Then
+    \begin{itemize}
+	    \item The set
+		    \[
+			    \qty{u: I \to X | u(t) = \sum_{j=1}^N \varphi_j(t) x_j, N \in \N, \varphi_j \in \DSet{I}, x_j \in X},
+		    \]
+		    is dense in $\LpIntX{p}{0}{T}{X}.$ In particular, $\DSet{\qty(0,T);X}$ is dense in $\LpIntX{p}{0}{T}{X}.$
+	    \item Let $\omega \in \DSet{\R}$ be a regularization kernel, and extend $u \in \LpIntX{p}{0}{T}{X}$ by zero outside of $(0,T)$. Then $u\star \omega_{\varepsilon} \to u \, \text{as} \,\varepsilon \to 0^+,$ in $\LpIntX{p}{0}{T}{X}$ and \textit{a.e.} in $(0,T).$
+    \end{itemize}
+\end{lemma}
+
+\begin{theorem}
+	Let $X$ be a Banach space, $ p \in [1, \infty].$ Then
+	\[
+		\WkpSet[1][p]{I; X} \hookrightarrow \CkSet{0}{I; X}.
+	\]
+\end{theorem}
 \begin{lemma}[Arzela-Ascoli]
 	Let $X,Y$ be Banach spaces, $X \subset \subset Y.$ Then
 	\[
@@ -3277,22 +3591,46 @@ Hold on, we are interested in PDE's. Why should we care about calculus of variat
 \label{sec:nonlinear_parabolic}
 
 We will be dealing with the following problem:
-\[
-	\begin{cases}
-		\partial_t u - \divergence{a\qty(\vdot, u, \grad u)}+ a_0\qty(\vdot, u, \grad u) = f &\, \text{in} \, (0,T) \times \Omega, \\
-		u = u_0, &\, \text{on} \, \{0\} \times \Omega, \\
-		u = 0, &\, \text{on} \, (0,T) \times \partial \Omega
-	\end{cases}.
-\]
-The unknown is the function $u: \qty(0,T) \times \Omega \to \R,$ and we are given $\Omega \in C^{0,1}, T>0, Q_T = (0,T) \times \Omega, f: Q \to \R$ or $f: \qty(0,T) \to X$ a Banach space, $u_0: \Omega \to \R, a: \Omega \times \R \R^{d} \to \R^{d}, a_0: \Omega \times \R \times \R^{d}\to \R$ are Caratheodory (the last 2). Moreover, the functions satisfy the following growth conditions: $ \exists r >1, \exists C > 0: \, \text{\textit{a.e.}} \, x \in \Omega, \forall (z,p) \in \R^{d+1}: |a_0(x,z,p)|+|a(x,z,p)| \leq C(1+|z|^{r-1}+|p|^{r-1})$ and $\exists C_1, C_2>0, q \in (1, \max(2,r)) \, \text{\textit{a.e.}} \,x \in \Omega, \forall (z,p) \in \R^{d+1}: a\qty(x,z,p)p + a_0(\dots) z \geq C_1 |p|^r - C_2(1+|z|q).$
+\begin{align}
+	\label{eq:nonlin_parab}
+	\partial_t u - \divergence{\vb{a}\qty(x, u, \grad u)}+ a_0\qty(x, u, \grad u) &= f \, \text{in} \, (0,T) \times \Omega, \\
+	u &= u_0, \, \text{on} \, \{0\} \times \Omega, \\
+	u &= 0, \, \text{on} \, (0,T) \times \partial \Omega.
+\end{align}
+The unknown is the function $u(t,x): \qty(0,T) \times \Omega \to \R,$ and we are given
+\begin{itemize}
+	\item $\Omega \in \Ckl{0}{1},T >0, Q_T = \qty(0,T) \times \Omega,$
+	\item $\vb{a}:\Omega \times \R \times \R^d \mapsto \R^d, a_i: \Omega \times \R \times \R^d \mapsto \R$ are Caratheodory in $x \in \Omega$ and in $(z, p) \in \R \times \R^d,$ with the following growth condition: $\exists C>0, \exists r\in (1, \infty)$ \textit{s.t.}
+		\[
+			\forall \, \text{\textit{a.a.}} \, x \in \Omega, \forall (z,\vb{p}) \in \R^{d+1}: \abs{a_i\qty(x, z, \vb{p})} \leq C\qty(1+ \abs{z}^{r-1}+ \abs{\vb{p}}^{r-1}),
+		\]
+	\item and also with the coercivity condition: $\exists C_1, C_2 >0, \exists q \in \qty(1, \max\qty(2,r)):$
+		\[
+			\forall \, \text{\textit{a.a.}} \, x \in \Omega, \forall \qty(z, \vb{p}) \in \R^{d+1}: \vb{a}\qty(x,z,\vb{p}) \vdot \vb{p} + a_0\qty(x,z,\vb{p})z \geq C_1\abs{\vb{p}}^r - C_2\qty(1+\abs{z}^q),
+		\]
+	\item $f: \qty(0,T) \times \Omega \to \R, u_0: \Omega \to \R$ (and will also be in some Banach spaces)
 
-\begin{theorem}
-	Let $\Omega \in C^{0,1}, a, a_0$ satisfy growth conditions and coercivity, let $\{a_i\}_{i=0}^d$ be monotone. Denote $V = \WkpzeroSet[1][r]{\Omega} \cap \LpSet[2]{\Omega}.$ Then $\forall f \in \LpIntX{r'}{0}{T}{V^{*}}, u_0 \in \LpSet[2]{\Omega} \exists u \in  \LpIntX{r}{0}{T}{V} \, \text{\textit{s.t.}} \, \partial_t u \in \LpIntX{r'}{0}{T}{V^{*}}, u \in C\qty([0,T]; \LpSet[2]{\Omega}), u(0) = u_0$ and moreover
+\end{itemize}
+
+\begin{theorem}[Existence and uniqueness]
+	Let $\Omega \in C^{0,1},$ and let  $\qty{a_i}_{i=0}^d$ satisfy the above growth conditions and coercivity and let them moreover be monotone. Denote
 	\[
-		\, \text{\textit{a.e.}} \,t \in (0,T), \forall \varphi \in V: <\partial_t u, \varphi> + \int_{\Omega}a\qty(\vdot, u, \grad u) \grad \varphi + a_0\qty(\vdot, u, \grad u)\varphi\dd{x} = <f, \varphi>.
+		V = \WkpzeroSet[1][r]{\Omega} \cap \LpSet[2]{\Omega}.
+	\]
+	Then $\forall f \in \LpIntX{r'}{0}{T}{V^{*}}, \forall u_0 \in \LpSet[2]{\Omega}$ exists  a solution $u \in  \LpIntX{r}{0}{T}{V} \, \text{\textit{s.t.}} \, \partial_t u \in \LpIntX{r'}{0}{T}{V^{*}}, u \in C\qty([0,T]; \LpSet[2]{\Omega}), u(0) = u_0$ and moreover
+	\[
+		\forall	\, \text{\textit{a.e.}} \,t \in (0,T), \forall \varphi \in V: <\partial_t u, \varphi> + \int_{\Omega}\vb{a}\qty(x, u, \grad u) \vdot \grad \varphi + a_0\qty(x, u, \grad u)\varphi\dd{x} = <f, \varphi>.
 	\]
 	Finally, the solution is unique.
 \end{theorem}
+
+	\begin{remark}
+	    \begin{itemize}
+		    \item the requirement $V = \WkpzeroSet[1][r]{\Omega} \cap \LpSet[2]{\Omega}$ becomes redundent whenever $r^{*} = \frac{rd}{d-r} >2,$ 
+		    \item recall that $\qty(\LpIntX{r}{0}{T}{V})^{*} = \LpIntX{r'}{0}{T}{V^{*}},$ 
+		    \item on V we can assume \textit{e.g.} $\norm{u}_V = \norm{u}_{\LpSet[2]{\Omega}} + \norm{u}_{\WkpzeroSet[1][r]{\Omega}}.$
+	    \end{itemize}
+	\end{remark}
 \begin{proof}
 	The strategy is the following 
 	\begin{enumerate}
@@ -3302,38 +3640,117 @@ The unknown is the function $u: \qty(0,T) \times \Omega \to \R,$ and we are give
 		\item limit passage
 		\item identification of the limits
 	\end{enumerate}
+	
 
-	\textit{Rothe method:} Fix $h \in \{\frac{T}{n}, n \in \N\}$ and approximate the derivative with
-	\[
-		\partial_t u (t,x) \approx \frac{1}{h}\qty(u\qty(t,x)-u(t-h,x)).
-	\]
-	Define $u_0 = u_0, u_{k+1} \in V$ as a solution of
-	\[
-		\frac{1}{h}\qty(u_{k+1}-u_{k}) - \divergence{a\qty(\vdot, u_{k+1,}, \grad u_{k+1})} + a_0\qty(\vdot, u_{k+1}, \grad u_{k+1}) = f_{k+1} \, \text{in} \, \Omega, u_{k+1} = 0 \, \text{on} \, \partial \Omega.
-	\]
-	Define
-	\[
-		f_{k+1} \coloneq \int_{kh}^{(k+1)h}f\dd{t},
-	\]
-	then the weak formulation becomes
-	\[
-		\int_{\Omega}\frac{u_{k+1}-u_k}{h}\varphi + a\qty(\vdot, u_{k+1}, \grad u_{k+1}) \vdot \grad \varphi a_0\qty(\vdot, u_{k+1}, \grad u_{k+1})\varphi\dd{x} = <f_{k+1}, \varphi>.
-	\]
-	We \textit{claim without a proof} that the solutions $\{u_k\}_{k=0}^n \subset V$ exist.
+	\textit{Rothe method:} ]
+	Fix $m \in \N$ and divide the time interval $(0,T)$ into subintervals of equal length: denote $h = \frac{T}{m}, t_0 =0, t_m = T , t_k = kh, k \in {0,\dots, m}.$ The goal is to solve a stationary variant of the problem on each subinterval $(t_{k}, t_{k+1}],$ approximate the time derivative using difference scheme and then pass to the (certain) limit $m \to \infty.$
 
-	To obtain a-priori estimates, tes the equation with $u_{k+1}$. This yields:
+	Denote the (Bochner integral) mean
 	\[
-		\int_{\Omega}|u_{k+1}|^{2} - u_k u_{k+1}\dd{x} = \int_{\Omega}\frac{1}{2}|u_{k+1}|^{2} + \frac{1}{2}\qty(u_{k+1}- u_k) - \frac{|u_k|^{2}}{2}\dd{x} \Rightarrow \sum_{k=0}^{j-1}\int_{\Omega}|u_{k+1}|^{2} - u_{k+1}u_k\dd{x}  = \frac{1}{2} \norm{u_j}_{\LpSet[2]{\Omega}}^{2} - \frac{1}{2}\norm{u_0}_{\LpSet[2]{\Omega}}^{2} + \sum_{k=0}^{j-1}\qty(u_{k+1}-u_k)^{2},
+		f_k = \frac{1}{h} \int_{t_k}^{t_{k+1}}f(t)\dd{t}. 
 	\]
-	so
+	Realize that since $f \in \LpIntX{r'}{0}{T}{V^{*}},$ we have constructed $f_k \in V^{*}$, \textit{i.e.}, time independent. For our fixed $m \in \N$ we will denote $u_m(t)$ the approximate solution on the discretization of $I$. Set $u_m\qty(t_0 = 0) = u_0$, and $\forall k \in \qty{0, \dots, m}$ we will be looking for the solution $u_m\qty(t_{k+1})$ of the following stationary problem on $(t_k, t_{k+1}]$:
 	\[
-		\int_{\Omega}a\qty(\dots) \grad \vdot u_{k+1} + a_0\qty(\dots) u_{k+1} \dd{x} \geq C_1 \int_{\Omega}|\grad u_{k+1}|^r\dd{x} - C_2 \int_{\Omega}\qty(1+|u_{k+1}|^q)\dd{x},
+		\int_{\Omega}\frac{u_m\qty(t_{k+1})- u_m\qty(t_k)}{h}\varphi\dd{x} + \int_{\Omega}\vb{a}\qty(x, u_m\qty(t_{k+1}), \grad u_m\qty(t_{k+1})) \vdot \grad \varphi + a_0\qty(x, u_m\qty(t_{k+1}), \grad u_m\qty(t_{k+1})) \varphi \dd{x} = <f_{k}, \varphi>.
 	\]
+The sought solution should lie in $V = \WkpzeroSet[1][r]{\Omega} \cap \LpSet[2]{\Omega},$ which we can check with following apriori estimate derived under. Realize that this way, $u_m\qty(t_{k+1})$ is a stationary solution that is constant in time on $(t_k, t_{k+1}].$ 
+
+	It is a question whether the solution $u_m\qty(t_{k+1}) \in V$ for the above steady problem exists or not; since we have growth, monotonocity, coercivity and regularity of the data and the boundary, we will assume without a proof that the solution exists - it could in theory be proven using the tools from the application of monotone operator theory on nonlinear elliptic equations. We will not assume the solution to be unique however.\\
+
+	\textit{A-priori and uniform estimates}
+ As usual test the weak formulation with the solution itself, \textit{i.e.}, test with $u_m\qty(t_{k+1}) \in V.$
+
+	\begin{align*}
+		&\int_{\Omega}\frac{\abs{u_m\qty(t_{k+1})}^{2} - u_m\qty(t_{k+1})u_{m}\qty(t_{k+1})}{h}\dd{x} + \\
+		&+ \int_{\Omega}\vb{a}\qty(x, u_m\qty(t_{k+1}), \grad u_m\qty(t_{k+1}))\vdot \grad u_m\qty(t_{k+1}) + a_0\qty(x, u_m\qty(t_{k+1}), \grad u_m\qty(t_{k+1})) u_m\qty(t_{k+1})\dd{x} = <f_k, u_m\qty(t_{k+1})>,
+	\end{align*}
+	use the coercivity conditions and Poincare (recall $V = \WkpzeroSet[1][r]{\Omega} \cap \LpSet[2]{\Omega})$
+
+	\begin{align*} 
+		&\int_{\Omega}\vb{a}\qty(x, u_m\qty(t_{k+1}), \grad u_m\qty(t_{k+1}))\vdot \grad u_m\qty(t_{k+1}) + a_i\qty(x, u_m\qty(t_{k+1}), \grad u_m\qty(t_{k+1})) u_m\qty(t_{k+1})\dd{x} \geq \\
+		&\geq \int_{\Omega}C_1\abs{\grad u_m\qty(t_{k+1})}^r - C_2\qty(1+\abs{u_m\qty(t_{k+1})}^q)\dd{x} = C_1 \norm{\grad u_m\qty(t_{k+1})}_{\LpSet[r]{\Omega}}^r - C_2\qty(\lambda\qty(\Omega) + \norm{u_m\qty(t_{k+1})}_{\LpSet[q]{\Omega}}^q) \geq \\
+		&\geq C_1 \norm{\grad u_m\qty(t_{k+1})}_{\LpSet[r]{\Omega}}^r - C_2\qty(1+ \lambda\qty(\Omega) + \norm{u_m\qty(t_{k+1})}_{\LpSet[\max\qty(2,r)]{\Omega}}^{\max(2,r)}).
+	\end{align*}
+	where we used $q < \max(2,r),$ so $\LpSet[\max(2,r)]{\Omega} \hookrightarrow \LpSet[q]{\Omega}.$ The RHS can be estimated as
+	\begin{align*}
+		<f_{k}, u_{m}\qty(t_{k+1})> &\leq \norm{f_k}_{V^{*}}\norm{u_m\qty(t_{k+1})}_{V^{*}} = \norm{f_k}_{V^{*}}\qty(\norm{u_m\qty(t_{k+1})}_{\LpSet[2]{\Omega}} + \norm{u_m\qty(t_{k+1})}_{\WkpzeroSet[1][r]{\Omega}}) \leq \\
+					    &\leq C\qty(\norm{f_k}_{V^{*}}^{2} + \norm{f_k}_{V^{*}}^{r'}) + \varepsilon \qty(\norm{u_m\qty(t_{k+1})}_{\LpSet[2]{\Omega}}^{2} + \norm{u_m\qty(t_{k+1})}_{\WkpzeroSet[1][r]{\Omega}}^r).
+	\end{align*}
+	Using these, the apriori estimates become
+	\begin{align*}
+		&\int_{\Omega} u_m\qty(t_{k+1})^{2} -u_m\qty(t_{k+1}) u_m\qty(t_k)\dd{x} + h\qty(C_1 \norm{\grad u_m\qty(t_{k+1})}_{\LpSet[r]{\Omega}}^r - C_2\qty(1+ \lambda\qty(\Omega) + \norm{u_m\qty(t_{k+1})}_{\LpSet[\max\qty(2,r)]{\Omega}}^{\max(2,r)})) \leq \\
+		&\leq Ch\qty(\norm{f_k}_{V^{*}}^{2} + \norm{f_k}_{V^{*}}^{r'}) + \varepsilon h \qty(\norm{u_m\qty(t_{k+1})}_{\LpSet[2]{\Omega}}^{2} + \norm{u_m\qty(t_{k+1})}_{\WkpzeroSet[1][r]{\Omega}}^r),
+	\end{align*}
+	and when choosing $\varepsilon > 0$ and renaming all the constants
+
+	\begin{align*}
+		\int_{\Omega}u_m\qty(t_{k+1})^{2} - u_m\qty(t_{k+1})u_m\qty(t_k)\dd{x} + Ch\qty(\norm{u_m\qty(t_{k+1})}_{\WkpzeroSet[1][r]{\Omega}}^r) \leq Ch\qty(\norm{f_k}_{V^{*}}^{2} + \norm{f_k}_{V^{*}}^{r'} + \norm{u_m\qty(t_{k+1})}_{\LpSet[2]{\Omega}}^{2}) 
+	\end{align*}
+	Notice that (completing the square):
 	\[
-		<f_{k+1}, u_{k+1}> \leq \norm{f_{k+1}}_{V^{*}}\qty(\norm{u_{k+1}}_{\WkpzeroSet[1][r]{\Omega}}+ \norm{u_{k+1}}_{\LpSet[2]{\Omega}}) \leq \varepsilon \qty(\norm{u_{k+1}}_{\WkpzeroSet[1][r]{\Omega}}^r + \norm{u_{k+1}}_{\LpSet[2]{\Omega}}^{2}) + C\qty(\norm{f_{k+1}}^{r'}_{V^{*}}+\norm{f_{k+1}}^{2}_{V^{*}}).
+		\int_{\Omega}u_m\qty(t_{k+1})^{2} - u_m\qty(t_{k+1})u_m\qty(t_k)\dd{x} = \int_{\Omega}\frac{1}{2}u_m\qty(t_{k+1})^{2} + \frac{1}{2}\qty(u_m\qty(t_{k+1})- u_m\qty(t_k))^{2} - \frac{1}{2} u_m\qty(t_k)^{2}\dd{x},
 	\]
-	So together $\norm{u_j}_{\LpSet[2]{\Omega}}^{2} + \sum_{k=0}^{j-1}\qty[\qty(u_{k+1}-u_k)^{2} + h \norm{u_{k+1}}_{\WkpzeroSet[1][r]{\Omega}}^r] \leq C\qty(\norm{u_0}_{\LpSet[2]{\Omega}}^{2}+ \sum_{k=0}^{j-1}h \norm{u_{k+1}}_{\LpSet[2]{\Omega}}^{2} + \sum_{k=0}^{j-1}h \qty(\norm{f}_{V^{*}}^{r'}\norm{f}_{V^{*}}^{2}))$
-\end{proof}
+	so when we sum these terms from $k = 0$ to some $j < m$ we see that a lot of things subtract in fact:
+	\[
+		\sum_{k=0}^{j-1}\int_{\Omega}u_m\qty(t_{k+1})^{2} - u_m\qty(t_{k+1})u_m\qty(t_k)\dd{x} = \frac{1}{2}\qty(\norm{u_m\qty(t_j)}_{\LpSet[2]{\Omega}}^{2} - \norm{u_0}_{\LpSet[2]{\Omega}}^{2} + \sum_{k=0}^{j-1} \norm{u_m\qty(t_{k+1}) - u_m\qty(t_k)}_{\LpSet[2]{\Omega}}^{2}).
+	\]
+	So for $j < m$ we can write the a-priori estimate as (we of course sum all the weak formulations)
+	\begin{align*}
+		&\norm{u_m\qty(t_{j})}_{\LpSet[2]{\Omega}}^{2} + \sum_{k=0}^{j-1} \qty(\norm{u_m\qty(t_{k+1}) - u_m\qty(t_k)}_{\LpSet[2]{\Omega}}^{2} + C_1 h \norm{u_m\qty(t_{k+1})}_{\WkpzeroSet[1][r]{\Omega}}^r) \leq \\
+		& \leq C\qty(\norm{u_0}_{\LpSet[2]{\Omega}}^{2} + h\sum_{k=0}^{j-1}\qty(\norm{f_k}_{V^{*}}^{2} + \norm{f_k}_{V^{*}}^{r'} + \norm{u_m\qty(t_{k+1})}_{\LpSet[2]{\Omega}}^{2})).
+	\end{align*}
+	It remains to notice $u_m\qty(t_{k+1})$ is constant on $(t_k, t_{k+1}]$, so it actually holds 
+	\begin{align*}
+		\sum_{k=0}^{j-1}h \norm{u_m\qty(t_{k+1})}_{\WkpzeroSet[1][r]{\Omega}}^r &= \sum_{k=0}^{j-1} \int_{t_k}^{t_{k+1}}\norm{u_m\qty(t_{k+1})}_{\WkpzeroSet[1][r]{\Omega}}^r\dd{t} = \\
+											&= \int_{0}^{t_j}\norm{u_m\qty(t_{k+1})}_{\WkpzeroSet[1][r]{\Omega}}^r \dd{t}, 
+	\end{align*}
+	and also 
+	\begin{align*}
+		\sum_{k=0}^{j-1}h \qty(\norm{f_k}_{V^{*}}^{2} + \norm{f_k}_{V^{*}}^{r'} + \norm{u_m\qty(t_{k+1})}_{\LpSet[2]{\Omega}}^{2}) &= \int_0^{t_j}\norm{f_k}_{V^{*}}^{2} + \norm{f_k}_{V^{*}}^{r'} + \norm{u_m\qty(t_{k+1})}_{\LpSet[2]{\Omega}}^{2}\dd{t} \leq \\
+																	   &\leq \int_0^{T}\norm{f_k}_{V^{*}}^{2} + \norm{f_k}_{V^{*}}^{r'}\dd{t} + \int_0^{t_j} \norm{u_m\qty(t_{k+1})}_{\LpSet[2]{\Omega}}^{2}\dd{t},
+	\end{align*}
+	so we can finally write the apriori estimates as 
+	\begin{align*}
+		\norm{u_m\qty(t_j)}_{\LpSet[2]{\Omega}}^{2} &+ \sum_{k=0}^{j-1}\norm{u_m\qty(t_{k+1}) - u_m(t_k)}_{\LpSet[2]{\Omega}}^{2} + C\int_0^{t_j}\norm{u_m\qty(t_{k+1})}_{\WkpzeroSet[1][r]{\Omega}}^r \dd{t} \leq \\
+	&\leq C\qty(\norm{u_0}_{\LpSet[2]{\Omega}}^{2} + \int_0^{T}\norm{f_k}_{V^{*}}^{2} + \norm{f_k}_{V^{*}}^{r'}\dd{t}).
+	\end{align*}
+	The RHS contains only data, so these are uniform estimates. Because are the summands are nonnegative and $j < m$ was arbitrary, we conclude it must hold
+	\begin{align*}
+		\NormLinfIntX{u_m}{0}{T}{\LpSet[2]{\Omega}} &\leq C, \\
+		\NormLpIntX{u_m}{r}{0}{T}{\WkpzeroSet[1][r]{\Omega}} &\leq C, \\
+	\end{align*}
+	and using the growth condition we also obtain
+	\[
+		\NormLpIntX{a_i\qty(\vdot, u_m, \grad u_m)}{r'}{0}{T}{\LpSet[r']{\Omega}} \leq C.
+	\]
+
+
+	\textit{Limit passage}
+	Using the reflexivity of (some of) the spaces, we see that since the above sequences are uniformly bounded, it must be (we are not renaming the subsequences)
+	\begin{align*}
+		u_m &\rightharpoonup u, \, \text{in} \, \LpIntX{r}{0}{T}{\WkpzeroSet[1][r]{\Omega}}, \\
+		u_m &\rightharpoonup^* u \, \text{in} \, \LinfIntX{0}{T}{\LpSet[2]{\Omega}}, \\
+		a_i\qty(\vdot, u_m, \grad u_m) &\rightharpoonup b_i , i \in \qty{0, \dots, d} \, \text{in} \, \LpIntX{r'}{0}{T}{\LpSet[r']{\Omega}}.
+	\end{align*}
+	To be totally valid, we should check that the first convergencies are actually to the same function. We would like to obtain a sequence for the time derivative also. For that reason, let us do the following. On $(t_k, t_{k+1})$, set
+	\[
+		\tilde{u}_m(t) = u_m\qty(t_k) + \frac{t-t_k}{h}\qty(u_m\qty(t_{k+1})-u_m(t_k)),
+	\]
+	and we immeditaly see
+	\[
+		\partial_t \tilde{u}_m(t) = \frac{u_m\qty(t_k) - u_m(t_{k+1})}{h},t \in (t_k, t_{k+1}),
+	\]
+	and from the previous esimates we also have
+	\[
+		\NormLinfIntX{\tilde{u}_m}{0}{T}{\LpSet[2]{\Omega}} \leq C,\NormLpIntX{\tilde{u}_m}{r}{0}{T}{\WkpzeroSet[1][r]{\Omega}} \leq C.
+	\]
+	
+	Rewriting the partial derivative from the weak formulation $u_m\qty(t_{k+1})$ solves we obtain
+	\begin{align*}
+		\int_{\Omega}\partial_t \tilde{u}_m \varphi \dd{x} &= <f_k, \varphi> - \int_{\Omega}\vb{a}\qty(x, u_m\qty(t_{k+1}), \grad u_m\qty(t_{k+1}))\vdot \varphi + a_0\qty(x, u_m\qty(t_{k+1}), \grad u_m\qty(t_{k+1}))\dd{x} \leq \\
+								   &\leq
+	\end{align*}
+	
 Let us now define $u^n(t) = u_k$ for $t \in (h(k-1),hk),$ then
 \[
 	\NormLinfIntX{u^n}{O}{T}{\LpSet[2]{\Omega}}^{2} + \NormLpIntX{u^n}{2}{O}{T}{\WkpzeroSet[1][r]{Omega}}^{2} < C(\, \text{data} \,).
@@ -3371,6 +3788,7 @@ and integrating
 	\int_0^T \norm{\partial_t \tilde{u}^n(t)}_{V^{*}}^{r'} \dd{t} \leq C\qty(\int_0^T \norm{f^n}_{V^{*}}^{r'}+ \norm{a\qty(\vdot, u^n, \grad u^n)}_{\LpSet[r']{\Omega}}(t) + \norm{a_0\qty(\vdot, u^n, \grad u^n)}_{\LpSet[r']{\Omega}},
 	\dd{t}) \leq T C\qty(\, \text{data} \,)
 \]
+\end{proof}
 
 \section{Semigroup theory}
 \label{sec:semigroups}
@@ -3470,10 +3888,11 @@ but what is
 	    \lim_{h\to 0_+}\frac{S(t-h) x - S(t)x}{-h} - S(t) Ax = \lim_{h\to 0_+}S(t-h) \qty(\frac{x-S(h)x}{-h}-S(h)Ax),
     \]
     estimate,
-    \[
-	    \norm{\lim_{h\to 0_+}\frac{S(t-h) x - S(t)x}{-h} - S(t) Ax = \lim_{h\to 0_+}S(t-h) \qty(\frac{x-S(h)x}{-h}-S(h)Ax)} = 
-	    \lim_{h\to 0_+}\norm{\frac{S(t-h) x - S(t)x}{-h} - S(t) Ax = \lim_{h\to 0_+}S(t-h) \qty(\frac{x-S(h)x}{-h}-S(h)Ax)} \leq M e^{\omega\qty(t-h)}\norm{\frac{x-S(h)x}{-h}-S(h)Ax} \to Me^{\omega\qty(t-h)}\qty(Ax - Ax) = 0,
-    \]
+    \begin{align*}
+	    \norm{\lim_{h\to 0_+}\frac{S(t-h) x - S(t)x}{-h} - S(t) Ax} &= \norm{\lim_{h\to 0_+}S(t-h) \qty(\frac{x-S(h)x}{-h}-S(h)Ax)} = \\
+									&=\lim_{h\to 0_+}\norm{\frac{S(t-h) x - S(t)x}{-h} - S(t) Ax = \lim_{h\to 0_+}S(t-h) \qty(\frac{x-S(h)x}{-h}-S(h)Ax)}\leq \\
+									&\leq M e^{\omega\qty(t-h)}\norm{\frac{x-S(h)x}{-h}-S(h)Ax} \to Me^{\omega\qty(t-h)}\qty(Ax - Ax) = 0,
+    \end{align*}
     as $S(t)$ is continous and $S(0) = \, \text{id} \,.$ Clearly, $t \mapsto S(t)x$ is $C^1\qty([0, \infty))$ and
     \[
 	    \dv{t}\qty(S(t)x) = S(t)S'(0)x = S(t)Ax.
@@ -3535,9 +3954,10 @@ but what is
 
 	Ad 2.:
 	Take $\qty{x_n} \subset \mathcal{D}(A): x_n \to x$ in $X, Ax \to v \, \text{in} \,X.$ Compute\footnote{This "Newton-Leibniz formula" does not hold trivially, but doc. Kaplicky says it does; you have to realize that $X$ is a Banach space and work with some functionals and Bochner integrals or whatever}
-	\begin{equation*}
-		\frac{\qty(S(h)-\, \text{id} \,)x_n}{h} = \frac{1}{h}\int_0^h \dv{s}\qty(S(s)x_n)\dd{s} = \frac{1}{h}\int_0^h AS(s)x_n \dd{s} = \frac{1}{h}\int_0^h S(s)\underbrace{Ax_n}_{\to v}, \, \text{so taking the limit yields} \, \frac{\qty(S(h)-\text{id})x}{h} =\frac{1}{h}\int_0^h S(s)v \dd{s} \to v, \, \text{as} \, h \to 0_+.
-	\end{equation*}
+	\begin{align*}
+		\frac{\qty(S(h)-\, \text{id} \,)x_n}{h} &= \frac{1}{h}\int_0^h \dv{s}\qty(S(s)x_n)\dd{s} = \frac{1}{h}\int_0^h AS(s)x_n \dd{s} =\\
+		&=\frac{1}{h}\int_0^h S(s)\underbrace{Ax_n}_{\to v}, \, \text{so taking the limit yields} \, \frac{\qty(S(h)-\text{id})x}{h} =\frac{1}{h}\int_0^h S(s)v \dd{s} \to v, \, \text{as} \, h \to 0_+.
+	\end{align*}
 	Altogether, $x \in \mathcal{D}(A), Ax = v.$	
 \end{proof}
 
@@ -3707,9 +4127,10 @@ and we claim this is equal to
 which follows from the Cauchy theorem on products of series. Estimating this gives $ \leq e^{-nt}\, \text{id} \, \sum_{k=0}^{\infty}\frac{\qty(nt)^k}{k!}\norm{nR(n,A)}^k_X \leq e^{-nt} e^nt = 1,$ as $\norm{nR(n,A)}^k \leq 1.$ This means $\qty{S_n(t)}_{\mathcal{L}(X)} \leq 1.$
 
 Now show that this converges: fix $x \in \mathcal{D}(A)$, compute
-\[
-	\norm{S_n(t)x - S_m(t)x}_X = \norm{\int_0^t \dv{s} \qty(S_n(s) S(m)(t-s)x)\dd{s}}_X = \norm{\int_0^t S_n(s)(A_n - A_m)S_m(t-s)x \dd{s}}_X \underbrace{\leq}_{\norm{S_l}_{\mathcal{L}(X)}\leq 1} t\norm{(A_n - A_m)x}_X \Rightarrow \qty{S_n(t)x} \, \text{is Cauchy} \,,
-\]
+\begin{align*}
+	\norm{S_n(t)x - S_m(t)x}_X &= \norm{\int_0^t \dv{s} \qty(S_n(s) S(m)(t-s)x)\dd{s}}_X = \norm{\int_0^t S_n(s)(A_n - A_m)S_m(t-s)x \dd{s}}_X \leq \\
+				   &\underbrace{\leq}_{\norm{S_l}_{\mathcal{L}(X)}\leq 1} t\norm{(A_n - A_m)x}_X \Rightarrow \qty{S_n(t)x} \, \text{is Cauchy} \,,
+\end{align*}
 and since $X$ is Banach, it is convergent also. Finally, for $y \in X,$ we have
 \[
 	\norm{S_n(t)y - S_m(t)y}_X \leq \norm{S_n(t)(y-x)}_X + \norm{S_n(t)x - S_m(t)x}_X + \norm{S_m(x-y)}_X \leq 2 \norm{x-y}_X + t\norm{(A_n - A_m)x}_X.
