@@ -1,0 +1,369 @@
+% !TEX root = ../main.tex
+
+\section{Calculus of variations}
+\label{sec:calculus_of_variations}
+
+Our motivation is the following: search for a point of minimum for a mapping $I:X \mapsto \R$ 
+\[
+	I(u) = \int_{\Omega}F\qty(x, u, \grad u)\dd{x},
+\]
+with some basic assumptions:
+\begin{itemize}
+	\item $\Omega \in \Ckl{0}{1},$
+	\item $r \in \qty(1, \infty),$
+	\item $X = u_0 + \WkpzeroSet[1][r]{\Omega},$ for some $u_0 \in \WkpSet[1][r]{\Omega},$
+	\item $F: \Omega \times \R \times \R^{d} \to \R$ that is Caratheodory in $x$ and $(z,\vb{p})$ with the following coercivity condition:
+		\[
+			\exists C_1 > 0, C_2 \in \LpSet[1]{\Omega}, \, \text{a.e.} \, x \in \Omega, \forall z \in \R, \forall p \in \R^d : F\qty(x,z,p)\geq C_1|p|^r - C_2(x).
+		\]
+\end{itemize}
+
+\begin{remark}
+	\begin{itemize}
+		\item from the assumptions it follows $\int_{\Omega}F\qty(\vdot, u, \grad u)\dd{x}$ is defined $\forall u \in \WkpSet[1][r]{\Omega},$
+		\item notice the setting is very similiar to the nonlinear equations previously,
+		\item the fact $u \in u_0 + \WkpzeroSet[1][r]{\Omega}, u_0 \in \WkpSet[1][r]{\Omega},$ is nothing new - even it the previous chapter we had $u_0 \in \WkpSet[1][r]{\Omega}, u \in \WkpSet[1][r]{\Omega}\, \text{\textit{s.t.}} \, u-u_0 \in \WkpzeroSet[1][r]{\Omega}.$ Also, since we know $\WkpzeroSet[1][r]{\Omega}$ is a closed subspace of $\WkpSet[1][r]{\Omega},$ the structure $u_0 + \WkpzeroSet[1][r]{\Omega}$ is exactly that of a factorspace.
+
+	\end{itemize}
+\end{remark}
+
+\subsection{Euler-Lagrange equations}
+\label{sec:euler_lagrange}
+The connection between PDE's and calculus of variations is presented in the following lemma.
+
+\begin{lemma}
+	Let $\Omega \in C^{0,1}, r \in(1,\infty), X = u_0 + \WkpzeroSet[1][r]{\Omega}, u_0 \in \WkpSet[1][r]{\Omega}, F$ Caratheodory. Moreover, let the following condition hold: $\exists C>0, h \in \LpSet[1]{\Omega}$ such that 
+	\[
+		 \forall \, \text{a.a} \, x \in \Omega, \forall z \in \R, \forall p \in \R^d: |\grad_p F(x,z,p)|+|\partial_{z} F(x,z,p)| \leq h(x) + C\qty(|z|^r + |p|^r),
+	\]
+	and let moreover $F(x,\vdot, \vdot) \in C^1\qty(\R^{d+1})$ for \textit{a.a.} $x \in \Omega.$
+
+	Let now $u \in X$ be a local minimizer of $I$ over $X$, i.e., $I(u) < \infty$ and
+	\[
+		\exists \rho>0: \forall v \in \mathcal{D}\qty(\Omega), \norm{v}_{\WkpSet[1][r]{\Omega}} < \rho \Rightarrow I(u) \leq I(v).
+	\]
+	Then $u$ is the weak solution to the \textbf{Euler-Lagrange equations}:
+		\begin{align*}
+			- \divergence{\qty(\grad_p F\qty(x, u, \grad u)+ \partial_{z}F\qty(x, u, \grad u))} &= 0, \, \text{in} \, \Omega \\
+			u &= u_0, \, \text{on} \, \partial \Omega,
+		\end{align*}
+	i.e.,
+	\begin{align*}
+		\forall \varphi \in \mathcal{D}\qty(\Omega): \int_{\Omega}\grad_p F\qty(x, u, \grad u) \vdot \grad \varphi + \partial_{z}F\qty(x, u, \grad u) \varphi \dd{x} = 0,\\
+	\end{align*} 
+	and $\trace u = \trace u_0$ on $\partial \Omega.$
+\end{lemma}
+\begin{proof}(\textit{From: the lectures})
+	First, if $u \in u_0 + \WkpzeroSet[1][r]{\Omega},$ then $\tr u = \tr u_0$ and that is true. Now fix some $\varphi \in \mathcal{D}\qty(\Omega)$ and define
+	\[
+		\iota: \R \to \R^{*}: \iota\qty(t) = \int_{\Omega}F\qty(x, u + t \varphi, \grad\qty(u+ t \varphi))\dd{x}.
+	\]
+	Since now $u$ minimizes $I,$ we see $\iota$ has a (local) minimum at $0.$ We will show $\iota'(0)$ exists and is equal to the Euler-Lagrange equations. 
+	Denote now
+	\[
+		l(\vdot, t) = F(\vdot, u + t \varphi, \grad \qty(u + t \varphi),
+	\]
+	for $t \in \R$. To do that, we would like to swap the derivative and the integral, namely to write
+	\[
+		\partial_t \iota(t)  = \partial_t \int_{\Omega}l\qty(\vdot, t)\dd{x} = \int_{\Omega}\partial_t l\qty(\vdot, t)\dd{x}.
+	\]
+	To do that, we have to check the assumptions: 
+	\begin{itemize}
+		\item measurability of $l(\vdot,t),$
+		\item differentiability of $l\qty(\vdot,t),$
+		\item majorant for the derivative,
+		\item convergence of the integral on some neighbourhood of $t$.
+	\end{itemize}
+
+	Recall that from our assumptions ($F$ is Caratheodory + smoothness)
+	\begin{itemize}
+		\item $F\qty(\vdot, z, \vb{p})$ is continuous $\forall (z, \vb{p}) \in \R \times \R^{d} \Rightarrow l(\vdot, t)$ is measurable. so in particular it is measurable on some neighbourhood of $t = 0,$ 
+		\item $F(x, \vdot, \vdot) \in \CkSet{1}{\R^{d+1}} \Rightarrow l\qty(\vdot, t)$ is differentable w.r.t $t$.
+	\end{itemize}
+	It is hence valid to now compute $\partial_{t} l\qty(\vdot, t)$  
+	\begin{align*}
+		\partial_t l(\vdot, t) &= \partial_{z}F\qty(\vdot, u+t \varphi, \grad \qty(u+t \varphi))\varphi + \grad_p F\qty(\vdot, u+t \varphi, \grad\qty(u+t \varphi))\vdot \grad \varphi.
+	\end{align*}
+	We have a nice majorant for this expression straight from the assumptions:
+	\begin{align*}
+		\abs{\partial_t l(\vdot, t)} &=\abs{\partial_{z}F\qty(\vdot, u+t \varphi, \grad \qty(u+t \varphi))\varphi + \grad_p F\qty(\vdot, u+t \varphi, \grad\qty(u+t \varphi))\vdot \grad \varphi} \leq \\
+					     &\leq 2\qty(\abs{h(\vdot)} + C\qty(\abs{u + t \varphi}^r + \abs{\grad (u + t \varphi)}^r))\qty(\abs{\varphi} + \abs{\grad \varphi}),
+	\end{align*}
+	which is in $\LpSet[1]{\Omega}$ for $h \in \LpSet[1]{\Omega}, u \in \WkpSet[1][r]{\Omega}, \varphi \in \DSet{\Omega}.$ Also from the assumption $u$ is a local minimizer we have
+	\[
+		i(0) = \int_{\Omega}F\qty(\vdot, u, \grad u)\dd{x} < \infty
+	\]
+	Altogether, we have checked the necessary assumption, and we see that $\iota'\qty(0)$ exists and is equal to
+	\[
+		\iota'\qty(0) = \int_{\Omega}\partial_{z}F\qty(\vdot, u, \grad u)\varphi + \grad_p F\qty(\vdot, u, \grad u) \vdot \grad \varphi\dd{x} =0.
+	\]
+\end{proof}
+
+\begin{example}
+	Let
+	\[
+		F\qty(x,z,p) = \frac{1}{r}\qty(1)+|p|^{2})^{\frac{r}{2}} - gz - Gp,
+	\]
+	then
+	\[
+		- \grad_p F\qty(x,z,p) = \qty(\frac{r}{2}\frac{1}{r} 2 \qty(1+|p|^{2})^{\frac{r-2}{2}})p -G = \qty(1+|p|^{2})^{\frac{r-2}{2}}p-G, \partial_{z}F\qty(x,z,p) = -g.
+	\]
+	We have
+	\[
+		|\qty(1+|p|^{2\frac{r-2}{2}})p| \leq \qty(1+|p|^{2})^{\frac{r-2}{2}}\qty(1+|p|^{2})^{\frac{1}{2}} = \qty(1+|p|^{2})^{\frac{r-1}{2}}\leq C\qty(1+|p|^r).
+	\]
+	So the estimates are met (somehow with some fantasy).
+	The Euler-Lagrange equations are
+	\[
+		\begin{cases}
+			- \divergence{\qty(\qty(1+|\grad u|^{2})^{\frac{r-2}{2}}\grad u)} = - \divergence{G} + g, & \, \text{in} \, \Omega\\
+			u = u_0, & \, \text{on} \, \partial \Omega.
+		\end{cases},
+	\]
+	whereas their weak form:
+	\[
+		\forall \varphi \in \mathcal{D}\qty(\Omega):\int_{\Omega}\qty(1+|\grad u|^{2})^{\frac{r-2}{2}}\grad u \vdot \grad \varphi\dd{x} = \int_{\Omega}\qty(G \vdot \grad\varphi + g \varphi) \dd{x}.
+	\]
+\end{example}
+
+
+\subsection{Minimization of (convex) functionals}
+\label{sec:minimization}
+We have seen that finding a minimizer is equivalent to solving the Euler-Lagrange equations. But how to find the minimizer? The approach is the following:
+\begin{remark}[General approach]
+
+
+	\begin{itemize}
+		\item find some minimizing sequence :$ \qty{u_n} \subset X$ such that
+			\[
+				\lim_{n \to \infty}I\qty(u_n) = \inf_X I.
+			\]
+		\item we would then like to find the minimizer as some sort of a limit of $\qty{u_n}$ - we need some kind of convergence or compactness. In our case, we will use weak convergence, thus from some compactness result, we will want to show
+			\[
+				u_n \rightharpoonup u
+			\]
+			for some $u,$
+		\item to check that actually $I(u)$ is the minimum of $I$, we need some kind of continuity of $I$ - in our case, weak sequential lower semicontinuity will be enough:
+			\[
+				I(u) \leq \liminf_{n \to \infty} I(u_n), \, \text{as} \, u_n \rightharpoonup u.
+			\]
+	\end{itemize}
+\end{remark}
+
+In the following, we try to derive some sufficient conditions for the functional $I = \int_{\Omega}F\qty(x, u, \grad u)\dd{x}$ to be weakly sequentially lower semicontinuous, \textit{i.e.}, some conditions for $F\qty(x, u, \grad u)$. 
+
+\begin{lemma}
+	Let $N \in \N, F: \R^N \to \R, F \in C^1\qty(\R^N).$ Then 
+	\begin{enumerate}
+		\item $F$ is (strictly) convex $\Leftrightarrow$ $\grad F$ is (strictly) monotone
+		\item If $F$ is (strictly) convex, then
+			\[
+				\forall \xi_1, \xi_2 \in \R^N, \xi_1 \neq \xi_2: F\qty(\xi_1)-F\qty(\xi_2)\geq \grad F\qty(\xi_2)\vdot \qty(\xi_1 - \xi_2).
+			\]
+	\end{enumerate}
+\end{lemma}
+\begin{proof}(\textit{From: the lectures})
+	Fix $\xi_1, \xi_2, \xi_1 \neq \xi_2,$ define $\varphi(t) = F\qty(\xi_2 + t\qty(\xi_1 - \xi_2)).$ Then $\varphi \in C^1\qty(\R)$ and it is also (strictly) convex: $\forall s,t \in \R:$ 
+	\begin{align*}
+		\varphi\qty(\lambda s + (1- \lambda)t) &= F\qty(\xi_2 + \qty(\lambda t + \qty(1-\lambda)s)\qty(\xi_1 - \xi_2)) = F\qty(\lambda\qty(\xi_2 + t\qty(\xi_1 - \xi_2))- \lambda \xi_2 + \xi_2 + \qty(1-\lambda)s\qty(\xi_1 - \xi_2)) = \\
+						       &= F\qty(\lambda\qty(\xi_2 + t\qty(\xi_1 - \xi_2))+ \qty(1- \lambda)\qty(\xi_2 + s\qty(\xi_1 - \xi_2))) \leq \\
+						       &\leq \lambda F\qty(\xi_2 + t\qty(\xi_1 - \xi_2)) + \qty(1- \lambda)F\qty(\xi_2 +s \qty(\xi_1 - \xi_2)) = \lambda \varphi(s) + (1-\lambda) \varphi(s).
+	\end{align*}
+	The derivative of $\varphi$ is 
+	\[
+		\varphi'(t) = \grad F\qty(\xi_2 +t\qty(\xi_1 - \xi_2))\vdot \qty(\xi_1 - \xi_2),
+	\]
+	and so
+	\[
+		"\Rightarrow": \qty(\grad F\qty(\xi_1) - \grad F\qty(\xi_2))\vdot\qty(\xi_1-\xi_2) = \varphi'(1)-\varphi'(0) \geq 0,
+	\]
+	if $\varphi$ is (strictly) convex.
+	
+	And $"\Leftarrow":$ Fix $t_1 > t_2$ and compute
+	\[
+		(t_1 - t_2)	(\varphi'\qty(t_1) - \varphi'\qty(t_2)) = \qty(\grad F\qty(\xi_2 + t_1\qty(\xi_1 - \xi_2))- \grad F\qty(\xi_2 + t_2\qty(\xi_1-\xi_2)))\vdot\qty(\xi_1-\xi_2)(t_1-t_2),
+	\]
+	define
+	\[
+		\eta_1 - \eta_2 = \qty(\xi_1 - \xi_2)\qty(t_1-t_2)
+	\]
+	and we obtain
+	\[
+		(t_1 - t_2)(\varphi'(t_1) - \varphi'(t_2)) = \qty(\grad F\qty(\eta_1)-\grad F\qty(\eta_2))\vdot \qty(\eta_1 - \eta_2)
+	\]
+	and so if the $\grad F$ is (strictly) monotonous, the LHS is (strictly) positive, meaning  (strict) convexity of $\varphi$.
+
+	For 2) we already know $F$ (strictly) convex $\Rightarrow \varphi$ (strictly) convex, and moreover realize
+	\[
+		\varphi(t) = \varphi(t \vdot 1 + \qty(1- t)\vdot0) \leq t \varphi(1) + (1-t) \varphi(0),
+	\]
+	meaning
+	\[
+		\Rightarrow \forall t \in \qty(0,\frac{1}{2}): \frac{\varphi(1)-\varphi(0)}{1} \geq \frac{\varphi(t)-\varphi(0)}{t}\to \varphi'(0),
+	\]
+	as $t\to 0_+.$ And so $\varphi(1) - \varphi(0) \geq \varphi'(0),$ which is exactly the same as
+	\[
+		F\qty(\xi_1) - F\qty(\xi_2) \geq \grad F\qty(\xi_2)\vdot \qty(\xi_1 - \xi_2).
+	\]
+\end{proof}
+
+\begin{theorem}[Sequential weak lower semicontinuity]
+	Let $N, M \in \N, \Omega$ be open and $F\qty(x, \vb{z}, \vb{p}): \Omega \times \R^{N} \times \R^{M} \to \R$ be Caratheodory and convex in $\vb{p}.$ Let moreover $\exists C(x) \in \LpSet[1]{\Omega}$ such that
+	\[
+		\forall \, \text{\textit{a.a.}} \, x \in \Omega, \forall \qty(\vb{z}, \vb{p}) \in \R^{N+M}: F\qty(x, \vb{z}, \vb{p}) \geq C(x).
+	\]
+	Let $\qty{\vb{u_n}} \subset \LpSet[1]{\Omega}$ converge to $\vb{u}$ in $\LpSet[1]{\Omega}, \vb{u}_n \to \vb{u}$ and let $\qty{\vb{U}_n} \subset \LpSet[1]{\Omega}$ converge weakly to $\vb{U}$ in $\LpSet[1]{\Omega}, \vb{U}_n \rightharpoonup \vb{U}.$ Then it holds
+
+	\[
+		\int_{\Omega}F\qty(x, \vb{u}, \vb{U})\dd{x} \leq \liminf_{n\to \infty} \int_{\Omega}F\qty(x, \vb{u}_n, \vb{U}_n)\dd{x}
+	\]
+\end{theorem}
+
+\begin{proof}(\textit{From: \cite{bulicekPartialDifferentialEquations2019}})
+	The proof will be given only if moreover $\forall \, \text{\textit{a.e.}} \,x \in \Omega, \forall z \in \R^{M}: F\qty(x,z,\vdot) \in C^1\qty(\R^N).$ The main idea is the following: by the previous lemma:
+	\[
+		\int_{\Omega}F\qty(\vdot, \vb{u}_n, \vb{U}_n)\dd{x} \geq \int_{\Omega}\qty(F\qty(\vdot, \vb{u}_n, \vb{U}) + \grad_p F\qty(\vdot, \vb{u}_n, \vb{U})\vdot\qty(\vb{U}_n - \vb{U}))\dd{x},
+	\]
+	Since $\qty{\vb{u}_n}$ converges strongly in $\LpSet[1]{\Omega},$ there is a (not renamed) subsequence converging \textit{a.e.} in $\Omega.$ By Egorov theorem that means
+	\[
+		\forall \varepsilon>0 \exists \Omega_{\varepsilon} \subset \Omega: \vb{u}_n \to \to \vb{u}_n, \lambda\qty(\Omega / \Omega_{\varepsilon})< \varepsilon.
+	\]
+	Let us then write (we are using the fact $F\qty(x, \vb{z}, \vb{p}) - C(x) \geq 0.$)
+	\begin{align*}
+		\int_{\Omega}F\qty(x, \vb{u}_n, \vb{U}_n)\dd{x} &= \int_{\Omega}\qty(F\qty(x, \vb{u}_n, \vb{U}_n) - C(x))\dd{x} + \int_{\Omega}C(x)\dd{x} \geq \\
+		&\geq \int_{\Omega_{\varepsilon}}F\qty(x, \vb{u}_n, \vb{U}) - C(x)\dd{x} + \int_{\Omega_{\varepsilon}}F\qty(x, \vb{u}_n, \vb{U}_n) - F\qty(x, \vb{u}_n, \vb{U})\dd{x} + \int_{\Omega}C(x)\dd{x} \geq \\
+		&\geq \int_{\Omega_{\varepsilon}}F\qty(x, \vb{u}_n, \vb{U}) - C(x)\dd{x} + \int_{\Omega_{\varepsilon}}\grad_p F\qty(x, \vb{u}_n, \vb{U}) \vdot \qty(\vb{U}_n - \vb{U})\dd{x} + \int_{\Omega}C(x)\dd{x}.
+	\end{align*}
+	Now we take the limes inferior of both sides and write 
+	\begin{align*}
+		\liminf_{n\to \infty}\int_{\Omega}F\qty(x, \vb{u}_n, \vb{U}_n)\dd{x} &\geq \liminf_{n \to \infty} \Big(\int_{\Omega_{\varepsilon}}F\qty(x, \vb{u}_n, \vb{U}) - C(x)\dd{x} + \int_{\Omega_{\varepsilon}}\grad_p F\qty(x, \vb{u}_n, \vb{U}) \vdot \qty(\vb{U}_n - \vb{U})\dd{x} + \\
+										     &+\int_{\Omega}C(x)\dd{x}Big) \geq \\
+										     &\geq \liminf_{n \to \infty} \int_{\Omega_{\varepsilon}}F\qty(x, \vb{u}_n, \vb{U}) - C(x)\dd{x} + \liminf_{n\to \infty}\qty(\int_{\Omega_{\varepsilon}}\grad_p F\qty(x, \vb{u}_n, \vb{U})\vdot\qty(\vb{u_n} - \vb{U})\dd{x}) + \\
+										     &+\int_{\Omega}C(x)\dd{x}.
+	\end{align*}
+	The second integral actually has a limit,
+	as $\vb{U}_n \rightharpoonup \vb{U}$ in $\Omega_{\varepsilon}$, so $\vb{U}$ is bounded and $\grad_p F\qty(x, \vb{u}_n, \vb{U}_n) \in \LinfSet{\Omega_{\varepsilon}},$ because $\vb{u}_n \to \to \vb{u}$ on $\Omega_{\varepsilon}$ and $\grad_p F\qty(x, \vb{u}_n, \vb{U})$ is continuous in $\vb{u}_n$ from Caratheodory. As the first integral is nonnegative, we can use Fatou to estimate from below. But since $F(x, \vdot, \vb{p})$ is continuous from Caratheodory property and $\vb{u}_n \to \to \vb{u}$ on $\Omega_{\varepsilon}$, the integrand has a limit and it actually holds:
+
+	\[
+		\liminf_{n\to \infty}\int_{\Omega}F\qty(x, \vb{u}_n, \vb{U}_n)\dd{x}\geq \int_{\Omega_{\varepsilon}}F\qty(x, \vb{u}, \vb{U})- C(x)\dd{x} + \int_{\Omega}C(x)\dd{x} = \int_{\Omega_{\varepsilon}}F\qty(x, \vb{u}, \vb{U})\dd{x} + \int_{\Omega / \Omega_{\varepsilon}}C(x)\dd{x},
+	\]
+	and by taking the limit $\varepsilon \to 0^+$ and using the monotone convergence theorem we actually have
+	\[
+		\liminf_{n \to \infty}\int_{\Omega}F\qty(x, \vb{u}_n, \vb{U}_n)\dd{x} \geq \int_{\Omega}F\qty(x, \vb{u}, \vb{U})\dd{x}.
+	\]
+
+\end{proof}
+\begin{remark}
+	\begin{itemize}
+		\item if $U_n \to U$ strongly $\Rightarrow u_n \to u, U_n \to U$ \textit{a.e.} (up to a subsequence) and the claim follows from the Fatou lemma. \footnote{For Fatou, we need nonnegativity of the integrand, but that can be again met from the assumptions $F-c_2 \geq 0, F-c_2 \in \LpSet[1]{\Omega}$}
+		\item norm is weakly lower semicontinuous:
+			\[
+				\grad u_n \rightharpoonup \grad u \, \text{in} \, \LpSet{\Omega} \Rightarrow \int_{\Omega}|\grad u|^p\dd{x} \leq \liminf_{n \to \infty} \int_{\Omega}|\grad u_n|^p\dd{x}.
+			\]
+	\end{itemize}
+\end{remark}
+
+\begin{theorem}[Existence of a minimizer]
+    Let $d \in \N, \Omega \in \Ckl{0}{1}, r \in (1, \infty), u_0 \in \WkpSet[1][r]{\Omega},$ denote $X = u_0 + \WkpzeroSet[1][r]{\Omega}.$ Let $F:\Omega \times \R \times \R^{d} \to \R$ be Caratheodory with the coercivity condition: $\exists C > 0, h \in \LpSet[1]{\Omega}$ \textit{s.t.}:
+    \[
+	    \forall \, \text{\textit{a.a.}} \, x \in \Omega, \forall \qty(z, \vb{p}) \in \R \times \R^{d}: F\qty(x,z,\vb{p}) \geq C\abs{\vb{p}}^r - h.
+    \]
+    Let moreover $F$ be convex in the last variable, \textit{i.e.}, let $\vb{p} \mapsto F\qty(x, z, \vb{p})$ be convex $\forall$ \textit{a.a.} $x\in \Omega, \forall z \in \R.$ Then there exists $u \in X$ that minimizes $I$ on $X$, \textit{i.e.}, $\trace u = \trace u_0$ on $\partial \Omega$ and
+    \[
+	    \forall v \in X: I(u) \leq I(v).
+    \]
+\end{theorem}
+
+\begin{proof}(\textit{From: \cite{bulicekPartialDifferentialEquations2019}})
+    First of all, let us show
+    \[
+	    \Lambda \coloneq \inf_{u \in X} I(u) = \inf_{u \in X} \int_{\Omega}F\qty(x, u, \grad u)\dd{x},
+    \]
+    is bounded from below. Coercivity states
+    \[
+	    F\qty(x, u, \grad u) \geq C \abs{\grad u}^r - h(x),
+    \]
+    so
+    \[
+	   \int_{\Omega}F\qty(x, u, \grad u)\dd{x} \geq \int_{\Omega}C \abs{\grad u}^r - h(x)\dd{x} \geq C \norm{\grad u}_{\LpSet[r]{\Omega}}^r - \norm{h}_{\LpSet[1]{\Omega}} \geq - \norm{h}_{\LpSet[1]{\Omega}},
+    \]
+    and since $\norm{h}_{\LpSet[1]{\Omega}}$ is of course bounded, this means $\Lambda > - \infty.$ Next, we show there exists a minimizing sequence $\qty{u_n} \subset X,$ \textit{i.e.}, a sequence \textit{s.t.}
+    \[
+	    \lim_{n \to \infty}I\qty(u_n) = \Lambda.
+    \]
+    Realize that from the definition of infimum, $\forall n \in \N \exists u_n \in X$ such that
+    \[
+	    I\qty(u_n) \leq \Lambda + \frac{1}{n}.
+    \]
+    We do not know the limit of $I\qty(u_n)$ actually exists, so we have to be a bit more careful. On the other hand, limes superior is defined always, so we on one hand have
+    \[
+	    \limsup_{n \to \infty} I\qty(u_n) \leq \Lambda,
+    \]
+    and from the definition of the infimum
+    \[
+	    \Lambda \leq I\qty(u_n),
+    \]
+    we read
+    \[
+	    \Lambda \leq \liminf_{n \to \infty}I\qty(u_n),
+    \]
+    and so in total
+    \[
+	    \Lambda \leq \liminf_{n \to \infty}I\qty(u_n) \leq \limsup_{n \to \infty} \leq \Lambda.
+    \]
+But this means all the inequalities must in fact be equalities, and the fact $\liminf_{n \to \infty} I(u_n) = \limsup_{n \to \infty}I\qty(u_n)$ is equivalent to the fact $\lim_{n \to \infty}I\qty(u_n)$ exists and is equal to $\Lambda.$ And so we have obtained our minimizing ("infimizing") sequence. 
+
+Now, also from the property of the infimum we may write
+    \[
+	    I(u_n) = \int_{\Omega}F\qty(x, u_n, \grad u_n)\dd{x} \leq \Lambda + 1,
+    \]
+    and so upon using coercivity and estimating the integral from below we may write
+    \[
+	    \int_{\Omega}F\qty(x, u_n, \grad u_n)\dd{x} \geq \int_{\Omega}C \abs{\grad u_n}^r - h\dd{x} \geq C \norm{\grad u_n}^r_{\LpSet[r]{\Omega}} - \norm{h}_{\LpSet[1]{\Omega}},
+    \]
+    and so
+    \[
+	    \norm{\grad u_n}_{\LpSet[r]{\Omega}}^r \leq \frac{1}{C}\qty(\Lambda + 1 + \norm{h}_{\LpSet[1]{\Omega}}), \, \text{\textit{i.e.}} \,, \norm{\grad u_n}_{\LpSet[r]{\Omega}} \leq C_1
+    \]
+    Realize also that
+    \[
+	    \norm{\grad u_n}_{\LpSet[r]{\Omega}} = \norm{\grad\qty(u_n - u_0) + \grad u_0}_{\LpSet[r]{\Omega}} \geq \norm{\grad\qty(u_n - u_0)}_{\LpSet[r]{\Omega}} - \norm{\grad u_0}_{\LpSet[r]{\Omega}} \geq C_p \norm{u_n - u_0}_{\WkpzeroSet[1][r]{\Omega}} - \norm{\grad u_0}_{\LpSet[r]{\Omega}},
+    \]
+
+meaning
+\[
+	\norm{u_n-u_0}_{\WkpzeroSet[1][r]{\Omega}} \leq \frac{1}{C_p}\qty(\norm{\grad u_n}_{\LpSet[r]{\Omega}}+ \norm{\grad u_0}_{\LpSet[r]{\Omega}}) \leq \frac{1}{C_p}\qty(C_1 + \norm{\grad u_0}_{\LpSet[r]{\Omega}}) = C_2,
+\]
+
+where we used Poincare and the fact $\qty{u_n} \subset X,$ so $\trace v_n = \trace u_0.$ Finally, using
+\[
+	\norm{u_n - u_0}_{\WkpzeroSet[1][r]{\Omega}} \geq \norm{u_n}_{\WkpSet[1][r]{\Omega}} - \norm{u_0}_{\WkpSet[1][r]{\Omega}},
+\]
+we have obtained
+\[
+	\norm{u_n}_{\WkpSet[1][r]{\Omega}} \leq C_2 + \norm{u_0}_{\WkpSet[1][r]{\Omega}} = C_3,
+\]
+which is an uniform bound of the functions from the sequence.  $\qty{u_n}$ is a bounded sequence in a reflexive space\footnote{$X$ is the space $X = u_0 + \WkpzeroSet[1][r]{\Omega},$ and since $\WkpzeroSet[1][r]{\Omega}$ is a closed subspace of $\WkpSet[1][r]{\Omega},$ the space $X$ is actually a factorspace and its reflexivity is implied by the reflexivity of $\WkpSet[1][r]{\Omega}.$}, so
+    \[
+	    u_n \rightharpoonup u, \, \text{in} \, \WkpSet[1][r]{\Omega},
+    \]
+    in particular
+    \[
+	    \grad u_n \rightharpoonup \grad u \, \text{in} \, \LpSet[r]{\Omega},
+    \]
+    and also
+    \[
+	    u_n \to u, \, \text{in} \, \LpSet[r]{\Omega}.
+    \]
+Finally, this means
+\[
+	\Lambda = \lim_{n \to \infty} \int_{\Omega}F\qty(x, u_n, \grad u_n)\dd{x} \geq \liminf_{n \to \infty} \int_{\Omega}F\qty(x, u_n, \grad u_n)\dd{x} \geq \int_{\Omega}F\qty(x, u, \grad u)\dd{x} \geq \Lambda,
+\]
+
+where we used the weak lower sequential semicontinuity of $I$ and the fact $u \in X,$ so $I(u) \geq \Lambda.$ But the above manipulation shows that in fact all the inequalities must be equalities, and thus
+\[
+	I(u) = \int_{\Omega}F\qty(x, u, \grad u)\dd{x} = \Lambda,
+\]
+\textit{i.e.}, $u$ is a minimizer.
+\end{proof}
+

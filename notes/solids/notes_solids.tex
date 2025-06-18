@@ -1,34 +1,55 @@
-\documentclass[reqno, a4paper]{article}
-\usepackage{amsmath}
+\documentclass[11pt]{scrartcl} % or article, but scrartcl has nicer defaults
+\usepackage[a4paper, margin=2.5cm]{geometry}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{fancyhdr}
+\usepackage{tcolorbox}
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{\thepage}
+\lhead{Solid mechanics}
+\usepackage{lmodern}
+\usepackage{setspace}
+\usepackage{titling}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue,
+  urlcolor=blue,
+  pdftitle={Thermodynamics and mechanics of solids},
+  pdfauthor={Kamil Belán}
+}
+
 \usepackage{amssymb}
 \usepackage{amsthm}
+\usepackage{microtype}  % subtle typographic improvements
+\usepackage{parskip}    % paragraph spacing instead of indentation
+\usepackage{amsmath}
 
-% PAGE DIMENSION
-
-% BIBLIOGRAPHY
-\usepackage{natbib}
-\usepackage{bibentry} % inline refereces
 
 % ENCODING, LANGUAGE
 \usepackage[english]{babel}
 \usepackage[utf8]{inputenc}
+\usepackage{csquotes}
+
+\usepackage[backend=biber, style=authoryear, natbib=true]{biblatex}
+\addbibresource{references_solids.bib} 
 
 % GRAPHICS
 \usepackage{subfig}
-\usepackage{graphicx}
-\usepackage{tikz}
 
 % HYPERTEXT, SOURCE CODE SPECIALS
-\usepackage[unicode]{hyperref}
 \usepackage[active]{srcltx} % use TeX-souce-specials-mode
 
 % SYMBOLS, FONTS
-\usepackage{mathbbol}
+\usepackage[bbgreekl]{mathbbol}
 \usepackage{bm} % sophisticated \boldsymbol
-\usepackage{physics}
 %\usepackage{stmaryrd}
 \usepackage{MnSymbol} % \lsem, \rsem, tensor product :
 \usepackage{gensymb}
+\usepackage{physics}
 \usepackage{eurosym}
 
 % UNITS, TYPESETTING TENSORS
@@ -43,7 +64,6 @@
 \usepackage{lineno}
 
 \usepackage{multicol}
-\usepackage{tcolorbox}
 
 % SELECTIVELY INCLUDE/EXCLUDE PARTS OF TEXT
 \usepackage{comment}
@@ -53,26 +73,40 @@
 
 \input{macros}
 
-\begin{document}
-
-\title{Thermodynamics and mechanics of solids}
-
 \date{\today}
 
 \author{Kamil Belan}
 
+\begin{document}
 
-
-\begin{comment}
-\begin{abstract}
-  % \input{article-abstract}
-  Here comes the abstract.
-\end{abstract}
-\end{comment}
-
-\maketitle
+% Cover Page
+\begin{titlepage}
+  \centering
+  \vspace*{2cm}
+  
+  {\scshape\LARGE Charles University \par}
+  \vspace{0.5cm}
+  {\scshape\Large Faculty of Mathematics and Physics\par}
+  \vspace{1.5cm}
+  
+  {\huge\bfseries Thermodynamics and mechanics of solids\par}
+  \vspace{0.5cm}
+  {\Large\itshape Based on the lectures by prof. RNDr. Martin Kružík, Ph.D., DSc.\par}
+  
+  \vspace{2cm}
+  
+  \vfill
+  
+  {\large Compiled and typeset by Kamil Belán\par}
+  \vspace{0.5cm}
+  {\large Academic Year 2024/2025\par}
+  \vspace{0.2cm}
+  {\large Last updated: \today\par}
+  
+\end{titlepage}
 
 \tableofcontents
+\newpage 
 
 \section{TODO}
 \label{sec:todo}
@@ -80,14 +114,12 @@
 \begin{itemize}
 	\item include missing lecture about potential forces 
 	\item include missing lecture about rank one convexity
-	\item include weak convergence symbol
-	\item fix bold greek letters
 \end{itemize}
 
 \section{Geometry}
 \label{sec:geometry}
 
-\section{Deformation}
+\subsection{Deformation}
 \label{sec:deformation}
 
 Suppose we are given an abstract body $\Omega \subset \R^d, d=2,3$. Choosing a particular state, we denote it the \textbf{reference configuration}. After the acting of forces, the body deforms into the \textbf{current, deformed configuration}. 
@@ -121,7 +153,11 @@ Of large interest will be the \textbf{deformation gradient}
 \[
 	\fgrad(\vb{x}) = \grad{y}(\vb{x}), (\grad{y})_{ij}=\pdv{y^i}{x^j},
 \]
-on which we put some physically sound restrictions, such as$\det \fgrad> 0$. This means in particular that the determinant is nonzero, but also that preserves orientations of bases:
+on which we put some physically sound restrictions, such as
+\[
+	\det \fgrad> 0.
+\]
+This means in particular that the determinant is nonzero, but also that the deformation preserves the orientation of bases:
 \[
 (\vb{e}_1 \cross \vb{e}_2) \vdot \vb{e}_3 > 0 \Rightarrow(\fgrad\vb{e}_1 \cross \fgrad \vb{e}_2) \vdot \fgrad \vb{e}_3 >0.
 \]
@@ -133,12 +169,16 @@ on which we put some physically sound restrictions, such as$\det \fgrad> 0$. Thi
 	\]
 i.e., $\fgrad=\begin{bmatrix}-1 & 0 \\ 0 & 1\ \end{bmatrix}, \detf = -1$. This is an example of a deformation that is \textit{forbidden}.
 
+\begin{center}
 \begin{tikzpicture}
 	\draw (-3,0) -- (3,0);
 	\draw (0,0) -- (0,2);
 	\draw (0,0) rectangle (1,1) node[above right]{$\Omega$};
 	\draw[dashed] (0,0) rectangle (-1,1) node[above left] {$\vb{y}(\Omega)$};
 \end{tikzpicture}
+\end{center}
+
+
 Imagine it is a sheet of paper in a plane - you cannot reflect it without lifting it from the plane.
 \end{example}
 
@@ -150,7 +190,11 @@ Another useful way of describing the deformation is by using the \textbf{displac
 \]
 so taking the gradient gives
 \[
-	\grad{\vb{u}(\vb{x})} = \fgrad(\vb{x}) - \identity.
+	\grad{\vb{u}(\vb{x})} = \fgrad(\vb{x}) - \identityM,
+\]
+or in other words
+\[
+	\fgrad\qty(\vb{x}) = \identityM + \grad \vb{u}\qty(\vb{x}).
 \]
 \begin{remark}
 It is interesting that we do not place any restrictions on the determinant of the displacement gradient.
@@ -166,16 +210,16 @@ We need to examine how the volume, area and lengths change under deformation. In
 
 \subsubsection{Change of volume}
 \label{sec:Change of volume}
-Using the change of variable theorem we obtain
+Using the change of variable theorem we obtain (realize $\detf > 0$)
 
 \begin{equation*}
 	\lambda(\omega^y) = \int_{\omega^y} 1 \dd{\vb{x}^y} = \int_\omega \detf(\vb{x}) \dd{\vb{x}},
 \end{equation*}
-so we write $\dd{\vb{x}^y} = \detf \dd{\vb{x}}$. This motivates "our" definition of the determinant of the deformation gradient:
+so we write $\dd{\vb{x}^y} = \detf \dd{\vb{x}}$. This motivates "our" definition of the determinant of the deformation gradient:\footnote{This is in fact just the Lebesgue differentiation theorem.}
 
 \begin{equation}
 \label{eq:detfdefinition}
-	\detf (\vb{x}) = \lim_{r\to 0} \frac{\lambda(\vb{y}\qty(B(\vb{x},r))}{\lambda(B(\vb{x},r))},
+\detf (\vb{x}) = \lim_{r\to 0^+} \frac{\lambda(\vb{y}\qty(B(\vb{x},r))}{\lambda(B(\vb{x},r))} ,
 \end{equation}
 where $B(\vb{x},r)$ is a (closed) ball centered at $\vb{x}$ of radius $r$.
 
@@ -184,36 +228,44 @@ where $B(\vb{x},r)$ is a (closed) ball centered at $\vb{x}$ of radius $r$.
 Suppose the line segment $\vb{x}+\Delta \vb{x}$ undergoes deformation. How does its length change?
 Taylor expansion yields:
 \begin{equation*}
-	\vb{y}(\vb{x}+\vb{\Delta x})= \vb{y}(\vb{x}) + \fgrad(\vb{x})\Delta \vb{x} + \, \text{h.o.t.},
+	\vb{y}(\vb{x}+\Delta \vb{x})= \vb{y}(\vb{x}) + \fgrad(\vb{x})\Delta \vb{x} + \, \text{h.o.t.},
 \end{equation*}
 where h.o.t. stands for higher order terms. Using the expansion, we can write
 
 \[
-	\norm{\vb{y}(\vb{x}+\Delta \vb{x}) - \vb{y}(\vb{x})}^2 = \transpose{(\Delta \vb{x})} \transpose{\fgrad} \fgrad \Delta \vb{x} = 
+	\abs{\vb{y}(\vb{x}+\Delta \vb{x}) - \vb{y}(\vb{x})}^2 = \transpose{(\Delta \vb{x})} \transpose{\fgrad} \fgrad \Delta \vb{x} = 
 	\transpose{(\Delta \vb{x})} \tensorq{C}(\vb{x}) \Delta \vb{x},
 \]
 where we have denoted
 \[
 	\tensorq{C}(\vb{x}) = \transpose{\fgrad}(\vb{x})\fgrad(\vb{x}),
 \]
-as the \textbf{Right Cauchy Green tensor}. 
+as the \textbf{Right Cauchy Green tensor}. Realize that in fact
+\[
+	\rcg : \overline{\Omega} \to \overline{\Omega}, \rcg: \vb{x} \mapsto \transpose{\fgrad}\qty(\fgrad \vb{x}),
+\]
+and recall that $\rcg$ is in fact the metric tensor on $\vb{y}\qty(\omega)$ (for admissable $\vb{y}.$)
 
 \begin{example}
-	Let the deformation $\vb{y}$ be given as $\vb{y}(\vb{x}) = \tensorq{R} \vb{x}+ \vb{v}, \vb{v} \in \R^d, \tensorq{R} \in \, \text{SO(d)} = \Big\{\tensorq{A} \in \R^{d \cross d}, \transpose{\tensorq{A}} \tensorq{A} = \tensorq{A} \transpose{\tensorq{A}} = \identity, \det \tensorq{A} =1\footnote{From the fact $\tensorq{A}$ is orthogonal automatically follows $\det \tensorq{A} = \pm 1$.} \det \tensorq{A}>0\Big\}$.
+	Let the deformation $\vb{y}$ be given as $\vb{y}(\vb{x}) = \tensorq{R} \vb{x}+ \vb{v}, \vb{v} \in \R^d, \tensorq{R} \in \, \text{SO(d)},$ where \footnote{From the fact $\tensorq{A}$ is orthogonal automatically follows $\det \tensorq{A} = \pm 1$.}
+	\[
+		\, \text{SO(d)} \, = \Big\{\tensorq{A} \in \R^{d \cross d}, \transpose{\tensorq{A}} \tensorq{A} = \tensorq{A} \transpose{\tensorq{A}} = \identity, \det \tensorq{A} =1 \det \tensorq{A}>0\Big\}.
+	\]
+	
 	Then \fgrad = \tensorq{R}, \rcg = \identity.
 \end{example}
 
 
 \subsubsection{Change of surfaces}
 \label{sec:chsurfaces}
-For $\tensorq{A} \in \R^{d \cross d}$ regular we define the \textbf{cofactor matrix} $\cof \tensorq{A}$ as
+For $\tensorq{A} \in \R^{d \cross d}$ regular we define its \textbf{cofactor matrix} $\cof \tensorq{A}$ as
 \[
 	\cof \tensorq{A} = (\det \tensorq{A}) \transposei{\tensorq{A}},
 \]
-which is an interesting quantity whatsoever; we will use the following theorem
+which is an interesting quantity whatsoever; we will be quite often using the following theorem
 
 \begin{theorem}[Piola's identity]
-	Let $\vb{y} \in \text{C}^2(\Omega;\R^d)$, then $\forall \vb{x}\in \Omega:$
+	Let $\vb{y} \in \, \text{C}\,^2(\Omega;\R^d)$, then $\forall \vb{x}\in \Omega:$
 	\[
 		\divergence({\cof \grad{\vb{y}(\vb{x})}}) = \vb{0}.
 	\]
@@ -231,64 +283,126 @@ so we can also express equation \ref{eqn:inv} in a different way
 
 \begin{equation}
     \label{eqn:invbetter}
-    \tensorq{A}^{-1} = \frac{\transpose{(\cof \tensorq{A})}}{(\det \cof \tensorq{A})^{1/d-1}}.
+    \tensorq{A}^{-1} = \frac{\transpose{(\cof \tensorq{A})}}{(\det \cof \tensorq{A})^{\frac{1}{d-1}}}.
 \end{equation}
 From geometry, recall the change of variables for surface integration:
 \[
-	\int_{\partial \omega^y}\vb{n}^y \dd{S}^y = \int_{\partial \omega}\cof \fgrad\vb{n} \dd{S},
+	\int_{\partial \omega^y}\vb{n}^y\qty(\vb{x}^{y}) \dd{S}^y = \int_{\partial \omega}\cof \fgrad\qty(\vb{x})\vb{n}\qty(\vb{x}) \dd{S},
 \]
-where $\vb{n}^y$ is the outward unit normal to the deformed boundary $\omega^y$. Informally, we write $\vb{n}^y \dd{S}^y = \cof \fgrad \vb{n} \dd{S}$. We can also explicitely express the normal to the deformed boundary as
+where $\vb{n}^y\qty(\vb{x}^{y})$ is the outward unit normal to the deformed boundary $\omega^y$ at the point $\vb{x}^{y} \in \omega^{y}$. Informally, we write $\vb{n}^y \dd{S}^y = \cof \fgrad \vb{n} \dd{S}$. We can also explicitely express the normal to the deformed boundary as
 
 \begin{equation}
     \label{eqn:deformed_normal}
-    \vb{n}^y(\vb{x}^y)=\frac{\cof \fgrad (\vb{x}) \vb{n}(\vb{x})}{\norm{\cof \fgrad(\vb{x}) \vb{n}(\vb{x})}}, \vb{x} \in \partial \omega, \vb{y}(\vb{x}) \in \partial \omega^y.
+    \vb{n}^y(\vb{x}^y)=\frac{\cof \fgrad (\vb{x}) \vb{n}(\vb{x})}{\abs{\cof \fgrad(\vb{x}) \vb{n}(\vb{x})}}, \vb{x} \in \partial \omega, \vb{y}(\vb{x}) \in \partial \omega^y.
 \end{equation}
+
+Notice we are silently assuming
+\[
+	\vb{y}\qty(\partial \omega) = \partial \vb{y}\qty(\omega) = \partial \omega^{y}.
+\]
 
 \subsection{Affine transformations}
 \label{sec:affine_transf}
-An example of deformation is the so called \textbf{affine transformation}.
+An example of a deformation is the so called \textbf{affine transformation}.
 \begin{example}
 	Suppose the folowing deformation:
 	\[
-		\vb{y}(\vb{x}) = \tensorq{A} \vb{x} + \vb{v}, \tensorq{A}\in \R^{d \cross d}, \vb{v} \in \R^d, \detf > 0.
+		\vb{y}(\vb{x}) = \tensorq{A} \vb{x} + \vb{v}, \tensorq{A}\in \R^{d \cross d}, \vb{v} \in \R^d, \det \tensorq{A} > 0.
 	\]
 	Clearly then $\fgrad(\vb{x}) = \tensorq{A}.$
 \end{example}
-It is crucial to realize how $\fgrad, \transpose{\fgrad}, \transposei{\fgrad}$ work.
+It is crucial to realize how $\fgrad, \transpose{\fgrad}, \inverse{\fgrad} \transposei{\fgrad}$ work.
 
 \begin{itemize}
 	\item $\fgrad$ takes a vector $\vb{x}-\vb{0}$ from the \textit{reference configuration} and maps it to the vector $\fgrad \vb{x}- \fgrad \vb{0}$ in the \textit{current configuration}
 	\item $\fgrad^{-1}$ takes the vector $\fgrad \vb{x} - \fgrad \vb{0}$ from the \textit{current configuration} and maps it to the vector $\vb{x}-\vb{0}$ from the \textit{reference configuration}
 	\item $\transpose{\fgrad}$ is defined through: $\fgrad \vb{u} \vdot \vb{w} = \vb{u} \vdot \transpose{\fgrad}\vb{w}$, and since $\fgrad$ is defined on the reference configuration, $\transpose{\fgrad}$ must take something from the \textit{current configuration} and return something from the \textit{reference configuration}.
-	\item $\transposei{\fgrad}$ consequently takes something from the \textit{referrence configuration} and maps it to something from the \textit{current configuration}.
+	\item $\transposei{\fgrad}$ consequently takes something from the \textit{reference configuration} and maps it to something from the \textit{current configuration}.
 \end{itemize}	
-\begin{example}
-	What when $\rcg = \identity$? Can we say something about $\fgrad$? Write $\rcg = \transpose{\fgrad}\fgrad = \identity$, so $\transpose{\fgrad} = \fgrad^{-1}, \det \fgrad > 0$. From this we have $\fgrad(\vb{x}) = \tensorq{R}(\vb{x}), \vb{x} \in \Omega$, where $\tensorq{R}$ is a rotation tensor. Investigate the cofactor of the deformation gradient:
+	What when $\rcg = \identity$? Can we say something about $\fgrad$? Write $\rcg = \transpose{\fgrad}\fgrad = \identity$, so $\transpose{\fgrad} = \fgrad^{-1}, \det \fgrad > 0$, meaning $\fgrad \in \, \text{SO(d)} \,,$\textit{i.e.}, $\fgrad(\vb{x}) = \tensorq{R}(\vb{x}), \vb{x} \in \Omega$, where $\tensorq{R}$ is a rotation tensor. Investigate the cofactor of the deformation gradient:
 	\[
-		\cof \fgrad = \det \fgrad \transposei{\fgrad} = \cof \tensorq{R} = 1 \tensorq{R}(\vb{x}) = \fgrad (\vb{x}).
+		\cof \fgrad = \det \fgrad \transposei{\fgrad} = \cof \tensorq{R} = 1 \tensorq{R}(\vb{x}) = \fgrad (\vb{x}),
 	\]
-This implies $\cof \fgrad = \fgrad$. Recall Piola's identity:
+and so $\cof \fgrad = \fgrad$. Recall Piola's identity:
 \[
-	\vb{0} = \divergence{\cof \fgrad} = \divergence{\fgrad (\vb{x})} = \laplacian \vb{y}(\vb{x}).
+	\vb{0} = \divergence{\cof \fgrad} = \divergence{\fgrad (\vb{x})} =  \divergence{\grad \vb{y}\qty(\vb{x})} = \laplace \vb{y}(\vb{x}).
 \]
 We have the identity:
 
-\begin{equation}
-	\frac{1}{2}(\norm{\grad\vb{y}})^{2} = \norm{\grad \grad \vb{y}}^{2} + \grad{\vb{y}} \vdot \grad \laplacian \vb{y},
-\end{equation}
+\begin{equation*}
+	\frac{1}{2} \laplace \abs{\grad\vb{y}}^{2} = \abs{\grad \grad \vb{y}}^{2} + \grad{\vb{y}} : \grad \laplace \vb{y},
+\end{equation*}
 
-and since the LHS is zero, we also have $\norm{\grad \grad \vb{y}} = 0 \Rightarrow \vb{y}(\vb{x}) = \tensorq{R}\vb{x}+\vb{v}$.
-Let $\tensorq{R}$ be piecewise affine. Then $\tensorq{R}_1 (\identity - \vb{n} \otimes \vb{n}) = \tensorq{R}_2(\identity - \vb{n}\otimes \vb{n})$, so $\tensorq{R}_1 - \tensorq{R}_2 = (\tensorq{R}_1 = \tensorq{R}_2) = (\tensorq{R}_1 - \tensorq{R}_2) \vb{n} \otimes \vb{n} = \vb{a} \otimes \vb{b}$, but that is not possible for two rotations; the rank of the RHS is one, whereas the LHS is not.
-\end{example}
+but since $\laplace \vb{y} = 0$ from the above and $\laplace \abs{\grad \vb{y}}^{2} = \laplace \trace\qty(\transpose{\fgrad}\fgrad) = \laplace \trace \qty(\identityM) = 0,$ we also have $\abs{\grad \grad \vb{y}}^{2} = 0,$ meaning the deformation must have have the form
+\[
+	\vb{y}(\vb{x}) = \tensorq{R}\vb{x}+\vb{v} \, \text{locally} \,,
+\]
+meaning that $\vb{y}$ is only piecewise affine. We will show that it must however be globally affine. Let $\vb{y}$ be piecewise affine. Since $\vb{y}$ is continous on the whole $\overline{\Omega},$ it must be continuous across the faces of the partition and in particular
+\[
+	\tensorq{R}_1 \vb{x} + \vb{v}_1 = \tensorq{R}_2 \vb{x} + \vb{v}_2,
+\]
+with $\tensorq{R}_1, \tensorq{R}_2 \in \, \text{SO(d)} \,$ being rotations, $\vb{v}_1, \vb{v}_2 \in \R^{d}$ some constant vectors and $\vb{x} \in \qty{\vb{x} \vdot \vb{n} = c}$ is a vector from the interface. Denoting $\vb{n}, \vb{t}$ to be the normal and tangential vector to the interface, one has (realize $\vb{x} = \qty(\vb{x} \vdot \vb{n}) \vb{n} + \qty(\vb{x} \vdot \vb{t})\vb{t}$)
+\begin{align*}
+	\qty(\tensorq{R}_1 - \tensorq{R}_2) \vb{n}  \vb{x} \vdot \vb{n} + \qty(\tensorq{R}_1 - \tensorq{R}_2) \vb{t} \vb{x} \vdot \vb{t} &= \vb{v}_2 - \vb{v}_1, \forall \vb{x} \in \qty{\vb{x} \vdot \vb{n} = c}, \\
+	c \qty(\tensorq{R}_1 - \tensorq{R}_2)\vb{n} + \qty(\tensorq{R}_1 - \tensorq{R}_2)\vb{t} &= \vb{v}_2 - \vb{v}_1.
+\end{align*}
+Looking on the LHS, we see that the first term in constant on the hyperplane, but the second one is not - the tangential vector depends on the position. However, the RHS is constant, which must mean
+\[
+	\qty(\tensorq{R}_1 - \tensorq{R}_2)\vb{t} = 0,
+\]
+or
+\[
+	\, \text{Ker} \,\qty(\tensorq{R}_1 - \tensorq{R}_2) = \, \text{span} \,\qty{\vb{t}} = \vb{n}^{\perp}.
+\]
+But if that is true, all nontrivial bussiness is happening only for vectors that are perpendicular to $\vb{t},$\textit{i.e.}, that are in the direction of $\vb{n},$ so it must hold
+
+\[
+	\tensorq{R}_1 - \tensorq{R}_2 = \qty(\tensorq{R}_1 - \tensorq{R}_2)\qty(\vb{n} \otimes \vb{n}).
+\]
+But that must mean $\tensorq{R}_1 = \tensorq{R}_2$: we see the rank of the RHS is 1,  but the rank of the LHS is at least 2: one has
+\[
+	\, \text{dim Ker} \,\qty(\tensorq{R}_1 - \tensorq{R}_2) + \, \text{rank} \,\qty(\tensorq{R}_1 - \tensorq{R}_2) = d,
+\]
+and the dimension of the kernel is 1, as derived above. So, $\text{rank} \,\qty(\tensorq{R}_1 - \tensorq{R}_2) = d-1 \geq 2,$ for\footnote{In the case $d=2$ we have to argue differently, but the assertion is true.} $d \geq 3.$
+Finally, using one of the original equations
+\[
+	c \qty(\tensorq{R}_1 - \tensorq{R}_2)\vb{n} + \qty(\tensorq{R}_1 - \tensorq{R}_2) \vb{t} = \vb{v}_2 - \vb{v}_1,
+\]
+and our fresh information $\qty(\tensorq{R}_1 - \tensorq{R}_2) \vb{t} = \vb{0}, \tensorq{R}_1 = \tensorq{R}_2,$ we conclude that also
+\[
+	\vb{v}_2 = \vb{v}_1.
+\]
+
+In total, we have obtained $\tensorq{R}_1 = \tensorq{R}_2 \equiv \tensorq{R},\vb{v}_1 = \vb{v}_2 \equiv \vb{v}$ and the transformation is affine.
+
+\begin{definition}[Types of deformation]
+    The deformation $\vb{y}: \overline{\Omega} \to \R^{d}, \fgrad\qty(\vb{x}) = \grad \vb{y}\qty(\vb{x})$ is called 
+    \begin{itemize}
+	    \item homogenous, if $\fgrad$ is constant in $\overline{\Omega},$
+	    \item rigid, if it is homogenous and $\fgrad = \tensorq{R} \in \, \text{SO(d)} \,,$
+	    \item incompressible, if $\detf = 1.$
+    \end{itemize}
+\end{definition}
 
 \section{Forces}
 \label{sec:forces}
 
+Naturally, the deformation is caused by the presence of some forces. To capture the evolution of the shape of the body throughout the deformation even when the forces are known is kind of complicated, as it is nonlinear from its very nature (we will see this in the upcoming chapter). Classical physics gives us some balance laws, that usually hold in inertial frames, \textit{i.e.}, in time-constant frames. Hence, formulating fundamental balance laws will always be easier in the deformed, current configuration, rather then in the reference configuration. Let us so begin with the study of forces in the currrent configuration.
+
 \subsection{Forces in the deformed configuration}
 \label{sec:forcesdeformed}
 
-Recall $\vb{y}: \overline{\Omega} \to \overline{\Omega}^y$.We can define the \textbf{volume density of applied forces} $\vb{f}^y: \overline{\Omega}^y \to \R^3$ (in newtons per cubic meters, e.g. gravity).
-The same on the boundary $\vb{g}^y : \Gamma^y_N \to \R^3$ (\textbf{surface density of applied forces} (in newtons per square meters = Pascals, e.g. hydrostatic pressure.)
+
+Recall that our assumption always is $\vb{y}\qty(\overline{\Omega}) = \overline{\Omega^{y}} = \overline{\Omega}^{y},$ for $\Omega^{y} = \vb{y}\qty(\Omega).$ We are thus able to define the \textbf{volume density of applied body forces}
+\[
+	\vb{f}^y: \overline{\Omega}^y \to \R^3
+\]
+(in newtons per cubic meters, e.g. gravity).
+The same on the boundary
+\[
+	\vb{g}^y : \Gamma^y_N \to \R^3
+\]
+(\textbf{surface density of applied contact forces} (in newtons per square meters = Pascals, e.g. hydrostatic pressure.)
 
 \subsubsection{Cauchy stress tensor}
 \label{sec:cstress}
@@ -297,55 +411,71 @@ The same on the boundary $\vb{g}^y : \Gamma^y_N \to \R^3$ (\textbf{surface densi
 	There exists a (Cauchy) stress vector function $\vb{t}^y : \overline{\Omega}^y \times \mathcal{S}^{d-1} \to \R^d $ with the following properties.
 \begin{enumerate}
 	\item If $\vb{x}^y \in \Gamma^y_N$, then $\vb{t}^y(\vb{x}^y, \vb{n}^y) = \vb{g}^y(\vb{x}^y),$ where $\vb{n}^y$ is the unit outer normal vector to $\partial \Omega^y$ at $\vb{x}^y$.
-	\item $\forall \omega^y \subset \Omega^y$ it holds that $\int_{\omega^y} \vb{f}(\vb{x^y})\dd{\vb{x}^y} + \int_{\partial \omega^y} \vb{t}^y(\vb{x}^y, \vb{n}^y)\dd{S}^y = 0.$ (\textit{Balance of forces in static equilibrium.}
-	\item $\forall \omega^y \subset \Omega^y$ it holds that $\int_{\omega^y} \vb{x}^y \cross \vb{f}^y(\vb{x}^y) \dd{\vb{x}^y} + \int_{\partial \omega^y} \vb{x}^y \cross \vb{t}^y(\vb{x}^y, \vb{n}^y) \dd{S}^y = \vb{0}$. (\textit{Balance of moment of forces in static equilibrium.})
+	\item $\forall \omega^y \subset \Omega^y$ it holds that
+		\[
+			\int_{\omega^y} \vb{f}(\vb{x}^{y})\dd{\vb{x}^y} + \int_{\partial \omega^y} \vb{t}^y(\vb{x}^y, \vb{n}^y)\dd{S}^y = \vb{0}.
+		\]
+		(\textit{Balance of forces in static equilibrium.})
+	\item $\forall \omega^y \subset \Omega^y$ it holds that
+		\[
+			\int_{\omega^y} \vb{x}^y \cross \vb{f}^y(\vb{x}^y) \dd{\vb{x}^y} + \int_{\partial \omega^y} \vb{x}^y \cross \vb{t}^y(\vb{x}^y, \vb{n}^y) \dd{S}^y = \vb{0}.
+		\]
+		 (\textit{Balance of momenta of forces in static equilibrium.})
 \end{enumerate}
-Euler says that the direct consequence of this is the existence of $\tensorq{T}^y(\vb{x}^y)$ such that
+Euler says (while thinking of the Newton's 3rd law) that the direct consequence of this is the existence of $\tensorq{T}^y(\vb{x}^y)$ such that
 
 \begin{equation}
 	\label{eqn:cauchy}
-\vb{t}^y(\vb{x}^y,\vb{n}^y) = \tensorq{T}^y(\vb{x}^y) \vb{n}^y, 
+\vb{t}^y(\vb{x}^y,\vb{n}^y) = \cstress(\vb{x}^y) \vb{n}^y, 
 \end{equation}
-where the tensorial quantity $ \tensorq{T}$ is called the \textbf{Cauchy stress tensor}.
+where the tensorial quantity (field) $\cstress\qty(\vb{x}^{y})$ is called the \textbf{Cauchy stress tensor}.
 \end{lemma}
 
 \subsubsection{Balance equations in the deformed configuration}
 \label{sec:balance_equations_cauchy}
 Classical physics gives us 2 fundamental relations: Newtons second law for momenta and for angular momenta. We examine these in the continuum mechanics setting.
 
-From second property it follows:
+Using the second property together with \ref{eqn:cauchy} gives
 
 \begin{equation}
-	\int_{\omega^y} \vb{f}^y(\vb{x}^y) \dd{\vb{x}^y} + \int_{\partial \omega^y} \tensorq{T}^y(\vb{x}^y) \vb{n}^y \dd{S}^y  =\int_{\omega^{y}}\vb{f}^{y}\qty(\vb{x})^{y}\dd{\vb{x}^{y}}+ \int_{\omega^y} \divergence{\tensorq{T}^y}(\vb{x}^{y}) \dd{\vb{x}^{y}} = 0,
+	\int_{\omega^y} \vb{f}^y(\vb{x}^y) \dd{\vb{x}^y} + \int_{\partial \omega^y} \cstress(\vb{x}^y) \vb{n}^y \dd{S}^y  =\int_{\omega^{y}}\vb{f}^{y}\qty(\vb{x})^{y}\dd{\vb{x}^{y}}+ \int_{\omega^y} \divergence{\cstress}(\vb{x}^{y}) \dd{\vb{x}^{y}} = 0,
 \end{equation}
 
 so using the localization theorem we get
 
-\begin{equation*}
+\begin{equation}
 	\label{eqn:balanceofforces}
-	\vb{f}^y(\vb{x}^y) + \divergence{\vb{T}^y}(\vb{x}^y) = \vb{0}, \forall \vb{x}^y \in \Omega^y.
-\end{equation*}
+	\vb{f}^y(\vb{x}^y) + \divergence{\cstress\qty(\vb{x}^{y})} = \vb{0}, \forall \vb{x}^y \in \Omega^y.
+\end{equation}
 From the third property it follows
 
 \begin{align*}
-&	\int_{\omega^y} \vb{x}^y \cross \vb{f}^y(\vb{x}^y) \dd{\vb{x}^y} + \int_{\partial \omega^y} \vb{x}^y \cross \tensorq{T}^y(\vb{x}^y) \vb{n}^{y} \dd{S}^y = \\ &= \int_{\omega^y} \varepsilon_{ijk} x^y_j f^y_k \dd{\vb{x}^y} + \int_{\omega^y}\varepsilon_{ijk}x^y_j (T^y_{km} n^y_m) \dd{S}^y = \int_{\omega^y} \varepsilon_{ijk} x^y_j f^y_k \dd{\vb{x}^y}=\int_{\omega^y} \varepsilon_{ijk} \pdv{(x^y_j T^y_{km})}{x^y_m}\dd{\vb{x}^y} = \\& = \int_{\omega^y}\varepsilon_{ijk}x^y_j f^y_k \dd{\vb{x}^y} + \int_{\omega^y}\varepsilon_{ijk}x^y_j \pdv{T_km}{x^y_m}\dd{\vb{x}^y} + \int_{\omega^y}\varepsilon_{ijk}\delta_{jm}T^y_{km} \dd{\vb{x}^y} = \vb{0}.
+	\int_{\omega^y} \vb{x}^y \cross \vb{f}^y(\vb{x}^y) \dd{\vb{x}^y} + \int_{\partial \omega^y} \vb{x}^y \cross \tensorq{T}^y(\vb{x}^y) \vb{n}^{y} \dd{S}^y &= \int_{\omega^y} \varepsilon_{ijk} x^y_j f^y_k \vb{e}_i \dd{\vb{x}^y} + \int_{\omega^y}\varepsilon_{ijk}x^y_j (T^y_{km} n^y_m) \vb{e}_i\dd{S}^y = \\
+																				&=\int_{\omega^y} \varepsilon_{ijk} x^y_j f^y_k \vb{e}_i \dd{\vb{x}^y} + \int_{\omega^y} \varepsilon_{ijk} \pdv{(x^y_j T^y_{km})}{x^y_m} \vb{e}_i\dd{\vb{x}^y} = \\
+																				&= \int_{\omega^y}\varepsilon_{ijk}x^y_j f^y_k \vb{e}_i \dd{\vb{x}^y} +\\
+																				&+\int_{\omega^y}\varepsilon_{ijk}x^y_j \pdv{T_{km}^{y}}{x^y_m}\vb{e}_i\dd{\vb{x}^y}  + \int_{\omega^y}\varepsilon_{ijk}\delta_{jm}T^y_{km} \vb{e}_i \dd{\vb{x}^y} = \vb{0},
 \end{align*}
-The last term implies
+realize now
+\[
+	\int_{\omega^{y}}\varepsilon_{ijk}\qty(x^{y}_j f^{y}_k + x^{y}_j \pdv{T_{km}^{y}}{x^{y}_m})\vb{e}_i\dd{\vb{x}^{y}} = \int_{\omega^{y}}\varepsilon_{ijk}x_j^{y}\Bigg(f^{y}_k + \underbrace{\pdv{T_{km}^{y}}{x^{y}_m}}_{= \qty(\divergence{\cstress})_k}\Bigg)\vb{e}_i\dd{\vb{x}^{y}} = \vb{0},
+\]
+because the balance of forces \ref{eqn:balanceofforces} holds. The balance of angular momenta thus reduces to
 
 \begin{equation*}
-	\int_{\omega^y} \varepsilon_{ijk}T^y_{kj} = 0,
+	\int_{\omega^y} \varepsilon_{ijk}T^y_{kj} \vb{e}_i \dd{\vb{x}^{y}}= \vb{0},
 \end{equation*}
 and using the localization theorem, we obtain
 
 \begin{equation}
-	T^y_{ij} (\vb{x}^y) = T^y_{ji}(\vb{x}^y), \quad{i.e.} \tensorq{T}^y(\vb{x}^y) = \transpose{(\tensorq{T}^y(\vb{x}^y))}.
+	\label{eq:balance_of_angular_momenta}
+	T^y_{kj} (\vb{x}^y) = T^y_{jk}(\vb{x}^y), \, \text{\textit{i.e.}} \, \tensorq{T}^y(\vb{x}^y) = \transpose{(\tensorq{T}^y(\vb{x}^y))}.
 \end{equation}
 The \textbf{Cauchy stress tensor is symmetric.}
 
 \subsection{Forces in the undeformed configuration}
 \label{sec:forces_undeformed}
 
-We have obtained the equations in the deformed configuration. That is however unconvenient - we solve the equations to find the deformed configuration. This brings us to find a new way to write the equations - in the reference configuration. The construction is a bit synthetic, our intuition will be guided by the requirement to obtain similair equations as in the current configuration.
+We have obtained the equations in the deformed configuration, where they are easily formulated. On the other hand, that is a bit unconvenient - we solve the equations to find the deformed configuration, \textit{i.e.}, the equations hold in the domain that is obtained as a solution to the equations themselves. This brings us to to the need to find a new way to write the down the balance laws - in the reference configuration. The construction is a bit synthetic, our intuition will be guided by the requirement to obtain similair equations as in the current configuration.
 
 \subsubsection{Piola-Kirchhoff stresses}
 \label{sec:pkstresses}
@@ -353,26 +483,31 @@ We have obtained the equations in the deformed configuration. That is however un
 \begin{definition}[First Piola-Kirchhoff stress tensor]
 Given the Cauchy stress tensor $\tensorq{T}^y(\vb{x^y})$, we define the \textbf{First Piola Kirchhoff stress tensor}
 \[
-	\tensorq{T}: \overline{\Omega} \to \R^{3 \times 3}, \tensorq{T}(\vb{x}) = \tensorq{T}^y(\vb{x}^y) \cof \fgrad (\vb{x}) = \det \fgrad (\vb{x}) \tensorq{T}^y(\vb{x}^y) \transposei{\fgrad}(\vb{x}).
+	\tensorq{T}: \overline{\Omega} \to \R^{3 \times 3}, \tensorq{T}(\vb{x}) = \tensorq{T}^y(\vb{y}\qty(\vb{x})) \cof \fgrad (\vb{x}) = \det \fgrad (\vb{x}) \tensorq{T}^y(\vb{y}\qty(\vb{x})) \transposei{\fgrad}(\vb{x}).
 \]
 \end{definition}
 
 \begin{definition}[Second Piola-Kirchhoff stress tensor]
 The quantity
 	\[
-		\tensorq{S}(\vb{x}) = \fgrad^{-1} \tensorq{T}(\vb{x}) = \transpose{\tensorq{S}(\vb{x})},
+		\tensorq{S}(\vb{x}) = \fgrad^{-1}\qty(\vb{y}\qty(\vb{x})) \tensorq{T}(\vb{x}),
 	\]
 	is called the \textbf{second Piola-Kirchhoff stress tensor.}
 \end{definition}
 
 \begin{remark}
-	The first PK tensor $\tensorq{T}$ is \textit{not symmetric in general.}, but the second $\tensorq{S}(\vb{x}) = \fgrad^{-1} = \det \fgrad (\vb{x}) \fgrad^{-1} \tensorq{T}^y(\vb{x}^y) \transposei{\fgrad}(\vb{x})$ \textit{is}. Also, we see that not every matrix can serve as $\pkstress$; it must hold $\pkstress\qty(\vb{x}) \qty(\inverse{\cof \fgrad})$ is symmetric.
+	The first Piola-Kirchhoff stress tensor $\tensorq{T}$ is \textit{not symmetric in general}, but the second
+	\[
+		\tensorq{S} =  \det \fgrad \fgrad^{-1} \tensorq{T}^y \transposei{\fgrad}
+	\]
+	\textit{is symmetric}. Also, we see that not every matrix can serve as $\pkstress$; it must hold $\pkstress \inverse{\qty(\cof \fgrad)}$ is symmetric.
 \end{remark}
 
 \begin{remark}
-We have the following identity (using Piola's identity):
+We have the following identity (contrary to the appearance, this is not a trivial computation and one has to use the Piola's identity):
 \begin{equation}
-	\divergence{\pkstress} \qty(\vb{x}) = \detf \qty(\vb{x}) \divergence{\cstress}\qty(\vb{x}^{y})^{y}.
+	\label{eq:piola_identity}
+	\grad_{\vb{x}} \vdot \pkstress\qty(\vb{x}) = \detf\qty(\vb{x}) \eval{\qty(\grad_{\vb{x}^{y}} \vdot \cstress\qty(\vb{x}^{y}))}_{\vb{x}^{y} = \vb{y}\qty(\vb{x})}.
 \end{equation}
 \end{remark}
 
@@ -381,119 +516,278 @@ We have the following identity (using Piola's identity):
 Recall the balance of momentum
 
 \begin{equation*}
-    -\divergence{\qty(\cstress\qty(\vb{x}^{y}))}=\vb{f}^{y}\qty(\vb{x}^{y}) \, \text{in} \, \Omega^{y},
+    -\divergence{\cstress\qty(\vb{x}^{y})}=\vb{f}^{y}\qty(\vb{x}^{y}) \, \text{in} \, \Omega^{y},
 \end{equation*}
 multiplying by $\detf >0$ yields
 
-\begin{equation}
-    \detf \divergence{\qty(\cstress\qty(\vb{x}^{y}))} = \detf \qty(\vb{x}) \vb{f}^{y}\qty(\vb{x}^{y}),
-\end{equation}
-which \textit{begs} for the definition
+\begin{equation*}
+    \detf\qty(\vb{x}) \divergence{\qty(\cstress\qty(\vb{x}^{y}))} = \detf \qty(\vb{x}) \vb{f}^{y}\qty(\vb{x}^{y}).
+\end{equation*}
+Using the Piola's identity we have shown \ref{eq:piola_identity}, so the left hand side actually is $-\divergence{\pkstress\qty(\vb{x})}.$ Seeing the similarity with the balance of forces in the current configuration, we are tempted to denote
 
 \begin{equation*}
-    \vb{f}\qty(\vb{x})= \detf \qty(\vb{x}) \vb{f}^{y}\qty(\vb{y}\qty(\vb{x})),
+    \vb{f}\qty(\vb{x})= \vb{f}^{y}\qty(\vb{y}\qty(\vb{x})) \detf \qty(\vb{x}) ,
 \end{equation*}
-as the force in the \textit{referential configuration}.
-
-In total, the total acting body force on the body can be written as
+as the volume density of body forces in the \textit{reference configuration}; after this definition, the balance of forces becomes
 \[
-	\int_{\vb{y}\qty(\omega)}\vb{f}^{y}\qty(\vb{x}^{y})\dd{\vb{x}^{y}} = \int_{\omega}\vb{f}^{y}\qty(\vb{y}\qty(\vb{x}))\detf \qty(\vb{x})\dd{x} = \int_{\omega}\vb{f}\qty(\vb{x})\dd{\vb{x}}.
+	-\divergence{\pkstress\qty(\vb{x})} = \vb{f}\qty(\vb{x}),
+\]
+and since this equation is formulated in the reference configuration, we call it the \textbf{balance of forces in the reference configuration.}\footnote{This title is used even though it is slightly misleading - the forces are still acting in the current configuration, but are expressed through the reference configuration.}
+
+Viewed from an "integral" perspective, the total applied body force on the body can be written as
+\[
+	\int_{\omega^{y}}\vb{f}^{y}\qty(\vb{x}^{y})\dd{\vb{x}^{y}} = \int_{\omega}\vb{f}^{y}\qty(\vb{y}\qty(\vb{x}))\detf \qty(\vb{x})\dd{x} = \int_{\omega}\vb{f}\qty(\vb{x})\dd{\vb{x}}.
 \]
 
 We can do the same for the balance of surface forces; the total contact force acting on the body is
 \begin{align*}
-	\int_{\Gamma_N^{y}}\vb{g}^{y}\qty(\vb{x}^{y})\dd{S}^{y} &=\int_{\partial \omega^{y}}\vb{t}^{y}\qty(\vb{x}^{y},\vb{n}^{y})\dd{S}^{y} = \int_{\partial \vb{y}\qty(\omega)}\cstress\qty(\vb{x}^{y})\vb{n}^{y}\dd{S}^{y}=\\
-								&=\int_{\partial \omega}\cstress(\vb{y}(\vb{x}))\cof \fgrad(t,\vb{x}) \vb{n}\dd{S} = \int_{\partial \omega}\pkstress\qty(\vb{x})\vb{n}\dd{S},
+	\int_{\partial \omega^{y}}\vb{g}^{y}\qty(\vb{x}^{y})\dd{S}^{y} &=\int_{\partial \omega^{y}}\vb{t}^{y}\qty(\vb{x}^{y},\vb{n}^{y})\dd{S}^{y} = \int_{\partial \omega^{y}}\cstress\qty(\vb{x}^{y})\vb{n}^{y}\qty(\vb{x}^{y})\dd{S}^{y}=\\
+								&=\int_{\partial \omega}\cstress(\vb{y}(\vb{x}))\cof \fgrad(\vb{x}) \vb{n}\qty(\vb{x})\dd{S} = \int_{\partial \omega}\pkstress\qty(\vb{x})\vb{n}\qty(\vb{x})\dd{S}= \int_{\partial \omega}\vb{g}^{y}\qty(\vb{y}\qty(\vb{x}))\abs{\cof \fgrad\qty(\vb{x}) \vb{n}\qty(\vb{x})}\dd{S},
 \end{align*}
 so if we define
 \[
-	\vb{g}(\vb{x}) = \pkstress\qty(\vb{x})\vb{n}\qty(\vb{x}),
+	\vb{g}(\vb{x}) = \pkstress\qty(\vb{x})\vb{n}\qty(\vb{x}) = \vb{g}^{y}\qty(\vb{y}\qty(\vb{x}))\abs{\cof \fgrad(\vb{x}) \vb{n}\qty(\vb{x})},
 \]
-as the contact force in the \textit{referential configuration}, we formally have a similiar expression.
+as the contact force in the \textbf{reference configuration}, we formally have a similiar expression.
+
+\begin{remark}
+    Let us summarize our stress measures.
+    \begin{itemize}
+	    \item the Cauchy stress tensor: $\cstress = \cstress\qty(\vb{x}^{y})$. The Cauchy stress tensor is connected with the surface density of the contact forces in the \textit{current configuration} given a point in the \textit{current configuration}. In concrete terms
+		    \[
+			    \vb{g}^{y}\qty(\vb{x}^{y}) = \cstress\qty(\vb{x}^{y})\vb{n}^{y}\qty(\vb{x}^{y}),
+		    \]
+	    \item the First Piola-Kirchhoff stress tensor: $\pkstress = \pkstress(\vb{x}), \pkstress\qty(\vb{x}) = \detf \qty(\vb{x}) \cstress\qty(\vb{y}\qty(\vb{x})) \cof \fgrad \qty(\vb{x}).$ The First Piola-Kirchhoff stress tensor is connected with the surface density of the contact forces in the \textit{current configuration} given a ppint in the \textit{reference configuration}. In concrete terms
+		    \[
+			    \vb{g}\qty(\vb{x}) = \pkstress\qty(\vb{x}) \vb{n}\qty(\vb{x}),
+		    \]
+	    \item the Second Piola-Kirchhoff stress tensor $\spkstress = \spkstress\qty(\vb{x}), \spkstress\qty(\vb{x}) = \inverse{\fgrad}\qty(\vb{y}\qty(\vb{x})) \pkstress\qty(\vb{x})$ works similairly to the First Piola-Kirchhoff tensor, but is symmetric.
+    \end{itemize}
+    Note carefully that in both cases we are talking about forces in the \textit{current configuration}, but these can be expressed either through the \textit{reference configuration} (with the help of $\pkstress$) or through the \textit{current configuration} itself (by using $\cstress$).
+\end{remark}
 
 \section{Elasticity}
 \label{sec:elasticity}
+So far, our excursion to the world of solid mechanics has been fairly general. We have formulated fundamental mechanical laws independetly of the material that undergoes the deformation. In this chapter, we will discuss a class of materials known as \textbf{elastic solids.}
 
 \begin{definition}[Elasticity]
-We say that a material is \textbf{elastic (or Cauchy elastic)} if there is a response function $\tilde{\tensorq{T}}^D:\Omega \cross \R^{3 \cross 3}_+ \to \R^{3 \cross 3}_{\, \text{sym} \,}$ such that
+	We say that a material is \textbf{elastic (or Cauchy elastic)} if the Cauchy stress tensor is determined only by the current configuration. In morece concrete terms, the material is elastic provided there is a response function $\tilde{\tensorq{T}}^D:\Omega \cross \R^{3 \cross 3}_+ \to \R^{3 \cross 3}_{\, \text{sym} \,}$ such that (\cite{kruzikElasticMaterials2019})
+
 \[
-	\cstress\qty(\vb{x}^{y})= \tilde{\tensorq{T}}^D\qty(\vb{x},\fgrad).
+	\cstress\qty(\vb{y}(\vb{x}))= \tilde{\tensorq{T}}^D\qty(\vb{x},\fgrad).
 \]
-The response function is also called the \textbf{constitutive law}.
+The response function is also called the \textbf{constitutive law}. Realize that this consideration is quite restrictive 
+
+\begin{itemize}
+	\item the response does not depend on any thermodynamical quantities (explicitely): temperature, dissipation, etc.,
+	\item the response depends only on the gradient of the deformation, not on the deformation itself,
+	\item the response function \textit{does depend} on the reference configuration, but the stress \textit{does not}.
+\end{itemize}
 \end{definition}
 
 \begin{remark}
-	If we know the material is elastic, we also have the information about the First Piola-Kirchhoff stress, as $\pkstress\qty(\vb{x}) = \cstress\qty(\vb{x}^{y})\cof \fgrad,$ so
+	If we know the material is elastic, we also have the information about the First Piola-Kirchhoff stress, as $\pkstress\qty(\vb{x}) = \cstress\qty(\vb{x}^{y})\cof \fgrad\qty(\vb{x}),$ so
 	\begin{equation}
 		\label{eq:response_undeformed}
-		\pkstress\qty(\vb{x}) = \tilde{\tensorq{T}}^D\qty(\vb{x}, \fgrad) \cof \fgrad = \tilde{\tensorq{T}}\qty(\vb{x},\fgrad).
+		\pkstress\qty(\vb{x}) =\cstress\qty(\vb{y}\qty(\vb{x}))\cof \fgrad\qty(\vb{x}) =  \tilde{\tensorq{T}}^D\qty(\vb{x}, \fgrad) \cof \fgrad\qty(\vb{x}) \coloneq \tilde{\tensorq{T}}\qty(\vb{x},\fgrad).
 	\end{equation}
 \end{remark}
+We will be using both $\tilde{\tensorq{T}}^D, \tilde{\tensorq{T}}$ from now on.
 
 \subsection{Frame invariance principle}
 \label{sec:frame_invariance}
-The frame invariance principle states:
+The principle of (material) frame invariance, or (material) frame indifference is closely connected with the notion of \textbf{objectivity}. Those terms concern the change of observer: a transformation $\vb{x} \mapsto \tensorq{R}\vb{x},$ for some $\tensorq{R} \in \, \text{SO(3)} \,.$ A certain invariance is fundamental to (classical) physics - recall the Galileo's principle of relativity. 
+At the moment, we will deal ourselves with "objective vectors and tensors." That is, suppose we are given the stress vector $\vb{t}^{y}\qty(\vb{x}^{y}, \vb{n}^{y})$ and a different deformation
 \[
-	\tilde{\tensorq{T}}^D\qty(\vb{x}, \tensorq{R} \vb{x}) = \tensorq{R}\tilde{\tensorq{T}}^D\qty(\vb{x},\fgrad)\transpose{\tensorq{R}}, \forall \tensorq{R}\in \, \text{SO(3)} \,, \forall \vb{x}\in \overline{\Omega},
+	\vb{z}\qty(\vb{x}) = \tensorq{R} \vb{y}\qty(\vb{x}), \tensorq{R} \in \, \text{SO(3)} \,,
 \]
-from which it follows ($\tilde{\tensorq{T}}$ is defined in \ref{eq:response_undeformed})
+(this deformation is only a rotation, so it can in fact be seen as a change of the frame in the current configuration.) Denote as expected $\vb{x}^z = \vb{z}(\vb{x})$; the priniciple of frame invariance then states
+\[
+	\vb{t}^z\qty(\vb{x}^z, \vb{n}^z) = \vb{t}^z\qty(\tensorq{R}\vb{x}^{y}, \tensorq{R}\vb{n}^{y}) \equiv \tensorq{R}\vb{t}^{y}\qty(\vb{x}^{y}, \vb{n}^{y}), \forall \tensorq{R} \in \, \text{SO(3)} \,,
+\]
+\textit{i.e.}, if we just rotate the current configuration, the traction vector also only rotates.
+Realize that this in fact means
+\[
+	\vb{t}^z\qty(\vb{x}^z, \vb{n}^z) = \vb{t}^z\qty(\vb{x}^z, \tensorq{R}\vb{n}^y) = \tensorq{T}^z\qty(\vb{x}^z) \tensorq{R}\vb{n}^{y} = \tensorq{R}\vb{t}^{y}\qty(\vb{x}^{y}, \vb{n}^{y}) = \tensorq{R}\cstress\qty(\vb{x}^{y}) \vb{n}^{y},
+\]
+where we have denoted $\tensorq{T}^z$ to be the Cauchy stress tensor in the configuration after the deformation $\vb{z}.$ This however means
+\[
+	\tensorq{T}^z\qty(\vb{x}^{z}) = \tensorq{T}^z\qty(\tensorq{R}\vb{x}^{y}) =  \tensorq{R} \tensorq{T}^{y}\qty(\vb{x}^{y}) \transpose{\tensorq{R}}.
+\]
+This is the transformation of the Cauchy stress tensor under the change of observer. It can be shown \footnote{Let $\vb{x}^z = \tensorq{R} \vb{x}^{y},$ then
+	\[
+		F^z_{ij} = \pdv{x^z_i}{x_j} = \pdv{x^z_i}{x^y_k}\pdv{x^y_k}{x_j} = \pdv{x^y_k}\qty(R_{im}x^{y}_m)F^y_{kj} = R_{ik} F^y_{kj}.
+	\]
+} that the deformation gradient transforms as $\tensorq{R}\fgrad.$ On the level of constitutive laws, the frame invariance principle states:
+\[
+	\tilde{\tensorq{T}}^D\qty(\vb{x}, \tensorq{R} \fgrad) = \tensorq{R}\tilde{\tensorq{T}}^D\qty(\vb{x},\fgrad)\transpose{\tensorq{R}}, \forall \tensorq{R}\in \, \text{SO(3)} \,, \forall \fgrad \in \R^{3 \times 3}_+, \forall \vb{x}\in \overline{\Omega},
+\]
+which is closely related to the transformation properties of the Cauchy stress tensor. See that we are not transorming $\vb{x}$ - that is a vector from the \textit{reference configuration}, which remains unchanged in the change of observer transformation. For $\tilde{\tensorq{T}}$ (defined in \ref{eq:response_undeformed}) one has
 \[
 	\tilde{\tensorq{T}}\qty(\vb{x}, \tensorq{R} \fgrad) = \det\qty(\tensorq{R} \fgrad) \tilde{\tensorq{T}}^D\qty(\vb{x}, \tensorq{R}\fgrad)\transposei{\qty(\tensorq{R} \fgrad)} = \det\qty(\tensorq{R} \tensorq{F}) \tensorq{R} \tilde{\tensorq{T}}^D(\vb{x},\fgrad) \transpose{\tensorq{R}} \tensorq{R} \transposei{\fgrad} = \detf \tensorq{R}\tilde{\tensorq{T}}^D\qty(\vb{x},\fgrad)\transposei{\fgrad}=\tensorq{R}\tilde{\tensorq{T}}\qty(\vb{x},\fgrad),
 \]
 thus
 \[
-	\tilde{\tensorq{T}}\qty(\vb{x}, \tensorq{R} \fgrad) = \tensorq{R}\tilde{\tensorq{T}}\qty(\vb{x},\fgrad), \, \text{i.e.} \, \transpose{\tensorq{R}}\tilde{\tensorq{T}}\qty(\vb{x},\tensorq{R}\tensorq{F}) = \tilde{\tensorq{T}}\qty(\vb{x},\fgrad), \forall \tensorq{R} \in \, \text{SO(3)} \,, \forall \fgrad \in \R^{3 \cross 3}_+.
+	\tilde{\tensorq{T}}\qty(\vb{x}, \tensorq{R} \fgrad) = \tensorq{R}\tilde{\tensorq{T}}\qty(\vb{x},\fgrad), \forall \tensorq{R} \in \, \text{SO(3)} \,, \forall \fgrad \in \R^{3 \cross 3}_+, \forall x \in \overline{\Omega},
 \]
+
+Notice that the primary formulation of the frame indifference principle is through the constitutive law for the Cauchy stress tensor, an objective tensor, from which the transformation of the First Piola-Kirchhoff tensor is derived.
 
 \subsection{Isotropic material}
 \label{sec:isotropic_materials}
-Recall $\cstress(\vb{x}^{y})=\tilde{\tensorq{T}}^D\qty(\vb{x},\fgrad), \vb{y}:\overline{\Omega} \to \Omega^y = \vb{y}(\Omega).$ Take $\vb{x}_0 \in \overline{\Omega}$ general but fixed, take $\vb{v}\qty(\vb{z})=\vb{x}_0 + \transpose{R}\qty(\vb{z}-\vb{x}_0)$ for some $\tensorq{R} \in \, \text{SO(3)} \,$ and define a \textit{new deformation}
+The principle of material frame indifference is a consequence of the fundamental invariance of laws of classical physics - it holds for any materials whatsoever. Still, some materials have further important properties that should be captured in the constitutive law. We examine now the property of \textbf{material symmetry}.
+
+Take $\vb{x}_0 \in \overline{\Omega}$ general but fixed, take
 \[
-	\tilde{\vb{y}}=\vb{y}\circ \inverse{\vb{v}}: \vb{v}\qty(\overline{\Omega}) \to \vb{y}\qty(\overline{\Omega}), \tilde{\vb{y}}\qty(\tilde{\vb{x}})=\vb{y}\qty(\vb{x}_0+\tensorq{R}\qty(\tilde{\vb{x}}-\vb{x}_0)).
+	\vb{v}\qty(\vb{z})=\vb{x}_0 + \transpose{\tensorq{R}}\qty(\vb{z}-\vb{x}_0)
 \]
-This implies
+for some $\tensorq{R} \in \, \text{SO(3)} \,$, so ($\tilde{\vb{x}} \coloneq \vb{v}\qty(\vb{z})$)
 \[
-	\vb{x}_0^{y} = \vb{x}_0^{\tilde{y}}, \cstress\qty(\vb{x}_0^{y})=\tilde{\tensorq{T}}^D\qty(\vb{x}_0, \fgrad)= \tensorq{T}^{\tilde{y}}(\vb{x}^{\tilde{y}}_0) = \tilde{\tensorq{T}}^D\qty(\vb{x}_0, \tilde{\fgrad}\qty(\vb{x}_0)) = \tilde{\tensorq{T}}^D\qty(\vb{x}_0, \fgrad\qty(\vb{x}_0) \tensorq{R}).
+	\vb{v}^{-1}\qty(\tilde{\vb{x}}) = \vb{x}_0 + \tensorq{R}\qty(\tilde{\vb{x}} - \vb{x}_0),
 \]
+and define a \textit{new deformation} $\tilde{\vb{y}}=\vb{y}\circ \inverse{\vb{v}}: \vb{v}\qty(\overline{\Omega}) \to \vb{y}\qty(\overline{\Omega}), $ as
+\[
+	\tilde{\vb{y}}\qty(\tilde{\vb{x}})=\vb{y}\qty(\vb{x}_0+\tensorq{R}\qty(\tilde{\vb{x}}-\vb{x}_0)).
+\]
+Compute
+\[
+	\tilde{\fgrad}\qty(\tilde{\vb{x}}) = \grad_{\tilde{\vb{x}}} \tilde{\vb{y}} = \fgrad\qty(\tilde{\vb{x}}) \tensorq{R},
+\]
+and notice that $\vb{x}_0^{\tilde{y}} = \tilde{\vb{y}}\qty(\vb{x}_0) = \vb{y}\qty(\vb{x}_0) = \vb{x}_0^{y},$ from which it follows
+\[
+	\cstress\qty(\vb{x}_0^{y})=\tilde{\tensorq{T}}^D\qty(\vb{x}_0, \fgrad)= \tensorq{T}^{\tilde{y}}(\vb{x}^{\tilde{y}}_0) = \tilde{\tensorq{T}}^D\qty(\vb{x}_0, \tilde{\fgrad}\qty(\vb{x}_0)) = \tilde{\tensorq{T}}^D\qty(\vb{x}_0, \fgrad\qty(\vb{x}_0) \tensorq{R}).
+\]
+We see that at the point $\vb{x}_0,$ the response function has the property
+\[
+	\tilde{\tensorq{T}}^D\qty(\vb{x}_0, \tilde{\fgrad}\qty(\vb{x}_0)) = \tilde{\tensorq{T}}^D\qty(\vb{x}_0, \tilde{\fgrad}\qty(\vb{x}_0)\tensorq{R}),
+\]
+
+which motivates our definition
 
 \begin{definition}[Isotropic material]
 	We cal the material \textbf{isotropic} if it holds
 	\[
-		\tilde{\tensorq{T}}^D\qty(\vb{x},\fgrad) = \tilde{\tensorq{T}}^D\qty(\vb{x},\fgrad \tensorq{R}), \forall \tensorq{R} \in \, \text{SO(3)} \,, \forall \fgrad \in \R^{3 \cross 3}_+.
+		\tilde{\tensorq{T}}^D\qty(\vb{x},\fgrad) = \tilde{\tensorq{T}}^D\qty(\vb{x},\fgrad \tensorq{R}), \forall \tensorq{R} \in \, \text{SO(3)} \,, \forall \fgrad \in \R^{3 \cross 3}_+, \forall \vb{x} \in \overline{\Omega}.
 	\]
 \end{definition}
 \begin{remark}
-	For the first Piola-Kirchhoff we obtain: $\tensorq{T}^D\qty(\vb{x},\fgrad \tensorq{R}) = \tensorq{T}^D\qty(\vb{x},\fgrad) \tensorq{R}, $ which means
+	For the First Piola-Kirchhoff we obtain:
 	\[
-		\tensorq{T}^D\qty(\vb{x}, \tensorq{Q}\fgrad \tensorq{R}) = \tensorq{Q}\tilde{\tensorq{T}}^D \tensorq{R}, \forall \tensorq{R}, \tensorq{Q} \in \, \text{SO(3)} \,, \forall \fgrad \in \R^{3 \cross 3}_+.
+		\tilde{\tensorq{T}}\qty(\vb{x}, \fgrad \tensorq{R}) = \tilde{\tensorq{T}}^D\qty(\vb{x}, \fgrad \tensorq{R})\cof\qty(\fgrad \tensorq{R}) = \tilde{\tensorq{T}}^D\qty(\vb{x}, \fgrad) \transposei{\fgrad} \tensorq{R} \detf = \tilde{\tensorq{T}}\qty(\vb{x}, \fgrad)\tensorq{R},
 	\]
+\end{remark}
+
+In total, for a isotropic elastic material the constitutive law for the First Piola-Kirchhoff stress tensor has the property
+\[
+	\tilde{\tensorq{T}}\qty(\vb{x}, \tensorq{R}_1 \fgrad \tensorq{R}_2) = \tensorq{R}_1 \tilde{\tensorq{T}}\qty(\vb{x}, \fgrad) \tensorq{R}_2, \forall \tensorq{R}_1, \tensorq{R}_2 \in \, \text{SO(3)} \,, \forall \fgrad \in \R^{3 \times 3}_+, \forall \vb{x} \in \overline{\Omega},
+\]
+so in particular
+\[
+	\tilde{\tensorq{T}}\qty(\vb{x}, \tensorq{R} \fgrad \transpose{\tensorq{R}}) = \tensorq{R} \tilde{\tensorq{T}}\qty(\vb{x}, \fgrad) \transpose{\tensorq{R}},
+\]
+which will prove very useful later on.
+
+\begin{remark}
+    We stress that instead of material indifference, that granted us $\tilde{\tensorq{T}}\qty(\vb{x}, \tensorq{R} \fgrad) = \tensorq{R} \tilde{\tensorq{T}}\qty(\vb{x}, \fgrad)$, and which is valid for all materials, the second property $\tilde{\tensorq{T}}\qty(\vb{x}, \fgrad \tensorq{R}) = \tilde{\tensorq{T}}\qty(\vb{x}, \fgrad) \tensorq{R}$ holds \textit{only for isotropic materials.}
 \end{remark}
 
 \subsection{Hyperelastic materials}
 \label{sec:hyperelasticity}
 \begin{definition}
-	We say that a material is hyperelastic if there is a function $W:\overline{\Omega} \cross \R^{3 \cross 3}_+ \to \R$ such that
+	We say that a material is hyperelastic (sometimes called Green elastic) if there is a function $W:\overline{\Omega} \cross \R^{3 \cross 3}_+ \to \R$ such that (\cite{kruzikElasticMaterials2019})
 	\[
-		\pkstress\qty(\vb{x}) = \tilde{\tensorq{T}}\qty(\vb{x}, \fgrad) = \pdv{W\qty(\vb{x},\fgrad)}{\fgrad}, \fgrad = \grad \vb{y}(\vb{x}).
+		\pkstress\qty(\vb{x}) = \tilde{\tensorq{T}}\qty(\vb{x}, \fgrad) = \pdv{W\qty(\vb{x},\fgrad)}{\fgrad}.
 	\]
 
-The function $W, [W] = \frac{J}{m^3} = \frac{N m}{m^3} = \text{Pa}$ is called \textbf{stored energy density.}
+The function $W, [W] = \frac{J}{m^3} = \frac{N m}{m^3} = \text{Pa},$ is called \textbf{stored energy density.}
+\begin{remark}
+    See that this simple is the formula for the First Piola-Kirchhoff stress; for the Cauchy stress tensor, it gets more complicated.
+\end{remark}
 \end{definition}
+
+\subsection{Properties of W}
+\label{sec:propetiesW}
+Physics puts some assumption on $W:$
+\begin{enumerate}
+	\item $W\geq 0,$ 
+	\item $W\qty(\vb{x},\tensorq{R} \fgrad) = W\qty(\vb{x},\fgrad), \forall \tensorq{R} \in \, \text{SO(3)} \,, \forall \vb{x} \in \overline{\Omega}, \forall \fgrad \in \R^{3 \cross 3}_+,$ 
+	\item $W(\vb{x}, \underbrace{\tensorq{R} \tensorq{U}}_{=\fgrad}) = W\qty(\vb{x}, \tensorq{U}), \tensorq{U}=\sqrt{\rcg},$ (matrices are from the polar decomposition)
+	\item $W\qty(\vb{x},\fgrad) \to \infty \, \text{if} \, \detf \to 0_+,$ 
+	\item $\exists \alpha >0, \exists p,q,r \geq 1 \, \text{\textit{s.t.}} \,$ $W\qty(\vb{x},\fgrad) \geq \alpha\qty(\norm{\fgrad}^p + \norm{\cof \fgrad}^q + \qty(\detf)^r)-d, \forall \vb{x} \in \overline{\Omega}, \forall \fgrad \in \R^{3 \cross 3}_+.$
+\end{enumerate}
+Let us comment on these briefly.
+\begin{enumerate}
+	\item means really that energy is nonnegative,
+	\item states that energy does not change under the change of observer; see below for details\footnote{We could also show that if the hyperelastic solid is also isotropic, we also have $W\qty(\vb{x}, \fgrad \tensorq{R}) = W\qty(\vb{x},\fgrad)$, and so $W\qty(\vb{x}, \tensorq{R}\fgrad \transpose{\tensorq{R}}) = W\qty(\vb{x}, \fgrad), \forall \tensorq{R} \in \, \text{SO(d)} \,,$ so $W$ is an isotropic scalar function, and from the fact $W\qty(\vb{x},\fgrad) = \hat{W}\qty(\vb{x}, \rcg),$ in fact follows $W\qty(\vb{x}, \fgrad) = \hat{W}\qty(\vb{x}, \rcg ) = \hat{W}\qty(\vb{x}, \tensorq{R} \rcg \transpose{\tensorq{R}}),$ and so $\hat{W}$ is a scalar isotropic function of a symmetric positive definite tensorial argument. This allows one to represent $W$ using only the invariants of $\rcg.$}
+	\item energy changes only when the the geometry of the domain changes,
+	\item it takes infinite energy to deform the body to a point,
+	\item mostly a mathematical assumption - this yields \textit{coercivity}
+\end{enumerate}
+
+The principle of frame indifference told us 
+\[
+	\tilde{\tensorq{T}}\qty(\vb{x}, \tensorq{R} \fgrad) = \tensorq{R} \tilde{\tensorq{T}}\qty(\vb{x}, \fgrad),
+\]
+so
+\[
+	\transpose{\tensorq{R}} \pdv{W\qty(\vb{x}, \tensorq{R} \fgrad)}{\fgrad} = \pdv{W\qty(\vb{x}, \fgrad)}{\fgrad},
+\]
+we \textit{suppose we can Taylor expand}:
+\begin{align*}
+	W\qty(\vb{x}, \tensorq{R}(\fgrad + \tilde{\fgrad})) &= W\qty(\vb{x}, \tensorq{R}\fgrad + \tensorq{R}\tilde{\fgrad}) = W\qty(\vb{x}, \tensorq{R} \fgrad) + \pdv{W\qty(\vb{x},\tensorq{R} \fgrad)}{\fgrad}:\qty(\tensorq{R} \tilde{\fgrad}) + \, \text{h.o.t.} \, \\
+							    &= W\qty(\vb{x}, \tensorq{R}\fgrad)+ \transpose{\tensorq{R}} \pdv{W\qty(\vb{x}, \tensorq{R}\fgrad)}{\fgrad}:\tilde{\fgrad} + \, \text{h.o.t.} \,,
+\end{align*}
+where we have used
+\[
+	\tensorq{A}:\qty(\tensorq{B}\tensorq{C}) = \sqrt{\trace\qty(\transpose{\tensorq{A}} \tensorq{B}\tensorq{C})} = \sqrt{\trace \qty(\transpose{\tensorq{C}} \transpose{\tensorq{B}} \tensorq{A})} = \sqrt{\trace\qty(\transpose{\tensorq{B}}\tensorq{A} \transpose{\tensorq{C}})} = \qty(\transpose{\tensorq{B}}\tensorq{A}): \tensorq{C}.
+\]
+Using the principle of frame indifference, we in fact have shown
+\[
+	W\qty(\vb{x},\tensorq{R}(\fgrad+\tilde{\fgrad})) = W\qty(\vb{x},\tensorq{R}\fgrad)+ \pdv{W\qty(\vb{x},\fgrad)}{\fgrad}: \tilde{\fgrad}.
+\]
+If we expand now just $W\qty(\vb{x}, \fgrad + \tilde{\fgrad}),$ we obtain
+\[
+	W\qty(\vb{x}, \fgrad + \tilde{\fgrad}) = W\qty(\vb{x}, \fgrad) + \pdv{W\qty(\vb{x}, \fgrad)}{\fgrad}: \tilde{\fgrad},
+\]
+so upon subtraction we obtain 
+\[
+	W\qty(\vb{x}, \tensorq{R}\qty(\fgrad + \tilde{\fgrad})) - W\qty(\vb{x}, \fgrad + \tilde{\fgrad}) = W\qty(\vb{x}, \tensorq{R} \fgrad) - W\qty(\vb{x}, \fgrad),
+\]
+and above we have shown this quantity has a zero first order expansion,\textit{i.e.}
+
+\[
+	\pdv{\fgrad}\qty(W\qty(\vb{x},\tensorq{R}\fgrad)-W\qty(\vb{x},\fgrad)) = \tensorq{0}.
+\]
+from which it follows \footnote{The set of matrices with positive determinant is connected.}
+\[
+	W\qty(\vb{x},\tensorq{R} \fgrad) = W\qty(\vb{x},\fgrad) + k\qty(\tensorq{R}).
+\]
+If we first take $\fgrad = \identity,$ then
+\[
+	W\qty(\vb{x}, \tensorq{R}) = W\qty(\vb{x}, \identityM) + k\qty(\tensorq{R}),
+\]
+and then $\fgrad = \tensorq{R},$
+\[
+	W\qty(\vb{x}, \tensorq{R}^{2}) = W\qty(\vb{x},\tensorq{R}\tensorq{R}) = W\qty(\vb{x},\tensorq{R})+k\qty(\tensorq{R}) = W\qty(\vb{x},\identity)+2 k\qty(\tensorq{R}),
+\]
+ so
+\[
+	W\qty(\vb{x},\tensorq{R}^n)=W\qty(\vb{x},\identity)+nk\qty(\tensorq{R}), \forall \tensorq{R} \in \, \text{SO(d)} \,
+\]
+Since the set of rotations is closed and bounded, it is compact, so there exists a convergent subsequence of $\{\tensorq{R}^n\}$. Moreover, we assume $W$ to be continuous (we took the derivative...), so $\lim_{n \to \infty}W\qty(\vb{x},\tensorq{R}^n)$ exists and from the properties of $W$ we get it is finite. But then $k\qty(\tensorq{R}) = 0$, as otherwise $nk\qty(\tensorq{R})\to \infty.$ All in all, we have shown
+\begin{equation}
+    W\qty(\vb{x}, \tensorq{R}\fgrad) = W\qty(\vb{x},\fgrad), \forall \tensorq{R} \in \, \text{SO(d)} \,, \forall \fgrad \in \R^{d \times d}_+, \forall x \in \overline{\Omega}.
+\end{equation}
+
+This also implies the property
+\[
+	W\qty(\vb{x}, \fgrad) = W\qty(\vb{x}, \tensorq{R} \tensorq{U}) = W\qty(\vb{x}, \tensorq{U}),
+\]
+as from the properties of the polar decompoisiton one has $\tensorq{R} \in \, \text{SO(d)} \,, \tensorq{U} \in \R^{d \times d}_+.$
 	
 \begin{remark}
     Evidently, $W$ has a potential.
 \end{remark}
-
-\subsection{Properties of W}
-\label{sec:propetiesW}
-It is physical to assume
-\begin{enumerate}
-	\item $W\geq 0$ (energy is nonnegative)
-	\item $W\qty(\vb{x},\fgrad) = W\qty(\vb{x},\tensorq{R} \fgrad), \forall \tensorq{R} \in \, \text{SO(3)} \,, \forall \vb{x} \in \overline{\Omega}, \forall \fgrad \in \R^{3 \cross 3}_+.$ (energy does not change under rotations \footnote{If this was not true, you could create infinite energy by just spinning a rubber.}
-	\item $W\qty(\vb{x}, \tilde{\tensorq{R}} \tensorq{U}) = W\qty(\vb{x}, \tensorq{U}), \tensorq{U}=\sqrt{\rcg}.$ (matrices are from the polar decomposition)
-	\item $W\qty(\vb{x},\fgrad) \to \infty \, \text{if} \, \detf \to 0_+$ (it takes infinite energy to deform the body to a point)
-	\item $W\qty(\vb{x},\fgrad) \geq \alpha\qty(\norm{\fgrad}^p + \norm{\cof \fgrad}^q + \qty(\detf)^r)-d, \forall \alpha > 0, \forall p,q,r \geq 1, \forall d \in \R, \forall \vb{x} \in \overline{\Omega}, \forall \fgrad \in \R^{3 \cross 3}_+.$
-\end{enumerate}
 
 \begin{definition}[Natural state of the body]
     The natural state of the body is the state in which
@@ -507,35 +801,6 @@ It is physical to assume
     Not all materials (bodies) have its natural states. Zum Beispiel, carrot does not have a natural state.
 \end{remark}
 
-From the previous work, we can write $\transpose{\tensorq{R}} \pdv{W\qty(\vb{x}, \tensorq{R} \fgrad)}{\fgrad} = \pdv{W\qty(\vb{x}, \fgrad)}{\fgrad},$ and for brevity denote $W\qty(\vb{x}, \tensorq{R}\fgrad) = W_R(\vb{x}, \fgrad).$ Next, we \textit{suppose we can Taylor expand}:
-\begin{align*}
-	W_R\qty(\vb{x}, \fgrad + \tilde{\fgrad}) &= W\qty(\vb{x}, \tensorq{R}\fgrad + \tensorq{R}\tilde{\fgrad}) = W\qty(\vb{x}, \tensorq{R} \fgrad) + \pdv{W\qty(\vb{x},\tensorq{R} \fgrad)}{\fgrad}:\qty(\tensorq{R} \tilde{\fgrad}) + \, \text{h.o.t.} \, \\&= W_R\qty(\vb{x}, \fgrad)+ \transpose{\tensorq{R}} \pdv{W\qty(\vb{x}, \tensorq{R}\fgrad)}{\fgrad}:\tilde{\fgrad} + \, \text{h.o.t.} \,.
-\end{align*}
-Moreover
-\[
-	W_R\qty(\vb{x},\fgrad+\tilde{\fgrad}) = W_R\qty(\vb{x},\fgrad)+ \pdv{W_R\qty(\vb{x},\fgrad)}{\fgrad}: \tilde{\fgrad}.
-\]
-
-Altogether
-\[
-	\pdv{\fgrad}\qty(W_R\qty(\vb{x},\fgrad)-W_R\qty(\vb{x},\fgrad)) = \tensorq{0},
-\]
-from which it follows \footnote{The set of matrices with positive determinant is connected.}
-\[
-	W\qty(\vb{x},\tensorq{R} \fgrad) = W\qty(\vb{x},\fgrad) + k\qty(\tensorq{R}).
-\]
-Take $\fgrad = \identity,$ then
-\[
-	W\qty(\vb{x}, \tensorq{R}^{2}) = W\qty(\vb{x},\tensorq{R}\tensorq{R}) = W\qty(\vb{x},\tensorq{R})+k\qty(\tensorq{R}) = W\qty(\vb{x},\identity)+2 k\qty(\tensorq{R}),
-\]
- so
-\[
-	W\qty(\vb{x},\tensorq{R}^n)=W\qty(\vb{x},\identity)+nk\qty(\tensorq{R}).
-\]
-Since the set of rotations is closed and bounded, it is compact, so there exists a convergent subsequence of $\{\tensorq{R}^n\}$. Moreover, we assume $W$ to be continuous (we took the derivative...), so $\lim_{n \to \infty}W\qty(\vb{x},\tensorq{R}^n)$ exists and from the properties of $W$ we get it is finite. But then $k\qty(\tensorq{R}) = 0$, as otherwise $nk\qty(\tensorq{R})\to \infty.$ All in all, we have shown
-\begin{equation}
-    W\qty(\vb{x}, \tensorq{R}\fgrad) = W\qty(\vb{x},\fgrad).
-\end{equation}
 
 \begin{definition}[Energy functional]
     Let us have $\partial \Omega = \Gamma_N \cup \Gamma_D, \Gamma_N \cap \Gamma_D = \emptyset,$ where the parts of the boundary are those when Neumann/Dirichlet boudary conditions are prescribed.
@@ -1824,7 +2089,7 @@ and similiarly
 \]
 Alltogether,
 \[
-	\cstress = T_{11} \qty(\vb{e}_1 \otimes \vb{e}_1) + T_{22} \qty(\vb{e}_2 \otimes \vb{e}_2) \equiv \sigma_1 \qty(\vb{e}_1 \otimes \vb{e}_2) + \sigma_2 \qty(\vb{e}_2 \otimes \vb{e}_2).$
+	\cstress = T_{11} \qty(\vb{e}_1 \otimes \vb{e}_1) + T_{22} \qty(\vb{e}_2 \otimes \vb{e}_2) \equiv \sigma_1 \qty(\vb{e}_1 \otimes \vb{e}_2) + \sigma_2 \qty(\vb{e}_2 \otimes \vb{e}_2).
 \]
 
 \subsubsection{Simplified approach for a balloon}
@@ -1921,6 +2186,8 @@ After long and complicated calculations, it can be shown
 
 where $\tilde{W} = W\qty(\frac{1}{\lambda^{2}}, \lambda, \lambda).$
 
+\newpage
+\printbibliography
 \end{document}
 
 %%% Local Variables: 

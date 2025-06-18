@@ -1,0 +1,214 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.3 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{nyt/global//global/global/global}
+    \entry{bulicekPartialDifferentialEquations2019a}{unpublished}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=6d974880eddc59a2f9fc9dee832c1887}{%
+           family={Bulíček},
+           familyi={B\bibinitperiod},
+           given={Miroslav},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{6d974880eddc59a2f9fc9dee832c1887}
+      \strng{fullhash}{6d974880eddc59a2f9fc9dee832c1887}
+      \strng{fullhashraw}{6d974880eddc59a2f9fc9dee832c1887}
+      \strng{bibnamehash}{6d974880eddc59a2f9fc9dee832c1887}
+      \strng{authorbibnamehash}{6d974880eddc59a2f9fc9dee832c1887}
+      \strng{authornamehash}{6d974880eddc59a2f9fc9dee832c1887}
+      \strng{authorfullhash}{6d974880eddc59a2f9fc9dee832c1887}
+      \strng{authorfullhashraw}{6d974880eddc59a2f9fc9dee832c1887}
+      \field{extraname}{1}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{extradate}{1}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Partial {{Differential Equations I}}}
+      \field{urlday}{15}
+      \field{urlmonth}{6}
+      \field{urlyear}{2025}
+      \field{year}{2019}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www2.karlin.mff.cuni.cz/~mbul8060/notes.zip
+      \endverb
+      \verb{url}
+      \verb https://www2.karlin.mff.cuni.cz/~mbul8060/notes.zip
+      \endverb
+    \endentry
+    \entry{bulicekPartialDifferentialEquations2019}{unpublished}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=6d974880eddc59a2f9fc9dee832c1887}{%
+           family={Bulíček},
+           familyi={B\bibinitperiod},
+           given={Miroslav},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{6d974880eddc59a2f9fc9dee832c1887}
+      \strng{fullhash}{6d974880eddc59a2f9fc9dee832c1887}
+      \strng{fullhashraw}{6d974880eddc59a2f9fc9dee832c1887}
+      \strng{bibnamehash}{6d974880eddc59a2f9fc9dee832c1887}
+      \strng{authorbibnamehash}{6d974880eddc59a2f9fc9dee832c1887}
+      \strng{authornamehash}{6d974880eddc59a2f9fc9dee832c1887}
+      \strng{authorfullhash}{6d974880eddc59a2f9fc9dee832c1887}
+      \strng{authorfullhashraw}{6d974880eddc59a2f9fc9dee832c1887}
+      \field{extraname}{2}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{extradate}{2}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Partial {{Differential Equations II}}}
+      \field{urlday}{15}
+      \field{urlmonth}{6}
+      \field{urlyear}{2025}
+      \field{year}{2019}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{file}
+      \verb /home/moschehaus/Zotero/storage/R33GIR4T/notes2.pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://www2.karlin.mff.cuni.cz/~mbul8060/notes2.pdf
+      \endverb
+      \verb{url}
+      \verb https://www2.karlin.mff.cuni.cz/~mbul8060/notes2.pdf
+      \endverb
+    \endentry
+    \entry{bulicekUvodModerniTeorie2018}{unpublished}{}{}
+      \name{author}{7}{ul=1}{%
+        {{un=0,uniquepart=base,hash=6d974880eddc59a2f9fc9dee832c1887}{%
+           family={Bulíček},
+           familyi={B\bibinitperiod},
+           given={Miroslav},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=3b153135cb90d60cf5e2c6295c50b1b8}{%
+           family={Černý},
+           familyi={Č\bibinitperiod},
+           given={Robert},
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=dbe731867446b8bfe5d4d90db5c4f2e5}{%
+           family={John},
+           familyi={J\bibinitperiod},
+           given={Oldřich},
+           giveni={O\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=d8b1fe9f0004889625a8bc59629372f1}{%
+           family={Málek},
+           familyi={M\bibinitperiod},
+           given={Josef},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=4ce51d0e9c9580be850020288b11e397}{%
+           family={Pokorný},
+           familyi={P\bibinitperiod},
+           given={Milan},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=d98be46b8ece1cc11b2dfe2e1c442798}{%
+           family={Rokyta},
+           familyi={R\bibinitperiod},
+           given={Mirko},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=3e1f2c3a51710a5a87f8d8e33890c40b}{%
+           family={Stará},
+           familyi={S\bibinitperiod},
+           given={Jana},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{b9da3fca6297fd7d85e1ae5ff5c72863}
+      \strng{fullhash}{e5689dc78266784ccf531c0ba84c04ef}
+      \strng{fullhashraw}{e5689dc78266784ccf531c0ba84c04ef}
+      \strng{bibnamehash}{b9da3fca6297fd7d85e1ae5ff5c72863}
+      \strng{authorbibnamehash}{b9da3fca6297fd7d85e1ae5ff5c72863}
+      \strng{authornamehash}{b9da3fca6297fd7d85e1ae5ff5c72863}
+      \strng{authorfullhash}{e5689dc78266784ccf531c0ba84c04ef}
+      \strng{authorfullhashraw}{e5689dc78266784ccf531c0ba84c04ef}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{langid}{czech}
+      \field{title}{Úvod do moderní teorie parciálních diferenciálních rovnic}
+      \field{year}{2018}
+      \field{dateera}{ce}
+      \verb{file}
+      \verb /home/moschehaus/Zotero/storage/ND58HDEM/Bulíček and Málek - Úvod do moderní teorie parciálních diferenciálních rovnic.pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://www2.karlin.mff.cuni.cz/~pokorny/LectureNotes/moderni_teorie_color.pdf
+      \endverb
+      \verb{url}
+      \verb https://www2.karlin.mff.cuni.cz/~pokorny/LectureNotes/moderni_teorie_color.pdf
+      \endverb
+    \endentry
+    \entry{evansPartialDifferentialEquations2010}{book}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=0d72932a7775f85a51622d3af75ae26e}{%
+           family={Evans},
+           familyi={E\bibinitperiod},
+           given={Lawrence\bibnamedelima C.},
+           giveni={L\bibinitperiod\bibinitdelim C\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{location}{1}{%
+        {Providence (R.I.)}%
+      }
+      \list{publisher}{1}{%
+        {Amer Mathematical Society}%
+      }
+      \strng{namehash}{0d72932a7775f85a51622d3af75ae26e}
+      \strng{fullhash}{0d72932a7775f85a51622d3af75ae26e}
+      \strng{fullhashraw}{0d72932a7775f85a51622d3af75ae26e}
+      \strng{bibnamehash}{0d72932a7775f85a51622d3af75ae26e}
+      \strng{authorbibnamehash}{0d72932a7775f85a51622d3af75ae26e}
+      \strng{authornamehash}{0d72932a7775f85a51622d3af75ae26e}
+      \strng{authorfullhash}{0d72932a7775f85a51622d3af75ae26e}
+      \strng{authorfullhashraw}{0d72932a7775f85a51622d3af75ae26e}
+      \field{sortinit}{E}
+      \field{sortinithash}{8da8a182d344d5b9047633dfc0cc9131}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{"This is the second edition of the now definitive text on partial differential equations (PDE). It offers a comprehensive survey of modern techniques in the theoretical study of PDE with particular emphasis on nonlinear equations. Its wide scope and clear exposition make it a great text for a graduate course in PDE. For this edition, the author has made numerous changes, including: a new chapter on nonlinear wave equations, more than 80 new exercises, several new sections, and a significantly expanded bibliography."--Publisher's description.}
+      \field{isbn}{978-0-8218-4974-3}
+      \field{langid}{english}
+      \field{title}{Partial {{Differential Equations}}}
+      \field{year}{2010}
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

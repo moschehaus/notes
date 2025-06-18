@@ -1,7 +1,9 @@
 \documentclass[11pt]{scrartcl} % or article, but scrartcl has nicer defaults
 \usepackage[a4paper, margin=2.5cm]{geometry}
 \usepackage{graphicx}
+\usepackage{tikz}
 \usepackage{fancyhdr}
+\usepackage{tcolorbox}
 \pagestyle{fancy}
 \fancyhf{}
 \rhead{\thepage}
@@ -27,12 +29,13 @@
 \usepackage{amsmath}
 
 
-\usepackage[backend=biber, style=authoryear, natbib=true]{biblatex}
-\addbibresource{references.bib} 
-
 % ENCODING, LANGUAGE
 \usepackage[english]{babel}
 \usepackage[utf8]{inputenc}
+\usepackage{csquotes}
+
+\usepackage[backend=biber, style=authoryear, natbib=true]{biblatex}
+%\addbibresource{references.bib} 
 
 % GRAPHICS
 \usepackage{subfig}
@@ -41,7 +44,7 @@
 \usepackage[active]{srcltx} % use TeX-souce-specials-mode
 
 % SYMBOLS, FONTS
-\usepackage{mathbbol}
+\usepackage[bbgreekl]{mathbbol}
 \usepackage{bm} % sophisticated \boldsymbol
 %\usepackage{stmaryrd}
 \usepackage{MnSymbol} % \lsem, \rsem, tensor product :
@@ -86,9 +89,9 @@
   {\scshape\Large Faculty of Mathematics and Physics\par}
   \vspace{1.5cm}
   
-  {\huge\bfseries Partial Differential Equations II\par}
+  {\huge\bfseries Thermodynamics and mechanics of solids\par}
   \vspace{0.5cm}
-  {\Large\itshape Based on the lectures by doc. Mgr. Petr Kaplický, Ph.D.\par}
+  {\Large\itshape Based on the lectures by prof. RNDr. Martin Kružík, Ph.D., DSc.\par}
   
   \vspace{2cm}
   
@@ -103,27 +106,18 @@
 \end{titlepage}
 
 \tableofcontents
-\newpage
+\newpage 
 
-\section*{Introduction}
-These notes are based on the course “Partial Differential Equations II” taught by doc. Kaplický during the summer semester of 2025. They were written and compiled by \textit{a mere mortal student}, who certainly \textit{makes many mistakes}, especially given the complexity of the topic. Readers are strongly advised that this is not a polished mathematical text, but rather the author’s personal notes and interpretation of the lectures.
-
-During exam preparation, some proofs were supplemented by other sources beyond doc. Kaplický’s lectures. At the beginning of each such proof, the original source is indicated. Also, about three proofs are missing or are incomplete.
-
-\input{chapters/winsem_addendum.tex}
-\input{chapters/sob_spaces.tex}
-\input{chapters/compactness.tex}
-\input{chapters/monotone.tex}
-\input{chapters/variations.tex}
-\input{chapters/evolutionary.tex}
-\input{chapters/semigroups.tex}
-
-\newpage
-\printbibliography
+\begin{align*}
+	\rcg\qty(\vb{x}) &= \transpose{\fgrad}\fgrad \qty(\vb{x}),\\
+	\rcg: \overline{\Omega} &\to \overline{\Omega},\\
+	\rcg &= F \indices{_I^j} F \indices{^i_J}\delta_{ji}\vb{E}^I \otimes \vb{E}^J = F \indices{_{Ii}F^i_J}\vb{E}^I \otimes \vb{E}^J,\\
+	C \indices{_IJ} = F \indices{^j_I}F \indices{^i_J}\delta_{ji} = F \indices{_Ii}F \indices{^i_J}
+\end{align*}
 
 \end{document}
+
 %%% Local Variables: 
 %%% mode: latex
-
 %%% TeX-master: t
-%%%End: 
+%%% End: 

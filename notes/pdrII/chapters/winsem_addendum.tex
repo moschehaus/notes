@@ -1,0 +1,201 @@
+% !TEX root = ../main.tex
+
+\section{Winter semester addendum}
+\label{chap:addendum}
+
+\subsection{Weak$^*$ convergence}
+\label{sec:weakstarconv}
+Since $\LinfIntX{0}{T}{\LpSet[2]{\Omega}}$ is not reflexive, we cannot extract a (weakly) convergent subsequence; however, we know the predual of $\LinfIntX{0}{T}{\LpSet[2]{\Omega}}$ is reflexive, i.e.
+\[
+	\LinfIntX{0}{T}{\LpSet[2]{\Omega}} \cong \qty(\LpIntX{1}{0}{T}{\LpSet[2]{\Omega}})^{*},
+\]
+which means that balls in $\LinfIntX{0}{T}{\LpSet[2]{\Omega}}$ are weakly$^{*}$ compact. Moreover, $\LpIntX{1}{0}{T}{\LpSet[2]{\Omega}}$ is \textit{separable}, from which it follows $\LinfIntX{0}{T}{\LpSet[2]{\Omega}}$ with the weak$^{*}$ topology is metrizable and thus there exists a weakly $^{*}$ converging subsequence (from the balls).
+
+\begin{example}[For people without Functional Analysis I]
+	Let $X$ be a linear normed space, $\qty{x_n} \subset X$ a sequence in $X$. We say $x_n$ converges weakly to $x \in X$ whenever
+	\[
+		f(x_n) \to f(x), \forall f \in X^{*}.
+	\]
+	Let $X^{*}$ be the topological dual to $X$, $\qty{f_n} \subset X^{*}$ a sequence in $X^{*}$. We say $f_n$ converges weakly* to $f \in X^{*}$ whenever
+	\[
+		f_n(x) \to f(x), \forall x \in X^{*}, \, \text{\textit{i.e.}} \, x(f_n) \to x(f),
+	\]
+	where by $x(y), x \in X, y \in X^{*}$ we understand
+	\[
+		\varepsilon_x : X^{*} \to \mathbb{K}, y \mapsto y(x).
+	\]
+
+	Since $\LinfIntX{0}{T}{\LpSet[2]{\Omega}} \cong \qty(\LpIntX{1}{0}{T}{\LpSet[2]{\Omega}})^{*} ,$ every point $x \in \LinfIntX{0}{T}{\LpSet[2]{\Omega}}$ can be interpreted as a linear functional on $\LpIntX{1}{0}{T}{\LpSet[2]{\Omega}},$ so given $\qty{x_n} \subset \LinfIntX{0}{T}{\LpSet[2]{\Omega}},$ we can interpret is as a $\qty{x_n} \subset \qty(\LpIntX{1}{0}{T}{\LpSet[2]{\Omega}})^{*},$ meaning given a weakly converging sequence in $\LinfIntX{0}{T}{\LpSet[2]{\Omega}},$ it is actually a weakly* converging sequence in $\LpIntX{1}{0}{T}{\LpSet[2]{\Omega}}.$
+\end{example}
+
+\subsection{Regularity of parabolic problems}
+\label{sec:parabolic_regularity}
+We are solving	
+\begin{align*}
+	\partial_t u - \divergence{\tensorq{A}\grad u} + b u + \vb{c}\vdot \grad u + \divergence{\qty(u \vb{d})} &= f, \, \text{in} \, (0,T) \times \Omega, \\
+	u &= 0, \, \text{on} \, (0,T) \times \partial \Omega,\\
+	u &= u_0, \, \text{on} \, \qty{0} \times \Omega,
+\end{align*}
+where $u: \qty(0,T) \times \Omega \to \R,$ $\Omega \in \Ckl{0}{1}, \tensorq{A}$ uniformly elliptic on $\qty(0,T) \times \Omega,$ $\tensorq{A}, b, \vb{c}, \vb{d} \in \LinfSet{\qty(0,T) \times \Omega}.$ The data are $f, u_0,$ with minimal sensible regularity of
+\[
+	u_0 \in \LpSet[2]{\Omega}, f \in \LpIntX{2}{0}{T}{\qty(\WkpzeroSet[1][2]{\Omega})^{*}}, \Omega \in \Ckl{0}{1}.
+\]
+We have shown that under these assumptions, there exists an unique weak solution
+\[
+	u \in \LpIntX{2}{0}{T}{\WkpzeroSet[1][2]{\Omega}}, \partial_t u\in \LpIntX{2}{0}{T}{\qty(\WkpzeroSet[1][2]{\Omega})^{*}}
+\]
+We will now show that as in the elliptic case, we can hope for more regularity of the solution provided we provide more regularity of the data and the domain.
+
+\begin{theorem}
+	Let the assumptions of the previous theorem hold and let moreover $ \divergence{\vb{d}} \in \LinfSet{\qty(0,T) \times \Omega}, f \in \LpIntX{2}{0}{T}{\LpSet[2]{\Omega}}, \grad \tensorq{A}, \partial_t \tensorq{A} \in \LinfSet{\qty(0,T) \times \Omega}$. Then the unique weak solution $u$ satisfies for all $\delta \in (0,1)$
+	\[
+		\partial_t u \in \LpIntX{2}{\delta}{T}{\LpSet[2]{\Omega}}, u \in \LinfIntX{\delta}{T}{\WkpzeroSet[1][2]{\Omega}}
+	\]
+	and there exists $C>0$  such that
+	\[
+		\NormLpIntX{\partial_t u}{2}{\delta}{T}{\LpSet[2]{\Omega}} + \NormLinfIntX{u}{\delta}{T}{\WkpzeroSet[1][2]{\Omega}} \leq \frac{C}{\delta}\qty(\NormLpIntX{f}{2}{0}{T}{\LpSet[2]{\Omega}} + \norm{u_0}_{\LpSet[2]{\Omega}})
+	\]
+
+	If moreover $u_0 \in \WkpzeroSet[1][2]{\Omega},$ then
+	\[
+		\partial_t u \in \LpIntX{2}{0}{T}{\LpSet[2]{\Omega}}, u \in \LinfIntX{0}{T}{\WkpzeroSet[1][2]{\Omega}},
+	\]
+	and
+	\[
+		\NormLpIntX{\partial_t u}{2}{0}{T}{\LpSet[2]{\Omega}} + \NormLinfIntX{u}{0}{T}{\WkpzeroSet[1][2]{\Omega}} \leq C\qty(\NormLpIntX{f}{2}{0}{T}{\LpSet[2]{\Omega}} + \norm{u_0}_{\WkpzeroSet[1][2]{\Omega}}).
+	\]
+\end{theorem}
+
+\begin{proof}(\textit{Missing})
+	This proof is missing, but can be found in \cite{bulicekPartialDifferentialEquations2019a}.  One has to work with Galerkin approximations.
+\end{proof}
+
+
+\begin{theorem}
+	Let $\Omega \in \Ckl{1}{1}.$ If the assumptions of the above theorem hold
+
+	\begin{itemize}
+		\item with $\delta \in \qty(0,1)$, then
+			\[
+				u \in \LpIntX{2}{\delta}{T}{\WkpzeroSet[2][2]{\Omega}},
+			\]
+		\item if moreover $u_0 \in \WkpzeroSet[1][2]{\Omega},$ then
+			\[
+				u \in \LpIntX{2}{0}{T}{\WkpzeroSet[2][2]{\Omega}}.
+			\]
+	\end{itemize}
+\end{theorem}
+
+\begin{proof}(\textit{From: the lectures})
+	Take the weak formulation in $t \in (\delta,T)$. WLOG further assume $d=0$. Then
+	\begin{equation*}
+		\int_{\Omega} \tensorq{A} \grad{u} \vdot \grad{\varphi}  = \int_{\Omega}f \varphi - bu \varphi - \vb{c}\vdot \grad{u} \varphi - \int_{\Omega} \partial_t u \varphi = \int_{\Omega}(f-bu-\vb{c}\vdot \grad{u} - \partial_t u) \varphi,
+	\end{equation*}
+	and the integrand of the last integral is in $\LpSet[2]{\Omega}$ for a.e. $t \in (\delta,T)$. We can thus use the elliptic regularity results and write:
+
+	\begin{equation*}
+		\norm{u}_{\WkpSet[2][2]{\Omega}}^{2} \leq C(\norm{f}_{\LpSet[2]{\Omega}}^{2} + \norm{u}_{\WkpSet[1][2]{\Omega}}^{2} + \norm{\partial_t u}_{\LpSet[2]{\Omega}}^{2}),
+	\end{equation*}
+	integrating both sides $\int_{\delta}^T \dd{t}$ yields
+
+	\begin{equation*}
+		\NormLpIntX{u}{2}{\delta}{T}{\LpSet[2]{\Omega}}^{2} \leq C(\norm{f}_{\LpIntX{2}{\delta}{T}{\LpSet[2]{\Omega}}}^{2} + \NormLpIntX{u}{2}{\delta}{T}{\WkpSet[1][2]{\Omega}} ^{2} + \NormLpIntX{u}{2}{\delta}{T}{\LpSet[2]{\Omega}}^{2})
+	\end{equation*}
+\end{proof}
+
+\begin{theorem}
+	If data are smooth and satisfy the \textit{compatibility condiitons}, then the weak solutions to the parabolic equation are smooth.
+\end{theorem}
+\begin{proof}(\textit{From: the lectures})
+	No proof has been given.
+\end{proof}
+
+\begin{remark}[Compatibility condition]:
+	Take the heat equation :
+	$\partial_t u -  \laplace u  = f$ at time zero: $\laplace u (0) + f(0) = \partial_t u(0) \in \WkpzeroSet[1][2]{\Omega}$, so we need that $f(0) + \laplace u (0)$ has zero trace $\Rightarrow$ compatibility conditions. 
+\end{remark}
+
+\subsection{Uniqueness of solutions to hyperbolic problems}
+\label{sec:hyper_uniqueness}
+
+\begin{theorem}[Uniqueness of the solution to a hyperbolic equation]
+	Let the assumptions on the data of the hyperbolic equations be standard (i.e. minimal). Further assume that $\vb{c} \in \WminfSet{1}{\Omega}$. Then the weak solution to the hyperbolic equation is unique.
+\end{theorem}
+
+\begin{proof}(\textit{From: \cite{evansPartialDifferentialEquations2010}})
+	It is enough that if $u_0 = 0, u_1 = 0 \Rightarrow u = 0 \in Q_T$. To do that, take the equation, multiply it by $\varphi \in V$ fixed and integrate over $\Omega$ for $t \in (0,T)$ fixed:
+	\[
+		<\partial_{tt}u(t), \varphi> + \int_{\Omega}\tensorq{A}(t) \grad u(t) \vdot \grad \varphi \dd{x} + \int_{\Omega}\qty(b u (t)+ \vb{c} \vdot \grad u (t))\varphi\dd{x} - \int_{\Omega} u(t) \vb{d}(t) \vdot \grad \varphi\dd{x} = 0.
+	\]
+	Now, take a special test function
+	\[
+		\psi(t) = \qty(\int_t^s u(\tau) \dd{\tau})\chi_{(0,s)}(t),
+	\]
+	for some $s \in (0,T).$ Then $\partial_t \psi(t) = -u(t)$ on $t \in (0,s)$. Next, integrate the equation in time over $(0,s).$
+	\[
+		\int_0^s <\partial_{tt}u(t),\psi>\dd{t} + \int_0^s \int_{\Omega}\tensorq{A}(t) \grad u(t) \vdot \grad \psi\dd{x} \dd{t} + \int_0^s \int_{\Omega}\qty(bu(t) + \vb{c} \vdot \grad u(t))\psi\dd{x} \dd{t} - \int_0^s \int_{\Omega}u(t) \vb{d}(t) \vdot \grad \psi\dd{x} \dd{t} = 0,
+	\]
+Now use per partes on the first term (deploy Gelfand triple):
+\[
+	\int_0^s<\partial_{tt}u(t),\varphi>\dd{t} = <\partial_{t}u(s), \psi(s)> - <\partial_t u(0), \psi(0)> - \int_0^s <\partial_t u(t), \partial_t \psi(t)>\dd{t},
+\]
+
+	and realize $\psi(s) = 0, \partial_t u(0) =0,$ so
+	\[
+		- \int_0^s <\partial_t u(t), \partial_t \psi(t)> \dd{t}+ \int_0^s \int_{\Omega}\tensorq{A}(t) \grad u(t) \vdot \grad \psi\dd{x} \dd{t} + \int_0^s \int_{\Omega}\qty(bu(t) + \vb{c} \vdot \grad u(t))\psi\dd{x} \dd{t} - \int_0^s \int_{\Omega}u(t) \vb{d}(t) \vdot \grad \psi\dd{x} \d{t} = 0,
+	\]
+	but since $\partial_t \psi(t) = - u(t),$ we can actually write (time dependencies are omitted for brevity)
+	\[
+		\int_0^s <\partial_t u, u> \dd{t} + \int_0^s \int_{\Omega}-\tensorq{A} \grad \partial_t \psi \vdot \grad \psi - b \psi \partial_t \psi - \psi \vb{c} \vdot \grad \partial_t \psi + \partial_t \psi \vb{d} \vdot \grad \psi \dd{x} \dd{t} = 0,
+	\]
+	rewriting the LHS as a time derivative of something, we obtain
+
+	\begin{align*}
+		\frac{1}{2}\int_0^s \dv{t}\qty (\norm{u}_{\LpSet[2]{\Omega}}^{2} - \int_{\Omega}\tensorq{A}\grad \psi \vdot \grad \psi + b \psi^{2} + \psi \vb{c} \vdot \grad \psi + \psi \vb{d} \vdot \grad \psi \dd{x})\dd{t} = \\
+		=\int_0^s \int_{\Omega}\qty(\partial_t \tensorq{A}) \grad \psi \vdot \grad \psi + \partial_t b \psi^{2} + \psi \partial_t \vb{c} \vdot \grad \psi + \underbrace{\partial_t \psi}_{=-u(t)} \vb{c} \vdot \grad \psi - \psi \partial_t \vb{d} \vdot \grad \psi - \psi \vb{d} \vdot \grad \underbrace{\partial_t \psi}_{=- u(t)})\dd{t}\dd{x},
+	\end{align*}
+	and upon integration (recall $\psi(s) =0,$ from the definition of $\psi$ it follows $\grad \psi(0) = 0,$ and $u(0) =0,$)
+	\begin{align*}
+		\frac{1}{2}\qty(\norm{u(s)}_{\LpSet[2]{\Omega}}^{2} + \int_{\Omega}\tensorq{A}(0) \grad \psi(0) \vdot \grad\psi(0) + b(0) \psi(0)^{2} + \psi(0) \vb{c}(0) \vdot \grad \psi(0) + \psi(0) \vb{d}(0) \grad \psi(0) \dd{x}) = \\
+		= \int_0^s \int_{\Omega}\partial_t \tensorq{A} \grad \psi \vdot \grad\psi + \partial_t b \psi^{2} - u \partial_t \vb{c} \vdot \grad \psi - \psi \partial_t \vb{d} \vdot \grad \psi + \psi \vb{d} \vdot \grad u\dd{x}\dd{t}.
+	\end{align*}
+	From this we obtain the following estimate:
+	\[
+		\norm{u(s)}_{\LpSet[2]{\Omega}}^{2} + \norm{\psi(0)}_{\WkpSet[1][2]{\Omega}}^{2} \leq C\qty(\int_0^s \norm{\psi}_{\WkpSet[1][2]{\Omega}}^{2} + \norm{u}_{\LpSet[2]{\Omega}}^{2})\dd{t} + \norm{\psi(0)}_{\LpSet[2]{\Omega}}^{2},
+	\]
+	where $C = C\qty(\norm{\tensorq{A}}_{\LinfSet{\Omega}}, \norm{\partial_t \tensorq{A}}_{\LinfSet{\Omega}}, \norm{b}_{\LinfSet{\Omega}}, \norm{\partial_t b}_{\LinfSet{\Omega}}, \norm{\vb{c}}_{\LinfSet{\Omega}}, \norm{\partial_t\vb{c}}_{\LinfSet{\Omega}}, \norm{\vb{d}}_{\LinfSet{\Omega}}, \norm{\partial_t\vb{d}}_{\LinfSet{\Omega}}).$ Define now the test function $\chi(t) = \int_0^t u(\tau)\dd{\tau},$ and realize that in fact $\psi(t) = \chi(s) - \chi(t), \chi(0) = 0.$ Plugging this in the above inequalty yields
+	\[
+		\norm{u(s)}_{\LpSet[2]{\Omega}}^{2} + \norm{\chi(s)}_{\LpSet[2]{\Omega}}^{2} \leq C\qty(\int_0^s \norm{\chi(s)-\chi(t)}_{\WkpSet[1][2]{\Omega}}^{2} + \norm{u}_{\LpSet[2]{\Omega}}^{2})+ \norm{\chi(s)}_{\LpSet[2]{\Omega}}^{2},
+	\]
+	and using
+	\[
+		\norm{\chi(s)-\chi(t)}_{\WkpSet[1][2]{\Omega}}^{2} = \norm{\chi(t)- \chi(s)}_{\WkpSet[1][2]{\Omega}}^{2} \leq 2\qty(\norm{\chi(t)}_{\WkpSet[1][2]{\Omega}}^{2} + \norm{\chi(s)}_{\WkpSet[1][2]{\Omega}}^{2}),
+	\]
+	and the definition of $\chi(t),$ from which it follows
+	\[
+		\norm{\chi(s)}_{\LpSet[2]{\Omega}}^{2} \leq \int_0^s \norm{u}_{\LpSet[2]{\Omega}}^{2}\dd{t},
+	\]
+	we are allowed to write
+
+	\[
+		\norm{u(s)}_{\LpSet[2]{\Omega}}^{2} + \norm{\chi(s)}_{\LpSet[2]{\Omega}}^{2} \leq C\qty(\int_0^s 2 \norm{\chi(s)}_{\WkpSet[1][2]{\Omega}}^{2}+ 2\norm{\chi(t)}_{\WkpSet[1][2]{\Omega}}^{2} + 2 \norm{u}_{\LpSet[2]{\Omega}}^{2}\dd{t}),
+	\]
+	and so
+	\[
+		\norm{u(s)}_{\LpSet[2]{\Omega}}^{2} + (1-2sC) \norm{\chi(s)}_{\WkpSet[1][2]{\Omega}}^{2} \leq C_1 \qty(\int_0^s \norm{\chi(t)}_{\WkpSet[1][2]{\Omega}}^{2} + \norm{u(t)}_{\LpSet[2]{\Omega}}^{2} \dd{t}).
+	\]
+	If we now choose $T_1 \in (0,T]$ small enough \textit{s.t.} $1-2sC > 0$ for $s \in (0,T_1],$ we finally obtain
+	\[
+		\norm{u(s)}_{\LpSet[2]{\Omega}}^{2} + \norm{\chi(s)}_{\WkpSet[1][2]{\Omega}}^{2} \leq C_2 \qty(\int_0^s \norm{\chi(t)}_{\WkpSet[1][2]{\Omega}}^{2} + \norm{u(t)}_{\LpSet[2]{\Omega}}^{2}\dd{t}), \forall s \in (0,T_1],
+	\]
+which implies $u = 0$ on $(0,T_1]$ by the Gronwall lemma: we have
+\[
+	\xi(t) \leq \int_0^t \xi(s) \dd{s}, \, \text{for} \, \, \text{\textit{a.a.}} \, t \in (0,T) \Rightarrow \xi(t) = 0 \, \text{\textit{a.e.}} \,.
+\]
+for $\xi \in \LpSet[1]{(0,T)}$ nonnegative\footnote{In our case $\xi = \norm{u}_{\LpSet[2]{\Omega}}^{2} + \norm{\chi}_{\WkpSet[1][2]{\Omega}}^{2}$.}.
+If we now boostrap on $[T_1, 2T_1], [2T_1, 3T_1]$ etc., we obtain $u = 0$ on $(0,T]$.
+
+
+\end{proof}
+
+

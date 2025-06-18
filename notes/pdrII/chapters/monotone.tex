@@ -1,0 +1,379 @@
+% !TEX root = ../main.tex
+
+\section{Nonlinear elliptic equations - monotone operator theory}
+\label{sec:monotone_operator}
+
+The method of compact perturbations allowed us to solve some nonlinear problems. This relied on the fact that nonlinearities were present mainly in the nonleading terms and so we were able to use our theory we developed for linear equations (continuity of the solution operators, regularity results, etc.) In this chapter we examine a different approach that will allow us to solve a particular class of problems even with nonlinearities in the leading term.
+
+\subsection{Coercivity and monotonicity}
+\label{sec:coerc_monotone}
+Consider the following problem:
+\begin{align*}
+	- \sum_{i=1}^d \partial_{i}\qty(a_i\qty(x,u(x),\grad u(x))) + a_0\qty(x,u(x),\grad u(x)) &= f(x), \, \text{in} \, \Omega \\
+	u &= u_0,  \, \text{on} \, \partial \Omega,
+\end{align*}
+or written more concisely
+
+\begin{align}
+	\label{eq:nonlin_prob}
+	- \divergence{\qty(\vb{a}\qty(x, u(x), \grad u(x)))} + a_0\qty(x, u(x), \grad u(x)) &= f(x), \, \text{in} \, \Omega, \\
+	u &= u_0, \, \text{on} \, \Omega,
+\end{align}
+where $\vb{a}: \Omega \times \R \times \R^{d} \to \R^d,$
+\[
+	\vb{a}\qty(x, u(x), \grad u(x)) = \qty(a_1\qty(x, u(x), \grad u(x)), \dots, a_d\qty(x, u(x), \grad u(x)))),
+\]
+is some \textit{nonlinear} vector function. The data of the problem are
+
+\begin{itemize}
+	\item $\Omega \in C^{0,1},$
+	\item $a_i: \Omega \times \R \cross \R^d \to \R, i \in \qty{0,\dots,d}$ are Caratheodory in $x \in \Omega$ and $\qty(z, \vb{p}) \in \R \times \R^d$,
+		\item \textit{growth condition}: $\exists C>0, r \in (1,\infty), h \in \LpSet[r']{\Omega}: \forall i \in \qty{0, \dots, d}, \forall  \, \text{\textit{a.a.}} \, x\in \Omega, \forall z \in \R, \forall p \in \R^d:$
+			\[
+				\abs{a_i\qty(x,z,\vb{p})} \leq C\qty(\abs{z}^{r-1}+\abs{\vb{p}}^{r-1})+h(x),
+			\]
+		\item $f \in \qty(\WkpzeroSet[1][r]{\Omega})^{*},$
+		\item $u_0 \in \WkpSet[1][r]{\Omega},$
+\end{itemize}
+and the unknown is $u: \Omega \to \R.$
+\begin{remark}
+	The Nemytskii operator\footnote{Again meaning $N_{a_i}(u,\vb{p})(x) = a_i\qty(x, u(x), \vb{p}(x)).$} $(u,\vb{p}) \mapsto a_i\qty(\cdot, u, \vb{p})$ is continuous from $\qty(\LpSet[r]{\Omega})^{d+1}$ to $\LpSet[r']{\Omega}.$ by Nemystkii theorem. Truly, generally, the estimate
+	\[
+		\abs{f(x,\vb{y})} \leq g(x) + C \sum_{j=1}^d \abs{y_i}^{\frac{p_i}{p}}, g \in \LpSet{\Omega},
+	\]
+	guarantess continuity from $\LpSet[p_1]{\Omega} \times \dots \times \LpSet[p_d]{\Omega}$ to $\LpSet{\Omega}.$ So in our case, the target space is $\LpSet[r']{\Omega},$ since $h \in \LpSet[r']{\Omega},$ and the exponent from the origin space can be found by
+	\[
+		"p_i = \frac{p_i}{p} p,"
+	\]
+	\textit{i.e.}, taking the exponents we in fact have the estimates for and multiplying them by the target space exponent. In our case $p_i = \qty(r-1)r' = r-1 \frac{r}{r-1} = r.$ 
+\end{remark}
+
+
+\begin{definition}[Coercivity]
+	We say that $\qty{a_i}_{i=0}^d$ is coercive if $\exists C_1 > 0, \exists C_2(x) \in \LpSet[1]{\Omega}: \forall \, \text{\textit{a.e.}} \, x \in \Omega, \forall (z,p) \in \R^{d+1}:$
+	\[
+		\sum_{i=1}^d a_i\qty(x,z,\vb{p})p_i + a_0\qty(x,z,\vb{p})z \geq C_1 |\vb{p}|^r-C_2(x), 
+	\]
+	\textit{i.e.},
+	\[
+		\vb{a}\qty(x,z,\vb{p}) \vdot \vb{p} + a_0\qty(x,z,\vb{p})z \geq C_1 |\vb{p}|^r - C_2(x).
+	\]
+
+\end{definition}
+
+\begin{definition}[Monotonicity]
+	We say that $\qty{a_i}_{i=0}^d$ is monotone if $\forall \, \text{\textit{a.a.}} \, x \in \Omega, \forall \qty(z_1, \vb{p}_1), \qty(z_2, \vb{p}_2) \in \R^{d+1}:$
+	\[
+		\qty(\vb{a}\qty(x,z_1,\vb{p}_1)-\vb{a}\qty(x,z_2,\vb{p}_2))\vdot (\vb{p}_1 - \vb{p}_2) + (a_0\qty(x,z_1,\vb{p}_1)-a_0\qty(x,z_2,\vb{p}_2))(z_1 - z_2) \geq 0.
+	\]
+	We say $\qty{a_i}_{i=0}^d$ is strictly monotone if $\forall \, \text{\textit{a.a.}} \,x \in \Omega, \forall \qty(z_1, \vb{p}_1,), \qty(z_2, \vb{p}_2) \in \R^{d+1} \, \text{\textit{s.t.}} \, \qty(z_1,p_1) \neq \qty(z_2, p_2)$ it holds 
+	\[
+		\qty(\vb{a}\qty(x,z_1, \vb{p}_1) - \vb{a}\qty(x, z_2, \vb{p}_2)) \vdot \qty(\vb{p}_1 - \vb{p}_2) + \qty(a_0\qty(x,z_1, \vb{p}_1,)-a_0\qty(x,z_2, \vb{p}_2))\qty(z_1 - z_2) > 0.
+	\]
+\end{definition}
+
+\subsection{Existence and uniqueness of the weak solution}
+\label{sec:exis_uniq}
+
+\begin{definition}[Weak solution]
+	We say that $u \in \WkpSet[1][r]{\Omega}$ is a weak solution to the above problem \ref{eq:nonlin_prob} provided
+	\[
+		\trace u = \trace u_0 \, \text{on} \, \partial \Omega,
+	\]
+	$u - u_0 \in \WkpzeroSet[1][r]{\Omega}$ and it holds
+	\[
+		\forall \varphi \in \WkpzeroSet[1][r]{\Omega}: \int_{\Omega}\vb{a}\qty(\vdot, u, \grad u)\vdot \grad \varphi +a_0\qty(\vdot, u, \grad u) \varphi \dd{x} = <f,\varphi>_{\qty(\WkpSet[1][r]{\Omega})^{*}}, 
+	\]
+\end{definition}
+
+Now comes the proof of existence and uniqueness -- let us prepare for that with a useful lemma.
+
+\begin{lemma}
+	Let $g: \text{B}(0,R) \subset \R^N \to \R^N$ be continuous, $N \in \N, R>0,$ and $\forall c \in \text{S}(0,R): g(c) \vdot c \geq 0.$ Then, there is $c_0 \in \text{B}(0,R): g(c_0) = 0.$
+	\begin{proof}(\textit{From: the lectures})
+		By contradiction. Let $g \neq 0$ in $\text{U}(0,R)$. Let us define
+		\[
+			h(x) = -R\frac{g(x)}{|g(x)|}.
+		\]
+		Then $h \in C\qty(\text{B}(0,R)), h\qty(\text{B}(0,R)) \subset \text{S}(0,R)\subset \text{B}(0,R),$ so by Brouwer there
+		\[
+			\exists x_0 \in \text{B}(0,R): h(x_0) = x_0 \Leftrightarrow -R \frac{g(x_0)}{|g(x_0)|} = x_0.
+		\]
+		Take the dot product with $x_0 \in \text{S}(0,R)$ and write
+		\[
+			\underbrace{-R \frac{\overbrace{g(x_0) \vdot x_0}^{\geq 0}}{|g(x_0)|}}_{\leq 0} = \underbrace{|x_0|^{2}}_{ = R^{2}} \wedge x_0 \in \text{S}(0,R),
+		\]
+		so that is a contradiction.
+	\end{proof}
+\end{lemma}
+\begin{remark}
+    We have in fact shown that this $c_0$ is from $\text{S}(0,R).$
+\end{remark}
+
+
+\begin{theorem}[Existence and uniqueness]
+	Let $\Omega \in C^{0,1}, r \in (1,\infty),f \in \qty(\WkpSet[1][r]{\Omega})^{*}, u_0 \in \WkpSet[1][r]{\Omega},  \qty{a_i}_{i=0}^d$ be Caratheodory, coercive and monotone and let them also satisfy the growth condition. Then, there is a weak solution to the problem \ref{eq:nonlin_prob}.
+	If, moreover, $\qty{a_i}_{i=0}^d$ is strictly monotone, then the weak solution is unique.
+\end{theorem}
+
+\begin{proof}(\textit{From: the lectures})
+	The strategy is the following:
+	\begin{enumerate}
+		\item Galerkin approximation,
+		\item uniform estimates,
+		\item limit passage,
+		\item identification of limits,
+	\end{enumerate}
+	One of the issues we will face is that nonlinearities may destroy weak convergence, see the below example. 
+
+	\textbf{Galerkin}: 
+
+	Since $\WkpzeroSet[1][r]{\Omega}$ is separable there $\exists \{w_i\}_{i=1}^{\infty} \subset \WkpzeroSet[1][r]{\Omega}$ that is a dense\footnote{It can be chosen such that it is itself dense, not only its span.} linearly independent subset. We search for $\qty{\alpha_n^j} \subset \R, n \in \N, j \in \qty{1, \dots, n}$ such that
+	\[
+		u_n(x) \coloneq u_0(x) + \sum_{j=1}^n \alpha^j_n w_j(x),
+	\]
+	satisfy $\forall j \in \qty{1, \dots, n}$
+	\[
+		\int_{\Omega}\vb{a}\qty(x, u_n, \grad u_n) \vdot \grad w_j + a_0\qty(x,u_n,\grad u_n)w_j\dd{x} = <f,w_j>.
+	\]
+	We claim such $\qty{\alpha^j_n}_{j=1}^n \subset \R^n$ exist $\forall n \in \N$ by the previous lemma. We define a vector function $\vb{F}: \R^{n} \to \R^{n}$  (the dependence on $\alpha_n^j$ is through $u_n$)
+	\[
+		\vb{F}\qty(\alpha^1_n, \dots, \alpha^n_n)\coloneq \qty{ \int_{\Omega}\vb{a}\qty(x, u_n, \grad u_n) \vdot \grad w_j + a_0\qty(x, u_n, \grad u_n) w_j \dd{x} - <f,w_j>}_{j=1}^n.
+	\]
+
+	Let us show $\vb{F}$ is continuous (maybe more carefully then needed, but just to make it clear)
+	\begin{itemize}
+		\item $\qty(\alpha_n^1, \dots, \alpha_n^n) \mapsto \qty(u_n = u_0 + \sum_{j=1}^n \alpha^j_n w_j),$ is continuous from $\R^{n}$ to $\WkpSet[1][r]{\Omega},$ it is just a (finite) linear combination\footnote{And $+, \vdot$ is continuous on normed spaces...}
+		\item $u_n \mapsto \grad u_n$ is continuous from $\WkpSet[1][r]{\Omega}$ to $\qty(\LpSet[r]{\Omega})^{n},$ as it is linear and $\norm{\grad u_n}_{\LpSet[r]{\Omega}}\leq  \norm{u_n}_{\WkpSet[1][r]{\Omega}}$,
+		\item $\qty(u_n, \grad u_n) \mapsto \vb{a}\qty(\vdot, u_n, \grad u_n)$ is continuous from $\LpSet[r]{\Omega} \times \qty(\LpSet[r]{\Omega})^{n}$ to $\qty(\LpSet[r']{\Omega})^d$ by Nemytskii and $\qty(u_n, \grad u_n) \mapsto a_0\qty(\vdot, u_n, \grad u_n)$ is also continuous from $\LpSet[r]{\Omega} \times \qty(\LpSet[r]{\Omega})^n$ to $\LpSet[r']{\Omega}$ by Nemytskii,
+		\item $I_{\grad w_j}:\vb{a}\qty(\vdot, u_n, \grad u_n) \mapsto \R,$ defined by $I_{\grad w_j}\qty(\vb{a}\qty(\vdot, u_n, \grad u_n)) = \int_{\Omega}\vb{a}\qty(x, u_n, \grad u_n) \vdot \grad w_j\dd{x},$ is continuos from $\qty(\LpSet[r']{\Omega})^{n}$ to $\R$, because it is linear and $\abs{\int_{\Omega}\vb{a} \vdot \grad w_j\dd{x}} \leq \norm{\vb{a}}_{\qty(\LpSet[r']{\Omega})^n} \norm{\grad w_j}_{(\LpSet[r]{\Omega})^n},$
+		\item $I_{w_j}:a_0\qty(\vdot, u_n, \grad u_n) \mapsto \R,$ defined by $I_{w_j}\qty(a_0\qty(\vdot, u_n, \grad u_n)) = \int_{\Omega}a_0\qty(x, u_n, \grad u_n)w_j\dd{x},$ is continuous from $\LpSet[r']{\Omega}$ to $\R$ because it is linear and $\abs{\int_{\Omega}a_0 w_j\dd{x}} \leq \norm{a_0}_{\LpSet[r']{\Omega}} \norm{w_j}_{\LpSet[r]{\Omega}},$
+		\item (trivially) (\textit{e.g.}) $a_0\qty(\vdot, u_n, \grad u_n) \mapsto <f, w_j>$ is continuous from $\LpSet[r']{\Omega}$ to $\R,$ because it is just a constant,
+		\item and finally (this notation is extra embarassing)
+			\begin{align*}
+				&\qty(\int_{\Omega}\vb{a}\qty(x, u_n, \grad u_n) \vdot \grad w_n\dd{x}, \int_{\Omega}a_0\qty(x, u_n, \grad u_n)\dd{x}, <f, w_j>) \mapsto \qty(\sum_{i=1}^n \qty(\int_{\Omega}\vb{a} \vdot \grad w_j + a_0 w_j\dd{x}-<f, w_j>)\vb{e}_i)= \\
+				&= \qty{\int_{\Omega}\vb{a}\qty(x, u_n, \grad u_n) \vdot w_j + a_0\qty(x, u_n, \grad u_n) w_j\dd{x} - <f, w_j>}_{j=1}^n
+			\end{align*}
+			is continuous from $\R \times \R \times \R$ to $\R^{n},$ because it is just a finite linear combination ("assembly of the vector").
+	\end{itemize}
+	On total, we get $\qty(\alpha_n^1, \dots, \alpha_n^n) \mapsto \vb{F}\qty(\alpha_n^1, \dots, \alpha_n^n)$ is continuous from $\R^{n}$ to $\R^{n},$ as it is just a composition of continuous mappings (listed above in the right order). Next, compute (realize $u_n - u_0 = \sum_{i=1}^n \alpha^i_n w_n$)
+	\begin{align*}
+		\vb{F}\qty(\vb*{\alpha}_n) \vdot \vb*{\alpha}_n  &= \sum_{i=1}^n \alpha^i_n \qty(\int_{\Omega}\vb{a}\qty(x, u_n, \grad u_n) \vdot w_i + a_0\qty(x, u_n, \grad u_n)\dd{x} - <f,w_i>) =\\
+								 &= \int_{\Omega}\vb{a}\qty(x, u_n, \grad u_n) \vdot \grad\qty(u_n - u_0) + a_0\qty(x, u_n, \grad u_n) \qty(u_n - u_0)\dd{x} - <f, u_n - u_0>.
+	\end{align*}
+	This can be further manipulated by using coercivity, one has (also with the help of Cauchy and Schwarz)
+	\begin{align*}
+		\vb{a}\qty(x, u_n, \grad u_n) \vdot \grad\qty(u_n - u_0) + a_0\qty(x, u_n, \grad u_n) \qty(u_n - u_0) &\geq \\
+														      &\geq C_1\abs{\grad u_n}^r - C_2(x) - \vb{a}\qty(x, u_n, \grad u_n) \vdot \grad u_0 - a_0\qty(x, u_n, \grad u_n) u_0, \\
+														      &\geq C_1\abs{\grad u_n}^r-\qty(C_2(x) + \abs{\vb{a}(\dots)}\abs{\grad u_0} + \abs{a_0(\dots)}\abs{u_0}),
+	\end{align*}
+	so we can write (notice we do not split $u_n - u_0$)
+	\begin{align*}
+								 &\int_{\Omega}\vb{a}\qty(x, u_n, \grad u_n) \vdot \grad\qty(u_n - u_0) + a_0\qty(x, u_n, \grad u_n) \qty(u_n - u_0)\dd{x} - <f, u_n - u_0> \geq \\
+								 & \geq \int_{\Omega}\qty(C_1 \abs{\grad u_n}^r -C_2(x) - \abs{\vb{a}(\dots)}\abs{\grad u_0} - \abs{a_0(\dots)}\abs{u_0})\dd{x} - \norm{f}_{\qty(\WkpSet[1][r]{\Omega})^{*}}\norm{u_n-u_0}_{\WkpSet[1][r]{\Omega}}\geq \\
+								 &\geq C_1 \norm{\grad u_n}_{\LpSet[r]{\Omega}}^r - \norm{C_2}_{\LpSet[1]{\Omega}} -  \norm{f}_{\qty(\WkpSet[1][r]{\Omega})^{*}}\norm{u_n-u_0}_{\WkpSet[1][r]{\Omega}} - \int_{\Omega}\abs{\vb{a}(\dots)}\abs{\grad u_0}+\abs{a_0(\dots)}\abs{u_0}\dd{x}.
+	\end{align*}
+	Let us now estimate. The first term can be rewritten using triangle inequality and Poincare as
+	\begin{align*}
+		\norm{\grad u_n}_{\LpSet[r]{\Omega}}^r &= \abs{\norm{\grad u_n}_{\LpSet[r]{\Omega}}}^r \geq \abs{\norm{\grad\qty(u_n - u_0)}_{\LpSet[r]{\Omega}} - \norm{\grad u_0}_{\LpSet[r]{\Omega}}}^r \geq \abs{\norm{\grad\qty(u_n - u_0)}_{\LpSet[r]{\Omega}}^r - \norm{ \grad u_0}_{\LpSet[r]{\Omega}}^r} \geq \\ 
+		&\geq \abs{C \norm{u_n - u_0}_{\WkpSet[1][r]{\Omega}}^r - \norm{\grad u_0}_{\LpSet[r]{\Omega}}^r} "\geq C \norm{u_n - u_0}_{\WkpSet[1][r]{\Omega}}^r - \norm{\grad u_0}_{\LpSet[r]{\Omega}}^r,"
+	\end{align*}
+
+	where we made the constant $C$ larger without renaming it to obtain a positive quantity. Next, we can estimate the integral with $a_0, \vb{a}$ from growth conditions:
+\begin{align*}
+	\abs{a_0(x, u_n, \grad u_n)} &\leq h(x) + C\qty(\abs{u_n}^{r-1} + \abs{\grad u_n}^{r-1}), \\
+	\abs{\vb{a}\qty(x, u_n, \grad u_n)}& \leq C(d) \sum_{i=1}^d \abs{a_i\qty(x, u_n, \grad u_n)} \leq C(d)d\qty(h(x) + C \qty(\abs{u_n}^{r-1}+ \abs{\grad u_n}^{r-1})),
+\end{align*}
+so the integral becomes
+\begin{align*}
+	&\int_{\Omega}\abs{\vb{a}}\abs{\grad u_0} + \abs{a_0}\abs{u_0}\dd{x}\leq \\
+	&\leq \int_{\Omega}\abs{h} \abs{u_0} + C\abs{u_0} \abs{u_n}^{r-1} +C \abs{u_0} \abs{\grad u_n}^{r-1}\dd{x} + C(d) d \int_{\Omega}\abs{h}\abs{\grad u_0} + C\abs{u_n}^{r-1}\abs{\grad u_0} + C\abs{\grad u_n}^{r-1} \abs{\grad u_0}\dd{x} \leq \\
+									    &\leq \norm{h}_{\LpSet[r']{\Omega}}\norm{u_0}_{\LpSet[r]{\Omega}} + C \norm{u_0}_{\LpSet[r]{\Omega}}\norm{u_n}_{\LpSet[r]{\Omega}}^{r-1} + C \norm{u_0}_{\LpSet[r]{\Omega}} \norm{\grad u_n}_{\LpSet[r]{\Omega}}^{r-1}+\\
+									    &+ C(d)d\qty( \norm{h}_{\LpSet[r']{\Omega}} \norm{\grad u_0}_{\LpSet[r]{\Omega}}^{r-1} + C \norm{u_n}_{\LpSet[r]{\Omega}}^{r-1} \norm{\grad u_0}_{\LpSet[r]{\Omega}}+\norm{\grad u_n}_{\LpSet[r]{\Omega}}^{r-1} \norm{\grad u_0}_{\LpSet[r]{\Omega}}),
+\end{align*}
+this is a lot of terms, but it gets easier when i use Poincare and estimate everything w.r.t. $\norm{\grad u_n}_{\LpSet[q]{\Omega}}:$
+\begin{align*}
+	\leq& \norm{h}_{\LpSet[r']{\Omega}} \norm{u_0}_{\LpSet[r]{\Omega}} + \norm{h}_{\LpSet[r']{\Omega}}\norm{\grad u_0}_{\LpSet[r]{\Omega}}^{r-1}+ \\
+	    &+\norm{\grad u_n}_{\LpSet[r]{\Omega}}^{r-1}\qty(C \norm{u_0}_{\LpSet[r]{\Omega}}+ C \norm{u_0}_{\LpSet[r]{\Omega}}+C\qty(d)d\qty(\norm{\grad u_0}_{\LpSet[r]{\Omega}} + \norm{\grad u_0}_{\LpSet[r]{\Omega}})),
+\end{align*}
+now use Young inequality:
+\[
+	\abs{ab} \leq \frac{a^p}{p} + \frac{b^q}{q}, \frac{1}{p} + \frac{1}{q} = 1,
+\]
+so in particular
+\[
+	\abs{ab} \leq \frac{a^r}{r} + \frac{b^{\frac{r}{r-1}}}{\frac{r}{r-1}}.
+\]
+Using this and going for the maximum over all constants gives (realize that also $h$ is given)
+\[
+	\leq C\qty(\norm{u_0}_{\LpSet[r]{\Omega}}^r + \norm{\grad u_0}_{\LpSet[r]{\Omega}}^r + \norm{\grad u_n}_{\LpSet[r]{\Omega}}^{r}).
+\]
+Upon combining the above estimations, we obtain (constants are changing from line to line and do not really make sense)
+\begin{align*}
+	\vb{F}\qty(\vb*{\alpha}_n) \vdot \vb*{\alpha}_n &\geq C_1 \norm{\grad u_n}_{\LpSet[r]{\Omega}}^r - \norm{C_2}_{\LpSet[1]{\Omega}} - \norm{f}_{\qty(\WkpSet[1][r]{\Omega})^{*}}\norm{u_n - u_0}_{\WkpSet[1][r]{\Omega}} + \\
+							&- C \qty(\norm{u_0}_{\LpSet[r]{\Omega}}^r + \norm{\grad u_0}_{\LpSet[r]{\Omega}}^r + \norm{\grad u_n}_{\LpSet[r]{\Omega}}^r) \geq \\
+							&\geq C_1\qty(C \norm{u_n - u_0}_{\WkpSet[1][r]{\Omega}}^r - \norm{\grad u_0}_{\LpSet[r]{\Omega}}^r) - \norm{C_2}_{\LpSet[1]{\Omega}} -\underbrace{\norm{f}_{\qty(\WkpSet[1][r]{\Omega})^{*}}\norm{u_n - u_0}_{\WkpSet[1][r]{\Omega}}}_{\, \text{Younge} \,}+ \\
+							&	-C \qty(\norm{u_0}_{\LpSet[r]{\Omega}}^r + \norm{\grad u_0}_{\LpSet[r]{\Omega}}^r + C \norm{u_n - u_0}_{\WkpSet[1][r]{\Omega}}^r - \norm{\grad u_0}_{\LpSet[r]{\Omega}}^r) \geq \\
+							&\geq C_1 \norm{u_n - u_0}_{\WkpSet[1][r]{\Omega}}^r - C_2\qty(\underbrace{1}_{\norm{C_2}_{\LpSet[1]{\Omega}}...} + \norm{\grad u_0}_{\LpSet[r]{\Omega}}^r + \norm{u_0}_{\LpSet[r]{\Omega}}^r \norm{f}_{\qty(\WkpSet[1][r]{\Omega})^{*}}^{r'}),
+\end{align*}
+so we have
+\[
+	\vb{F}\qty(\vb*{\alpha}_n) \vdot \vb*{\alpha}_n  \geq C_1 \norm{u_n - u_0}_{\WkpSet[1][r]{\Omega}}^r - C_2\qty(1 + \norm{\grad u_0}_{\LpSet[r]{\Omega}}^r + \norm{u_0}_{\LpSet[r]{\Omega}}^r \norm{f}_{\qty(\WkpSet[1][r]{\Omega})^{*}}^{r'}),
+\]
+which is very nice, as it depends on data mostly. As for the first term, realize
+	\[
+		u_n - u_0 = \sum_{j=1}^n \alpha_n^j w_n \Rightarrow \norm{u_n - u_0}_{\WkpSet[1][r]{\Omega}} = \norm{\vb*{\alpha}_n \vdot \qty(w_1, \dots, w_n)}_{\WkpSet[1][r]{\Omega}},
+	\]
+	which seems trivial, but from the properties of the norm and the fact $\qty{w_n}$ are linearly independent, the mapping
+	\[
+		\R^{n} \ni \vb*{\alpha}_n  \mapsto \norm{u^n-u_0}_{\WkpSet[1][r]{\Omega}}, \norm{u_n - u_0}_{\WkpSet[1][r]{\Omega}} = \norm{\vb*{\alpha}_n \vdot \qty(w_1, \dots, w_n)}_{\WkpSet[1][r]{\Omega}},
+	\]
+	is a norm on $\R^{n}.$ And since all norms on finite dimensional spaces are equivalent, there exists $K_1(n) > 0 \, \text{\textit{s.t.}} \,$
+	\[
+		\forall \alpha \in \R^n: K_1(n) |\vb*{\alpha}_n| \leq \norm{u^n-u_0}_{\WkpSet[1][r]{\Omega}}.
+	\]
+	But this means
+\begin{align*}
+	\vb{F}\qty(\vb*{\alpha}_n) \vdot \vb*{\alpha}_n  &\geq C_1 \norm{u_n - u_0}_{\WkpSet[1][r]{\Omega}}^r - C_2\qty(1 + \norm{\grad u_0}_{\LpSet[r]{\Omega}}^r + \norm{u_0}_{\LpSet[r]{\Omega}}^r \norm{f}_{\qty(\WkpSet[1][r]{\Omega})^{*}}^{r'}),\\
+							 &\geq K_1(n) C_1 \abs{\vb*{\alpha}_n}^r- C_2\qty(1 + \norm{\grad u_0}_{\LpSet[r]{\Omega}}^r + \norm{u_0}_{\LpSet[r]{\Omega}}^r \norm{f}_{\qty(\WkpSet[1][r]{\Omega})^{*}}^{r'}),
+\end{align*}
+\textit{i.e.}, if we choose $\vb*{\alpha}_n$ so that its norm is large enough, the above product stays always positive. So, in other words:
+	\[
+		\exists R>0, \forall \vb*{\alpha}_n \in \text{S}(0,R) \subset \R^n: \vb{F}\qty(\vb*{\alpha}_n) \vdot \vb*{\alpha}_n >0,
+	\]
+	and hence by the previous lemma
+	\[
+		\exists \vb*{\alpha}_n \in \text{S}(0,R): \vb{F}\qty(\vb*{\alpha}_n) = 0,
+	\]
+	and we fix these $\vb*{\alpha}_n = \qty(\alpha^1_n, \dots, \alpha_n^n)$ from now on. \\
+
+	\textbf{Uniform estimates}
+
+
+	They follow from the previous manipulation: since we have $\vb{F}\qty(\vb*{\alpha}_n) \vdot \vb*{\alpha}_n = 0$
+	\[
+		\norm{u_n-u_0}_{\WkpSet[1][r]{\Omega}}^r\leq C\qty(1+\norm{u_0}_{\WkpSet[1][r]{\Omega}}^r+ \norm{f}^{r'}_{\qty(\WkpSet[1][r]{\Omega})^{*}}),
+	\]
+	and so
+	\[
+		\norm{u_n}_{\WkpSet[1][r]{\Omega}} \leq C\qty(1+\norm{u_0}_{\WkpSet[1][r]{\Omega}}^r+ \norm{f}^{r'}_{\qty(\WkpSet[1][r]{\Omega})^{*}}),
+	\]
+	together with (just take the $\norm{\vdot}_{\LpSet[r']{\Omega}}^{r'}$ norm of the growth estimates and use the above two)
+	\[
+		\forall j \in \{0,\dots,d\}: \norm{a_j\qty(x, u_n, \grad u_n)}_{\LpSet[r']{\Omega}}^{r'} \leq C\qty(1+\norm{u_0}_{\WkpSet[1][r]{\Omega}}^r+ \norm{f}^{r'}_{\qty(\WkpSet[1][r]{\Omega})^{*}}),
+	\] 
+	\\
+
+	\textbf{Limit passage}
+
+
+	Since the sequences $\qty{u_n}, \qty{a_i\qty(\vdot, u_n, \grad u_n)}$ are uniformly bounded, from the separability of the spaces we can extract sequences (not renamed):
+	\[
+		u^n \rightharpoonup u \, \text{in} \, \WkpSet[1][r]{\Omega}, a_j \rightharpoonup b_j \, \text{in} \, \LpSet[r']{\Omega}, j \in  \qty{0, \dots, d}.
+	\]
+	The weak convergences allow us to write
+	\[
+		\lim_{n \to \infty}\int_{\Omega}\vb{a}\qty(x, u_n, \grad u_n) \vdot w_j + a_0\qty(x, u_n, \grad u_n) w_j\dd{x} - <f,w_j> = \int_{\Omega}\vb{b} \vdot \grad w_j + b_0 \vdot w_j\dd{x} -<f,w_j>, \forall j \in \N
+	\]
+	and so
+	\[
+		\forall j \in \N \int_{\Omega}\vb{b} \vdot \grad w_j + b_0 w_j\dd{x} = <f,w_j>.
+	\]
+	And since $\qty{w_j}_{j \in \N}$ is dense in $\WkpzeroSet[1][r]{\Omega}$ (plus the convergences and linearity of the integral) we have
+	\[
+		\forall \varphi \in \WkpzeroSet[1][r]{\Omega}: \int_{\Omega}\vb{b} \vdot \grad \varphi + b_0 \varphi\dd{x} = <f, \varphi>.
+	\]
+	\\
+
+	\textbf{Identification of limits}
+
+	To solve the problem, we need to show that actually $b_j(x) = a_j\qty(x, u, \grad u), \forall j \in \qty{0, \dots, d}$. For that, we use monotonicity \& the \textit{Minty trick}: take $u_n, \grad u_n, v, \vb{V}$ together with monotonicity
+	\begin{align*}
+		0& \leq \int_{\Omega}\qty(\vb{a}\qty(x, u_n, \grad u_n) - \vb{a}\qty(x, v, \vb{V}))\vdot\qty(\grad u_n - \vb{V}) + \qty(a_0\qty(x, u_n, \grad u_n) - a_0\qty(x, v, \vb{V}))\qty(u_n - v)\dd{x}  = \\
+		 &= \underbrace{\int_{\Omega}\vb{a}\qty(x, u_n, \grad u_n) \vdot \grad u_n + a_0\qty(x, u_n, \grad u_n) u_n\dd{x}}_{= I_n} + \\
+& - \int_{\Omega}\vb{a}\qty(x, u_n, \grad u_n) \vdot \vb{V} + \vb{a}\qty(x, v, \vb{V}) \vdot \grad u_n + a_0\qty(x, u_n, \grad u_n) v + a_0\qty(x, v, \vb{V})u_n\dd{x} +\\
+&+\int_{\Omega}\vb{a}\qty(x, v, \vb{V}) \vdot \vb{V} + a_0\qty(x, v, \vb{V})v\dd{x}
+	\end{align*}
+If we now denote 
+	\[
+		I_n = \underbrace{\int_{\Omega}\vb{a}\qty(x, u_n, \grad u_n) \vdot \grad \qty(u_n-u_0)+ a_0\qty(x, u_n, \grad u_n)\vdot \qty(u_n - u_0))\dd{x}}_{= <f, u_n - u_0>} + \int_{\Omega}\vb{a}\qty(x, u_n, \grad u_n)\vdot \grad u_0 + a_0(x, u_n, \grad u_n)u_0\dd{x},
+	\]
+	we may write (realize $u_n - u_0 = \sum_{j=1}^n \alpha_n^j w_j$, and as the equation is valid with testing by $w_j$, it is valid when testing with $u_n - u_o$) by using the equation 
+	\[
+		I_n = <f, u_n - u_0> + \int_{\Omega}\vb{a}\qty(x, u_n, \grad u_n)\vdot \grad u_0 + a_0(x, u_n, \grad u_n)u_0\dd{x},
+	\]
+but the limit of that is
+\[
+	\lim_{n \to \infty}I_n = <f,u-u_0> + \int_{\Omega}\vb{b} \vdot \grad u_0 + b_0 u_0\dd{x} = \int_{\Omega}\vb{b} \vdot \grad (u - u_0) + b_0 \qty(u - u_0)\dd{x} + \int_{\Omega}\vb{b} \vdot \grad u_0 + b_0 u_0\dd{x} =  \int_{\Omega}\vb{b} \vdot \grad u + b_0 u\dd{x},
+\]
+	as the rest has subtracted. Taking this back to the original estimate and passing to the limit yields
+
+	\begin{align*}
+		0 &\leq \int_{\Omega}\vb{b} \vdot \grad u + b_0 u - \vb{b}\vdot \vb{V} - \vb{a}\qty(x,v,\vb{V}) \vdot \grad u - b_0 v - a_0\qty(x,v,\vb{V})u + \vb{a}\qty(x,v,\vb{V})\vdot \vb{V} + a_0\qty(x,v, \vb{V})v \dd{x} = \\
+		  & = \int_{\Omega}\vb{b}\vdot\qty(\grad u - \vb{V}) + b_0\qty(u - v) - \vb{a}\qty(x,v,\vb{V})\vdot\qty(\grad u - \vb{V}) - a_0\qty(x, v, \vb{V})\qty(u - v) \dd{x} = \\
+		  & = \int_{\Omega}\qty(\vb{b} - \vb{a}\qty(x,v, \vb{V}))\vdot\qty(\grad u - \vb{V}) + \qty(b_0 - a_0\qty(x, v, \vb{V})\qty(u - v))\dd{x}
+	\end{align*}
+
+	So far, $v,\vb{V}$ have been arbitrary. If we take them now as
+	\[
+		V = \grad u - \lambda \vb{g}, \vb{g} \in \LpSet[r]{\Omega}, v = u,
+	\]
+	then
+	\[
+		0 \leq \int_{\Omega}\lambda \vb{g} \vdot \qty(\vb{b} - \vb{a}\qty(x, u, \grad u - \lambda \vb{g}))\dd{x}.
+	\]
+
+	Also $\lambda$ is of our choosing - if it is $\lambda >0$, we can divide the inequality by it and pass to the limit $\lambda \to 0_+$ (using Nemytski and continuity in the variables of $\vb{a}$); this yields
+	\[
+		0 \leq \int_{\Omega}\vb{g} \vdot \qty(\vb{b} - \vb{a}\qty(x, u, \grad u))\dd{x}.
+	\]
+	Since $\vb{g}$ was arbitrary, we could have taken $\vb{g} \to - \vb{g}$, which would lead to
+
+
+	\[
+		0 \geq \int_{\Omega}\vb{g} \vdot\qty(\vb{b} - \vb{a}\qty(x, u, \grad u))\dd{x},
+	\]
+	 
+	so
+	\[
+		\int_{\Omega}\vb{g} \vdot \qty(\vb{b} - \vb{a}\qty(x, u, \grad u))\dd{x} = 0, \forall \vb{g} \in \LpSet[r]{\Omega}.
+	\]
+	Using the Fundamental lemma of the calculus of variation, we see this must really mean
+	\[
+		\vb{b} = \vb{a}\qty(x, u, \grad u), \, \text{\textit{a.e.}} \, \, \text{in} \, \Omega.
+	\]
+	Differently, we could argue that $\vb{b} = \vb{a}\qty(x, u, \grad u)$ in $\LpSet[r']{\Omega} = \qty(\LpSet[r]{\Omega})^{*}.$
+	almost everywhere. So from the previous results, we obtain
+	\[
+		\forall \varphi \in \WkpzeroSet[1][r]{\Omega}: \int_{\Omega}\vb{a}\qty(x, u, \grad u)\grad \varphi+a_0\qty(x, u, \grad u)\varphi\dd{x} = <f,\varphi>,
+	\]
+	and we are almost done. It only remains to show the traces are correct, but since $u_n \rightharpoonup u$ in $\WkpSet[1][r]{\Omega}$ and the trace operator is continuous, we immediately have
+	\[
+		\tr u = \tr u_0.
+	\]
+
+	\textbf{Uniqueness:} Let $u_1, u_2$ be two solutions. Then Use strict monotonicity, subtract the weak formulation and test with $u_2-u_1$:
+	\[
+		\int_{\Omega}\vb{a}\qty(x, u_1, \grad u_1)\vdot \varphi + a_0\qty(x, u_1, \grad u_1)\dd{x} = <f, \varphi>,
+	\]
+	and
+	\[
+		\int_{\Omega}\vb{a}\qty(x, u_2, \grad u_2)\vdot \varphi + a_0\qty(x, u_2, \grad u_2)\dd{x} = <f, \varphi>,
+	\]
+so subtracting the two and taking $\varphi = u_1 - u_2 = \qty(u_1 - u_0) - \qty(u_2 - u_0) \in \WkpzeroSet[1][r]{\Omega}$ yields
+	\[
+		\int_{\Omega}\qty(\vb{a}\qty(x, u_2, \grad u_2)-\vb{a}\qty(x, u_1, \grad u_1))\vdot \grad\qty(u_2 - u_1)+\qty(a_0\qty(x, u_2, \grad u_2)-a_0\qty(x, u_1, \grad u_1))\qty(u_2-u_1)\dd{x} =0,
+	\]
+	with the integrand being nonnegative from monotonicity. But if we also have strict monotonocity, this would have to be strictly positive if $u_1 \neq u_2$ - and since it is zero, then it must mean $\qty(u_1, \grad u_1) = \qty(u_2, \grad u_2) \, \text{\textit{a.e.}} \,$ in $\Omega,$ and so really $u_1 = u_2$ in $\WkpSet[1][r]{\Omega}.$
+\end{proof}
+\begin{example}[Nonlinearities vs weak convergence]
+	Let $g_n(x) = \sin(nx), $ then $g \rightharpoonup 0$ in $\LpSet[2]{(0,4)}$ (Riemann-Lebesgue lemma). However,
+	\[
+		\int_0^4 \sin^{2}\qty(nx)\varphi \dd{x} \geq \int_2^4 \sin^{2}\qty(nx)\dd{x} \to \frac{1}{2} \neq 0, \forall \varphi \in \LpSet[2]{(0,4)},
+	\]
+	so $\{u_n^{2}\} = \{\sin^{2}\qty(nx)\}$ \textbf{does not converge weakly to } $0 = 0^{2}$.
+\end{example}
+\begin{remark}
+	It might seem that when dealing with nonlinear elliptic equation with a monotone coercive operator, it might seem one only needs to check the assumptions and then almost blindly use this theorem. However, the class of problems we can solve with the above procedure is quite broader than just the ones we discussed, but one needs to be a bit creative. So, it if benificial to think of the "proof" we have given above as not a typical proof of a mathematical statement, but rather as a procedure of solving similiar kinds of problems.
+\end{remark}
+

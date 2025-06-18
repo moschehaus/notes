@@ -1,15 +1,14 @@
-%\makeatletter
-% \@ifpackageloaded{tensor}% tensor is a package for a better typesetting of tensors
-% {
-% \renewcommand{\tnsr@Aux}[3][]{%
-% \mathpalette{\tnsr@Plt{#1}{#3}}{\mathrm #2}%
-% \tnsr@Wrn
-% }%\tnsr@Aux
-% }{%
-% \relax%
-% }
-% \makeatother
-
+\makeatletter
+\@ifpackageloaded{tensor}% tensor is a package for a better typesetting of tensors
+{
+\renewcommand{\tnsr@Aux}[3][]{%
+\mathpalette{\tnsr@Plt{#1}{#3}}{\mathrm #2}%
+\tnsr@Wrn
+}%\tnsr@Aux
+}{%
+\relax%
+}
+ \makeatother
 
 
 \theoremstyle{definition}
@@ -113,6 +112,7 @@
 % jump
 \newcommand{\jumpdis}[1]{\ensuremath{\left\lsem #1 \right\rsem}} % difference between function values at the point of jump discontinuity
 
+\DeclareMathOperator{\laplace}{\bigtriangleup}
 % hyperbolic functions
 \DeclareMathOperator{\arcsinh}{arcsinh}
 \DeclareMathOperator{\arccosh}{arccosh}
@@ -192,6 +192,7 @@
 
 % Identity matrix and zero matrix
 \newcommand{\identity}{\ensuremath{\tensorq{I}}} % identity
+\newcommand{\identityM}{\ensuremath{\tensorq{I}}} % identity
 \newcommand{\tensorzero}{{\mathbb{O}}} % zero tensor
 
 % Cauchy stress

@@ -1,0 +1,543 @@
+% !TEX root = ../main.tex
+
+\section{Evolutionary equations}
+\label{sec:evolutionray_eqs}
+
+\subsection{Embedding theorems for Sobolev-Bochner spaces}
+\label{sec:Sobolev-Bochner}
+In the whole section, we take $X$ as a Banach space and $T>0.$ Let us recall just a few definitions
+
+\begin{definition}[Simple function, strong measurability, Bochner integral]
+	We call $s: I \to X$ a simple function, provided $\exists n \in \N$ such that $\exists \qty{x_j}_{j=1}^n, \exists \qty{E_j}_{j=1}^n \subset I$ that are pairwise disjoint and $\lambda_1\qty(\bigcup_{j=1}^n E_j) < \infty$ such that
+	\[
+		\forall t \in I: s(t) = \sum_{j=1}^n x_j \chi_{E_j}(t).
+	\]
+	For a simple function $s$ we define its Bochner integral over $I$ as
+	\[
+		\int_I s(t)\dd{t} = \sum_{j=1}^n x_j \lambda_1\qty(E_j).
+	\]
+	A function $f: I \to X$ is called (strongly) measurable, provided $\exists \qty{s_n}_{n \in \N}$ simple functions \textit{s.t.}
+	\[
+		s_n(t) \to f(t), \, \text{in} \, X,  \lambda_1-\, \text{\textit{a.a.}} \, t \in I,
+	\]
+	meaning
+	\[
+		\lim_{n \to \infty}\norm{s_n(t) - f(t)}_{X} = 0, \forall \lambda_1-\, \text{\textit{a.a.}} \,t \in I.
+	\]
+	We say a strongly measurable function $f: I \to X$ is Bochner integrable, provided $\exists \qty{s_n}_{n \in \N}$ simple functions \textit{s.t.} $s_n(t) \to f(t)$ in $X$ and $\lambda_1-$ \textit{a.e.} in $I$ and also
+	\[
+		\lim_{n \to \infty} \int_I \norm{s_n(t) - f(t)}_X \dd{\lambda}_1 = 0.
+	\]
+	Then we define the Bochner integral of $f$ over $I$ as
+	\[
+		\int_I f(t) \dd{t} = \lim_{n \to \infty} \int_I s_n(t) \dd{t}.
+	\]
+\end{definition}
+
+\begin{definition}[Lebesgue-Bochner \& Sobolev-Bochner spaces]
+ 
+	For $p \in [1, \infty)$ we define
+	\[
+		\LpIntX{p}{0}{T}{X} = \qty{f: I \to X \, \text{strongly measurable} \,| \int_I \norm{f(t)}_X^p\dd{\lambda}_1 < \infty},
+	\]
+	and for $p = \infty$
+	\[
+		\LinfIntX{0}{T}{X} = \qty{f: I \to X \, \text{strongly measurable} \,| \esssup_{t \in I}\norm{f(t)}_X < \infty},
+	\]
+	together with the norms
+	\[
+		\NormLpIntX{f}{p}{0}{T}{X} = \qty(\int_I \norm{f(t)}_X^p \dd{\lambda}_1)^{\frac{1}{p}}, p \in [1, \infty)
+	\]
+	\[
+		\NormLinfIntX{f}{0}{T}{X} = \esssup_{t \in I} \norm{f(t)}_X.
+	\]
+
+	We say a function $g \in \LpIntX{1}{0}{T}{X}_{\, \text{loc} \,}$  is the weak (time) derivative of the function $u \in \LpIntX{1}{0}{T}{X}_{\, \text{loc} \,}$, provided it holds
+	\[
+		\forall \varphi \in \DSet{I}: \int_I g(t) \varphi(t) \dd{t} = - \int_I u(t) \varphi'(t).
+	\]
+	We write $g = \partial_t u.$
+	Next, we define the set
+	\[
+		\WpIntX{p}{0}{T}{X} = \qty{f: I \to X \, \text{strongly measurable} \,| f \in \LpIntX{p}{0}{T}{X}, \partial_t f \in \LpIntX{p}{0}{T}{X}},
+	\]
+	with the norms
+	\[
+		\NormWpIntX{f}{p}{0}{T}{X} = \qty(\NormLpIntX{f}{p}{0}{T}{X}^p + \NormLpIntX{\partial_t f}{p}{0}{T}{X}^p)^{\frac{1}{p}}, p \in [1, \infty)
+	\]
+	\[
+		\NormWinfIntX{f}{0}{T}{X} = \esssup_{t \in I}\qty(\NormLinfIntX{f}{0}{T}{X} + \NormLinfIntX{f}{0}{T}{X}), p = \infty.
+	\]
+	
+\end{definition}
+\begin{definition}[Continuous functions, strong derivatives]
+	The standard definition of limits in normed spaces work of course: function $f: I \to X$ is said to be continuous on $I$ provided $\forall \qty{t_n}_{n \in \N} \subset I$ such that $t_n \to t$ in $I$ it holds $f(t_n) \to f(t)$ in $X$. The space $\CkSet{0}{\qty[0,T];X}$ is then defined as usual
+	\[
+		\CkSet{0}{\qty[0,T];X} = \qty{u: \overline{I} \to X \, \text{continuous} \,| \max_{t \in [0,T]} \norm{u(t)}_X < \infty},
+	\]
+	with the norm
+	\[
+		\norm{u}_{\CkSet{0}{[0,T];X}} = \max_{t \in [0,T]} \norm{u(t)}_X.
+	\]
+	We say $f$ has a derivative at $t_0 \in I$, denoted $f'(t_0) \in X, $ if
+	\[
+		f'(t_0) = \lim_{h \to 0^+}\frac{f\qty(t_0 +h) -  f(t_0)}{h}
+	\]
+	the limit exists.
+	The spaces $\CkSet{k}{I;X}, \CinfSet{I;X}, \DSet{I;X}$ are then defined as expected.
+\end{definition}
+
+\begin{lemma}[Lebesgue theorem for vector valued functions]
+	Let $\qty{f_n}_{n \in \N} \subset \LpIntX{1}{0}{T}{X}$ such that $f_n(t) \to f(t)$ in $X$ for $\, \text{\textit{a.a.}} \, t \in I.$ Then $f \in \LpIntX{1}{0}{T}{X}$ and it holds
+	\[
+		\lim_{n \to \infty}\int_I f_n(t) \dd{t} = \int_I f(t) \dd{t}.
+	\]
+\end{lemma}
+\begin{proof}(\textit{From: the lectures})
+    No proof.
+\end{proof}
+
+\begin{lemma}
+    Let $p \in [1, \infty).$ Then
+    \begin{enumerate}
+	    \item The set
+		    \[
+			    \qty{u: I \to X | u(t) = \sum_{j=1}^N \varphi_j(t) x_j, N \in \N, \varphi_j \in \DSet{I}, x_j \in X},
+		    \]
+		    is dense in $\LpIntX{p}{0}{T}{X}.$ In particular, $\DSet{\qty(0,T);X}$ is dense in $\LpIntX{p}{0}{T}{X}.$
+	    \item Let $\omega \in \DSet{\R}$ be a regularization kernel, and extend $u \in \LpIntX{p}{0}{T}{X}$ by zero outside of $(0,T)$. Then $u\star \omega_{\varepsilon} \to u \, \text{as} \,\varepsilon \to 0^+,$ in $\LpIntX{p}{0}{T}{X}$ and \textit{a.e.} in $(0,T).$
+    \end{enumerate}
+\end{lemma}
+\begin{proof}(\textit{From: \cite{bulicekUvodModerniTeorie2018}})
+    Ad 1.:
+    We know already that simple functions are dense in $\LpIntX{p}{0}{T}{X},$ \textit{i.e.}, the functions in the form
+    \[
+	    u(t) = \sum_{j=1}^N x_j \chi_{E_j}(t),
+    \]
+    for some $\qty{E_j} \subset I$ (pairwise disjoint, etc.) From the theory of Lebesgue spaces, we know $\chi_{E_j}(t) \in \LpSet{I}, \forall p \in [1, \infty]$ can be approximated by functions from $\DSet{I}$; the assertion follows from this argumentation (although not very detailed).
+
+
+    Ad 2.: The proof is consequence of the similiar assertion valid for Lebesgue spaces.
+\end{proof}
+
+\begin{theorem}
+	Let $X$ be a Banach space, $ p \in [1, \infty].$ Then
+	\[
+		\WkpSet[1][p]{I; X} \hookrightarrow \CkSet{0}{I; X},
+	\]
+	and moreover $\forall u \in \WpIntX{p}{0}{T}{X}$ and $\forall t,s$ such that  $0 \leq s \leq t \leq T$ it holds
+	\[
+		u(t) = u(s) + \int_s^t \partial_{\tau} u\qty(\tau)\dd{\tau},
+	\]
+	with $\partial_t u$ being the weak time derivative.
+\end{theorem}
+\begin{proof}(\textit{From: \cite{evansPartialDifferentialEquations2010}})
+Extend $u$ to $(-\infty, 0) \cup (T, \infty)$ by zero and mollify with some regularizator $\omega_{\varepsilon}$,
+\[
+	u_{\varepsilon} = \omega_{\varepsilon} \star u.
+\]
+Then it holds (we are taking classical derivatives!):
+\[
+	\partial_t u_{\varepsilon}(t) = \partial_t \int_{\R}u(y) \omega_{\varepsilon}\qty(t-y) \dd{y} = \int_{\R} u(y) \partial_t \omega_{\varepsilon}\qty(t-y) \dd{y} = - \int_{\R}u(y) \partial_{y}\omega_{\varepsilon}\qty(t-y)\dd{y},
+\]
+and if now take $t \in I_{\varepsilon} = \qty{t \in I| \dist\qty(t, \partial I) > \varepsilon} = \qty(\varepsilon, T- \varepsilon),$ we see that $\forall y \in \R / \overline{I}$ it holds $t - y \geq \dist\qty(t,\partial I) > \varepsilon,$ but then $\omega_{\varepsilon}\qty(t-y) = 0$ there, as $\supp \omega_{\varepsilon} \subset \text{B}(0,\varepsilon).$ This means that for $t \in I_{\varepsilon}$ it actually holds
+\[
+	\partial_t u_{\varepsilon}(t) = - \int_{I_{\varepsilon}}u(y) \partial_{y} \omega_{\varepsilon}\qty(t-y)\dd{y} = - \int_{I}u(y) \omega_{\varepsilon}\qty(t-y)\dd{y} = \int_{I}\partial_{y} u(y) \omega_{\varepsilon}\qty(t-y)\dd{y},
+\]
+where we have just added zeros when integrating over $I$ instead and used the definition of the weak derivative. The last line means
+\[
+	\partial_t u_{\varepsilon} = \omega_{\varepsilon} \star \partial_t u = \qty(\partial_t u)_{\varepsilon}, \, \text{\textit{a.e.}} \, \, \text{on} \, I_{\varepsilon},
+\]
+and so from the properties of mollification it follows
+\[
+	\partial_t u_{\varepsilon} \to \partial_t u \, \text{in} \,\LpIntX{p}{0}{T}{X}_{\, \text{loc} \,},
+\]
+and we also have
+\[
+	u_{\varepsilon} \to u \, \text{in} \, \LpIntX{p}{0}{T}{X}.
+\]
+Using the standard Newton-Leibniz formula (for a continuously differentiable function in this case) we can write for all $0 < s < t <T$
+\[
+	u_{\varepsilon}(t) = u_{\varepsilon}(s) + \int_s^t \partial_{\tau}u_{\varepsilon}\qty(\tau) \dd{\tau},
+\]
+and using the above convergences, we obtain upon passing to the limit $\varepsilon \to 0^+$
+\[
+	u(t) = u(s) + \int_s^t \partial_{\tau}u\qty(\tau)\dd{\tau},
+\]
+for $\, \text{\textit{a.a.}} \, s,t \in \R \, \text{\textit{s.t.}} \, 0 < s < t <T,$ and if we write $\forall \, \text{\textit{a.a.}} \, s,t \in \R \, \text{\textit{s.t.}} \, 0 \leq s \leq t \leq T,$ we have added only finitely many points, thus a set of measure zero. The second point is hence proved. It now only remains to realize the mapping
+\[
+	t \mapsto \int_0^t \partial_{\tau}u(\tau) \dd{\tau},
+\]
+is continuous for $u \in \WpIntX{p}{0}{T}{X} \qty(\Rightarrow \partial_t u \in \LpIntX{p}{0}{T}{X})$ from the continuous dependence of the Lebesgue integral on the integration domain. So from the above it already follows
+\[
+	u \in \CkSet{0}{[0,T];X}.
+\]
+Finally, to show the embedding is continuous, estimate the norm
+\begin{align*}
+	\norm{u}_{\CkSet{0}{[0,T];X}} &= \max_{t \in [0,T]} \norm{u(t)}_X = \max_{t \in [0,T]} \norm{u(s) + \int_s^t \partial_{\tau} u\qty(\tau) \dd{\tau}}_X \leq \max_{t \in [0,T]} \norm{u(s)}_X + \max_{t \in [0,T]} \int_s^t \norm{\partial_{\tau} u\qty(\tau)}_X \dd{\tau} \leq \\ 
+				      &\leq \max_{t \in [0,T]} \norm{u(s)}_X+ \max_{t \in [0,T]} \NormLpIntX{\partial_{\tau} u}{p}{s}{t}{X} \qty(t-s)^{\frac{1}{p'}}.
+\end{align*}
+Realize now that if $p = \infty$ we are essentialy done, as the above term is equivalent to the norm $\NormWinfIntX{u}{0}{T}{X}$. If $p < \infty,$ we know $\, \text{\textit{a.a.}} \, s \in (0,T)$ are Lebesgue points, so using the Lebesgue differentation theorem one might write
+\[
+	u(s) = \lim_{h \to 0^+} \frac{1}{h} \int_{s}^{s+h}u(\tau) \dd{\tau},
+\]
+so
+\[
+	\max_{t \in [0,T]} \norm{u(s)}_X = \max_{t \in [0,T]}\norm{\lim_{h \to 0^+} \frac{1}{h} \int_{s}^{s+h}u(\tau) \dd{\tau}}_X \leq \max_{t \in [0,T]} \lim_{h \to 0^+} \frac{1}{h}\int_s^{s+h}\norm{u\qty(\tau)}_X \dd{\tau} \leq \NormLpIntX{u}{p}{0}{T}{X}T^{\frac{1}{p'}},
+\]
+so we finally can write
+\[
+	\norm{u}_{\CkSet{0}{[0,T];X}} \leq \max_{t \in [0,T]} \norm{u(s)}_X + \NormLpIntX{\partial_{\tau}u}{p}{0}{T}{X}T^{\frac{1}{p'}} \leq \NormLpIntX{u}{p}{0}{T}{X}T^{\frac{1}{p'}} + \NormLpIntX{\partial_{\tau}u}{p}{0}{T}{X}T^{\frac{1}{p'}} \leq C \NormWpIntX{u}{p}{0}{T}{X}.
+\]
+
+\end{proof}
+
+\begin{remark}
+	Recall that in the setting of Lebesgue spaces, we have seen
+	\[
+		\WkpSet[1][p]{\Omega} \hookrightarrow \CkSet{0}{\overline{\Omega}},
+	\]
+	if $p > d,$ where $\Omega \subset \R^{d}.$ In this case, $I \subset \R$, so we might say "$d = 1$" and the result seems intuitive (other than the case $p = 1 =d.$)
+\end{remark}
+\begin{lemma}[Arzela-Ascoli]
+	Let $X,Y$ be Banach spaces such that $X \hookrightarrow \hookrightarrow Y.$ Then
+	\[
+		C^1\qty([0,T];X) \hookrightarrow \hookrightarrow C\qty([0,T];Y).
+	\]
+\end{lemma}
+\begin{proof}(\textit{From: the lectures})
+    No proof.
+\end{proof}
+
+\begin{lemma}[Ehrling]
+	Let $V_1, V_2, V_3$ be Banach spaces \textit{s.t.} $V_1 \hookrightarrow \hookrightarrow V_2 \hookrightarrow V_3.$ Then
+	\[
+		\forall \varepsilon >0 \exists C>0: \forall u \in V_1: \norm{u}_{V_2} \leq \varepsilon \norm{u}_{V_1}+C \norm{u}_{V_3}.
+	\]
+\end{lemma}
+
+\begin{proof}(\textit{From: the lectures})
+	By contradicition, assume
+	\[
+		\exists \varepsilon >0 \, \text{\textit{s.t.}} \, \forall n \in N \exists u_n \in V_1: \norm{u_n}_{V_2} > \varepsilon \norm{u_n}_{V_1}+n \norm{u_n}_{V_3}.
+	\]
+	WLOG we can assume $\qty{u_n} \subset \text{S}_{V_2}(0,1)$: truly, the inequaility is 1-homogenous and (the original) holds if $u_n = 0.$
+	So we have
+	\[
+		1 > \varepsilon \norm{u_n}_{V_1} + n \norm{u_n}_{V_3}.
+	\]
+
+	In particular,
+	\[
+		1 > n \norm{u_n}_{V_3} \Leftrightarrow \norm{u_n}_{V_3} < \frac{1}{n},
+	\]
+	and so $u_n \to 0$ in $V_3.$ Moreover, 
+	\[
+		\norm{u_n}_{V_1} < \frac{1}{\varepsilon},
+	\]
+	meaning $\qty{u_n}$ is bounded in $V_1$ and since $V_1 \hookrightarrow \hookrightarrow V_2$ there exists $\{u_{n_k}\} \subset \{u_n\}$ \textit{s.t.}: $u_{n_k} \to u$ in $V_2$ strongly. Since $\qty{u_n} \subset \text{S}_{V_2}(0,1),$ also $\norm{u}_{V_2} = 1$ and because $V_2 \hookrightarrow V_3,$ and $\qty{u_{n_k}}$ converges in $V_2,$ it also converges in $V_3.$ But we have already shown $u_n \to 0$ in $V_3$, so it must be $u = 0$ in $V_3$ and also in $V_2$ from the continuous embedding; we have thus arrived to the contradiction $\norm{u}_{V_2} = 1 \wedge u = 0 \, \text{in} \, V_2.$
+\end{proof}
+\begin{theorem}[Aubin-Lions]
+	Let $V_1, V_2, V_3$ be Banach spaces \textit{s.t.} $V_1 \hookrightarrow \hookrightarrow V_2 \hookrightarrow V_3, p \in [1, \infty).$ Then the space
+	\[
+		\mathcal{U} = \qty{u\in \LpIntX{p}{0}{T}{V_1},  \partial_t u \in \LpIntX{1}{0}{T}{V_3}},
+	\]
+	with the norm
+	\[
+		\norm{u}_{\mathcal{U}} = \NormLpIntX{u}{p}{0}{T}{V_1}+ \NormLpIntX{\partial_t u}{1}{0}{T}{V_3},
+	\]
+	is compactly embedded into $\LpIntX{p}{0}{T}{V_2},$
+	\[
+		\mathcal{U} \hookrightarrow \hookrightarrow \LpIntX{p}{0}{T}{V_2}.
+	\]
+\end{theorem}
+\begin{proof}(\textit{From: the lectures})
+	Strategy: I want to fix $M \subset \mathcal{U}$ bounded and show that it is precompact in $\LpIntX{p}{0}{T}{V_2}.$ That will be done in the following way:
+	\begin{enumerate}
+		\item mollify $M$ by convolution,
+		\item use Arzela-Ascoli,
+		\item show compactness in $\LpIntX{p}{0}{T}{V_3}$,
+		\item apply Ehrling lemma and show compactness in $\LpIntX{p}{0}{T}{V_2}.$
+	\end{enumerate}
+
+	Fix $M \subset \mathcal{U}$ bounded. Then $\exists C^{*} > 0: \forall u \in M: \norm{u}_{\mathcal{U}} \leq C^{*}$. 
+
+	Next, take
+	\[
+		\varphi : \R \to [0, \infty), \varphi \in C^{\infty}\qty(\R), \supp \varphi \subset (-1,0), \int_{\R}\varphi\dd{x} = 1,
+	\]
+	a regularization kernel, and $\forall \delta >0$ set
+	\[
+		\varphi_{\delta}(t) = \frac{1}{\delta}\varphi\qty(\frac{t}{\delta}).
+	\]
+
+	Now, extend functions from $M$ to $(0,2T)$ in the following way:
+	\[
+		\forall u \in M: \tilde{u}\qty(t) \coloneq \begin{cases}
+			u(t), & t \in (0,T) \\
+			u\qty(2T-t), & t \in (T,2T)
+		\end{cases}.
+	\]
+
+
+	Now mollify: for $\delta >0, \delta <T $ fixed define
+	\[
+		M_{\delta} = \qty{\qty(\tilde{u} \star \varphi_{\delta})\restriction_{(0,T)} | u \in M}.
+	\]
+	From the properties of regularization it follows
+	\[
+		M_{\delta} \subset C^1\qty([0,T]; V_1),
+	\]
+	and from Arzela-Ascoli and the fact $V_1 \hookrightarrow \hookrightarrow V_2,$ one has
+	\[
+		M_{\delta} \subset \CkSet{1}{[0,T];V_1} \hookrightarrow \hookrightarrow \text{C}\qty([0,T];V_2) \hookrightarrow \LpIntX{p}{0}{T}{V_2},
+	\]
+	where we have also used the simple fact continuous functions are uniformly bounded on the compact set $[0,T]$, and thus integrable ($\lambda\qty([0,T]) < \infty.$)
+
+	Our next goal is to estimate the distance of $M$ and $M_{\delta}$ in $\LpIntX{p}{0}{T}{V_3}.$ As in the previous proofs, we will use some interpolation theorems for that, so let us first compute estimates for $p = 1 $ and for $p = \infty.$ Before we procceed, let us first deploy our favourite trick; let $u \in M, t \in (0,T)$ be arbitrary. Then (recall $\supp \varphi_{\delta} \subset (0, - \delta)$)
+
+	\begin{align*}
+		\tilde{u}(t) - \tilde{u}_{\delta}(t) &= \tilde{u}(t) - \int_{-\delta}^0 \tilde{u}\qty(t-s)\varphi_{\delta}(s)\dd{s} = \int_{-\delta}^0\qty(\tilde{u}(t)-\tilde{u}\qty(t-s))\varphi_{\delta}(s)\dd{s} = \\
+		&=\int_{-\delta}^0\qty(\tilde{u}(t)-\tilde{u}(t-s))\dv{s} \int_{-\delta}^{s}\varphi_{\delta}\qty(h)\dd{h}\dd{s},
+	\end{align*}
+	by using the fact $\varphi_{\delta}(\delta) = 0.$ Per partes then yields
+	\[
+		\eval{\qty(\qty(\tilde{u}(t)-\tilde{u}\qty(t-s))\int_{-\delta}^s \varphi_{\delta}\qty(h)\dd{h})}^0_{s=-\delta}- \int_{-\delta}^0 \dv{s} \qty(\tilde{u}(t)-\tilde{u}(t-s))\int_{-\delta}^s \varphi_{\delta}\qty(h)\dd{h}\dd{s}.
+	\]
+	Realize the first term is zero, whereas the second term can be rewritten using Fubini 
+	\[
+		- \int_{-\delta}^0 \dv{s} \qty(\tilde{u}(t) - \tilde{u}\qty(t-s))\int_{-\delta}^s \varphi_{\delta}(h)\dd{h}\dd{s} = -\int_{-\delta}^0 \int_{h}^0 \dv{s} \qty(\tilde{u}(t) - \tilde{u}\qty(t-s))\dd{s}\varphi_{\delta}(h)\dd{h}.
+	\]
+	Let us now estimate the distance in $\LpIntX{1}{0}{T}{V_3}$ norm (recall $\varphi_{\delta}(h)$ is just a nonnegative number)
+
+	\begin{align*}
+		\int_0^T \norm{\tilde{u}(t) - \tilde{u}_{\delta}(t)}_{V_3} \dd{t} &\leq \int_0^T \int_{-\delta}^0 \int_h^0 \norm{\dv{s} \qty(\tilde{u}(t) - \tilde{u}\qty(t-s))}_{V_3}\dd{s} \varphi_{\delta}(h) \dd{h} \dd{t}\leq \\
+								  &\leq \delta \qty(\int_0^T \norm{2 \partial_t \tilde{u}(t)}_{V_3} \dd{t}) = 2 \delta \NormLpIntX{\partial_t \tilde{u}}{1}{0}{T}{V_3} = 2 \delta \NormLpIntX{\partial_t u}{1}{0}{T}{V_3} \leq 2 \delta \norm{u}_{\mathcal{U}} \leq 2 \delta C^{*}
+	\end{align*}
+	because $\tilde{u} = u$ on $(0,T),$ and all functions from $M$ have their norm $\norm{u}_{\mathcal{U}} = \NormLpIntX{u}{p}{0}{T}{V_1} + \NormLpIntX{\partial_t u}{1}{0}{T}{V_3}$ bounded by $C^{*}.$
+
+	Now, esstimate the distance in $\LinfIntX{0}{T}{V_3}$ norm
+	\begin{align*}
+		\esssup_{(0,T)}\norm{\tilde{u}(t) - \tilde{u}_{\delta}(t)}_{V_3} &\leq \esssup_{(0,T)} \norm{\int_{-\delta}^0 \int_h^0 \dv{s} \qty(\tilde{u}(t) -\tilde{u}(t-s))\dd{s} \varphi_{\delta}(h) \dd{h}}_{V_3} \leq \\
+		&\leq \esssup_{\qty(0,T)}\qty(\int_T^0 \norm{\dv{s}\qty(\tilde{u}(t) - \tilde{u}\qty(t-s))}_{V_3}\dd{s})\qty(\int_{-\delta}^0 \varphi_{\delta}(h)\dd{h}) = 2 \NormLpIntX{\partial_t \tilde{u}}{1}{0}{T}{V_3} \leq 2 C^{*}.
+	\end{align*}
+
+	Using these estimates, we are now ready to show $M_{\delta} \subset \subset \LpIntX{p}{0}{T}{V_3}.$ Recall we have
+	\[
+		u \in \LpSet[q]{\Omega}, \forall q \in [1, \infty] \Rightarrow \norm{u}_{\LpSet[q]{\Omega}} \leq \norm{u}_{\LpSet[1]{\Omega}}^{\theta} \norm{u}_{\LinfSet{\Omega}}^{1- \theta},
+	\]
+	where $\frac{1}{q} = \frac{\theta}{1} + \frac{1-\theta}{\infty},$ \textit{i.e.}, $\theta = \frac{1}{q},$ so 
+	\[
+		\NormLpIntX{u-\tilde{u}_{\delta}}{p}{0}{T}{V_3}\leq \NormLpIntX{u-\tilde{u}_{\delta}}{1}{0}{T}{V_3}^{\frac{1}{p}} \NormLinfIntX{u-\tilde{u}_{\delta}}{O}{T}{V_3}^{1- \frac{1}{p}} \leq \qty(2 C^{*} \delta)^{\frac{1}{p}}\qty(2 C^{*})^{1 - \frac{1}{p}} = 2C^{*} \delta^{\frac{1}{p}},
+	\]
+
+	And since $\delta > 0$ is under our control, this really means $M_{\delta}$ is totally bounded in $\LpIntX{p}{0}{T}{V_3}.$ 
+
+Now we would like to use Ehrling. So far, we know
+\[
+	V_1 \hookrightarrow \hookrightarrow V_2 \hookrightarrow V_3,
+\]
+but one has to believe this also implies
+\[
+	\LpIntX{p}{0}{T}{V_1} \hookrightarrow \hookrightarrow \LpIntX{p}{0}{T}{V_2} \hookrightarrow \LpIntX{p}{0}{T}{V_2},
+\]
+which is not evident at first sight. But if we believe, then we have 
+	\[
+		\forall \mu >0 \exists C_{\mu}>0: \forall u \in \mathcal{U}: \NormLpIntX{u-\tilde{u}_{\delta}}{p}{0}{T}{V_2}\leq \mu \NormLpIntX{u-\tilde{u}_{\delta}}{p}{0}{T}{V_1}+ C_{\mu}\NormLpIntX{u-\tilde{u}_{\delta}}{p}{0}{T}{V_3},
+	\]
+	and plugging in our derived estimates, this means
+	\[
+		\forall u \in M: \NormLpIntX{u-\tilde{u}_{\delta}}{p}{0}{T}{V_2}\leq \mu C^{*} + C_\mu 2 C^{*} \delta^{\frac{1}{p}}.
+	\]
+	Let now $\beta > 0$ be given. We are yet to choose $\mu > 0, \delta > 0,$ so we can do it now: pick
+	\[
+		\mu >0: \mu C^{*} < \frac{\beta}{2},
+	\]
+	\[
+		\delta >0: C_{\mu}2 C^{*} \delta^{1/p} < \frac{\beta}{2},
+	\]
+	and after choosing these, one has
+	\[
+		\forall u \in M: \NormLpIntX{u-\tilde{u}_{\delta}}{p}{0}{T}{V_2}< \beta.
+	\]
+	Denote now $\qty{\qty(\tilde{w}_k)_{\delta}}_{k=1}^N$ the finite $\varepsilon-$net in $M_{\delta}$ in $\LpIntX{p}{0}{T}{V_2}$ (which exists since above using Arzela-Ascoli we have showed $M_{\delta} \subset \subset \LpIntX{p}{0}{T}{V_2}.$ Let us show $\qty{w_k}_{k=1}^N$ is a finite $\varepsilon-$net in $M$ in $\LpIntX{p}{0}{T}{V_2}$: let $\varepsilon>0$ be given and choose $u \in M.$ Arbitrary. Then one can find $k \in \qty{1, \dots, N}$ such that $\NormLpIntX{\tilde{u}_{\delta} - (\tilde{w}_k)_{\delta}}{p}{0}{T}{V_2} < \frac{\varepsilon}{2}$ and so 
+	\[
+		\NormLpIntX{u - w_k}{p}{0}{T}{V_2} \leq \NormLpIntX{u - \tilde{u}_{\delta}}{p}{0}{T}{V_2} + \NormLpIntX{\tilde{u}_{\delta} - \qty(\tilde{w}_k)_{\delta}}{p}{0}{T}{V_2} + \NormLpIntX{\qty(\tilde{w}_k)_{\delta} - w_k}{p}{0}{T}{V_2} < \beta + \frac{\varepsilon}{2} + \beta,
+	\]
+	where we used the above estimate. If we now choose $\beta < \frac{\varepsilon}{4},$ we really see
+	\[
+		\NormLpIntX{u - w_k}{p}{0}{T}{V_2} < \varepsilon,
+	\]
+	meaning $\qty{w_k} \subset M$ is a finite $\varepsilon-$net in $M$ in $\LpIntX{p}{0}{T}{V_2},$ and since $M$ was arbitrary (but bounded), we are done.
+\end{proof}
+\begin{remark}
+	The pair $\qty(\mathcal{U}, |||\vdot|||)$ is a Banach space.
+\end{remark}
+
+\subsection{Nonlinear parabolic equations}
+\label{sec:nonlinear_parabolic}
+
+We will be dealing with the following problem:
+\begin{align}
+	\label{eq:nonlin_parab}
+	\partial_t u - \divergence{\vb{a}\qty(x, u, \grad u)}+ a_0\qty(x, u, \grad u) &= f \, \text{in} \, (0,T) \times \Omega, \\
+	u &= u_0, \, \text{on} \, \{0\} \times \Omega, \\
+	u &= 0, \, \text{on} \, (0,T) \times \partial \Omega.
+\end{align}
+The unknown is the function $u(t,x): \qty(0,T) \times \Omega \to \R,$ and we are given
+\begin{itemize}
+	\item $\Omega \in \Ckl{0}{1},T >0, Q_T = \qty(0,T) \times \Omega,$
+	\item $\vb{a}:\Omega \times \R \times \R^d \mapsto \R^d, a_i: \Omega \times \R \times \R^d \mapsto \R$ are Caratheodory in $x \in \Omega$ and in $(z, p) \in \R \times \R^d,$ with the following growth condition: $\exists C>0, \exists r\in (1, \infty)$ \textit{s.t.}
+		\[
+			\forall \, \text{\textit{a.a.}} \, x \in \Omega, \forall (z,\vb{p}) \in \R^{d+1}: \abs{a_i\qty(x, z, \vb{p})} \leq C\qty(1+ \abs{z}^{r-1}+ \abs{\vb{p}}^{r-1}),
+		\]
+	\item and also with the coercivity condition: $\exists C_1, C_2 >0, \exists q \in \qty(1, \max\qty(2,r)):$
+		\[
+			\forall \, \text{\textit{a.a.}} \, x \in \Omega, \forall \qty(z, \vb{p}) \in \R^{d+1}: \vb{a}\qty(x,z,\vb{p}) \vdot \vb{p} + a_0\qty(x,z,\vb{p})z \geq C_1\abs{\vb{p}}^r - C_2\qty(1+\abs{z}^q),
+		\]
+	\item $f: \qty(0,T) \times \Omega \to \R, u_0: \Omega \to \R$ (and will also be in some Banach spaces)
+
+\end{itemize}
+
+\begin{theorem}[Existence and uniqueness]
+	Let $\Omega \in C^{0,1},$ and let  $\qty{a_i}_{i=0}^d$ satisfy the above growth conditions and coercivity and let them moreover be monotone. Denote
+	\[
+		V = \WkpzeroSet[1][r]{\Omega} \cap \LpSet[2]{\Omega}.
+	\]
+	Then $\forall f \in \LpIntX{r'}{0}{T}{V^{*}}, \forall u_0 \in \LpSet[2]{\Omega}$ exists  a solution $u \in  \LpIntX{r}{0}{T}{V} \, \text{\textit{s.t.}} \, \partial_t u \in \LpIntX{r'}{0}{T}{V^{*}}, u \in C\qty([0,T]; \LpSet[2]{\Omega}), u(0) = u_0$ and moreover
+	\[
+		\forall	\, \text{\textit{a.e.}} \,t \in (0,T), \forall \varphi \in V: <\partial_t u, \varphi> + \int_{\Omega}\vb{a}\qty(x, u, \grad u) \vdot \grad \varphi + a_0\qty(x, u, \grad u)\varphi\dd{x} = <f, \varphi>.
+	\]
+	Finally, the solution is unique.
+\end{theorem}
+
+	\begin{remark}
+	    \begin{itemize}
+		    \item the requirement $V = \WkpzeroSet[1][r]{\Omega} \cap \LpSet[2]{\Omega}$ becomes redundent whenever $r^{*} = \frac{rd}{d-r} >2,$ 
+		    \item recall that $\qty(\LpIntX{r}{0}{T}{V})^{*} = \LpIntX{r'}{0}{T}{V^{*}},$ 
+		    \item on V we can assume \textit{e.g.} $\norm{u}_V = \norm{u}_{\LpSet[2]{\Omega}} + \norm{u}_{\WkpzeroSet[1][r]{\Omega}}.$
+	    \end{itemize}
+	\end{remark}
+	\begin{proof}(\textit{From: \cite{bulicekUvodModerniTeorie2018}})
+	The strategy is the following 
+	\begin{enumerate}
+		\item approximate: either using Galerkin or using the Rothe method
+		\item a-priori estimates
+		\item convergences
+		\item limit passage
+		\item identification of the limits
+	\end{enumerate}
+	
+
+	\textit{Rothe method:} ]
+	Fix $m \in \N$ and divide the time interval $(0,T)$ into subintervals of equal length: denote $h = \frac{T}{m}, t_0 =0, t_m = T , t_k = kh, k \in {0,\dots, m}.$ The goal is to solve a stationary variant of the problem on each subinterval $(t_{k}, t_{k+1}],$ approximate the time derivative using difference scheme and then pass to the (certain) limit $m \to \infty.$
+
+	Denote the (Bochner integral) mean
+	\[
+		f_k = \frac{1}{h} \int_{t_k}^{t_{k+1}}f(t)\dd{t}. 
+	\]
+	Realize that since $f \in \LpIntX{r'}{0}{T}{V^{*}},$ we have constructed $f_k \in V^{*}$, \textit{i.e.}, time independent. For our fixed $m \in \N$ we will denote $u_m(t)$ the approximate solution on the discretization of $I$. Set $u_m\qty(t_0 = 0) = u_0$, and $\forall k \in \qty{0, \dots, m}$ we will be looking for the solution $u_m\qty(t_{k+1})$ of the following stationary problem on $(t_k, t_{k+1}]$:
+	\[
+		\int_{\Omega}\frac{u_m\qty(t_{k+1})- u_m\qty(t_k)}{h}\varphi\dd{x} + \int_{\Omega}\vb{a}\qty(x, u_m\qty(t_{k+1}), \grad u_m\qty(t_{k+1})) \vdot \grad \varphi + a_0\qty(x, u_m\qty(t_{k+1}), \grad u_m\qty(t_{k+1})) \varphi \dd{x} = <f_{k}, \varphi>.
+	\]
+The sought solution should lie in $V = \WkpzeroSet[1][r]{\Omega} \cap \LpSet[2]{\Omega},$ which we can check with following apriori estimate derived under. Realize that this way, $u_m\qty(t_{k+1})$ is a stationary solution that is constant in time on $(t_k, t_{k+1}].$ 
+
+	It is a question whether the solution $u_m\qty(t_{k+1}) \in V$ for the above steady problem exists or not; since we have growth, monotonocity, coercivity and regularity of the data and the boundary, we will assume without a proof that the solution exists - it could in theory be proven using the tools from the application of monotone operator theory on nonlinear elliptic equations. We will not assume the solution to be unique however.\\
+
+	\textit{A-priori and uniform estimates}
+ As usual test the weak formulation with the solution itself, \textit{i.e.}, test with $u_m\qty(t_{k+1}) \in V.$
+
+	\begin{align*}
+		&\int_{\Omega}\frac{\abs{u_m\qty(t_{k+1})}^{2} - u_m\qty(t_{k+1})u_{m}\qty(t_{k+1})}{h}\dd{x} + \\
+		&+ \int_{\Omega}\vb{a}\qty(x, u_m\qty(t_{k+1}), \grad u_m\qty(t_{k+1}))\vdot \grad u_m\qty(t_{k+1}) + a_0\qty(x, u_m\qty(t_{k+1}), \grad u_m\qty(t_{k+1})) u_m\qty(t_{k+1})\dd{x} = <f_k, u_m\qty(t_{k+1})>,
+	\end{align*}
+	use the coercivity conditions and Poincare (recall $V = \WkpzeroSet[1][r]{\Omega} \cap \LpSet[2]{\Omega})$
+
+	\begin{align*} 
+		&\int_{\Omega}\vb{a}\qty(x, u_m\qty(t_{k+1}), \grad u_m\qty(t_{k+1}))\vdot \grad u_m\qty(t_{k+1}) + a_i\qty(x, u_m\qty(t_{k+1}), \grad u_m\qty(t_{k+1})) u_m\qty(t_{k+1})\dd{x} \geq \\
+		&\geq \int_{\Omega}C_1\abs{\grad u_m\qty(t_{k+1})}^r - C_2\qty(1+\abs{u_m\qty(t_{k+1})}^q)\dd{x} = C_1 \norm{\grad u_m\qty(t_{k+1})}_{\LpSet[r]{\Omega}}^r - C_2\qty(\lambda\qty(\Omega) + \norm{u_m\qty(t_{k+1})}_{\LpSet[q]{\Omega}}^q) \geq \\
+		&\geq C_1 \norm{\grad u_m\qty(t_{k+1})}_{\LpSet[r]{\Omega}}^r - C_2\qty(1+ \lambda\qty(\Omega) + \norm{u_m\qty(t_{k+1})}_{\LpSet[\max\qty(2,r)]{\Omega}}^{\max(2,r)}).
+	\end{align*}
+	where we used $q < \max(2,r),$ so $\LpSet[\max(2,r)]{\Omega} \hookrightarrow \LpSet[q]{\Omega}.$ The RHS can be estimated as
+	\begin{align*}
+		<f_{k}, u_{m}\qty(t_{k+1})> &\leq \norm{f_k}_{V^{*}}\norm{u_m\qty(t_{k+1})}_{V^{*}} = \norm{f_k}_{V^{*}}\qty(\norm{u_m\qty(t_{k+1})}_{\LpSet[2]{\Omega}} + \norm{u_m\qty(t_{k+1})}_{\WkpzeroSet[1][r]{\Omega}}) \leq \\
+					    &\leq C\qty(\norm{f_k}_{V^{*}}^{2} + \norm{f_k}_{V^{*}}^{r'}) + \varepsilon \qty(\norm{u_m\qty(t_{k+1})}_{\LpSet[2]{\Omega}}^{2} + \norm{u_m\qty(t_{k+1})}_{\WkpzeroSet[1][r]{\Omega}}^r).
+	\end{align*}
+	Using these, the apriori estimates become
+	\begin{align*}
+		&\int_{\Omega} u_m\qty(t_{k+1})^{2} -u_m\qty(t_{k+1}) u_m\qty(t_k)\dd{x} + h\qty(C_1 \norm{\grad u_m\qty(t_{k+1})}_{\LpSet[r]{\Omega}}^r - C_2\qty(1+ \lambda\qty(\Omega) + \norm{u_m\qty(t_{k+1})}_{\LpSet[\max\qty(2,r)]{\Omega}}^{\max(2,r)})) \leq \\
+		&\leq Ch\qty(\norm{f_k}_{V^{*}}^{2} + \norm{f_k}_{V^{*}}^{r'}) + \varepsilon h \qty(\norm{u_m\qty(t_{k+1})}_{\LpSet[2]{\Omega}}^{2} + \norm{u_m\qty(t_{k+1})}_{\WkpzeroSet[1][r]{\Omega}}^r),
+	\end{align*}
+	and when choosing $\varepsilon > 0$ and renaming all the constants
+
+	\begin{align*}
+		\int_{\Omega}u_m\qty(t_{k+1})^{2} - u_m\qty(t_{k+1})u_m\qty(t_k)\dd{x} + Ch\qty(\norm{u_m\qty(t_{k+1})}_{\WkpzeroSet[1][r]{\Omega}}^r) \leq Ch\qty(\norm{f_k}_{V^{*}}^{2} + \norm{f_k}_{V^{*}}^{r'} + \norm{u_m\qty(t_{k+1})}_{\LpSet[2]{\Omega}}^{2}) 
+	\end{align*}
+	Notice that (completing the square):
+	\[
+		\int_{\Omega}u_m\qty(t_{k+1})^{2} - u_m\qty(t_{k+1})u_m\qty(t_k)\dd{x} = \int_{\Omega}\frac{1}{2}u_m\qty(t_{k+1})^{2} + \frac{1}{2}\qty(u_m\qty(t_{k+1})- u_m\qty(t_k))^{2} - \frac{1}{2} u_m\qty(t_k)^{2}\dd{x},
+	\]
+	so when we sum these terms from $k = 0$ to some $j < m$ we see that a lot of things subtract in fact:
+	\[
+		\sum_{k=0}^{j-1}\int_{\Omega}u_m\qty(t_{k+1})^{2} - u_m\qty(t_{k+1})u_m\qty(t_k)\dd{x} = \frac{1}{2}\qty(\norm{u_m\qty(t_j)}_{\LpSet[2]{\Omega}}^{2} - \norm{u_0}_{\LpSet[2]{\Omega}}^{2} + \sum_{k=0}^{j-1} \norm{u_m\qty(t_{k+1}) - u_m\qty(t_k)}_{\LpSet[2]{\Omega}}^{2}).
+	\]
+	So for $j < m$ we can write the a-priori estimate as (we of course sum all the weak formulations)
+	\begin{align*}
+		&\norm{u_m\qty(t_{j})}_{\LpSet[2]{\Omega}}^{2} + \sum_{k=0}^{j-1} \qty(\norm{u_m\qty(t_{k+1}) - u_m\qty(t_k)}_{\LpSet[2]{\Omega}}^{2} + C_1 h \norm{u_m\qty(t_{k+1})}_{\WkpzeroSet[1][r]{\Omega}}^r) \leq \\
+		& \leq C\qty(\norm{u_0}_{\LpSet[2]{\Omega}}^{2} + h\sum_{k=0}^{j-1}\qty(\norm{f_k}_{V^{*}}^{2} + \norm{f_k}_{V^{*}}^{r'} + \norm{u_m\qty(t_{k+1})}_{\LpSet[2]{\Omega}}^{2})).
+	\end{align*}
+	It remains to notice $u_m\qty(t_{k+1})$ is constant on $(t_k, t_{k+1}]$, so it actually holds 
+	\begin{align*}
+		\sum_{k=0}^{j-1}h \norm{u_m\qty(t_{k+1})}_{\WkpzeroSet[1][r]{\Omega}}^r &= \sum_{k=0}^{j-1} \int_{t_k}^{t_{k+1}}\norm{u_m\qty(t_{k+1})}_{\WkpzeroSet[1][r]{\Omega}}^r\dd{t} = \\
+											&= \int_{0}^{t_j}\norm{u_m\qty(t_{k+1})}_{\WkpzeroSet[1][r]{\Omega}}^r \dd{t}, 
+	\end{align*}
+	and also 
+	\begin{align*}
+		\sum_{k=0}^{j-1}h \qty(\norm{f_k}_{V^{*}}^{2} + \norm{f_k}_{V^{*}}^{r'} + \norm{u_m\qty(t_{k+1})}_{\LpSet[2]{\Omega}}^{2}) &= \int_0^{t_j}\norm{f_k}_{V^{*}}^{2} + \norm{f_k}_{V^{*}}^{r'} + \norm{u_m\qty(t_{k+1})}_{\LpSet[2]{\Omega}}^{2}\dd{t} \leq \\
+																	   &\leq \int_0^{T}\norm{f_k}_{V^{*}}^{2} + \norm{f_k}_{V^{*}}^{r'}\dd{t} + \int_0^{t_j} \norm{u_m\qty(t_{k+1})}_{\LpSet[2]{\Omega}}^{2}\dd{t},
+	\end{align*}
+	so we can finally write the apriori estimates as 
+	\begin{align*}
+		\norm{u_m\qty(t_j)}_{\LpSet[2]{\Omega}}^{2} &+ \sum_{k=0}^{j-1}\norm{u_m\qty(t_{k+1}) - u_m(t_k)}_{\LpSet[2]{\Omega}}^{2} + C\int_0^{t_j}\norm{u_m\qty(t_{k+1})}_{\WkpzeroSet[1][r]{\Omega}}^r \dd{t} \leq \\
+	&\leq C\qty(\norm{u_0}_{\LpSet[2]{\Omega}}^{2} + \int_0^{T}\norm{f_k}_{V^{*}}^{2} + \norm{f_k}_{V^{*}}^{r'}\dd{t}).
+	\end{align*}
+	The RHS contains only data, so these are uniform estimates. Because are the summands are nonnegative and $j < m$ was arbitrary, we conclude it must hold
+	\begin{align*}
+		\NormLinfIntX{u_m}{0}{T}{\LpSet[2]{\Omega}} &\leq C, \\
+		\NormLpIntX{u_m}{r}{0}{T}{\WkpzeroSet[1][r]{\Omega}} &\leq C, \\
+	\end{align*}
+	and using the growth condition we also obtain
+	\[
+		\NormLpIntX{a_i\qty(\vdot, u_m, \grad u_m)}{r'}{0}{T}{\LpSet[r']{\Omega}} \leq C.
+	\]
+
+
+	\textit{Limit passage}
+	Using the reflexivity of (some of) the spaces, we see that since the above sequences are uniformly bounded, it must be (we are not renaming the subsequences)
+	\begin{align*}
+		u_m &\rightharpoonup u, \, \text{in} \, \LpIntX{r}{0}{T}{\WkpzeroSet[1][r]{\Omega}}, \\
+		u_m &\rightharpoonup^* u \, \text{in} \, \LinfIntX{0}{T}{\LpSet[2]{\Omega}}, \\
+		a_i\qty(\vdot, u_m, \grad u_m) &\rightharpoonup b_i , i \in \qty{0, \dots, d} \, \text{in} \, \LpIntX{r'}{0}{T}{\LpSet[r']{\Omega}}.
+	\end{align*}
+	To be totally valid, we should check that the first convergencies are actually to the same function. We would like to obtain a sequence for the time derivative also. For that reason, let us do the following. On $(t_k, t_{k+1})$, set
+	\[
+		\tilde{u}_m(t) = u_m\qty(t_k) + \frac{t-t_k}{h}\qty(u_m\qty(t_{k+1})-u_m(t_k)),
+	\]
+	and we immeditaly see
+	\[
+		\partial_t \tilde{u}_m(t) = \frac{u_m\qty(t_k) - u_m(t_{k+1})}{h},t \in (t_k, t_{k+1}),
+	\]
+	and from the previous esimates we also have
+	\[
+		\NormLinfIntX{\tilde{u}_m}{0}{T}{\LpSet[2]{\Omega}} \leq C,\NormLpIntX{\tilde{u}_m}{r}{0}{T}{\WkpzeroSet[1][r]{\Omega}} \leq C.
+	\]
+	
+	Rewriting the partial derivative from the weak formulation $u_m\qty(t_{k+1})$ solves we obtain
+	\begin{align*}
+		\int_{\Omega}\partial_t \tilde{u}_m \varphi \dd{x} &= <f_k, \varphi> - \int_{\Omega}\vb{a}\qty(x, u_m\qty(t_{k+1}), \grad u_m\qty(t_{k+1}))\vdot \varphi + a_0\qty(x, u_m\qty(t_{k+1}), \grad u_m\qty(t_{k+1}))\dd{x} \leq \\
+								   &\leq
+	\end{align*}
+	\textbf{REST OF THE PROOF IS MISSING}
+\end{proof}
+
+
