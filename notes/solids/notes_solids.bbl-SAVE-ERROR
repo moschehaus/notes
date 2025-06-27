@@ -1,0 +1,184 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.3 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{nyt/global//global/global/global}
+    \entry{kruzikElasticMaterials2019}{incollection}{}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=500253a1ebe10f2c71a02df94efd4fcf}{%
+           family={Kružík},
+           familyi={K\bibinitperiod},
+           given={Martin},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=67252f94adfdc0caa4a386a36bccaf8b}{%
+           family={Roubíček},
+           familyi={R\bibinitperiod},
+           given={Tomáš},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+      }
+      \name{editor}{2}{}{%
+        {{hash=500253a1ebe10f2c71a02df94efd4fcf}{%
+           family={Kružík},
+           familyi={K\bibinitperiod},
+           given={Martin},
+           giveni={M\bibinitperiod}}}%
+        {{hash=67252f94adfdc0caa4a386a36bccaf8b}{%
+           family={Roubíček},
+           familyi={R\bibinitperiod},
+           given={Tomáš},
+           giveni={T\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Cham}%
+      }
+      \list{publisher}{1}{%
+        {Springer International Publishing}%
+      }
+      \strng{namehash}{1606b3090413158488137b1652a131ea}
+      \strng{fullhash}{1606b3090413158488137b1652a131ea}
+      \strng{fullhashraw}{1606b3090413158488137b1652a131ea}
+      \strng{bibnamehash}{1606b3090413158488137b1652a131ea}
+      \strng{authorbibnamehash}{1606b3090413158488137b1652a131ea}
+      \strng{authornamehash}{1606b3090413158488137b1652a131ea}
+      \strng{authorfullhash}{1606b3090413158488137b1652a131ea}
+      \strng{authorfullhashraw}{1606b3090413158488137b1652a131ea}
+      \strng{editorbibnamehash}{1606b3090413158488137b1652a131ea}
+      \strng{editornamehash}{1606b3090413158488137b1652a131ea}
+      \strng{editorfullhash}{1606b3090413158488137b1652a131ea}
+      \strng{editorfullhashraw}{1606b3090413158488137b1652a131ea}
+      \field{extraname}{1}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{extradate}{1}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Looking at the force balance (1.2.6), we see that we have only d equations for \$\$d(d+3)/2\$\$unknowns (namely d components of y and \$\$d(d+1)/2\$\$components of \$\$T\textasciicircum y\$\$). Therefore, we complete (1.2.6) by material constitutive relations describing particular materials as far as its elastic properties concerns. Such constitutive relations should involve the stress tensor and the deformation gradient and may be in general implicit, cf. (Rajagopal, Appl Math, 48:279–319 (2003), [409]). Without excluding too many applications, we confine ourselves to the case when the stress is explicitly determined by the strain.}
+      \field{booktitle}{Mathematical {{Methods}} in {{Continuum Mechanics}} of {{Solids}}}
+      \field{isbn}{978-3-030-02065-1}
+      \field{langid}{english}
+      \field{title}{Elastic {{Materials}}}
+      \field{urlday}{18}
+      \field{urlmonth}{6}
+      \field{urlyear}{2025}
+      \field{year}{2019}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{25\bibrangedash 50}
+      \range{pages}{26}
+      \verb{doi}
+      \verb 10.1007/978-3-030-02065-1_2
+      \endverb
+      \verb{file}
+      \verb /home/moschehaus/Zotero/storage/ERLELCEL/Kružík and Roubíček - 2019 - Elastic Materials.pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1007/978-3-030-02065-1_2
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1007/978-3-030-02065-1_2
+      \endverb
+    \endentry
+    \entry{kruzikPolyconvexMaterialsExistence2019}{incollection}{}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=500253a1ebe10f2c71a02df94efd4fcf}{%
+           family={Kružík},
+           familyi={K\bibinitperiod},
+           given={Martin},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=67252f94adfdc0caa4a386a36bccaf8b}{%
+           family={Roubíček},
+           familyi={R\bibinitperiod},
+           given={Tomáš},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+      }
+      \name{editor}{2}{}{%
+        {{hash=500253a1ebe10f2c71a02df94efd4fcf}{%
+           family={Kružík},
+           familyi={K\bibinitperiod},
+           given={Martin},
+           giveni={M\bibinitperiod}}}%
+        {{hash=67252f94adfdc0caa4a386a36bccaf8b}{%
+           family={Roubíček},
+           familyi={R\bibinitperiod},
+           given={Tomáš},
+           giveni={T\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Cham}%
+      }
+      \list{publisher}{1}{%
+        {Springer International Publishing}%
+      }
+      \strng{namehash}{1606b3090413158488137b1652a131ea}
+      \strng{fullhash}{1606b3090413158488137b1652a131ea}
+      \strng{fullhashraw}{1606b3090413158488137b1652a131ea}
+      \strng{bibnamehash}{1606b3090413158488137b1652a131ea}
+      \strng{authorbibnamehash}{1606b3090413158488137b1652a131ea}
+      \strng{authornamehash}{1606b3090413158488137b1652a131ea}
+      \strng{authorfullhash}{1606b3090413158488137b1652a131ea}
+      \strng{authorfullhashraw}{1606b3090413158488137b1652a131ea}
+      \strng{editorbibnamehash}{1606b3090413158488137b1652a131ea}
+      \strng{editornamehash}{1606b3090413158488137b1652a131ea}
+      \strng{editorfullhash}{1606b3090413158488137b1652a131ea}
+      \strng{editorfullhashraw}{1606b3090413158488137b1652a131ea}
+      \field{extraname}{2}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{extradate}{2}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{As already mentioned below Theorem~, the derivation of Euler-Lagrange equations for the elasticity functional \$\$\{\textbackslash mathcal E\}\$\$is only formal and we cannot rely on the fact that minimizers of \$\$\{\textbackslash mathcal E\}\$\$satisfy these equations.}
+      \field{booktitle}{Mathematical {{Methods}} in {{Continuum Mechanics}} of {{Solids}}}
+      \field{isbn}{978-3-030-02065-1}
+      \field{langid}{english}
+      \field{shorttitle}{Polyconvex {{Materials}}}
+      \field{title}{Polyconvex {{Materials}}: {{Existence}} of {{Energy-Minimizing Deformations}}}
+      \field{urlday}{18}
+      \field{urlmonth}{6}
+      \field{urlyear}{2025}
+      \field{year}{2019}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{51\bibrangedash 86}
+      \range{pages}{36}
+      \verb{doi}
+      \verb 10.1007/978-3-030-02065-1_3
+      \endverb
+      \verb{file}
+      \verb /home/moschehaus/Zotero/storage/I5WHUB5J/Kružík and Roubíček - 2019 - Polyconvex Materials Existence of Energy-Minimizing Deformations.pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1007/978-3-030-02065-1_3
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1007/978-3-030-02065-1_3
+      \endverb
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

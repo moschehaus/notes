@@ -1,0 +1,787 @@
+% !TEX root = main.tex
+
+\documentclass[../main.tex]{subfiles}
+\begin{document}
+\section{Differential geometry, tensor calculus}
+\label{sec:curvilinear_coords}
+How to write $\divergence{\vb{u}}, \curl{\vb{u}}$ etc. in polar, cylindrical and other coordinates? Can the deformation $\vb*{\gamma}$ be viewed as a change of \textit{something} rather than the body itself?  Notice that there are similiarities between change of coordinates $\vb{x} = \vb{x}(\vb*{\gamma})$ and the deformation $\vb{x}=\vb*{\chi}(\vb{x})$, the Left Cauchy-Green tensor $\lcg$ and the metric tensor $\tensorq{g}$.
+
+
+\subsection{Curvilinear coordinates}
+\label{sec:coordinates}
+
+Let us for now \textit{pretend} we are still in our flat Euclidian space $\mathbb{E}^{n},$ and we are just changing our coordinates... consider $\vb{x}=\qty(x^1,x^2,\dots,x^n)$ as the cartesian coordinates of the point $\vb{x}$ and a different set $\vb{x}=\vb{x}(\vb*{\xi})$, \textit{e.g.}, the polar coordinates
+\[
+	x^1(r,\varphi)=r \cos \varphi, x^2\qty(r,\varphi)=r \sin \varphi, [x,y] = [x^1, x^2], [r,\varphi] = [\xi^1,\xi^2].
+\]
+That means every point $\vb{x}$ in a plane can be described by using $[x^1,x^2]$ or $[r,\varphi]$. We are used to analysis in cartesian coordinates - how can i do it in a more general setting?
+
+Viewed from a different perspective, we do not need to pretend everything takes place in $\mathbb{E}^{n}.$ Let $G \subset \R^{n}$ be an open subset of $\R^{n}$ ("space of coordinates") and let $\vb*{\Theta}: G \to \mathcal{M}$ be a $C^1$ diffemorphism between $G$ and a $\mathcal{M} \subset \mathbb{E}^n$ an open subset of the Euclidian space (it can in fact be a manifold). In this view, all points $\vb{x} \in \mathcal{M}$ can be uniquely represented as $\vb{x} = \vb*{\Theta}\qty(\vb*{\xi}),$ for some $\vb*{\xi} \in G.$ Consider some examples
+
+\begin{example}[Polar, spherical and cylindrical coordinates]
+	\begin{itemize}
+		\item polar coordinates: $G = \qty(0, \infty) \times \qty(0, 2 \psi) \subset \R^2, \mathcal{M} = \mathcal{S}^2, \vb*{\xi} = (r, \varphi), \vb*{\Theta}: \qty(r, \varphi) \mapsto (r \cos \varphi, r \sin \varphi), \vb{x} = \qty(r \cos \varphi, r \sin \varphi)$,
+		\item spherical coordinates: $G = \qty(0, \infty) \times \qty(0, \psi) \times (0, 2 \psi) \subset \R^{3}, \mathcal{M} = \mathcal{S}^3, \vb*{\xi} = \qty(r, \theta, \varphi), \vb*{\Theta}: \qty(r, \theta, \varphi) \mapsto \qty(r \sin \theta \cos \varphi, r \sin \theta \sin \varphi, r \cos \theta), \vb{x} = \qty(r \sin \theta \cos \varphi, r \sin \theta \sin \varphi, r \cos \theta)$,
+		\item cylindrical coordinates: $G = \qty(0, \infty) \times \qty(0, 2 \pi) \times \R \subset \R^{3}, \mathcal{M} = \mathcal{S}^2 \times \R, \vb*{\xi} = \qty(r, \varphi, z), \vb*{\Theta}: \qty(r, \varphi, z) \mapsto \qty(r \cos \varphi, r \sin \varphi, z), \vb{x} = \qty(r \cos \varphi, r \sin \varphi, z).$
+	\end{itemize}
+\end{example}
+It is customary, however imprecise, to write $\vb{x} = \vb{x}\qty(\vb*{\xi})$ instead of $\vb{x} = \vb*{\Theta}\qty(\vb*{\xi}).$ By the first one we mean $\vb{x}$ can be obtained through some function of the argument $\vb*{\xi},$ but it it is not true that $\vb{x}$ itself is a function. In fact, $\vb{x}$ is a point in $\mathcal{M},$ that is the image of $\vb*{\xi}$ under $\vb*{\Theta}.$
+
+This approach is elegant, as from the very start we are connecting the properties of $\vb{x} \in \mathcal{M}$, \textit{i.e.}, the properties of (the manifold) $\mathcal{M} \subset \tensorq{E}^n$ with the propertis of $\vb*{\xi} \in G,$ \textit{i.e.}, with the properties of $G \subset \R^{n}.$ Also, it immedietaly allows for the comparison with continuum mechanics: instead of $\vb{x} = \vb*{\chi}\qty(\vb{X})$ we are just writing $\vb{x} = \vb*{\Theta}\qty(\vb*{\xi}).$
+
+\begin{remark}
+	The name curvilinear coordinates come from the fact that the image $\vb*{\Theta}\qty(\qty{\xi^k = \, \text{const} \,})$ are not "straight lines"
+\end{remark}
+
+\begin{definition}[Coordinate lines]
+	For $j \in \qty{1, \dots, n}$ and $\xi^j \in \R$ such that $\qty(\xi^1, \dots, \xi^j, \dots, \xi^n) \in G$ we define the $j-$th coordinate lines/curve $\vb*{\gamma}_j$ as the curve
+	\[
+		\vb*{\gamma}_j(\xi^j) = \vb{x}(\xi^1,\dots,\xi^j,\dots,\xi^n), \, \text{\textit{i.e.}} \,, \vb*{\gamma}_j\qty(\xi^j) = \vb*{\Theta}\qty(\xi^1, \dots, \xi^j, \dots, \xi^n),
+	\]
+	and the rest of $\xi^i$ remain arbitrary.
+\end{definition}
+
+\begin{figure}
+	\label{fig:coordinate_systems}
+\begin{tikzpicture}
+	\draw[<->] (-5,0) -- (5,0) node[anchor=north east]{$x^1$};
+	\draw[<->] (0,-5) -- (0,5) node[anchor=north east]{$x^2$};
+	\draw[thin,blue] (2,-5) -- (2,5) node[anchor=north east]{$x^1 =\, \text{const} \,$};
+	\path [name path=vert] (2,-5) -- (2,5);
+
+	\draw[thin,blue] (-5,-3) -- (5,-3) node[anchor=north east]{$x^2 =\, \text{const} \,$};
+	\path [name path=horiz] (-5,-3) -- (5,-3);
+
+	\path [name intersections={of=vert and horiz, by=A}];
+	\draw[thick,blue,->] (A) --++ (3,0) node[anchor=north west]{$\vb{e}_2$};
+
+	\draw[thick,blue,->] (A) --++ (0,3) node[anchor=north west]{$\vb{e}_1$};
+
+	\draw[thin,purple] (0,0) circle (3.5cm) node[anchor=south east]{$y^1 = r = \, \text{const} \,$};
+	\path [name path=circlePath] (0,0) circle (3.5cm);
+
+	\draw[thin,purple] (0,0) -- (5,5) node[anchor=north east]{$y^2=\varphi_1=\, \text{const} \,$};
+	\path [name path=radialPath] (0,0) -- (5,5);
+
+	\path [name intersections={of=circlePath and radialPath, by=B}];
+
+	\draw[thick,purple,->] (B) --++ (-1,1) node[anchor=south east]{$\vb{g}_1\qty(r,\varphi_1)$};
+	\draw[thick,purple,->] (B) --++ (1,1) node[anchor=south east]{$\vb{g}_2\qty(r,\varphi_1)$};
+
+	\draw[thin,purple] (0,0) -- (-5,5) node[anchor=south east]{$y^2 = \varphi_2 = \, \text{const} \,$};
+	\path [name path=radialPath2] (0,0) -- (-5,5);
+	\path [name intersections={of=circlePath and radialPath2, by=C}];
+
+	\draw[thick,purple,->] (C) --++ (-1,1) node[anchor=south west]{$\vb{g}_2\qty(r,\varphi_2)$};
+	\draw[thick,purple,->] (C) --++ (-1,-1) node[anchor=south east]{$\vb{g}_1\qty(r,\varphi_2)$}; 
+
+\end{tikzpicture}
+\caption{Coordinate lines and basis vectors in cartesian and polar coordinates (\textit{the length of the vectors is the same...})}
+\end{figure}
+
+\subsubsection{Basis of a vector space}
+\label{sec:basis}
+In cartesian coordinates: $\{\vb{e}_1,\vb{e}_2,\dots,\vb{e}_n \}$, where the vectors are \textit{tangent to the coordinate lines}, that is
+
+\begin{equation}
+	\vb{e}_i = \dv{\vb*{\gamma}^i}{x^i},
+\end{equation}
+
+In a curvilinear coordinate system, we can repeat the same construction. We can \textit{define a vector tangent to the coordinate line}
+
+\begin{equation}
+	\vb{g}_i \qty(\vb*{\xi})=\dv{\vb*{\gamma}_i}{\xi^i}\qty(\xi^i) = \pdv{\vb*{\Theta}}{\xi^i}\qty(\vb*{\xi}).
+\end{equation}
+
+The problem is that the vectors $\vb{g}_i$ are not constant in space! It is a vector field!.
+
+\begin{remark}
+	If it is evident what variable we are differentiating with respect to (which is not always), we write
+	\[
+		\pdv{\xi^i} = \partial_{i},
+	\]
+	so
+	\[
+		\vb{g}_i\qty(\vb*{\xi}) = \partial_{i} \vb*{\Theta}\qty(\vb*{\xi}).
+	\]
+	This makes the manipulation with indices a bit easier, but sometimes covers the true meaning...
+\end{remark}
+
+\subsubsection{Vector fields}
+\label{sec:vector_fields}
+
+A vector $\vb{v}$ is independent of a basis; i can express it w.r.t $\qty{\vb{e}_j}$ and $\qty{\vb{g}_j}$ also:
+\[
+	\vb{v}=v^i \vb{e}_i = \nu^i\qty(\vb*{\xi}) \vb{g}_i\qty(\vb*{\xi}).
+\]
+(Note that in general $v^i \neq \nu^i$.) What about its derivatives? We already sense trouble, as the "curvilinear basis" is not constant!
+
+\[
+	\pdv{\vb{v}}{x^i}=\pdv{\qty(v^j \vb{e}_j)}{x^i} = \pdv{v^j}{x^i}\vb{e}_j,
+\]
+works perfectly fine in cartesian coordinates, as $\vb{e}_j = \text{const}$. In curvilinear setting
+
+\begin{equation}
+	\label{eq:dvvectorfield}
+	\pdv{\vb{v}}{\xi^i}=\pdv{\qty(v^j \vb{g}_j)}{\xi^i}= \pdv{v^j}{\xi^i}\vb{g}_j + v^j \pdv{\vb{g}_j}{\xi^i},
+\end{equation}
+as generally
+\[
+	\pdv{\vb{g}_j}{\xi^i} \neq \vb{0}.
+\]
+We can identify the last term, as differentiating a vector \textit{should give} a vector, so in particular it can be expressed w.r.t to the basis $\qty{\vb{g}_k}$:
+\[
+	\pdv{\vb{g}_j}{\xi^i} = \Gamma \indices{^k_{ji}} \vb{g}_k,
+\]
+where $\Gamma \indices{^k_{ji}} $ are the coefficients of the linear combinations. Thanks to the \textit{commutation of the partial derivatives} \footnote{We are still in flat $\R^d$, i.e. euclidian space. No curvature, torsion, that would obstruct the commutation properties.}, it holds
+\begin{equation}
+	\label{eq:symmetry_christoffel}
+	\Gamma \indices{^k_{ji}} = \Gamma \indices{^k_{ij}},
+\end{equation}
+i.e., $\Gamma \indices{^k_{ij}}$ is symmetric in $ij$. Well, that did not help \textit{very} much, as we don't know $\Gamma \indices{^k_{ij}}$, but at least we have the symmetry property. Going back to \ref{eq:dvvectorfield}:
+
+\begin{equation}
+	\pdv{\vb{v}}{\xi^i}=\pdv{\qty(v^j \vb{g}_j)}{\xi^i}= \pdv{v^j}{\xi^i}\vb{g}_j + v^j \pdv{\vb{g}_j}{\xi^i} = \pdv{v^k}{\xi^i}\vb{g}_k + v^j \Gamma \indices{^k_{ij}} \vb{g}_k = \qty(\pdv{v^k}{\xi^i}+\Gamma^k_{ij}v^j) \vb{g}_k.
+\end{equation}
+In short
+\[
+	\pdv{\vb{v}}{\xi^i} = \qty(\pdv{v^k}{\xi^i}+\Gamma^k_{ij}v^j) \vb{g}_k.
+\]
+Compare it to
+\[
+	\pdv{\vb{v}}{x^i}=\pdv{v^k}{x^i}\vb{e}_k.
+\]
+This leads us to the definition
+
+\begin{definition}[Covariant derivative of a vector field]
+    The quantity:
+\begin{equation}
+	\nabla_i v^j = \pdv{v^j}{\xi^i} + \Gamma \indices{^j_{ik}}v^k = \partial_{i}v^j + \Gamma \indices{^j_{ik}}v^k
+\end{equation}
+is called the \textbf{covariant derivative of the components vector field }$\vb{v}$. We have also shown
+\[
+	\partial_{i} \vb{v} = \nabla_i v^j \vb{g}_j.
+\]
+\end{definition}
+
+\subsubsection{Dot product}
+\label{sec:dot_product}
+
+The number $\vb{v}\vdot \vb{u}$ is obtained in a special manner:
+\[
+	\vb{v} \vdot \vb{u}= v^i \vb{e}_i \vdot u^j \vb{e}_j = (\vb{e}_i \vdot \vb{e}_j) v^i u^j = \delta_{ij}v^i u^j.
+\]
+I can of course write the vectors in a different basis:
+
+\[
+	\vb{v}\vdot \vb{u} = v^i \vb{g}_i \vdot u^j \vb{g}_j = (\vb{g}_i \vdot \vb{g}_j) v^i u^j = g_{ij}v^i u^j.
+\]
+
+\begin{definition}[Metric tensor]
+    The tensor $\tensorq{g}$ such that $\forall \vb{v} = v^i \vb{g}_i, \vb{u}= u^j \vb{g}_j$ it holds:
+    \[
+	    \vb{v} \vdot \vb{u}=g_{ij} v^i u^j, g_{ij}= \vb{g}_i \vdot \vb{g}_j,
+    \]
+    is called the \textbf{metric tensor}.
+\end{definition}
+
+
+\subsubsection{Dual space}
+\label{sec:dual_space}
+
+The (vector) dual space is the space of all linear forms on the underlying vector space. In particular it is a vector space itself, so
+\[
+	\forall \vb{l} \in V^{*}: \vb{l} = l_i \vb{e}^i,
+\]
+where $\vb{e}^i$ is the i-th basis vector. The action of the forms can be described as
+\[
+	\vb{l}(\vb{v}) = l_i \vb{e}^i(v^j \vb{e}_j) = l_i v^j \vb{e}^i(\vb{e}_j), \forall \vb{v} \in V.
+\]
+If it holds $\vb{e^i}(\vb{e}_j) = \delta^i_j$, we call the basis $\vb{e}^i$ dual to $\vb{e}_j$. What about curvilinear setting? We can adopt the same definition
+\begin{definition}
+    We call the basis $\vb{g}^j$ of $V^{*}$ the dual basis to $\vb{g}_i$ iff
+
+\[
+	\vb{g}^j(\vb{g}_i) = \delta^j_i.
+\]
+\end{definition}
+
+For the original basis we had $\vb{g}_i = \pdv{\vb*{\Theta}}{\xi^i} = \pdv{\Theta^j}{\xi^i}\vb{e}_j$, in the dual case (using the chain rule):
+
+\[
+	\vb{g}^i\qty(\vb{g}_j) = \delta^i_j = \pdv{\xi^i}{\xi^j}= \pdv{\xi^i}{\Theta^k}\pdv{\Theta^k}{\xi^j} \vb{e}^k(\vb{e}_k) = \qty(\pdv{\xi^i}{\Theta^k}\vb{e}^k)\qty(\pdv{\Theta^k}{\xi^j}\vb{e}_k) = \qty(\pdv{\xi^i}{\Theta^k}\vb{e}^k)\qty(\vb{g}_j)
+\]
+so i can conclude
+\[
+	\vb{g}^i = \pdv{\xi^i}{\Theta^k}\vb{e}^k.
+\]
+
+Recall that we have the \textit{Riesz representation theorem}:
+\[
+	\forall \vb{l} \in V^{*} \exists ! \vb{u} \in V: \vb{l}(\vb{v}) = \vb{v} \vdot \vb{u}, \forall \vb{v} \in V.
+\]
+
+This implies
+
+\[
+	l_i \vb{g}^i (v^j \vb{g}_j) = v^m u^n g_{mn}, \, \text{\textit{i.e.}}, \, l_i v^j \delta^i_j = u^m v^n g_{mn}, \, \text{\textit{i.e.}}, \, l^i v_i = u^m v^i g_{mi}, \, \text{\textit{i.e.}}, \,l_i = g_{im} u^m.
+\]
+
+So $l_i = g_{im}u^m$, where $\vb{u}$ represents $\vb{l}$. It is common to write
+
+\[
+	l_i = g_{im}l^m.
+\]
+
+\subsubsection{Covector fields}
+\label{sec:covector_fields}
+
+How to compute $\pdv{\vb{l}}{y^i}$? Just change the location of the index :)
+\[
+	\pdv{\vb{l}}{\xi^i} = \pdv{(l_j \vb{g}^j)}{\xi^i} = \pdv{l^j}{\xi^i}\vb{g}^j + \pdv{\vb{g}^j}{\xi^i}l_j.
+\]
+Again, the last term must be expressable in the dual basis, so 
+
+\begin{equation}
+	\pdv{\vb{l}}{\xi^i}= \pdv{l_j}{\xi^i}\vb{g}^j+ \tilde{\Gamma}\indices{^j_{im}} l_j \vb{g}^m,
+\end{equation}
+
+
+where again $\tilde{\Gamma}\indices{^j_{im}} = \tilde{\Gamma}\indices{^j_{mi}}$ are the coefficients of the linear combinations, "that are symmetric".
+
+What is the relation between $\Gamma \indices{^k_{im}}$ and $\tilde{\Gamma}\indices{^k_{im}}$? Recall $\delta^i_j = \vb{g}^i(\vb{g}_j)$, so differentiating can lead us to
+
+\begin{equation}
+	\label{eq:relationGammas}
+    \Gamma^j_{im} = - \Gamma^j_{im}.
+\end{equation}
+
+\begin{definition}
+    Let $\vb{l}$ be a covector field. The quantity
+    \begin{equation}
+	    \nabla_i l_j = \partial_{i}l_j - \Gamma \indices{^k_{ij}}l_k
+    \end{equation}
+    is called \textbf{the covariant derivative of the components covector field} $\vb{l}$. We have shown
+    \[
+	    \partial_{i}\vb{l} = \nabla_i l_j \vb{g}^j.
+    \]
+\end{definition}
+
+Finally, for the tensor field of type $(0,2)$, \textit{i.e.}, for bilinear forms, one can obtain
+\begin{align*}
+	\pdv{\tensorq{A}}{\xi^i} &= \pdv{\xi^i}\qty(A_{mn} \vb{g}^m \otimes \vb{g}^n) = \pdv{A_{mn}}{\xi^i}\vb{g}^m \otimes \vb{g}^n + A_{mn}\pdv{\vb{g}^m}{\xi^i} \otimes \vb{g}^n + A_{mn}\vb{g}^m \otimes \pdv{\vb{g}^n}{\xi^i}=\\
+				 &=\pdv{A_{mn}}{\xi^i}\vb{g}^m \otimes \vb{g}^n - A_{mn} \Gamma \indices{^m_{ik}}\vb{g}^k \otimes \vb{g}^n - A_{mn}\vb{g}^m \otimes \Gamma \indices{^n_{ik}} \vb{g}^k = \\
+				 &= \pdv{A_{mn}}{\xi^i}\vb{g}^m \otimes \vb{g}^n - \Gamma \indices{^m_{ik}} A_{mn} \vb{g}^k \otimes \vb{g}^n - \Gamma \indices{^n_{ik}}	A_{mn}\vb{g}^m \otimes \vb{g}^k = \\
+				 &= \pdv{A_{mn}}{\xi^i}\vb{g}^m \otimes \vb{g}^n - \Gamma \indices{^l_{im}}A_{ln} \vb{g}^m \otimes \vb{g}^n - \Gamma \indices{^l_{in}}A_{ml} \vb{g}^m \otimes \vb{g}^n = \\
+				 &= \qty(\pdv{A_{mn}}{\xi^i} -\Gamma \indices{^l_{im}}A_{ln} - \Gamma \indices{^l_{in}}A_{ml})\vb{g}^m \otimes \vb{g}^n,
+\end{align*}
+so if we denote
+\[
+	\nabla_i A_{mn} = \partial_{i}A_{mn} - \Gamma \indices{^l_{im}}A_{ln} - \Gamma \indices{^l_{in}}A_{ml},
+\]
+we can write
+\[
+	\partial_{i}\tensorq{A} = \nabla_i A_{mn} \vb{g}^m \otimes \vb{g}^n.
+\]
+
+\subsubsection{Direct expression of the Christoffel symbols}
+\label{sec:christoffel_expression}
+All our formulas depend on the Christoffel symbols. How to compute them? With the above relation, we can express $\nabla_j g_{mn}$:
+
+\[
+	\nabla_j g_{mn} = \partial_{j} g_{mn} - \Gamma \indices{^k_{jm}}g_{kn} - \Gamma^{k_{jn}} g_{mk}.
+\]
+
+
+Moreover, we can directly differentiate.
+\[
+	\pdv{g_{mn}}{\xi^j}=\pdv{\qty(\vb{g}_m \vdot \vb{g}_n)}{\xi^j} = \pdv{\vb{g}_m}{\xi^j} \vdot \vb{g}_n + \vb{g}_m \pdv{\vb{g}_n}{\xi^j}=\Gamma \indices{^k_{mj}}\vb{g}_k \vdot \vb{g}_n + \vb{g}_m \vdot \Gamma \indices{^k_{nj}}\vb{g}_k = \Gamma \indices{^k_{mj}}g_{kn} + \Gamma \indices{^k_{nj}}g_{mk},
+\]
+but realize that if we rearrange, we exactly obtain the covariant derivative $\nabla_j g_{mn}$ on the LHS. We have shown a remarkable identity
+
+\begin{equation}
+    \nabla_j g_{mn} = 0,
+\end{equation}
+which also implies 
+\begin{equation}
+  \partial_{i} \tensorq{g} = \tensorq{0}.
+\end{equation}
+
+This property is particularly useful, as it allows us to express the Christoffel symbols. Using cyclic permuation, we can write
+
+\begin{align*}
+A=	\pdv{g_{mn}}{\xi^j} &= \Gamma \indices{^k_{mj}}g_{kn} + \Gamma \indices{^k_{nj}}g_{mk}, \\
+B=	\pdv{g_{jm}}{\xi^j} &= \Gamma \indices{^k_{jn}} g_{kn} + \Gamma \indices{^k_{mn}}g_{jk}, \\
+C=	\pdv{g_{nj}}{\xi^n} &= \Gamma \indices{^k_{nm}}g_{kj} + \Gamma \indices{^k_{jm}} g_{nk}.
+\end{align*}
+Taking $A-B-C$ yields
+\[
+	\pdv{g_{mn}}{y^j}-\pdv{g_{jm}}{y^n}-\pdv{g_{nj}}{\xi^m} = -2 \Gamma \indices{^k_{nm}}g_{jk},
+\]
+multiplying by $g^{jl}$ gives
+\[
+	-2 \Gamma \indices{^k_{nm}}\delta^l_k = g^{jl}\qty(\pdv{g_{mn}}{\xi^j}-\pdv{g_{jm}}{\xi^n}-\pdv{g_{nj}}{\xi^m}),
+\]
+from which it follows
+\begin{equation}
+	\label{eq:christoffel}
+	\Gamma \indices{^l_{nj}} = \frac{1}{2}g^{lm}\qty(\pdv{g_{mn}}{\xi^j}+\pdv{g_{jm}}{\xi^n}-\pdv{g_{nj}}{\xi^m}).
+\end{equation}
+
+
+\subsubsection{Interchangability of the derivatives}
+\label{sec:interchangability}
+In euclidian space:
+\[
+	\pdv[2]{\vb{v}}{x^j}{x^i} = \pdv[2]{\qty(v^k \vb{e}_k)}{x^j}{x^i}= \qty(\pdv[2]{v^k}{x^j}{x^i}) \vb{e}_k = \qty(\pdv[2]{v^k}{x^i}{x^j})\vb{e}_k = \pdv[2]{\vb{v}}{x^i}{x^j},
+\]
+where $\vb{e}_k$ are the \textit{cartesian basis vectors}. Will it hold even in curvilinear coordinate systems?
+\begin{align*}
+	\pdv[2]{\vb{v}}{\xi^j}{\xi^k} - \pdv[2]{\vb{v}}{\xi^j}{\xi^k} &= \partial_{j} \partial_{k}\vb{v} - \partial_{k} \partial_{j} \vb{v}=  \partial_{j} \qty(\nabla_k v^i)\vb{g}_i - \partial_{k}\qty(\nabla_j v^i)\vb{g}_i = \qty(\nabla_j \nabla_k v^i) \vb{g}_i - \qty(\nabla_k \nabla_j v^i)\vb{g}_i =\\
+								    &= \qty(\pdv{\Gamma \indices{^i_{jm}}}{\xi^k} - \pdv{\Gamma \indices{^i_{km}}}{\xi^i} + \Gamma \indices{^i_{lk}} \Gamma \indices{^l_{jm}}- \Gamma \indices{^i_{lj}} \Gamma \indices{^l_{km}})v^m \vb{g}_i.
+\end{align*}
+
+We have skipped the calculation, although it it not trivial whatsoever. Let us just state the quantity $\nabla_k v^i$ are coordinates of a tensor field of type $(1,1),$ and the covariant derivative of such coordinates would be
+\[
+	\nabla_j A \indices{_k^i} = \partial_{j}A \indices{_k^i} - \Gamma \indices{^l_{jk}} A \indices{_l^i} + \Gamma \indices{^i_{jl}} A \indices{_k^l},
+\]
+so one would have to manipulate 
+\[
+	\nabla_j \nabla_k v^i = \partial_{j} \nabla_k v^i - \Gamma \indices{^l_{jk}} \nabla_l v^i + \Gamma \indices{^i_{jl}} \nabla_k v^l.
+\]
+
+\begin{definition}[Riemann curvature tensor]
+	The \textit{tensor}\footnote{This truly is a tensor, even though the Christoffel symbols are not.}
+    \begin{equation}
+R \indices{^i_{jkm}}=\pdv{\Gamma \indices{^i_{jm}}}{y^k} - \pdv{\Gamma \indices{^i_{km}}}{y^i} + \Gamma \indices{^i_{lk}} \Gamma \indices{^l_{jm}}- \Gamma \indices{^i_{lj}} \Gamma \indices{^l_{km}},
+    \end{equation}
+    is called the \textbf{Riemann curvature tensor}. We have shown that it holds
+    \[
+	    \nabla_i \nabla_j v^k - \nabla_j \nabla_i v^k = R \indices{^k_{ijl}}v^l.
+    \]
+\end{definition}
+We see that if the Riemann curvature tensor is zero, then effectively we are in the case of a flat euclidian space, as the derivatives commute.
+In other words, in flat euclidian space, the Riemann curvature tensor is always zero. If we flip this, we see that if we have a space with zero Riemann curvature tensor, \textit{we have a chance} that the derivatives commute, i.e. that the structure is euclidian.
+
+\begin{tcolorbox}
+\begin{example}[Interpretation in continuum mechanics]
+	\begin{align*}
+		\vb{x} = \vb*{\Theta}\qty(\vb*{\xi}) \, &\text{vs} \, \vb{x}=\vb*{\chi}\qty(\vb{X}), \\
+		\vb{g}_i = \pdv{\vb{x}}{\xi^i} \, &\text{vs} \, \vb{g}_I = \pdv{\vb*{\chi}}{X^I}, \, \text{i.e.} \, (\vb{g}_M)^i = F \indices{^i_M} = \pdv{\chi^i}{X^M}, \\
+						  &	g_{IJ}=\vb{g}_I \vdot \vb{g}_J = (\transpose{\fgrad} \fgrad)_{IJ}=(\rcg)_{IJ}, \\
+	\end{align*}
+	So
+	\begin{equation}
+		\label{eq:cauchy_metric}
+		\tensorq{g}=\rcg = \transpose{\fgrad}\fgrad = \transpose{\qty(\grad \vb*{\chi})} \vb*{\chi}.
+	\end{equation}
+
+	The way our metric tensor $\tensorq{g}$ is not insignificant, not all positive definite symmetric bilinear forms can be factorized as in our case. In particular, our vectors $\vb{g}_M = \pdv{\vb*{\chi}}{X^M}$ solve the following system of PDE's:
+	\[
+		\pdv{\vb{g}_M}{X^J} = \Gamma \indices{^K_{MJ}}\vb{g}_K.
+	\]
+	It turns out \cite{ciarletIntroductionDifferentialGeometry2005} this system has \textit{an unique solution} if and only if
+	\[
+		\pdv{\vb{g}_m}{X^I}{X^J}  = \pdv{\vb{g}_m}{X^J}{X^I},
+	\]
+	\textit{i.e.}, when the second partial derivatives commute. But we have shown in the previous that this means
+	\begin{equation*}
+		\partial_{JI}\vb{g}_M = \partial_{IJ}\vb{g}_M = \pdv{\qty(\Gamma \indices{^K_{IM}} \vb{g}_K)}{X^J} = \pdv{\qty(\Gamma \indices{^K_{MJ}} \vb{g}_K)}{X^I} ,
+	\end{equation*}
+	this is equivalent to 
+	\[
+		\partial_{JI}\vb{g}_m - \partial_{IJ} \vb{g}_n =0 \Leftrightarrow \dots R \indices{^I_{JKM}} = 0.
+	\]
+\end{example}
+\textbf{So this implies that all physically admissable deformations produce a deformed space with zero Riemann curvature tensor, \textit{i.e.}, a flat space.}
+\end{tcolorbox}
+
+\subsection{Calculus}
+\label{sec:calculus}
+
+\subsubsection{Gradient}
+\label{sec:gradient}
+
+For a scalar function, we set
+\[
+	\qty(\grad \varphi)_i = \pdv{\varphi}{x^i},
+\]
+so the summation convention forces us to write
+\[
+	\grad \varphi = \pdv{\varphi}{x^i} \vb{e}^i,
+\]
+meaning the gradient is in fact a covector. This causes a lot of misconseption. In fact, the functions $\pdv{\varphi}{x^i}$ are coordinates of the differential covector
+\[
+	\textbf{d}\varphi = \pdv{\varphi}{x^i}\vb{e}^i = \pdv{\varphi}{x^i}\textbf{d}{x}^i,
+\]
+but in physics, it is common to put the coordinates of a \textit{covector} into a \textit{vector}, and so $\grad \varphi$ is born.
+
+Expressed in curvilinear coordinates
+\[
+	\grad \varphi = \pdv{\varphi}{x^i}\vb{e}^i = \pdv{\varphi}{\xi^j}\underbrace{\pdv{\xi^j}{x^i}\vb{e}^i}_{=\vb{g}^j} = \pdv{\varphi}{\xi^j}\vb{g}^j.
+\]
+Realize that for a scalar field, it holds\footnote{We can formally suppose $\varphi$ is a vector field with all components being $\varphi$, then $\nabla_j \varphi = \partial_{j} \varphi + \Gamma \indices{^k_{jl}}\varphi^l$, but $\Gamma \indices{^k_{jl}} \varphi^l = \varphi \Gamma \indices{^k_{jk}}=0.$} $\partial_{j} = \nabla_j,$ so in fact
+\[
+	\grad \varphi = \nabla_j f \vb{g}^j.
+\]
+
+What about the gradient of a vector field? In the cartesian coordinate system:
+\[
+	\grad \vb{v} = \grad(v^i \vb{e}_i) = \pdv{v^i}{x^j}\vb{e}_i \otimes \vb{e}^j,
+\]
+and in curvilinear coordinates:
+\begin{align*}
+	\grad(v^i \vb{g}_i)& = \grad \qty(v^i \pdv{\Theta^m}{\xi^i}\vb{e}_m) = \pdv{\Theta^j}\qty(v^i \pdv{\Theta^m}{\xi^i})\vb{e}_m \otimes \vb{e}^j = \qty(\pdv{v^i}{\Theta^j} \pdv{\Theta^m}{\xi^i}+v^i \pdv[2]{\Theta^m}{\Theta^j}{\xi^i})\vb{e}_m \otimes \vb{e}^j = \\
+			   & = \qty(\pdv{v^i}{\xi^n}\pdv{\xi^n}{\Theta^j}\pdv{\Theta^m}{\xi^i}+v^i \pdv[2]{\Theta^m}{\Theta^j}{\xi^i})\vb{e}_m \otimes \vb{e}^j = \pdv{v^i}{\xi^n} \qty(\pdv{\Theta^m}{\xi^u}\vb{e}_m)\otimes \qty(\pdv{\xi^n}{\Theta^j}\vb{e}^j)+v^i \pdv{\xi^l}\qty(\pdv{\Theta^m}{\xi^i})\pdv{\xi^l}{\Theta^j}\vb{e}_m \otimes \vb{e}^j = \\
+			   & = \pdv{v^i}{\xi^n} \qty(\pdv{\Theta^m}{\xi^i}\vb{e}_m)\otimes \qty(\pdv{\xi^n}{\Theta^j}\vb{e}^j)+ v^i \pdv{\xi^l}\qty(\pdv{\Theta^m}{\xi^i}\vb{e}_m)\otimes \qty(\pdv{\xi^l}{\Theta^j}\vb{e}^j) = \pdv{v^i}{\xi^n}\vb{g}_i \otimes \vb{g}^n+ v^i \pdv{\vb{g}^i}{\xi^l} \otimes \vb{g}^l = \\
+			   &= \pdv{v^i}{\xi^n}\vb{g}_i \otimes \vb{g}^n + v^i \Gamma \indices{^s_{il}}\vb{g}_s \otimes \vb{g}^l = \qty(\pdv{v^s}{\xi^l}+\Gamma \indices{^s_{il}}v^i)\vb{g}_s \otimes \vb{g}^l = \\
+			    & = \nabla_l v^s \vb{g}_s \otimes \vb{g}^l,
+\end{align*}
+and so
+\[
+	\grad \vb{v} = \nabla_i v^j \vb{g}_j \otimes \vb{g}^i.
+\]
+
+Until now, we have not discussed the fact $|\vb{g}_i| \neq 1,$ which is a kind of a problem. Let us define
+\[
+	\vb{v}=v^i \vb{g}_i = v^i |\vb{g}_i| \frac{\vb{g}_i}{|\vb{g}_i|} = v^{\hat{i}} \vb{g}_{\hat{i}},
+\]
+where we have defined
+\[
+	v^{\hat{i}} = |\vb{g}^i| v^i, \vb{g}_{\hat{i}} = \frac{\vb{g}_i}{|\vb{g}_i|}.
+\]
+But! the differential formulas work for $v^i, \vb{g}_i$, \textbf{not for} $v^{\hat{i}}, \vb{g}_{\hat{i}}$! We have to be careful
+\begin{align}
+	\grad \varphi &= \nabla_j \varphi \vb{g}^j = |\vb{g}^i|\nabla_j \varphi \vb{g}^{\hat{i}},\\
+	\grad \vb{v} &= \nabla_i v^j \vb{g}_j \otimes \vb{g}^i = \abs{\vb{g}_j} \abs{\vb{g}^i} \nabla_i v^j \vb{g}_{\hat{j}} \otimes \vb{g}^{\hat{i}}.
+\end{align}
+
+For the divergence of a vector field, we know: $\divergence{\vb{v}} = \trace\qty(\grad \vb{v}),$ so 
+\[
+	\divergence{\vb{v}} = \tr\qty(\grad \vb{v}) = \tr\qty(\nabla_i v^j \vb{g}_j \otimes \vb{g}^i) = \nabla_j v^j.
+\]
+The divergence of a tensor field a can be tricky, but be guided by the summation convention; for the tensor of type $(2,0)$ (a bivector)
+\[
+	\tensorq{A} = A^{ij}\vb{g}_i \otimes \vb{g}_j
+\]
+we can define
+\[
+	\divergence{\tensorq{A}} = \nabla_j A^{ij} \vb{g}_i.
+\]
+\textit{For the tensors of a different type, we need to change the position of the indices to obtain a bivector.} Notice that the result is a vector, not a bivector.
+
+\subsubsection{Laplace-Beltrami operator}
+\label{sec:laplace_beltrami}
+
+\[
+	\laplace \varphi = \frac{1}{\sqrt{\det \tensorq{g}}}\pdv{\xi^i}\qty(\sqrt{\det \tensorq{g}} g^{ij} \pdv{\varphi}{\xi^j}),
+\]
+
+on one hand:
+\begin{equation*}
+	\laplace \varphi = \divergence{\grad \varphi}= \nabla_i \qty(\grad \varphi)^i = \nabla_i \qty(g^{ij}\pdv{\varphi}{\xi^j}) = \nabla_i g^{ij}\partial_{j}\varphi,
+\end{equation*}
+where we have rised the index
+\[
+	\qty(\grad \varphi)^i = g^{ij}\qty(\grad \varphi)_j = g^{ij} \pdv{\varphi}{\xi^j},
+\]
+so using the covariant derivative definition
+\[
+	\divergence{\grad \varphi} = \pdv{\xi^i}\qty(g^{ij}\pdv{\varphi}{\xi^j})+ \Gamma \indices{^i_{il}} g^{lj} \pdv{\varphi}{\xi^j},
+\]
+on the other
+
+\begin{align*}
+\laplace \varphi &= \frac{1}{\sqrt{\det \tensorq{g}}}\qty(\pdv{\xi^i}\qty(\sqrt{\det \tensorq{g}})g^{ij}\pdv{\varphi}{\xi^j}+ \sqrt{\det \tensorq{g}} \pdv{g^{ij}}{\xi^i}\pdv{\varphi}{\xi^j}+ \sqrt{\det \tensorq{g}} g^{ij} \pdv[2]{\varphi}{\xi^i}{\xi^j}) = \\
+			 &= \frac{1}{\sqrt{\det \tensorq{g}}} \qty(\frac{1}{2\sqrt{\det \tensorq{g}}}\pdv{\xi^i} \qty(\det \tensorq{g})g^{ij}\pdv{\varphi}{\xi^j}+\sqrt{\det \tensorq{g}}\pdv{g^{ij}}{\xi^i}+ \sqrt{\det \tensorq{g}} g^{ij}\pdv[2]{\varphi}{\xi^i}{\xi^j}) = \\
+			 & = \frac{1}{\sqrt{\det \tensorq{g}}}\qty(\frac{1}{2}\tr\qty(\inverse{\tensorq{g}} \pdv{\tensorq{g}}{\xi^i})g^{ij}\pdv{\varphi}{\xi^j}-\sqrt{\det \tensorq{g}} \qty(\Gamma \indices{^j_{kn}}g^{in}- \Gamma \indices{^i_{km}}g^{mj})+ \sqrt{\det \tensorq{g}}g^{ij}\pdv[2]{\varphi}{\xi^i}{\xi^j}) = \\
+			 & = \frac{1}{\sqrt{\det \tensorq{g}}}\qty(\frac{1}{2}\qty(g^{mn} \pdv{g_{mn}}{\xi^i})g^{ij}\pdv{\varphi}{\xi^j}-)
+\end{align*}
+
+\subsubsection{Bipolar coordinates}
+\label{sec:bipolar_coordinates}
+
+Define $\vb*{\xi} = [\alpha,\beta],$ where
+\[
+	\alpha+i \beta = \log \frac{y+i(x+a)}{y+i(x-a)}.
+\]
+This can be inversed and write
+\begin{align*}
+	x&=\frac{a \sinh \alpha}{\cosh \alpha - \cos \beta},\\
+	y&= \frac{a \sin \beta}{\cosh \alpha -\cos \beta},
+\end{align*}
+moreover,
+
+\begin{align*}
+	(x-a \coth \alpha)^{2}+y^{2} &= \frac{a^{2}}{\sinh^{2}\alpha}, \\
+	x^{2}+(y-a \cot \beta)^{2} &= \frac{a^2}{\sin^{2}\beta}.
+\end{align*}
+
+Calculate \textit{everything} for this coordinate system.
+
+In general $\vb{g}_i=\pdv{x^j}{\xi^i}\vb{e}_j,$ so in our case
+\begin{align*}
+	\vb{g}_{\alpha}&=\pdv{x}{\alpha}\vb{e}_x+\pdv{y}{\alpha}\vb{e}_y\\
+		       &=\qty(\frac{(a \cosh \alpha)(\cosh \alpha-\cos \beta)-a \sinh \alpha\sinh \alpha}{\qty(\cosh \alpha - \cos \beta)^{2}})\vb{e}_x+\qty(\frac{a \cos \beta(\cosh \alpha-\cos \beta)-a \sin \beta \sinh \alpha}{\qty(\cosh \alpha - \cos \beta)^{2}})\vb{e}_y = \\
+		       & = \frac{a}{\qty(\cosh \alpha - \cos \beta)^{2}}\qty((1-\cosh \alpha \cos \beta)\vb{e}_x-(\sin \beta \sinh \alpha) \vb{e}_y),\\
+	\vb{g}_{\beta}& = \pdv{x}{\beta}\vb{e}_x+\pdv{y}{\beta}\vb{e}_y\\
+		      &= \dots =\\
+		      &= \frac{a}{\qty(\cosh \alpha-\cos \beta)^{2}}\qty(-\qty(\sin \beta \sinh \alpha)\vb{e}_x + \qty(-1+\cosh \alpha \cos \beta)\vb{e}_y).
+\end{align*}
+We can see that $\vb{g}_{\alpha} \vdot \vb{g}_{\beta}=0$ and so
+\[
+	\tensorq{g}=\qty(\frac{a}{\cosh \alpha - \cos \beta})^{2}\identity, \inverse{\tensorq{g}} = \qty(\frac{\cosh \alpha-\cos \beta}{a})^{2} \identity.
+\]
+
+Coming back to Laplace-Beltrami operator, we can calculate
+\[
+	\qty(\sqrt{\det \tensorq{g}}\inverse{\tensorq{g}})=\qty(\frac{a}{\cosh \alpha-\cos \beta})^{2} \qty(\frac{\cosh \alpha-\cos \beta}{\alpha})^{2} \identity = \dots = \identity,
+\]
+and calculating a bit more yields
+\[
+	\laplace \varphi \to \qty(\frac{\cosh \alpha-\cos \beta}{a})^{2} \laplace_{\alpha \beta}\varphi.
+\]
+\begin{remark}[Relation to complex analysis]
+    This can be seen as a conformal transformation
+    \[
+	    \gamma = f(z),
+    \]
+    where
+    \begin{align*}
+	    \gamma &= \alpha + i \beta, \\
+	    z &= x+iy,
+    \end{align*}
+
+Let us write
+\[
+	f(z) = f^x(x,y) +i f^y(x,y) \Leftrightarrow \vb{f}(\vb{x})=[f^x\qty(\vb{x}),f^y\qty(\vb{x})], z = x+iy,
+\]
+and compute
+\[
+	\pdv{\vb{f}}{\vb{x}} = \begin{bmatrix}
+		\pdv{f^x}{x} & \pdv{f^x}{y}\\
+		\pdv{f^y}{x} & \pdv{f^y}{y}
+	\end{bmatrix}.
+\]
+Recall Cauchy-Riemmann conditions:
+\begin{align*}
+	\pdv{f^x}{x}&=\pdv{f^y}{y}, \\
+	\pdv{f^x}{y}&=-\pdv{f^y}{x},
+\end{align*}
+using which the gradient becomes:
+\[
+	\pdv{\vb{f}}{\vb{x}} = \begin{bmatrix}
+		\pdv{f^x}{x} & \pdv{f^x}{y}\\
+		-\pdv{f^x}{y} & \pdv{f^y}{y}
+	\end{bmatrix},
+\]
+which is an \textbf{orthogonal matrix:}
+\[
+	\qty(\pdv{\vb{f}}{\vb{x}}) \transpose{\qty(\pdv{\vb{f}}{\vb{x}})} = \qty(\qty(\pdv{f^x}{x})^{2}+\qty(\pdv{f^y}{y})^{2})\identity.
+\]
+Realize that all this structure comes just from the fact that the transformation is given through a holomorfic function.
+\end{remark}
+
+\subsubsection{Compatibility conditions in linearised elasticity}
+\label{sec:compt_cond}
+
+\[
+	R \indices{^i_{jkm}}= \pdv{\Gamma \indices{^i_{jm}}}{\xi^k}-\pdv{\Gamma \indices{^i_{km}}}{\xi^j}+\Gamma \indices{^i_{lk}}\Gamma \indices{^l_{jm}}-\Gamma \indices{^i_{lj}}\Gamma \indices{^l_{km}},
+\]
+and we know
+\[
+	R \indices{^i_{jkm}} = 0 \Leftrightarrow \rcg = \transpose{\fgrad} \fgrad, \fgrad = \pdv{\vb*{\chi}}{\vb{X}}.
+\]
+All this works in fully \textit{nonlinear setting!}. In the classical lecture, we have been able to obtain compatibility condition in \textit{linearised elasticity}: $\curl{\bbespilon} = \tensorq{0}, \bbespilon=\frac{1}{2}\qty(\grad \vb{u}+\transpose{\qty(\grad \vb{u})}).$
+
+Consider the following setting:
+\begin{align*}
+	\vb{x}&=\vb*{\chi}\qty(\vb{X}),\\
+	\vb{u}&= \vb{\chi}\qty(\vb{X})-\vb{X},\\
+	\grad \vb{u} &= \fgrad - \identity, \\
+	\fgrad &= \identity + \grad \vb{u},\\
+\end{align*}
+then
+\[
+	\rcg = \transpose{\fgrad}\fgrad=\qty(\identity+\transpose{\qty(\grad \vb{u})})\qty(\identity+\grad \vb{u}) = \identity + 2 \bbespilon + \, \text{h.o.t.} \,,
+\]
+and so
+\[
+	\inverse{\tensorq{g}} = \identity - 2 \bbespilon.
+\]
+
+The Christoffel symbols are
+
+\begin{align*}
+	\Gamma \indices{^l_{nj}}&= \frac{1}{2}g^{lm}\qty(\pdv{g_{mn}}{X^j}+\pdv{g_{jm}}{X^n}-\pdv{g_{nj}}{X^m}) \\
+				&\approx \frac{1}{2}\qty(\identity-2 \bbespilon)^{lm}\qty(\pdv{X^j}\qty(\identity+2 \bbespilon)_{mn}+\pdv{X^n}\qty(\identity+2 \bbespilon)_{jm}-\pdv{X^m}\qty(\identity+2 \bbespilon)_{nj}), \\
+				&\approx \delta^{lm}\qty(\pdv{\varepsilon_{mn}}{X^j}+\pdv{\varepsilon_{jm}}{X^n}-\pdv{\varepsilon_{nj}}{X^m}) = \pdv{\varepsilon_{n}^l}{X^j}+\pdv{\varepsilon_{j}^l}{X^n}-\pdv{\varepsilon_{nj}}{X^m},
+\end{align*}
+
+the Riemann curvature tensor is (linear approximation)
+
+\begin{align*}
+0 = R \indices{^i_{jkm}}& \approx \pdv{\Gamma \indices{^i_{jm}}}{X^k}-\pdv{\Gamma \indices{^i_{km}}}{X^j}\\
+			& = \pdv{X^k}\qty(\pdv{\varepsilon^i_j}{X^m}+\pdv{\varepsilon^i_m}{X^j}-\pdv{\varepsilon_{mj}}{X^i})-\pdv{X^j}\qty(\pdv{\varepsilon^i_k}{X^m}+\pdv{\varepsilon^i_m}{X^k}-\pdv{\varepsilon_{km}}{X^i}) =\\
+			 =& \pdv[2]{\varepsilon_{ij}}{X^k}{X^m}-\pdv[2]{\varepsilon_{mj}}{X^k}{X^i}-\pdv[2]{\varepsilon_{ik}}{X^j}{X^m}+\pdv[2]{\varepsilon_{km}}{X^j}{X^i},
+\end{align*}
+so the compatibility conditions are
+\[
+	\pdv[2]{\varepsilon_{ij}}{X^k}{X^m}-\pdv[2]{\varepsilon_{mj}}{X^k}{X^i}-\pdv[2]{\varepsilon_{ik}}{X^j}{X^m}+\pdv[2]{\varepsilon_{km}}{X^j}{X^i} = 0.
+\]
+
+\subsection{Surface geometry}
+\label{sec:surface_geometry}
+
+In this part, we will work with surfaces embedded in $\R^3$.
+
+Let $G = \{\vb{u}\} \subset \R^2 $ be the parametrization space and $\vb*{\Phi}:G \subset \R^2 \to \R^3$ is the parametrization, so the points of the surface are
+\[
+	\vb{x}=\vb*{\Phi}\qty(\vb{u}), \vb{x} \in \R^3.
+\]
+
+\begin{definition}
+	The indices $i,j,k, \dots \in \{1,2,3\}$ will denote objects from $\R^3$ and indices $\alpha, \beta, \gamma, \dots \in \{1,2\}$ will denote indices of objects from $\R^2$.
+\end{definition}
+
+\subsubsection{Tangent and normal vectors}
+\label{sec:tangent_normal_vectors}
+As in the previous story, we can define (basis) tangent vectors:
+\[
+	\vb{t}_1 = \pdv{\vb*{\Phi}}{u^1} = \partial_{1} \vb*{\Phi}, \vb{t}_2 = \pdv{\vb*{\Phi}}{u^2} = \partial_{2} \vb*{\Phi},
+\]
+and on surfaces, of importance is also the normal vector
+\[
+	\vb{n}=\frac{\vb{t}_1 \cross \vb{t}_2}{\abs{\vb{t}_1 \cross \vb{t}_2}}.
+\]
+
+\subsubsection{Distances and angles}
+\label{sec:distances_angles}
+
+The metric tensor on the surface is given by
+\[
+	\tensorq{g}_s = \begin{bmatrix} \vb{t}_1 \vdot \vb{t}_1 & \vb{t}_1 \vdot \vb{t}_2 \\ \vb{t}_1 \vdot \vb{t}_2 & \vb{t}_2 \vdot \vb{t}_2 \end{bmatrix},
+\]
+or in context of differential geometry, this object is called \textbf{the first fundamental form}.
+
+\subsubsection{Derivatives}
+\label{sec:derivatives_on_surfaces}
+In $\R^3$, we know how to differentiate tangent vectors (using Christoffel symbols). Can this be helpful to us?
+Looking at our surface from $\R^{3},$ we see the (local) orthogonal basis on it is formed by $\vb{t}_1, \vb{t}_2, \vb{n},$ so thhe metric tensor in $\R^3$ is given by 
+
+\[
+	\tensorq{g} = 
+	\begin{bmatrix}
+		\tensorq{g}_s & 0 \\
+		0 & 1 
+	\end{bmatrix}.
+\]
+In $\R^{3},$ we have no problem writing the derivatives of the tangent vectors
+\[
+	\partial_{\alpha} \vb{t}_{\beta} = \Gamma \indices{^\gamma_{\alpha \beta}} \vb{t}_{\gamma}+b_{\alpha \beta} \vb{n},
+\]
+where we have just denoted $b_{\alpha \beta} = \Gamma \indices{^3 _{\alpha \beta}}.$
+
+What about the derivative of the normal vector? From the length of $\vb{n}$ we know
+\[
+	\vb{n}\vdot \vb{n} = 1 \Rightarrow \partial_{\alpha} \vb{n}\vdot \vb{n} = 0,
+\]
+so that means the derivative is perpendicular to the normal direction, so
+\[
+	\partial_{\alpha}\vb{n}= A \indices{^\gamma_{\alpha}} \vb{t}_{\gamma}.
+\]
+
+Next trick is to realize
+\[
+	0 = \partial_{\alpha}\qty(\vb{n}\vdot \vb{t}_{\beta}) = \partial_{\alpha}\vb{n} \vdot \vb{t}_{\beta}+ \vb{n}\vdot \partial_{\alpha}\vb{t}_{\beta}= A \indices{^{\gamma}_{\alpha}}\vb{t}_{\gamma} \vdot \vb{t}_{\beta}+ \vb{n}\vdot \qty(\Gamma \indices{^{\delta}_{\alpha \beta}} \vb{t}_{\delta}+b_{\alpha \beta} \vb{n}) = A \indices{^\gamma _{\alpha}} g_{\gamma \beta}+ b_{\alpha \beta},
+\]
+from which it follows
+
+\[
+	A \indices{^{\gamma}_{\alpha}} = -g \indices{^{\gamma \beta}}b_{\beta \alpha}.
+\]
+(those are in fact the components of $\tensorq{g}_s$.)
+
+\subsubsection{Commutation of derivatives}
+\label{sec:com_der}
+
+What are the \textit{implications} of
+\[
+	\partial_{\beta \gamma}\vb{t}_{\alpha} = \partial_{\gamma \beta}\vb{t}_{\alpha}?
+\]
+Write
+\[
+	0 =\partial_{\beta \gamma}\vb{t}_{\alpha} - \partial_{\gamma \beta}\vb{t}_{\alpha} = (\, \text{something} \,) \vb{t}_{\delta}+(\, \text{something different} \,) \vb{n},
+\]
+so we see the whole thing splits into two parts, that are perpendicular to each other; this must however mean that both of them are zero, which can be shown to be equivalent to 
+\begin{theorem}[Gauss relation]
+	\[
+		R \indices{_{\gamma \beta \delta \alpha}} = b_{\alpha \beta}b_{\gamma \delta} - b_{\alpha \delta} b_{\gamma \beta}.
+	\]
+\end{theorem}
+
+\begin{theorem}[Codazzi-Mainardi relation]
+	\[
+		\nabla_{\alpha}b_{\beta \gamma}- \nabla_{\gamma}b_{\beta \alpha}=0
+	\]
+\end{theorem}
+
+\subsubsection{Surfaces evolving in time}
+\label{sec:time_evolving_surfaces}
+
+Now the points of the surface are given by
+\[
+	\vb{x}=\vb*{\Phi}\qty(t,\vb{u}), \, \text{where} \,\vb*{\Phi}: \R \times G \to \R^3.
+\]
+
+We can define the \textbf{velocity of the surface}:
+\begin{equation*}
+	\vb{v}_s = \pdv{\vb*{\Phi}}{t}\qty(t,\vb{u}) = \partial_t \vb*{\Phi}\qty(t, \vb{u}).
+\end{equation*}
+
+The basis of everything has always been Gauss theorem; we will be interested in the quantity of the type
+
+\[
+	\dv{t} \int_{S(t)}\psi\qty(t,\vb{x})\dd{S},
+\]
+where $S(t)$ is a time-dependent surface. Let us try the approach from Reynolds:
+\[
+\dv{t} \int_{S(t)}\psi\qty(t,\vb{x})\dd{S} = \dv{t} \int_{\inverse{\vb*{\Phi}}\qty(t,\vb{x})}\psi(t,\vb*{\Phi}(t,\vb{u})) \sqrt{\det \tensorq{g}_s}\dd{u^1} \dd{u^2} = ,
+\]
+which is now a time-indepdent integral, meaning we can differentiate through. Let us first calculate the derivatives. Start slow:
+
+\begin{align*}
+	\dv{\vb{t}_{\alpha}}{t} &= \pdv{t}\qty(\pdv{\vb{\Phi}}{u^\alpha}\qty(t,\vb{u})) = \pdv{u^{\alpha}}\underbrace{\qty(\pdv{\vb{\Phi}}{t}\qty(t,\vb{u}))}_{= \vb{v}_s(t,\vb{u})} = \pdv{u^{\alpha}}\qty(\vb{v}_{\parallel}+v_{\perp}\vb{n}) = \\
+				&= \pdv{\vb{v}_{\parallel}}{u^{\alpha}}+\pdv{\qty(v_{\perp} \vb{n})}{u^{\alpha}} = \pdv{\qty(v^{\beta}_{\parallel}\vb{t}_{\beta})}{u^{\alpha}}+\pdv{v_{\perp}}{u^{\alpha}}\vb{n}+ v_{\perp} \pdv{\vb{n}}{u^{\alpha}} = \\
+				&=\pdv{v_{\perp}^{\beta}}{u^{\alpha}}\vb{t}_{\beta}+\pdv{\vb{t}_{\beta}}{u^{\alpha}}v^{\beta}_{\parallel}+\pdv{v_{per}}{u^{\alpha}}\vb{n} - v_{\perp} g^{\gamma \beta}b_{\beta \alpha}\vb{t}_{\gamma} = \\
+				& = \pdv{v^{\beta}_{\parallel}}{u^{\alpha}}\vb{t}_{\beta}+v^{\beta}_{\parallel}\Gamma \indices{^{\gamma}_{\alpha \beta}} \vb{t}_{\gamma}+ v_{\parallel}^{\beta}b_{\alpha \beta} \vb{n} + \pdv{v_{\perp}}{u^{\alpha}}\vb{n}- v_{\perp}g^{\gamma \beta}b_{\alpha \beta}\vb{t}_{\gamma} =\\
+				& = v^{\beta}_{\parallel}|_{\alpha} \vb{t}_{\beta}- v_{\perp}g^{\gamma \beta} b_{\alpha \beta}\vb{t}_{\gamma}+\qty(v^{\beta}_{\parallel}b_{\alpha \beta}+ \pdv{v_{\perp}}{u^{\alpha}})\vb{n} = \\
+				& = \qty(v_{\parallel}^{\beta}|_{\alpha}-v_{\perp}g^{\beta \gamma} b_{\alpha \gamma})\vb{t}_{\beta}+ \qty(v_{\parallel}^{\beta}b_{\alpha \beta} + \pdv{v_{\perp}}{u^{\alpha}})\vb{n}.
+\end{align*}
+So all in all
+\[
+	\partial_t\vb{t}_{\alpha}= \qty(\nabla_{\alpha}v_{\parallel}^{\beta}-v_{\perp}g^{\beta \gamma} b_{\alpha \gamma})\vb{t}_{\beta}+ \qty(v_{\parallel}^{\beta}b_{\alpha \beta} + \partial_{\alpha}v_{\perp})\vb{n}.
+\]
+
+Next ingredient is the quantity $\dv{t} \tensorq{g}_s$, so in components:
+\[
+	\partial_t g_{\alpha \beta} = \partial_t\qty(\vb{t}_{\alpha} \vdot \vb{g}_{\beta}) = \dots =\nabla_{\alpha} v_{\parallel}^\delta g_{\delta \beta}+ \nabla_{\beta}v^{\delta}_{\parallel} g_{\delta \alpha}-2v_{\perp}b_{\alpha \beta}.
+\]
+After some further manipulation, the final formula becomes
+
+\begin{equation}
+	\dv{t} \int_{S(t)}\psi(t,\vb{x})\dd{S} = \int_{S(t)}\partial_t \psi\qty(t,\vb{x})+\psi(t,\vb{x})\qty(\divergence{\vb{v}_{\parallel S}} - 2 v_{\perp}\qty(t,\vb{x})K\qty(t,\vb{x}))\dd{S},
+\end{equation}
+where
+\[
+	\qty(\divergence{\vb{v}_{\parallel S}})\qty(t,\vb{x}) - 2 v_{\perp}K \coloneq \eval{\nabla_{\beta}v^{\beta}(t,\vb{u})_{\parallel}-2v_{\perp}(t,\vb{u})K(t,\vb{u})}_{\vb{u}=\inverse{\vb*{\Phi}}\qty(t,\vb{x})},
+\]
+
+and
+
+\[
+	K = \frac{1}{2}g^{\beta \alpha} b_{\alpha \beta}
+\]
+is the mean curvature.
+
+\end{document}

@@ -1,0 +1,457 @@
+% !TEX root = main.tex
+
+\documentclass[../main.tex]{subfiles}
+\begin{document}
+\section{Linearised elasticity}
+\label{sec:linearised_elasticity}
+
+The static setting of the linearised elasticity theory is
+
+\begin{align}
+\label{eq:static_momentum_balance}
+\divergence{\bbtau} + \vb{f} = \vb{0},
+\end{align}
+and for now we will want to solve for the stress, that is
+
+\[
+	\bbtau = \begin{bmatrix}
+		\tau_{xx} & \tau_{xy} & \tau_{xz} \\
+			  & \tau_{yy} & \tau_{yz} \\
+			  & & \tau_{zz}
+	\end{bmatrix},
+\]
+since $\bbtau$ is symmetric. Recall the compatibility conditions
+
+\begin{align}
+  \label{eq:compatibility}
+  \bbtau &= \lambda \qty(\tr \bbespilon)\identity + 2 \mu \bbespilon, \\
+  \bbespilon &= \frac{1}{2}\qty(\grad \vb{u}+ \transpose{\qty(\grad \vb{u})}),\\
+  \curl{\qty(\transpose{\qty(\curl{\bbespilon})})} &= \tensorq{0}, \\
+  \laplace \bbtau+\frac{1}{1+\nu} \grad \grad \tr \bbtau &= -\qty(\grad \vb{f} \transpose{\qty(\grad \vb{f})}) - \frac{\nu}{1-\nu} \qty(\divergence{\vb{f}})\identity
+\end{align}
+
+\subsection{Plane stress/strain problems}
+\label{sec:plane_problems}
+
+In each of the cases, the stress/strain tensors have a \textit{special structure}:
+\begin{equation}
+	\label{eq:plane_structure}
+	\bbtau\qty(x,y)=\begin{bmatrix}
+		\tau_{xx}\qty(x,y) & \tau_{xy}\qty(x,y) & 0\\
+		\tau_{xy}\qty(x,y) & \tau_{yy}\qty(x,y) & 0\\
+		0 & 0 & 0
+	\end{bmatrix},
+\end{equation}
+and the same for the strain tensor. Inverting the stress-strain relation yields
+
+\[
+	\bbespilon = \frac{1}{2 \mu}\qty(\bbtau-\frac{\lambda}{3 \lambda+2 \mu}\qty(\tr \bbtau)\identity),
+\]
+but since $I_{zz} = 1$, in general we have
+\[
+	\bbespilon\qty(x,y)=\begin{bmatrix}
+		\varepsilon_{xx}\qty(x,y) & \varepsilon_{xy}\qty(x,y) & 0 \\
+		\varepsilon_{xy}\qty(x,y) & \varepsilon_{yy}\qty(x,y) & 0 \\
+		0 & 0 & \varepsilon_{zz}(x,y)
+	\end{bmatrix},
+\]
+for $\varepsilon_{zz}(x,y) \neq 0$.
+
+\begin{remark}[Notation]
+Note that in the following, operators acting on tensors will always respect the dimensionality of the tensor (so i will write $\tr \bbtau_{2D}$ instead of $\tr_{2D} \bbtau_{2D}.$ And the same for the laplacian, divergence and so on
+\end{remark}
+
+\subsubsection{Plane stress problem}
+\label{sec:plane_stress_problem}
+
+The stress is given as
+\[
+	\bbtau = 2 \mu \bbespilon + \lambda \qty(\tr \bbespilon)\identity,
+\]
+where $\bbtau$ has the structure \ref{eq:plane_structure}. It must hold
+\[
+	0 = \tau_{zz} = 2 \mu \varepsilon_{zz}+\lambda\qty(\varepsilon_{xx}+\varepsilon_{yy}+\varepsilon_{zz}),
+\]
+so 
+\[
+	0 = \lambda\qty(\varepsilon_{xx}+ \varepsilon_{yy})+\qty(2 \mu + \lambda)\varepsilon_{zz},
+\]
+and that yields a condition on $\varepsilon_{zz}$:
+\[
+	\varepsilon_{zz} = -\frac{\lambda}{2 \mu+ \lambda} \tr_{2D}\bbespilon_{2D}.
+\]
+The constitutive relation can than be rewritten as
+\[
+	\bbtau_{2D} = 2 \mu \bbespilon_{2D}+ \lambda \qty(\tr \bbespilon_{2D}+\varepsilon_{zz})\identity_{2D} = 2 \mu\qty(\bbespilon_{2D}+\frac{\lambda}{2 \mu+\lambda}\qty(\tr \bbespilon_{2D})\identity_{2D}).
+\]
+The "2D Beltrami-Michel equations" can be derived from:
+\[
+	\laplace \bbtau+\frac{1}{1+\nu} \grad \grad \tr \bbtau = -\qty(\grad \vb{f} +\transpose{\qty(\grad \vb{f})}) - \frac{\nu}{1-\nu} \qty(\divergence{\vb{f}})\identity,
+\]
+but there is a problem: the $zz$ equation yields: 
+\[
+	0 + \frac{1}{1+\nu}\pdv[2]{z}\qty(\tr \bbtau_{2D} = 0 - \frac{\nu}{1- \nu}\qty(\divergence{\vb{f}_{2D}})),
+\]
+but in our case $\bbtau_{2D}$ is not a function of $z$, so of course we would have
+\[
+	\divergence{\vb{f}_{2D}} = 0,
+\]
+\textit{which is not generally true!} The forces are given to us. Try something different: take the trace of the Beltrami-Michell equation and obtain (after some calculation)
+
+\[
+	\laplace \tr \bbtau = - \frac{1+\nu}{1-\nu} \divergence{\vb{f}},
+\]
+so rewritting in "2D" view:
+
+\[
+	\qty(\laplace_{2D}+\pdv[2]{z})\tr \bbtau_{2D} = -\frac{1+\nu}{1-\nu}\divergence{\vb{f}_{2D}}.
+\]
+That maybe did not help much, because the $z$ derivative is still zero, but here comes the time for some handwaving: what about we use the above equation to replace the troublemaking term? We would obtain
+
+\[
+	\laplace_{2D} \tr \bbtau_{2D} - \nu \frac{1+ \nu}{1- \nu} \divergence{\vb{f}_{2D}} = - \frac{1+\nu}{1- \nu}\qty(\divergence{ \vb{f}_{2D}}),
+\]
+so after some manipulation
+
+\[
+	\laplace \tr \bbtau_{2D} = -\qty(1+\nu)\divergence{\vb{f}_{2D}}.
+\]
+
+In total, the problem is described as
+
+\begin{align}
+  \label{eq:plane_stress_formulation}
+  \vb{0}_{2D} &= \divergence{\bbtau_{2D}} + \vb{f}_{2D},\\
+  \bbtau_{2D} &= 2 \mu\qty(\bbespilon_{2D}+\frac{\lambda}{2 \mu+\lambda}\qty(\tr \bbespilon_{2D})\identity_{2D}) \\
+  \laplace \tr \bbtau_{2D} &= -\qty(1+\nu)\divergence{\vb{f}_{2D}}.
+\end{align}
+
+\subsubsection{Plain strain problem}
+\label{sec:plain_strain_problem}
+This time, the structure of the stress and strain are:
+\[
+	\bbespilon\qty(x,y)=\begin{bmatrix}
+		\varepsilon_{xx}\qty(x,y) & \varepsilon_{xy}\qty(x,y) & 0 \\
+		\varepsilon_{xy}\qty(x,y) & \varepsilon_{yy}\qty(x,y) & 0 \\
+		0 & 0 & 0
+	\end{bmatrix}, 	
+	\bbtau\qty(x,y)=\begin{bmatrix}
+		\tau_{xx}\qty(x,y) & \tau_{xy}\qty(x,y) & 0 \\
+		\tau_{xy}\qty(x,y) & \tau_{yy}\qty(x,y) & 0 \\
+		0 & 0 & \tau_{zz}\qty(x,y)
+	\end{bmatrix}.
+\]
+Using a similiar approach, we can calculate, using $\bbespilon = \frac{1}{2 \mu}\qty(\bbtau-\frac{\lambda}{3 \lambda + 2 \mu}\qty(\tr \bbtau)\identity)$,
+\[
+	\tau_{zz} = \lambda \tr \bbespilon_{2D},
+\]
+so the constituive relation is
+\[
+	\bbespilon_{2D} = \frac{1}{2 \mu}\qty(\bbtau_{2D}- \frac{\lambda}{3 \lambda+ 2 \mu}\qty(\tr \bbtau_{2D}+\tau_{zz})\identity_{2D}) = \frac{1}{2 \mu}\qty(\bbtau_{2D}-\frac{\lambda}{3 \lambda+ 2 \mu}\qty(\tr \bbtau_{2D})\identity_{2D}-\frac{\lambda}{3 \lambda+ 2 \mu}\lambda \qty(\tr \bbespilon_{2D})\identity_{2D}),
+\]
+so taking the trace we can obtain: $\tau_{zz} = \frac{\lambda}{\lambda\qty(\lambda+\mu)} \tr \bbtau_{2D}$ and plugging it into the original equation yields
+
+\[
+	\bbespilon_{2D} = \frac{1}{2 \mu}\qty(\bbtau_{2D}-\frac{\lambda}{2\qty(\lambda+\mu)}\qty(\tr \bbtau_{2D})\identity_{2D}).
+\]
+As for the Beltami-Michell equations, taking the trace gives us again
+\[
+	\laplace \tr \bbtau = - \frac{1+\nu}{1-\nu}\divergence{\vb{f}},
+\]
+and in \textit{plain strain}, we are able to simply do
+
+\[
+	\laplace \tr \bbtau_{2D} = - \frac{1}{1-\nu}\divergence{\vb{f}_{2D}},
+\]
+without any magic. In total, the equations we are solving are
+
+\begin{align}
+  \label{eq:plain_strain_formulation}
+  \vb{0}_{2D} &= \divergence{\bbtau_{2D}}+ \vb{f}, \\
+  \bbespilon_{2D} &= \frac{1}{2 \mu}\qty(\bbtau_{2D}-\frac{\lambda}{2\qty(\lambda+\mu)}\qty(\tr \bbtau_{2D})\identity_{2D}),\\
+  \laplace \tr \bbtau_{2D} &= - \frac{1}{1-\nu}\divergence{\vb{f}_{2D}}.
+\end{align}
+
+\subsection{Airy stress function}
+\label{sec:airy_stress_function}
+
+Let us assume that the force is given as
+\[
+	\vb{f}_{2D} = - \grad \varphi,
+\]
+i.e. the force is conservative. Moreover, let us use the following ansatz:
+\[
+	\bbtau_{2D}= \begin{bmatrix}
+		\pdv[2]{\Phi}{y} + \varphi & \pdv[2]{\Phi}{x}{y} \\
+		\pdv[2]{\Phi}{x}{y} & \pdv[2]{\Phi}{x} + \varphi
+	\end{bmatrix},
+\]
+for some function $\Phi\qty(x,y)$ called the \textit{Airy stress function}. Why that would be useful? Calculate the divergence of the stress:
+\[
+	\divergence{\bbtau_{2D}} = \begin{bmatrix}
+		\pdv{x}\qty(\pdv[2]{\Phi}{y}+\varphi) - \pdv{y}\qty(\pdv[2]{\Phi}{x}{y}) \\
+		-\pdv{x}\qty(\pdv[2]{\Phi}{x}{y}) + \pdv{y}\qty(\pdv[2]{\Phi}{x}+\varphi)
+	\end{bmatrix}
+	= \grad \varphi,
+\]
+so identically we have
+\[
+	\vb{0}_{2D} = \divergence{\bbtau_{2D}} - \grad \varphi,
+\]
+and one of our equations is solved. What about the remaining ones? Beltrami-Michell:
+\[
+	\laplace \tr \bbtau_{2D} = \laplace\qty(\laplace \Phi+2 \varphi) = \laplace \laplace \Phi + \laplace \varphi.
+\]
+
+Using this in plain strain case:
+
+\[
+	\laplace \laplace \Phi + \frac{1-2 \nu}{1-\nu}\laplace \varphi = 0,
+\]
+and in plain stress case:
+
+\[
+	\laplace \laplace \Phi + \qty(1- \nu)\laplace \varphi = 0.
+\]
+
+\subsection{Biharmonic equation in $\R^2$}
+\label{sec:biharmonic}
+We have seen the previous problems have been in fact described by the biharmonic equation for the Airy stress function. Let us deal with it for a bit.
+
+Let $\Phi\qty(x,y)$ be the Airy stress function. In the previous, we have come up to the problem of solving
+\[
+	\begin{cases}\laplace \laplace \Phi = 0, \, &\text{in} \, \Omega \subset \R^2,\\
+	\, \text{some boundary conditions} \,, &\, \text{on} \, \partial  \Omega.\end{cases}
+\]
+We are in $\R^2$, so we immedietaly use complex analysis: $z = x+iy, x = \frac{z+\overline{z}}{2}, y = \frac{z-\overline{z}}{2i},$ and for a function $f: \R^2 \to \R$ we make the following identification
+\[
+	f(x,y) \Leftrightarrow f(z,\overline{z}),
+\]
+and the derivatives are
+\[
+	\pdv{f}{x}\qty(x,y) = \pdv{f}{z}\qty(z,\overline{z})\pdv{z}{x}+\pdv{f}{z}\qty(z,\overline{z})\pdv{\overline{z}}{x} = \pdv{f}{z}\qty(z,\overline{z})+\pdv{f}{z}\qty(z,\overline{z}),
+\]
+\[
+	\pdv{f}{y}\qty(x,y) = i\qty(\pdv{f}{z}\qty(z,\overline{z})-\pdv{f}{\overline{z}}\qty(z,\overline{z})),
+\]
+from which it follows
+\begin{align*}
+	\pdv{f}{z}\qty(z,\overline{z}) &= \frac{1}{2}\qty(\pdv{f}{x}\qty(x,y)-i \pdv{f}{y}\qty(x,y)), \\
+	\pdv{f}{\overline{z}}\qty(z,\overline{z}) &= \frac{1}{2}\qty(\pdv{f}{x}\qty(x,y)+i \pdv{f}{y}\qty(x,y)).
+\end{align*}
+
+If we now take a look at the laplacian of a function $f(x,y)$, we can formally manipulate:
+\[
+	\laplace f\qty(x,y) = \qty(\pdv[2]{x}+\pdv[2]{y})f\qty(x,y) = \qty(\pdv{x}+i\pdv{y})\qty(\pdv{x}-i\pdv{y})f\qty(x,y) = 4 \pdv[2]{f\qty(z,\overline{z})}{\overline{z}}{z},
+\]
+so in total
+\[
+	\laplace f\qty(x,y) = 4 \pdv[2]{f}{z}{\overline{z}}\qty(z,\overline{z}).
+\]
+Using this, we can rewrite the \textit{Laplace equation} to the form
+\[
+	\pdv[2]{g\qty(z,\overline{z})}{z}{\overline{z}} = 0.
+\]
+Let us solve it. It must be:
+\[
+	\pdv{g\qty(z,\overline{z})}{\overline{z}} = C_1\qty(\overline{z}), g\qty(z,\overline{z}) = \underbrace{\int C_1\qty(\overline{z})\dd{\overline{z}}}_{\coloneq d_1\qty(\overline{z})} + d_2\qty(z)
+\]
+so
+\[
+	g\qty(z,\overline{z}) = d_1(\overline{z}) + d_2\qty(z).
+\]
+Now for the biharmonic equation, we need to solve
+\[
+	\pdv[2]{\Phi}{z}{\overline{z}} = d_1\qty(\overline{z})+d_2\qty(z),
+\]
+so that gives $\pdv{\Phi}{\overline{z}} = z d_1\qty(\overline{z})+D_2(z) + e_1(\overline{z}),$ and
+\[
+	\Phi\qty(z,\overline{z}) = z D_1\qty(\overline{z})+\overline{z}D_2(z) + E_1(\overline{z}) + E_2\qty(z).
+\]
+In total, we have been able to derive:
+\[
+	\Phi\qty(x,y) = \eval{\Re\qty(\qty(\overline{z}\gamma(z)+\chi(z)))}_{z=x+iy} = \Re\qty(\overline{\qty(x+iy)}\gamma\qty(x+iy)+\chi\qty(x+iy)).
+\]
+
+\subsection{Problem prototypes}
+\label{sec:problems}
+The problems involving plane-stress/plane-strain can be quite general. Let us discuss two classical examples of those, utlizing our knowledge about the Airy stress function and about the biharmonic equation.
+
+\subsubsection{Bending of a narrow rectangular beam by uniform load}
+\label{sec:beam_uniform}
+Assume we have a narrow rectangular beam of length $L$, height $h$ and width $b$, subjected to the load $q \vb{e}_y$, which is constant in the x-direction. $[q] = \frac{\, \text{N} \,}{\, \text{m} \,}$.
+
+\begin{tikzpicture}
+  % long beam, ex to the right, ey downwards, ez through the monitor, center is in the middle.
+\end{tikzpicture}
+
+Boundary conditions are \textit{essential}: they specify the problem. In our case, the \textbf{front/back face} is traction free:
+\[
+	\pm\bbtau \vb{e}_z = \vb{0}, \, \text{on} \, \{z = \pm \frac{b}{2} \},
+\]
+the \textbf{bottom face} is also stress free:
+\[
+	\bbtau\vb{e}_{y} = \vb{0}, \, \text{on} \, \{y=\frac{h}{2}\},
+\]
+the \textbf{top face} is subjected to the load
+\[
+	\bbtau\vb{e}_y = \frac{-q}{b}\vb{e}_y, \, \text{on} \, \{y=-\frac{h}{2}\}.
+\]
+
+On the lateral faces, we would like \textit{something like}
+\[
+	\pm\bbtau \vb{e}_x = \vb{f}\qty(y,z), \, \text{on} \, \{x=\pm \frac{L}{2}\},
+\]
+however, in our analysis, we are only interested in the fact whether the force can support the beam - but we dont care about the exact distribution of it. Thus, we require the \textit{balance of forces:}
+\begin{equation}
+\label{eq:bal_forces}
+    \int_{-\frac{h}{2}}^{\frac{h}{2}}\int_{-\frac{b}{2}}^{\frac{b}{2}}\vb{f}\qty(y,z)\dd{y}\dd{z} = \frac{qL}{2}\vb{e}_y,
+\end{equation}
+and moreover we require the \textit{balance of torques:}
+
+\begin{equation}
+    \label{eq:bal_torques}
+    \int_{-\frac{h}{2}}^{\frac{h}{2}}\int_{-\frac{b}{2}}^{\frac{b}{2}}\vb{r}\cross\vb{f}\qty(y,z)\dd{y}\dd{z} = \vb{0},
+\end{equation}
+
+So the roadplan is to find the stress $\bbtau$ and check whether \ref{eq:bal_forces} and \ref{eq:bal_torques} are satisfied.
+
+From the symmetry of the load, we assume that
+\[
+	\tau^{zz} = 0,
+\]
+so our problem is essentialy a \textit{plane stress problem}. Let us sum up our analysis (this takes some work)
+
+\begin{align*}
+	t^{xy}\qty(x,y=\frac{h}{2}) &= 0\\
+	t^{yy}\qty(x,y=\frac{h}{2}) &= 0\\
+	t^{xy}\qty(x,y=-\frac{h}{2}) &= 0\\
+	t^{yy}\qty(x,y=-\frac{h}{2}) &= - \frac{q}{b}\\
+	b\int_{-\frac{h}{2}}^{\frac{h}{2}}\tau^{xy}\qty(x=\pm \frac{L}{2},y)\dd{y} &= \mp \frac{qL}{2},\\
+	b\int_{-\frac{h}{2}}^{\frac{h}{2}}\tau^{xx}\qty(x=\pm \frac{L}{2},y)\dd{y} &= 0, \\
+	b\int_{-\frac{h}{2}}^{\frac{h}{2}}y \tau^{xx}\qty(x= \pm \frac{L}{2},y) \dd{y} &=0\footnote{The other equations are identically met from the oddness of the integrand and the properties of the cross product. Also, it is not a bright idea to use footnotes in mathematical equations.} 
+\end{align*}
+Remember, that on the lateral sides, $x$ is fixed, so \textit{the coordinates are y and z}; some manipulation with the cross product and stuff is needed, for example:
+\[
+	\vb{r}\cross \bbtau \vb{e}_x = \pm\qty(z \tau^{xx}\vb{e}_z \cross \vb{e}_x+ z \tau^{xy}\vb{e}_z \cross \vb{e}_y + y \tau^{xx}\vb{e}_{y} \cross \vb{e}_x + y \tau^{xy} \vb{e}_y \cross \vb{e}_y)
+\]
+
+Evidently, the system is complicated enough. We thus make the following assumptions:
+
+\begin{itemize}
+	\item the material of interest is a homogenous isotropc elastic solid
+	\item the beam is massless $\Leftrightarrow$ the predominant force is the external load (not the body force)
+\end{itemize}
+
+From our work on the plain-stress problem, we know the Airy-stress function will be helpful for us. It will be convenient to find $\Phi$ in the form
+\[
+	\Phi = \Phi\qty(x,y) = A y^{3} + b y^5 + C yx^{2}+ D x^{2}y^{3}+Ex^{2},
+\]
+where $A,B,C,D,E$ are some constants fitted so that $\Phi$ solves the homogenous biharmonic equation: 
+\[
+	\laplace \laplace \Phi = 0,
+\]
+(recall that since we have no body forces, $\varphi = 0.$) Once we solve for the stress field, we can obtain the strain field using the constitutive relation and then solve for the displacement (solve a linear PDE) using the definition of the linearised strain tensor; see \ref{sec:plane_stress_problem}.
+
+It can be shown the deflection of the middle point is 
+\[
+	\delta = \frac{5}{384}\frac{qL^4}{EI_{zz}}\qty(1+\frac{12}{5}\frac{h^{2}}{L^{2}}\qty(\frac{4}{5}+\frac{\nu}{2})),
+\]
+where $I_{zz}$ is a component of the inertia tensor:
+\[
+	I_{zz} = \frac{bh^{3}}{12}
+\]
+
+\subsubsection{Elliptic hole in uniformly stressed infinite plane}
+\label{sec:elliptic_hole}
+
+Suppose an infinite plane with a elliptic hole $\Omega$ with the standard paramateres $a,b$. The boundary conditions are
+\begin{align*}
+	\bbtau \vb{n} &= \vb{0}, \, \text{on} \, \partial \Omega,\\
+	\lim_{x^{2}+y^{2}\to \infty}\bbtau\qty(x,y) &= S \identity,
+\end{align*}
+where $S \in \R$ is given. The problem can be reformulated as
+\begin{equation}
+	\laplace \laplace \Phi\qty(x,y) = 0, \bbtau = \begin{bmatrix}
+		\pdv[2]{\Phi}{y} & -\pdv[2]{\Phi}{x}{y} \\
+		- \pdv[2]{\Phi}{x}{y} & \pdv[2]{\Phi}{x}
+	\end{bmatrix},
+\end{equation}
+plus the boundary conditions. The general representation of the solution is $ \Phi = \Re\qty(\overline{z}\psi(z)+\chi(z))$, moreover, we adopt a sensible coordinate system: \textbf{elliptical coordinates}
+\begin{align*}
+	z &= c \cosh \zeta,\\
+	z &= x + i y.
+\end{align*}
+Equivalently
+\begin{align*}
+	x &= c \cosh \xi \cos \eta, \\
+	y &= c \sinh \xi \sin \eta, \\
+	\zeta &= \xi + i \eta.
+\end{align*}
+It follows immedietaly:
+\begin{align*}
+	\qty(\frac{x}{c\cosh \xi})^{2} + \qty(\frac{y}{c\sinh \xi})^{2} &= 1, \\ 
+	\qty(\frac{x}{c\cos \eta})^{2}-\qty(\frac{y}{c \sin \eta})^{2} &= 1,
+\end{align*}
+so the lines $\xi = \, \text{const} \,$ are \textit{ellipses} and the lines $\eta = \, \text{const} \,$ are hyperbolas. This will be useful, as we can represent the boundary of the ellipse $\partial \Omega$ as some coordinate line $\xi = \, \text{const} \,.$
+
+Through some simple calculation, we can show
+\begin{align*}
+	\vb{g}_{\eta} &= \sqrt{J}\qty(-\sin \alpha \vb{e}_1+ + \cos \alpha\vb{e}_2), \\
+	\vb{g}_{\zeta} &= \sqrt{J}\qty(\cos \alpha \vb{e}_1 + \sin \alpha \vb{e}_2),
+\end{align*}
+where $\alpha$ is the angle between the $x$ axis and $\vb{g}_{\xi}\qty(\xi,\eta)$ and
+\[
+	J = c^{2}\qty(\sinh^{2}\zeta \cos^{2}\eta + \cosh^{2}\zeta \sin^{2}\eta).
+\]
+We are interested in the quantity \footnote{That describes the rotation of the coordinate lines, which could mean "the ripping of the ellipse" when pulling}
+\[
+	\exp\qty(i 2 \alpha) = \frac{\sinh \zeta}{\sinh \overline{\zeta}},
+\]
+Formally, for the normalised vectors, we can write something like
+\[
+	\begin{bmatrix}
+		\vb{g}_{\hat{\xi}} \\ \vb{g}_{\hat{\eta}} 
+	\end{bmatrix}
+	= \begin{bmatrix}
+		\cos \alpha & \sin \alpha \\
+		- \sin \alpha & \cos \alpha 
+	\end{bmatrix}
+	\begin{bmatrix}
+		\vb{e}_x \\
+		\vb{e}_y
+	\end{bmatrix} =
+\]
+To solve for the stress, we need to express the stress in the elliptical coordinates: 
+\begin{equation*}
+  \bbtau = \begin{bmatrix}
+	  \tau^{\xi \xi} & \tau^{\xi \eta} \\
+	  \tau^{\xi \eta} & \tau^{\eta \eta}
+  \end{bmatrix} = \tau^{xx}\vb{e}_x \otimes \vb{e}_x + \dots = t^{\hat{\xi}\hat{\xi}}\vb{g}_{\hat{\xi}}\otimes \vb{g}_{\hat{\xi}} + \dots.
+\end{equation*}
+Thats just some similiarity transformation, we are representing the matrix in a different basis. The traces must be preserved:
+
+\[
+	\tau^{xx}+\tau^{yy}=\tau^{\hat{\xi}\hat{\xi}}+\tau^{\hat{\eta}\hat{\eta}}
+\]
+and similiarly, it can be shown
+\[
+	\tau^{\hat{\eta}\hat{\eta}}-\tau^{\hat{\xi}\hat{\xi}}+2i \tau^{\hat{\xi}\hat{\eta}} = \exp\qty(i 2 \alpha)\qty(\tau^{yy}-t^{xx}+2i \tau^{xy}).
+\]
+Combining \textbf{all of this} we obtain for the Airy stress function the following relations 
+\begin{align*}
+	\tau^{xx} + \tau^{yy} &= 4 \Re \dv{\psi}{z},\\
+	\tau^{yy} - \tau^{xx} + 2 i \tau^{xy} &= 2\qty(z \overline{\dv[2]{\psi}{z}} + \overline{\dv[2]{\chi}{z}}).
+\end{align*}
+\textit{Solving this system} (heh) gives 
+\begin{align*}
+	\psi &= \frac{1}{2}S \sinh \zeta, \\
+	\chi & = \frac{1}{2}S c^{2} \zeta \cosh\qty(2 \xi_0) \\
+	t^{\hat{\eta}\hat{\eta}} &= \frac{2 S \sinh \qty(2\xi_0)}{\cosh\qty(2 \xi_0) - \cos \qty(2 \eta)}, \\
+	\max_{\eta \in (0,2 \pi)} \tau^{\hat{\eta}\hat{\eta}} &= 2 S \frac{a}{b}, \\
+	\min_{\eta \in (0,2 \pi)} \tau^{\hat{\eta}\hat{\eta}} &= 2 S \frac{b}{a}.
+\end{align*}
+We see that if $b$ is small (the ellipse is very flat), the maximum explodes; the quantity $2\frac{a}{b}$ is called the stress coefficient factor. Just note that even if the stress at infinity is controlled, the stress at the tips can be enormous.
+
+
+\end{document}

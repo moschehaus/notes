@@ -1,0 +1,46 @@
+\babel@toc {english}{}\relax 
+\contentsline {section}{\numberline {1}Differential geometry, tensor calculus}{3}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Curvilinear coordinates}{3}{subsection.1.1}%
+\contentsline {subsubsection}{\numberline {1.1.1}Basis of a vector space}{3}{subsubsection.1.1.1}%
+\contentsline {subsubsection}{\numberline {1.1.2}Vector fields}{4}{subsubsection.1.1.2}%
+\contentsline {subsubsection}{\numberline {1.1.3}Dot product}{6}{subsubsection.1.1.3}%
+\contentsline {subsubsection}{\numberline {1.1.4}Dual space}{6}{subsubsection.1.1.4}%
+\contentsline {subsubsection}{\numberline {1.1.5}Covector fields}{7}{subsubsection.1.1.5}%
+\contentsline {subsubsection}{\numberline {1.1.6}Direct expression of the Christoffel symbols}{7}{subsubsection.1.1.6}%
+\contentsline {subsubsection}{\numberline {1.1.7}Interchangability of the derivatives}{8}{subsubsection.1.1.7}%
+\contentsline {subsection}{\numberline {1.2}Calculus}{10}{subsection.1.2}%
+\contentsline {subsubsection}{\numberline {1.2.1}Gradient}{10}{subsubsection.1.2.1}%
+\contentsline {subsubsection}{\numberline {1.2.2}Laplace-Beltrami operator}{12}{subsubsection.1.2.2}%
+\contentsline {subsubsection}{\numberline {1.2.3}Bipolar coordinates}{12}{subsubsection.1.2.3}%
+\contentsline {subsubsection}{\numberline {1.2.4}Compatibility conditions in linearised elasticity}{14}{subsubsection.1.2.4}%
+\contentsline {subsection}{\numberline {1.3}Surface geometry}{15}{subsection.1.3}%
+\contentsline {subsubsection}{\numberline {1.3.1}Tangent and normal vectors}{15}{subsubsection.1.3.1}%
+\contentsline {subsubsection}{\numberline {1.3.2}Distances and angles}{15}{subsubsection.1.3.2}%
+\contentsline {subsubsection}{\numberline {1.3.3}Derivatives}{16}{subsubsection.1.3.3}%
+\contentsline {subsubsection}{\numberline {1.3.4}Commutation of derivatives}{16}{subsubsection.1.3.4}%
+\contentsline {subsubsection}{\numberline {1.3.5}Surfaces evolving in time}{17}{subsubsection.1.3.5}%
+\contentsline {section}{\numberline {2}Linearised elasticity}{18}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Plane stress/strain problems}{18}{subsection.2.1}%
+\contentsline {subsubsection}{\numberline {2.1.1}Plane stress problem}{19}{subsubsection.2.1.1}%
+\contentsline {subsubsection}{\numberline {2.1.2}Plain strain problem}{20}{subsubsection.2.1.2}%
+\contentsline {subsection}{\numberline {2.2}Airy stress function}{21}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Biharmonic equation in $\ensuremath {{\mathbb R}}^2$}{21}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}Problem prototypes}{23}{subsection.2.4}%
+\contentsline {subsubsection}{\numberline {2.4.1}Bending of a narrow rectangular beam by uniform load}{23}{subsubsection.2.4.1}%
+\contentsline {subsubsection}{\numberline {2.4.2}Elliptic hole in uniformly stressed infinite plane}{25}{subsubsection.2.4.2}%
+\contentsline {section}{\numberline {3}Stability of fluid flows}{26}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Energy theory}{27}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Rayleigh-Bénard convection}{29}{subsection.3.2}%
+\contentsline {subsubsection}{\numberline {3.2.1}Boussinesq-Oberbeck approximation}{29}{subsubsection.3.2.1}%
+\contentsline {subsubsection}{\numberline {3.2.2}Steady state, pure conduction}{30}{subsubsection.3.2.2}%
+\contentsline {subsubsection}{\numberline {3.2.3}Perturbation of the steady state, convection}{30}{subsubsection.3.2.3}%
+\contentsline {subsubsection}{\numberline {3.2.4}Non-dimensonalisation}{31}{subsubsection.3.2.4}%
+\contentsline {subsubsection}{\numberline {3.2.5}Stability analysis}{34}{subsubsection.3.2.5}%
+\contentsline {subsubsection}{\numberline {3.2.6}Solution to the (generalized) eigenproblem}{37}{subsubsection.3.2.6}%
+\contentsline {subsubsection}{\numberline {3.2.7}Free-free boundary conditions}{40}{subsubsection.3.2.7}%
+\contentsline {subsubsection}{\numberline {3.2.8}The case $\mathrm {Ra}> \mathrm {Ra}_{\, \text {crit} \,}$ "slightly"}{41}{subsubsection.3.2.8}%
+\contentsline {subsection}{\numberline {3.3}Orr-Sommerfeld system}{44}{subsection.3.3}%
+\contentsline {subsection}{\numberline {3.4}Eigenvalue problem for differential operators}{44}{subsection.3.4}%
+\contentsline {subsubsection}{\numberline {3.4.1}Analytical approach}{44}{subsubsection.3.4.1}%
+\contentsline {subsubsection}{\numberline {3.4.2}Numerical approach}{45}{subsubsection.3.4.2}%
+\providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 

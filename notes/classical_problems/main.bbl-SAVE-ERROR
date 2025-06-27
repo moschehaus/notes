@@ -1,0 +1,74 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.3 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{nyt/global//global/global/global}
+    \entry{ciarletIntroductionDifferentialGeometry2005}{book}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=9663587898fba0874409eb2d832ac224}{%
+           family={Ciarlet},
+           familyi={C\bibinitperiod},
+           given={Philippe\bibnamedelima G.},
+           giveni={P\bibinitperiod\bibinitdelim G\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{location}{1}{%
+        {Berlin/Heidelberg}%
+      }
+      \list{publisher}{1}{%
+        {Springer-Verlag}%
+      }
+      \strng{namehash}{9663587898fba0874409eb2d832ac224}
+      \strng{fullhash}{9663587898fba0874409eb2d832ac224}
+      \strng{fullhashraw}{9663587898fba0874409eb2d832ac224}
+      \strng{bibnamehash}{9663587898fba0874409eb2d832ac224}
+      \strng{authorbibnamehash}{9663587898fba0874409eb2d832ac224}
+      \strng{authornamehash}{9663587898fba0874409eb2d832ac224}
+      \strng{authorfullhash}{9663587898fba0874409eb2d832ac224}
+      \strng{authorfullhashraw}{9663587898fba0874409eb2d832ac224}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{isbn}{978-1-4020-4247-8}
+      \field{langid}{english}
+      \field{title}{An {{Introduction}} to {{Differential Geometry}} with {{Applications}} to {{Elasticity}}}
+      \field{urlday}{25}
+      \field{urlmonth}{6}
+      \field{urlyear}{2025}
+      \field{year}{2005}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{doi}
+      \verb 10.1007/1-4020-4248-5
+      \endverb
+      \verb{urlraw}
+      \verb http://link.springer.com/10.1007/1-4020-4248-5
+      \endverb
+      \verb{url}
+      \verb http://link.springer.com/10.1007/1-4020-4248-5
+      \endverb
+      \keyw{curvature,curvilinear coordinates,differential geometry,differential geometry of surfaces,elasticity theory,Gaussian curvature,partial differential equations,shell theory,surface theory}
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

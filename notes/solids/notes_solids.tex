@@ -566,6 +566,60 @@ as the contact force in the \textbf{reference configuration}, we formally have a
     Note carefully that in both cases we are talking about forces in the \textit{current configuration}, but these can be expressed either through the \textit{reference configuration} (with the help of $\pkstress$) or through the \textit{current configuration} itself (by using $\cstress$).
 \end{remark}
 
+\subsection{Conservative forces}
+\label{sec:conservative_forces}
+
+Forces that are conservative play an imporant role in physics. One should keep in mind the Emmy Noether theorem: "something is conserved $\Leftrightarrow$ the system has a symmetry."
+In the setting of continuum mechanics, things get mathematicaly more involved. See the definition
+
+\begin{definition}[Conservative forces, potential]
+    The (body and contact) forces $\vb{f}, \vb{g}$ are called conservative, provided there exists a functional
+    \[
+	    \mathcal{P}: \qty{\vb{y} \in C^1\qty(\overline{\Omega})} \to \R,
+    \]
+    such that it holds
+    \[
+	    \delta \mathcal{P}\qty(\vb{y}, \vb*{\varphi}) = \eval{\dv{t} \mathcal{P}\qty(\vb{y} + t \vb*{\varphi})}_{t=0} = \int_{\Omega}\vb{f}\qty(\vb{x}) \vdot \vb*{\varphi}\qty(\vb{x})\dd{\vb{x}} + \int_{\Gamma_N}\vb{g}\qty(\vb{x}) \vdot \vb*{\varphi}\qty(\vb{x})\dd{S}, \forall \vb*{\varphi} \in X,
+    \]
+    where $X$ is some space of test functions on $\Omega$. The functional $\mathcal{P}$ is called the potential of the forces.
+    \end{definition}
+    \begin{remark}
+        The forces are in reference configuration.
+    \end{remark}
+
+    \begin{example}[Hydrostatic force]
+        Let us show that the hydrostatic force
+	\[
+		\vb{g}_h = -p \vb{n},
+	\]
+	with $p$ being the hydrostatic pressure, is conservative and that the potential is 
+
+	\[
+		\mathcal{P} = -\int_{\Omega^{y}}p\qty(\vb{x}^{y})\dd{\vb{x}^{y}} = - \int_{\Omega}p\qty(\vb{y}\qty(\vb{x}))\detf\qty(\vb{x})\dd{\vb{x}}.
+	\]
+	Calculate the Gateuax derivative 
+	\begin{align*}
+		\delta \mathcal{P}\qty(\vb{y}, \vb*{\varphi}) &= -\eval{\dv{t} \int_{\Omega}p\qty(\vb{y}+ t \vb*{\varphi}) \det\qty(\grad_x \vb{y} + t \grad_x \vb*{\varphi})\dd{\vb{x}}}_{t=0} = - \int_{\Omega}\eval{\dv{t} p\qty(\vb{y}+ t \vb*{\varphi})  \det \qty(\grad_x \vb{y} + t \grad_x \vb*{\varphi})}_{t=0}\dd{x} =\\
+							      &=- \int_{\Omega}\grad_y p\qty(\vb{y})\vdot \vb*{\varphi} \detf + p\qty(\vb{y})\pdv{\det \fgrad}{\fgrad} : \grad_x \vb*{\varphi} \dd{x} = - \int_{\Omega}\grad_y p\qty(\vb{y})\vdot \vb*{\varphi} \detf + p\qty(\vb{y})\cof \fgrad : \grad_x \vb*{\varphi} \dd{x} =\\
+							      &= -\int_{\Omega}\grad_y p\qty(\vb{y}) \vdot \vb*{\varphi} \detf + \grad_x \vdot\qty(p\qty(\vb{y}) \cof \fgrad \vb*{\varphi}) - \grad_x p\qty(\vb{y}) \vdot \cof \fgrad \vb*{\varphi}\dd{x} =\\
+							      &=- \int_{\Omega}\grad_y p\qty(\vb{y}) \vdot \vb*{\varphi} \detf - \grad_x p\qty(\vb{y}) \vdot \cof \fgrad \vb*{\varphi}\dd{x} - \int_{\partial \Omega}p\qty(\vb{y})\vb*{\varphi} \vdot \cof \fgrad \vb{n} \dd{S},
+	\end{align*}
+	where we have used the Piola's identity. Realize now
+	\begin{align*}
+		\detf \grad_y p\qty(\vb{y}) &= \detf \vb{e}_i \pdv{p\qty(\vb{y}(\vb{x}))}{y_i} = \detf \vb{e}_i \pdv{p\qty(\vb{y}\qty(\vb{x}))}{x_k}\pdv{x_k}{y_i} = \detf \vb{e}_i \grad_x p\qty(\vb{y}\qty(\vb{x}))_k \qty(\inverse{\fgrad})_{ki} =\\
+		&=\detf \inverse{\fgrad} \grad_x p\qty(\vb{y}\qty(\vb{x})), 
+	\end{align*}
+	so
+	\begin{align*}
+		- \int_{\Omega}\grad_y p\qty(\vb{y}) \vdot \vb*{\varphi} \detf - \grad_x p\qty(\vb{y}) \vdot \cof \fgrad \vb*{\varphi}\dd{x} &- \int_{\partial \Omega}p\qty(\vb{y})\vb*{\varphi} \vdot \cof \fgrad \vb{n} \dd{S} = \\
+		=- \int_{\Omega}\detf \inverse{\fgrad} \grad_x p\qty(\vb{y}) \vdot \vb*{\varphi} - \grad_x p\qty(\vb{y}) \vdot \cof \fgrad \vb*{\varphi}\dd{x} &- \int_{\partial \Omega}p\qty(\vb{y}) \vb*{\varphi} \vdot \cof \fgrad \vb{n}\dd{S} = \\
+		= - \int_{\Omega}\grad_x p\qty(\vb{y}) \vdot \qty(\detf \transposei{\fgrad} \vb*{\varphi}) - \grad_x p\qty(\vb{y}) \vdot \cof \fgrad \vb*{\varphi}\dd{x} &- \int_{\partial \Omega}p\qty(\vb{y})\vb*{\varphi} \vdot \cof \fgrad \vb{n}\dd{S} = \\
+		=&- \int_{\partial \Omega}p\qty(\vb{y}\qty(\vb{x})) \vb*{\varphi}\qty(\vb{x}) \vdot \cof \fgrad \vb{n}\dd{S} = \\
+		=&-\int_{\partial \Omega^{y}} p\qty(\vb{x}^{y})\vb{n}^{y} \vdot\vb*{\varphi}\qty(\vb{y}\qty(\vb{x})) \dd{S^{y}},
+	\end{align*}
+	and so we have shown the hydrostatic force $-p\vb{n}$ is conservative with the potential $-\int_{\Omega^{y}}p\qty(\vb{x}^{y})\dd{\vb{x}^{y}}$.
+    \end{example}
+    
 \section{Elasticity}
 \label{sec:elasticity}
 So far, our excursion to the world of solid mechanics has been fairly general. We have formulated fundamental mechanical laws independetly of the material that undergoes the deformation. In this chapter, we will discuss a class of materials known as \textbf{elastic solids.}
@@ -710,6 +764,7 @@ The function $W, [W] = \frac{J}{m^3} = \frac{N m}{m^3} = \text{Pa},$ is called \
 Physics puts some assumption on $W:$
 \begin{enumerate}
 	\item $W\geq 0,$ 
+	\item $W(\identityM) = 0,$
 	\item $W\qty(\vb{x},\tensorq{R} \fgrad) = W\qty(\vb{x},\fgrad), \forall \tensorq{R} \in \, \text{SO(3)} \,, \forall \vb{x} \in \overline{\Omega}, \forall \fgrad \in \R^{3 \cross 3}_+,$ 
 	\item $W(\vb{x}, \underbrace{\tensorq{R} \tensorq{U}}_{=\fgrad}) = W\qty(\vb{x}, \tensorq{U}), \tensorq{U}=\sqrt{\rcg},$ (matrices are from the polar decomposition)
 	\item $W\qty(\vb{x},\fgrad) \to \infty \, \text{if} \, \detf \to 0_+,$ 
@@ -718,10 +773,11 @@ Physics puts some assumption on $W:$
 Let us comment on these briefly.
 \begin{enumerate}
 	\item means really that energy is nonnegative,
-	\item states that energy does not change under the change of observer; see below for details\footnote{We could also show that if the hyperelastic solid is also isotropic, we also have $W\qty(\vb{x}, \fgrad \tensorq{R}) = W\qty(\vb{x},\fgrad)$, and so $W\qty(\vb{x}, \tensorq{R}\fgrad \transpose{\tensorq{R}}) = W\qty(\vb{x}, \fgrad), \forall \tensorq{R} \in \, \text{SO(d)} \,,$ so $W$ is an isotropic scalar function, and from the fact $W\qty(\vb{x},\fgrad) = \hat{W}\qty(\vb{x}, \rcg),$ in fact follows $W\qty(\vb{x}, \fgrad) = \hat{W}\qty(\vb{x}, \rcg ) = \hat{W}\qty(\vb{x}, \tensorq{R} \rcg \transpose{\tensorq{R}}),$ and so $\hat{W}$ is a scalar isotropic function of a symmetric positive definite tensorial argument. This allows one to represent $W$ using only the invariants of $\rcg.$}
+	\item means that no energy is needed to not deform the material,
+	\item states that energy does not change under the change of observer; see below for details. This in particular also means $W\qty(\tensorq{R}) = 0 \forall \tensorq{R} \in \, \text{SO(d)} \,.$\footnote{We could also show that if the hyperelastic solid is also isotropic, we also have $W\qty(\vb{x}, \fgrad \tensorq{R}) = W\qty(\vb{x},\fgrad)$, and so $W\qty(\vb{x}, \tensorq{R}\fgrad \transpose{\tensorq{R}}) = W\qty(\vb{x}, \fgrad), \forall \tensorq{R} \in \, \text{SO(d)} \,,$ so $W$ is an isotropic scalar function, and from the fact $W\qty(\vb{x},\fgrad) = \hat{W}\qty(\vb{x}, \rcg),$ in fact follows $W\qty(\vb{x}, \fgrad) = \hat{W}\qty(\vb{x}, \rcg ) = \hat{W}\qty(\vb{x}, \tensorq{R} \rcg \transpose{\tensorq{R}}),$ and so $\hat{W}$ is a scalar isotropic function of a symmetric positive definite tensorial argument. This allows one to represent $W$ using only the invariants of $\rcg.$}
 	\item energy changes only when the the geometry of the domain changes,
 	\item it takes infinite energy to deform the body to a point,
-	\item mostly a mathematical assumption - this yields \textit{coercivity}
+	\item mostly a mathematical assumption - this assures \textit{coercivity}
 \end{enumerate}
 
 The principle of frame indifference told us 
@@ -783,10 +839,10 @@ This also implies the property
 \[
 	W\qty(\vb{x}, \fgrad) = W\qty(\vb{x}, \tensorq{R} \tensorq{U}) = W\qty(\vb{x}, \tensorq{U}),
 \]
-as from the properties of the polar decompoisiton one has $\tensorq{R} \in \, \text{SO(d)} \,, \tensorq{U} \in \R^{d \times d}_+.$
+as from the properties of the polar decomposition one has $\tensorq{R} \in \, \text{SO(d)} \,, \tensorq{U} \in \R^{d \times d}_+.$
 	
 \begin{remark}
-    Evidently, $W$ has a potential.
+    From its very definition, $W$ has a potential. 
 \end{remark}
 
 \begin{definition}[Natural state of the body]
@@ -798,27 +854,36 @@ as from the properties of the polar decompoisiton one has $\tensorq{R} \in \, \t
 \end{definition}
 
 \begin{remark}[Unnatural vegetable]
-    Not all materials (bodies) have its natural states. Zum Beispiel, carrot does not have a natural state.
+    Not all materials (bodies) have its natural states. Zum Beispiel, a carrot does not have a natural state.
 \end{remark}
 
+\subsection{Variational approach to hyperelasticity}
+\label{sec:variational_hyperel}
+The motion is governed by the laws discussed in the section \ref{sec:forces_undeformed}, and so in theory the deformation $\vb{y}$ can be solved for. In the case of hyperelasticity, there is another, and quite elegant, approach to obtain the sought deformation - the deformation will be a minimizer to a certain functional. This is not surprising at all - a connection between minimizers and weak solutions to Euler-Lagrange equations has been established in the courses on PDE's.
 
 \begin{definition}[Energy functional]
-    Let us have $\partial \Omega = \Gamma_N \cup \Gamma_D, \Gamma_N \cap \Gamma_D = \emptyset,$ where the parts of the boundary are those when Neumann/Dirichlet boudary conditions are prescribed.
+    Let us have $\partial \Omega = \Gamma_N \cup \Gamma_D, \Gamma_N \cap \Gamma_D = \emptyset,$ where the parts of the boundary are those where Neumann/Dirichlet boudary conditions are prescribed.
 The energy functional of the material is the functional
 \[
-	I\qty(\vb{y}) = \int_{\Omega}W\qty(\vb{x}, \fgrad\qty(\vb{x}))\dd{\vb{x}} - \int_{\Omega}\vb{f}\qty(\vb{x})\vdot \vb{y}\qty(\vb{x}) \dd{\vb{x}}-\int_{\Gamma_N}\vb{g}\qty(\vb{x}) \vdot \vb{y}\qty(\vb{x})\dd{S},
+	I\qty(\vb{y}) = \int_{\Omega}W\qty(\vb{x}, \grad \vb{y}\qty(\vb{x}))\dd{\vb{x}} - \int_{\Omega}\vb{f}\qty(\vb{x})\vdot \vb{y}\qty(\vb{x}) \dd{\vb{x}}-\int_{\Gamma_N}\vb{g}\qty(\vb{x}) \vdot \vb{y}\qty(\vb{x})\dd{S},
 \]
 where the first part corresponds to the stored energy and the remaining terms are the work done by the external loads.
 \end{definition}
 
 \begin{remark}
-	If $\vb{y}$ is the minimizer of $I$, then $I\qty(t \vb*{\varphi}+\vb{y})\geq I\qty(\vb{y}), \forall t, \vb*{\varphi}.$ If we denote
+	This is exactly the notion from PDE's: if one looks for the deformation in a Sobolev space $\vb{y}_0 + \WkpzeroSet[1][r]{\Omega;\R^{d}},$ for some $r \in (1, \infty)$ and some Dirichlet boundary condition $\vb{y}_0 \in \WkpSet[1][r]{\Omega;\R^{d}}$ and the sources are at least from $\vb{f} \in \qty(\WkpSet[1][r]{\Omega;\R^{d}})^{*}, \vb{g} \in \LpSet[2]{\Gamma_N; \R^{d}},$ then the above functional exactly has the form
+	\[
+		\int_{\Omega}W\qty(\vb{x}, \grad \vb{y}\qty(\vb{x}))\dd{x} - <\vb{f},\vb{y}>_{\qty(\WkpzeroSet[1][r]{\Omega;\R^{d}})^{*}} - <\vb{g}, \vb{y}>_{\LpSet[2]{\Gamma_N; \R^{d}}},
+	\]
+\end{remark}
+
+Let us repeat the process to establish the connection between PDE's and finding minimizers. If $\vb{y}$ is the minimizer of $I$, then $I\qty(t \vb*{\varphi}+\vb{y})\geq I\qty(\vb{y}), \forall t, \vb*{\varphi}.$ If we denote
     \[
-	    a(t)\coloneq I\qty(t \vb*{\varphi}+\vb{y}),
+	    \iota(t)\coloneq I\qty(t \vb*{\varphi}+\vb{y}),
     \]
-    then it most hold
+    then it most hold (this corresponds to the calculation of $\delta I\qty(\vb{y}, \vb*{\varphi})$)
     \[
-	    0 = a'(0) = \dv{t} \eval{\qty(\int_{\Omega}W\qty(\fgrad + t \grad \vb*{\varphi})\dd{\vb{x}}- \int_{\Omega}\vb{f}\qty(\vb{x})\vdot \qty(\vb{y}\qty(\vb{x})+t \vb*{\varphi}\qty(\vb{x}))\dd{\vb{x}} - \int_{\Gamma_N}\vb{g}\qty(\vb{x}) \vdot(\vb{y}\qty(\vb{x})+t \vb*{\varphi}\qty(\vb{x}))\dd{x})}_{t=0},
+	    0 = \iota'(0) = \dv{t} \eval{\qty(\int_{\Omega}W\qty(\fgrad + t \grad \vb*{\varphi})\dd{\vb{x}}- \int_{\Omega}\vb{f}\qty(\vb{x})\vdot \qty(\vb{y}\qty(\vb{x})+t \vb*{\varphi}\qty(\vb{x}))\dd{\vb{x}} - \int_{\Gamma_N}\vb{g}\qty(\vb{x}) \vdot(\vb{y}\qty(\vb{x})+t \vb*{\varphi}\qty(\vb{x}))\dd{x})}_{t=0},
     \]
 
 calculating the derivatives yields
@@ -836,32 +901,54 @@ This is exactly
 	-\divergence{\pkstress} = \vb{f} \, \text{in} \,\Omega, \pkstress \vb{n} = \vb{g}, \, \text{on} \, \Gamma_N.
 \]
 
-This implies that $\vb{y}$ minimizes energy $\Leftrightarrow \vb{y}$ is governed by the equations of classical mechanis.
+This implies that $\vb{y}$ minimizes energy $\Rightarrow \vb{y}$ solves the equations of classical mechanics.
 
-\end{remark}
 
-Are there some other qualities of $W$? It is natural to assume
+\subsubsection{Nonconvexity of $W$}
+\label{sec:nonconvexity}
+A wonderful result would be to show $\vb{y} \mapsto W\qty(x, \grad \vb{y})$ is convex, as then $I$ would be (with some additional conditions like Caratheodority of $\vb{y}$) weakly sequentially lower semicontinuous and our analysis would be much simpler. Is it however possible?
+
+Recall
 \[
 	W\qty(\identity) = 0 \Rightarrow W\qty(\tensorq{R})=0, \forall \tensorq{R}\in \, \text{SO(3)} \,
 \]
 and $W\qty(\fgrad)>0$ whenever $\fgrad \notin \, \text{SO(3)} \,$
-This however implies $W$ is not convex! Assume
+Assume now
 \[
 	\tensorq{R}_1 = \begin{bmatrix} 1 & 0 & 0\\ 0 & -1 & 0\\ 0 & 0 & -1 \end{bmatrix}, \tensorq{R}_2 = \identity,
 \]
-then
+and realize
 \[
-	W\qty(\frac{1}{4}\tensorq{R}_1+\frac{3}{4}\tensorq{R}_2)>\frac{1}{4}W\qty(\tensorq{R}_1)+\frac{3}{4}W\qty(\tensorq{R}_2)=0.
+	\frac{1}{4} \tensorq{R}_1 + \frac{3}{4}\tensorq{R}_2 =\frac{1}{4} \begin{bmatrix} 4 & 0 &0 \\ 0 & 2 & 0 \\ 0 & 0 & 2 \end{bmatrix},
 \]
+so $\det \qty(\frac{1}{4} \tensorq{R}_1 + \frac{3}{4} \tensorq{R}_2) = \frac{1}{4} \neq 1.$
+But this means
+\[
+	0 \neq W\qty(\frac{1}{4}\tensorq{R}_1+\frac{3}{4}\tensorq{R}_2)>\frac{1}{4}W\qty(\tensorq{R}_1)+\frac{3}{4}W\qty(\tensorq{R}_2)=0,
+\]
+as both terms on the RHS are zero. Hence, we have checked $W$ is \textit{not} convex and that complicates things:
 
 \begin{example}[Minimizer does not exist]
-Assume $J(u) = \int_{0}^1 \qty(1-\qty(u'(x))^{2})^{2}+u(x)^{2}\dd{x}, u \in \text{W}^{1,4}(0,1), u(0) = u(1) = 0,$ and find the minimum of $J$. First of all, $J>0$, so the minimum also. I can take $u_k$ such that $u'_k(x) = 1$ on $(0,1/2)$ and $u'_k(x) = -1$ on $(1/2,1)$. Then $J\qty(u_k)\to 0 \Rightarrow \inf J = 0$ but there is no minimizer.
+Assume
+\[
+	J(u) = \int_{0}^1 \qty(1-\qty(u'(x))^{2})^{2}+u(x)^{2}\dd{x}, u \in \text{W}^{1,4}(0,1), u(0) = u(1) = 0,
+\]
+and find the minimum of $J$. First of all, $J>0$, so $\inf J > \geq 0 \neq - \infty.$  I can take $u_k$ such that
+\[
+	u'_k(x) = \begin{cases} 1 , &\, \text{on} \,(0,1/2^k) \\
+	-1,& \, \text{on} \, (1/2^k,1/2^{k-1})\end{cases},
+\]
+
+for $k \in \N$ (the function looks like a saw). Then $J\qty(u_k)\to 0 \Rightarrow \inf J = 0$ but there is no minimizer, because $\qty{u}_k$ does not converge\footnote{We see $\lim_{k \to \infty}\norm{u_k}_{\LpSet[4]{(0,1)}} = 0$, but $\lim_{k \to \infty} \norm{u'_k}_{\LpSet[4]{\qty(0,1)}} =1.$} in $\WkpSet[1][4]{\qty(0,1)}.$ 
 \end{example}
 
 Not everything is lost...
 
+\subsubsection{Polyconvexity}
+\label{sec:polyconvexity}
+
 \begin{definition}[Polyconvexity, 1977 J.M. Ball]
-	$W: \R^{3 \times 3}\to \R \cup \{\infty\}$ is polyconvex provided there exists convex and lower-semicontinuous function $h: \R^{19}\to \R \cup \{\infty\}$:
+	$W: \R^{3 \times 3}\to \R \cup \{\infty\}$ is polyconvex provided there exists convex and lower-semicontinuous function $h: \R^{3 \times 3} \times \R^{3 \times 3} \times \R \to \R \cup \{\infty\}$:
 \[
 	W\qty(\tensorq{A})=h\qty(\tensorq{A}, \cof \tensorq{A}, \det \tensorq{A}).
 \]
@@ -882,7 +969,7 @@ Not everything is lost...
 \end{remark}
 
 \begin{theorem}[Magic]
-	Assume that $\vb{y}^k$ converges weakly to $\vb{y}$ in $\WkpSet[1][p]{\Omega;\R^3}, \Omega \subset \R^3 \in C^{0,1}, p>3.$ Then $\det \grad \vb{y}^k$ converges weakly to $\det \grad \vb{y} \, \text{in} \, \LpSet[\frac{p}{3}]{\Omega}.$ Moreover $\cof \grad \vb{y}^l$ converges weakly to $\cof \grad \vb{y} \, \text{in} \, \LpSet[\frac{p}{2}]{\Omega;\R^{3 \times 3}}.$
+	Assume that $\vb{y}_k$ converges weakly to $\vb{y}$ in $\WkpSet[1][p]{\Omega;\R^3}, \Omega \subset \R^3 \in C^{0,1}, p>3.$ Then $\det \grad \vb{y}_k$ converges weakly to $\det \grad \vb{y} \, \text{in} \, \LpSet[\frac{p}{3}]{\Omega}.$ Moreover $\cof \grad \vb{y}_l$ converges weakly to $\cof \grad \vb{y} \, \text{in} \, \LpSet[\frac{p}{2}]{\Omega;\R^{3 \times 3}}.$
 \end{theorem}
 
 \begin{proof}
@@ -897,17 +984,98 @@ Not everything is lost...
 	and the result follows from the embedding theorems and strong convergence (strong times weak gives weak convergence).
 \end{proof}
 
-\subsection{Rank-one convexity}
-\label{sec:rank-one}
+The above theorem is truly remarkable, as in general nonlinearities destroy weak convergence.
+
+Let us recall some concepts from analysis
+
+\begin{definition}[(Weak) sequential lower semicontinuity]
+    A function $f: X \to \R, X$ a Banach space, is said to be
+\begin{itemize}
+	\item sequentially lower semicontious, provided
+		\[
+			f(y) \leq \liminf_{k \to \infty}f(y_k), \forall \qty{y_k} \subset X: u_k \to u \in X,
+		\]
+	\item weakly sequentially lower semicontinuous, provided
+		\[
+			f(y) \leq \liminf_{k \to \infty}f(y_k), \forall \qty{y_k} \subset X: u_k \rightharpoonup u \in X.
+		\]
+\end{itemize}
+\end{definition}
+
+\begin{definition}[Direct method]
+    The direct method of the calculus of variation is the following scheme: suppose $\Omega \subset \R^{d}, \Omega \in C^{0,1}, p \in \qty(1, \infty)$ and the functional $I: \WkpSet[1][p]{\Omega;\R^{d}} \to \R \cup \qty{\infty}$ is weakly sequentially lower semicontinuous and coercive.
+    \begin{enumerate}
+	    \item from coercivity one has $\inf I > - \infty,$ so $\exists \qty{\vb{y}_k} \subset \WkpSet[1][p]{\Omega;\R^{d}}$ such that
+		    \[
+			    \inf I = \lim_{k \to \infty}I\qty(\vb{y}_k),
+		    \]
+	    \item using coercivity, one shows $\norm{\vb{y}_k}_{\WkpSet[1][p]{\Omega;\R^{d}}} \leq C,$ an uniform bound,
+	    \item for $p \in (1, \infty)$ the space $\WkpSet[1][p]{\Omega;\R^{d}}$ is a reflexive Banach space - $\exists \qty{\vb{y}_{n_{k}}} \subset \qty{\vb{y}_k}$ weakly convergent,
+	    \item from WSLSC one infers:
+		    \[
+			    \inf I = \lim_{k \to \infty}I\qty(\vb{y}_k) \geq \liminf_{k \to \infty}I\qty(\vb{y}_k) \geq I\qty(\vb{y}),
+		    \]
+		    so
+		    \[
+			    \inf I = I\qty(\vb{y}).
+		    \]
+    \end{enumerate}
+\end{definition}
+
+One important sufficient condition for the functional
+\[
+	I\qty(\vb{y}) = \int_{\Omega}W\qty(\grad \vb{y})\dd{x},
+\]
+to be WSLSC is when $W$ is (sequentially) lower semicontinuous and convex. In the case of polyconvexity, one has
+\[
+	I\qty(\vb{y}) = \int_{\Omega}W\qty(\grad \vb{y})\dd{x} = \int_{\Omega}h\qty(\grad \vb{y}, \det \grad \vb{y}, \cof \grad \vb{y})\dd{x},
+\]
+and from our above result, we also know that if $\vb{y}_k \rightharpoonup \vb{y}$ in some Sobolev space, also $\det \grad \vb{y}_k \rightharpoonup \det \grad \vb{y}, \cof \grad \vb{y}_k \rightharpoonup \cof \grad \vb{y}$ (in some Lebesgue spaces) and $h$ is convex, which is enough for WSLSC of $I$, so one can use the direct method; details are presented in \cite{kruzikPolyconvexMaterialsExistence2019}.
+
+\subsubsection{Rank-one convexity}
+\label{sec:rank_one_convexity}
+Our last remark will be about an even weaker notion of convexity - the so called \textbf{rank-one convexity}. The definition is
+
+\begin{definition}
+	The function $W: \R^{n \times m} \to \R$ is said to be rank-1 convex, provided $\forall \lambda \in [0,1], \forall \tensorq{A}, \tensorq{B} \in \R^{n \times m}: \, \text{rank} \,(\tensorq{A}- \tensorq{B}) \leq 1$ it holds
+	\[
+		W\qty(\lambda \tensorq{A} + \qty(1-\lambda)\tensorq{B})\leq \lambda W\qty(\tensorq{A}) + \qty(1-\lambda)W\qty(\tensorq{B}).
+	\]
+\end{definition}
+\begin{remark}
+    One could say a rank-1 convex function is a function that is convex on a restricted set of arguments.
+\end{remark}
+
+The set of matrices that have rank at most 1 is isomorphic with the set $\qty{\vb{a} \otimes \vb{b} | \vb{a}, \vb{b} \in \R^{n}}.$ But this means\footnote{The first implication is easy, as of course the argument of $W\qty(t_1 + -t_2 \vb{a} \otimes \vb{b})$ has rank at most 1. For the other direction, realize that the mapping between the sets truly is an isomorphism and that we require the convexity for all matrices $\tensorq{A}$ and all vectors $\vb{a},\vb{b}.$}
+\[
+	W \, \text{is rank-1 convex} \, \Leftrightarrow t \mapsto W\qty(\tensorq{A}+ t \vb{a} \otimes \vb{b})\, \text{is convex} \,, \forall \tensorq{A} \in \R^{n}, \vb{a}, \vb{b} \in \R^{n},
+\]
+and since $\tensorq{A}, \vb{a}, \vb{b}$ are arbitrary, this condition can be rephrased as that the mapping is convex at $t = 0.$ Using some analysis, this means
+
+\[
+	\eval{\dv[2]{t}\qty(W\qty(\tensorq{A} + t \vb{a} \otimes \vb{b}))}_{t=0} = \qty(\pdv[2]{W}{\tensorq{A}}\vb{a} \otimes \vb{b}): \vb{a}\otimes \vb{b}  = \pdv{W}{A_{ij}}{A_{kl}}a_i b_j a_k b_l \geq 0,
+\]
+which is known as the \textbf{Legendre-Hadamard} conditions.
+
+In general, only rank-one convexity is not enough to obtain existence of minimizers. Moreover, one has the following implications and none of those can be reversed
+
+\[
+	\, \text{convexity} \, \Rightarrow \, \text{polyconvexity} \, \Rightarrow \, \text{rank-one convexity} \,.
+\]
 
 
+\subsubsection{Ensuring injectivity}
+\label{sec:ensuring_injectivity}
+Finally, the fact $\detf>0$ is not our only constraint; we also require $\vb{y}$ is injective (almost everywhere). To see this need not be implied we present the example:
+\begin{example}
 	Assume the following domain: $\Omega = (1,2) \cross (0,4 \pi) \cross (1,2)$ and the deformation $\vb{y}: \overline{\Omega} \to \R^3, \vb{y}\qty(x_1,x_2,x_3) = \qty(x_1 \cos x_2, x_1 \sin x_2, x_3), \fgrad  = \begin{bmatrix}
 		\cos x_2 & -x_1 \sin x_2 & 0\\
 		\sin x_2 & x_1 \cos x_2 & 0\\
 		0 & 0 & 1
 	\end{bmatrix}.$
 	We can calculate $\detf = x_1 \cos^{2}x_2 + x_1 \sin^{2}x_2 = x_1.$ But even though the deformation has positive determinant, we still face self-penetration issues, i.e., \textit{$\vb{y}$ is not injective}.
-
+\end{example}
+There exists a simple condition under which the mapping $\vb{y}$ is injective \textit{a.e.}.
 	\begin{theorem}[Ciarlet-Nečas condition]
     Let $p>3$ and let $\detf > 0$ a.e. in $\Omega \subset \R^3, \vb{y} \in \WkpSet[1][p]{\Omega; \R^3}.$ If
     \[
@@ -947,31 +1115,51 @@ Recall the Right Cauchy-Green tensor: $\rcg = \transpose{\fgrad}\fgrad$. Using i
 \begin{remark}
     The Green-St.-Venaint strain tensor can be rewritten as:
     \[
-	    \gsv = \frac{1}{2}\qty(\transpose{\qty(\identity+\grad \vb{u})}\qty(\identity + \grad \vb{u})- \identity) = \frac{1}{2}\qty(\grad \vb{u}+\transpose{\qty(\grad \vb{u})})+ \frac{1}{2}\transpose{\qty(\grad \vb{u})}\grad \vb{u} = \tensorq{e}\qty(\vb{u}) + \frac{1}{2}\rcg\qty(\grad \vb{u}).
+	    \gsv = \frac{1}{2}\qty(\transpose{\qty(\identity+\grad \vb{u})}\qty(\identity + \grad \vb{u})- \identity) = \frac{1}{2}\qty(\grad \vb{u}+\transpose{\qty(\grad \vb{u})})+ \frac{1}{2}\transpose{\qty(\grad \vb{u})}\grad \vb{u} = \tensorq{e}\qty(\vb{u}) + \frac{1}{2}\rcg\qty(\grad \vb{u}),
     \]
+    where we have denoted
+    \[
+	    \tensorq{e}\qty(\vb{u}) = \frac{1}{2}\qty(\grad \vb{u} + \transpose{\qty(\grad \vb{u})}) = \, \text{sym} \,\qty(\grad \vb{u}),
+    \]
+    and
+    \[
+	    \rcg\qty(\grad \vb{u}) = \transpose{\qty(\grad \vb{u})}\grad \vb{u}.
+    \]
+    This quantities will prove useful to us when linearizing.
 \end{remark}
-For the stored energy density, we can write
+We have shown the stored energy density can in fact be represented as a function of the Right Cauchy-Green tensor:
 \[
-	W\qty(\fgrad) = W\qty(\tensorq{R}\fgrad) = \overline{W}\qty(\rcg\qty(\fgrad)) = \hat{W}\qty(\gsv\qty(\fgrad)).
+	W\qty(\fgrad) = \overline{W}\qty(\rcg),
 \]
-and also
+and since $\rcg = 2 \gsv + \identityM,$ one can also think of the stored energy density as a function of the Green-St.Venaint strain tensor
 \[
-	W\qty(\fgrad) = \hat{W}\qty(\tensorq{e}\qty(\vb{u})+\rcg\qty(\grad \vb{u})).
+	W(\fgrad) = \hat{W}\qty(\gsv) = \hat{W}\qty(\tensorq{e}\qty(\vb{u}) + \frac{1}{2}\rcg\qty(\grad \vb{u})).
 \]
-It is our assumption that
+
+The theory of linearized elasticity is the theory in which one supposes
 \[
-	\hat{W}\qty(\tensorq{0}) = 0, \hat{W}\qty(\gsv)>0 \, \text{if} \, \gsv \neq \tensorq{0},
+	\gsv \approx \tensorq{e} = \, \text{sym} \,\qty(\grad \vb{u}),
 \]
-and also that
+meaning that the term $\rcg\qty(\grad \vb{u}) = \transpose{\qty(\grad \vb{u})} \grad \vb{u}$ that is quadratic in the displacement gradient \textit{can be considered small}. Seen as this, the theory of linearized elasticity is in fact \textbf{a theory of small strain} or of \textbf{small displacement gradient.}\footnote{This is not a bad consideration - the displacement gradient (or strain) is dimensionless, so it makes sense to talk about smallness independent of the physical units (consider for example the "theory of small displacement" - but the unit of displacement is an unit of length, and the notion of smallness would thus depend on the choice of units.} From now on, the energy density will hence be taken just as a function of the symmetric part of the strain tensor, \textit{i.e.}, the linearized strain tensor:
 \[
-	\rcg\qty(\grad \vb{u}) = \vb{0}.
+	W\qty(\fgrad) \equiv \hat{W}\qty(\tensorq{e}\qty(\vb{u})).
 \]
-Using Taylor expansion, we can write
+
+Before we linearize our stored energy density, let us investigate the case $\gsv = \tensorq{0}.$ Then $\tensorq{0} = \frac{1}{2}\qty(\rcg - \identityM),$ so $\rcg = \identityM$ and from what we have seen in the section \ref{sec:affine_transf}, this means
+\[
+	\fgrad = \tensorq{R} \in \, \text{SO(d)} \,.
+\]
+But from the property of $W$ it then follows
+\[
+	\hat{W}\qty(\gsv = \tensorq{0}) = W\qty(\tensorq{R}) = 0,
+\]
+and that also $\hat{W}(\tensorq{e}) > 0$ for $\tensorq{e} \neq \tensorq{0}.$ \textit{Stored energy density has a (unstrict) global minimum at zero.}
+We are ready to use Taylor expansion:
 
 \[
-	\hat{W}\qty(\tensorq{e}\qty(\vb{u}))= \hat{W}\qty(\tensorq{0})+ \pdv{\hat{W}}{\tensorq{e}}\qty(\tensorq{0})\tensorq{e}\qty(\vb{u})+\frac{1}{2}\pdv[2]{\hat{W}}{\tensorq{e}}\qty(\tensorq{0})\tensorq{e}\qty(\vb{u}) \vb{e}\qty(u) + \, \text{h.o.t.} \,.
+	\hat{W}\qty(\tensorq{e}\qty(\vb{u}))= \hat{W}\qty(\tensorq{0})+ \pdv{\hat{W}}{\tensorq{e}}\qty(\tensorq{0}):\tensorq{e}\qty(\vb{u})+\frac{1}{2}\pdv[2]{\hat{W}}{\tensorq{e}}\qty(\tensorq{0})\tensorq{e}\qty(\vb{u}) :\vb{e}\qty(\vb{u}) + \, \text{h.o.t.} \,,
 \]
-Since $\hat{W}\qty(\tensorq{0}) = \pdv{\hat{W}}{\tensorq{0}}\qty(\tensorq{0}) = 0$ the above (formal) manipulation leads us to the definition
+since $\hat{W}\qty(\tensorq{0}) = 0,$ and $\pdv{\hat{W}}{\tensorq{e}}\qty(\tensorq{0}) = \tensorq{0}$ because $\hat{W}$ has a minimum at $\tensorq{e} = \tensorq{0}.$ The above (formal) manipulation leads us to the definition
 \begin{definition}[Tensor of elastic constants]
 	\[
 	\mathcal{C} = \pdv[2]{\hat{W}}{\tensorq{e}}\qty(\tensorq{0}), C_{ijkl} = \pdv[2]{\hat{W}}{e_{ij}}{e_{kl}}.
@@ -981,15 +1169,36 @@ Since $\hat{W}\qty(\tensorq{0}) = \pdv{\hat{W}}{\tensorq{0}}\qty(\tensorq{0}) = 
     Since we assume $\hat{W}$ is smooth, we have some symmetries, and from the general 81 components of $C_{ijkl}$ only 21 are unique.
 \end{remark}
 
-With the notion of a tensor of elastic constants, we can then write the stored energy density as
+With the notion of a tensor of elastic constants, we can then write the (linearized) stored energy density as
 \[
-	w\qty(\tensorq{e}) = \frac{1}{2}(\mathcal{C}\tensorq{e}):\tensorq{e}.
+	w\qty(\tensorq{e}) = \frac{1}{2}(\mathcal{C}\tensorq{e}):\tensorq{e},
 \]
-Following our definition $\pkstress = \pdv{\hat{W}}{\fgrad}$ we see
+(we are using small letters to distinguish the linearized quantites). 
+Following our definition $\pkstress = \pdv{W}{\fgrad}$ we have
 \[
-	\tensorq{\sigma} = \pdv{w\qty(\tensorq{e})}{\tensorq{e}} = \tensorq{C}\tensorq{e}, \sigma_{ij} = C_{ijkl}e_{kl}.
+	\pkstress = \pdv{W}{\fgrad} = \pdv{\tensorq{e}}{\fgrad}\pdv{w\qty(\tensorq{e})}{\tensorq{e}},
 \]
-Is a useful notion of stress. It is denoted as the \textit{Cauchy stress}.
+with
+\[
+	\pdv{\tensorq{e}}{\fgrad} = \pdv{\fgrad}\qty(\frac{1}{2}\qty(\fgrad + \transpose{\fgrad}) - \identityM) =\mathcal{I}_{\, \text{sym} \,},
+\]
+where $\mathcal{I}_{\, \text{sym} \,}$ has the property\footnote{$\mathcal{I}_{\, \text{sym} \,ijkl} = \frac{1}{2}\qty(\delta_{ik}\delta_{jl} + \delta_{jk}\delta_{il}).$} $\mathcal{I}_{\, \text{sym} \,}\tensorq{A} = \, \text{sym} \,\qty(\tensorq{A})$. Also
+\[
+	\pdv{w\qty(\tensorq{e})}{\tensorq{e}} = \frac{1}{2} \pdv{\tensorq{e}} \qty(\mathcal{C}\tensorq{e}: \tensorq{e}) = \frac{1}{2}\qty(\mathcal{C}\mathcal{I}: \tensorq{e} + \mathcal{C}\tensorq{e}: \mathcal{I}) = \mathcal{C}\tensorq{e}
+\]
+and finally
+\[
+	\mathcal{I}_{\, \text{sym} \,}\mathcal{C}\tensorq{e} = \mathcal{C}\tensorq{e},
+\]
+because $\mathcal{C}\tensorq{e}$ is symmetric thanks to the property
+\[
+	C_{ijkl} = \pdv{W}{e_{ij}}{e_{kl}}= \pdv{W}{e_{ji}}{e_{kl}} = C_{jikl}.
+\]
+So we have obtained $\pkstress = \pdv{w}{\tensorq{e}} = \mathcal{C}\tensorq{e}$ which is usually denoted as the \textit{Cauchy stress} $\bbsigma$
+\[
+	\bbsigma = \pdv{w\qty(\tensorq{e})}{\tensorq{e}} = \mathcal{C}\tensorq{e}, 
+\]
+ 
 or in components
 \[
 	\sigma_{ij}=C_{ijkl}e_{kl}.
@@ -1000,56 +1209,78 @@ or in components
 
 Rewritting the equations in the linearized elasticity setting we obtain the system
 \begin{align*}
-	-\divergence{\tensorq{\sigma}} = - \divergence{\qty(\mathcal{C}\tensorq{e})} &= \vb{f} \, \text{in} \, \Omega \\
-	\tensorq{\sigma}\vb{n} &= \vb{g} \, \text{on} \, \Gamma_{N}, \\
+	-\divergence{\bbsigma} = - \divergence{\qty(\mathcal{C}\tensorq{e})} &= \vb{f} \, \text{in} \, \Omega \\
+	\bbsigma\vb{n} &= \vb{g} \, \text{on} \, \Gamma_{N}, \\
 	\vb{u} &= \vb{0} \, \text{on} \, \Gamma_{D}.
 \end{align*}
-The weak formulation can be obtained as
+The weak formulation can be obtained in the following way:
 \[
-	\int_{\Omega} \pdv{x_j}\qty(C_{ijkl}e_{kl})v_i \dd{\vb{x}} = \int_{\Omega}\vb{f}\vdot \vb{v}\dd{\vb{x}}, \forall \vb{v} \in \WkpSet[1][2]{\Omega;\R^3}, u=0 \, \text{on} \, \Gamma_D,
+	\int_{\Omega} -\divergence{\qty(\mathcal{C}\tensorq{e})} \vdot \vb*{\varphi} \dd{\vb{x}} = \int_{\Omega}\vb{f}\vdot \vb*{\varphi}\dd{\vb{x}}, \forall \vb*{\varphi} \in X = \qty{\WkpSet[1][2]{\Omega;\R^d}, u=0 \, \text{on} \, \Gamma_D},
 \]
-so
+so integrating per partes in the first term gives us
 \[
-	\int_{\Omega}C_{ijkl}e_{kl} \pdv{v_i}{x_j}\dd{\vb{x}}-\int_{\partial \Omega}C_{ijkl}e_{kl}v_i n_j \dd{S} = \int_{\Omega}\vb{f}\vdot \vb{v}\dd{\vb{x}},
+	\int_{\Omega}- \divergence{\qty(\mathcal{C}\tensorq{e})} \vdot \vb*{\varphi}\dd{\vb{x}} = -\int_{\Gamma_N}\vb*{\varphi} \vdot \mathcal{C}\tensorq{e}\vb{n}\dd{S} + \int_{\Omega}\mathcal{C}\tensorq{e} : \grad \vb*{\varphi} \dd{\vb{x}},
 \]
-which can be rewritten as
+since the test function are zero on the "Dirichlet part of the boundary." Using the Neumann BC and using also the fact $\, \text{sym} \,\qty(\mathcal{C}\tensorq{e}) = \mathcal{C}\tensorq{e}$ leads to 
 \[
-	\underbrace{\int_{\Omega}\tensorq{C}\tensorq{e}\qty(\vb{u}) \vdot \tensorq{e}\qty(\vb{v})\dd{\vb{x}}}_{\coloneq B\qty(u,v)} = \underbrace{\int_{\Omega}\vb{f} \vdot \vb{v}\dd{\vb{x}} + \int_{\Gamma_N}\vb{g}\vdot \vb{v}\dd{S}}_{\coloneq L(v)},
+	\int_{\Omega}- \divergence{\qty(\mathcal{C}\tensorq{e})} \vdot \vb*{\varphi}\dd{\vb{x}} = -\int_{\Gamma_N}\vb{g} \vdot \vb*{\varphi}\dd{S} + \int_{\Omega}\mathcal{C}\tensorq{e} : \, \text{sym} \,\qty(\grad \vb*{\varphi})\dd{\vb{x}},
 \]
-where we have denoted
+and so our weak formulation indeed becomes
 \[
-	\tensorq{e}\qty(\vb{v}) = \, \text{sym} \,\qty(\grad \vb{v}).
+	\forall \vb*{\varphi} \in X: \int_{\Omega}\mathcal{C}\tensorq{e}: \, \text{sym} \,\qty(\grad \vb*{\varphi})\dd{\vb{x}} = \int_{\Omega}\vb{f} \vdot \vb*{\varphi}\dd{\vb{x}} + \int_{\Gamma_N}\vb{g} \vdot \vb*{\varphi}\dd{S}.
 \]
-We are looking for
+which has a nice structure if one realizes $\tensorq{e} = \, \text{sym} \,\qty(\grad \vb{u}),$ and we are solving for $\vb{u}$:
 \[
-	u \in V = \{ u \in \WkpSet[1][2]{\Omega; \R^3}, \tr u = 0 \, \text{on} \,\Gamma_D\}: B\qty(u,v) = L(v) \forall v \in V,
+	\int_{\Omega}\mathcal{C}\, \text{sym} \,\qty(\grad \vb{u}): \, \text{sym} \,\qty(\grad \vb*{\varphi})\dd{\vb{x}} = \int_{\Omega}\vb{f} \vdot \vb*{\varphi}\dd{\vb{x}} + \int_{\Gamma_N}\vb{g} \vdot \vb*{\varphi}\dd{S}.
 \]
-and to prove the existence, we will use the Lax-Milgram lemma. Show that
+
+This is a linear elliptic equation - to show existence \& uniqueness, it suffices to show that 
 \begin{itemize}
-	\item $L \in V^{*}$
-	\item $B:V \times V \to \R$ is V-bounded and V-coercive
+	\item the bilinear form $B: X \times X \to \R$
+		\[
+			 B\qty(\vb{u}, \vb*{\varphi}) = \int_{\Omega}\mathcal{C}\, \text{sym} \,\qty(\grad \vb{u}) : \, \text{sym} \,\qty(\grad \vb*{\varphi})\dd{\vb{x}},
+		\]
+		is $X-$bounded and $X-$coercive,
+	\item and the right hand side $F:X \to \R$
+		\[
+			F(\vb*{\varphi}) = \int_{\Omega}\vb{f} \vdot \vb*{\varphi}\dd{\vb{x}} + \int_{\Gamma_N}\vb{g} \vdot \vb*{\varphi}\dd{S}
+		\]
+		is an element of $X^{*},$
 \end{itemize}
-Realize that in order to show the properties, we would have to be able to control $\grad \vb{u}$ by $\, \text{sym} \,\qty(\grad \vb{u}).$ Is that even possible?
+as then Lax-Milgram does the whole job for us. However, in order to show this, we would have to be able to \textit{control the norm} of $\grad \vb{u}$ just by the norm of $\, \text{sym} \,\qty(\grad \vb{u}).$ Is that even possible?
+
+\subsubsection{Korn's inequality}
+\label{sec:korn}
 
 \begin{example}
-	Let $u=0 \, \text{on} \, \partial \Omega.$ In particular, let us take $\vb{u} \in \mathcal{D}\qty(\Omega; \R^n).$ Then
+	Suppose $\vb{u} \in \mathcal{D}\qty(\Omega; \R^n).$ Then the question is:
 	\[
-		\exists C>0: \int_{\Omega}|\tensorq{e}\qty(\vb{u})|^{2}\dd{\vb{x}} \geq c \int_{\Omega}|\grad \vb{u}|^{2}\dd{\vb{x}}.
+		\exists C>0: \int_{\Omega}|\, \text{sym} \,\qty(\grad \vb{u})|^{2}\dd{\vb{x}} \geq C \int_{\Omega}|\grad \vb{u}|^{2}\dd{\vb{x}}?
 	\]
-	Can this hold? Make a quick test: Take $\vb{u}$ such that $\tensorq{e}\qty(\vb{u}) = \tensorq{0}, $ so $\frac{1}{2}\qty(\pdv{u_i}{x_j}+\pdv{u_j}{x_i}) = 0$, so of course:
+	Can this hold? Make a quick test: Take $\vb{u}$ such that $\grad \vb{u} = \, \text{asym} \,\qty(\grad \vb{u}),$ \textit{i.e.}
 	\[
-		\grad \vb{u} = - \transpose{\qty(\grad \vb{u})},
+		\grad \vb{u} = - \transpose{\qty(\grad \vb{u})}.
 	\]
-	and $\grad \vb{u}$ must have the form
+	This in particular must mean that
 	\[
-		\grad \vb{u} = \begin{bmatrix}
-			0 & \pdv{u_1}{x_2} \\
-			\pdv{u_2}{x_1} & 0
-		\end{bmatrix},
+		\tr \grad \vb{u} = \divergence{\vb{u}} = 0,
 	\]
-	where $\pdv{u_1}{x_1} = \pdv{u_2}{x_2} = 0,$ but since $\vb{u} = \vb{0}$ at the boundary, it also holds that $\vb{u} = \vb{0}$ in $\Omega$. Okay, so that not disprove the above inequality.
+	in $\Omega.$ But then
+	\[
+		0 = \int_{\Omega}\vb*{\varphi}\qty(\divergence{\vb{u}})\dd{\vb{x}} = - \int_{\Omega}\vb{u}\qty(\divergence{\vb*{\varphi}})\dd{\vb{x}},
+	\]
+	for all $\vb*{\varphi} \in \mathcal{D}\qty(\Omega; \R^{d}),$ and so
+	\[
+		\vb{u} = \vb{0} \, \text{\textit{a.e.}} \, \, \text{in} \, \Omega.
+	\]
+	which \textit{does not disprove the above inequality} - it in fact shows
+	\[
+		\, \text{sym} \,\qty(\grad \vb{u}) = \tensorq{0} \Rightarrow \vb{u} = 0,
+	\]
+	meaning that even in the "worst case" when the symmetric part of the gradient is zero, the whole norm can still \textit{be controlled by it}.
+\end{example}
 
-	Let us try something else (although unsure what this means):
+Let us try to understand why this is the case; compute
 	\begin{align*}
 		\int_{\Omega}|\tensorq{e}(\vb{u})|^{2}\dd{x} &= \frac{1}{4}\int_{\Omega}\qty(\pdv{u_i}{x_j}+\pdv{u_j}{x_i})\qty(\pdv{u_i}{x_j}+\pdv{u_j}{x_i})\dd{x} \\
 								 &= \frac{1}{4} \int_{\Omega}\qty(\pdv{u_i}{x_j})^{2} + 2\pdv{u_i}{x_j}\pdv{u_j}{x_i} + \qty(\pdv{u_j}{x_i})^{2} \dd{x} = \frac{1}{2}\int_{\Omega}\qty(\pdv{u_i}{x_j})^{2}+ \pdv{u_i}{x_j}\pdv{u_j}{x_i}\dd{x},
@@ -1058,14 +1289,27 @@ Realize that in order to show the properties, we would have to be able to contro
 	\[
 		\frac{1}{2}\int_{\Omega}\qty(\pdv{u_i}{x_j})^{2} + \qty(\pdv{u_i}{x_i})^{2}\dd{x} \geq 0.
 	\]
-\end{example}
+
 \begin{theorem}[Korn's inequality]
-Let $\Omega \subset \R^n$ be bounded Lipschitz domain ($\Omega \in C^{0,1}$). Then there exists $C>0$ such that $\forall \vb{u} \in \WkpSet[1][2]{\qty(\Omega;\R^n)}$ it holds
+Let $\Omega \subset \R^n$ be a bounded Lipschitz domain. Then there exists $C>0$ such that $\forall \vb{u} \in \WkpSet[1][2]{\qty(\Omega;\R^n)}$ it holds
 \[
-\qty(\norm{\tensorq{e}\qty(\vb{u})}_{\LpSet[2]{(\Omega; \R^{n \times n)}}}^{2}+\norm{\vb{u}}_{\LpSet[2]{(\Omega; \R^n)}}^{2}) \geq c \norm{\vb{u}}_{\WkpSet[1][2]{(\Omega;\R^n)}}.
+\qty(\norm{\, \text{sym} \,\qty(\grad \vb{u})}_{\LpSet[2]{(\Omega; \R^{n \times n)}}}^{2}+\norm{\vb{u}}_{\LpSet[2]{(\Omega; \R^n)}}^{2}) \geq C \norm{\vb{u}}_{\WkpSet[1][2]{(\Omega;\R^n)}}^{2}.
 \]
 \end{theorem}
+\begin{remark}
+	Trivially, we have $\forall \vb{u} \in \WkpSet[1][2]{\qty(\Omega;\R^{n})}$ 
+	\[
+		\norm{\, \text{sym} \,\qty(\grad \vb{u})}_{\LpSet[2]{\qty(\Omega;\R^{n})}}^{2} + \norm{\vb{u}}_{\LpSet[2]{\qty(\Omega;\R^{n})}}^{2} \leq \norm{\vb{u}}_{\WkpSet[1][2]{\qty(\Omega;\R^{n})}}^{2}.
+	\]
+	So Korn's inequality in fact tells us
+	\[
+		\vb{u} \mapsto \norm{\, \text{sym} \,\qty(\grad \vb{u})}_{\LpSet[2]{\qty(\Omega;\R^{n})}}^{2} + \norm{\vb{u}}_{\LpSet[2]{\qty(\Omega;\R^{n})}}^{2}
+	\]
+	is an equivalent norm on $\WkpSet[1][2]{\qty(\Omega; \R^{n})}.$
+\end{remark}
 
+
+We can in fact obtain something even nicer - as in the case of Poincare inequality, when under some conditions the seminorm $u \mapsto \norm{\grad u}_{\LpSet[p]{\Omega}}^p$ was a norm on $\WkpSet[1][p]{\Omega}$, we would like that map (we in fact have shown it is a seminorm already) $\vb{u} \mapsto \norm{\, \text{sym} \,\qty(\grad \vb{u})}_{\LpSet[p]{\Omega}}$ is a norm on $\WkpSet[1][p]{\Omega;\R^{n}}.$
 
 \begin{definition}[Axial vectors]
 	Let $\tensorq{A} = - \transpose{\tensorq{A}}, \tensorq{A} \in \R^{n \times n}.$ Then there is $b \in \R^n$ such that $\tensorq{A} \vb{v} = \vb{b} \cross \vb{v}, \forall \vb{v} \in \R^n.$ The vector $\vb{b}$ is called the axial vector of $\tensorq{A}.$
@@ -1079,17 +1323,26 @@ Assume that $\vb{u} \in C^2\qty(\Omega ; \R^3).$ Then
 \[
 	\pdv[2]{u_i}{x_j}{x_k} = \pdv{e_{ik}}{x_j}\qty(\vb{u}) + \pdv{e_{ij}}{x_k}\qty(\vb{u}) - \pdv{e_{jk}}{x_i}\qty(\vb{u}).
 \]
-If now $\tensorq{e}\qty(\vb{u}) = \tensorq{0}, $ then $\vb{u}$ is an affine function, because $\pdv[2]{u_i}{x_j}{x_k}, \forall i,j,k \in \{1, 2, 3\}.$ \footnote{Recall that $\Omega$ is simply connected.} It must thus hold
+If now $\tensorq{e}\qty(\vb{u}) = \tensorq{0}, $ then $\vb{u}$ is an affine function, because
+\[
+	\pdv[2]{u_i}{x_j}{x_k} = 0, \forall i,j,k \in \{1, 2, 3\}.
+\]
+\footnote{Recall that $\Omega$ is simply connected.} It must thus hold
 \[
 	u_i(x) = a_i + b_{ij}x_j,
 \]
-and $\pdv{u_i}{x_j} = b_{ij} = - b_{ji},$ because $\tensorq{e}\qty(\vb{u}) = \tensorq{0},$ so it must be skew symmetric. The skew-symmetry also means it can be written
+and $\pdv{u_i}{x_j} = b_{ij} = - b_{ji},$ because $\tensorq{e}\qty(\vb{u}) = \tensorq{0},$ so it must be skew symmetric. The skew-symmetry also means it can be written as
 \[
 	\vb{u}\qty(\vb{x}) = \vb{a} + \vb{d} \cross \vb{x}.
 \]
 
-If additionaly we assume that $\vb{u} = \vb{0}$ on some $\Gamma_D \subset \partial \Omega, \mathcal{H}\qty(\Gamma_{D})>0$ and $\vb{u}\qty(\vb{x}) = \vb{a}+ \vb{d} \cross \vb{x},$ then $\vb{u} = \vb{0}$ identically in $\Omega$
-This moreover means that
+If additionaly we assume that $\vb{u} = \vb{0}$ on some $\Gamma_D \subset \partial \Omega, \mathcal{H}\qty(\Gamma_{D})>0$ and $\vb{u}\qty(\vb{x}) = \vb{a}+ \vb{d} \cross \vb{x},$ then $\vb{u} = \vb{0}$ identically in $\Omega$: the function is determined by two parameters $\vb{a}, \vb{d},$ which are however fixed on $\Gamma_D$. For example, pick $\vb{x}, \vb{y} \in \Gamma_D,$ then $\vb{0} = \vb{a} + \vb{d} \cross \vb{y} = \vb{a} + \vb{d} \cross \vb{x}, $ so
+\[
+	\vb{d} \cross \qty(\vb{x} - \vb{y}) = 0.
+\]
+But since $\vb{x}, \vb{y}$ can be chosen arbitrarily (linearly indepndelty), this must mean $\vb{d} = \vb{0}$ and consequently $\vb{a} = \vb{0}.$
+
+Finally, we have shown that
 \[
 	\vb{u} \mapsto \norm{\tensorq{e}\qty(\vb{u})}_{\LpSet[2]{\qty(\Omega; \R^{n \times n})}}
 \]
@@ -1099,16 +1352,20 @@ is a norm on
 \]
 which is equivalent to the norm of $\WkpSet[1][2]{\qty(\Omega; \R^3)}.$
 
-Coming back to our equation $B\qty(u,v) = L(v), \forall v \in V$, we have showed everything to use Lax-Milgram $\Rightarrow \exists ! u \in V.$ This also means the functional
+Coming back to our equation
 \[
-	J(\vb{v}) = \frac{1}{2} \int_{\Omega}\qty(\tensorq{C}\tensorq{e}\qty(\vb{v}) :\tensorq{e}\qty(\vb{v})-L\qty(\vb{v}))\dd{\vb{x}}, \forall v \in V.
+	B\qty(\vb{u},\vb*{\varphi}) = F(\vb*{\varphi}), \forall \vb*{\varphi} \in X,
+\]
+we have showed everything to use Lax-Milgram $\Rightarrow \exists ! u \in V.$ This also means the functional
+\[
+	I(\vb{u}) =  \int_{\Omega}\frac{1}{2}\mathcal{C}\, \text{sym} \,\qty(\grad\vb{u}) :\, \text{sym} \,\qty(\grad \vb{u})-F\qty(\vb{u})\dd{\vb{x}}, \forall u \in X.
 \]
 has an unique minimizer.
 
-\subsection{Convex analysis}
+\section{Convex analysis}
 \label{sec:convex_analysis}
 
-We will deal with the analysis of the functions $f: \R^n \to \R \cup \{+ \infty \}, f$ is convex.
+Convex functions have some remarkable qualities, which we will explore a bit. Throughout the chapter, we work with $f: \R^n \to \R \cup \{+ \infty \}$ that are convex. All the theory could be developed above a general Banach space. In our applications however we will be dealing mostly with the space of matrices $\R^{n \times n},$ so the notation is acommodated to that.
 
 \begin{definition}[Epigraph of a set]
 	The epigraph of a function $f$ is the set
@@ -1124,38 +1381,29 @@ We will deal with the analysis of the functions $f: \R^n \to \R \cup \{+ \infty 
 	    \item $f$ is convex $\Leftrightarrow\, \text{epi} \,f$ is convex
     \end{itemize}
 \end{remark}
-From one of the consequences of Hahn-Banach theorem (oddělovací věty), we obtain the existence of such $\xi \in \R^n$ (dependent of $x$) that for fixed $x$ it yields
+From one of the consequences of Hahn-Banach theorem (oddělovací věty), we obtain the existence of such $\xi \in \R^n$ (dependent of $x$) that for fixed $x \in \R^{n}$ it yields
 \[
-	f(z) \geq f(x) + \xi \vdot (z-x), \forall z \in \R^n.
+	f(z) \geq f(x) + \xi(x) \vdot (z-x), \forall z \in \R^n.
 \]
 \textit{If $f$ is differentiable} at $x$, then
 \[
-	\xi = \grad f(x).
+	\xi(x) = \grad f(x).
 \]
-But in general it does not have to be differentiable. This motivates the following definition
+But in general the derivative does not have to exist. This motivates the following definition.
 
 \begin{definition}[Subgradient, subdifferential]
-	The function $\xi(x)$ such that
+	Let $f: \R^{n \times m} \to \R \cup \{\infty\}$ be convex and lower semicontinuous and let $\tensorq{X}$ be fixed, but arbitrary. The function $\bbxi\qty(\tensorq{X}): \R^{n \times m} \to \R^{n \times m} $ such that it holds
 	\[
-		f(z) \geq f(x) + \xi(x) \vdot (z-x), \forall z \in \R^n,
+		f\qty(\tensorq{Y}) \geq f\qty(\tensorq{X})+ \bbxi\qty(\tensorq{X}): \qty(\tensorq{Y}- \tensorq{X}), \forall \tensorq{Y} \in \R^{n \times m},
 	\]
-	is called the \textbf{subgradient} of $f$ at $x$.
-	The set of all subgradients of $f$ at $x$ is called the \textbf{subdifferential} of $f$ at $x$ and it is denoted $\partial f (x).$
-
-	Let $f: \R^{n \times m} \to \R \cup \{\infty\}, $ convex and lower semicontinuous \footnote{$f\qty(x) \leq \liminf_{k\to \infty}f(x_k), x_k \to x$}, $f \neq \infty$. The function $\xi\qty(\tensorq{X})$ such that
-	\[
-		f\qty(\tensorq{Y}) \geq f\qty(\tensorq{X})+ \xi\qty(\tensorq{X}) \vdot \qty(\tensorq{Y}- \tensorq{X}), \forall \tensorq{Y} \in \R^{n \times m},
-	\]
-	 is called the subgradient of $f$ at $\tensorq{X}$. The set of all subgradients of $f$ at $\tensorq{X}$ is called the subdifferential and denoted $\partial f\qty(\tensorq{X})$. 
-
+	is called the subgradient of $f$ at $\tensorq{X}$. The \textbf{set} of all subgradients of $f$ at $\tensorq{X}$ is called the subdifferential and denoted $\partial f\qty(\tensorq{X})$. 
 \end{definition}
-
 
 \begin{remark}
 	\begin{itemize}
 		\item If $\partial f\qty(\tensorq{X})$ is a singleton, then $\grad f\qty(\tensorq{X})$ exist.
 		\item $\partial f\qty(\tensorq{X})$ is convex
-		\item  $0 \in \partial f(x) \forall x \in \R^n$ is a condition for the minimizer.
+		\item  $\tensorq{0} \in \partial f\qty(\tensorq{X}) \forall \tensorq{X} \in \R^{n \times m}$ is a condition for the minimizer.
 	\end{itemize}
 \end{remark}
 
@@ -1170,7 +1418,7 @@ But in general it does not have to be differentiable. This motivates the followi
     is called the indicator function of $K$
 \end{definition}
 
-The indicator function is hepful for constraint minimization. If $f$ is reasonably (at least finitely valued on $K$) then it holds:
+The indicator function is hepful for constraint minimization. If $f$ is reasonable (at least finitely valued on $K$), then it holds:
 
 \[
 	\min_K f = \min_{\R^{n \times m}}\qty(f + I_K).
@@ -1180,7 +1428,7 @@ The indicator function is hepful for constraint minimization. If $f$ is reasonab
 
 	Let $K = [0,1].$ What is $\partial I_K(x)?$ 
 
-	If $x \in (0,1)$, then $I_K(x) = 0$ so the only $\xi$ such that $I_K(y) \geq 0 + \xi (y-x)$ holds is $\xi = 0.$
+	If $x \in (0,1)$, then $I_K(x) = 0$ so the only $\xi$ such that $0 = I_K(y) \geq 0 + \xi (y-x)$ holds $\forall y \in [0,1]$ is $\xi = 0.$
 
 	If $x = 0, x=1$ then $\partial I_K(0) = (-\infty, 0], \partial I_K(1) = [0, \infty).$ This resembles a normal "vector", but in fact it is not a single vector and more a "cone" of vectors.
 \end{example}
@@ -1196,7 +1444,7 @@ The indicator function is hepful for constraint minimization. If $f$ is reasonab
 	\]
 	It must hold at the minimum
 	\[
-		0 \in \partial \qty(x^{2}+I_{[1,2]}\qty(x)) \Leftrightarrow - \partial I_{[1,2]}(x) \subset \partial x^{2} \Leftrightarrow \qty(x^{2})' \in -N_{[1,2]}(x)
+		0 \in \partial \qty(x^{2}+I_{[1,2]}\qty(x)) \Leftrightarrow - \partial I_{[1,2]}(x) \supset \partial x^{2} \Leftrightarrow \qty(x^{2})' \in -N_{[1,2]}(x)
 	\]
 \end{example}
 
@@ -1208,13 +1456,15 @@ The indicator function is hepful for constraint minimization. If $f$ is reasonab
 \end{example}
 
 \begin{definition}[Fenchel (convex) conjugate | Legendre transformation]
-Let $x^{*}$ be a slope i have chosen (it is given). I require
+Let $f: \R^{n \times m} \to \R$ and $\tensorq{X}$ be fixed. Let $\tensorq{X}^{*}$ be a "slope" such that
 \[
-	f(x) \geq x^{*} \vdot x - k, \forall x \in \R^{n \times m},
+	f\qty(\tensorq{X}) \geq \tensorq{X}^{*} : \tensorq{X} - k, \forall \tensorq{X} \in \R^{n \times m},
 \]
-which means $k \geq x^{*} \vdot x - f(x), \forall x\R^{n \times m},$ and so we can define
+which means $k \geq \tensorq{X}^{*} : \tensorq{X} - f\qty(\tensorq{X}), \forall \tensorq{X} \in \R^{n \times m}.$
+
+We set
 \[
-	f^{*}\qty(x^{*}) \coloneq \sup_{x \in \R^{n \times m}}\qty(x^{*} \vdot x - f(x)).
+	f^{*}\qty(\tensorq{X}^{*}) \coloneq \sup_{\tensorq{X} \in \R^{n \times m}}\qty(\tensorq{X}^{*} : \tensorq{X} - f\qty(\tensorq{X})).
 \]
 \end{definition}
 
@@ -1226,27 +1476,28 @@ which means $k \geq x^{*} \vdot x - f(x), \forall x\R^{n \times m},$ and so we c
 \end{remark}
 
 \begin{theorem}[Fenchel identity]
-Let $x^{*} \in \partial f(x).$ Then
+Let $\tensorq{X}^{*} \in \partial f\qty(\tensorq{X}).$ Then
 
 \[
-	x^{*} \vdot x = f(x) + f^{*}(x^{*}).
+	\tensorq{X}^{*} : \tensorq{X} = f\qty(\tensorq{X}) + f^{*}\qty(\tensorq{X}^{*}).
 \]
 \begin{proof}
-Let us assume that $x^{*} \in \partial f(x)$. Then it must hold
+Let us assume that $\tensorq{X}^{*} \in f\qty(\tensorq{X})$. Then it must hold
 \[
-	f(y) \geq f(x) + x^{*} \vdot \qty(y-x), \forall y,
+	f\qty(\tensorq{Y}) \geq f\qty(\tensorq{X}) + \tensorq{X}^{*} : \qty(\tensorq{Y} - \tensorq{X}), \forall \tensorq{Y} \in \R^{n \times m},
 \]
-so
+so rearranging yields
+
 \[
-	x^{*} \vdot x - f(x) \geq x^{*} \vdot y - f\qty(y),
+	\tensorq{X}^{*} : \tensorq{X} - f\qty(\tensorq{X}) \geq \tensorq{X}^{*} : \tensorq{Y} - f\qty(\tensorq{Y}),
 \]
-and taking the supremum over $y$ yields\footnote{The inequality becomes equality, as it can be reached by taking $y=x$.}
+so taking the supremum gives exactly \footnote{The inequality becomes equality, as it can be reached by taking $y=x$.}
 \[
-	x^{*} \vdot x -f (x) = \sup_y \qty(x^{*} \vdot y - f(y)) = f^{*}\qty(x^{*}).
+	\tensorq{X}^{*} : \tensorq{X} - f\qty(\tensorq{X}) \geq \sup_{\tensorq{Y}}\qty(\tensorq{X}^{*} : \tensorq{Y} - f\qty(\tensorq{Y})) =f^{*}\qty(\tensorq{X}^{*}).
 \]
 We have thus obtained
 \[
-	x^{*} \vdot x = f(x) + f^{*}(x^{*}).
+	\tensorq{X}^{*} : \tensorq{X} \geq f^{*}\qty(\tensorq{X}^{*}) + f\qty(\tensorq{X}).
 \]
 
 \end{proof}
@@ -1259,35 +1510,41 @@ We have thus obtained
 	\]
 \end{remark}
 
+\section{(von Mieses) elastoplasticity}
+\label{sec:elastoplasticity} 
+
+The previous mathematical apparatus now enables us to develop a theory for modelling more complicated, \textit{fundamentally unsmooth}, phenomena. It all begins with a man.
+
 \subsection{Problem of a man...}
 \label{sec:problem}
 
-Assume a person is pulling a box of weight $m$ of weight $m$ of weight $m$ of weight $m$ by a spring. If he is pulling just a little, the box does not move, only the spring is deformed - but in a reversible, elastic way.
+Assume a person is pulling a box of weight $m$ by a spring. If he is pulling just a little, the box does not move, only the spring is deformed - but in a reversible, elastic way.
 To move the box, the man needs to pull at least with the force $\sigma_0 = mgc,$ where c is some friction coefficient. When he us pulling with force greater than $\sigma_0,$ the box is moving and does not require any extra force to be moved (the system to be deformed). The deformation can be decomposed as
 \[
 	\tensorq{e} = \tilde{\tensorq{e}} + \tensorq{p},
 \]
 where $\tensorq{e}$ is the total strain, $\tilde{\tensorq{e}}$ is the elastic strain and $\tensorq{p}$ is the plastic strain.
 
-\subsection{von Mieses elatoplasticity}
-\label{sec:von_mieses}
 
 The elasticity part is described as
 \[
 	\begin{cases}
-		- \divergence{\tensorq{\sigma}} = \vb{f}, &  \, \text{in the bulk} \,\\
-		\tensorq{\sigma} \vb{n} = \vb{g}, & \, \text{on the boundary} \, \\
+		- \divergence{\bbsigma} = \vb{f}, &  \, \text{in the bulk} \,\\
+		\bbsigma \vb{n} = \vb{g}, & \, \text{on the boundary} \, \\
 	\end{cases},
 \]
-with some constituive relation $\tensorq{\sigma} = \mathcal{C}\tilde{\tensorq{e}} = \mathcal{C}\qty(\tensorq{e}-\tensorq{p}).$
-What about the plastic part? 
+with some constituive relation
+\[
+	\bbsigma = \mathcal{C}\tilde{\tensorq{e}} = \mathcal{C}\qty(\tensorq{e}-\tensorq{p}).
+\]
+What about the plastic part? The material does not deform when subjected to some (small enough) stress $\bbsigma$, which can be modelled as
 \[
 	\begin{cases} 
-		\dot{\tensorq{p}}(t) \in N_K\qty(\tensorq{\sigma}), & \\
+		\dot{\tensorq{p}}(t) \in N_K\qty(\bbsigma), & \\
 		\tensorq{p}(0)=\tensorq{p}_0, &
 	\end{cases}
 \]
-where $K$ is a convex closed subset such that $0 \in K$. This means that the plastic deformation is zero inside $K$, i.e. for some stresses. 
+where $K \subset \R^{n \times n}_{\, \text{sym} \,}$ is a convex closed subset of stresses $\bbsigma$ such that $\tensorq{0} \in K$. This means that the plastic deformation is zero inside $K$, i.e. for some stresses. 
 
 \begin{remark}
     Very often, the deformation is considered "incompressible", i.e.,
@@ -1296,27 +1553,31 @@ where $K$ is a convex closed subset such that $0 \in K$. This means that the pla
     \]
     which in linear case translates into
     \[
-	    \tr \tensorq{\varepsilon} = 0.
+	    \tr \tensorq{e} = 0.
     \]
 \end{remark}
 
 In most cases, the set $K$ is given as
 \[
-	K = \{ \tensorq{\sigma}:\varphi\qty(\tensorq{\sigma}) \leq 0\},
+	K = \qty{ \bbsigma:\varphi\qty(\bbsigma) \leq 0},
 \]
 where $\varphi$ is the \textbf{yield function.} The set
 \[
-	\{\tensorq{\sigma}| \varphi\qty(\tensorq{\sigma}) = 0\}
+	\qty{\bbsigma| \varphi\qty(\bbsigma) = 0}
 \]
 is called the \textbf{yield surface.} Very often we have
 \[
-	\varphi\qty(\tensorq{\sigma}) = |\tensorq{\sigma}^D|-c_0,
+	\varphi\qty(\bbsigma) = |\bbsigma^D|-c_0,
 \]
 where $| \vdot |$ denotes the Frobenius norm and
 \[
-	\tensorq{\sigma}^D = \tensorq{\sigma} - \frac{1}{3}\qty(\tr \tensorq{\sigma})\identity,
+	\bbsigma^D = \bbsigma - \frac{1}{3}\qty(\tr \bbsigma)\identity,
 \]
-is the \textit{deviatoric part of the stress tensor}.
+is the \textit{deviatoric part of the stress tensor}. Notice in particular that
+\[
+	\trace \bbsigma^D = 0.
+\]
+
 
 \subsubsection{Plastic evolution}
 \label{sec:plastic_evolution}
@@ -1324,19 +1585,19 @@ is the \textit{deviatoric part of the stress tensor}.
 From the previous we have
 \[
 	\dot{\tensorq{p}} = \begin{cases}
-		\tensorq{0}, & \, \text{if} \, \varphi\qty(\tensorq{\sigma})<0, \\
-		\frac{\lambda}{|\tensorq{\sigma}^D|}\tensorq{\sigma}^D, & \, \text{if} \, \varphi\qty(\tensorq{\sigma}) = 0, \lambda \geq 0
+		\tensorq{0}, & \, \text{if} \, \varphi\qty(\bbsigma)<0, \\
+		\frac{\lambda}{|\bbsigma^D|}\bbsigma^D, & \, \text{if} \, \varphi\qty(\bbsigma) = 0, \lambda \geq 0
 	\end{cases}.
 \]
-Also $\dot{\tensorq{p}} \in N_K\qty(\tensorq{\sigma}) = \partial I_K\qty(\tensorq{\sigma})$ so
+Also $\dot{\tensorq{p}} \in N_K\qty(\bbsigma) = \partial I_K\qty(\bbsigma)$ so
 \[
-	\sigma \in \partial I_K^{*}\qty(\dot{\tensorq{p}}),
+	\bbsigma \in \partial I_K^{*}\qty(\dot{\tensorq{p}}),
 \]
-where
+where 
 \[
 	I_K^{*}\qty(\dot{\tensorq{p}}) = \sup_{\tensorq{q}\in \R^{3 \times 3}}\qty(\dot{\tensorq{p}}: \tensorq{q}- I_K\qty(\tensorq{q})) = \sup_{\tensorq{q}\in K}\dot{\tensorq{p}}: \tensorq{q},
 \]
-is the Fenckel transformation of $I_K$, also called the \textbf{supporting function} of $\dot{\tensorq{p}}.$ We are able to rewrite the supremum to take the form\footnote{To utilize Cauchy-Schwarz later.}
+is the Fenchel transformation of $I_K$, also called the \textbf{supporting function} of $\dot{\tensorq{p}}.$ We are able to rewrite the supremum to take the form\footnote{To utilize Cauchy-Schwarz later.}
 \[
 	I_K^{*}\qty(\dot{\tensorq{p}}) = \dot{\tensorq{p}} : \frac{c_0}{|\dot{\tensorq{p}}|}\dot{\tensorq{p}},
 \]
@@ -1353,11 +1614,19 @@ and if $\tr \dot{\tensorq{p}} \neq 0$, then $I_K^{*}\qty(\dot{\tensorq{p}})= + \
 \]
 we get the following condition
 \[
-	\tensorq{\sigma} \in \partial D\qty(\dot{\tensorq{p}}).
+	\bbsigma \in \partial D\qty(\dot{\tensorq{p}}).
 \]
-Let us summarise a bit. For the stress tensor we have $\tensorq{\sigma} = \mathcal{C}\qty(\tensorq{e}-\tensorq{p}) \in D\qty(\dot{\tensorq{p}}).$ The general relation also yields $\tensorq{\sigma}= \pdv{w\qty(\tilde{\tensorq{e}})}{\tilde{\tensorq{e}}} = \pdv{w\qty(\tensorq{e}-\tensorq{p})}{\tilde{\tensorq{e}}}, $ where $w\qty(\tilde{\tensorq{e}}) = \frac{1}{2}C \tilde{\tensorq{e}}: \tilde{\tensorq{e}}$ is the free energy density. Using the chain rule we obtain the condition
+Let us summarise a bit. For the stress tensor we have
 \[
-	\pdv{w\qty(\tensorq{e}-\tensorq{p})}{\tensorq{p}} \in \partial D\qty(\dot{\tensorq{p}}).
+	\bbsigma = \mathcal{C}\qty(\tensorq{e}-\tensorq{p}) \in \partial D\qty(\dot{\tensorq{p}}).
+\]
+The general relation also yields
+\[
+	\bbsigma= \pdv{w\qty(\tilde{\tensorq{e}})}{\tilde{\tensorq{e}}} = \pdv{w\qty(\tensorq{e}-\tensorq{p})}{\tilde{\tensorq{e}}},
+\]
+where $w\qty(\tilde{\tensorq{e}}) = \frac{1}{2}\mathcal{C} \tilde{\tensorq{e}}: \tilde{\tensorq{e}}$ is the free energy density. Using the chain rule we obtain the condition
+\[
+	-\pdv{w\qty(\tensorq{e}-\tensorq{p})}{\tensorq{p}} \in \partial D\qty(\dot{\tensorq{p}}).
 \]
 
 In total, we are solving the following system 
@@ -1366,7 +1635,7 @@ In total, we are solving the following system
 	    0 \in \pdv{w\qty(\tensorq{e}-\tensorq{p})}{\tensorq{p}} + \partial D\qty(\dot{\tensorq{p}}), & \, \text{in} \, \Omega (\, \text{\textit{flow rule}}) \, \\
 	    \tensorq{p}(0) = \tensorq{p}_0, & \, \text{in} \, \Omega \\
 	    - \divergence{\qty(\mathcal{C}\qty(\tensorq{e}-\tensorq{p}))}= \vb{f}, &\, \text{in} \,\Omega \\
-	    \, \text{boundary condiitons} \,, & \, \text{on} \,\partial \Omega
+	    \, \text{boundary conditions} \,, & \, \text{on} \,\partial \Omega
     \end{cases}.
 \end{equation*}
 
@@ -1378,7 +1647,7 @@ How to solve the system?
 Let us take $t \in [0, T]$ and fix $\tau = \frac{T}{N}, N \in \N$ for some $N >> 1$. Assume that using some discrete scheme, we are able to calculate $\tensorq{p}$ at a certain time. Then we must solve 
 \begin{equation*}
     \begin{cases}
-	    0 \in \pdv{w\qty(\tensorq{e}-\tensorq{p})}{\tensorq{p}} + \partial D\qty(\dot{\frac{\tensorq{p}-\tensorq{p}_{k-1}}{\tau}}), & \, \text{in} \, \Omega \, \\
+	    0 \in \pdv{w\qty(\tensorq{e}-\tensorq{p})}{\tensorq{p}} + \partial D\qty(\frac{\tensorq{p}-\tensorq{p}_{k-1}}{\tau}), & \, \text{in} \, \Omega \, \\
 	    - \divergence{\qty(\mathcal{C}\qty(\tensorq{e}_k-\tensorq{p}_k))}= \vb{f}_k, &\, \text{in} \,\Omega \\
     \end{cases}.
 \end{equation*}
@@ -1393,7 +1662,7 @@ Really, taking the variaton with respect to $\vb{u}$ gives us
 \]
 and the variation with respect to $\tensorq{p}$ gives us
 \[
-0 \in	- \tensorq{\sigma}+ \partial D\qty(\frac{1}{\tau}\qty(\tensorq{p}-\tensorq{p}_{k-1})).
+0 \in	- \bbsigma+ \partial D\qty(\frac{1}{\tau}\qty(\tensorq{p}-\tensorq{p}_{k-1})).
 \]
 
 If we want to minimize this functional, \textit{i.e.}, solve the equations, it must hold \footnote{If not, we have no chance of minimizing it.} $D(\tensorq{q}) \neq +\infty$ (for $\tensorq{q}$ being the argument). From our assumptions on the dissipation potential this however implies.
@@ -1421,10 +1690,10 @@ where $L_k\qty(\vb{u})$ is the loading (at the $k$-th time step.) The sought sol
 
 \subsubsection{Dashpots}
 \label{sec:dashpot}
-Or \textit{tlumič} in Czech. The stress is assumed to take the form
+Or \textit{tlumič} in Czech. The plastic stress is assumed to take the form
 
 \[
-	\tensorq{\sigma} = \mathcal{D}\dot{\tensorq{e}}\qty(\grad \vb{u}), \sigma_{ij} = D_{ijkl}\dot{e}_{kl}\qty(\grad \vb{u}),
+	\bbsigma_p = \mathcal{D}\dot{\tensorq{e}}\qty(\grad \vb{u}), \sigma_{ij} = D_{ijkl}\dot{e}_{kl}\qty(\grad \vb{u}),
 \]
 where $\mathcal{D}$ is the \textbf{tensor of viscosity constants.} \footnote{People say viscosity stresses or viscous stress. This is used, but nonetheless it is wrong.}
 
@@ -1432,7 +1701,7 @@ where $\mathcal{D}$ is the \textbf{tensor of viscosity constants.} \footnote{Peo
 \label{sec:kelvin-voigt}
 The response of some materials can be modelled as a "parallel composition of a spring and a dashpot." Then, the total stress is
 \[
-	\tensorq{\sigma} = \tensorq{\sigma}_{p} + \tensorq{\sigma}_{e},
+	\bbsigma = \bbsigma_{p} + \bbsigma_{e},
 \]
 that is the sum of the plastic and the elastic stresses. The strain is of course the same:
 
@@ -1449,7 +1718,7 @@ The governing equations thus are
 	\tensorq{e}\qty(t = 0) &= \tensorq{e}_0, \, \, \text{in} \, \Omega.
 \end{align*}
 
-Let us obtain the energy \textit{formally} balance. As usual, multiply the first equation by $\dot{\vb{u}}$ and integrate $\int_{\Omega}\dd{\vb{x}}.$
+Let us \textit{formally} write down the energy balance. As usual, multiply the first equation by $\dot{\vb{u}}$ and integrate $\int_{\Omega}\dd{\vb{x}}.$
 
 \[
 	\int_{\Omega}- \divergence{\qty(\mathcal{C}\tensorq{e}+ \mathcal{D}\dot{\tensorq{e}})} \vdot \dot{\vb{u}}\dd{x} = \int_{\Omega}\vb{f} \vdot \dot{\vb{u}}\dd{x},
@@ -1495,7 +1764,7 @@ A lot of materials can be described using some internal parameters $\tensorq{z}$
 
 The model 
 \[
-	\tensorq{\sigma} = \partial_{\dot{\tensorq{e}}} \zeta\qty(\dot{\tensorq{e}}, \dot{\tensorq{z}}) + \partial_{\tensorq{e}}w\qty(\tensorq{e}, \tensorq{z}),
+	\bbsigma = \partial_{\dot{\tensorq{e}}} \zeta\qty(\dot{\tensorq{e}}, \dot{\tensorq{z}}) + \partial_{\tensorq{e}}\varphi\qty(\tensorq{e}, \tensorq{z}),
 \]
 with the flow rule 
 \[
@@ -1503,13 +1772,13 @@ with the flow rule
 \]
 is called the \textbf{generalized Kelvin-Voigt} model/material. From now on, we will be using $\varphi$ for the stored energy density. There is some analogy:
 \begin{itemize}
-	\item $\varphi$ is the stored energy density $=$ potential of stress
-	\item $\zeta$ is the (pseudo)potential of dissipative forces.
+	\item $\varphi$ is the stored energy density $=$ potential of elastic stress, reversible procceses
+	\item $\zeta$ is the (pseudo)potential of dissipative forces., irreveresible proccesses
 \end{itemize}
 To do anything, we need to obtain some energy balance, so test by $\dot{\vb{u}}.$
 Investigate the terms:
 \[
-	\tensorq{\sigma} : \dot{\tensorq{e}} = \partial_{\dot{\tensorq{e}}}\zeta\qty(\dot{\tensorq{e}}, \dot{\tensorq{z}}): \dot{\tensorq{e}}+ \partial_{\tensorq{e}}\varphi\qty(\tensorq{e},\tensorq{z}):\dot{\tensorq{e}},
+	\bbsigma : \dot{\tensorq{e}} = \partial_{\dot{\tensorq{e}}}\zeta\qty(\dot{\tensorq{e}}, \dot{\tensorq{z}}): \dot{\tensorq{e}}+ \partial_{\tensorq{e}}\varphi\qty(\tensorq{e},\tensorq{z}):\dot{\tensorq{e}},
 \]
 realize now that from the flow rule it follows
 \[
@@ -1517,11 +1786,11 @@ realize now that from the flow rule it follows
 \]
 so i can add it to the previous term and obtain
 \[
-	\tensorq{\sigma} : \dot{\tensorq{e}} = \partial_{\dot{\tensorq{e}}}\zeta\qty(\dot{\tensorq{e}}, \dot{\tensorq{z}}): \dot{\tensorq{e}}+ \partial_{\tensorq{e}}\varphi\qty(\tensorq{e},\tensorq{z}):\dot{\tensorq{e}} + \partial_{\dot{\tensorq{z}}}\zeta\qty(\dot{\tensorq{e}},\dot{\tensorq{z}}):\dot{\tensorq{z}}+\partial_{\tensorq{z}}\varphi\qty(\tensorq{e},\tensorq{z}):\dot{\tensorq{z}} =0,
+	\bbsigma : \dot{\tensorq{e}} = \partial_{\dot{\tensorq{e}}}\zeta\qty(\dot{\tensorq{e}}, \dot{\tensorq{z}}): \dot{\tensorq{e}}+ \partial_{\tensorq{e}}\varphi\qty(\tensorq{e},\tensorq{z}):\dot{\tensorq{e}} + \partial_{\dot{\tensorq{z}}}\zeta\qty(\dot{\tensorq{e}},\dot{\tensorq{z}}):\dot{\tensorq{z}}+\partial_{\tensorq{z}}\varphi\qty(\tensorq{e},\tensorq{z}):\dot{\tensorq{z}},
 \]
 Realize now that we have obtained
 \[
-	\partial_{\tensorq{e}} \varphi\qty(\tensorq{e},\tensorq{z})\dot{\tensorq{e}} + \partial_{\tensorq{z}}\varphi\qty(\tensorq{e},\tensorq{z}) = \dv{t} \varphi\qty(\tensorq{e},\tensorq{z}),
+	\partial_{\tensorq{e}} \varphi\qty(\tensorq{e},\tensorq{z}):\dot{\tensorq{e}} + \partial_{\tensorq{z}}\varphi\qty(\tensorq{e},\tensorq{z}): \dot{\tensorq{z}} = \dv{t} \varphi\qty(\tensorq{e},\tensorq{z}),
 \]
 and denoting the quantity
 \[
@@ -1529,7 +1798,7 @@ and denoting the quantity
 \]
 as the \textit{rate of the dissipation} we obtain
 \[
-	\tensorq{\sigma}: \dot{\tensorq{e}} = \dv{t} \varphi\qty(\tensorq{e},\tensorq{z})+ \xi\qty(\dot{\tensorq{e}}, \dot{\tensorq{z}}).
+	\bbsigma: \dot{\tensorq{e}} = \dv{t} \varphi\qty(\tensorq{e},\tensorq{z})+ \xi\qty(\dot{\tensorq{e}}, \dot{\tensorq{z}}).
 \]
 
 What are the properties of $\xi$? First of all, we require
@@ -1571,7 +1840,7 @@ Denote
 to be \textit{the stored energy} and the \textit{dissipation potential}. Here $\theta >0 $ denotes the absolute thermodynamic temperature. Let us denote 
 
 \[
-\tensorq{\sigma}_{el} = \pdv{\psi}{\tensorq{e}}, \tensorq{\sigma}_{in} = \pdv{\psi}{\tensorq{z}}, s = - \pdv{\psi}{\theta},
+\bbsigma_{el} = \pdv{\psi}{\tensorq{e}}, \bbsigma_{in} = \pdv{\psi}{\tensorq{z}}, s = - \pdv{\psi}{\theta},
 \]
 as the elastic and inelastic stress and the entropy density. Moreover, define
 \[

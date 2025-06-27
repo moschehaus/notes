@@ -15,37 +15,43 @@
 \contentsline {subsection}{\numberline {3.2}Forces in the undeformed configuration}{10}{subsection.3.2}%
 \contentsline {subsubsection}{\numberline {3.2.1}Piola-Kirchhoff stresses}{10}{subsubsection.3.2.1}%
 \contentsline {subsubsection}{\numberline {3.2.2}Balance equations in the deformed configuration}{11}{subsubsection.3.2.2}%
-\contentsline {section}{\numberline {4}Elasticity}{12}{section.4}%
-\contentsline {subsection}{\numberline {4.1}Frame invariance principle}{13}{subsection.4.1}%
-\contentsline {subsection}{\numberline {4.2}Isotropic material}{13}{subsection.4.2}%
-\contentsline {subsection}{\numberline {4.3}Hyperelastic materials}{15}{subsection.4.3}%
-\contentsline {subsection}{\numberline {4.4}Properties of W}{15}{subsection.4.4}%
-\contentsline {subsection}{\numberline {4.5}Rank-one convexity}{18}{subsection.4.5}%
-\contentsline {section}{\numberline {5}Linearized elasticity}{19}{section.5}%
-\contentsline {subsection}{\numberline {5.1}Equations}{20}{subsection.5.1}%
-\contentsline {subsection}{\numberline {5.2}Convex analysis}{22}{subsection.5.2}%
-\contentsline {subsection}{\numberline {5.3}Problem of a man...}{24}{subsection.5.3}%
-\contentsline {subsection}{\numberline {5.4}von Mieses elatoplasticity}{24}{subsection.5.4}%
-\contentsline {subsubsection}{\numberline {5.4.1}Plastic evolution}{25}{subsubsection.5.4.1}%
-\contentsline {subsubsection}{\numberline {5.4.2}Discrete time setting}{26}{subsubsection.5.4.2}%
-\contentsline {subsection}{\numberline {5.5}Rheological models}{27}{subsection.5.5}%
-\contentsline {subsubsection}{\numberline {5.5.1}Dashpots}{27}{subsubsection.5.5.1}%
-\contentsline {subsubsection}{\numberline {5.5.2}Kelvin-Voigt mateial}{27}{subsubsection.5.5.2}%
-\contentsline {subsubsection}{\numberline {5.5.3}Maxwell material}{28}{subsubsection.5.5.3}%
-\contentsline {subsection}{\numberline {5.6}Internal parameters}{28}{subsection.5.6}%
-\contentsline {section}{\numberline {6}Thermodynamics in the framework of GSM (generalized standard materials)}{29}{section.6}%
-\contentsline {section}{\numberline {7}Summary}{31}{section.7}%
-\contentsline {section}{\numberline {8}(Some) tutorials}{31}{section.8}%
-\contentsline {subsection}{\numberline {8.1}Change of observer}{31}{subsection.8.1}%
-\contentsline {subsection}{\numberline {8.2}Change of reference configuration}{32}{subsection.8.2}%
-\contentsline {subsection}{\numberline {8.3}Consequences of isotropic hyperelastic solid}{32}{subsection.8.3}%
-\contentsline {subsection}{\numberline {8.4}Representation in terms of principial stresses}{33}{subsection.8.4}%
-\contentsline {subsection}{\numberline {8.5}Hyperelasticity with constraints}{34}{subsection.8.5}%
-\contentsline {subsection}{\numberline {8.6}Rational thermodynamics}{34}{subsection.8.6}%
-\contentsline {subsubsection}{\numberline {8.6.1}Clausius-Duhem inequality}{34}{subsubsection.8.6.1}%
-\contentsline {subsubsection}{\numberline {8.6.2}Isothermal setting}{35}{subsubsection.8.6.2}%
-\contentsline {subsection}{\numberline {8.7}Inflation of a hyperelastic balloon}{37}{subsection.8.7}%
-\contentsline {subsubsection}{\numberline {8.7.1}Biaxial deformation of a incompressible hyperelastic sheet}{37}{subsubsection.8.7.1}%
-\contentsline {subsubsection}{\numberline {8.7.2}Simplified approach for a balloon}{38}{subsubsection.8.7.2}%
-\contentsline {subsubsection}{\numberline {8.7.3}Exact solution}{39}{subsubsection.8.7.3}%
+\contentsline {subsection}{\numberline {3.3}Conservative forces}{12}{subsection.3.3}%
+\contentsline {section}{\numberline {4}Elasticity}{13}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Frame invariance principle}{14}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Isotropic material}{15}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Hyperelastic materials}{16}{subsection.4.3}%
+\contentsline {subsection}{\numberline {4.4}Properties of W}{16}{subsection.4.4}%
+\contentsline {subsection}{\numberline {4.5}Variational approach to hyperelasticity}{18}{subsection.4.5}%
+\contentsline {subsubsection}{\numberline {4.5.1}Nonconvexity of $W$}{19}{subsubsection.4.5.1}%
+\contentsline {subsubsection}{\numberline {4.5.2}Polyconvexity}{20}{subsubsection.4.5.2}%
+\contentsline {subsubsection}{\numberline {4.5.3}Rank-one convexity}{21}{subsubsection.4.5.3}%
+\contentsline {subsubsection}{\numberline {4.5.4}Ensuring injectivity}{22}{subsubsection.4.5.4}%
+\contentsline {section}{\numberline {5}Linearized elasticity}{22}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Equations}{24}{subsection.5.1}%
+\contentsline {subsubsection}{\numberline {5.1.1}Korn's inequality}{25}{subsubsection.5.1.1}%
+\contentsline {section}{\numberline {6}Convex analysis}{27}{section.6}%
+\contentsline {section}{\numberline {7}(von Mieses) elastoplasticity}{29}{section.7}%
+\contentsline {subsection}{\numberline {7.1}Problem of a man...}{29}{subsection.7.1}%
+\contentsline {subsubsection}{\numberline {7.1.1}Plastic evolution}{31}{subsubsection.7.1.1}%
+\contentsline {subsubsection}{\numberline {7.1.2}Discrete time setting}{32}{subsubsection.7.1.2}%
+\contentsline {subsection}{\numberline {7.2}Rheological models}{32}{subsection.7.2}%
+\contentsline {subsubsection}{\numberline {7.2.1}Dashpots}{32}{subsubsection.7.2.1}%
+\contentsline {subsubsection}{\numberline {7.2.2}Kelvin-Voigt mateial}{33}{subsubsection.7.2.2}%
+\contentsline {subsubsection}{\numberline {7.2.3}Maxwell material}{34}{subsubsection.7.2.3}%
+\contentsline {subsection}{\numberline {7.3}Internal parameters}{34}{subsection.7.3}%
+\contentsline {section}{\numberline {8}Thermodynamics in the framework of GSM (generalized standard materials)}{35}{section.8}%
+\contentsline {section}{\numberline {9}Summary}{37}{section.9}%
+\contentsline {section}{\numberline {10}(Some) tutorials}{37}{section.10}%
+\contentsline {subsection}{\numberline {10.1}Change of observer}{37}{subsection.10.1}%
+\contentsline {subsection}{\numberline {10.2}Change of reference configuration}{37}{subsection.10.2}%
+\contentsline {subsection}{\numberline {10.3}Consequences of isotropic hyperelastic solid}{37}{subsection.10.3}%
+\contentsline {subsection}{\numberline {10.4}Representation in terms of principial stresses}{39}{subsection.10.4}%
+\contentsline {subsection}{\numberline {10.5}Hyperelasticity with constraints}{40}{subsection.10.5}%
+\contentsline {subsection}{\numberline {10.6}Rational thermodynamics}{40}{subsection.10.6}%
+\contentsline {subsubsection}{\numberline {10.6.1}Clausius-Duhem inequality}{40}{subsubsection.10.6.1}%
+\contentsline {subsubsection}{\numberline {10.6.2}Isothermal setting}{41}{subsubsection.10.6.2}%
+\contentsline {subsection}{\numberline {10.7}Inflation of a hyperelastic balloon}{43}{subsection.10.7}%
+\contentsline {subsubsection}{\numberline {10.7.1}Biaxial deformation of a incompressible hyperelastic sheet}{43}{subsubsection.10.7.1}%
+\contentsline {subsubsection}{\numberline {10.7.2}Simplified approach for a balloon}{44}{subsubsection.10.7.2}%
+\contentsline {subsubsection}{\numberline {10.7.3}Exact solution}{45}{subsubsection.10.7.3}%
 \providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 

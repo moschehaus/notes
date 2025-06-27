@@ -1,15 +1,15 @@
 [0] Config.pm:308> INFO - This is Biber 2.20
-[0] Config.pm:311> INFO - Logfile is 'notes_solids.blg'
-[78] biber:340> INFO - === Wed Jun 18, 2025, 14:38:52
-[100] Biber.pm:420> INFO - Reading 'notes_solids.bcf'
-[193] Biber.pm:994> INFO - Found 1 citekeys in bib section 0
-[207] Biber.pm:4463> INFO - Processing section 0
-[220] Biber.pm:4654> INFO - Looking for bibtex file 'references_solids.bib' for section 0
-[221] bibtex.pm:1713> INFO - LaTeX decoding ...
-[225] bibtex.pm:1519> INFO - Found BibTeX data source 'references_solids.bib'
-[295] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[295] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
-[295] Biber.pm:4283> INFO - Sorting list 'nyt/global//global/global/global' of type 'entry' with template 'nyt' and locale 'en-US'
-[295] Biber.pm:4289> INFO - No sort tailoring available for locale 'en-US'
-[302] bbl.pm:676> INFO - Writing 'notes_solids.bbl' with encoding 'UTF-8'
-[303] bbl.pm:779> INFO - Output to notes_solids.bbl
+[1] Config.pm:311> INFO - Logfile is 'notes_solids.blg'
+[167] biber:340> INFO - === Thu Jun 19, 2025, 15:37:56
+[204] Biber.pm:420> INFO - Reading 'notes_solids.bcf'
+[345] Biber.pm:994> INFO - Found 2 citekeys in bib section 0
+[373] Biber.pm:4463> INFO - Processing section 0
+[391] Biber.pm:4654> INFO - Looking for bibtex file 'references_solids.bib' for section 0
+[392] bibtex.pm:1713> INFO - LaTeX decoding ...
+[404] bibtex.pm:1519> INFO - Found BibTeX data source 'references_solids.bib'
+[539] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[539] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[539] Biber.pm:4283> INFO - Sorting list 'nyt/global//global/global/global' of type 'entry' with template 'nyt' and locale 'en-US'
+[539] Biber.pm:4289> INFO - No sort tailoring available for locale 'en-US'
+[552] bbl.pm:676> INFO - Writing 'notes_solids.bbl' with encoding 'UTF-8'
+[558] bbl.pm:779> INFO - Output to notes_solids.bbl

@@ -1,0 +1,47 @@
+\documentclass[11pt]{scrartcl} % or article, but scrartcl has nicer defaults
+\usepackage{subfiles}
+\input{preamble}
+
+\begin{document}
+
+% Cover Page
+\begin{titlepage}
+  \centering
+  \vspace*{2cm}
+  
+  {\scshape\LARGE Charles University \par}
+  \vspace{0.5cm}
+  {\scshape\Large Faculty of Mathematics and Physics\par}
+  \vspace{1.5cm}
+  
+  {\huge\bfseries Classical problems in continuum mechanics\par}
+  \vspace{0.5cm}
+  {\Large\itshape Based on the lectures by doc. Mgr. Vít Průša, Ph.D.\par}
+  
+  \vspace{2cm}
+  
+  \vfill
+  
+  {\large Compiled and typeset by Kamil Belán\par}
+  \vspace{0.5cm}
+  {\large Academic Year 2024/2025\par}
+  \vspace{0.2cm}
+  {\large Last updated: \today\par}
+  
+\end{titlepage}
+
+\tableofcontents
+\newpage 
+
+\subfile{chapters/diffgeo.tex}
+\subfile{chapters/linel.tex}
+\subfile{chapters/stability.tex}
+
+\newpage
+\printbibliography
+\end{document} 
+
+%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 
