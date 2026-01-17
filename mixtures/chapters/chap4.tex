@@ -1,0 +1,664 @@
+\documentclass[../notes.tex]{subfiles}
+\begin{document}
+\chapter{Chemical reactions}
+\label{chap:chemical_reactions}
+Our evolution equation for the concetration has been
+
+\begin{equations}[single,*]
+\rho \mdv{c_{\alpha}} = - \divergence{\bm{j}_{\alpha}} + m_{\alpha}, \alpha =1, \dots, N,
+\end{equations}
+
+with the constraint
+
+\begin{equations}[single,*]
+	\sum_{\alpha=1}^N m_{\alpha} = 0,
+\end{equations}
+
+representing the \emph{conservation of mass in chemical reactions.} So far, we had
+
+\begin{equations}[single,*]
+	\rho \mdv{\eta} = \dots - \sum_{\alpha=1}^N m_{\alpha} \mu_{\alpha},
+\end{equations}
+and to have this positive, we put
+
+\begin{equations}[single,*]
+m_{\alpha} = - \beta_{\alpha} \mu_{\alpha},
+\end{equations}
+
+but this approach has a \emph{fundamental weakness:} we have so far ignored that in chemical reactions, the number of atoms of individual types remain unchanged.
+
+\textbf{ Our goal} is to focus on $\xi_{\, \text{chem} \,} = - \sum_{\alpha=1}^N \mu_{\alpha} m_{\alpha},$ where 
+
+\begin{equations}[single,*]
+\mu_{\alpha} = \pdv{\hat{\psi}}{c_{\alpha}}\qty(\theta, \frac{1}{\rho}, c_{\alpha}) = \pdv{\hat{g}}{c_{\alpha}}\qty(\theta, p, c_{\alpha}),
+\end{equations}
+where $g = \hat{g}\qty(\theta, p, c_{\alpha})$ is the \emph{Gibbs potential.}
+
+\begin{itemize}
+	\item \emph{stoichiometry}: mathematical (LA) description of chemical reactions and composition
+	\item \emph{mixture of ideal gases}: we will obtain $\mu_{\alpha}$ explicitly,
+	\item \emph{chemical equilibrium},
+	\item \emph{chemical kinetics}.
+\end{itemize}
+
+\section{Steichiometry}
+\label{sec:steichiometry}
+
+We seek a mathematical description of chemical reactions.
+
+\begin{definition}[Molar mass]
+	We define
+
+	\begin{equations}[single,!,numberline=all]
+	\label{eq:molar_mass}
+	M_{\alpha} = \sum_{\sigma=1}^Z T_{\sigma \alpha}A^{\sigma},
+	\end{equations}
+	where $\sigma = 1, \dots, Z$ are individual types of atoms (\textit{e.g.} O, N, C, ...), $A^{\sigma}$ are molar masses of $\sigma-$atom \textit{i.e.} the mass of 1 mol, $T_{\sigma \alpha}$ is the \emph{composition matrix.}
+\end{definition}
+
+Next up, it will be useful to reformulate $m_{\alpha}$ in terms of molar quantites
+
+\begin{equations}[single,!,numberline=all]
+\label{eq:molar_m}
+m_{\alpha} = M_{\alpha} J^{\alpha},
+\end{equations}
+where $J^{\alpha}$ is the \emph{molar rate} in units $mol/(m^3 s).$
+
+\begin{lemma}[Conservation of number of atoms in chemical reactions]
+It must hold
+
+\begin{equations}[single,!,numberline=all]
+\label{eq:cons_chemial}
+\sum_{\alpha=1}^N T_{\sigma \alpha}J^{\alpha} = 0, \sigma = 1, \dots, Z.
+\end{equations}
+\end{lemma}
+
+Let us realize that from this \emph{axiom} we also obtain the conservation of mass
+
+\begin{equations}[lines,*]
+	\sum_{\alpha=1}^N m_{\alpha} = \sum_{\alpha=1}^N M_{\alpha} J^{\alpha} = \sum_{\alpha=1}^N \sum_{\sigma=1}^Z T_{\sigma \alpha}A^{\alpha} J^{\alpha} = \\ = \sum_{\sigma=1}^Z A^{\sigma} \underbrace{\sum_{\alpha =1}^N T_{\sigma \alpha} J^\alpha}_{=0} \equiv 0.
+\end{equations}
+
+Notice that this means 
+\begin{equations}[single,!,numberline=all]
+\label{eq:rank_of_T}
+H \coloneq \rank\qty(\tensorq{T}) < N,
+\end{equations}
+
+\textit{i.e.} the rows of $\tensorq{T}$ are linearly dependent. Excluding the linearly dependent rows of $\tensorq{T}$ we obtain the matrix $\tensorq{S} \in \R^{H \times N}.$ 
+
+\begin{remark}[No harm done]
+Realize that the conservation of number of atoms still holds:
+
+\begin{equations}[single,*]
+	\sum_{\alpha=1}^N T_{\sigma \alpha}J_{\alpha} = 0 \Leftrightarrow \sum_{\alpha=1}^N S_{\sigma \alpha} J_{\alpha} = 0,
+\end{equations}
+
+and one also has
+
+\begin{equations}[single,*]
+M_{\alpha} = \sum_{\sigma=1}^H S_{\sigma \alpha} \varepsilon^{\sigma},
+\end{equations}
+with $\varepsilon^{\sigma}$ being the \emph{atomic substances}.\sidenotemark
+\end{remark}
+
+\sidenotetext{Those are the parts of the mixture that do not react anymore (?).}
+
+\begin{definition}[Composition and reaction spaces]
+
+Let us now denote
+\begin{equations}[single,*]
+\bm{M} = \sum_{\alpha=1}^N M_{\alpha} \bm{e}_{\alpha} \in \R^{N},
+\end{equations}
+and
+
+\begin{equations}[single,*]
+\bm{J} = \sum_{\alpha=1}^N J_{\alpha} \bm{e}_{\alpha} \in \R^{N},
+\end{equations}
+
+and
+
+\begin{equations}[single,*]
+\bm{f}_{\sigma} = \sum_{\alpha=1}^N S_{\sigma \alpha} \bm{e}_{\alpha}, 
+\end{equations}
+
+as the $\sigma-$th column of $\tensorq{S}$ with $\bm{e}_{\alpha}$ being the canonical basis. Denote furthermore
+
+\begin{equations}[single,*]
+	W = \, \text{span} \,\qty{\bm{f}_{1}, \dots, \bm{f}_{H}}, 
+\end{equations}
+as the \emph{composition space} and
+
+\begin{equations}[single,*]
+V = W^{\perp},  \R^{N} = V \oplus W,
+\end{equations}
+
+as the \emph{reaction space}.
+	
+\end{definition}
+
+\begin{lemma}[What lies where.]
+It holds
+
+\begin{equations}[single,*]
+	\bm{M} \in W, \bm{J} \in V.
+\end{equations}
+\end{lemma}
+\begin{proof}
+	\begin{equations}[single,*]
+	\bm{M} = \sum_{\alpha=1}^N M_{\alpha} \bm{e}_{\alpha} = \sum_{\alpha=1}^N \sum_{\sigma=1}^H S_{\sigma \alpha}\varepsilon^{\sigma} \bm{e}_{\alpha} = \sum_{\sigma=1}^H \varepsilon^{\sigma} \sum_{\alpha=1}^N S_{\sigma \alpha} \bm{e}_{\alpha} = \sum_{\sigma=1}^H \varepsilon^{\sigma} \bm{f}_{\sigma} \in W,
+	\end{equations}
+	and
+	\begin{equations}[single,*]
+	\bm{f}_{\sigma} \vdot \bm{J} = \qty(\sum_{\alpha=1}^N S_{\sigma \alpha} \bm{e}_{\alpha}) \vdot \qty(\sum_{\sigma=1}^H J_{\sigma} \bm{e}_{\sigma}) = \sum_{\alpha=1}^N S_{\sigma \alpha} J_{\alpha} = 0, \forall \sigma = 1, \dots, H,
+	\end{equations}
+	where we have just used the conservations of atoms.
+\end{proof}
+
+\begin{remark}[Equivalent formulation os mass conservation]
+Equivalently, one can write the conservation of mass in chemical reactions as
+
+\begin{equations}[single,*]
+0 = \bm{M} \vdot \bm{J} = \qty(\sum_{\alpha=1}^N M_{\alpha} \bm{e}_{\alpha}) \vdot \qty(\sum_{\sigma=1}^H J_{\sigma} \bm{e}_{\sigma}) = \sum_{\alpha}M_{\alpha}J_{\alpha} = \sum_{\alpha}m_{\alpha}.
+\end{equations}
+\end{remark}
+
+$V$ is a vector space, so one can choose a dual basis $\qty{\bm{g}^P}_{P=1}^{N-H}$ as the \emph{contravariant basis} of $V$, or $\qty{\bm{g}_P}_{P=1}^{N-H}$ as the \emph{covariant basis} of $V.$ The following \emph{orthogonality relations} yield
+
+\begin{equations}[single,*]
+	0 = \bm{f}_{\sigma} \vdot \bm{g}^P = \qty(\sum_{\alpha}S_{\sigma \alpha} \bm{e}_{\alpha}) \vdot \qty(\sum_{\rho} P^{P \rho}\bm{e}_{\rho}) = \sum_{\alpha=1}^N S_{\sigma \alpha}P^{P \alpha}, \sigma = 1, \dots, H, P = 1, \dots, N-H,
+\end{equations}
+where the columns of $P^{P \rho}$ is the \emph{matice prechodu.}
+It remains to realize that this yields $H (N-H)$ relations for $(N-H)H$ unknown elements of $\tensorq{P}, \, \text{\textit{i.e.}} \,P^{P \alpha}.$
+
+And so
+
+\begin{equations}[single,*]
+\bm{g}^P = \sum_{\alpha=1}^{N}P^{p \alpha} \bm{e}_{\alpha}, p = 1, \dots, N-H.
+\end{equations}
+
+\begin{example}[Nitrogen oxides]
+	Let us have two oxides of nitrogen: $NO_2, N_2O$. The matrix $\tensorq{S}$ is $\tensorq{S} = \qty[1, 2]^{\transpose}.$
+\end{example}
+
+\begin{example}[example name]
+	$N = 3, \alpha =1 \dots O, \alpha = 2 \dots, O_2, \alpha = 3, \dots, O_3.$
+	Then $\tensorq{T} = \qty[1, 2]^{\transpose} = \tensorq{S}, H = \rank \tensorq{T} = 1, N - H = 2,$ and so 
+
+	\begin{equations}[single,*]
+\tensorq{P} = \begin{bmatrix}
+	1 & 0 & P^{13} \\
+	0 & 1 & P^{23},
+\end{bmatrix}
+	\end{equations}
+	where the remaining components have to satisfy
+
+	\begin{equations}[single,*]
+		\qty(1, 2, 3) \vdot \qty(1, 0 , P^{13}) = 1 + 3 P^{13} =0,
+	\end{equations}
+	and so
+	\begin{equations}[single,*]
+	P^{13} = - \frac{1}{3},
+	\end{equations}
+	and
+	\begin{equations}[single,*]
+		(1, 2, 3) \vdot \qty(0, 1, P^{23}) = 2 + 3 P^{23} = 0,
+	\end{equations}
+	and so 
+	\begin{equations}[single,*]
+		P^{23} = -\frac{2}{3}.
+	\end{equations}
+
+	One can take the matrix to be
+
+	\begin{equations}[single,*]
+	\tensorq{P} = \begin{bmatrix}
+		3 & 0 & -1\\
+		0 & 3 & -2
+	\end{bmatrix},
+	\end{equations}
+	and so 
+	\begin{equations}[columns,*]
+		3 O - O_{3} &= 0 \Leftrightarrow O_{3} \to 3 O_1, \\
+		3 O_2 - 2 O_{3} &= 0 \Leftrightarrow 2 O_3 \to 3 O_{2}.
+	\end{equations}
+\end{example}
+
+Another possible view is
+
+\begin{equations}[single,*]
+\bm{J} \in V \Rightarrow \bm{J} = \sum_{\alpha=1}^N J_{\alpha} \bm{e}_{\alpha} = \sum_{p=1}^{N-1} J_p \bm{g}^p,
+\end{equations}
+and taking the dot product with $\bm{e}_{\beta}$ we have
+
+\begin{equations}[single,*]
+J_{\beta} = \sum_{p = 1}^{N-H}J_p P^{p \beta}, \beta = 1, \dots, N
+\end{equations}
+
+and so the sought quantites in fact are $J_{p}, p =1, \dots, N-H$ and it holds
+
+\begin{equations}[single,*]
+m_{\alpha} = M_{\alpha} J_{\alpha} = \sum_{p=1}^{N-H}M_{\alpha}P^{p \alpha} J_p, \alpha = 1, \dots, N.
+\end{equations}
+
+Consider now an alternative view: somebody gives us the chemical reactions that take place in the mixture, \textit{i.e.} the reactants and products $X_1, \dots, X_N$ are known: 
+
+\begin{equations}[columns,*]
+	\zeta^{11}_f X_1 + \dots + \zeta^{1 N}_f X_N &\to \zeta^{11}_b X_1 + \dots + \zeta_b^{1 N}X_N, \\
+						     &\dots \\
+	\zeta^{N-H 1}_f X_1 + \dots + \zeta^{N-H N}_f X_N &\to \zeta^{N - H1}_b X_1 + \dots + \zeta_b^{N-H N}X_N,
+\end{equations}
+with $\zeta^{ij}_b, \zeta_f$ being the \emph{backward/forward} steichiometric coefficients of $j$ component in $i$ reaction. The matrix $\tensorq{P}$ has the elements
+
+\begin{equations}[single,*]
+P^{q \beta} = \zeta_b^{q \beta} - \zeta_f^{q \beta}.
+\end{equations}
+
+Consider now a fixed volume $V$ and $N_{\alpha}(V)$ to be the number of moles in $V$ of $\alpha$-th component. It holds
+
+\begin{equations}[single,!,numberline=all]
+\label{eq:invariant}
+J_{q} \coloneq \frac{1}{P^{q1}} \dv{N_1(V)}{t} = \frac{1}{P^{q2}}\dv{N_2(V)}{t} = \dots =\frac{1}{P^{qN}} \dv{N_N(V)}{t}, q = 1 \dots, N - H.
+\end{equations}
+\textit{i.e.} $J_q$ is an invariant of the reaction $q$. The quantity $J_q$ is called the \emph{advancement of $q$-th reaction.}
+
+The consequence of this is 
+
+\begin{equations}[single,*]
+	\zeta^{CH} = - \frac{1}{\theta} \sum_{\alpha=1}^N m_{\alpha} \mu_{\alpha} = -\frac{1}{\theta} \sum_{\alpha=1}\sum_{q = 1}^{N-H}M_{\alpha} P^{q \alpha} J_q \mu_{\alpha} =  - \frac{1}{\theta} \sum_{q=1}^{N-H}J_q\qty(\sum_{\alpha=1}^N M_{\alpha} \mu_{\alpha} P^{q \alpha}) =  - \frac{1}{\theta} \sum_{q=1}^{N - H} J_q \qty(\sum_{\alpha=1}^N \mu_{\alpha}^M P^{q \alpha}),
+\end{equations}
+
+where $\mu_{\alpha}^M = \mu_{\alpha} M_{\alpha}$ is the \emph{molar chemical potential.} We thus can write
+
+\begin{equations}[single,*]
+\zeta^{CH} = - \frac{1}{\theta} \sum_{q=1}^{N - H} J_q A^q, 
+\end{equations}
+with 
+
+\begin{equations}[single,*]
+	A^q = \sum_{\alpha=1}^N \mu_{\alpha}^M P^{q \alpha} = - \frac{1}{\theta} \bm{J} \vdot \bm{A}.
+\end{equations}
+Let us compute the projection of $\bm{\mu}^M = \qty(\mu_1^M, \dots, \mu_N^M)$ to $V$ 
+
+\begin{equations}[single,!,numberline=all]
+\label{eq:projection}
+P_V \bm{\mu}^M = \bm{\mu}^M \vdot \qty(\sum_{p=1}^{N-H}\bm{g}^p \otimes \bm{g}_p) = \sum_{p}\qty(\bm{g}^p \vdot \bm{\mu}^M) \bm{g}_p,
+\end{equations}
+where 
+\begin{equations}[single,*]
+	\bm{g}^p \vdot \bm{\mu}^M = \sum_{\alpha=1}^N \mu_{\alpha}^M \bm{e}_{\alpha} \vdot \bm{g}^p = \sum_{\alpha=1}^N \mu_{\alpha}^M P^{p \alpha} = A^p,
+\end{equations}
+and so
+
+\begin{equations}[single,*]
+P_V \bm{\mu}^M = \sum_{p=1}^{N - H} A^p \bm{g}_p,
+\end{equations}
+and so we see that the \emph{chemical afinity } $\bm{A}$ is the projection of $\bm{\mu}^M$ to the reation subspace $V.$
+
+\section{Mixture of ideal gases}
+\label{sec:ideal_gases_mixture}
+
+Suppose we have a system of $N$ ideal gases. The state equations are 
+
+\begin{equations}[single,*]
+p_{\alpha} = \frac{N_{\alpha} R \theta}{V} = \frac{R \theta}{M_{\alpha}} \frac{n_{\alpha}}{V} = \frac{R}{M_{\alpha}} \theta \rho_{\alpha} = \hat{p}_{\alpha}\qty(\theta, \rho_{\alpha})
+\end{equations}
+and so 
+
+\begin{equations}[single,*]
+\rho_{\alpha} = \frac{M_{\alpha}}{R \theta}p_{\alpha}.
+\end{equations}
+
+The second equation is 
+
+\begin{equations}[single,*]
+	e_{\alpha} = \hat{e}_{\alpha}= d_{\alpha} \frac{R \theta}{M_{\alpha}},
+\end{equations}
+with $d_{\alpha}$ being the \emph{equipartioning constant.} Finally, the entropy is
+
+\begin{equations}[single,*]
+	\eta_{\alpha} = \hat{\eta}_{\alpha}\qty(\theta, \rho_{\alpha}) = 
+\end{equations}
+
+And so our fundamental relation for Helmholtz:
+
+\begin{equations}[single,!,numberline=all]
+\label{eq:helmholtz_free}
+\rho \psi = \sum_{\alpha=1}^N \rho_{\alpha} \psi_{\alpha} = \sum_{\alpha=1}^N \rho_{\alpha}\qty(e_{\alpha} - \theta \eta_{\alpha}) = \sum_{\alpha = 1}^N d_{\alpha} \rho_{\alpha} \frac{R \theta}{M_{\alpha}} - \theta \sum_{\alpha=1}^N \qty(d_{\alpha} \rho_{\alpha} \frac{R}{M_{\alpha}} \log\qty(\frac{\theta}{\theta_0}) - \frac{R}{M_{\alpha}} \rho_{\alpha}\log\qty(\frac{\rho_{\alpha}}{\rho^0_{\alpha}}) + \rho_{\alpha} \eta_{\alpha}^0),
+\end{equations}
+
+which is a fundamental relation of the form
+
+\begin{equations}[single,*]
+	\rho \psi = \widehat{\rho \psi}\qty(\theta, \rho_{\alpha}).
+\end{equations}
+
+The thermodynamical quantites can be obtained as
+
+\begin{equations}[lines,*]
+	\mu_{\alpha} = \pdv{\widehat{\rho \psi}}{\rho_{\alpha}} = e_{\alpha} - \theta \eta_{\alpha} - \sum_{\beta} \theta \rho_{\beta} \pdv{\eta_{\beta}}{\rho_{\alpha}} = e_{\alpha} - \theta \eta_{\alpha} + \frac{R \theta}{M_{\alpha}} =\\= \qty(e_{\alpha} - \theta \eta_{\alpha} + \frac{p_{\alpha}}{\rho_{\alpha}})\qty(\theta, \rho_{\alpha}) \equiv g_{\alpha}\qty(\theta, \rho_{\alpha}),
+\end{equations}
+and it is natural to express the chemical potential in terms of $\qty(\theta, p_{\alpha}),$ and so
+
+\begin{equations}[single,*]
+\tilde{\mu}_{\alpha}\qty(\theta, p_{\alpha}) = \mu_{\alpha}\qty(\theta, \hat{\rho}_{\alpha}\qty(p_{\alpha}, \theta)) = \tilde{\mu}_{\alpha}\qty(\theta, p \frac{p_{\alpha}}{\rho})
+\end{equations}
+
+From \emph{homework,} we know the \emph{Dalton law} holds:
+
+\begin{equations}[single,!,numberline=all]
+\label{eq:dalton_law}
+p = \rho^{2} \pdv{\psi}{\rho} = \sum_{\alpha=1}^N p_{\alpha},
+\end{equations}
+
+which means
+
+\begin{equations}[single,*]
+p = \sum_{\alpha=1}^N p_{\alpha} = R \theta \sum_{\alpha=1}^N \pdv{\rho_{\alpha}}{M_{\alpha}}.
+\end{equations}
+
+The natural variable for the chemical potentail thus is 
+\begin{equations}[single,*]
+\frac{p_{\alpha}}{p} = \frac{\frac{\rho_{\alpha}}{M_{\alpha}}}{\sum_{\beta=1}^N \frac{\rho_{\beta}}{M_{\beta}}} = \frac{c_{\alpha}^M}{\sum_{\beta=1}^N \gamma_{\beta}},
+\end{equations}
+with 
+
+\begin{equations}[single,!,numberline=all]
+\label{eq:molar_concetration}
+c_{\alpha}^M = \frac{\rho_{\alpha}}{M_{\alpha}}.
+\end{equations}
+
+Thus we arrive at the relation
+
+\begin{equations}[single,*]
+\mu_{\alpha} = \mu_{\alpha}\qty(\theta, p \frac{c_{\alpha}^M}{\sum_{\beta=1}^N c_{\beta}^M}) = \hat{g}_{\alpha}\qty(\theta, p \frac{c_{\alpha}^M}{\sum_{\beta=1}^N c_{\beta}^M}) = \hat{g}_{\alpha}\qty(\theta,p) + \frac{R \theta}{M_{\alpha}} \log\qty(\frac{c_{\alpha}^M}{\sum_{\beta=1}^N c_{\beta}^M}),
+\end{equations}
+
+which can be further manipulated using the fact
+
+\begin{equations}[single,*]
+1 = \sum_{\beta} c_{\beta}^M = \sum_{\beta} \frac{\rho_{\beta}}{M_{\beta}} = \frac{1}{R \theta} \sum_{\alpha}p_{\alpha} = \frac{p}{R \theta},
+\end{equations}
+and so if we set
+
+\begin{equations}[single,*]
+\mu_{\alpha}^0 = g_{\alpha}\qty(\theta,p) - \frac{R \theta}{M_{\alpha}} \log\qty(\frac{p}{R \theta}),
+\end{equations}
+
+then we obtain
+
+\begin{equations}[single,!,numberline=all]
+\label{eq:ideal_mixing}
+\mu_{\alpha}^M\qty(\theta, p, c_{\alpha}^M) = \mu_{\alpha}^{M, 0}\qty(\theta, p) + R \theta \log c_{\alpha}^M
+\end{equations}
+
+This condition on the chemical potential is called \emph{"ideal mixing".} In the case of \emph{non-ideal mixing}, the resulting chemical potential would be
+
+\begin{equations}[single,*]
+	\mu_{\alpha}^M - \mu_{\alpha}^{M,0}\qty(\theta, p) + R \theta \log\qty(a_{\alpha}\qty(c_{\beta}^M)),
+\end{equations}
+where $a_{\alpha}$ is called the \emph{chemical activity of $\alpha$-th component}, \textit{i.e.} in the case of ideal mixing $a_{\alpha} = c_{\alpha}.$
+
+
+\section{Chemical equilibrium}
+\label{sec:equilibrium}
+
+We have shown that the chemical production of entropy is
+
+\begin{equations}[single,*]
+	\zeta^{ch} = - \frac{1}{\theta} \bm{J} \vdot \bm{A}.
+\end{equations}
+
+It is natrural to postulate that \emph{thermodynamical equilibrium} happens when 
+
+\begin{equations}[single,!,numberline=all]
+\label{eq:equlibrium}
+\zeta^{ch \dagger} = 0 = - \frac{1}{\theta^{\dagger}} \bm{J}^{\dagger} \vdot \bm{A}^{\dagger}.
+\end{equations}
+
+Our definition \sidenote{One could also assume something else: both vectors being zero, them being perpendicular...} of the chemical equilibrium is
+
+\begin{equations}[single,*]
+\bm{A}^{\dagger} = 0,
+\end{equations}
+
+which is equivalent to\sidenote{Note that $\tensorq{P}$ is a constant matrix, so it does not change even in the equilbirum; formally $\tensorq{P} = \tensorq{P}^{\dagger}.$}
+
+\begin{equations}[single,*]
+A^{\dagger p} = 0 \Leftrightarrow \sum_{\alpha} \mu_{\alpha}^{M \dagger}P^{p \alpha} = 0, p = 1, \dots, N - H.
+\end{equations}
+
+What does this mean? \sidenote{Recall we are fixing the temperature and pressure, so the chemical equilibirum depends only on the equlibration of the potentials.}
+
+\begin{equations}[single,*]
+0 = \sum_{\alpha=1}^N\qty(\mu_{\alpha}^{M 0}\qty(\theta, p) + R \theta \log a_{\alpha})^{\dagger} P^{p \alpha} \Leftrightarrow 0 = \sum_{\alpha=1}^N \mu_{\alpha}^{M0}\qty(\theta, p) P^{p \alpha} + R \theta \log\qty(\prod_{\alpha=1}^N (a^{\dagger}_{\alpha})^{P^{p \alpha}}) = 0,
+\end{equations}
+
+it is usual to denote
+
+\begin{equations}[single,!,numberline=all]
+\label{eq:equilib constants}
+\sum_{\alpha=1}^N \mu_{\alpha}^{0 M}\qty(\theta, p) \tensorq{P}^{o \alpha} = - R \theta \log K_p\qty(\theta, p),
+\end{equations}
+
+as \emph{equilibrium constants of $p-$th reaction}. Our equlibrium requirement yields
+
+\begin{equations}[single,!,numberline=all]
+\label{eq:equlib}
+0 = R \theta \log\qty(K_p^{-1} \prod_{\alpha=1}^N \qty(a_{\alpha}^{\dagger})^{\tensorq{P}^{p \alpha}}), 
+\end{equations}
+
+meaning
+
+\begin{equations}[single,!,numberline=all]
+\label{eq:mass_addition_law}
+K_{p}\qty(\theta, p) = \prod_{\alpha=1}^N \qty(a_{\alpha}^{\dagger})^{\tensorq{P}^{p \alpha}}.
+\end{equations}
+
+\begin{example}[Haber-Bosch synthesis]
+That is the equation
+
+\begin{equations}[single,*]
+N_2 + 3 H_2 \to 2 NH_3
+\end{equations}
+
+Let us moreover suppose that the reaction
+
+\begin{itemize}
+	\item runs in a closed container,
+	\item the initial composition is: 1 mole of nitrogen, 3 moles oh hydrogen and 0 moles of amoniac,
+	\item the mixing is ideal: $a_{\alpha} = c_{\alpha}^{M},$
+	\item the pressure $p$ and temperature $\theta$ are constant.
+\end{itemize}
+
+What is the equilibrium composition $Q$? Order nitrogen molecule as $\alpha = 1,$ hydrogen molecule as $\alpha = 2$ and amoniac molecule as $\alpha = 3,$ nitrogen as $\sigma = 1$ and hydrogen as $\sigma = 2.$
+
+\begin{equations}[single,*]
+T = \begin{bmatrix}
+	2 & 0 & 1\\
+	0 & 2 & 3
+\end{bmatrix}
+P = \begin{bmatrix}
+	-1 & -3 & 2
+\end{bmatrix}
+\end{equations} 
+Our equations are
+
+\begin{equations}[single,*]
+\partial_t \rho_{\alpha} + \divergence{\qty(\rho_{\alpha} \bm{v}_{\alpha})} = m_{\alpha} = M_{\alpha} \tensorq{P}^{1 \alpha}J_1,
+\end{equations}
+which we integrate over the container $\Omega$ to obtain
+
+\begin{equations}[single,*]
+	\dv{t} \int_{\Omega}\rho_{\alpha}\dd{x} + \int_{\partial \Omega}\rho_{\alpha} \bm{v}_{\alpha} \vdot \bm{n} \dd{S} = M_{\alpha} \tensorq{P}^{1 \alpha} J_1 V,
+\end{equations}
+where $V = \lambda\qty(\Omega)$ is the volume of $\Omega.$ Realize that 
+
+\begin{equations}[single,*]
+\int_{\Omega}\rho_{\alpha}\dd{x} = M_{\alpha}(t, \Omega)
+\end{equations}
+and so if integrate this from $0$ to $t$ we can write
+
+\begin{equations}[single,*]
+	M_{\alpha}\qty(t, \Omega) - M_{\alpha}\qty(0, \Omega) = V M_{\alpha} \tensorq{P}^{1 \alpha} \int_0^t J_1(s) \dd{s},
+\end{equations}
+so if we divide this by $M_{\alpha}$ the \emph{\textbf{molar masses}} we obtain
+
+\begin{equations}[single,*]
+	N_{\alpha}\qty(t, \Omega) - N_{\alpha}\qty(t, 0) = V \tensorq{P}^{1 \alpha} \int_0^t J_1\qty(s) \dd{s}, \alpha = 1, 2, 3,
+\end{equations}
+where we have denoted $N_{\alpha}\qty(t, \Omega)$ as the number of moles in $\Omega$ in the time $t.$ Further manipulation gives
+
+\begin{equations}[single,*]
+	\frac{N_{\alpha}\qty(t, \Omega) - N_{\alpha}\qty(t, O)}{\tensorq{P}^{1, \alpha}} = \int_0^t J_{1}\qty(s) \dd{s},
+\end{equations}
+which means
+
+\begin{equations}[single,*]
+\frac{N_{N_2}\qty(t, \Omega) - 1}{-1} = \frac{N_{H_2}\qty(t, \Omega) -3 }{-3} = \frac{N_{NH_3}(t) - 0}{2}, \forall t >0.
+\end{equations}
+
+And so in equlibrium it must also hold
+
+
+\begin{equations}[single,*]
+\frac{N_{N_2}^\dagger - 1}{-1} = \frac{N_{H_2}^{\dagger} -3 }{-3} = \frac{N_{NH_3}^\dagger - 0}{2}, 
+\end{equations}
+which are 2 equations for 3 unknowns :( . But we have also the \emph{mass-action law:}
+
+\begin{equations}[single,*]
+	K_1\qty(\theta, p) = \qty(a^{\dagger}_{N_2})^{-1} \qty(a_{H_2}^{\dagger})^{-3} \qty(a_{NH_3}^{\dagger})^{2} = \dots = \frac{\qty(N_{NH_3}^{\dagger})^2 V^{-2}}{\qty(N^\dagger_{N_2})\qty(N_{H_2}^{\dagger})^3 V^{-4}},
+\end{equations}
+and so
+
+\begin{equations}[single,*]
+K_1 V^{-2} = \frac{\qty(N_{NH_3}^{\dagger})^{2}}{\qty(N_{N_2}^\dagger)\qty(N_{H_2}^\dagger)^{3}}.
+\end{equations}
+\end{example}
+
+\section{Chemical kinetics}
+\label{sec:kinetics}
+
+There are at least 2 approaches:
+
+\begin{enumerate}
+	\item non-linear closureas automatically satisfying 2nd law \sidenote{Note that mechanical, thermal and chemical effects are all taken to be independent: we suppose the 2nd law holds for every single one of them separetely.}
+	\item reduction of Taylor expansion (rational thermodynamics)
+\end{enumerate}
+
+\subsection{Rational thermodynamics}
+\label{sec:rational_thermo}
+
+\begin{equations}[lines,*]
+	\theta \zeta^{CH} = - \sum_{\alpha=1}^{N}m_{\alpha} \mu_{\alpha} = - \sum_{p=1}^{N-H} \qty(\sum_{\alpha=1} \mu_{\alpha}^m P^{p \alpha})J_p =\\= - \sum_{p=1}^{N-H} \sum_{\alpha=1}^N \qty(\mu_{\alpha}^{M 0}\qty(\theta, p) + R \theta \log a_{\alpha}) P^{p \alpha} J_p = \\ = - \sum_{p=1}^{N-h}\qty(qty(\sum_{\alpha=1}^N \mu_{\alpha}^{M 0}P^{p \alpha}) + R \theta \log\qty(\prod_{\alpha=1}^N a_{\alpha}^{P^{p \alpha}})J_p) =\\= - \sum_{p=1}^{N - H}R \theta \log\qty(K_p^{-1} \prod_{\alpha=1}^N a_{\alpha}^{P^{p \alpha}}) J_p,
+\end{equations}
+one can write
+
+\begin{equations}[single,*]
+	P^{p \alpha} = \nu_{p \alpha}^{b} - \nu_{p \alpha}^{f},
+\end{equations}
+
+\textcolor{gray}{(backward/forward stoich. coefficients)}, and so
+
+\begin{equations}[lines,*]
+\theta \zeta^{CH} = - R \theta \sum_{p=1}^{N-H} \log\qty(K_p^{-1}\qty(\theta, p)\frac{\prod_{\alpha=1}^N a_{\alpha}^{\nu_{\alpha p}^b}}{\prod_{\beta=1}^N a_{\beta}^{\nu_{\beta p^f}}}) J_p = \\= - R \theta \sum_{p=1}^{N-H}\log\qty(\frac{k_p^b \prod_{\alpha=1}^{N-H}a_{\alpha^{\nu_{\alpha p}^b}}}{\prod_{\beta=1}^{N - H}\alpha_{\beta}^{\nu_{\beta p}^f}}) J_p,
+\end{equations}
+where 
+
+\begin{equations}[single,*]
+\frac{k_p^b}{k_p^f} = K_p\qty(\theta, p)^{-1},
+\end{equations}
+and so
+
+\begin{equations}[single,*]
+	\theta \zeta^{CH} = R \theta \sum_{p=1}^{N-H}\qty(\log\qty(k^f_p \prod_{\alpha=1}^N a^{{\nu_{\alpha p}^f}}_{\alpha}) - \log\qty(k_p^b \prod_{\alpha=1}^N a_{\alpha}^{{\nu_{\alpha p}}^b})) J_p.
+\end{equations}
+
+Let us \emph{try} to propose a \emph{non-equilibrium mass action law:}
+
+\begin{equations}[single,*]
+	J_p = k^{f}_p \prod_{\alpha=1}^N a_{\alpha}^{\nu_{\alpha p}^{f}} - k^b_p \prod_{\alpha=1}^N a_{\alpha}^{\nu_{\alpha p}^b} \equiv J_p^f - J_p^b
+\end{equations}
+and then from the monotonicity of the logarithm we obtain
+
+\begin{equations}[single,!,numberline=all]
+\label{eq:2nd_law}
+\zeta^{CH} \geq 0.
+\end{equations}
+
+This is in fact beatiful: in equilibrium, we have 
+
+\begin{equations}[single,*]
+\zeta^{\dagger} 0 \Leftrightarrow J_p^{\dagger} = 0 \Leftrightarrow J^{f \dagger}_p = J_b^{\dagger b} \Leftrightarrow K_p = \prod_{\alpha=1}^N \qty(a_{\alpha}^{\dagger})^{\tensorq{P}^{p \alpha}},
+\end{equations}
+and also this has a nice \emph{probabilistic interpretation:}
+
+\subsection{Taylor expansion}
+\label{sec:taylor}
+
+\begin{example}[Nitrogen oxides]
+Let us come back to the example
+
+\begin{equations}[single,*]
+N_2 O_4 \to 2 NO_2,
+\end{equations}
+
+that is
+
+\begin{equations}[single,*]
+P = \begin{bmatrix}
+	2 & -1
+\end{bmatrix}
+\end{equations}
+and let us look for $J_1 = \hat{J_1}\qty(\theta, p, a_1, a_2).$ We use Taylor up to order 2.
+
+\begin{equations}[single,*]
+	J_1 = k_{00}a_1^0 a_2^0 + k_{10}a_1^1 a_2^0 + k_{01}a_2 + k_{11}a_1 a_2 + k_{20}a_1^{2} + k_{02}a_2^{2}.
+\end{equations}
+We require $\hat{J}(\bm{A}^{\dagger}) = 0,$ so
+
+\begin{equations}[single,*]
+0 = k_{00} + k_{10} a_1^\dagger + k_{01}a_2^\dagger + k_{11}a_{1}^\dagger a_2^\dagger + k_{20}\qty(a_1^\dagger)^{2} + k_{02}\qty(a_2^\dagger)^{2},
+\end{equations}
+and also the equilbrium mass action law gives us
+
+\begin{equations}[single,*]
+K_1\qty(\theta, p) = \qty(a_1^\dagger)^{2}\qty(a_2^\dagger)^{-1} \Rightarrow a_2^\dagger = K^{-1}\qty(a_1^\dagger)^{2},
+\end{equations}
+meaning
+
+\begin{equations}[single,*]
+0 = k_{00} + k_{10} a_1^\dagger + k_{01}K^{-1}_1 \qty(a_1^\dagger)^{2} + k_{11}k_1^{-1}\qty(a_1^\dagger)^{3} + k_{20}\qty(a_1^\dagger)^{2} + k_{02}K_1^{-2}\qty(a_1^\dagger)^4.
+\end{equations}
+
+From the postulates of rational thermodynamics, this has to be zero $\forall a_1^\dagger$ and so
+
+\begin{equations}[single,*]
+0 = k_{00} = k_{10} = k_{11} - k_{02},
+\end{equations}
+and also
+
+\begin{equations}[single,*]
+k_{01}K_1^{-1} + k_{20} = 0,
+\end{equations}
+which gives us
+
+\begin{equations}[single,*]
+J_1 = k_{01}a_2 + k_{20}a_1^{2} = k_{01}\qty(a_2 - K_1^{-1}a_1^{2}).
+\end{equations}
+
+This is \emph{exactly the \textcolor{gray}{equilibrium} mass action law} and one can identify
+
+\begin{equations}[single,*]
+	J_1^f = k_{01}\qty(\theta, p)a_2, J_1^b = K_{1}^{-1}k_{01}\qty(\theta, p)a_1^{2},
+\end{equations}
+with
+
+\begin{equations}[single,*]
+J_1 = J_1^f - J_1^b,
+\end{equations}
+
+and also it must hold $k_{01} \geq 0.$
+\end{example}
+
+\end{document}

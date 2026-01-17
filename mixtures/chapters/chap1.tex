@@ -1,0 +1,606 @@
+\documentclass[../notes.tex]{subfiles}
+\begin{document}
+\chapter{Kinematics of mixtures}
+\label{chap:kinematics}
+
+As always, let us begin with the description of motion - \emph{kinematics}.
+
+\begin{lemma}[Postulate of co-occupancy, approach I]
+	At each point of the mixture, \emph{all components} are present \emph{at all times}.
+\end{lemma}
+
+This postulate has serious consequenes. At a chosen time $t>0$, we suppose all $N$ configurations are coexisting at a single point $\vb{x}.$ On the other hand, we each of the components can possess a \emph{distinct reference configuration}. This means
+
+\begin{equation*}
+	\bm{x} \in \kappa_t\qty(\mathcal{B}): \vb{x} = \bm{\chi}_1\qty(t, \vb{X}_1) = \dots = \bm*{\chi}\qty(t, \vb{X}_n),
+\end{equation*}
+
+where $\vb{\chi}_{\alpha}\qty(t, \vb{X}_{\alpha}), \alpha \in \qty{1, \dots, N}$ are the motions of each component.
+
+\begin{figure}
+	\includesvg[width=\textwidth]{referential}
+	\caption{The current configuration is the same for all species, but the referential may differ}
+	\label{fig:many_referentials}
+\end{figure}
+
+
+\section{Basic quantities}
+\label{sec:basic_quantites}
+\begin{definition}[Gradient]
+	The referential gradient of a function $\Phi$ is given as
+
+	\begin{equation*}
+		\qty(\, \text{Grad} \, \Phi)_K = \pdv{\Phi}{X_{\alpha}^K}, \alpha = 1, \dots, N, K = 1, 2, 3.
+	\end{equation*}
+	The case when $\Phi = \vb{\chi}_{\alpha}: \R^{3} \times \R \to \R^{3},$ leads to 
+	\begin{equation}
+		\label{eq:deformation_gradient}
+		\qty(F_{\alpha})^i_K = \pdv{\chi_{\alpha}^i}{X_{\alpha}^K}, \alpha = 1, \dots, N.
+	\end{equation}
+\end{definition}
+
+\begin{definition}[Velocity]
+	The lagrangian velocity of $\alpha-$component is given as
+
+	$$\vb{V}_{\alpha}\qty(t, \vb{X}_{\alpha}) = \pdv{\vb{\chi}\qty(t, \vb{X}_{\alpha})}{t},$$
+	and the eulerien velocity is given as
+
+	$$\vb{v}_{\alpha}\qty(t, \vb{x}) = \vb{V}_{\alpha}\qty(t, \vb{\chi}^{-1}\qty(t, \vb{x})).$$
+\end{definition}
+
+\begin{definition}[Material time derivative]
+	For a lagrangian field:
+	$$\frac{d_{\alpha}\Phi\qty(t, \vb{X}_{\alpha})}{dt} = \pdv{\Phi\qty(t, \vb{X}_{\alpha})}{t},$$
+	for an eulerian field:
+	$$\frac{d_{\alpha}\varphi\qty(t, \vb{x})}{t} = \frac{d_{\alpha}\varphi\qty(t, \vb\qty{\chi}_{\alpha}\qty(t, \vb{X}_{\alpha}))}{t} = \pdv{\varphi}{t}\qty(t, \vb{x}) + \vb{v}_{\alpha}\qty(t, \vb{x}) \vdot\grad \varphi\qty(t, \vb{x})$$
+\end{definition}
+
+\begin{remark}[Pitfalls of the Lagrangian description of mixtures]
+	Suppose we know the density of some component $\gamma$: $\rho_{\gamma}\qty(t, \vb{x}_{\gamma}).$ It can happen that one has to compute something like $$\dv{\rho_{\gamma}\qty(t, \vb{x}_{\gamma})}{t}$$
+\end{remark}
+
+\section{Balance equations}
+\label{sec:balance_equation}
+Let us first realize what are some useful measures
+
+\begin{itemize}
+	\item $m_{\alpha}\qty(\Omega)$ is the mass of $\alpha-$component in $\Omega$,
+	\item $v_{\alpha}\qty(\Omega)$ us the volume of $\alpha$-component in $\Omega$.
+\end{itemize}
+
+\begin{itemize}
+	\item $\rho$ is the mixture density,
+	\item $\rho_{\alpha}$ is the density of $\alpha$-component,
+	\item $c_{\alpha}$ is the concetration or the mass franction of $\alpha-$component,
+	\item $\Phi_{\alpha}$ is the volume fraction of $\alpha-$component,
+	\item $\rho_{\alpha}^m$ is the \emph{good old} material density.
+\end{itemize}
+
+We suppose the mass measure is absolutely continuous\sidenote{If the volume is zero, then the mass is zero. This means no mass can be concetrated on volume-less sets, \textit{i.e.}, surfaces.} w.r.t the volume measure, from which follows the existence of the (mass) density\sidenote{Radon-Nikodym theorem...}.
+
+$$m\qty(\Omega) = \int_{\Omega}\rho\dd{v}.$$
+
+We are also supposing $m_{\alpha}\qty(\Omega)$ is absolutely continuous w.r.t $v(\Omega)$, so
+
+$$m_{\alpha}\qty(\Omega) = \int_{\Omega}\rho_{\alpha}\dd{v},$$
+
+and that $m_{\alpha}\qty(\Omega)$ is absolutely continuous w.r.t $m\qty(\Omega)$, so 
+
+$$m_{\alpha}\qty(\Omega) = \int_{\Omega}c_{\alpha}\dd{m} = \int_{\Omega}\gamma_{\alpha} \rho\dd{v}.$$
+
+This also means $\rho_{\alpha} = \rho \gamma_{\alpha}.$ Next, we suppose the volume-of-components measure is absolutely continous w.r.t the total volume, so 
+
+$$v_{\alpha}\qty(\Omega) = \int_{\Omega}\Phi_{\alpha}\dd{v}.$$ 
+
+Finally, it makes sense to assume 
+
+$$m_{\alpha}\qty(\Omega) = \int_{\Omega_{\alpha}}\rho_{\alpha}^m\dd{v}_{\alpha} = \int_{\Omega}\rho_{\alpha}^m \Phi_{\alpha}\dd{v} = \int_{\Omega}\rho_{\alpha}\dd{v},$$
+so also $\rho_{\alpha} = \rho_{\alpha}^m \varphi_{\alpha}.$
+
+\subsection{Constraints}
+\label{sec:constraints}
+
+It is also natural to assume some "additional" constraints:
+
+$$m\qty(\Omega) = \sum_{\alpha=1}^N m_{\alpha}\qty(\Omega)$$
+
+is the \emph{mass aditivity constraint.} This is directly equivalent to 
+
+$$\rho = \sum_{\alpha=1}^N \rho_{\alpha} \Leftrightarrow 1 = \sum_{\alpha=1}^N \underbrace{\frac{\rho_{\alpha}}{\rho}}_{= c_{\alpha}}.$$
+
+This in particular means $c_{1}, \dots, c_{N}$ are \emph{not equivalent!}.
+
+\section{General form of a balance law in the bulk in the Eulerian config}
+\label{sec:gen_law_bulk}
+
+How to compute
+
+$$\dv{t} \int_{\Omega_{\alpha}(t)}\psi_{\alpha}\dd{x}$$, for $\Omega_{\alpha}(t)$ a $\alpha-$material volume?
+
+Well, in general
+
+\begin{equation}
+	\label{eq:general_law}
+	\dv{t} \int_{\Omega_{\alpha}}\psi_{\alpha}\dd{x} = \int_{\partial \Omega_{\alpha}}\vb{\Phi}^{\psi_{\alpha}}\vdot \vb{n}\dd{s} + \int_{\Omega_{\alpha}\qty(t)}\zeta^{\psi_{\alpha}}\dd{x} + \int_{\Omega_{\alpha}(t)}\Sigma^{\psi_{\alpha}}\dd{x} + \int_{\Omega_{\alpha}(t)}\Pi^{\psi_{\alpha}}\dd{x},
+\end{equation}
+where the first term is the non-convective flux of $\psi_{\alpha},$ the second term is the production of $\psi_{\alpha}$ inside $\Omega_{\alpha},$ the third term is the external supplu of $\psi_{\alpha}$ and the last in is \emph{the interaction (exchange) of $\psi_{\alpha}$ with other components.} Since it is a exchange, there also is the constraint
+
+\begin{equation}
+	\sum_{\alpha=1}^N \Pi^{\psi_{\alpha}} = 0.
+\end{equation}
+
+The LHS can be easily manipulated using the Reynolds transport theorem, so upon localization
+
+\begin{equation}
+	\label{eq:localized_form}
+	\partial_t \psi_{\alpha} + \grad \vdot \qty(\psi_{\alpha} \otimes \vb{v}_{\alpha}) = \grad \vdot \varphi^{\psi_{\alpha}} + \zeta^{\psi_{\alpha}} + \Sigma^{\psi_{\alpha}} + \Pi^{\psi_{\alpha}}, \sum_{\alpha=1}^N \Pi^{\psi_{\alpha}}=0
+\end{equation}
+
+\subsection{Balance of mass}
+\label{sec:balance of mass}
+
+In the case of $\psi_{\alpha} = \rho_{\alpha},$ we have
+
+\begin{itemize}
+	\item $\Phi^{\rho_{\alpha}} = 0,$
+	\item $\zeta^{\rho_{\alpha}} = 0,$
+	\item $\Sigma^{\rho_{\alpha}} = 0,$
+	\item $\Pi^{\rho_{\alpha}} = m_{\alpha}.$
+\end{itemize}
+
+So our balance low reduces to
+
+\begin{equations}[single,!,numberline=all]
+	\label{eq:mass_balance_convective}
+	\partial_t \rho_{\alpha} + \grad \vdot \qty(\rho_{\alpha} \vb{v}_{\alpha}) = m_{\alpha},
+\end{equations}
+
+
+or equivalently
+
+\begin{equations}[single,!,numberline=all]
+	\label{eq:mass_balance}
+	\mdv[\alpha]{\rho_{\alpha}} + \rho_{\alpha} \grad \vb{v}_{\alpha} = m_{\alpha}.
+\end{equations}
+
+Both times with the constraint $$\sum_{\alpha = 1}^N m_{\alpha} = 0.$$
+
+But hold on - if i look away from the fact we are dealing with mixtures, i would like to have some compatibility with the single-component theory of continuum. So let us deal with the \emph{balance of mass for the mixture as a whole.}
+
+We know $$\rho = \sum_{\alpha}^N \rho_{\alpha},$$ so let us sum all the equations:
+
+$$\partial_t\qty(\sum_{\alpha}\rho_{\alpha}) + \grad \vdot \qty(\sum_{\alpha}\rho_{\alpha} \vb{v}_{\alpha}) = \sum_{\alpha}m_{\alpha} = 0.$$
+
+This begs the definitions
+
+$$\rho \vb{v} \coloneq \sum_{\alpha=1}^N \rho_{\alpha} \vb{v}_{\alpha},$$
+
+with the definition of the \emph{barycentric velocity}\sidenote{This is some kind of a "velocity of the whole mixture". Note that there are more ways to define this concept, but only this one gives us \emph{some} connection to the "single-component" treatment. $$\vb{v} = \sum_{\alpha=1}^N c_{\alpha} \vb{v}_{\alpha}.$$ One could also set 
+	\begin{equations}[columns,*]
+		v^{\Phi} &= \sum_{\alpha=1}^N \Phi_{\alpha}\bm{v}_{\alpha}, \\
+		v^{x} &= \sum_{\alpha=1}^N x_{\alpha}\bm{v}_{\alpha},
+	\end{equations}
+	as "volumetric" and "molar" velocities.
+}
+
+
+Then the equation becomes $$\partial_t \rho + \grad \vdot \qty(\rho \vb{v})=0.$$
+
+
+\subsection{Balance of (linear) momentum}
+\label{sec:momentum}
+
+\begin{itemize}
+	\item $\bm{\psi}_{\alpha} = \rho_{\alpha} \bm{v}_{\alpha},$
+	\item $\bm{\Phi}^{\psi_{\alpha}} = \cstress_{\alpha}$ \emph{the partial Cauchy stres},
+	\item $\bm{\xi}^{\psi_{\alpha}} = 0$ (zero production,
+	\item $\bm{\Sigma}^{\psi_{\alpha}} = \rho_{\alpha} \bm{b}_{\alpha},$
+	\item $\bm{\Pi}^{\psi_{\alpha}} = \bm{I}_{\alpha} + m_{\alpha} \bm{v}_{\alpha}$ \emph{interaction force}. $\bm{I}_{\alpha}$ is the "true interaction force" and $m_{\alpha}\bm{v}_{\alpha}$ is the change of momentum due to the change of mass\sidenotemark
+\end{itemize}
+
+\sidenotetext{Imagine a radioactive proccess - one part of the mixture is losing the momentum, just because it is losing the particles that are moving...}
+
+\begin{equations}[lines,!,numberline=all]
+	\label{eq:momentum_eq}
+	\partial_t\qty(\rho_{\alpha}\bm{v}_{\alpha}) + \divergence{\qty(\rho_{\alpha} \bm{v}_{\alpha}\otimes \bm{v}_{\alpha})} = \divergence{\cstress_{\alpha}} + \rho_{\alpha} \bm{b}_{\alpha} + m_{\alpha} \bm{v}_{\alpha} + \bm{I}_{\alpha}, \\ \alpha = 1, \dots, N \nonumber \\ \sum_{\alpha=1}^N \qty(m_{\alpha} \bm{v}_{\alpha}+ \bm{I}_{\alpha}) = 0.
+\end{equations}
+
+Let us manipulate the previous a bit:
+
+\begin{equations}[columns,*]
+	\partial_t\qty(\rho_{\alpha} \bm{v}_{\alpha}) + \divergence{\qty(\rho_{\alpha}\bm{v}_{\alpha}\otimes \bm{v}_{\alpha})} &= \\
+															       &= \bm{v}_{\alpha}\qty(\partial_t \rho_{\alpha} + \divergence{\qty(\rho_{\alpha} \bm{v}_{\alpha})}) + \rho_{\alpha}\qty(\partial_t \bm{v}_{\alpha}+ \bm{v}_{\alpha} \vdot \grad_{\alpha} \bm{v}_{\alpha}) =\\
+															       &= \bm{v}_{\alpha} m_{\alpha} + \rho_{\alpha} \mdv[\alpha]{\bm{v}_{\alpha}},
+\end{equations}
+so this means
+
+\begin{equations}[lines,!,numberline=all]
+	\label{eq:alt_momentum_eq}
+	\rho_{\alpha}\mdv[\alpha]{\bm{v}_{\alpha}} = \divergence{\cstress_{\alpha}} + \rho_{\alpha}\bm{b}_{\alpha} + \bm{I}_{\alpha}, \alpha = 1, \dots, N\\ \sum_{\alpha=1}^N \qty(\bm{I}_{\alpha} + m_{\alpha}\bm{v}_{\alpha}) = 0.
+\end{equations}
+
+Notice there are \emph{many pitfalls}:
+
+\begin{example}[Partial Cauchy stress]
+	It should hold 
+	\begin{equations}[single,*]
+		\cstress_{\alpha}\bm{n} \dd{S} = \bm{t}_{\alpha}\qty(\bm{n})\dd{S},
+	\end{equations}
+	where $\bm{t}_{\alpha}$ is the traction vector exerted on $\alpha$ \emph{by the outter world} - so in particular through all $\emph{other species}.$
+
+	One could imagine a flow through a porous solid all proccesses relaxed and isotropic. Then 
+	\begin{equations}[single,*]
+		\cstress_{\alpha} = -p_{\alpha} \identityM,
+	\end{equations}
+	with $p_{\alpha}$ being the partial pressure. But in fact 
+
+	\begin{equations}[single,*]
+		-p_f \bm{n}\dd{S} = - p_f^T \bm{n}\dd{S}_{\alpha},
+	\end{equations}
+
+	where $p_f$ is the pressure of the fluid, $p_f^T$ is the \emph{true porous pressure}. The surface elements $\dd{S}, \dd{S}_{\alpha}$ are different - and we are mixing jablka s hruskama.
+\end{example}
+
+The total momentum would be 
+
+\begin{equations}[single,*]
+	\sum_{\alpha=1}^N \rho_{\alpha}\bm{v}_{\alpha} = \rho \bm{v},
+\end{equations}
+which is \emph{surprisingly} the RHS. If we sum this up, we obtain
+
+\begin{equations}[single,*]
+	\partial_t\qty(\sum_{\alpha}\rho_{\alpha} \bm{v}_{\alpha}) + \divergence{\qty(\sum_{\alpha} \rho_{\alpha} \bm{v}_{\alpha} \otimes \bm{v}_{\alpha})} = \divergence{\qty(\sum_{\alpha}\bm{\Pi}_{\alpha})} + \sum_{\alpha}\rho_{\alpha}\bm{b}_{\alpha},
+\end{equations}
+let us now set 
+
+\begin{equations}[single,!,numberline=all]
+	\label{eq:diffusive_velocity}
+	\bm{v}_{\alpha} = \bm{v} + \bm{u}_{\alpha},
+\end{equations}
+where $\bm{u}_{\alpha}$ is the \emph{diffusive \sidenote{Kind of a relative velcoity of the component w.r.t the barycenter}velocity of the component} $\alpha$. This allows us to write
+
+\begin{equations}[single,*]
+	\sum_{\alpha} \rho_{\alpha} \bm{v}_{\alpha} = \sum_{\alpha} \rho_{\alpha} \bm{v} + \sum_{\alpha} \rho_{\alpha}\bm{u}_{\alpha}, 
+\end{equations}
+so this means 
+
+\begin{equations}[single,!,numberline=all]
+	\label{eq:diffusive_constraint}
+	\sum_{\alpha=1}^N \rho_{\alpha} \bm{u}_{\alpha} = 0.
+\end{equations}
+Finally, this leads to 
+
+\begin{equations}[single,*]
+	\sum_{\alpha} \rho_{\alpha}\qty(\bm{v} + \bm{u}_{\alpha}) \otimes \qty(\bm{v} + \bm{u}_{\alpha}) = \qty(\sum_{\alpha}\rho_{\alpha})\bm{v} \otimes \bm{v} + \bm{v} \otimes \underbrace{\sum_{\alpha}\rho_{\alpha} \bm{u}_{\alpha}}_{=0} + \underbrace{\sum_{\alpha} \rho_{\alpha} \bm{u}_{\alpha}}_{=0} \otimes \bm{v} + \sum_{\alpha} \rho_{\alpha} \bm{u}_{\alpha} \otimes \bm{u}_{\alpha},
+\end{equations}
+so finally
+
+\begin{equations}[single,!,numberline=all]
+	\label{eq:diffusive_momentum_eq}
+	\partial_t\qty(\rho \bm{v}) + \divergence{\qty(\rho \bm{v} \otimes \bm{v})} = \divergence{\qty(\sum_{\alpha}\qty(\bm{\Pi}_{\alpha}- \rho_{\alpha}\bm{u}_{\alpha}\otimes \bm{u}_{\alpha}))} + \sum_{\alpha=1}^N \rho_{\alpha}\bm{b}_{\alpha}.
+\end{equations}
+So if one would again want to treat the whole continuum as having a single component, it should be set
+
+\begin{equations}[columns,!,numberline=all]
+	\label{eq:mixed_partial_cauchy}
+	\cstress^{\qty(\, \text{mix} \,)} &= \sum_{\alpha=1}^N \cstress_{\alpha} - \rho_{\alpha} \bm{u}_{\alpha} \otimes \bm{u}_{\alpha}, \\
+	\rho \bm{b}^{\qty(\, \text{mix} \,)} &= \sum_{\alpha=1}^N \rho_{\alpha} \bm{b}_{\alpha}
+\end{equations}
+
+so in particular 
+
+\begin{equations}[single,*]
+	\cstress^{\qty(\, \text{mix} \,)} \neq \sum_{\alpha=1}^N \cstress_{\alpha}.
+\end{equations}
+
+\subsection{Balance of angular momentum (micropolar case)}
+\label{sec:angular_momenta}
+
+In the single-component setting, the balance of angular momentum implied
+
+\begin{equations}[single,*]
+	\cstress = \cstress^\transpose
+\end{equations}
+
+Our setting is \emph{much richer.} We will deal with the \emph{micropolar case}: our continuum has another degree of freedom corresponding to \emph{rotations.} The rotations will be described by an \emph{(mesoscopis) internal angular momentum} $\bm{s}_{\alpha}$ called \emph{spin}.
+
+\begin{itemize}
+	\item $\bm{\psi}_{\alpha} = \qty(\bm{x} \cross \rho_{\alpha} \bm{v}_{\alpha}) + \bm{s}_{\alpha}$,
+	\item $\bm{\Phi}^{\psi_{\alpha}} = \bm{x} \cross \cstress_{\alpha} + \tensorq{M}_{\alpha}$\sidenote{$$\qty(\bm{x}\cross \cstress_{\alpha})_{ij} = \varepsilon_{ikl}x_k \qty(\cstress_{\alpha})_{lj}$$}, where $\tensorq{M}_{\alpha}$ is the \emph{couple stress},
+	\item $\bm{\xi}^{\psi_{\alpha}} = 0$,
+	\item $\bm{\Sigma}^{\psi_{\alpha}} = \bm{x} \cross \rho_{\alpha}\bm{b}_{\alpha} + \rho_{\alpha} \bm{l}_{\alpha}$, where $\bm{l}_{\alpha}$ is the \emph{spin supply}
+	\item $\bm{\Pi}^{\psi_{\alpha}} = \bm{x} \cross \qty(m_{\alpha}\bm{v}_{\alpha} + \bm{I}_{\alpha}) + \bm{p}_{\alpha} $, where $\bm{p}_{\alpha}$ is the interaction couple.
+\end{itemize}
+
+Our balance thus is 
+
+\begin{equations}[lines,*]
+	\partial_t\qty(\bm{x} \cross \rho_{\alpha}\bm{v}_{\alpha} + \bm{s}_{\alpha}) + \divergence{\qty(\qty(\bm{x}\cross \rho_{\alpha} \bm{v}_{\alpha} + \bm{s}_{\alpha})\otimes \bm{v}_{\alpha})}= \\ = \divergence{\qty(\bm{x} \cross \cstress_{\alpha} + \tensorq{M}_{\alpha})} + \bm{x} \cross \rho_{\alpha} \bm{b}_{\alpha} + \rho_{\alpha} \bm{l}_{\alpha} + \bm{x} \cross \qty(m_{\alpha} \bm{v}_{\alpha} + \bm{I}_{\alpha}) + \bm{p}_{\alpha}, \\ \alpha = 1, \dots, N
+\end{equations}
+
+This can be further manipulated:
+
+\begin{equations}[lines,*]
+	\partial_t\qty(\tens{\varepsilon}{_ijk}x_j \rho_{\alpha}v_{\alpha k} + s_{\alpha i}) + \partial_{l}\qty(\tens{\varepsilon}{_ijk} x_j \rho_{\alpha}x_j v_{\alpha k} + s_{\alpha i}v_{\alpha l})=\\ = \partial_{j}\qty(\tens{\varepsilon}{_ikl}x_k \tens{T}{_\alpha lj} + \tens{M}{_\alpha ij})+ \qty(\tens{\varepsilon}{_ijk}x_j \rho_{\alpha}b_{\alpha k} + \rho_{\alpha}l_{\alpha i}) + \tens{\varepsilon}{_ijk}x_j\qty( m_{\alpha}v_{\alpha k} + I_{\alpha k}) + p_{\alpha i},
+\end{equations}
+
+Our goal is to obtain $$\bm{x} \cross \, \text{balance of linear momentum} \, + \, \text{something} \, = 0,$$ so
+
+\begin{equations}[lines,*]
+	\tens{\varepsilon}{_ijk}x_j\qty(\partial_t\qty(\rho_{\alpha}\bm{v}_{\alpha})_k + \partial_{l}\qty(\rho_{\alpha}v_{\alpha k} v_{\alpha l}) + 0\sidenotemark - \partial_{j} \qty(\tens{T}{_\alpha lj}) - \rho_{\alpha}b_k - m_{\alpha} v_{\alpha k} - I_{\alpha k}) + \\ + \partial_t s_{\alpha i} \partial_{k} \qty(s_{\alpha i} v_{\alpha l}) - \partial_{j}\qty(\tens{M}{_\alpha ij}) - \rho_{\alpha} l_{\alpha i} - p_{\alpha i} - \tens{\varepsilon}{_ijk} \tens{T}{_\alpha kj} = 0.
+\end{equations}
+
+\sidenotetext{$$= \tens{\varepsilon}{_ijk} \partial_{l} x_j \rho_{\alpha}v_{\alpha k} v_{\alpha l}$$ and $\tens{\varepsilon}{_ijk}$ is antisymmetric and $\partial_{l}x_j = \delta_{lj}$ is symmetric}
+
+Using \ref{eq:momentum_eq} we see
+
+\begin{equations}[single,!,numberline=all]
+	\label{eq:ang_momentum_eq}
+	\partial_t \bm{s}_{\alpha} + \divergence{\qty(\bm{s}_{\alpha} \otimes \bm{v}_{\alpha})} = \divergence{\tensorq{M}_{\alpha}} + \rho_{\alpha} \bm{l}_{\alpha} + \bm{p}_{\alpha} + \bm{A}_{\alpha},
+\end{equations}
+where 
+
+\begin{equations}[single,!,numberline=all]
+	\label{eq:vector}
+	\tens{A}{_\alpha i} = \tens{\varepsilon}{_ijk} \tens{T}{_\alpha kj},
+\end{equations}
+
+realize that 
+
+\begin{equations}[lines,*]
+	\tens{A}{_\alpha i} \tens{\varepsilon}{_imn} = \tens{\varepsilon}{_ijk}\tens{\varepsilon}{_imn}\tens{T}{_\alpha kj} = \qty(\delta_{jm}\delta_{km} - \delta_{jn} \delta_{km}) \tens{T}{_\alpha kj} = \\ = \tens{T}{_\alpha kj}\delta_{jm} \delta_{kn} - \tens{T}{_\alpha kj}\delta_{jn}\delta_{km} = \tens{T}{_\alpha nm} - \tens{T}{_\alpha mn} = 2 \asym\qty(\cstress_{\alpha})_{nm}
+\end{equations}
+
+\begin{example}[Simple situation]
+	Imagine the case $$\bm{s}_{\alpha} = 0, \tensorq{M}_{\alpha} = 0, \bm{l}_{\alpha} = 0,$$ but $$\bm{p}_{\alpha} = 0,$$ so 
+
+	\begin{equations}[single,*]
+		\bm{p}_{\alpha} + \bm{A}_{\alpha} = 0 \Rightarrow \bm{A}_{\alpha} \neq 0 \Rightarrow \cstress_{\alpha} \neq \cstress^{\transpose}.
+	\end{equations}
+
+	This can be achieved in a \emph{dipole dielectric} for example.
+\end{example}
+
+Our constraint reads as $$\sum \, \text{interaction terms} \, = 0.$$ So 
+
+\begin{equations}[lines,*]
+	\sum_{\alpha} \bm{x} \cross \qty(m_{\alpha} \bm{v}_{\alpha} + \bm{I}_{\alpha}) + \bm{p}_{\alpha} + m_{\alpha} \bm{s}_{\alpha} = 0 
+\end{equations}
+but since \ref{eq:momentum_eq} we have
+
+\begin{equations}[single,*]
+	\sum_{\alpha} \bm{x} \cross \qty(m_{\alpha} \bm{v}_{\alpha} + \bm{I}_{\alpha}) = \bm{x} \cross \sum_{\alpha}m_{\alpha} \bm{v}_{\alpha} + \bm{I}_{\alpha} = 0,
+\end{equations}
+so in total the constraint reads as
+
+\begin{equations}[single,!,numberline=all]
+	\label{eq:ang_momentum_constraint}
+	\sum_{\alpha=1}^n \qty(\bm{p}_{\alpha} + m_{\alpha} \bm{s}_{\alpha}) = 0.
+\end{equations}
+
+Let 
+
+\begin{equations}[single,!,numberline=all]
+	\label{eq:volumetric_velocity}
+	\bm{v}^{\Phi} = \sum_{\alpha=1}^N \Phi_{\alpha}\bm{v}_{\alpha},
+\end{equations}
+be the \emph{volumetric velocity}. Assume now\sidenote{$$\rho_{\alpha} = \rho_{\alpha}^m \Phi_{\alpha}$$} $$\rho^m_{\alpha} = K_{\alpha},$$ for some constants $K_{\alpha}.$
+
+
+\subsection{Balance of energy}
+\label{sec:energy}
+
+\begin{itemize}
+	\item $\psi_{\alpha} = \rho_{\alpha} E_{\alpha} = \rho_{\alpha}\qty(e_{\alpha} + \frac\qty{1}{2}\abs{\bm{v}_{\alpha}}^{2}),$ where $e_{\alpha}$ is the \emph{specific internal energy},
+	\item $\bm{\Phi}^{\psi_{\alpha}} = \bm{v}_{\alpha}\cstress_{\alpha}-\bm{q}_{\alpha},$ where the first term is the \emph{power of the traction forces}, and the second one is the \emph{(diffusive) energy flux},
+	\item $\xi^{\psi_{\alpha}} = 0,$
+	\item $\Sigma^{\psi_{\alpha}} = \rho_{\alpha} \bm{b}_{\alpha} \vdot \bm{v}_{\alpha} + \rho_{\alpha} r_{\alpha},$ where the first term is the \emph{power of the external body forces} and the second one is the \emph{external source} (of heat)
+	\item $\Pi^{\psi_{\alpha} = m_{\alpha}E_{\alpha}} + \bm{I}_{\alpha} \vdot \bm{v}_{\alpha} + \varepsilon_{\alpha},$ where the last term is the \emph{interaction power} and the penultimate one is the \emph{power if internal forces}
+\end{itemize}
+
+Thus the balance takes the form
+
+\begin{equations}[lines,!,numberline=first]
+	\label{eq:energy_balance}
+	\partial_t\qty(\rho_{\alpha}\qty(e_{\alpha} + \frac{1}{2}\abs{\bm{v}_{\alpha}}^{2})) + \divergence{\qty(\rho_{\alpha}\qty(e_{\alpha} + \frac{1}{2}\abs{\bm{v}_{\alpha}}^{2})\bm{v}_{\alpha})} = \\ =\divergence{\qty(\cstress_{\alpha} \bm{v}_{\alpha} - \bm{q}_{\alpha})} + \rho_{\alpha}\bm{b}_{\alpha} \vdot \bm{v}_{\alpha} + \rho_{\alpha} r_{\alpha} + m_{\alpha}\qty(e_{\alpha} + \frac{1}{2} \abs{\bm{v}_{\alpha}}^{2}) + \bm{I}_{\alpha} \vdot \bm{v}_{\alpha} + \varepsilon_{\alpha}, \\ \sum_{\alpha=1^N}\qty(m_{\alpha}\qty(e_{\alpha}+\frac{1}{2}\abs{\bm{v}_{\alpha}^{2}})+ \bm{I}_{\alpha} \vdot \bm{v}_{\alpha} + \varepsilon_{\alpha}) = 0, \\ \alpha = 1, \dots, N
+\end{equations}
+
+Our goal is to arrive at the \emph{reduced} balance of internal energy: $$\, \text{balance of total energy - balance of kinetic energy} \,$$.
+
+The balance of kinetic energy is \sidenote{Realize $$\partial_t\qty(\rho_{\alpha}\bm{v}_{\alpha}) + \divergence{\qty(\rho_{\alpha} \bm{v}_{\alpha} \otimes \bm{v}_{\alpha})} = \rho_{\alpha}\mdv[\alpha]{\bm{v}_{\alpha}} $$ is not straightforward! I have multiple terms from the alance of mass also.}
+
+\begin{equations}[lines,*]
+	\qty(\partial_t \rho_{\alpha})\bm{v}_{\alpha} + \rho_{\alpha}\qty(\partial_t \bm{v}_{\alpha}) + \partial_{j}\qty(\rho_{\alpha}v_{\alpha i} v_{\alpha j}) = \\ = \qty(\partial_t \rho_{\alpha})\bm{v}_{\alpha} + \rho_{\alpha}\qty(\partial_t \bm{v}_{\alpha}) + \partial_{j}\qty(\rho_{\alpha} v_{\alpha j})v_{\alpha i} + \qty(\partial_{j}v_{\alpha i})\rho_{\alpha}v_{\alpha j},
+\end{equations}
+using the balance of mass \ref{eq:mass_balance_convective}
+
+\begin{equations}[single,*]
+	\partial_t \rho_{\alpha} + \divergence{\qty(\rho_{\alpha} \bm{v}_{\alpha})} = m_{\alpha},
+\end{equations}
+
+we can write
+
+\begin{equations}[single,*]
+	m_{\alpha}\bm{v}_{\alpha} + \rho_{\alpha}\qty(\partial_t \bm{v}_{\alpha} + \qty(\bm{v}_{\alpha} \vdot \grad)\bm{v}_{\alpha}) = \divergence{\cstress_{\alpha}} + \rho_{\alpha} \bm{b}_{\alpha} + m_{\alpha} \bm{v}_{\alpha} + \bm{I}_{\alpha}, 
+\end{equations}
+and so
+
+\begin{equations}[single,*]
+	\rho_{\alpha}\qty(\partial_t \bm{v}_{\alpha} + \qty(\bm{v}_{\alpha} \vdot \grad)\bm{v}_{\alpha}) = \divergence{\cstress_{\alpha}} \rho_{\alpha} \bm{b}_{\alpha} +  \bm{I}_{\alpha}.
+\end{equations}
+
+As ususally, we take the dot product with $\bm{v}_{\alpha}$ and write
+
+\begin{equations}[single,*]
+	\frac{1}{2}\rho_{\alpha}\qty(\partial_t \abs{\bm{v}_{\alpha}}^{2} + \underbrace{\bm{v}_{\alpha} \vdot \grad \abs{\bm{v}_{\alpha}}^{2}}_{=2\qty(\grad \bm{v}_{\alpha}\bm{v}_{\alpha})\vdot \bm{v}_{\alpha}}) = \divergence{\qty(\cstress_{\alpha} \bm{v}_{\alpha})} - \cstress_{\alpha} : \grad \bm{v}_{\alpha} + \rho_{\alpha}\bm{b}_{\alpha} \vdot \bm{v}_{\alpha} + \bm{I}_{\alpha} \vdot \bm{v}_{\alpha}.
+\end{equations}
+
+One can also write \ref{eq:energy_balance} in the form
+
+\begin{equations}[single,!,numberline=all]
+	\label{eq:energy_balance_convective}
+	\rho_{\alpha} \mdv[\alpha]{\qty(e_{\alpha} + \frac{1}{2}\abs{\bm{v}_{\alpha}}^{2})} = \divergence{\qty(\cstress_{\alpha} \bm{v}_{\alpha}) - \bm{q}_{\alpha}} + \rho_{\alpha} \bm{b}_{\alpha} \vdot\bm{v}_{\alpha} + \rho_{\alpha} \rho_{\alpha} + \bm{I}_{\alpha} \vdot \bm{v}_{\alpha} + \varepsilon_{\alpha},
+\end{equations}
+so subtracting the equations yields
+
+\begin{equations}[single,!,numberline=all]
+	\label{eq:reduced_energy_balance_convective}
+	\rho_{\alpha} \mdv[\alpha]{e_{\alpha}} = -\divergence{\bm{q}_{\alpha}} + \cstress_{\alpha} : \symvgrad_{\alpha} + \rho_{\alpha} r_{\alpha} + \varepsilon_{\alpha},
+\end{equations}
+
+or equivalently
+
+\begin{equations}[single,!,numberline=all]
+	\label{eq:reduced_energy_balance}
+	\partial_t\qty(\rho_{\alpha} e_{\alpha}) + \divergence{\qty(\rho_{\alpha}e_{\alpha}\bm{v}_{\alpha})} = - \divergence{\bm{q}_{\alpha}} + \cstress_{\alpha} : \symvgrad_{\alpha} + \rho_{\alpha} r_{\alpha} + \varepsilon_{\alpha} + m_{\alpha}e_{\alpha}.
+\end{equations}
+
+Now we would again like to obtain the balance of energy \emph{of the whole mixture}: take the component energies and sum them up
+
+\begin{equations}[lines,*]
+	\partial_t\qty(\sum_{\alpha=1}^N \rho_{\alpha} E_{\alpha}) + \divergence{\qty(\sum_{\alpha=1}^N\rho_{\alpha}E_{\alpha} \bm{v}_{\alpha})} = \divergence{\qty(\sum_{\alpha = 1}^N \cstress_{\alpha}\bm{v}_{\alpha} - \bm{q}_{\alpha})} + \sum_{\alpha = 1}^N \qty(\rho_{\alpha} \bm{b}_{\alpha} \vdot \bm{v}_{\alpha} + \rho_{\alpha}r_a),
+\end{equations}
+further manipulate
+
+\begin{equations}[single,*]
+	\rho E \coloneq \sum_{\alpha =1}^N \rho_{\alpha} E_{\alpha} = \sum_{\alpha} \rho_{\alpha}\qty(e_{\alpha} + \frac{1}{2}\abs{\bm{v}_{\alpha}}^{2}),
+\end{equations}
+where 
+
+\begin{equations}[single,*]
+	\sum_{\alpha =1}^N \frac{1}{2} \rho_{\alpha}\abs{\bm{v}_{\alpha}}^{2} = \sum_{\alpha=1}^N \frac{1}{2} \rho_{\alpha}\qty(\bm{v}+ \bm{u}_{\alpha}) \vdot \qty(\bm{v} + \bm{u}_{\alpha}) = \qty(\sum_{\alpha = 1}^N \rho_{\alpha})\frac{1}{2} \abs{\bm{v}}^{2} + \underbrace{\qty(\sum_{\alpha=1}^N \rho_{\alpha} \bm{u}_{\alpha})}_{=0} \vdot \bm{v} + \sum_{\alpha = 1}^N  \frac{1}{2} \rho_{\alpha} \abs{\bm{u}_{\alpha}}^{2},
+\end{equations}
+
+so the previous equation becomes
+
+\begin{equations}[single,*]
+	\rho E = \sum_{\alpha=1}^N \rho_{\alpha}\qty(e_{\alpha} + \frac{1}{2} \abs{\bm{u}_{\alpha}}^{2}) + \frac{1}{2}\rho \abs{\bm{v}}^{2}.
+\end{equations}
+
+The right hand side can be manipulated as
+
+\begin{equations}[single,*]
+	\divergence{\qty(\sum_{\alpha=1}^N \rho_{\alpha}E_{\alpha}\qty(\bm{v} + \bm{u}_{\alpha}))} = \divergence{\qty(\rho E \bm{v})} + \divergence{\qty(\sum_{\alpha=1}^N \rho_{\alpha} E_{\alpha} \bm{u}_{\alpha})},
+\end{equations}
+where the last term is 
+
+\begin{equations}[lines,*]
+    \divergence{\qty(\sum_{\alpha=1}^N \rho_{\alpha}\qty(e_{\alpha} + \frac{1}{2}\qty(\bm{v}+ \bm{u}_{\alpha})\vdot \qty(\bm{v}+ \bm{u}_{\alpha}))\bm{u}_{\alpha})} =\\
+    = \divergence{\qty(\sum_{\alpha=1}^N \rho_{\alpha} e_{\alpha}\bm{u}_{\alpha})} + \divergence{\qty(\sum_{\alpha=1}^N \frac{1}{2}\rho_{\alpha}\qty(\abs{\bm{v}}^{2} + 2 \qty(\bm{v} \vdot \bm{u}_{\alpha}) + \abs{\bm{u}_{\alpha}}^{2})\bm{u}_{\alpha})} =\\
+    =\divergence{\qty(\sum_{\alpha=1}^N \rho_{\alpha}e_{\alpha} \bm{u}_{\alpha})} + \divergence{\qty(\sum_{\alpha=1}^N \frac{1}{2} \rho_{\alpha} \abs{\bm{u}_{\alpha}}^{2} \bm{u}_{\alpha})} + \divergence{\Big(\sum_{\alpha=1}^N \underbrace{\rho_{\alpha}(\bm{u}_{\alpha}\otimes \bm{u}_{\alpha})\bm{v}}_{=\rho_{\alpha}\bm{u}_{\alpha}(\bm{u}_{\alpha}\vdot \bm{v})}\Big)}
+\end{equations}
+
+and so the LHS of our balance is
+
+\begin{equations}[single,*]
+	\partial_t\qty(\rho E) + \divergence{\qty(\rho E \bm{v})} + \divergence{\qty(\sum_{\alpha=1}^N \rho_{\alpha}e_{\alpha}\bm{u}_{\alpha})} + \divergence{\qty(\sum_{\alpha=1}^N \frac{1}{2}\rho_{\alpha}\abs{\bm{u}_{\alpha}^{2} \bm{u}_{\alpha}})} + \divergence{\qty(\sum_{\alpha=1}^N \rho_{\alpha}\qty(\bm{u}_{\alpha} \otimes \bm{u}_{\alpha})\bm{v})},
+\end{equations}
+whereas the RHS can be manipulated as
+
+\begin{equations}[single,*]
+	\divergence{\qty(\sum_{\alpha=1}^N \cstress_{\alpha} \bm{v}_{\alpha})} = \divergence{\qty(\sum_{\alpha=1}^N \cstress_{\alpha}\qty(\bm{v}+ \bm{u}_{\alpha}))} = \divergence{\qty(\underbrace{\sum_{\alpha=1}^N \cstress_{\alpha}}_{= \cstress +\divergence{\qty(\sum_{\alpha=1}^N \rho_{\alpha}\bm{u}_{\alpha} \otimes \bm{u}_{\alpha}})\bm{v}})} + \divergence{\qty(\sum_{\alpha=1}^N \cstress_{\alpha}\bm{u}_{\alpha})}.
+\end{equations}
+
+In total, the balance takes the form
+
+\begin{equations}[single,*]
+	\partial_t\qty(\rho E) + \divergence{\qty(\rho E \bm{v})} = \divergence{\cstress \bm{v}} - \divergence{\qty(\sum_{\alpha=1}^N \bm{q}_{\alpha} - \cstress_{\alpha} \bm{u}_{\alpha} + \rho_{\alpha}\qty(e_{\alpha} + \frac{1}{2}\abs{\bm{u}_{\alpha}}^{2})\bm{u}_{\alpha})} + \rho \bm{b} \vdot \bm{v} + \sum_{\alpha=1}^N \qty(\rho_{\alpha}r_{\alpha} + \rho_{\alpha}\bm{b}_{\alpha} \vdot \bm{u}_{\alpha}).
+\end{equations}
+
+Which motivates the definitions of the \emph{energy flux of the whole mixture} and the \emph{total external sources}
+
+\begin{equations}[columns,!,numberline=all]
+	\label{eq:energy_flux_mixture}
+	\bm{q}^{\, \text{mix} \,} &\coloneq \sum_{\alpha=1}^N \qty(\bm{q}_{\alpha} - \cstress_{\alpha}\bm{u}_{\alpha} + \rho_{\alpha}\qty(e_{\alpha} + \frac{1}{2}\abs{\bm{u}_{\alpha}}^{2})\bm{u}_{\alpha}), \\
+	\rho r &\coloneq \sum_{\alpha=1}^N r_{\alpha}
+\end{equations}
+
+This is the balance of energy of the whole mixture, so subracting the balance of kinetic energy of the whole mixture leads to the \emph{balance of internal energy of the whole mixture}
+
+\begin{equations}[single,!,numberline=all]
+	\label{eq:internal_energy_mixture_balance}
+	\rho \mdv{e} = - \divergence{\bm{q}^{\, \text{mix} \,}} + \cstress : \symvgrad + \rho r,
+\end{equations}
+
+where
+
+
+
+\subsection{Balance of entropy}
+\label{sec:entropy}
+
+\begin{itemize}
+	\item $\psi_{\alpha} = \rho_{\alpha} \eta_{\alpha},$ where $\eta_{\alpha}$ is the \emph{specific entropy }
+	\item $\bm{\Phi}^{\psi_{\alpha}} = \bm{q}_{\varepsilon \alpha},$ is the \emph{entropy flux},
+	\item $\Sigma^{\psi_{\alpha}} = \rho_{\alpha} r_{\eta \alpha},$ is the \emph{entropy supply},
+	\item $\xi^{\psi_{\alpha}} = \zeta_{\alpha},$ is the \emph{entropy production},
+	\item $\Pi^{\psi_{\alpha}} = \tilde{\zeta}_{\alpha} + m_{\alpha} \eta_{\alpha}$ is the \emph{entropy exchange.}
+\end{itemize}
+
+The balance has the general form
+
+\begin{equations}[lines,!,numberline=first]
+	\label{eq:entropy_balance}
+	\partial_t\qty(\rho_{\alpha} \eta_{\alpha}) + \divergence{\qty(\rho_{\alpha} \eta_{\alpha} \bm{v}_{\alpha})} = - \divergence{\bm{q}_{\eta}} + \rho_{\alpha}r_{\eta \alpha} + \zeta_{\alpha} + m_{\alpha} \eta_{\alpha} + \tilde{\zeta}_{\alpha}, \\ \sum_{\alpha =1}^N \qty(m_{\alpha} \eta_{\alpha} + \tilde{\zeta}_{\alpha}) =0, \\ \alpha =1, \dots, N.
+\end{equations}
+
+\begin{theorem}[Second law of thermodynamics]
+	We postulate 
+	\begin{equations}[single,!,numberline=all]
+		\label{eq:second_law}
+		\zeta_{\alpha} \geq 0.
+	\end{equations}
+\end{theorem}
+
+Notice that however the above theory is just \emph{formal}. In particular we are not able to find the relations for the functions - in particular it is almost impossible to assure the second law holds.
+
+A formal manipulation is nevertheless possible: if we sum all the equations we obtain
+
+\begin{equations}[lines,*]
+	\partial_t\qty(\sum_{\alpha=1}^N \rho_{\alpha} \eta_{\alpha}) + \divergence{\qty(\qty(\sum_{\alpha=1}^N \rho_{\alpha}\eta_{\alpha})\bm{v})} = - \divergence{\qty(\sum_{\alpha = 1}^N \bm{q}_{\eta \alpha} + \rho_{\alpha} \eta_{\alpha} \bm{u}_{\alpha})} + \sum_{\alpha=1}^N \rho_{\alpha} r_{\eta_{\alpha}} + \sum_{\alpha=1^N} \zeta_{\alpha},
+\end{equations}
+where it is natural to define
+
+\begin{equations}[columns,!,numberline=all]
+	\label{eq:total_entropy_qualities}
+	\rho \eta &\coloneq \sum_{\alpha=1}^N \rho_{\alpha} \eta_{\alpha}, \\
+	\zeta &\coloneq \sum_{\alpha=1}^N \zeta_{\alpha} \geq 0.
+\end{equations}  
+
+\begin{remark}[]
+	In practice one postulates the second law for the mixture as a whole: $$\zeta \geq 0,$$
+	not for each of the components $$\zeta_{\alpha} \geq 0.$$ As we mentioned, it is in practice almost \emph{impossible} to differentitate between $\zeta_{\alpha}$ and $\tilde{\zeta}_{\alpha}$, \textit{i.e.}, between entropy production and entropy exchange.
+\end{remark}
+
+\section{Classification of mixture theories}
+\label{sec:classification}
+
+We are ready to provide a nice classification of mixture theories. \sidenote{This goes back to \emph{Hutter}.} The level of description can be very detailed, or fairly simple. In the table \ref{tab:class} below, the indexed quantity represents the assumption the quantity is \emph{different} for each component; if the quantity is not with an index, it is considered as \emph{the same} for each components.
+
+\begin{table}[ht!]
+	\caption{Classification of mixtures}\label{tab:class}
+	\begin{center}
+		\begin{tabular}{l l l l l}
+			\toprule
+			\textbf{class IV} & \textbf{class III} & \textbf{class II} & \textbf{class I} & \textbf{quantity} \\
+			\midrule
+			$\rho_{\alpha}$ & $\rho_{\alpha}$ & $\rho_{\alpha}$ &$\bm{\rho}_{\alpha} $ & mass \\
+			$\bm{v}_{\alpha}$ & $\bm{v}_{\alpha} $ & $\bm{v}_{\alpha} $ & $ \bm{v}$ & momentum \\
+			$e_{\alpha}$ & $e_{\alpha}$ & $e$ & $e$ & energy \\
+			$\eta_{\alpha}$ & $\eta$ & $\eta$ & $\eta$ & entropy \\
+			\bottomrule
+		\end{tabular}
+	\end{center}
+\end{table}
+
+\begin{example}[Applications]
+	\begin{itemize}
+		\item class I: advection - reaction - diffusion systems, Fick: $\bm{j}_{\alpha} \propto \grad c_{\alpha}$,
+		\item class II: porous media flow, bubbly flows.
+		\item class III: plasma stellar physics.
+	\end{itemize}
+
+	The theory for class IV is extremely complicated and is not developed at all; we won't be dealing with it.
+\end{example}
+
+\end{document}

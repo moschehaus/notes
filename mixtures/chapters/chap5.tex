@@ -1,0 +1,740 @@
+\documentclass[../notes.tex]{subfiles}
+\begin{document}
+\chapter{Class II mixtures}
+\label{chap:clasII}
+
+In this approach we are taking into account the fact that not only \emph{the densities} $\rho_1 \neq \rho_2,$ but also the momenta $\rho_1 \bm{v}_1 \neq \rho_2 \bm{v}_2,$ \textit{i.e.} the velocities $\bm{v}_1 \neq \bm{v}_2$ are not the same. \sidenote{The same of course holds even for $N > 2.$} Note this must mean \emph{there exists a mechanical interaction between the components.}
+
+Importants examples of the class II mixtures include
+
+\begin{itemize}
+	\item \emph{porous media flow} (oil industry hydrology, fracking, sewers ),
+	\item \emph{bubbly flows}: two phase flows (energetic reactors, chemistry)
+	\item \emph{swelling}: fluid-structure interaction, inporous media\sidenotemark 
+\end{itemize}
+
+\sidenotetext{Hydrocephalosis: flow of water in brain tissue - inporous media flow within a viscoelastic setting.}
+
+What is our road plan?
+
+\begin{enumerate}
+	\item reminder of balances in class II mixtures,
+	\item obtain some \emph{a priori} knowledge about interaction forces \emph{from the balances},
+	\item forces inferred from investigating the forces \emph{acting on a single particle},
+	\item \textbf{Darcy's law} + generalisations (\emph{Brikman, Forehlheimer})
+	\item generalised thermodynamical framework 
+\end{enumerate}
+
+\section{Balance laws}
+\label{sec:balance_laws}
+
+The balance of mass reads
+
+\begin{equations}[single,*]
+	\partial_t \rho_{\alpha} + \divergence{\qty(\rho_{\alpha} \bm{v}_{\alpha})} = m_{\alpha}, \sum_{\alpha=1}^N m_{\alpha} = 0,
+\end{equations}
+
+the balance of \textcolor{gray}{linear} momentum is
+
+\begin{equations}[single,*]
+	\partial_t\qty(\rho_{\alpha} \bm{v}_{\alpha}) + \divergence{\qty(\rho_{\alpha} \bm{v}_{\alpha} \otimes \bm{v}_{\alpha})} = \divergence{\cstress_{\alpha}} + \rho_{\alpha} \bm{b}_{\alpha} + \bm{I}_{\alpha} + m_{\alpha} \bm{v}_{\alpha},
+\end{equations}
+
+with 
+
+\begin{equations}[single,*]
+	\sum_{\alpha=1}^N \qty(\bm{I}_{\alpha} + m_{\alpha} \bm{v}_{\alpha}) = \bm{0},
+\end{equations}
+
+and a \emph{single } internal energy balance
+
+\begin{equations}[single,*]
+	\rho \dot{e} = -\divergence{\bm{q}} + \cstress : \symvgrad + \rho r,
+\end{equations}
+where
+
+\begin{equations}[single,*]
+	\cstress = \sum_{\alpha=}^N\qty(\cstress_{\alpha} - \rho_{\alpha} \bm{u}_{\alpha} \otimes \bm{u}_{\alpha}).
+\end{equations}
+
+We see that we require extra the constituive relations for the \textcolor{gray}{partial} Cauchy stress tensors $\cstress_{\alpha}$ and the interaction forces $\bm{I}_{\alpha}.$
+
+\section{Structure of interacton forces}
+\label{sec:structure_forces}
+
+Now we would like to obtain  some information about the structure of the interaction forces \emph{just from the balance laws;} this task is difficul on its own, so let us simplify our problem to a \emph{binary mixture.}
+
+Furthermore assume $m_1 = - m_2 = 0,$ so our balance equations are
+
+\begin{equations}[columns,numberline=first]
+	\label{eq:binary_mass}
+	\rho_1 \dot{\bm{v}}_1 &= \divergence{\cstress_1} + \rho_1 \bm{b}_ + \bm{I}, \\
+	\rho_2 \dot{\bm{v}}_2 &= \divergence{\cstress_2} + \rho_2 \bm{b} -\bm{I}.
+\end{equations}
+
+Recall the procedure from \ref{chap:classI}: rewrite the balance of mass to have the standard single component form \sidenote{Recall 
+	\begin{equations}[single,*]
+		\mdv = \pdv{t} + \bm{v} \vdot \grad,
+	\end{equations}
+	and 
+	\begin{equations}[single,*]
+		\mdv[\alpha] = \pdv{t} + \bm{v}_{\alpha} \vdot \grad,
+	\end{equations}
+}, rewrite the the balance of total momentum using this formulation and identify \emph{something}.
+
+One has $\bm{v}_1 - \bm{v}_2 = \bm{u}_1 - \bm{u}_2,$ and $\bm{j}_{\alpha} = \rho_{\alpha} \bm{u}_{\alpha} = \rho c_{\alpha} \bm{u}_{\alpha},$ meaning \sidenote{we are taking $c_1 \equiv c, c_2 = 1-c.$}
+
+\begin{equations}[single,!,numberline=all]
+	\label{eq:u_1}
+	\bm{u}_1 = \frac{\bm{j}}{\rho c}
+\end{equations}
+
+and since $\bm{j}_1 + \bm{j}_2 = \bm{0},$ one has
+
+\begin{equations}[single,*]
+	\bm{j}_2 = - \bm{j}_1 \equiv - \bm{j} = \rho c_2 \bm{u}_2 = \rho\qty(1-c)\bm{u}_2,
+\end{equations}
+
+from which it follows
+
+\begin{equations}[single,!,numberline=all]
+	\label{eq:u_2}
+	\bm{u}_2 = - \frac{\bm{j}}{\rho(1-c}.
+\end{equations}
+
+Let us this compute
+
+\begin{equations}[single,*]
+	\bm{v}_1 - \bm{v}_2 = \bm{u}_1 - \bm{u}_2 = \frac{\bm{j}}{\rho}\qty(\frac{1}{c} + \frac{1}{1-c}) = \frac{\bm{j}}{\rho c\qty(1-c)},
+\end{equations}
+
+and so
+
+\begin{equations}[lines,*]
+	\dot{\bm{j}} = \mdv{\qty(\rho c \bm{u}_1)} = \mdv{\qty(\rho c\qty(\bm{v}_1 - \bm{v}))} =\\= \dot{\rho}c\qty(\bm{v}_1 - \bm{v}) + \rho \dot{c}\qty(\bm{v}_1 - \bm{v}) + \rho c\qty(\dot{\bm{v}_1} - \dot{\bm{v}}),
+\end{equations}
+
+where
+
+\begin{equations}[single,*]
+	\rho c \dot{\bm{v}_1} = \rho c\qty(\partial_t \bm{v}_1 + \qty(\grad \bm{v}_1) \underbrace{\bm{v}}_{= \bm{v}_1 - \bm{u}_1 = \bm{v}_1 - \frac{\bm{j}}{\rho c}}) = \underbrace{\rho_1 \mdv[1]{\bm{v}_1}}_{= \divergence{\cstress_1} - \rho c \bm{b} + \bm{I}} - \rho c \underbrace{\qty(\grad \bm{v}_1)}_{= \grad \bm{v} + \grad\qty(\frac{\bm{j}}{\rho c})} \frac{\bm{j}}{\rho c}.
+\end{equations}
+
+Altogether
+
+\begin{equations}[lines,*]
+	\dot{\bm{j}} = - \bm{j} \qty(\divergence{\bm{v}}) - \frac{\divergence{\bm{j}}}{\rho c} \bm{j} + \divergence{\cstress_1} + \rho c \bm{b} + \bm{I} - \qty(\grad \bm{v})\qty(\frac{\bm{j}}{\rho c}) + \grad\qty(\frac{\bm{j}}{\rho c})\qty(\frac{\bm{j}}{\rho c}) - c\qty(\divergence{\cstress} + \rho \bm{b}),
+\end{equations}
+where one can substitute 
+
+\begin{equations}[single,*]
+	\cstress = \cstress_1 + \cstress_2 + \rho_1 \bm{u}_1 \otimes \bm{u_2} + \rho_2 \bm{u}_2 \otimes \bm{u}_2 = \cstress_1 + \cstress_2 - \frac{\bm{j} \otimes \bm{j}}{\rho c\qty(1-c)},
+\end{equations}
+
+to obtain
+
+\begin{equations}[single,!,numberline=all]
+	\label{eq:j_dot}
+	\dot{j} + \qty(\qty(\divergence{\bm{v}})\identityM + \grad v)\bm{j} + \divergence{\qty(\frac{\bm{j} \otimes \bm{j}}{\rho}\qty(\frac{1}{c} - \frac{1}{1-c}))} = \divergence{\qty(\qty(1-c)\cstress_1 - c \cstress_2)} + \cstress \grad c + \bm{I}.
+\end{equations}
+
+\begin{remark}[Maxwell-Catthaneo]
+	One could consider
+
+	\begin{equations}[single,*]
+		\rho e = \widehat{\rho e}\qty(\rho \eta, \rho_{\alpha} \bm{j}_{\alpha}),
+	\end{equations}
+	make thermodynamical closures and obtain
+
+	\begin{equations}[single,!,numberline=all]
+		\label{eq:maxwell-catthaneo}
+		\tau \partial_t \bm{q} = - \qty(\bm{q} + \kappa \grad \theta),
+	\end{equations}
+
+	which is known as the \emph{Maxwell-Catthaneo} equation (law). This is an useful generalisation of the \emph{Fourier law} for very fast proccesses. Note that this equation leads to a\emph{hyperbolic} heat equation, so in particular there is also the \emph{finite propagation of information.}
+\end{remark}
+
+Let us take the steady state \ref{eq:j_dot} and assme $\bm{v} \approx \bm{0}, \bm{j} \otimes \bm{j} \approx \tensorq{0}, \abs{\bm{j}}^{2} \approx 0$:
+
+\begin{equations}[single,*]
+	0 = \divergence{\qty(\qty(1-c) \cstress_1  + c \cstress_2)} + \cstress \grad c + \bm{I}.
+\end{equations}
+
+In equlibrium$^\dagger$, one must obtain \sidenote{Note that it would be more physical to take the volume fractions instead of mass fractions below.}
+
+\begin{equations}[columns,*]
+	\cstress^{\dagger} &= -p^\dagger \identityM,\\
+	\cstress_1^\dagger &= - c p^\dagger \identityM, \\
+	\cstress_2^\dagger &= - \qty(1-c)p^{\dagger}\identityM,
+\end{equations}
+
+which after substituton above yields
+
+\begin{equations}[single,!,numberline=all]
+	\label{eq:inter_equilibrium}
+	\bm{I}^\dagger = p^\dagger \grad c.
+\end{equations}
+
+One can thus make the assumption
+
+\begin{equations}[single,*]
+	\bm{I} = - p \grad c + \, \text{something} \,,
+\end{equations}
+where 
+
+\begin{equations}[single,*]
+	\text{something}^\dagger= \bm{0}.
+\end{equations}
+
+\section{Interaction forces from macroscopis anaologies}
+\label{sec:macro_analog}
+
+\subsection{Flow around a sphere}
+\label{sec:flow_aroun_sphere}
+
+Let us consider the problem of a flow of an incompressible Newtonian fluid around a sphere of radius $a$,
+
+\begin{equations}[columns,*]
+	\divergence{\bm{v}} &= 0,\\
+	\partial_t \bm{v} + \divergence{\qty(\bm{v} \otimes \bm{v})} &= - \grad p + \frac{1}{\, \text{Re} \,} \laplace \bm{v},
+\end{equations}
+
+where 
+
+\begin{equations}[single,!,numberline=all]
+\label{eq:reynolds}
+\, \text{Re} \, = \frac{\, \text{inertial forces} \,}{\, \text{viscous forces} \,} = \frac{\abs{\divergence{\qty(\rho \bm{v} \otimes \bm{v})}}}{\abs{\divergence{\qty(2 \mu \symvgrad)}}} = \frac{\frac{1}{L}\rho v^{2}}{\frac{1}{L^{2}}\mu v} = \frac{L \rho v}{\mu} = \frac{2 a \rho V}{\mu},
+\end{equations}
+
+where $V$ is some characteristic velocity magnitude. The force acting on the sphere is
+
+
+\begin{equations}[single,*]
+\bm{f} = \int_{\partial \Omega}\cstress \bm{n}\dd{s} = \bm{f}_{\parallel} + \bm{f}_{\perp}.
+\end{equations}
+
+But to find $\bm{f},$ we require $\cstress$, \textit{i.e.} we require $\symvgrad,$ \textit{i.e.} we require the solution $\bm{v}.$
+
+\subsubsection{Stokes}
+\label{sec:stokes}
+
+In some very special cases, like the Stokes problem \sidenote{Spherical symmetry and linearisation}, we obtain the problem
+
+\begin{equations}[columns,numberline=last]
+	\label{eq:stokes}
+	\divergence{\bm{v}} &= 0,\\
+	\frac{1}{\, \text{Re} \,} \laplace \bm{v} - \grad p &= \bm{0}.
+\end{equations}
+
+This has an analytical solution
+
+\begin{equations}[single,!,numberline=all]
+\label{eq:drag}
+\bm{f}_{D} = 6 \pi a \mu \bm{v}_r,
+\end{equations}
+which is however valid only for very small Reynolds numbers, like  Re $< 0.2.$
+
+\subsubsection{Oseen}
+\label{sec:oseen}
+
+Another possibility is the  \emph{Oseen linearisation}:
+
+\begin{equations}[columns,!,numberline=all]
+\label{eq:oseen}
+\divergence{\bm{v}} &= 0,\\
+\bm{v}_{\infty} \vdot \grad \bm{v} = - \grad p + \frac{1}{\, \text{Re} \,}\laplace \bm{v},
+\end{equations}
+which has the \textcolor{gray}{analytical!} solution \sidenote{Recall that this is the known force 
+\begin{equations}[single,*]
+\bm{F} = - \frac{1}{2}C \rho S \abs{\bm{v}}^{2} \bm{e}.
+\end{equations}	
+}
+
+\begin{equations}[single,!,numberline=all]
+\label{eq:oseen_solution}
+\bm{f}_D^{\, \text{oseen} \,}= \frac{1}{2}\rho \pi a^{2} C_D \abs{\bm{v}_r^{\infty}} \bm{v_r^{\infty}},
+\end{equations}
+
+where the drag coefficient $C_D$ is given as 
+
+\begin{equations}[single,*]
+C_D = \frac{24}{\, \text{Re} \,}\qty(1 + \frac{3}{16} \, \text{Re} \,).
+\end{equations}
+
+This is valid for $\, \text{Re} \, < 3,$ so \emph{a bit} better than Stokes.
+
+
+\subsubsection{Sheer lift}
+\label{sec:sheer_lift}
+
+The fluid flow does not have to be uniform - just because of the gradient of the velocity, the resulting force is known as the \emph{Saffman force}\sidenote{This is not a drag force, but a lift force!}
+
+\begin{equations}[single,!,numberline=all]
+\label{eq:saffman}
+\bm{f}_\perp = 6.46 \sqrt{\nu} \rho a^{2} \sqrt{\abs{\pdv{v_r^{\infty}}{z}}} \abs{v_r^{\infty}} \, \text{sgn} \,\qty(\pdv{v^{\infty}_r}{z})\bm{e}_z.
+\end{equations}
+
+\subsubsection{Magnus force}
+\label{sec:magnus}
+
+Another known lift is the \emph{Magnus force} acting on a \emph{rotating body.}
+
+\begin{equations}[single,!,numberline=all]
+\label{eq:magnus_force}
+\bm{f}_{\perp} = - C\qty(\abs{\bm{v}_r^\infty}) \bm{\omega} \cross \bm{v}_{R}
+\end{equations}
+
+\subsection{Non-stationary flows}
+\label{sec:non_stationary_flows}
+
+What about when the flow is not stationary?
+
+\subsubsection{Virtual mass efect}
+\label{sec:virtual_mass}
+
+Supose one wishes to accelerate a ball flowing in a liquid; realize however that in order to accelerate the ball, one has to accelerate also the surrounding fluid! This can be modelled that the ball has a \emph{greater mass}, \textit{i.e.}
+
+\begin{equations}[single,!,numberline=all]
+\label{eq:virtual_mass}
+\bm{f}_{\, \text{virtual mass} \,} = \qty(m_{\Omega} + m_{\, \text{vir} \,})\dot{\bm{v}_r},
+\end{equations}
+where $m_{\Omega}$ is the mass of the ball and $m_{\, \text{vir} \,}$ is the virtual mass. It can be shown
+
+\begin{equations}[single,!,numberline=all]
+\label{eq:virtuaL_mass_mass}
+m_{\, \text{vir} \,} = \frac{2}{3} \pi a^{3} \rho_f,
+\end{equations}
+with $\rho_f$ being the density of the fluid.\sidenote{This is \emph{half} of the mass displaced by the \textcolor{gray}{incompressible} fluid.}
+
+\subsubsection{Besset force}
+\label{sec:besset}
+
+When the particle is accelerating, there exists another force called the \emph{Basset force}
+
+\begin{equations}[single,!,numberline=all]
+\label{eq:basset}
+\bm{f}_b = - 6 \pi a^{2} \sqrt{\pi \mu} \int_{\infty}^t \frac{1}{\sqrt{t - s}}\dot{\bm{v}_r}\qty(s) \dd{s}.
+\end{equations}
+
+\subsubsection{Buyoancy force}
+\label{sec:buoyancy}
+
+An approximation can be made when one suppose hydrostatic conditions and Taylor expansion
+
+\begin{equations}[lines,*]
+	\bm{f}_{b} = \int_{\partial \Omega}-p \bm{n}  \bm{n}\dd{s} = - \int_{\partial \Omega}\qty(p(0) + \grad p(0) \vdot x) \bm{n}\dd{s} = \\= - p(0) \underbrace{\int_{\partial \Omega}\bm{n}\dd{s}}_{=0} - \grad p(0) \vdot \underbrace{\int_{\partial \Omega}\bm{x} \otimes \bm{n}\dd{s}}_{= \identityM} = - \grad p(0) \vdot \identityM V_{\Omega},
+\end{equations}
+
+\subsection{Inspiration}
+\label{sec:inspiration}
+We have seen there are many many interactions between the fluid and some particles - \textit{i.e.} there can be many interactions between the mixture components. 
+
+How can one include these effects in the balance laws? Assume the ansatz 
+
+\begin{equations}[single,*]
+	\bm{I} \propto \underbrace{\alpha_1\qty(\bm{v}_f - \bm{v}_s)}_{\text{drag}} + \underbrace{\alpha_2 \symvgrad\qty(\bm{v}_f)\qty(\bm{v}_f - \bm{v}_s)}_{\text{shear lift}} + \underbrace{\alpha_3\qty(\asymvgrad\qty(\bm{v}_f) - \asymvgrad\qty(\bm{v}_{s}))\qty(\bm{v}_f - \bm{v}_s)}_{\text{Magnus force}}
+\end{equations}
+
+with $\bm{v}_f$ being the velocity of the fluid and $\bm{v}_s$ being the velocity of the solid (or some particle), and $\asymvgrad\qty(\bm{v})$ is the skew-symmetric part of $\grad \bm{v}_f.$
+
+
+We are yet to include the virtual mass efect. That is however troublesome, we require the force to be objective. It can be shown that it holds
+
+\begin{equations}[single,*]
+	\bm{a}_{1}^{*} - \bm{a}_2^{*} = \tensorq{Q}(t)\qty(\bm{a}_1 - \bm{a}_2) + 2 \dot{\tensorq{Q}}(t) \qty(\bm{v}_1 - \bm{v}_2),
+\end{equations}
+
+where the last term corresponds to the Coriolis force. It can be shown that the only \emph{objective relative accelerations} have the form
+
+\begin{equations}[single,!,numberline=all]
+\label{eq:objective_acc}
+\bm{a}_{12} = \mdv[2]{\bm{v}_1} - \mdv[1]{\bm{v}_2} + \qty(1- \lambda)\qty(\grad\qty(\bm{v}_2 - \bm{v}_1))\qty(\bm{v}_1 - \bm{v}_2), \lambda \in \R.
+\end{equations}
+
+In our model, we assume $\lambda = 1$ only, so the total interaction becomes
+\begin{equations}[lines,!,numberline=all]
+\label{eq:inter_dependency}
+\bm{I} \propto \underbrace{\alpha_1\qty(\bm{v}_f - \bm{v}_s)}_{\text{drag}} + \underbrace{\alpha_2 \symvgrad\qty(\bm{v}_f)\qty(\bm{v}_f - \bm{v}_s)}_{\text{shear lift}} + \underbrace{\alpha_3\qty(\asymvgrad\qty(\bm{v}_f) - \asymvgrad\qty(\bm{v}_{s}))\qty(\bm{v}_f - \bm{v}_s)}_{\text{Magnus force}} + \\ + \underbrace{\qty(\alpha_4\qty(\mdv[f]\qty{\bm{v}_s} - \mdv[s]{\bm{v}_f}))}_{\text{virtual mass effect}} + \underbrace{\qty(\alpha_{5} \grad \varphi)}_{\text{diffusion}} + p \grad \varphi
+\end{equations}
+
+\section{Darcy law}
+\label{sec:darcy}
+In the following we will show 3 ways one can obtain the Darcy law
+
+\begin{enumerate}
+	\item reduction of the governing equations,
+	\item from macroscopis analogies and physical intuition,
+	\item 
+\end{enumerate}
+
+\subsection{Reduction derivation}
+\label{sec:darcyI}
+
+Assume that the mixture is a binary mixture of fluid $f$ and solid $s$ What we will do:
+
+\begin{itemize}
+	\item ignore $\bm{v}_s = \bm{0},$
+	\item neglect fluid inertia $\dot{\bm{v}_2} = \bm{0},$
+	\item ignore most viscous effects: $\cstress_f = -p_f \identityM = - p \varphi \identityM$,
+	\item assume drag only in the interaction force $\bm{I} = \alpha\qty(\bm{v}_f - \underbrace{\bm{v}_s}_{= \bm{0}}) + p \grad \varphi$.
+\end{itemize}
+
+In total, from the balance of momentum for the fluid one has
+
+\begin{equations}[single,*]
+0 = - \grad\qty(p \varphi) + \rho_f^m \varphi \bm{g} + \alpha \bm{v}_f + p \grad \varphi - \varphi \grad p - p \grad \varphi,
+\end{equations}
+
+so one has
+
+\begin{equations}[single,*]
+\alpha \bm{v}_f = \varphi \grad p - \rho_f^m \varphi \bm{g} = \varphi\qty(\grad p_f^{\, \text{pore} \,} - \rho_f^{\, \text{m} \,} \bm{g}).
+\end{equations}
+Since $\alpha < 0,$ one usually writes
+
+\begin{equations}[single,!,numberline=all]
+\label{eq:darcyI}
+\tilde{\alpha} \bm{v}_f = - \varphi\qty(\grad p_f^{\, \text{pore} \,} - \rho_f^{m} \bm{g}),
+\end{equations}
+
+with $\tilde{\alpha} > 0,$ the \emph{drag coeffient}. This is the \emph{Darcy law.}
+
+\subsection{Macroscopic analogy}
+\label{sec:darcyII}
+Let us show another derivation of the Darcy law, springing from some \emph{macroscopic anology.}
+
+Imagine the fluid solid system can be imagined as a slab with periodic circular channels of radius $a$ that are $d$ apart \sidenote{Characteristic pore distance, grain size}. Assume the flow regime is stationary, \textit{i.e.} we are interested in the \emph{Poiseulle flow}:	
+
+\begin{equations}[single,!,numberline=all]
+\label{eq:poisuelle}
+\bm{j} = -\frac{\pi}{8\mu}a^4\grad p,
+\end{equations}
+where $\bm{j}$ is the volume flux in $\unit{\meter^3/\second}$. But this works for a straight channel; what if it is curved? It can be shown:
+
+\begin{equations}[single,!,numberline=all]
+\label{eq:general_poisuelle}
+\bm{j} = - \frac{\pi a^4}{8 \mu X} \grad p,
+\end{equations}
+where $X$ is the \emph{tortuosity}, \textit{i.e.} some geometric factor. Define now
+
+\begin{equations}[single,*]
+	\tilde{\bm{j}} = \frac{\bm{j}}{d^{2}},
+\end{equations}
+ and the volume fraction will be proportional to
+
+\begin{equations}[single,*]
+\varphi \propto \qty(\frac{a^{2}}{d^{2}}).
+\end{equations}
+
+We thus see
+
+\begin{equations}[single,*]
+\tilde{\bm{j}} \propto \frac{a^4}{d^{2}} \frac{\grad}{\mu} \propto \frac{d^{2} \varphi^{2} \grad p}{\mu},
+\end{equations}
+
+in a straight channel; in a curved one we would have
+
+\begin{equations}[single,!,numberline=all]
+\label{eq:curved}
+\tilde{\bm{j}} = -\frac{d^{2} \varphi}{X} \frac{\grad p}{\mu},
+\end{equations}
+
+which can be further simplified upon the definiton of the \emph{permeability of the environnent}
+
+\begin{equations}[single,*]
+k\qty(\varphi) = \frac{d^{2} \varphi^{2}}{X},
+\end{equations}
+ to the form
+
+ \begin{equations}[single,*]
+ \tilde{\bm{j}} = -\frac{k\qty(\varphi)}{\mu} \grad p.
+ \end{equations}
+
+ Since it holds
+
+ \begin{equations}[single,*]
+	 \tilde{\bm{j}} = \varphi_f \bm{v}_f,
+ \end{equations}
+
+ we obtain
+
+ \begin{equations}[single,*]
+ \bm{v}_f = - \frac{k\qty(\varphi)}{\varphi \mu} \grad p.
+ \end{equations}
+
+ This has been done without gravity, but with some intuition \sidenote{And handwaving.} one can infer
+
+ \begin{equations}[single,!,numberline=all]
+ \label{eq:darcyII}
+ \bm{v}_f = - \frac{k\qty(\varphi)}{\varphi \mu}\qty(\grad p - \rho_f^m \bm{g}).
+ \end{equations}
+
+ We see that our previously obtained Darcy \ref{eq:darcyI} suggests
+
+ \begin{equations}[single,*]
+ \frac{\varphi}{\alpha_1} = \frac{k\qty(\varphi)}{\varphi \mu_j}.
+ \end{equations}
+
+ Very often, the permeability has the form
+
+ \begin{equations}[single,*]
+ k(\varphi) = k_0 \varphi^n,
+ \end{equations}
+
+ for usually $n \in [2, 3].$
+
+ \subsection{Homogenization}
+ \label{sec:darcyIII}
+
+ Imagine that the structure of the material is such that there are many \emph{cells} with radius $a$ and dimension $d$. For simplicity, assume again that the system is only a binary mixture of a fluid and a solid and it holds
+
+ \begin{equations}[single,*]
+ \Omega_f = \bigcup_{i}\Omega^i_f,
+ \end{equations}
+
+ \begin{equations}[single,*]
+ \Omega_s = \bigcup_{i}\Omega_s^i,
+ \end{equations}
+
+ \textit{i.e.} the region occupied by the fluid and solid consists of some cells. In these regions, we wish to solve the Stokes problem:
+
+ \begin{equations}[columns,*]
+	 \divergence{\bm{v}} &= 0,\\
+	 - \grad p + \mu \laplace \bm{v} &= 0, 
+ \end{equations}
+ in $\Omega_g$ and $\bm{v} = \bm{0}$ at $\partial \Omega_g.$ To actually get somwhere, we introduce some scaling
+
+ \begin{equations}[single,*]
+	 \bm{v} = \qty[\bm{v}]\tilde{\bm{v}},
+ \end{equations}
+ with $\tilde{\bm{v}} = \bigO{1}$. For Darcy
+
+ \begin{equations}[single,*]
+	 \qty[\bm{v}_f] = \frac{d^{2}}{\mu} \frac{\delta p}{l}.
+ \end{equations}
+
+ After non-dimensinalisation one gets
+
+ \begin{equations}[single,*]
+	 \frac{1}{l} \tilde{\divergence{\qty(\qty[\bm{v}_f] \tilde{\bm{v}}_f)}} = 0,
+ \end{equations}
+ and so it must hold all the time
+ \begin{equations}[single,*]
+ \tilde{\divergence{\tilde{\bm{v}_f}}} =0.
+ \end{equations}
+
+ The momentum equation then becomes
+
+ \begin{equations}[single,*]
+	 0 = \frac{\qty[\delta p]}{l} \qty(- \tilde{\grad} \tilde{p}) + \frac{\mu}{l^{2}} \frac{d^{2}}{\mu l} \qty[\delta p] \tilde{\laplace} \tilde{\bm{v}}_f,
+ \end{equations} 
+
+ which \emph{begs for the definition}
+
+ \begin{equations}[single,*]
+ \varepsilon = \frac{d}{l} \ll 1,
+ \end{equations}
+
+ as then
+
+ \begin{equations}[single,*]
+ - \tilde{\grad} \tilde{p} + \varepsilon^{2}\tilde{\laplace}\tilde{\bm{v}},
+ \end{equations}
+
+ with
+
+ \begin{equations}[single,*]
+	 \tilde{\bm{v}} = 0.
+ \end{equations}
+ 
+ Drop the tildas now and write
+
+ \begin{equations}[columns,*]
+	 \divergence{\bm{v}_{\varepsilon}} &= 0, \\
+	 - \grad p_{\varepsilon} + \varepsilon^{2} \laplace \bm{v}_{\varepsilon} &= 0,
+ \end{equations}
+
+ in $\Omega_{f \varepsilon}$ and $\bm{v}_{\varepsilon} = \bm{0}$ on $\partial \Omega_{f \varepsilon}.$ To procceed we need some kind of \emph{scale separation}:
+
+ \begin{itemize}
+ 	\item the macroscale $\Omega,$
+	\item the microstructure, \textit{i.e.} the cell of scale $\varepsilon$.
+ \end{itemize}
+
+ This can be done in the following way: from $\psi_{\varepsilon}\qty(t, \bm{x}): \Omega \times \qty(0,T) \to \R$ we go for $\psi_{\varepsilon}(t, \bm{x}_0, \bm{\xi}),$ with $\bm{\xi} \in \Omega_{\, \text{cell} \,}.$ The procedure\sidenote{A very dirty one: the variable is discrete, which gets forgotten very often.} is
+
+ \begin{equations}[single,*]
+ \psi_{\varepsilon}(t, \bm{x}_0, \bm{\xi}) = \psi_{\varepsilon}\qty(t, \bm{x}_0 + \varepsilon \bm{\xi}).
+ \end{equations}
+
+ Then the useful quantity is
+
+ \begin{equations}[single,*]
+ <\rho>\qty(t, \bm{x})_{\, \text{ cell} \,} = \frac{1}{\abs{\Omega_{\, \text{cell} \,}}} \int_{\Omega_{\, \text{cell} \,}}\rho_{\varepsilon}\qty(t, \bm{x}, \bm{\xi})\dd{\bm{\xi}},
+ \end{equations}
+
+ and furthermore do a \emph{asymptotic power series expansion}
+
+ \begin{equations}[single,*]
+ \psi_{\varepsilon}\qty(t, \bm{x}) = \sum_{i=0}^{\infty}\varepsilon^i \psi_{e}^{(i)}\qty(t, \bm{x}, \bm{\xi}).
+ \end{equations}
+
+ Finally, realize that 
+
+ \begin{equations}[single,*]
+	 \grad_{\bm{x}} \psi_{\varepsilon}\qty(t, \bm{x}) \to \qty(\grad_{\bm{x}} + \frac{1}{\varepsilon} \grad_{\bm{\xi}})\psi_{\varepsilon}\qty(t, \bm{x}, \bm{\xi}),
+ \end{equations}
+
+ and so we are ready to rewrite the equations using
+
+ \begin{equations}[single,*]
+ \bm{v}_{\varepsilon}\qty(t, \bm{x}) = \sum_{i=0}^\infty \varepsilon^i \bm{v}_{\varepsilon}^{(i)}\qty(t, \bm{x}, \bm{\xi}),
+ \end{equations}
+
+\begin{equations}[single,*]
+ p_{\varepsilon}\qty(t, \bm{x}) = \sum_{i=0}^\infty \varepsilon^i p_{\varepsilon}^{(i)}\qty(t, \bm{x}, \bm{\xi}),
+\end{equations}
+
+to the form
+
+\begin{equations}[single,*]
+	\qty(\grad_{\bm{x}} + \frac{1}{\varepsilon} \grad_{\xi}) \vdot \qty(\bm{v}^{\qty(0)} + \varepsilon \bm{v}^{(1)} + \dots ) =0,
+\end{equations}
+
+and the second equation is
+
+\begin{equations}[single,*]
+	0 = -\qty(\grad_{\bm{x}} + \frac{1}{\varepsilon} \grad_{\xi})\qty(p^{\qty(0)} + \varepsilon p^{(1)} + \dots) + \varepsilon^{2}\qty(\grad_{\bm{x}} + \frac{1}{\varepsilon}\grad_{\bm{\xi}}) \vdot \qty(\grad_{\bm{x}} + \frac{1}{\varepsilon} \grad_{\bm{\xi}})\qty(\bm{v}^{\qty(0)} + \varepsilon \bm{v}^{\qty(1)}).
+\end{equations}
+
+Let us now extract the terms of orders of $\varepsilon$:
+
+\begin{equations}[columns,*]
+	\varepsilon^1: \grad_{\xi} \vdot \bm{v}^{\qty(0)}\qty(t, \bm{x}, \bm{\xi}) &= 0,\\
+	\varepsilon^1: \grad_{\xi}p^{\qty(0)}\qty(t, \bm{x}, \bm{\xi}) &= 0 \Leftrightarrow p^{\qty(0)}\qty(t, \bm{x}, \bm{\xi}) = p^{\qty(0)}\qty(t, \bm{x}), \\
+	\varepsilon^0: -\grad_x p^{\qty(0)} - \grad_{\xi}p^{\qty(1)} + \laplace_{\xi}\bm{v}^{\qty(0)} &= 0.
+\end{equations}
+
+This is the formulation of the \emph{cell problem}:
+
+\begin{equations}[columns,*]
+	\grad_{\xi} \vdot \bm{v}^{\qty(0)} &= 0,\\
+	\laplace_{\xi} \bm{v}^{\qty(0)} - \grad_{\xi}p^{\qty(1)} &= \grad_{\bm{x}} p^{\qty(0)}\qty(t, \bm{\xi}),
+\end{equations}
+
+inside $\Omega_{\, \text{cell} \,}\qty(\bm{x})$ with the boundary conditions
+
+\begin{equations}[single,*]
+	\bm{v}^{\qty(0)} = \bm{0}, \, \text{on} \, \partial \Omega^{f}_{\, \text{cell} \,} \setminus \partial \Omega_{\, \text{cell} \,},
+\end{equations}
+
+and peridoic BC's on $\partial \Omega_{\, \text{cell} \,}.$ We see that if we solve \emph{three cell problems} with the RHS of $\bm{e}_{\alpha}, \alpha = 1, 2, 3$ the basis vectors of $\R^3$, we can solve any virtually any problem - it is \emph{linear},
+
+\begin{equations}[columns,*]
+	\grad_{\xi} \vdot \bm{v}^{\qty(0)} &= 0,\\
+	\laplace_{\xi} \bm{v}^{\qty(0)} - \grad_{\xi}p^{\qty(1)} &= \bm{e}_{\alpha},
+\end{equations}
+
+as then the solution would be
+
+\begin{equations}[single,*]
+	-\sum_{\alpha=1}^3 \bm{v}_{\alpha}^{\qty(0)}\qty(t, \bm{x}, \bm{\xi})\qty(\pdv{p^{(0)}\qty(t, \bm{x})}{x^{\alpha}}),
+\end{equations}
+
+with $\bm{v}^{\qty(0)}$ solving the special problem. What are we interested in is then in fact
+
+\begin{equations}[lines,*]
+	<\bm{v}^{\qty(0)}\qty(t, \bm{x}, \bm{\xi})>\qty(t, \bm{x}) = \frac{1}{\abs{\Omega_{\, \text{cell} \,}}} \int_{\Omega_{\, \text{cell} \,}}\bm{v}^{\qty(0)}\qty(t, \bm{x}, \bm{\xi}) \dd{\xi} =\\= - \sum_{i=1}^3 <\bm{v}_{\alpha}^{\qty(0)}>\qty(t, \bm{x}) \qty(\pdv{p^{\qty(0)\qty(t, \bm{x})}}{x^i}) = - \frac{\tensorq{k}\qty(t, \bm{x}, \varphi)}{\mu \varphi} \grad_{\bm{x}}p^{\qty(0)},
+\end{equations}
+where we have defined \textcolor{gray}{(obtained!)}
+
+\begin{equations}[single,*]
+\tensorq{k} = \mu \varphi \sum_{i=1}^3 <\bm{v}_{\alpha}^{\qty(0)}> \otimes \bm{e}_{\alpha},
+\end{equations}
+
+as the \emph{permeability \textbf{tensor}.}
+
+\subsection{Well problem}	
+\label{sec:well}
+
+
+Two neighbours have a well near the fence and one of them uses a lot of water. How does the water level of the underground water pool changes?
+
+The balance of mass
+\begin{equations}[single,*]
+\partial_t \rho_{f} + \divergence{\qty(\rho_f \bm{v}_f)} = 0,
+\end{equations}
+
+can be recast as
+
+\begin{equations}[single,*]
+	\partial_t\qty(\varphi \rho_f^m) + \divergence{\qty(\varphi \rho_f^m \bm{v}_f)} = 0,
+\end{equations}
+
+where
+
+\begin{equations}[single,*]
+\varphi \bm{v}_{f} = - \frac{k_0 \varphi^{2}}{\mu}\qty(\grad p  - \rho_f^m \bm{g}) = - \frac{k_0 \varphi^{2}}{\mu} \rho_f^m g \grad\qty(\frac{p}{\rho_f^m g} + z),
+\end{equations}
+where 
+
+\begin{equations}[single,*]
+h = \qty(\frac{p}{\rho_f^m f} +z)
+\end{equations}
+
+It can be shown that the continuity equation in fact gives
+
+\begin{equations}[single,*]
+F(p) \pdv{h}{t} - K \rho_f^m \laplace h = 0.
+\end{equations}
+
+The stationary case of this is $\laplace h = 0.$ How to interpret this? The levels of equal pressure are $z = \hat{z}(r), \, \text{\textit{s.t.}} \, p\qty(r, z(r)) = \, \text{const} \,,$ \textit{i.e.}
+
+\begin{equations}[single,*]
+h\qty(r, z(r)) = \frac{p\qty(r, z(r))}{\rho_f^m g} + \hat{z}(r).
+\end{equations}
+
+In cylindrical coordinates $(z,r)$ with the assumption $\pdv{h}{z} = 0$ one has
+
+\begin{equations}[single,*]
+	\laplace h = \frac{1}{r} \pdv{r}\qty(r \pdv{h}{r}) = 0,
+\end{equations} 
+
+this can be manipulated by integrating from 0 to some $h(r)$ 
+
+\begin{equations}[single,*]
+	0 = \int_{0}^{h(r)} \pdv{r}\qty(r \pdv{h}{r}) \dd{z} = \pdv{r} \int_0^{h(r)} r \pdv{h}{r} \dd{r} - \pdv{h}{r}h \pdv{h}{r} = 0,
+\end{equations}
+from which it follows
+
+\begin{equations}[single,*]
+r h \dv{h}{r} = \, \text{const} \, = Q,
+\end{equations}
+meaning
+
+\begin{equations}[single,*]
+	\dv[2]{h}{r} = \frac{Q}{2 \pi r},
+\end{equations}
+
+\textit{i.e.}
+
+\begin{equations}[single,*]
+	h^{2}(r_2) - h^{2}(r_1) = 2 Q \log\qty(\frac{r_2}{r_1}).
+\end{equations}
+
+
+\begin{equations}[single,!,numberline=all]
+\label{eq:birkmann. name}
+-\grad p = \frac{\mu}{k} \bm{v}_r + \mu' \laplace \bm{v}
+\end{equations}
+
+\begin{equations}[single,!,numberline=all]
+\label{eq:darcy-forheimer}
+\varphi v_f + O\abs{\bm{v}_f} \bm{v}_f = - \frac{k\qty(\varphi)}{\varphi \mu}\qty(\grad p - \rho_{f}^m \bm{g})
+\end{equations}
+
+
+
+ 
+
+\end{document}

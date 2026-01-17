@@ -1,0 +1,545 @@
+\documentclass[../notes.tex]{subfiles}
+\begin{document}
+\chapter{Multi-phase continuum thermodynamics}
+\label{chap:multi_phase}
+
+This is the approach where we assume that the region is occupied by regions of \emph{different species}, that are not \emph{mixed on a molecular level}. This is a more physically sound approach:
+
+\begin{itemize}
+	\item one can formulate balance laws on the interfaces
+	\item the \emph{multicomponent} theory can be obtained by some kind of averaging
+\end{itemize}
+
+Our starting point must be a generalisation of the \emph{classical } continuum mechanics to a setting with \emph{active interfaces}, or discontinuities (\emph{passive interfaces})
+
+\section{General balance laws with interfaces}
+\label{sec:interface}
+
+Assume the presence of (active) interfaces $\Gamma$ separating $\Omega_+, \Omega_-$. Then one can take \emph{e.g} density and define its \emph{excess} as
+
+\begin{equations}[single,!,numberline=all]
+\label{eq:excess}
+\rho_{\Gamma}^{E} = \begin{cases}
+	\rho - \rho^+, \, &\text{in} \, \Omega_{+}, \\
+  \rho - \rho^-, \, &\text{in} \, \Omega_-
+\end{cases}.
+\end{equations}
+
+We see that $\, \text{supp} \, \rho_{\Gamma}^{E} \subset \Omega_{\varepsilon}$, where $\Omega_{\varepsilon}$ is the interfacial region \sidenote{ A strip of (varying) thickness $\varepsilon$ around the interface.}
+
+It can be thein integrated over the whole region $\Omega_{\varepsilon}$ defined
+
+\begin{equations}[single,*]
+	\rho_{\Gamma} = \int_{-\varepsilon}^{\varepsilon} \int_{S\qty(\xi)} \rho^E_{\Gamma}\dd{S}\qty(\xi) \dd{\xi},
+\end{equations}
+
+where $S\qty(\xi)$ is the "elevatin surface" that is changing with $\xi.$
+and it can be shown that this is equal to
+
+\begin{equations}[single,!,numberline=all]
+\label{eq:curv_excess}
+\rho_{\Gamma} = \int_{\Gamma} \int_{-\varepsilon}^{\varepsilon}\qty(1 - \kappa_1)\qty(1- \kappa_2)\rho_{\Gamma}^E\dd{\xi} \dd{S},
+\end{equations}
+
+where $\kappa_i\qty(\xi)$ are the principal curvatures of the surface. 
+
+In this manner one cane generalise also the fluxes:
+
+\begin{equations}[single,!,numberline=all]
+\label{eq:inter_flux}
+\mathcal{F}^{\psi} = \int_{S_{+} \cup S_{i}}\Phi_{\Omega}^{\psi}\dd{S} + \int_{\partial \Gamma}\bm{\Phi}_{\Gamma}^{\psi}\vdot \bm{n}_{\gamma} \dd{l},
+\end{equations}
+
+and the production
+
+\begin{equations}[single,!,numberline=all]
+\label{eq:inter_production}
+\mathcal{P}^{\psi} \int_{\Omega_+ \cup \Omega_i}\xi_{\Omega}^{\psi}\dd{x} + \int_{\Gamma}\xi_{\Gamma}^{\psi}\dd{S},
+\end{equations}
+
+and the supply
+
+\begin{equations}[single,!,numberline=all]
+\label{eq:inter_supply}
+\mathcal{S}^{\psi} = \int_{\Omega_{+} \cup \Omega_i} \Sigma_{\Omega}^{\psi}\dd{x} + \int_{\Gamma}\Sigma_{\Gamma}^{\psi}\dd{S}.
+\end{equations}
+
+We then postulate
+
+\begin{equations}[single,!,numberline=all]
+\label{eq:inter_balance_law}
+\dv{\psi}{t} = - \mathcal{F}^{\psi} + \mathcal{P}^{\psi} + \mathcal{S}^{\psi}, \forall \Omega \, \text{control volumes.} \,
+\end{equations}
+
+To manipulate further, we require some advanced tools
+
+\subsection{Generalization of some theorems}
+\label{sec:generalization}
+
+\subsubsection{Reynolds transport theorem}
+\label{sec:gen_reynolds}
+
+One has
+
+\begin{equations}[single,!,numberline=all]
+\label{eq:gen_reynolds_volume}
+\dv{t} \int_{\Omega_{+} \cup \Omega_{i}}\psi_{\Omega}\dd{x} = \int_{\Omega_{+} \cup \Omega_i}\qty(\pdv{\Psi_{\Omega}}{t} + \divergence{\qty(\psi_{\Omega} \otimes \bm{v})})\dd{x} + \int_{\Gamma}\qty[\psi_{\Omega} \otimes \qty(\bm{v} - \bm{v}_{\Gamma}^\perp \bm{n}_{\Gamma})]\dd{S},
+\end{equations}
+
+where $\qty[\varphi] = \varphi^+ - \varphi^-$ is the jump operator and $\bm{n}_{\Gamma}$ is an unit normal to $\Gamma$ pointing from $\Omega_{-}$ to $\Omega_+$ and $\bm{v}_{\Gamma}^{\perp}$ is the normal velocity of $\Gamma$. The intepretation of $\qty[\psi_{\Omega} \otimes\qty(\bm{v} - \bm{v}_{\Gamma}^{\perp} \bm{n}_{\Gamma})] \vdot \bm{n}_{\Gamma}$ is thus the \emph{relative flux of $\psi_{\Omega}$ through $\Gamma$.}
+
+
+\begin{remark}[Material surfaces]
+Recall that the surfaces in general \emph{need not be material!} Meaning they do not have to evolve (deform) with the material - there can be nontrivial relative movement of the bulk and the surface.
+\end{remark}
+
+
+\subsubsection{Gauss theorem}
+\label{sec:gen_gauss}
+
+That is
+
+\begin{equations}[single,!,numberline=all]
+\label{eq:gen_gauss_formula}
+\int_{S_+ \cup S_-}\bm{\Phi}_{\Omega}^{\psi} \vdot \bm{n}\dd{S} = \int_{\Omega_{+} \cup \Omega_i}\divergence{\bm{\Phi}_{\Omega}^{\psi}}\dd{x} + \int_{\Gamma}\qty[\bm{\Phi}_{\Omega}^{\varphi}] \bm{n}_{\Gamma}\dd{S},
+\end{equations}
+
+again, we see that there is a jump operator.
+
+\subsubsection{Surface Reynolds transport theorem}
+\label{sec:surf_reynolds}
+
+Finally, one requires the surface analog for the Reynolds transport theorem:
+
+\begin{equations}[single,!,numberline=all]
+\label{eq:surf_reynolds_formula}
+\dv{t} \int_{\Gamma}\psi_{\Gamma}\dd{S} = \int_{\Gamma}\qty(\mdv[\Gamma]{\psi_{\Gamma}} + \psi_{\Gamma} \, \text{div}_{\Gamma} \bm{v}_{\Gamma} - 2 K_{\Gamma} \psi_{\Gamma} \bm{v}_{\Gamma}^\perp)\dd{S},
+\end{equations}
+
+where $K$ is the mean curvature\sidenote{$K = \frac{1}{2}g^{\beta \alpha}b_{\beta \alpha}$ where $g^{\beta \alpha}$ is the \textcolor{gray}{dual} metric surface tensor and $b_{\beta \alpha} = \Gamma^3_{\beta \alpha}$ is the Christoffel symbol.}
+
+\subsubsection{Surface Gauss theorem}
+\label{sec:surface_gaus}
+
+That is the equation
+
+\begin{equations}[single,!,numberline=all]
+\label{eq:surf_gauss_formula}
+\int_{\Gamma}\, \text{div}_{\Gamma} \bm{t}_{\Gamma}\dd{S} = \int_{\partial \Gamma}\bm{t}_{\Gamma} \vdot \bm{\nu}_{\Gamma}\vdot \dd{\bm{l}}.
+\end{equations}
+
+\subsection{Localized form of balance laws}
+\label{sec:localization}
+
+Finally, using the localization arguments, one can obtain the form inthe nonsingular points
+
+\begin{equations}[single,!,numberline=all]
+\label{eq:localized_balance_nonsingular}
+\pdv{\Psi_{\Omega}}{t} + \divergence{\qty(\psi_{\Omega} \otimes \bm{v} + \bm{\Phi}_{\Omega}^{p.})} - \xi^{\psi} - \Sigma^{\psi} = 0,
+\end{equations}
+
+\begin{equations}[single,!,numberline=all]
+\label{eq:localize_balance_singular}
+\mdv[\Gamma]{\psi_{\Gamma}} + \psi_{\Gamma} \, \text{div}_{\Gamma} \bm{v}_{\Gamma}^{\parallel} - 2 K_{\Gamma} \psi_{\Gamma} \bm{v}_{\Gamma}^{\perp} + \, \text{div}_{\Gamma} \bm{\Phi}_{\Gamma}^{\psi} - \xi_{\Gamma}^{\psi} - \Sigma_{\Gamma}^{\psi} = - \qty[\bm{\Phi}_{\Omega}^{\psi} + \bm{\Psi}_{\Omega}^{\psi} \otimes \qty(\bm{v} - \bm{v}_{\Gamma}^{\perp} \bm{n}_{\Gamma})] \bm{n}_{\Gamma}
+\end{equations}
+
+\subsubsection{Surface mass balance}
+\label{sec:surface_mass}
+
+\begin{equations}[single,!,numberline=all]
+\label{eq:surf_mass_balance_form}
+\mdv[\Gamma]{\rho}_{\Gamma} + \rho_{\Gamma}\qty(\, \text{div}_{\Gamma} \bm{v}_{\Gamma}^{\parallel} - 2 K_{\Gamma} \bm{v}_{\Gamma}^\perp) = -\qty[\rho\qty(\bm{v} - v_{\Gamma}^{\perp} \bm{n}_{\Gamma})]\vdot \bm{n}_{\Gamma}
+\end{equations}
+
+\begin{example}[Baloon inflation]
+	Assume the case $\bm{v}_{\Gamma}^{\parallel} = 0, \bm{n} \vdot \bm{v} = v_{\Gamma}^{\perp}$. Then the  evolution becomes
+
+	\begin{equations}[single,*]
+	\pdv{\rho_{\Gamma}}{t} = 2 K_{\Gamma} \bm{v}_{\Gamma}^{\perp} = - \frac{2}{R} \bm{v}_{\Gamma}^\perp.
+	\end{equations}
+
+	Remember than when a baloon inflates, you can see the walls thinning.
+\end{example}
+
+\subsubsection{Surface momentum balance}
+\label{sec:surf_momentum}
+\begin{equations}[single,!,numberline=all]
+\label{eq:surf_momentum_formula}
+\mdv[\Gamma]{\qty(\rho_{\Gamma} \bm{v}_{\Gamma})} + \rho_{\Gamma} \bm{v}_{\Gamma}\qty(\, \text{div}_{\Gamma} \bm{v}_{\Gamma}^{\perp} - 2 K_{\Gamma} v_{\Gamma}^{\perp}) - \, \text{div}_{\Gamma} \cstress_{\Gamma} - \rho_{\Gamma} \bm{b}_{\Gamma} = - \qty[\rho \bm{v} \otimes \qty(\bm{v} - v_{\Gamma}^\perp \bm{n}_{\Gamma}) - \cstress] \vdot \bm{n}_{\Gamma}.
+\end{equations}
+
+\subsubsection{Jump conditions}
+\label{sec:jump_conditions}
+
+Assume the special case when $\psi_{\Gamma} = \Phi_{\Gamma}^{\psi} = \xi^{\psi}_{\Gamma} = \Sigma_{\Gamma}^{\psi} = 0.$ On $\Gamma$ one has
+
+\begin{equations}[single,*]
+	\qty[\Phi_{\Omega}^{\psi} + \psi_{\Omega} \otimes\qty(\bm{v} - b_{\Gamma}^{\perp} \bm{n}_{\Gamma})] \vdot \bm{n}_{\Gamma} = 0,
+\end{equations}
+
+so for mass in particular one has
+
+\begin{equations}[single,!,numberline=all]
+\label{eq:mass_jump_conds}
+\qty[\rho\qty(\bm{v} - v_{\Gamma}^{\perp} \bm{n}_{\Gamma})] \vdot \bm{n}_{\Gamma} = 0,
+\end{equations}
+
+and for the momentum
+
+\begin{equations}[single,!,numberline=all]
+\label{eq:momentum_jump_conds}
+\qty[\cstress - \rho \bm{v} \otimes \qty(\bm{v} - v_{\Gamma}^{\perp} \bm{n}_{\Gamma})] \vdot \bm{n}_{\Gamma} = 0,
+\end{equations}
+
+which means
+
+\begin{equations}[columns,!,numberline=all]
+\label{eq:traction_jump}
+\qty[\cstress] \vdot \bm{n}_{\Gamma} &= \qty[\rho \bm{v} \otimes \qty(\bm{v - v_{\Gamma}^\perp} \bm{n}_{\Gamma})] \vdot \bm{n}_{\Gamma}\\ &= \qty[\bm{v}]\rho\qty(\bm{v} - v_{\Gamma}^{\perp}\bm{n}_{\Gamma}) \vdot \bm{n}_{\Gamma},
+\end{equations}
+\textit{i.e.} \emph{the traction vector need not be continuous!} in general. However,in the case of \emph{material discontinuities,} one has $\bm{v} \vdot \bm{n}_{\Gamma} = v_{\Gamma}^{\perp}$ and the \emph{tracton vector is continous.}
+
+\subsubsection{Surface tension}
+\label{sec:surf_tension}
+There however exists a special case: \emph{interface with surface tension}. Then one has
+
+\begin{equations}[single,*]
+\rho_{\Gamma} = 0, \cstress_{\Gamma} = \sigma \identityM_{\Gamma} = \sigma\qty(\identityM - \bm{n}_{\Gamma} \otimes \bm{n}_{\Gamma}),
+\end{equations}
+
+where $\sigma$ is the surface tension. Then one has
+
+\begin{equations}[single,*]
+\, \text{div}_{\Gamma} \cstress_{\Gamma} = \, \text{div}_{\Gamma}\qty(\sigma \identityM_{\Gamma}) = \grad_{\Gamma} \sigma - \sigma \, \text{div}_{\Gamma}\qty(\bm{n}_{\Gamma} \otimes \bm{n}_{\Gamma}) =\sidenotemark \grad_{\Gamma} \sigma + 2 K_{\Gamma} \sigma \bm{n}_{\Gamma}
+\end{equations}
+
+\sidenotetext{$$\, \text{div}_{\Gamma}\qty(\bm{n}_{\Gamma} \otimes \bm{n}_{\Gamma} ) = \qty(\grad_{\Gamma} \bm{n}_{\Gamma} \vdot \bm{n}_{\Gamma}) + \bm{n}_{\gamma} \qty(\, \text{div}_{\Gamma} \bm{n}_{\Gamma}),$$ and we have $$\grad_{\Gamma} \bm{n}_{\Gamma} \vdot \bm{n}_{\Gamma} = 0$$, because the vectors are orthogonal and $$\bm{n}_{\Gamma} \qty(\, \text{div}_{\Gamma} \bm{n}_{\Gamma}) = - 2 K_{\Gamma}$$ from our definition of the mean curvature.}
+
+Let us furthermore consider only material interfaces, \textit{i.e.} $\bm{v} \vdot \bm{n}_{\Gamma} = v_{\Gamma}^{\perp}.$ Then
+
+\begin{equations}[single,*]
+	\qty[\cstress] \vdot \bm{n}_{\Gamma} - \, \text{div}_{\Gamma} \cstress_{\Gamma} = - \grad_{\Gamma} \sigma - 2 K_{\Gamma} \sigma \bm{n}_{\Gamma}.
+\end{equations}
+
+If we take the nnormal component of this, we obtain
+
+\begin{equations}[single,*]
+\qty[\bm{n}_{\Gamma} \vdot \cstress \bm{n}_{\Gamma}] = - 2 K_{\Gamma} \sigma,
+\end{equations}
+but since $\cstress = - p \identityM + \tensorq{S},$ we have
+
+\begin{equations}[single,*]
+	\qty[p] = 2 K_{\Gamma} \sigma  = \frac{-2 \sigma}{R},
+\end{equations}
+
+\textit{i.e.} we have recovered
+
+\begin{equations}[single,!,numberline=all]
+\label{eq:lpl_young}
+p^- - p^+ = \frac{2 \sigma}{R},
+\end{equations}
+
+the \emph{Laplace Young condition.}
+
+What about the tangent component? One has
+
+\begin{equations}[single,*]
+	\qty[\qty(\bm{t})_{\tau}] = - \grad_{\Gamma} \sigma.
+\end{equations}
+
+Suppose we are dealing with the mixture of a liquid and its gas; then the gas tangent traction is \emph{negligible} and one has
+
+\begin{equations}[single,*]
+	\qty(\bm{t})_{\tau}^{\, \text{liquid} \,} = \grad_{\Gamma} \sigma,
+\end{equations}
+and since
+
+\begin{equations}[single,*]
+	\qty(\bm{t}_{\tau})^{\, \text{liquid} \,} = \qty(2 \eta \symvgrad \bm{n}_{\Gamma})_{\tau},
+\end{equations}
+
+we have obtained
+
+
+\begin{equations}[single,*]
+	\qty(2 \eta \symvgrad)\bm{n}_{\Gamma})_{\tau} = \grad_{\Gamma} \sigma.
+\end{equations}
+
+This is called the \emph{Marangoni effect:} the liquid is forced to flow by the gradient of surface tension. \sidenote{This can be examined, for example the \emph{wine tears}.}
+
+
+\subsubsection{Stefan condition}
+\label{sec:stefan_conds}
+
+Let us derive the jump condition for the total energy in the case\sidenote{Th e notation is of course totally misleading.}
+
+\begin{equations}[single,*]
+\rho_{\Gamma} = \bm{q}_{\Gamma} = \cstress_{\Gamma} = 0.
+\end{equations}
+
+From our general law, we have
+
+\begin{equations}[single,*]
+	\qty[\rho\qty(e + \frac{1}{2} \abs{\bm{v}}^{2}) \qty(\bm{v} - v_{\Gamma}^{\perp} \bm{n}_{\Gamma}) - \bm{v} \vdot \cstress + \bm{q}] \vdot \bm{n}_{\Gamma} = 0.
+\end{equations}
+
+Decompose
+
+\begin{equations}[single,*]
+\cstress = - p_{th}\identityM + \tensorq{S},
+\end{equations}
+
+and let us make some assumptions:
+
+\begin{itemize}
+	\item $\qty[\rho\qty(\bm{v} - v_{\Gamma}^{\perp}\bm{n}_{\Gamma})] \vdot \bm{n}_{\Gamma} = 0,$
+	\item $\qty[\cstress]\bm{n}_{\Gamma} = \qty[\bm{v}] \rho\qty(\bm{v} - v_{\Gamma}^{\perp} \bm{n}_{\Gamma}) \vdot \bm{n}_{\Gamma} - \grad_{\Gamma} \sigma - 2K_{\Gamma} \sigma \bm{n}_{\Gamma}],$
+	\item $\qty[p_{th}] = 0.$
+\end{itemize}
+
+We than have
+
+\begin{equations}[lines,*]
+	0 = \qty[\bm{q}] \vdot \bm{n}_{\Gamma} = - \qty[\bm{v} \vdot \qty(p_{th}\identityM + \tensorq{S}) \vdot \bm{n}_{\Gamma}] + \qty[\rho\qty(e + \frac{1}{2} \abs{\bm{v}}^{2})\qty(\bm{v} - v_{\Gamma}^{\perp} \bm{n}_{\Gamma})] \vdot \bm{n}_{\Gamma},
+\end{equations}
+
+and with our assumption on the continuity of the pressure we obtain
+
+\begin{equations}[lines,*]
+	\qty[p_{th} \bm{v}] \vdot \bm{n}_{\Gamma} = \qty[p_{th} \qty(\bm{v} - v^{\perp}_{\Gamma}\bm{n}_{\Gamma}) ] \vdot \bm{n}_{\Gamma} = \qty[\frac{p_{th}}{\rho} \rho\qty(\bm{v} - v^{\perp}_{\Gamma} \bm{n}_{\Gamma})] \vdot \bm{n}_{\Gamma} = \\ = \qty[\frac{p_{th}}{\rho}] \rho\qty(\bm{v} -v^{\perp}_{\Gamma} \bm{n}_{\Gamma}) \vdot \bm{n}_{\Gamma}.
+\end{equations}
+
+It is customary to define
+\begin{equations}[single,*]
+	\dot{m} = \rho\qty(\bm{v} - v^{\perp}_{\Gamma} \bm{n}_{\Gamma}) \vdot \bm{n}_{\Gamma}
+\end{equations}
+as \textcolor{gray}{some kind of a } mass flux. In total, we have
+
+\begin{equations}[single,*]
+	0 = \qty[\bm{q}] \vdot \bm{n}_{\Gamma} + \qty[\qty(e + \frac{p_{th}}{\rho})]\dot{m} = - \qty[\bm{v} \vdot \tensorq{S}] \bm{n}_{\Gamma} + \qty[\frac{1}{2} \abs{\bm{v}}^{2}] \dot{m},
+\end{equations}
+
+and if we now assume the transport velocity is negligible \sidenote{Which often is - think of the solidifying of a water body.} and manipulate 
+
+\begin{equations}[single,*]
+	\qty[\bm{v} \vdot \tensorq{S}] \bm{n}_{\Gamma} = \qty[\bm{v}]_{\tau}\qty(\tensorq{S} \bm{n}_{\Gamma})_{\tau} + \qty[\qty(\tensorq{S} \bm{n})_{n} \bm{v}].
+\end{equations}
+
+Most often the normal jump is negligible and the tangential components aswell \textcolor{gray}{(these are for example friction forces)}
+
+\begin{equations}[single,*]
+	\qty[\bm{q}] \vdot \bm{n}_{\Gamma} + [h] \dot{m} \approx 0,
+\end{equations}
+
+where $h = e + \frac{p}{\rho}$ is the specific enthalpy. Realize that the jump of enthalpy is the latent heat $L$, and so one obtains
+
+\begin{equations}[single,!,numberline=all]
+\label{eq:stefan_conds}
+\qty[\bm{q}] \vdot \bm{n}_{\Gamma} + L \dot{m} \approx 0.
+\end{equations}
+
+\subsection{"Blurring"}
+\label{sec:blur}
+
+We are able to describe the continuum precisely on a detailed level; but is this description compatible with the previous \emph{molecular mixing } theory?
+
+Suppose $\Omega = \Omega_1 \cup \Omega_2, \Gamma = \overline{\Omega_1} \cap \overline{\Omega_2}, \Omega_1 \cap \Omega_2 = \emptyset.$ In each $\Omega_{\alpha}, \alpha = 1, 2$ we have some balance equations:
+
+\begin{equations}[single,*]
+\partial_t \psi_{\alpha} + \divergence{\qty(\psi_{\alpha} \bm{v}_{\alpha})} + \divergence{\bm{\Phi}_{\Omega}^{\psi_{\alpha}}} - \Pi_{\Omega}^{\psi_{\alpha}}- \xi_{\Omega}^{\psi_{\alpha}} = 0,
+\end{equations}
+
+and at the interface $\Gamma_{\alpha \beta}$ we have
+
+\begin{equations}[single,*]
+	\mdv[\Gamma]{\psi_{\alpha \beta}^{\Gamma}} + \psi_{\alpha \beta}^{\Gamma}\qty(\, \text{div}_{\Gamma} \bm{v}_{\Gamma}^\parallel - 2 K_{\Gamma} \bm{v}_{\Gamma}^\perp ) + \, \text{div}_{\Gamma}^{\psi} \bm{\Phi}_{\Gamma}^{\alpha \beta} - \Pi_{\Gamma}^{\alpha \beta \psi} - \xi_{\Gamma}^{\alpha \beta \psi} = - \qty(\bm{\Phi}^{\psi}_{\Omega} + \bm{\Psi}_{\Omega} \otimes \qty(\bm{v} - \bm{v}_{\Gamma}^\perp \bm{n}_{\Gamma})) \vdot \bm{n}_{\Gamma},
+\end{equations}
+
+where the meaning of the terms is either \emph{known} or can be \emph{guessed}.
+
+Define now the \emph{characteristic function} of each phase
+
+\begin{equations}[single,*]
+	\chi_{\alpha}\qty(t, \bm{x}) = \begin{cases}
+	  1, \bm{x} \in \Omega_{\alpha}(t), \\
+	  0, \bm{x} \notin \Omega_{\alpha}(t).
+	\end{cases}
+\end{equations}
+
+Or, to make the math more sensible. we can take some \emph{mollification} of the characteristic function, \textit{i.e.} $\chi_{\alpha}^{\varepsilon}(t, \bm{x}).$ The goal is now to write the \emph{local, detailed} evolution equations as $\chi_{\alpha}^{\varepsilon}(t, \bm{x})$ times the \emph{global, less detailed} evolution.
+
+Define the average 
+
+\begin{equations}[single,!,numberline=all]
+\label{eq:avg}
+\expval{\varphi}_V = \frac{1}{\lambda(B\qty(\bm{x}, \delta)} \int_{B\qty(\bm{x}, \delta)} \varphi\qty(\bm{x} + \bm{z}) \dd{\bm{z}},
+\end{equations}
+and realize that some averages are in fact known\sidenote{$$\expval{\chi_{\alpha}} = \frac{1}{\lambda\qty(B\qty(\bm{x}, \delta))} \int_{B\qty(\bm{x}, \delta)}\chi_{\alpha}(t, \bm{x} + \bm{z})\dd{\bm{z}}$$ }
+
+\begin{equations}[single,*]
+	\expval{\chi_{\alpha}} = \Phi_{\alpha},
+\end{equations}
+
+\begin{equations}[single,*]
+	\expval{\chi_{\alpha} \rho} = \frac{m_{\alpha}}{V} = \rho_{\alpha}.
+\end{equations}
+
+This procedue will be very interesting\sidenote{We will \textit{e.g.} obtain the \emph{exact interaction forces.}} We must however give meaning to\sidenote{This is the problem of \emph{multiplication} of \textcolor{gray}{general} distributons.}
+
+\begin{equations}[lines,*]
+	\int_{\R^3 \times \R}\partial_t \xi_{\alpha}) \varphi\qty(t, \bm{x}) \dd{\bm{x}} \dd{t} = - \int_{\R^3 \times \R}\chi_{\alpha} \partial_t \varphi\dd{\bm{x}}\dd{t} = \\ - \int_{\R}\int_{\Omega_{\alpha}(t)}\partial_t \varphi\dd{\bm{x}}\dd{t} = - \int_{\R}\dv{t}\int_{\Omega_{\alpha}(t)}\varphi\dd{\bm{x}}\dd{t} = \\ = -\int_\R \dv{t}\qty(\int_{\Omega_{\alpha(t)}}\dd{\bm{x}} + \int_{\Omega_{\alpha}}\varphi \bm{v}_{\partial \Omega_{\alpha}} \vdot \bm{n}\dd{S} + \int_{\R}\int_{\partial \Omega_{\alpha}}\varphi \bm{v}_{\Gamma} \vdot \bm{n}\dd{S}\dd{t}) = \\ = \int_{\R}\int_{\partial \Omega_{\alpha}(t)}\varphi \bm{v}_{\Gamma} \vdot \bm{n}\dd{S}\dd{t},
+\end{equations}
+where $\varphi\qty(t, \bm{x})\in \mathcal{D}\qty(\R^3 \times \R).$ Next, we need
+
+\begin{equations}[lines,*]
+	\int_{\R^3 \times \R}\qty(\nabla_i \chi_{\alpha})\dd{\bm{x}} \dd{t} = - \int_{\R^3 \times \R}\chi_{\alpha}\chi_{\alpha} \pdv{\varphi}{x_i}\dd{\bm{x}}\dd{t} - \int_{\R}\int_{\Omega_{\alpha}}\pdv{\varphi}{x_i}\dd{\bm{x}}\dd{t} = \\ = - \int_{\R}\int_{\partial \Omega_{\alpha}}\varphi \bm{n}_i \dd{S} \dd{t} = \\= \int_{\R^3 \times \R}\varphi\qty(- n_{i \Gamma} \delta_{\Gamma})\dd{\bm{x}}\dd{t},
+\end{equations}
+
+where $\delta_{\Gamma}$ is the Dirac delta with $\, \text{supp} \,\delta_{\Gamma} = \Gamma \subset \R^2.$ Next we use
+
+\begin{equations}[single,*]
+\grad \chi_{\alpha} = - \bm{n}_{\Gamma} \delta_{\partial \Omega_{\alpha}},
+\end{equations}
+where $\bm{n}_{\Gamma}$ is the \emph{outter unit normal to}\sidenote{This means that the characteristic function rises in the direction to $\Omega_{\alpha}$} $\partial \Omega_{\alpha}.$ We will also need the \emph{topological equation}
+
+\begin{equations}[single,!,numberline=all]
+\label{eq:topological_equation}
+\partial_t \chi_{\alpha} + \tilde{\bm{v}}_{\Gamma} \vdot \grad \chi_{\alpha} = 0,
+\end{equations}
+
+where
+
+\begin{equations}[lines,*]
+	\int_{\R^3 \times \R}\qty(\tilde{\bm{v}}_{\Gamma} \vdot \grad \chi_{\alpha}) \varphi\dd{\bm{x}} \dd{t} = - \int_{\R^3 \R}\qty(\divergence{\qty(\tilde{ \bm{v}}_{\Gamma}) \varphi})\dd{\bm{x}} \dd{t} = - \int_{\R}\int_{\Omega_{\alpha}}\divergence{\qty(\tilde{\bm{v}}_{\Gamma} \varphi)}\dd{\bm{x}}\dd{t} = \\ = - \int_{\R}\int_{\partial \Omega_{\alpha}}\bm{v}_{\Gamma} \vdot \bm{n}_{\Gamma}\varphi\dd{S}\dd{t}.
+\end{equations}
+
+Next next, we need to \emph{give meaning} to 
+
+\begin{equations}[single,*]
+\nabla_i\qty(\chi_{\alpha} f), \partial_t \qty(\chi_{\alpha} f).
+\end{equations}
+
+This is \textbf{a problem}: both $f$ and $\chi_{\alpha}$ are not continuous, \textit{i.e.} their derivatives are distributions; \emph{we cannot use a simple Leibniz formula.}
+
+\begin{equations}[lines,*]
+	\int_{\R^3 \times \R}\nabla_i\qty(\chi_{\alpha} f) \varphi\dd{\bm{x}} \dd{t} = - \int_{\R}\int_{\R^3}\chi_{\alpha}f \qty(\nabla_i \varphi)\dd{\bm{x}}\dd{t} = - \int_{\R}\int_{\Omega_{\alpha}}f \pdv{\varphi}{x_i}\dd{\bm{x}}\dd{t} = \\ = \int_{\R}\int_{\Omega_{\alpha}}\pdv{f}{x_i}\dd{\bm{x}}\dd{t} = - \int_{\R}\int_{\partial \Omega_{\alpha}}f_{\alpha}^{\Gamma} n_i \varphi\dd{S}\dd{t} = \int_{\R^3 \times \R}\qty(\chi_{\alpha} \nabla_i f)\varphi\dd{\bm{x}} \dd{t} + \int_{\R^3 \times \R}\qty(f_{\Gamma}^{\alpha} \grad \chi_{\alpha})\varphi\dd{\bm{x}} \dd{t}
+\end{equations}
+
+where $f^{\alpha}_{\Gamma}$ is the value from "inside of $\Omega_{\alpha}$" \textcolor{gray}{the function is discontinuous.} Meaning that
+
+\begin{equations}[single,*]
+\nabla_i\qty(f \chi_{\alpha}) = \chi_{\alpha} \nabla_i f + f_{\Gamma}^{\alpha} \grad \chi_{\alpha}.
+\end{equations}
+
+And for the time derivative we obtain
+
+\begin{equations}[lines,*]
+	\int_{\R^3 \times \R}\partial_t\qty(\chi_{\alpha} f)\varphi\dd{\bm{x}} \dd{t} = - \int_{\R^3 \times |R}\chi_{\alpha} f \partial_t \varphi\dd{\bm{x}}\dd{t} = \\ = - \int_{\R}\int_{\Omega_{\alpha}}f \partial_t \varphi\dd{\bm{x}}\dd{t} = - \int_{\R}\int_{\Omega_{\alpha}}\partial_t\qty(f \varphi)\dd{\bm{x}}\dd{t} + \int_{\R}\int_{\Omega_{\alpha}}\qty(\partial_t \varphi) \varphi\dd{\bm{x}}\dd{t} = \\ = - \int_{\R}\dv{t}\qty(\int_{\Omega_{\alpha}}f \varphi\dd{\bm{x}})\dd{t} + \int_{\R}\int_{\partial \Omega_{\alpha}}f^{\alpha}_{\Gamma} f \bm{v}_{\Gamma} \vdot \bm{n}\dd{S}\dd{t}\int_{\R^3 \times \R}\qty(\chi_{\alpha} \partial_t f)\varphi\dd{\bm{x}}\dd{t} = \\ = 0 + \int_{\R^3 \times \R}\qty(\partial_t \chi_{a} f_{\Gamma}^{\alpha} + \chi_{\alpha} \partial_t f)\varphi\dd{\bm{x}} \dd{t},
+\end{equations}
+and so in total
+
+\begin{equations}[single,*]
+	\partial_t\qty(\chi_{\alpha} f) = \chi_{\alpha} \partial_t f + \qty(\partial_t \chi_{\alpha}) f_{\Gamma}^{\alpha}.
+\end{equations} 
+
+Note that we are in fact working with the \emph{smooth extension} of $f_{\Gamma}^{\alpha}$ rather than the function itself \textcolor{gray}{(which is defined only on the boundary)}, so we in fact are in the case of \emph{Dirac times a smooth function.}
+	
+Finally, the evolution equation can be then rewritten as
+
+\begin{equations}[single,!,numberline=all]
+\label{eq:evol}
+\chi_{\alpha}\qty(\partial_t \varphi + \divergence{\qty(\varphi \bm{v})} + \divergence{\bm{\Phi}_{\Omega}^{\psi}} - \Pi_{\Omega}^{\psi} - \xi_{\Omega}^{\psi}) = 0
+\end{equations}
+
+or equivalently
+
+\begin{equations}[lines,*]
+	\partial_t\qty(\chi_{\alpha} \psi) - \qty(\tilde{\psi}_{\Gamma}^{\varphi} \partial_t \chi_{\alpha}) + \divergence{\qty(\chi_{\alpha} \psi_{\Omega} \bm{v})} - \qty(\tilde{\qty(\psi_{\Omega} \bm{v})^{\alpha}_{\gamma}} \vdot \grad \chi_{\alpha})+ \\ + \divergence{\qty(\chi_{\alpha} \bm{\Phi}^{\psi}_{\Omega})} - \tilde{\bm{\Phi}_{\Omega, \Gamma}^{\alpha}} \vdot \grad \chi_{\alpha} - \chi_{\alpha} \Pi_{\Omega}^{\psi} - \chi_{\alpha} \xi_{\Omega}^{\psi} = 0.
+\end{equations}
+
+As for averaging, we have multiple options
+
+\begin{itemize}
+	\item ensemble averaging (over configurations in the phase space)
+	\item time averaging (throughout evolution)
+	\item volume averaging (our introduced)
+\end{itemize}
+
+What properties do we require?
+\begin{itemize}
+	\item \emph{linearity}: $\expval{c_1 f_1 + c_2 f_2} = c_1 \expval{f_1} + c_2 \expval{f_2},$
+	\item \emph{perfect filter property}: $\expval{f_1 \expval{f_2}} = \expval{f_1} \expval{f_2}.$
+\end{itemize}
+
+We see that linearity holds for all of them, but \textit{e.g.} the \emph{perfect filter property does not hold for volume averaging.} And there is a bigger problem also, we would want
+
+\begin{equations}[columns,*]
+	\expval{\partial_t f} &= \partial_t \expval{f}, \\
+	\expval{\partial_{i} f} &= \partial_{i} \expval{f}.
+\end{equations}
+
+Note that \textit{e.g.} the second requirement \textbf{does not hold in general}: i can have lots if discontinuities on the LHS, which produce diracs in the differentation, but the RHS is nicely smooth.
+
+Not everything is lost. It can be shown that for \emph{volume averaging}, it holds
+
+\begin{equations}[single,!,numberline=all]
+\label{eq:averaging_property}
+\expval{\chi_{\alpha} \nabla_i f}_V = \nabla_i \expval{\chi_{\alpha} f}_V + \expval{f^{\alpha}_{\Gamma} \nabla_i \chi_{\alpha}}_{V}.
+\end{equations}
+
+This allows us to do the volume averaging of the balance equations to obtain
+
+\begin{equations}[lines,*]
+	\partial_t \expval{\psi_{\Omega} \chi_{\alpha}} + \divergence{\qty(\expval{\psi_{\Omega} \chi_{\alpha} \bm{v}})} + \divergence{\qty(\chi_{\alpha} \bm{\Phi}^{\psi}_{\Omega})} + \\ - \expval{\chi_{\alpha}^{\psi} \Pi_{\Omega}^{\psi}} - \expval{\chi_{\alpha} \xi_{\Omega}^{\psi}} = \expval{\qty(\psi_{\Omega})^{\alpha}_{\Gamma} \partial_t \chi_{\alpha} + \tilde{\qty(\psi_{\Omega} \bm{v}_{\Omega})}_{\Gamma}^{\alpha} \vdot \grad \chi_{\alpha}} + \tilde{\bm{\Phi}_{\Omega}}_{\Gamma}^{\alpha} \vdot \grad \chi_{\alpha},
+\end{equations} 
+
+where the last term can be manipulated as
+
+\begin{equations}[single,*]
+	\expval{\tilde{\qty(\varphi_{\Omega})}_{\Gamma}^{\alpha}\qty(\tilde{\bm{v}})_{\Gamma}^{\alpha} - \tilde{\bm{v}_{\Gamma}} \vdot \grad \chi_{\alpha} + \tilde{\qty(\bm{\Phi})_{\Omega}}_{\Gamma}^{\alpha} \vdot \grad \chi_{\alpha}},
+\end{equations}
+
+where we have used the topological equation. Recognizing the volume fraction $\Phi_{\alpha} = \expval{\chi_{\alpha}}$ we can recover the known expressions as \emph{phasic averages}
+
+\begin{equations}[single,*]
+	\overline{\varphi}_{\alpha} \Phi_{\alpha} = \expval{\chi_{\alpha} \varphi_{\Omega}}, 
+\end{equations}
+
+so for $\rho$ we obtain
+
+\begin{equations}[single,*]
+\frac{1}{\lambda(B)} \int_{B_{\alpha}}\rho\dd{x} = \qty(\frac{1}{\lambda(B)} \int_{B_{\alpha}}\rho\dd{x}) \qty(\frac{\lambda\qty(B_{\alpha})}{\lambda\qty(B)}) = \rho_{\alpha}^m \Phi_{\alpha}.
+\end{equations}
+We see a second option would be to use the mass-weighted average
+
+\begin{equations}[single,*]
+\hat{\varphi}_{\alpha} \overline{\rho}_{\alpha} \Phi_{\alpha} = \expval{\chi_{\alpha} \rho \varphi_{\Omega}}.
+\end{equations}
+
+Let us recover some known equations.
+
+\subsubsection{Mass balance}
+\label{sec:mass_recovery}
+
+\begin{equations}[single,*]
+	\partial_t \expval{\chi_{\alpha} \rho} + \divergence{\qty(\expval{\chi_{\alpha} \rho \bm{v}})} = \expval{\tilde{\qty(\rho_{\Omega})}^{\alpha}_{\Gamma}\qty(\tilde{\qty(\bm{v}_{\Omega})}_{\Gamma}^{\alpha} - \tilde{\bm{v}}_{\Gamma}) \vdot \grad \chi_{\alpha}}.
+\end{equations}
+
+Realize now that the LHS is $\partial_t\qty(\Phi_{\alpha} \overline{\rho_{\alpha}}) + \divergence{\qty(\Phi_{\alpha} \overline{\rho}_{\alpha}\hat{\bm{v}_{\alpha}})} = m_{\alpha},$ so \emph{also the RHS} must be $m_{\alpha}.$ We have obtained new expressions for $m_{\alpha}.$
+
+\subsubsection{Momentum balance}
+\label{sec:mom_recovery}
+
+\begin{equations}[lines,*]
+	\partial_t\expval{\chi_{\alpha} \rho \bm{v}} + \divergence{\qty(\expval{\chi_{\alpha} \rho \bm{v} \otimes \bm{v}})} - \divergence{\qty(\expval{\chi_{\alpha}\cstress_{\Omega}})} - \expval{\chi_{\alpha} \rho \bm{b}} = \\ = \expval{\qty(\tilde{\qty(\rho_{\Omega})}^{\alpha}_{\Gamma} \tilde{\qty(\bm{v}_{\Omega})}^{\alpha}_{\Gamma} \otimes \qty(\tilde{\qty(\bm{v}_{\Omega})}_{\Gamma}^{\alpha} - \tilde{\bm{v}_{\Gamma}}) - \qty(\tilde{\cstress_{\Omega}})_{\Gamma}^{\alpha}) \vdot \grad \chi_{\alpha}},
+\end{equations}
+
+and so again taking the time derivative and manipulating we obtain \emph{something}. It is interesting that the RHS will be
+
+\begin{equations}[single,*]
+- p_{\Gamma}^{\alpha} \grad \Phi_{\alpha} + \bm{I}_{\alpha}^{\, \text{drag} \,},
+\end{equations}
+
+which is exatly the expression we obtained in the chapter abut \emph{Darcy law}.
+
+\end{document}

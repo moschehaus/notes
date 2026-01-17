@@ -1,0 +1,66 @@
+\documentclass[../notes.tex]{subfiles}
+\begin{document}
+
+\chapter{Thermodynamics reminder}
+\label{chap:thermo_reminder}
+
+\section{Fundamental relations}
+\label{sec:fundamental}
+Let us begin with the\sidenote{Mistrovska funkce!} \emph{fundamental thermodynamical relation}
+
+$$S =\hat{S}\qty(E, X^1, \dots, X^n),$$
+
+where $X^k$ are some \emph{extensive} parameters of the system - volumes, masses, molar masses etc. The function $\hat{S}$ has some properties:
+
+\begin{itemize}
+	\item it is differentable and $\pdv{\hat{S}}{E} > 0,$
+	\item it is $1-$homogenous: $\hat{S}\qty(\lambda E, \lambda X^k) = \lambda \hat{S}\qty(E, X^k), \forall \lambda >0.$
+\end{itemize}
+
+Let us choose $S = \hat{S}\qty(E,V, m_1, \dots, m_n).$ Then the differential of the entropy has the form
+
+$$\dd{S} = \qty(\pdv{\hat{S}}{E}) \dd{E} + \qty(\pdv{\hat{S}}{V})\dd{V} + \sum_{\alpha}\qty(\pdv{\hat{S}}{m_{\alpha}})\dd{m}_{\alpha}.$$
+
+It is customary to set
+
+$$\pdv{\hat{S}}{E} = \frac{1}{\theta}, \pdv{\hat{S}}{v} = \frac{p}{\theta}, \pdv{\hat{S}}{m_{\alpha}} = - \frac{\mu_{\alpha}}{\theta},$$ as the temperature, pressure, chemical potential.
+
+\section{Local equilibrium thermodynamics}
+\label{sec:local_equlibirum}
+
+The material point in the continuum is \emph{not a point} - it is in fact a bulk. Our assumption is
+
+\begin{lemma}
+	Every material point is an isolated thermodynamical system in equilibrium.
+\end{lemma}
+
+This allows one to define intensive\sidenote{Realize that the temperature, pressure, etc. are defined only in equilibria!} qualities! At least locally...
+
+We have
+$$\theta \dd{S} = \dd{E} + p \dd{v} - \sum_{\alpha} \mu_{\alpha} \dd{m}_{\alpha},$$
+
+and from 1-homogenity follows the Euler relation\sidenote{Differentiate w.r.t$\lambda$ and set $\lambda = 1.$}
+
+$$\theta S = E + pV - \sum_{\alpha} \mu_{\alpha} m_{\alpha},$$ 
+
+so taking the differential of the fundamental relation yields
+
+$$\dd{\theta} S + \theta \dd{S} = \dd{E} + p \dd{V} + V \dd{p} - \sum_{\alpha} \mu_{\alpha} \dd{m}_{\alpha} - \sum_{\alpha} m_{\alpha} \dd{\mu}_{\alpha},$$
+
+and substituting from the fundamental relation yields the \emph{Gibbs-Duhem relation}
+
+\begin{theorem}[Gibbs-Duhem relation]
+	$$S \dd{\theta} = V \dd{p} - \sum_{\alpha} m_{\alpha}\dd{\mu}_{\alpha}$$
+\end{theorem}
+
+If one takes $\lambda = \frac{1}{m}$ and uses the 1-homogenity, we obtain
+
+$$\hat{S}\qty(\frac{E}{m}, \frac{V}{m}, \frac{m_{\alpha}}{m}) = \frac{S}{m} \coloneq \eta = \hat{\eta}\qty(e, \frac{1}{\rho}, c_{\alpha}).$$
+
+This allows one to define $$\pdv{\hat{\eta}}{e} = \frac{1}{\theta}, \pdv{\hat{\eta}}{\qty(\frac{1}{\rho})} = \frac{p}{\rho}, \pdv{\hat{\eta}}{c_{\alpha}} = - \frac{\mu_{\alpha}}{\theta}.$$
+
+$\mathbf{v}, \mathtt{v}, \mathit{v}, \bm{v}$
+
+
+
+\end{document}

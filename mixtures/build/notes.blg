@@ -1,0 +1,9 @@
+[0] Config.pm:328> INFO - This is Biber 2.21
+[1] Config.pm:331> INFO - Logfile is 'build/notes.blg'
+[226] biber:342> INFO - === Sat Jan 17, 2026, 14:50:29
+[269] Biber.pm:421> INFO - Reading 'build/notes.bcf'
+[472] Biber.pm:1002> INFO - Found 0 citekeys in bib section 0
+[508] bbl.pm:676> INFO - Writing 'build/notes.bbl' with encoding 'UTF-8'
+[508] bbl.pm:779> INFO - Output to build/notes.bbl
+[509] Biber.pm:132> WARN - The file 'build/notes.bcf' does not contain any citations!
+[509] Biber.pm:134> INFO - WARNINGS: 1

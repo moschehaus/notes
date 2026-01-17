@@ -1,0 +1,845 @@
+\documentclass[../notes.tex]{subfiles}
+\begin{document}
+
+\chapter{Classes of mixtures}
+\label{chap:classes}
+
+\section{Class I mixtures}
+\label{sec:classI}
+The evolution equations are
+
+\begin{equations}[columns,*]
+	\partial_t \rho_{\alpha} + \divergence{\rho_{\alpha}\bm{v}_{\alpha}} &= m_{\alpha}, \\
+	\partial_t\qty(\rho \bm{v}_{\alpha}) + \divergence{\rho \bm{v} \otimes \bm{v}} &= \divergence{\cstress} + \rho \bm{b}, \\
+	\partial_t\qty(\rho\qty(e+ \frac{1}{2}\abs{\bm{v}}^{2})) + \divergence{\qty(\rho\qty(e + \frac{1}{2}\abs{\bm{v}}^{2})\bm{v})} &= \divergence{\qty(\cstress \bm{v} - \bm{q})} + \rho \bm{b}\vdot \bm{v} + \rho r.
+\end{equations}
+
+But the problem is that the balance of mass still \emph{contains the velocities $\bm{v}_{\alpha}$.} Let us deal with it by using the \emph{diffusive velocity} and then use some constitutive relations:
+
+\begin{equations}[single,*]
+	\partial_t \rho_{\alpha} + \divergence{\qty(\rho_{\alpha}\overbrace{\qty(\bm{v}_{\alpha} - \bm{v})}^{= \bm{u}_{\alpha}})} + \divergence{\qty(\rho_{\alpha \bm{v}})} = m_{\alpha},
+\end{equations}
+where we set 
+\begin{equations}[single,!,numberline=all]
+	\label{eq:diffusive_mass_flux}
+	\bm{j}_{\alpha} \coloneq \rho_{\alpha}\bm{u}_{\alpha},
+\end{equations}
+
+and so our equation reads as
+
+\begin{equations}[single,*]
+	\partial_t \rho_{\alpha} + \divergence{\qty(\rho_{\alpha}\bm{v})} = m_{\alpha} - \divergence{\bm{j}_{\alpha}}, \sum_{\alpha=1}^N m_{\alpha} = 0, \sum_{\alpha=1}^N \bm{j}_{\alpha} = \bm{0}.
+\end{equations}
+
+Let us sum the equations up, so then we obtain: (\textcolor{gray}{recall $\rho = \sum_{\alpha=1}^N \rho_{\alpha}$})
+
+\begin{equations}[single,*]
+	\partial_t \rho + \divergence{\qty(\rho \bm{v})} = 0,
+\end{equations}
+
+because of the constraints.
+
+It is convenient to rewrite the equations in a single form, with the constraints involved. 
+
+Recall:
+\begin{equations}[single,*]
+	c_{\alpha} = \frac{\rho_{\alpha}}{\rho},
+\end{equations}
+
+and the quality 
+
+\begin{equations}[lines,*]
+	\mdv{\rho c_{\alpha}} = \mdv{\rho}c_{\alpha} + \rho \mdv{c_{\alpha}} = \qty(\partial_t \rho + \qty(\bm{v} \vdot \grad)\rho)c_{\alpha} + \rho\qty(\partial_t c_{\alpha} + \qty(\bm{v} \vdot \grad)c_{\alpha}),
+\end{equations}
+
+using
+
+\begin{equations}[single,*]
+	0 = \partial_t \rho + \divergence{\qty(\rho \bm{v})} = \partial_t \rho + \grad \rho \vdot \bm{v} + \rho\qty(\divergence{\bm{v}}),
+\end{equations}
+
+we obtain 
+
+\begin{equations}[lines,*]
+	- \rho\qty(\divergence{\bm{v}})c_{\alpha} + \rho \mdv{c_{\alpha}},
+\end{equations}
+
+on the other hand 
+
+\begin{equations}[single,*]
+	\mdv{\qty(\rho c_{\alpha})} = \mdv{\rho_{\alpha}} = \partial_t \rho_{\alpha} + \bm{v} \vdot \grad \rho_{\alpha} = - \rho_{\alpha}\qty(\divergence{\bm{v}}) + m_{\alpha} - \divergence{\bm{j}_{\alpha}},
+\end{equations}
+
+so in fact
+
+\begin{equations}[single,*]
+	\rho \mdv{c_{\alpha}} = \qty(\divergence{\bm{v}})\qty(c_{\alpha} \rho - \rho_{\alpha}) + m_{\alpha} - \divergence{\bm{j}_{\alpha}} = m_{\alpha} - \divergence{\bm{j}_{\alpha}}.
+\end{equations}
+
+Our final equations reads as
+
+\begin{equations}[single,!,numberline=all]
+	\label{eq:concetration_transport}
+	\rho \mdv{c_{\alpha}} = m_{\alpha} - \divergence{\bm{j}_{\alpha}}, \sum_{\alpha=1}^N m_{\alpha} = 0, \sum_{\alpha=1}^N \bm{j}_{\alpha} = 0, \sum_{\alpha=1}^N c_{\alpha} = 1,
+\end{equations}
+
+which is the typical advection-reaction-diffusion system. In total
+
+\begin{equations}[columns,!, numberline=all]
+	\label{eq:classI}
+	\partial_t \rho + \divergence{\qty(\rho \bm{v})} &= 0, \\
+	\rho \mdv{c_{\alpha}} &= m_{\alpha} - \divergence{\bm{j}_{\alpha}},\\
+	\sum_{\alpha=1}^N m_{\alpha} &= 0, \sum_{\alpha=1}^N \bm{j}_{\alpha} = 0, \sum_{\alpha=1}^N c_{\alpha}=1 \\
+	\partial_t\qty(\rho \bm{v}_{\alpha}) + \divergence{\qty(\rho \bm{v} \otimes \bm{v})} &= \divergence{\cstress} + \rho \bm{b}, \\
+	\partial_t\qty(\rho\qty(e+ \frac{1}{2}\abs{\bm{v}}^{2})) + \divergence{\qty(\rho\qty(e + \frac{1}{2}\abs{\bm{v}}^{2})\bm{v})} &= \divergence{\qty(\cstress \bm{v} - \bm{q})} + \rho \bm{b}\vdot \bm{v} + \rho r.
+\end{equations}
+
+Our goal is to complete the system with \emph{thermodynamic closures}, \textit{i.e.}, to provide a \emph{constitutive theory}.
+
+\subsection{Constitutive theory}
+\label{sec:constitutive_theory}
+
+Our thermodynamical potential of choice is the \emph{Helmholtz free energy}
+
+\begin{equations}[single,*]
+	\psi = e - \theta \eta, \psi = \hat{\psi}\qty(\theta, \frac{1}{\rho}, c_1, \dots, c_N).
+\end{equations}
+
+And our goal is to obtain
+
+\begin{equations}[single,*]
+	\rho \mdv{\eta} = \qty(\, \text{something} \,) \geq 0.
+\end{equations}
+
+For simplicity, let us first do this in a binary setting: $N =2, c_1 = c, c_2 = 1-c.$
+Let us begin \sidenote{Recall that from the relation $$e = \hat{e}\qty(\eta, \frac{1}{\rho}, c_1, \dots, c_N)$$ one can define $$\psi = \inf_{\eta>0}\qty(\hat{e}\qty(\eta, \frac{1}{\rho}, c_1, \dots, c_N)- \theta \eta),$$ and then the infimum is at the point where the derivative vanishes, so $$0 = \pdv{\hat{e}}{\eta}\qty(\eta, \frac{1}{\rho}, c_1, \dots, c_N) - \eta)$$. The rest of the relation is just chain rule...}
+
+\begin{equations}[lines,*]
+	\mdv{\psi} = \mdv{e} - \mdv{\theta}\eta - \theta \mdv{\eta} = \pdv{\hat{\psi}}{\theta} \mdv{\theta} + \pdv{\hat{\psi}}{\qty(\frac{1}{\rho})}\mdv{\qty(\frac{1}{\rho})} + \pdv{\hat{\psi}}{c} \mdv{c} = \\ = - \eta \mdv{\theta} + p \frac{1}{\rho^{2}}\mdv{\rho} + \mu \mdv{c},
+\end{equations}
+
+so in fact
+
+\begin{equations}[lines,*]
+	\theta \rho \mdv{\eta} = \rho \mdv{e}  -\frac{p}{\rho}\underbrace{\mdv{\rho}}_{=-\rho\qty(\divergence{\bm{v}})} \mu \rho \mdv{\gamma} = \\ = \cstress : \symvgrad - \divergence{\bm{q}} = \rho r + p\qty(\divergence{\bm{v}}) - \mu\qty(m - \divergence{\bm{j}}),
+\end{equations}
+using the decomposition
+
+\begin{equations}[single,*]
+	\cstress = \frac{1}{3}\trace \identityM + \cstress^{\, \text{d} \,} = M \identityM + \cstress^{\, \text{d} \,},
+\end{equations}
+one obtains
+
+\begin{equations}[single,*]
+	\theta \rho \mdv{\eta} = \qty(M+p)\qty(\divergence{\bm{v}}) + \cstress^{\, \text{d} \,}:\symvgrad^{\, \text{d} \,} - \divergence{\bm{q}} - \mu m + \underbrace{\mu \divergence{j}}_{=\divergence{\qty(\mu \bm{j})}- \bm{j} \vdot \grad \mu}.
+\end{equations}
+
+Recall the general balance of entropy:
+
+\begin{equations}[single,*]
+	\rho \mdv{\eta} = - \divergence{\bm{q}_{\eta}} + r_{\eta} + \zeta.
+\end{equations}
+
+So if we divide our equation by entropy, we obtain
+
+\begin{equations}[lines,*]
+	\rho \mdv{\eta} = \frac{1}{\theta}\qty(\qty(M+P)\qty(\divergence{\bm{v}}) + \cstress^{\, \text{d} \,}:\symvgrad^{\, \text{d} \,}- \mu m) - \frac{1}{\theta}\divergence{\qty(\bm{q}- \mu_{j})} - \frac{1}{\theta}\bm{j} \vdot \grad \mu = \frac{\rho r}{\theta} = \\ = \frac{1}{\theta}\qty(\qty(M+p)\qty(\divergence{\bm{v}})+ \cstress^{\, \text{d} \,}: \symvgrad^{\, \text{d} \,} - \mu m) + \frac{\rho r}{\theta} - \divergence{\qty(\frac{\bm{q}-\mu \bm{j}}{\theta})} + \qty(\bm{q} - \mu \bm{j})\vdot \grad\qty(\frac{1}{\theta}) - \frac{1}{\theta} \bm{j} \vdot \grad \mu.
+\end{equations}
+
+So one can \emph{interpret}
+
+\begin{equations}[columns,!,numberline=all]
+	\label{eq:entropy_balances}
+	\bm{q}_{\eta} &\coloneq \frac{\bm{q} - \mu \bm{j}}{\theta}, \\
+	\rho r_{\eta} &\coloneq \frac{\rho r}{\rho}, \\
+	\zeta &\coloneq \frac{1}{\theta}\qty(\qty(M+p)\qty(\divergence{\bm{v}})+\cstress^{\, \text{d} \,}:\symvgrad^{\, \text{d} \,} - \mu m) - \frac{1}{\theta}\bm{j} \vdot \grad \mu + \qty(\bm{q}-\mu \bm{j}) \vdot \grad\qty(\frac{1}{\theta}).
+\end{equations}
+
+How to make the entropy production positive? inspired by Navier-Stokes-Fourier one can take
+
+\begin{equations}[columns,*]
+	M+P &= \frac{3 \lambda + 2 \nu}{3}\qty(\divergence{\bm{v}}), 3 \lambda + 2 \nu \geq 0, \\
+	\cstress^{\, \text{d} \,} &= 2 \nu \symvgrad^{\, \text{d} \,}, \nu \geq 0 \\
+	m &= - b \mu, \beta \geq 0 \\
+	\bm{j} &= - \alpha \grad \mu, \bm{q} -\mu \bm{j} =  \kappa \grad\qty(\frac{1}{\theta}) \\
+	\bm{j} &= - \alpha \grad\qty(\frac{\mu}{\theta}), \bm{q} = \kappa \grad\qty(\frac{1}{\theta}) (\, \text{this one is in fact preferred by statistical physics} \,).
+\end{equations}
+
+This implies
+
+\begin{equations}[columns,!,numberline=all]
+	\label{eq:constitutive_classI}
+	\cstress &= - p\qty(\theta, \frac{1}{\rho}, c) \identityM + \lambda\qty(\divergence{\bm{v}})\identityM + 2 \nu \symvgrad, 3 \lambda + 2 \nu > 0, \nu >0, \\
+	\bm{q} &= \kappa \grad\qty(\frac{1}{\theta}) = - \frac{\kappa}{\theta^{2}}\grad \theta, \\
+	m &= - \beta \mu, \beta >0\\
+	\bm{j} &= - \alpha \grad\qty(\frac{\mu}{\theta}), \alpha >0
+\end{equations}
+One can see the last relation is very similliar to the Fourier law.
+
+Suppose for a second now that 
+
+\begin{equations}[single,*]
+	\hat{\psi}\qty(\theta, \frac{1}{\rho}, c) = \hat{\psi}_0\qty(\theta, \frac{1}{\rho}) + \hat{\psi}_1(c),
+\end{equations}
+than
+
+\begin{equations}[single,*]
+	\mu = \pdv{\hat{\psi}}{c} = \psi_1'(c), \grad \mu = \psi_1''(c) \grad c.
+\end{equations}
+
+In the isothermal case, our constitutive relation reads
+
+\begin{equations}[single,*]
+	\bm{j} = - \alpha \grad\qty(\frac{\mu}{\theta}) = - \frac{\alpha}{\theta}\grad \mu = - \frac{\alpha}{\theta}\psi_1''(c) \grad c = - \tilde{k} \grad c, \tilde{k} > 0.
+\end{equations} 
+
+Which is a law in the form
+
+\begin{equations}[single,*]
+	\bm{j} = - \tilde{k}\grad c, k>0,
+\end{equations}
+exactly similiar to $\bm{q} = - \tilde{\kappa} \grad \theta.$ This law is known as the \emph{Fick law}.
+
+The governing equations are
+
+\begin{equations}[single,*]
+	\rho \mdv{c} = - \divergence{\bm{j}} +m = \divergence{\qty(k\qty(c) \grad c)} - 3 \psi'_1(c)
+\end{equations}
+
+\begin{equations}[single,*]
+	\rho\qty(\partial_t c + \bm{v} \vdot \grad c) - \divergence{\qty(k\qty(c)\grad c)} + 3 \psi'_1(c) = 0,
+\end{equations}
+
+which is again an advection-diffusion-reaction system.
+
+\subsection{Multi-component diffusion}
+\label{sec:multi-component}
+
+The previous result have been done in a binary setting - let us repeat it in more generality: we again have
+
+\begin{equations}[single,*]
+	\psi = \hat{\psi}\qty(\theta, \frac{1}{\rho}, c_1, \dots, c_N),
+\end{equations}
+
+so we obtain
+
+\begin{equations}[single,*]
+	\psi \rho \mdv{\eta} = \qty(M+p)\qty(\divergence{\bm{v}}) + \cstress^{\, \text{d} \,}:\symvgrad^{\, \text{d} \,} - \divergence{\bm{q}} + \rho r - \sum_{\alpha=1}^{N}\mu_{\alpha}m_{\alpha} + \sum_{\alpha=1}^{N}\mu_{\alpha}\qty(\divergence{\bm{j}_{\alpha}}),
+\end{equations}
+
+where the last term can in fact be written
+
+\begin{equations}[single,*]
+	\sum_{\alpha=1}^{N-1}\qty(\mu_{\alpha} - \mu_N)m_{\alpha} + \sum_{\alpha=1}^{N-1}\qty(\mu_{\alpha} - \mu_N)\qty(\divergence{\bm{j}_{\alpha}}).
+\end{equations}
+
+Dividing by temperature yields
+
+\begin{equations}[lines,*]
+	\rho \mdv{\eta} = - \divergence{\qty(\frac{\bm{q}- \sum_{\alpha=1}^{N}\mu_{\alpha}\bm{j}_{\alpha}}{\theta})} + \frac{\rho r}{\theta} + \frac{1}{\theta}\bigg( \qty(M+p)\divergence{\bm{v}} + \\ 
+	+ \cstress^{\, \text{d} \,}:\symvgrad^{\, \text{d} \,} - \sum_{\alpha=1}^{N-1}\qty(\mu_{\alpha} - \mu_N)m_{\alpha} + \bm{q} \vdot \grad\qty(\frac{1}{\theta}) - \sum_{\alpha=1}^{N-1} \bm{j}_{\alpha}\vdot \grad\qty(\frac{\mu_{\alpha} - \mu_N}{\theta}) \bigg).
+\end{equations}
+
+Linear irreversible thermodynamics proposes to define 
+
+\begin{equations}[single,*]
+	\begin{bmatrix}
+		- \bm{j}_1 \\	
+		\dots \\
+		- \bm{j}_{N-1} \\
+		\bm{q}
+	\end{bmatrix}
+	= \tensorq{L} 
+	\begin{bmatrix}
+		\grad\qty(\frac{\mu_1 - \mu_N}{\theta}) \\
+		\dots \\
+		\grad\qty(\frac{\mu_{N-1}- \mu_N}{\theta}) \\
+		\grad\qty(\frac{1}{\theta}) 
+	\end{bmatrix},
+\end{equations}
+where in general $\tensorq{L}$ is a \emph{full matrix}. If $\tensorq{L}$ is diagonal, we call the closures \emph{diagonal.} We see that if $\tensorq{L}$ is positive \textcolor{gray}{semi-}definite, the entropy production is nonnegative.
+
+The matrix $\tensorq{L}$ has some other qualities, called the \emph{Onsager-Casimir relations}:\sidenote{For $N=2$ we have 
+	$$\begin{bmatrix}
+		- \bm{j} \\
+		\bm{q}
+	\end{bmatrix}
+	= \begin{bmatrix}
+		L_{11} & L_{12} \\
+		L_{12} & L_{22}
+	\end{bmatrix}
+	\begin{bmatrix}
+		\grad\qty(\frac{\mu}{\theta}) \\
+		\grad\qty(\frac{1}{\theta})
+	\end{bmatrix},$$
+	and so we see 
+	$$\bm{j} = - L_{11} \grad\qty(\frac{\mu}{\theta}) - L_{12} \grad\qty(\frac{1}{\theta})$$
+	.
+	The diffusive flux $\bm{j}$ is thus proportional to $\grad\qty(\frac{1}{\theta})$; this effect is called the \emph{Soret effect.}
+
+	Also 
+	$$\bm{q} = L_{12} \grad\qty(\frac{\mu}{\theta}) + L_{22} \grad\qty(\frac{1}{\theta}),$$
+called the \emph{Dufour effect.}}
+
+
+\begin{itemize}
+	\item $\tensorq{L} = \tensorq{L}^{\transpose}.$
+\end{itemize}
+
+
+The problem is that the matrix $\tensorq{L}$ is in general \emph{not known;} for example, \emph{the choice of a constant matrix is \textbf{totally wrong.}}
+
+Let us show a different approach: the \emph{Maxwell-Stefan} closure.
+
+\subsubsection{Maxwell-Stefan closure}
+\label{sec:maxwell_stefan}
+
+\begin{equations}[lines,*]
+	\rho \mdv{\eta} + \divergence{\qty(\frac{\bm{q} - \sum_{\alpha=1}^{N}\mu_{\alpha}\bm{j}_{\alpha}}{\theta})} =  \frac{\rho r}{\theta} + \bm{q} \vdot \grad\qty(\frac{1}{\theta}) - \sum_{\alpha=1}^N \bm{j}_{\alpha} \vdot \grad\qty(\frac{\mu_{\alpha}}{\theta}) +\\+ \frac{1}{\theta}\qty(\qty(M + p)\qty(\divergence{\bm{v}}) +  \cstress^{\, \text{d} \,} : \symvgrad^{\, \text{d} \,} - \sum_{\alpha=1}^N \mu_{\alpha}m_{\alpha})
+\end{equations}
+recall that
+
+\begin{equations}[single,*]
+	\rho r = \sum_{\alpha=1}^N\qty(\rho_{\alpha}r_{\alpha} + \bm{j}_{\alpha} \vdot \bm{b}_{\alpha},)
+\end{equations}
+so if we borrow this we obtain
+
+\begin{equations}[lines,*]
+	\rho \mdv{\eta} + \divergence{\qty(\frac{\bm{q} - \sum_{\alpha=1}^{N}\mu_{\alpha}\bm{j}_{\alpha}}{\theta})} = \\ = \frac{1}{\theta}\qty(\qty(M + p)\qty(\divergence{\bm{v}}) + \cstress^{\, \text{d} \,} : \symvgrad^{\, \text{d} \,} - \sum_{\alpha=1}^N \mu_{\alpha}m_{\alpha}) + \frac{\rho r}{\theta} + \bm{q} \vdot \grad\qty(\frac{1}{\theta}) - \sum_{\alpha=1}^N \bm{j}_{\alpha} \vdot \qty(\grad\qty(\frac{\mu_{\alpha}}{\theta} - \frac{\bm{b}_{\alpha}}{\theta})).
+\end{equations}
+
+Let us now work only with the "diffusive component of the entropy production"
+
+\begin{equations}[single,*]
+	- \sum_{\alpha=1}^N \bm{j}_{\alpha} \vdot\qty(\grad\qty(\frac{\mu_{\alpha}}{\theta})- \frac{\bm{b}_{\alpha}}{\theta}) = - \sum_{\alpha=1}^N \bm{u}_{\alpha} \vdot \qty(\rho_{\alpha}\grad\qty(\frac{\mu_{\alpha}}{\theta}) - \frac{\bm{b}_{\alpha}}{\theta}\rho_{\alpha} - \rho_{\alpha} \Lambda),
+\end{equations}
+
+which is legit, since $\sum_{\alpha=1}^N \bm{u}_{\alpha} = 0.$ Denote
+
+\begin{equations}[single,*]
+	\bm{d}_{\alpha} = \rho_{\alpha}\qty(\grad\qty(\frac{\mu_{\alpha}}{\theta}) - \frac{\bm{b}_{\alpha}}{\theta}\rho_{\alpha} - \Lambda),
+\end{equations}
+
+and thus we can write
+
+\begin{equations}[single,*]
+	- \sum_{\alpha=1}^N \bm{j}_{\alpha} \vdot\qty(\grad \qty(\frac{\mu_{\alpha}}{\theta}) - \frac{\bm{b}_{\alpha}}{\theta}) = - \sum_{\alpha=1}^N \bm{u}_{\alpha} \vdot \bm{d}_{\alpha}.
+\end{equations}
+
+
+We require $\Lambda$ to be such that
+
+\begin{equations}[single,*]
+	\sum_{\alpha=1}^N \bm{d}_{\alpha} = 0,
+\end{equations} 
+\textit{i.e.},
+
+\begin{equations}[single,*]
+	\rho \Lambda = \sum_{\alpha=1}^N \rho_{\alpha}\qty(\grad \qty(\frac{\mu_{\alpha}}{\theta}) - \frac{\bm{b}_{\alpha}}{\theta}),
+\end{equations}
+from which it follows
+
+\begin{equations}[single,*]
+	\Lambda = \sum_{\alpha=1}^N c_{\alpha}\qty(\grad\qty(\frac{\mu_{\alpha}}{\theta}) - \frac{\bm{b}_{\alpha}}{\theta}),
+\end{equations}
+
+and so $\bm{d}_{\alpha}$ have the form
+
+\begin{equations}[lines,*]
+	\bm{d}_{\alpha}  = \rho_{\alpha}\qty(\grad\qty(\frac{\mu_{\alpha}}{\theta})) = \frac{\bm{b}_{\alpha}}{\theta}) - \rho_{\alpha} \sum_{\beta=1}^N c_{\beta}\qty(\grad\qty(\frac{\mu_{\beta}}{\theta}) - \frac{\bm{b}_{\beta}}{\theta}) =\\= \rho_{\alpha}\qty(\grad \qty(\frac{\mu_{\alpha}}{\theta}) - \frac{\bm{b}_{\alpha}}{\theta} -  \frac{\rho_{\alpha}}{\rho} \sum_{\beta=1}^N \rho_{\beta} \grad\qty(\frac{\mu_{\beta}}{\theta}) + \frac{\rho_{\alpha}}{\rho}\sum_{\beta=1}^N \frac{\rho_{\beta} \bm{b}_{\beta}}{\rho}) = \\ = \rho_{\alpha}\qty(\grad\qty(\frac{\mu_{\alpha}}{\theta}) - \sum_{\beta=1}^N c_{\beta} \grad\qty(\frac{\mu_{\beta}}{\theta}) - \frac{\bm{b}_{\alpha} - \bm{b}}{\theta}),
+\end{equations}
+where we have used the definition of the body forces
+
+\begin{equations}[single,*]
+	\rho \bm{b} = \sum_{\alpha=1}^N \rho_{\alpha} \bm{b}_{\alpha}.
+\end{equations}
+
+This means that the "diffusive entropy production is"
+
+\begin{equations}[single,*]
+	\Pi_{\eta}^{\, \text{diff} \,} = \sum_{\alpha=1}^N \bm{u}_{\alpha} \vdot \bm{d}_{\alpha},
+\end{equations}
+
+with 
+
+\begin{equations}[single,*]
+	\bm{d}_{\alpha} = \rho_{\alpha}\qty(\grad \qty(\frac{\mu_{\alpha}}{\theta}) - \sum_{\beta=1}^N c_{\beta} \grad\qty(\frac{\mu_{\beta}}{\theta}) = \frac{\bm{b}_{\alpha} - \bm{b}}{\theta}).
+\end{equations}
+
+To proceed, we need some thermodynamical relations
+
+\begin{itemize}
+	\item the \emph{Gibbs relation} $$\theta \dd{\eta} = \dd{e} + p \dd{\qty(\frac{1}{\rho})} - \sum_{\alpha=1}^N \mu_{\alpha} \dd{c}_{\alpha},$$
+	\item the \emph{Euler relation} $$\rho \eta = e + p \frac{1}{\rho} - \sum_{\alpha=1}^N \mu_{\alpha} c_{\alpha}$$,
+	\item the \emph{Gibbs-Duhem relation} $$\eta \dd{\theta} = \frac{1}{\rho} \dd{p} - \sum_{\alpha=1}^N c_{\alpha} \dd{\mu}_{\alpha}.$$
+\end{itemize}
+
+
+So we can in fact write  (\textcolor{gray}{using Gibbs-Duhem\sidenote{Gibbs-Duhem works for $\grad$ also, since that is almost the same like $\dd{d}$.} in the first step and Euler in the second})
+
+\begin{equations}[single,*]
+	\sum_{\beta=1}^N c_{\beta} \grad \qty(\frac{\mu_{\beta}}{\theta}) = \underbrace{\frac{1}{\theta} \sum_{\beta=1}^N c_{\beta} \grad \mu_{\beta}}_{= \frac{\grad p}{\rho} - \eta \grad \theta} + \underbrace{\sum_{\beta=1}^N c_{\beta} \mu_{\beta}}_{= e - \theta \eta + \frac{p}{\rho}} \grad\qty(\frac{1}{\theta}) = \frac{1}{\theta} \frac{\grad p}{\rho} - \eta \frac{1}{\theta} \grad \theta + \qty(e - \theta \eta + \frac{p}{\rho})(\frac{- \grad \theta}{\theta^{2}} = h \grad\qty(\frac{1}{\theta}) + \frac{\grad p}{\rho \theta},
+\end{equations}
+
+where we have denoted
+
+\begin{equations}[single,!,numberline=all]
+	\label{eq:enthalpy}
+	h = e + \frac{p}{\rho},
+\end{equations}
+as the \emph{(specific) enthalpy.} We can thus write 
+
+\begin{equations}[single,!,numberline=all]
+	\label{eq:d_alpha}
+	\bm{d}_{\alpha} = \rho_{\alpha} \grad \qty(\frac{\mu_{\alpha}}{\theta}) - \rho_{\alpha} h \grad\qty(\frac{1}{\theta} ) - \frac{c_{\alpha}}{\theta} \grad p - \rho_{\alpha} \frac{\bm{b}_{\alpha}-\bm{b}}{\theta},
+\end{equations}
+
+and the diffusive entropy production is 
+
+\begin{equations}[single,*]
+	\Pi_{\eta}^{\, \text{diff} \,} = - \sum_{\alpha=1}^N \bm{u}_{\alpha} \vdot \bm{d}_{\alpha} = - \sum_{\alpha=1}^N\qty(\bm{u}_{\alpha} - \bm{u}_{n})\vdot \bm{d}_{\alpha}.
+\end{equations}
+
+We now \emph{postulate}
+
+\begin{equations}[single,!,numberline=all]
+	\label{eq:inverse_closure}
+	\bm{d}_{\alpha} \coloneq - \sum_{\beta=1}^{N-1}\tau_{\alpha \beta}\qty(\bm{u}_{\beta} - \bm{u}_N),
+\end{equations}
+where the matrix $\bbtau = \bbtau^{\transpose} \in \R^{N-1 \times N-1}$ is some symmetric positive \textcolor{gray}{semi-}definite matrix to make sure $\Pi_{\eta}^{\, \text{diff} \,} \geq 0.$
+
+But the true beauty of the \emph{Maxwell-Stefan closure} lies in the construction of a \emph{different matrix} $\tilde{\bbtau} \in \R^{N \times N},$ such that we require
+
+\begin{equations}[columns,*]
+	\sum_{\alpha=1}^N \tilde{\tau}_{\alpha \beta} = 0 \Leftrightarrow \tilde{\tau}_{N \beta} &= - \sum_{\alpha=1}^{N-1}\tau_{\alpha \beta},\\
+	\sum_{\beta=1}^N \tilde{\tau}_{\alpha \beta} = 0 \Leftrightarrow \tilde{\tau}_{\alpha N} &= - \sum_{\beta=1}^N \tau_{\alpha \beta}, \\
+	\tilde{\tau}_{NN} &= - \sum_{\alpha=1}^{N-1} \tilde{\tau}_{\alpha N} = -\sum_{\beta=1}^{N-1} \tilde{\tau}_{N \beta}, \\
+	\alpha, \beta &= 1, \dots, N-1.
+\end{equations}
+
+This is in particular handy, because we omit the \emph{privileged} position of $\bm{u}_N$ and obtain
+
+\begin{equations}[single,!,numberline=all]
+	\label{eq:inverse_closure_better}
+	\bm{d}_{\alpha} =  - \sum_{\beta=1}^N \tilde{\tau}_{\alpha \beta}\qty(\bm{u}_{\beta} - \bm{u}_{\alpha}),
+\end{equations}
+
+which is in fact \emph{very nice,} because $\bm{u}_{\beta} - \bm{u}_{\alpha} = \bm{v}_{\beta} - \bm{v}_{\alpha}.$ Some popular choices are
+
+\begin{equations}[single,!,numberline=all]
+	\label{eq:choice_ms}
+	\tilde{\tau}_{\alpha \beta} = \rho_{\alpha} \rho_{\beta} f_{\alpha \beta},
+\end{equations}
+for some\sidenote{The structure of $\tensorq{f}$ can be obtaned from statistical physics, whereas the structure of $\tensorq{L}$ not. In fact, one can obtain a different matrix $\tensorq{d}$ related to $\tensorq{f}$ which \emph{can be taken as constant.}} $\tensorq{f} = \tensorq{f}^{\transpose} \in \R^{N \times N}$ \emph{ symmetric positive \textcolor{gray}{semi-}definite matrix}. This ansatz gives 
+
+\begin{equations}[single,*]
+	\bm{d}_{\alpha} = - \sum_{\beta=1}^N f_{\alpha \beta}\qty(\rho_{\beta} \bm{j}_{\alpha} - \rho_{\alpha}\bm{j}_{\beta}),
+\end{equations}
+
+and so the full \emph{Maxwell-Stefan} closure reads as
+
+\begin{equations}[single,!,numberline=all]
+	\label{eq:ms_closure}
+	- \sum_{\beta=1}^N f_{\alpha \beta}\qty(\rho_{\beta}\bm{j}_{\alpha} - \rho_{\alpha} \bm{j}_{\beta}) = \rho_{\alpha} \grad\qty(\frac{\mu_{\alpha}}{\theta}) - \frac{c_{\alpha}}{\theta} \grad p - \rho_{\alpha} h \grad\qty(\frac{1}{\theta}) - \rho_{\alpha} \frac{\bm{b}_{\alpha} - \bm{b}}{\theta},
+\end{equations}
+
+
+\subsection{Constraints}
+\label{sec:constraints}
+
+How to add some constraints to the theory? For example, we would like to model the fluids in the mixture as \emph{incompressible.} We will discuss two constraints
+
+\begin{itemize}
+	\item incompressibility,
+	\item quasi-compressibility
+\end{itemize}
+
+\subsubsection{Compressibility}
+\label{sec:compressibility}
+
+The constraint reads as
+
+\begin{equations}[single,!,numberline=all]
+	\label{eq:compress}
+	\divergence{\bm{v}} = 0.
+\end{equations}
+
+The entropy balance is
+
+\begin{equations}[single,*]
+	\rho \psi \mdv{\eta} = \cstress^{\, \text{d} \,}:\symvgrad^{\, \text{d} \,} + \qty(M+p)\qty(\divergence{ \bm{v}}) - \divergence{\bm{q}} - \mu m + \mu \divergence{\bm{j}} = \cstress^{\, \text{d} \,}:\symvgrad^{\, \text{d} \,} - \divergence{\bm{q}} - \mu m + \mu \divergence{\bm{j}},
+\end{equations} 
+
+and so 
+
+\begin{equations}[columns,!,numberline=all]
+	\label{eq:compress_closure}
+	\cstress^{\, \text{d} \,} &= 2 \nu \symvgrad^{\, \text{d} \,} =\sidenotemark 2 \nu \symvgrad, \\
+	\bm{q} &= \kappa \grad\qty(\frac{1}{\theta}), \\
+	m &= - \beta \mu, \\
+	\bm{j} &= - \alpha \grad\qty(\frac{\mu}{\theta})
+\end{equations}
+
+\sidenotetext{$$\trace \symvgrad = \divergence{\bm{v}} = 0.$$}
+
+\subsubsection{Quasi-compressibility}
+\label{sec:quasi_compress}
+
+Our assumption is 
+\begin{equations}[single,*]
+	\rho = \hat{\rho}\qty(c),
+\end{equations}
+
+\textcolor{gray}{in general $\rho = \hat{\rho}\qty(c_1, \dots, c_N).$} Compute the material time derivative:
+
+\begin{equations}[single,*]
+	\mdv{\rho} = \pdv{\hat{\rho}}{c} \mdv{c},
+\end{equations}
+
+mulitply by $\rho$ and realize $\mdv{\rho} = - \rho \qty(\divergence{\bm{v}}),$ and $\rho \mdv{c} = m - \divergence{\bm{j}}$, so
+
+\begin{equations}[single,*]
+	\rho \mdv{\rho} = - \rho^{2}\qty(\divergence{\bm{v}}) = \pdv{\hat{\rho}}{c} \rho \mdv{c} = \pdv{\hat{\rho}}{c}\qty(m - \divergence{\bm{j}}),
+\end{equations}
+and so 
+
+\begin{equations}[single,*]
+	\divergence{\bm{v}} =- \frac{1}{\rho^{2}} \pdv{\hat{\rho}}{c}\qty(m - \divergence{\bm{j}}) = \qty(\dv{c}\qty(\frac{1}{\hat{\rho}\qty(c)}))\qty(m - \divergence{\bm{j}})
+\end{equations}
+
+\begin{example}[Porous media setting]
+	Is the above setting even sensible? Suppose we have $N=2$ and are in the \emph{volume-additivity} setting
+	\begin{equations}[single,*]
+		\sum_{\alpha=1}\varphi_{\alpha} = 1, \varphi_{\alpha} = \frac{\rho_{\alpha}}{\rho_{\alpha}^m},
+	\end{equations}
+	and each of the components are incompressible
+	\begin{equations}[single,*]
+		\rho_{\alpha}^m = \, \text{const} \,.
+	\end{equations}
+
+	Let us compute
+	\begin{equations}[single,*]
+		1 = \sum_{\alpha=1}^N \varphi_{\alpha} = \sum_{\alpha=1}^N \frac{\rho_{\alpha}}{\rho_{\alpha}^m} = \sum_{\alpha=1}^N \frac{\rho c_{\alpha}}{\rho_{\alpha}^m} ,
+	\end{equations}
+	and so 
+	\begin{equations}[single,*]
+		\frac{1}{\rho} = \sum_{\alpha=1}^N \frac{c_{\alpha}}{\rho_{\alpha}^m},
+	\end{equations}
+	and in a binary mixture $N=2$ we have
+
+	\begin{equations}[single,*]
+		\frac{1}{\rho} = \frac{c}{\rho_1^m} + \frac{1-c}{\rho_2^m},
+	\end{equations}
+	and so
+
+	\begin{equations}[single,*]
+		\dv{c}\qty(\frac{1}{\hat{\rho}(c)}) = \frac{1}{\rho_1^m} - \frac{1}{\rho_2^m} = \frac{\rho_2^m - \rho_1^m}{\rho_1^m \rho_2^m},
+	\end{equations}
+	so if we set
+
+	\begin{equations}[single,*]
+		r_{*} \coloneq \frac{\rho_2^m - \rho_1^m}{\rho_1^m \rho_2^m},
+	\end{equations}
+
+	we obtain 
+
+	\begin{equations}[single,*]
+		\divergence{\bm{v}} = r_* \qty(m - \divergence{\bm{j}}).
+	\end{equations}
+	Recall now the balance of entropy
+
+	\begin{equations}[single,*]
+		\rho \theta \mdv{\eta} = \cstress^{\, \text{d} \,}: \symvgrad^{\, \text{d} \,} + \qty(M+p)\qty(\divergence{\bm{v}}) - \mu\qty(m - \divergence{\bm{j}}),
+	\end{equations}
+	we see we have two options: 
+	\begin{enumerate}
+		\item substitute for $\divergence{\bm{v}}$ and suppose the chemical reactions are the \emph{main ones},
+		\item substitute for $m-\divergence{\bm{j}}$ and suppose the mechanilcal interactions are the \emph{main ones}.
+	\end{enumerate}
+
+	First approach:
+
+	\begin{equations}[single,*]
+		\rho \theta \mdv{\eta} = \cstress^{\, \text{d} \,}: \symvgrad^{\, \text{d} \,} + \qty(M+p)\qty(r_*\qty(m- \divergence{\bm{j}})) - \mu\qty(m- \divergence{\bm{j}}) - \divergence{q} = \cstress^{\, \text{d} \,}:\symvgrad^{\, \text{d} \,} -\qty(m-\divergence{j})\qty(\mu - r_*\qty(M+p)) - \divergence{\bm{q}},
+	\end{equations}
+	so if we set 
+	\begin{equations}[single,*]
+		\mu_* \coloneq \mu - r_*\qty(M+P),
+	\end{equations}
+	we are exactly in the "incompressible" Fick-Navier-Stokes-Fourier setting.
+	\begin{equations}[single,*]
+		\rho \theta \mdv{\eta} = \cstress^{\, \text{d} \,}: \symvgrad^{\, \text{d} \,}-\qty(m- \divergence{\bm{j}})\mu_*,
+	\end{equations}
+	and so
+
+	\begin{equations}[columns,*]
+		\cstress &= M \identityM + 2 \nu \symvgrad^{\, \text{d} \,}, \\
+		\bm{q} &= \kappa \grad\qty(\frac{1}{\theta}), \\
+		\bm{j} &= - \alpha \grad m_{\alpha},
+		m &= - \beta \mu_{*}.
+	\end{equations}
+
+	Plugging this into the balance equations we have
+
+	\begin{equations}[columns,*]
+		\rho \mdv{\bm{v}} &= \grad M + \divergence{\qty(2 \nu \symvgrad^{\, \text{d} \,})} + \rho \bm{b}, \\
+		\divergence{\bm{v}} &= r_*\qty(-\beta \mu_* + \divergence{\qty(\alpha \grad \mu_{\alpha})}) = r_*\qty(-\beta + \alpha \laplace\qty(\mu 0 r_*\qty(M+p))) =\\
+				    &=r_*\qty(-\beta + \alpha \laplace)\qty(\mu\qty(c, \theta) - r_* p\qty(\theta,c)) + r_*^{2}\qty(\beta - \alpha \laplace)M = \\
+				    &=\gamma\qty(\theta,c) + r^{2}_*\qty(\beta - \alpha \laplace)M, \lambda>0, \beta>0, \\
+				    &\, \text{concetration equation} \,.
+	\end{equations}
+	This is quite interesting - we see that the divergence of the velocity is proportional to some elliptical operator on $M$. This provides some mathematical rooting of the quasi-incompressibilty concept; suppose the system
+
+	\begin{equations}[columns,*]
+		\divergence{\bm{v}_{\varepsilon}} &= - \varepsilon \laplace M, \\
+		\partial_t \bm{v}_{\varepsilon} + \bm{v}_{\varepsilon} \vdot \grad \bm{v}_{\varepsilon} &= \grad M_{\varepsilon} + \nu \laplace \bm{v}_{\varepsilon} - \frac{1}{2} \qty(\divergence{\bm{v}_{\varepsilon}})\bm{v}_{\varepsilon},
+	\end{equations}
+	the apriori estimates are
+
+\end{example}
+
+\subsection{Cahn-Hilliard}
+\label{sec:cahn_hilliard}
+
+Let us begin with a more general \emph{ansatz} for the free energy
+
+\begin{equations}[single,!,numberline=all]
+	\label{eq:ansatz}
+	\psi = \hat{\psi}\qty(\theta, \frac{1}{\rho}, c, \abs{\grad c}).
+\end{equations}
+
+One can then derive
+
+\begin{comment}
+	\begin{equations}[lines,!,numberline=all]
+		\label{eq:ch_entropy}
+		\rho \dot{\eta} + \divergence{\qty(\frac{\bm{q} + \qty(\frac{m - \divergence{\bm{j}}}{\rho})\bm{\mu}_c - \mu_{c}\bm{j}}{\theta})} = \\ = \frac{1}{\theta}\qty(\qty(\cstress^{\, \text{d} \,} + \tensorq{K}^{\, \text{d} \,}):\symvgrad^{\, \text{d} \,} + \qty(M + p \frac{1}{3} \tr \tensorq{K})\qty(\divergence{\bm{v}}) =\\= - \bm{\mu}_c - \qty(\bm{q} + \frac{m- \divergence{\bm{j}}}{\rho} \bm{\mu}_c)\vdot \frac{\grad \theta}{\theta}) + \\ - \bm{j}\theta \grad\qty(\frac{\mu_c}{\theta}),
+	\end{equations}
+\end{comment}
+
+where 
+
+\begin{equations}[single,!,numberline=all]
+	\label{eq:vector_chemical_potentital}
+	\bm{\mu}_c = \rho \pdv{\hat{\psi}}{\grad c},
+\end{equations}
+is the \emph{vector chemical potential},
+
+\begin{equations}[single,!,numberline=all]
+	\label{eq:chem}
+	\mu_c = \mu - \frac{\divergence{\bm{\mu}_c}}{\rho}, \mu = \pdv{\hat{\psi}}{c},
+\end{equations}
+
+is the \emph{concetration chemical potential} and
+
+\begin{equations}[single,!,numberline=all]
+	\label{eq:korteweg}
+	\tensorq{K} = \bm{m}_{c} \otimes \grad c,
+\end{equations}
+is the \emph{Korteweg stress tensor.}
+
+\subsection{Allen-Cahn-Fourier}
+\label{sec:ACF}
+This is the case $\bm{j} = \bm{0}, m \neq 0.$ With the following ansatz for the free energy
+
+\begin{equations}[single,!,numberline=all]
+	\label{eq:free_ansatz}
+	\psi = \psi_0\qty(\theta, \frac{1}{\rho}) + \psi_1\qty(\theta, c) + \frac{s}{2 \rho} \abs{\grad c}^{2}.
+\end{equations}
+
+Let us also, for simplicity, $\bm{v} = , \rho = \, \text{konst} \,.$ The evolution equations then are
+
+\begin{equations}[single,*]
+	\rho \mdv{c} = m - \divergence{\bm{j}} = m,
+\end{equations}
+and so
+
+\begin{equations}[single,*]
+	\rho \partial_t c - \frac{\beta}{\rho}\qty(\divergence{\qty(s \grad c)}) + \frac{\beta}{\rho} \pdv{\psi_1}{c} = 0.
+\end{equations}
+
+If one chooses the energetic representation
+
+\begin{equations}[single,*]
+	e = \overline{e}\qty(\psi, \frac{1}{\rho}, c, \grad c) = \hat{\psi} - \theta \pdv{\hat{\psi}}{\theta},
+\end{equations}
+and so it holds
+
+\begin{equations}[lines,*]
+	\rho\qty(\pdv{\overline{e}}{\theta} \pdv{\theta}{t} + \pdv{\overline{e}}{c} \pdv{c}{t} + \pdv{\overline{e}}{\grad c} \pdv{c}{t} + \pdv{\overline{e}}{\grad c} \pdv{\qty(\grad c)}{t}) = \\ = \divergence{\qty(\kappa \frac{\grad \theta}{\theta} - \qty(\frac{\beta s}{\rho^{2}})\qty(\pdv{\psi_1}{c} - \divergence{\qty(s \grad c)})\grad c)},
+\end{equations}
+
+realize now 
+
+\begin{equations}[single,*]
+	\pdv{\qty(\gamma \psi + \lambda c)}{t} = \divergence{\qty(\kappa \grad \psi)},
+\end{equations}
+and one also has
+
+\begin{equations}[single,*]
+	\pdv{c}{t} = \frac{b}{\rho^{2}}\qty(\divergence{\qty(s \grad c)} - \pdv{\hat{\psi}_1}{c}),
+\end{equations}
+where
+
+\begin{equations}[single,*]
+	\divergence{\qty(s \grad c \pdv{c}{t})} = \pdv{c}{t}\qty(\divergence{\qty(s \grad c)}) + s \grad c \pdv{\grad c}{t},
+\end{equations}
+and so
+
+\begin{equations}[single,*]
+	\rho\qty(\pdv{\overline{e}}{\theta} \pdv{\theta}{t} + \qty(\pdv{\overline{e}}{c} - \frac{\qty(\divergence{ s \grad c})}{\rho} + \qty(\pdv{\overline{e}}{\grad c}) - \frac{s \grad c}{\rho})\vdot \grad)\pdv{c}{t})
+\end{equations}
+
+This is terrible\sidenote{The dependency is on $c, \grad c, \laplace c$}. Are there some cases when it is not?
+
+\begin{equations}[lines,*]
+	\pdv{\overline{e}}{\grad c} - \frac{s \grad c}{\rho} = \\ = \pdv{\grad c}\qty(\hat{\psi} - \theta \pdv{\hat{\psi}}{\theta}) - s \frac{\grad c}{\rho} = \\= \frac{s \grad c}{\rho} - \theta \pdv{\theta}\qty(\frac{s \grad c}{\rho}) - \frac{s \grad c}{\rho} = \\ = - \frac{\theta}{\rho} \grad c \pdv{s}{\theta} = 0 \Leftrightarrow \sigma \neq \sigma\qty(\theta).
+\end{equations}
+
+So when $\sigma$ the surface stress is constant, one gets
+
+\begin{equations}[single,*]
+	\rho\qty(\pdv{\overline{e}}{\theta} \pdv{\theta}{t} + \qty(\pdv{\overline{e}}{c} - \frac{\qty(\divergence{\qty(s \grad c)})}{\rho}) \pdv{c}{t}) = \divergence{\qty(\kappa \frac{\grad \theta}{\theta})}
+\end{equations}
+
+But $\sigma \neq \sigma\qty(\theta)$ is really \emph{nonphysical}. We see that there is \emph{a fundamental difference} in the case when the surface density depends on temperature - \emph{the equation has a completely different structure!}
+
+\begin{remark}[Development of theories]
+	Many times, one develops a model through mechanical assumptions and then try to "extend it thermodynamically", \textit{e.g.} take the parameters (viscosity, moduli) to be temperature-dependent. 
+
+	But this is wrong.
+
+	If one starts within thermodynamic, he ends up with a \emph{totally different} set of equations.
+\end{remark}
+
+\subsection{Cahn-Hilliard-Navier-Stokes-Fourier}
+\label{sec:CHNSF}
+
+This is the case $\bm{j} \neq 0, m = 0.$ The equations are
+
+\begin{equations}[columns,*]
+	\cstress &= - p \identityM + \lambda \qty(\divergence{\bm{v}})\identityM + 2 \nu \symvgrad - \tensorq{K}, \\
+	\bm{q} &= -\kappa \frac{\grad \theta}{\theta} + \bm{\mu}_{c} \frac{\qty(\divergence{ \bm{j}})}{\rho},\\
+	\bm{j} &= - \alpha \theta \grad\qty(\frac{\mu_{c}}{\theta}),\\
+	\mu_c &= \mu - \frac{\qty(\divergence{ \bm{\mu}_c})}{\theta}.
+\end{equations}
+From these full equations one can obtain several \emph{reductions}
+
+\subsection{Cahn-Hilliard}
+\label{sec:CH}
+
+The Cahn-Hilliard model can be derived as follows: for simplicity, let us take $\rho = \, \text{const} \,, \bm{v} = 0, \theta = \, \text{const} \,.$ \emph{Mainly, we are not assuming temperature dependence and no advection.} 
+
+\begin{equations}[lines,*]
+	\rho \mdv{c} = \rho \pdv{c}{t} = - \divergence{\bm{j}} = \divergence{\qty(\alpha \grad \mu_c)} = \divergence{\qty(\alpha \grad\qty(\mu - \frac{\divergence{\bm{\mu}_c}}{\rho}))} = \divergence{\qty(\alpha \grad\qty(\pdv{\psi_1}{\grad c}) - \divergence{\qty(s \grad c)})},
+\end{equations}
+so if we take $\alpha = \, \text{const} \,, s = \, \text{const} \,$ we obtain
+
+\begin{equations}[single,!,numberline=all]
+	\label{eq:CH}
+	\rho \pdv{c}{t} = \alpha \laplace\qty(\pdv{\psi_1}{c} - s \laplace c).
+\end{equations}
+
+For comparison, the Allen-Cahn model looks like
+
+\begin{equations}[single,*]
+	\rho \pdv{c}{t} = -\beta \qty(\pdv{\psi_1}{c} - s \laplace c),
+\end{equations}
+
+where $\alpha , \beta >0.$
+
+\subsection{Cahn-Hilliard-Navier-Stokes}
+\label{sec:CHNS}
+
+This is the case wehn we omit temperature dependence. Also, we suppose the fluid is incompressible, \textit{i.e.} $\theta = \, \text{const} \,, \divergence{\bm{v}} = 0, \rho = \, \text{const} \,, s = \, \text{const} \,.$ The system is
+
+\begin{equations}[columns,!, numberline=all]
+	\label{eq:CHNS_system}
+	\rho \mdv{\bm{v}} &= \divergence{\qty(2 \nu \symvgrad)} - \grad p + \divergence{\qty(s \grad c \otimes \grad c)}, \\
+	\rho \mdv{c} &= \alpha \laplace\qty(\pdv{\psi_1}{c} - s \laplace c).
+\end{equations}
+
+\section{Allen-Cahn and Cahn-Hilliard as gradient flows}
+\label{sec:gradient_flows}
+
+Let us have a Hilbert space $H$, a function $c\qty(t, \bm{x}) \in H$ and a functional $F: \to \R,$ given as
+
+\begin{equations}[single,*]
+	F(c) = \int_{\R^3}\qty(f(c) + \frac{s}{2}\abs{\grad c}^{2})\dd{\bm{x}}.
+\end{equations}
+
+The evolution is called \emph{a gradient flow} if it holds
+
+\begin{equations}[single,!,numberline=all]
+	\label{eq:grad_flow}
+	\partial_t c = - k \grad F.
+\end{equations}
+
+where $\grad F \in H$ is the \emph{functional derivative} defined as
+
+\begin{equations}[single,!,numberline=all]
+	\label{eq:fdr}
+	<\fdv{F\qty(c)}{c}, v>_{H^{*}, H} = \dv{s}\eval{\qty(F\qty(c+ sv))}_{s = 0} = \qty(\grad F, v)_{H, H}
+\end{equations}
+and so $\fdv{F}{c}$ is the distribution representing the Gateux derivative of $F$ and $\grad F$ is the Riesz representation of $\fdv{F}{c}.$
+
+Whis is this any useful? Let us compute
+
+\begin{equations}[single,*]
+	\dv{t} F(c)(t) = <\fdv{F}{c}, \partial_t c> = \qty(\grad F, \partial_t c) = - k \norm{\grad F}^{2}_H \leq 0, 
+\end{equations}
+
+and so one sees 
+
+\begin{equations}[single,*]
+	\dv{t} F(c) \leq 0,
+\end{equations}
+\textit{i.e.} the evolution of a gradient flow minimizes \emph{the free energy functional}.
+
+\subsection{A-C as a gradient flow}
+\label{sec:A-C_gr}
+
+We have
+
+\begin{equations}[single,*]
+	< \delta F(c), v> = \int_{\R^3}\qty(f'(c) v + s \grad c \vdot \grad v)\dd{x} = \int_{\R^3}\qty(f'(c) - \divergence{\qty(s \grad c)}) v\dd{x} = \qty(\grad F, v)_{L_2},
+\end{equations}
+and so one sees 
+
+\begin{equations}[single,!,numberline=all]
+	\label{eq:ac_gr}
+	\partial_t c = -k \qty(\pdv{\psi_1}{c} - \divergence{\qty(s \grad c)}),
+\end{equations}
+\textit{i.e.} A-C is a \emph{gradient flow} in $L_2.$
+
+\subsection{C-H as a gradient flow}
+\label{sec:C-H_gr}
+
+\begin{equations}[single,*]
+	<\fdv{F}{c}, v> = \int_{\R^3}\qty(\pdv{\psi_1}{c} + s \grad c \vdot \grad v)\dd{x},
+\end{equations}
+
+let us set $H = H^{-1}\qty(\R^3),$ with 
+
+\begin{equations}[single,*]
+	\qty(u,v)_{H^{-1}} = \qty(\grad u^{*}, \grad v^{*})_{L_2},
+\end{equations}
+
+with $u^{*}$ being the solution to $\laplace u^{*} = u.$ Now
+
+\begin{equations}[lines,*]
+	<\fdv{F}{c},v> = \int_{\R^3}\laplace\qty(\pdv{\psi_1}{c})^{*} \laplace v^{*} + \laplace \grad \laplace c^{*} \vdot \grad \laplace v^{*}\dd{x} =\\= \int_{\R^3}\qty(\laplace\qty(\pdv{\psi_1}{c})^{*} - s \laplace \laplace c^{*})\laplace v^{*} \dd{x} = \\= -\int_{\R^3}\grad\qty(\laplace\qty(\pdv{\psi_1}{c})^{*} - s \laplace \laplace c^{*})\vdot \grad v^{*}\dd{x},
+\end{equations}
+and so (with our dot product) the Riesz representation is
+
+\begin{equations}[single,*]
+	<\fdv{F}{c}, v> = \qty(- \laplace\qty(\pdv{\psi_1}{c}), v)_{H^{-1}},
+\end{equations}
+meaning
+
+\begin{equations}[single,*]
+	\partial_tc = +k \laplace\qty(\pdv{\psi_1}{c} - s \laplace c),
+\end{equations} 
+
+which is \emph{exactly the Cahn-Hilliard model.}
+\end{document}
